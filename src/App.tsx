@@ -92,7 +92,7 @@ export default function App() {
   // AI Generation states
   const [selectedLO, setSelectedLO] = useState<EasaLO>(mockLOs[0]);
   const [batchResults, setBatchResults] = useState<{loId: string, questions: Partial<Question>[]}[]>([]);
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true); // Always true for static
   const [batchSize, setBatchSize] = useState<number>(5);
   const [questionsPerLO, setQuestionsPerLO] = useState<number>(2);
   const [genLanguage, setGenLanguage] = useState<'EN' | 'CZ'>('EN');

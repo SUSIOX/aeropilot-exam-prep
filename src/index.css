@@ -70,3 +70,102 @@ body {
   border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
+/* DynamoDB Notifications */
+.dynamodb-notification {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  border-radius: 8px;
+  z-index: 9999;
+}
+
+.dynamodb-notification .notification-content h4 {
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.dynamodb-notification .notification-content p {
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.dynamodb-notification .notification-close {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 8px;
+  font-size: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.dynamodb-notification .notification-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Notification animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* DynamoDB Status Panel */
+.dynamodb-status-panel {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.dynamodb-status-panel .usage-bar {
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.dynamodb-status-panel .usage-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.dynamodb-status-panel .usage-fill.high {
+  background: #ef4444;
+}
+
+.dynamodb-status-panel .usage-fill.medium {
+  background: #f59e0b;
+}
+
+.dynamodb-status-panel .usage-fill.low {
+  background: #10b981;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .dynamodb-notification {
+    right: 10px !important;
+    left: 10px !important;
+    max-width: none !important;
+  }
+}
+

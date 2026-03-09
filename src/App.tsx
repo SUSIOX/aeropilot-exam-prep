@@ -33,6 +33,9 @@ import {
 import { Subject, Question, Stats, ViewMode, DrillSettings } from './types';
 import { LearningEngine } from './lib/LearningEngine';
 import { mockLOs, generateBatchQuestions, getDetailedExplanation, getDetailedHumanExplanation, translateQuestion, EasaLO, SYLLABUS_SCOPE, verifyApiKey, AIProvider } from './services/aiService';
+import { DynamoDBStatus } from './components/DynamoDBStatus';
+import { AdminDashboard } from './components/AdminDashboard';
+import { dynamoCache } from './services/dynamoCache';
 
 export default function App() {
   const [view, setView] = useState<ViewMode>('dashboard');
@@ -55,7 +58,6 @@ export default function App() {
   const [isGeneratingDetailedExplanation, setIsGeneratingDetailedExplanation] = useState(false);
   const [isGeneratingAiExplanation, setIsGeneratingAiExplanation] = useState(false);
   const [isOnline, setIsOnline] = useState(navigator.onLine);
-  const [usingFirebaseCache, setUsingFirebaseCache] = useState(false);
   const [examResults, setExamResults] = useState<{ score: number; total: number } | null>(null);
   const [timer, setTimer] = useState(0);
 
@@ -594,7 +596,6 @@ export default function App() {
       setAiExplanation(null);
       setAiDetectedObjective(null);
       setDetailedExplanation(null);
-      setUsingFirebaseCache(false);
     } else if (view === 'exam') {
       finishExam();
     } else {
@@ -691,6 +692,23 @@ export default function App() {
         model: aiModel,
         hasKey: !!(aiProvider === 'gemini' ? userApiKey : claudeApiKey)
       });
+
+      // Zkusit získat z DynamoDB cache first
+      const cacheKey = `${q.subject_id}_${q.id}`;
+      const cachedExplanation = await dynamoCache.getCachedExplanation(
+        cacheKey,
+        aiProvider,
+        aiModel
+      );
+
+      if (cachedExplanation && cachedExplanation.explanation) {
+        console.log('Using cached AI explanation from DynamoDB/LocalStorage');
+        setAiExplanation(cachedExplanation.explanation);
+        setDetailedExplanation(cachedExplanation.detailedExplanation || null);
+        setShowExplanation(true);
+        setIsGeneratingAiExplanation(false);
+        return;
+      }
       
       const lo = mockLOs.find(l => l.id === q.lo_id);
       
@@ -699,7 +717,6 @@ export default function App() {
         console.log('Using cached AI explanation from database');
         setAiExplanation(q.ai_explanation);
         setDetailedExplanation(q.ai_detailed_explanation || null);
-        setUsingFirebaseCache(false);
         setShowExplanation(true);
         return;
       }
@@ -733,9 +750,28 @@ export default function App() {
       
       setAiExplanation(result.explanation);
       setShowExplanation(true);
-      setUsingFirebaseCache(false);
       
-      // Save AI explanation to localStorage for reuse
+      // Save AI explanation to DynamoDB cache
+      try {
+        const cacheKey = `${q.subject_id}_${q.id}`;
+        const saved = await dynamoCache.saveExplanation(
+          cacheKey,
+          result.explanation,
+          aiProvider,
+          aiModel,
+          null // detailed explanation
+        );
+        
+        if (saved) {
+          console.log('AI explanation saved to DynamoDB cache');
+        } else {
+          console.log('Failed to save AI explanation to DynamoDB cache');
+        }
+      } catch (error) {
+        console.error('Error saving to DynamoDB cache:', error);
+      }
+      
+      // Save AI explanation to localStorage for reuse (fallback)
       try {
         await authFetch('/api/questions/explanation', {
           method: 'POST',
@@ -816,7 +852,6 @@ export default function App() {
       if (q.ai_detailed_explanation) {
         console.log('Using cached detailed explanation from database');
         setDetailedExplanation(q.ai_detailed_explanation);
-        setUsingFirebaseCache(false);
         return;
       }
       
@@ -824,7 +859,6 @@ export default function App() {
       
       console.log('Detailed explanation result:', detailedExplanationResult);
       setDetailedExplanation(detailedExplanationResult);
-      setUsingFirebaseCache(false);
       
       // Save detailed explanation to database
       try {
@@ -2547,6 +2581,12 @@ export default function App() {
       <footer className="p-8 border-t border-[var(--line)] mt-12 opacity-30 text-[10px] uppercase tracking-[0.2em] text-center">
         AeroPilot Exam Prep &copy; 2026 • EASA ECQB Standard • Czech Republic
       </footer>
+
+      {/* DynamoDB Status Component */}
+      <DynamoDBStatus />
+      
+      {/* Admin Dashboard Component */}
+      <AdminDashboard />
     </div>
   );
 }

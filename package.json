@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
+    "@aws-sdk/client-dynamodb": "^3.1004.0",
+    "@aws-sdk/lib-dynamodb": "^3.1004.0",
     "@google/genai": "^1.29.0",
     "@tailwindcss/vite": "^4.1.14",
     "@vitejs/plugin-react": "^5.0.4",
@@ -32,7 +34,6 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.14.0",
     "autoprefixer": "^10.4.21",
-    "firebase": "^10.7.1",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",

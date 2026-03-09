@@ -1018,6 +1018,8 @@ export default function App() {
     }
   };
 
+  // Skip authentication check for static deployment
+  /*
   if (!token || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4 bg-[var(--bg)]">
@@ -1092,6 +1094,7 @@ export default function App() {
       </div>
     );
   }
+  */
 
   return (
     <div className="min-h-screen transition-colors duration-300">

@@ -1,6 +1,7 @@
 export interface Subject {
   id: number;
   name: string;
+  description?: string;
   question_count: number;
   user_count?: number;
   ai_count?: number;

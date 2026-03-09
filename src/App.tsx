@@ -195,11 +195,10 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (token && user) {
-      fetchSubjects();
-      fetchStats();
-    }
-  }, [token, user]);
+    // Use static data loading for GitHub Pages deployment
+    loadStaticSubjects();
+    loadStaticStats();
+  }, []);
 
   useEffect(() => {
     if (darkMode) {
@@ -287,6 +286,79 @@ export default function App() {
     localStorage.setItem('drillSettings', JSON.stringify(drillSettings));
   }, [drillSettings]);
 
+  // Static data loading for GitHub Pages deployment
+  const loadStaticSubjects = () => {
+    const staticSubjects: Subject[] = [
+      { id: 1, name: "Air Law", description: "Pravidla letectví", question_count: 0, success_rate: 0.75 },
+      { id: 2, name: "Human Performance", description: "Lidská výkonnost", question_count: 0, success_rate: 0.75 },
+      { id: 3, name: "Meteorology", description: "Meteorologie", question_count: 0, success_rate: 0.75 },
+      { id: 4, name: "Communications", description: "Komunikace", question_count: 0, success_rate: 0.75 },
+      { id: 5, name: "Principles of Flight", description: "Principy letu", question_count: 0, success_rate: 0.75 },
+      { id: 6, name: "Operational Procedures", description: "Provozní postupy", question_count: 0, success_rate: 0.75 },
+      { id: 7, name: "Flight Performance", description: "Výkony letadla", question_count: 0, success_rate: 0.75 },
+      { id: 8, name: "Aircraft General", description: "Všeobecně o letadlech", question_count: 0, success_rate: 0.75 },
+      { id: 9, name: "Navigation", description: "Navigace", question_count: 0, success_rate: 0.75 }
+    ];
+    setSubjects(staticSubjects);
+    if (staticSubjects.length > 0 && !importSubjectId) {
+      setImportSubjectId(staticSubjects[0].id);
+    }
+  };
+
+  const loadStaticQuestions = async (subjectId: number) => {
+    try {
+      const response = await fetch(`/subject_${subjectId}.json`);
+      if (!response.ok) throw new Error('Failed to load questions');
+      const jsonQuestions = await response.json();
+      
+      // Transform JSON structure to Question interface
+      const questions: Question[] = jsonQuestions.map((q: any) => ({
+        id: q.id,
+        subject_id: subjectId,
+        text: q.question,
+        text_cz: q.question_cz || undefined,
+        option_a: q.answers[0],
+        option_a_cz: q.answers_cz?.[0] || undefined,
+        option_b: q.answers[1],
+        option_b_cz: q.answers_cz?.[1] || undefined,
+        option_c: q.answers[2],
+        option_c_cz: q.answers_cz?.[2] || undefined,
+        option_d: q.answers[3],
+        option_d_cz: q.answers_cz?.[3] || undefined,
+        correct_option: ['A', 'B', 'C', 'D'][q.correct],
+        explanation: q.explanation || undefined,
+        explanation_cz: q.explanation_cz || undefined,
+        lo_id: q.lo_id || undefined,
+        is_ai: 1, // Mark as AI questions
+        source: 'easa',
+        difficulty: q.difficulty || 1,
+        ai_explanation: undefined,
+        ai_explanation_provider: undefined,
+        ai_explanation_model: undefined,
+        ai_detailed_explanation: undefined,
+        is_flagged: false,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }));
+      
+      return questions;
+    } catch (error) {
+      console.error('Error loading static questions:', error);
+      return [];
+    }
+  };
+
+  const loadStaticStats = () => {
+    // Mock stats for static deployment
+    setStats({
+      overallSuccess: 0.75,
+      userQuestions: 0,
+      aiQuestions: 1000,
+      practicedQuestions: 0,
+      totalQuestions: 1000
+    });
+  };
+
   const fetchSubjects = async () => {
     try {
       const res = await authFetch('/api/subjects');
@@ -344,8 +416,8 @@ export default function App() {
   const startDrill = async (subject: Subject) => {
     try {
       setSelectedSubject(subject);
-      const res = await authFetch(`/api/questions/${subject.id}?sort=${drillSettings.sorting}`);
-      const data: Question[] = await res.json();
+      // Use static questions loading for GitHub Pages deployment
+      const data: Question[] = await loadStaticQuestions(subject.id);
       
       let processedQuestions = data.filter(q => {
         const isAi = Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa';

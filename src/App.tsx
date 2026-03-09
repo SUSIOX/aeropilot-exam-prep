@@ -330,7 +330,7 @@ export default function App() {
         explanation_cz: q.explanation_cz || undefined,
         lo_id: q.lo_id || undefined,
         is_ai: 1, // Mark as AI questions
-        source: 'easa',
+        source: 'ai', // Mark as AI questions to match filter
         difficulty: q.difficulty || 1,
         ai_explanation: undefined,
         ai_explanation_provider: undefined,

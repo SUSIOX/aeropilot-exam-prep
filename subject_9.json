@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "question": "Zeměpisná šířka se měří od:",
+    "answers": ["rovníku směrem k pólům (0° až 90°)", "nultého poledníku", "pólů k rovníku", "východu na západ"],
+    "correct": 0
+  },
+  {
+    "id": 2,
+    "question": "Zeměpisná délka se měří od:",
+    "answers": ["nultého poledníku (Greenwich) směrem na východ a západ (0° až 180°)", "rovníku", "severního pólu", "datové hranice"],
+    "correct": 0
+  },
+  {
+    "id": 3,
+    "question": "Jedna úhlová minuta na hlavním poledníku odpovídá vzdálenosti:",
+    "answers": ["1 námořní míle (1 NM = 1852 m)", "1 kilometr", "10 kilometrů", "100 metrů"],
+    "correct": 0
+  },
+  {
+    "id": 4,
+    "question": "Magnetická deklinace (variace) je úhel mezi:",
+    "answers": ["zeměpisným a magnetickým severem", "magnetickým severem a osou letadla", "kurzem a tratí", "vrtulí a trupem"],
+    "correct": 0
+  },
+  {
+    "id": 5,
+    "question": "Magnetická inklinace je:",
+    "answers": ["úhel, který svírá magnetická siločára s horizontální rovinou", "rozdíl mezi severem a jihem", "chyba kompasu při zatáčce", "odchylka způsobená kovy v letadle"],
+    "correct": 0
+  },
+  {
+    "id": 6,
+    "question": "Deviace kompasu je způsobena:",
+    "answers": ["magnetickými poli v letadle (kovové části, elektroinstalace)", "vzdáleností od pólu", "rychlostí letu", "výškou letu"],
+    "correct": 0
+  },
+  {
+    "id": 7,
+    "question": "Kurz (Heading) je úhel mezi:",
+    "answers": ["severem a podélnou osou letadla", "severem a skutečnou tratí letu", "rovníkem a poledníkem", "vrtulí a křídlem"],
+    "correct": 0
+  },
+  {
+    "id": 8,
+    "question": "Trať (Track) je:",
+    "answers": ["skutečná dráha letadla vůči zemskému povrchu", "směr, kterým míří nos letadla", "vzdálenost mezi letišti", "výška letu"],
+    "correct": 0
+  },
+  {
+    "id": 9,
+    "question": "Snos (Drift) je způsoben:",
+    "answers": ["bočním větrem", "chybou kompasu", "vysokou rychlostí", "hmotností letadla"],
+    "correct": 0
+  },
+  {
+    "id": 10,
+    "question": "Při letu s bočním větrem zleva musí pilot pro udržení tratě:",
+    "answers": ["nasadit kurz vlevo proti větru (úhel opravy o snos)", "nasadit kurz vpravo", "letět rychleji", "vysunout klapky"],
+    "correct": 0
+  },
+  {
+    "id": 11,
+    "question": "Rychlost vůči zemi (Ground Speed - GS) je:",
+    "answers": ["rychlost letadla vůči zemskému povrchu (ovlivněná větrem)", "rychlost ukazovaná na rychloměru", "rychlost zvuku", "rychlost stoupání"],
+    "correct": 0
+  },
+  {
+    "id": 12,
+    "question": "Při letu s větrem v zádech (Tailwind) je GS:",
+    "answers": ["vyšší než pravá vzdušná rychlost (TAS)", "nižší než TAS", "rovna TAS", "nulová"],
+    "correct": 0
+  },
+  {
+    "id": 13,
+    "question": "Pravá vzdušná rychlost (TAS) se s rostoucí výškou (při konstantní IAS):",
+    "answers": ["zvyšuje", "snižuje", "nemění", "klesá na nulu"],
+    "correct": 0
+  },
+  {
+    "id": 14,
+    "question": "Mapa ICAO 1:500 000 – vzdálenost 2 cm na mapě odpovídá ve skutečnosti:",
+    "answers": ["10 km", "5 km", "50 km", "1 km"],
+    "correct": 0
+  },
+  {
+    "id": 15,
+    "question": "Loxodroma je čára na zemském povrchu, která:",
+    "answers": ["protíná všechny poledníky pod stejným úhlem", "je nejkratší spojnicí dvou bodů", "je rovnoběžná s rovníkem", "prochází póly"],
+    "correct": 0
+  },
+  {
+    "id": 16,
+    "question": "Ortodroma (Velká kružnice) je:",
+    "answers": ["nejkratší spojnice dvou bodů na kulové ploše", "čára se stálým kurzem", "rovnoběžka", "poledník"],
+    "correct": 0
+  },
+  {
+    "id": 17,
+    "question": "VFR navigace 'Srovnávací orientace' spočívá v:",
+    "answers": ["porovnávání terénu pod letadlem s mapou", "používání pouze GPS", "sledování přístrojů", "komunikaci s věží"],
+    "correct": 0
+  },
+  {
+    "id": 18,
+    "question": "VOR (VHF Omnidirectional Range) je navigační systém, který poskytuje:",
+    "answers": ["směr (radiál) od stanice k letadlu", "vzdálenost od stanice", "výšku letadla", "rychlost letadla"],
+    "correct": 0
+  },
+  {
+    "id": 19,
+    "question": "DME (Distance Measuring Equipment) poskytuje informaci o:",
+    "answers": ["šikmé vzdálenosti letadla od pozemní stanice", "kurzu letadla", "nadmořské výšce", "teplotě vzduchu"],
+    "correct": 0
+  },
+  {
+    "id": 20,
+    "question": "GPS (Global Positioning System) využívá k určení polohy:",
+    "answers": ["signály ze sítě satelitů", "pozemní radiomajáky", "hvězdy", "magnetické pole země"],
+    "correct": 0
+  },
+  {
+    "id": 21,
+    "question": "Převodní tabulka: 10 NM (námořních mil) je přibližně:",
+    "answers": ["18,5 km", "10 km", "16 km", "20 km"],
+    "correct": 0
+  },
+  {
+    "id": 22,
+    "question": "Převodní tabulka: 1000 ft (stop) je přibližně:",
+    "answers": ["300 m", "100 m", "500 m", "1000 m"],
+    "correct": 0
+  },
+  {
+    "id": 23,
+    "question": "Izogona je čára na mapě spojující místa se stejnou:",
+    "answers": ["magnetickou deklinací (variací)", "nadmořskou výškou", "teplotou", "rychlostí větru"],
+    "correct": 0
+  },
+  {
+    "id": 24,
+    "question": "Agona je čára, kde je magnetická deklinace rovna:",
+    "answers": ["0°", "180°", "90°", "45°"],
+    "correct": 0
+  },
+  {
+    "id": 25,
+    "question": "Při výpočtu času letu (ETE) použijeme vzorec:",
+    "answers": ["čas = vzdálenost / rychlost (vůči zemi)", "čas = rychlost / vzdálenost", "čas = vzdálenost * rychlost", "čas = výška / rychlost"],
+    "correct": 0
+  },
+  {
+    "id": 26,
+    "question": "Který sever používáme při kreslení tratě na mapu ICAO?",
+    "answers": ["zeměpisný (skutečný) sever", "magnetický sever", "kompasový sever", "mřížkový sever"],
+    "correct": 0
+  },
+  {
+    "id": 27,
+    "question": "Lambertova kuželová projekce se v letectví často používá, protože:",
+    "answers": ["ortodroma se na ní jeví téměř jako přímka", "je nejjednodušší na kreslení", "nezobrazuje poledníky", "je vhodná pouze pro póly"],
+    "correct": 0
+  },
+  {
+    "id": 28,
+    "question": "Chyba kompasu při zrychlení (Acceleration error) se projevuje nejvíce při kurzech:",
+    "answers": ["východním a západním", "severním a jižním", "všech kurzech stejně", "neprojevuje se"],
+    "correct": 0
+  },
+  {
+    "id": 29,
+    "question": "Chyba kompasu při zatáčce (Turning error) se projevuje nejvíce při kurzech:",
+    "answers": ["severním a jižním", "východním a západním", "při stoupání", "při klesání"],
+    "correct": 0
+  },
+  {
+    "id": 30,
+    "question": "V navigačním trojúhelníku rychlostí jsou vektory:",
+    "answers": ["vzdušná rychlost, rychlost větru a rychlost vůči zemi", "výška, čas a vzdálenost", "tah, odpor a vztlak", "kurz, variace a deviace"],
+    "correct": 0
+  }
+]

@@ -1,0 +1,362 @@
+[
+  {
+    "id": 1,
+    "question": "Který z plynů je v atmosféře zastoupen nejvíce?",
+    "answers": ["dusík", "kyslík", "vodní pára", "kysličník uhličitý"],
+    "correct": 0
+  },
+  {
+    "id": 2,
+    "question": "Který z plynů je v atmosféře zastoupen přibližně 21 %?",
+    "answers": ["dusík", "kyslík", "vodní pára", "kysličník uhličitý"],
+    "correct": 1
+  },
+  {
+    "id": 3,
+    "question": "Jaká je přibližná výška troposféry ve středních zeměpisných šířkách?",
+    "answers": ["11 km", "11 NM", "11000 m", "11000 ft"],
+    "correct": 0
+  },
+  {
+    "id": 4,
+    "question": "Standardní atmosférický tlak (QNE) na hladině moře je:",
+    "answers": ["1013.25 hPa", "1000 hPa", "760 hPa", "29.92 inHg"],
+    "correct": 0
+  },
+  {
+    "id": 5,
+    "question": "Standardní pokles teploty s výškou v troposféře je přibližně:",
+    "answers": ["0.65 °C na 100 m (2 °C na 1000 ft)", "1 °C na 100 m", "0.5 °C na 100 m", "teplota s výškou roste"],
+    "correct": 0
+  },
+  {
+    "id": 6,
+    "question": "Izobara je čára na mapě spojující místa se stejným:",
+    "answers": ["tlakem vzduchu", "teplotou", "větrem", "vlhkostí"],
+    "correct": 0
+  },
+  {
+    "id": 7,
+    "question": "Vítr fouká z oblasti:",
+    "answers": ["vyššího tlaku do nižšího", "nižšího tlaku do vyššího", "vždy od severu", "vždy od moře"],
+    "correct": 0
+  },
+  {
+    "id": 8,
+    "question": "Coriolisova síla způsobuje na severní polokouli stáčení větru:",
+    "answers": ["vpravo", "vlevo", "vzhůru", "dolů"],
+    "correct": 0
+  },
+  {
+    "id": 9,
+    "question": "Inverze teploty je stav, kdy:",
+    "answers": ["teplota s výškou roste", "teplota s výškou klesá", "teplota je konstantní", "tlak je konstantní"],
+    "correct": 0
+  },
+  {
+    "id": 10,
+    "question": "Rosný bod (Dew point) je teplota, při které:",
+    "answers": ["vzduch dosáhne nasycení vodní párou a začne kondenzace", "začne pršet", "začne sněžit", "se tvoří led"],
+    "correct": 0
+  },
+  {
+    "id": 11,
+    "question": "Relativní vlhkost vzduchu 100 % znamená, že:",
+    "answers": ["vzduch je nasycen vodní párou", "prší", "je mlha", "teplota je 0 °C"],
+    "correct": 0
+  },
+  {
+    "id": 12,
+    "question": "Oblačnost typu 'Cumulus' je charakteristická pro:",
+    "answers": ["instabilní zvrstvení a konvekci", "stabilní zvrstvení", "inverzi", "bezzávětří"],
+    "correct": 0
+  },
+  {
+    "id": 13,
+    "question": "Oblačnost typu 'Stratus' je charakteristická pro:",
+    "answers": ["stabilní zvrstvení", "instabilní zvrstvení", "bouřky", "silný vítr"],
+    "correct": 0
+  },
+  {
+    "id": 14,
+    "question": "Který mrak je doprovázen bouřkami, krupobitím a silným nárazovým větrem?",
+    "answers": ["Cumulonimbus (Cb)", "Altocumulus", "Cirrus", "Stratus"],
+    "correct": 0
+  },
+  {
+    "id": 15,
+    "question": "Teplá fronta je rozhraní, kde:",
+    "answers": ["teplý vzduch klouže nad studený", "studený vzduch vytlačuje teplý", "se vzduch nepohybuje", "prší pouze v noci"],
+    "correct": 0
+  },
+  {
+    "id": 16,
+    "question": "Studená fronta je charakteristická:",
+    "answers": ["prudkým výstupem teplého vzduchu a bouřkovou oblačností", "trvalým mírným deštěm", "rozpouštěním oblačnosti", "beze srážek"],
+    "correct": 0
+  },
+  {
+    "id": 17,
+    "question": "Okluzní fronta vzniká, když:",
+    "answers": ["studená fronta dostihne teplou frontu", "teplá fronta se zastaví", "není vítr", "je jasno"],
+    "correct": 0
+  },
+  {
+    "id": 18,
+    "question": "Anticyklóna je oblast:",
+    "answers": ["vysokého tlaku vzduchu", "nízkého tlaku vzduchu", "stálého deště", "silného větru"],
+    "correct": 0
+  },
+  {
+    "id": 19,
+    "question": "Cyklóna je oblast:",
+    "answers": ["nízkého tlaku vzduchu", "vysokého tlaku vzduchu", "jasného počasí", "beze srážek"],
+    "correct": 0
+  },
+  {
+    "id": 20,
+    "question": "Směr větru se v letectví udává jako směr:",
+    "answers": ["odkud vítr fouká", "kam vítr fouká", "vždy magnetický", "vždy zeměpisný"],
+    "correct": 0
+  },
+  {
+    "id": 21,
+    "question": "Breezový efekt (mořský a pevninský vítr) je způsoben:",
+    "answers": ["rozdílným ohříváním a ochlazováním pevniny a moře", "rotací země", "přílivem a odlivem", "vlnobitím"],
+    "correct": 0
+  },
+  {
+    "id": 22,
+    "question": "Horský a údolní vítr: Ve dne fouká vítr obvykle:",
+    "answers": ["vzhůru do svahů (anabatický vítr)", "dolů do údolí (katabatický vítr)", "pouze horizontálně", "nefouká vůbec"],
+    "correct": 0
+  },
+  {
+    "id": 23,
+    "question": "Föhn je vítr:",
+    "answers": ["teplý a suchý padavý vítr na závětrné straně hor", "studený a vlhký", "vyskytující se pouze nad mořem", "způsobující sněžení"],
+    "correct": 0
+  },
+  {
+    "id": 24,
+    "question": "Turbulence v úplavu za letadlem je nejsilnější, když je letadlo:",
+    "answers": ["těžké, pomalé a v čisté konfiguraci", "lehké a rychlé", "při klesání", "při stání na zemi"],
+    "correct": 0
+  },
+  {
+    "id": 25,
+    "question": "Námraza na letadle je nejnebezpečnější při teplotách:",
+    "answers": ["0 °C až -15 °C v přítomnosti přechlazených vodních kapek", "nad +10 °C", "pod -40 °C", "vždy, když prší"],
+    "correct": 0
+  },
+  {
+    "id": 26,
+    "question": "Dohlednost pod 1000 m způsobená vodními kapkami se nazývá:",
+    "answers": ["mlha", "kouřmo", "zákal", "déšť"],
+    "correct": 0
+  },
+  {
+    "id": 27,
+    "question": "Dohlednost 1 až 5 km způsobená vodními kapkami se nazývá:",
+    "answers": ["kouřmo", "mlha", "zákal", "jasno"],
+    "correct": 0
+  },
+  {
+    "id": 28,
+    "question": "Oblačnost typu 'Cirrus' se skládá z:",
+    "answers": ["ledových krystalků", "vodních kapek", "sněhu", "prachu"],
+    "correct": 0
+  },
+  {
+    "id": 29,
+    "question": "Zkratka QNH znamená tlak přepočtený na hladinu moře podle:",
+    "answers": ["standardní atmosféry (ISA)", "skutečné teploty", "tlaku na letišti bez přepočtu", "předpovědi na zítra"],
+    "correct": 0
+  },
+  {
+    "id": 30,
+    "question": "Při letu z oblasti vysokého tlaku do oblasti nízkého tlaku (bez změny nastavení výškoměru):",
+    "answers": ["skutečná výška bude nižší než indikovaná", "skutečná výška bude vyšší", "výškoměr bude ukazovat správně", "výškoměr se zastaví"],
+    "correct": 0
+  },
+  {
+    "id": 31,
+    "question": "Při letu z teplého vzduchu do studeného vzduchu (bez změny nastavení výškoměru):",
+    "answers": ["skutečná výška bude nižší než indikovaná", "skutečná výška bude vyšší", "výškoměr bude ukazovat správně", "výškoměr se rozbije"],
+    "correct": 0
+  },
+  {
+    "id": 32,
+    "question": "Výškový vítr (Jet Stream) se vyskytuje především:",
+    "answers": ["v horní troposféře v blízkosti tropopauzy", "těsně nad zemí", "v mezosféře", "pouze nad póly"],
+    "correct": 0
+  },
+  {
+    "id": 33,
+    "question": "Oblačnost typu 'Lenticularis' (čočkovitý mrak) indikuje:",
+    "answers": ["vlnové proudění za horami a silnou turbulenci", "blížící se bouřku", "klidné počasí", "inverzi"],
+    "correct": 0
+  },
+  {
+    "id": 34,
+    "question": "Námraza v karburátoru může vzniknout i při teplotách nad nulou (až do +25 °C) při:",
+    "answers": ["vysoké vlhkosti vzduchu", "nízké vlhkosti", "plném výkonu motoru", "letu ve velké výšce"],
+    "correct": 0
+  },
+  {
+    "id": 35,
+    "question": "Zkratka 'NOSIG' v METARu znamená:",
+    "answers": ["neočekává se žádná význačná změna v příštích 2 hodinách", "není signál", "není sníh", "není mlha"],
+    "correct": 0
+  },
+  {
+    "id": 36,
+    "question": "Zkratka 'TEMPO' v TAFu znamená:",
+    "answers": ["přechodné kolísání podmínek trvající méně než hodinu", "trvalou změnu", "teplotu vzduchu", "časový údaj"],
+    "correct": 0
+  },
+  {
+    "id": 37,
+    "question": "Zkratka 'BECMG' v TAFu znamená:",
+    "answers": ["postupnou změnu podmínek", "začátek bouřky", "konec srážek", "mlhu"],
+    "correct": 0
+  },
+  {
+    "id": 38,
+    "question": "Oblačnost 'BKN' (Broken) znamená pokrytí oblohy v rozsahu:",
+    "answers": ["5/8 až 7/8", "1/8 až 2/8", "3/8 až 4/8", "8/8"],
+    "correct": 0
+  },
+  {
+    "id": 39,
+    "question": "Oblačnost 'OVC' (Overcast) znamená pokrytí oblohy:",
+    "answers": ["8/8 (úplně zataženo)", "5/8", "0/8", "4/8"],
+    "correct": 0
+  },
+  {
+    "id": 40,
+    "question": "Oblačnost 'FEW' (Few) znamená pokrytí oblohy:",
+    "answers": ["1/8 až 2/8", "5/8", "8/8", "není definováno"],
+    "correct": 0
+  },
+  {
+    "id": 41,
+    "question": "Oblačnost 'SCT' (Scattered) znamená pokrytí oblohy:",
+    "answers": ["3/8 až 4/8", "1/8", "7/8", "8/8"],
+    "correct": 0
+  },
+  {
+    "id": 42,
+    "question": "Mlha (Fog) je definována dohledností:",
+    "answers": ["pod 1 km", "nad 1 km", "nad 5 km", "pod 100 m"],
+    "correct": 0
+  },
+  {
+    "id": 43,
+    "question": "Námraza: Největší nebezpečí námrazy je v mracích:",
+    "answers": ["Cirrus", "Cumulonimbus a Altostratus", "Stratus", "všechny odpovědi jsou správné"],
+    "correct": 1
+  },
+  {
+    "id": 44,
+    "question": "Průzračná námraza (Clear ice) vzniká při:",
+    "answers": ["rychlém zmrznutí malých kapiček", "pomalém zmrznutí velkých kapiček přechlazené vody", "sublimaci vodní páry", "teplotách nad +5°C"],
+    "correct": 1
+  },
+  {
+    "id": 45,
+    "question": "Bouřky: Pro vznik bouřky je nutná:",
+    "answers": ["vysoká vlhkost, instabilní zvrstvení a iniciační impuls", "nízká vlhkost a bezvětří", "inverze a jasno", "teplota pod bodem mrazu"],
+    "correct": 0
+  },
+  {
+    "id": 46,
+    "question": "Stádium dospělosti bouřky je charakterizováno:",
+    "answers": ["pouze vzestupnými proudy", "pouze sestupnými proudy", "vzestupnými i sestupnými proudy a srážkami", "rozpadem kovadliny"],
+    "correct": 2
+  },
+  {
+    "id": 47,
+    "question": "Zprávy METAR se vydávají obvykle každých:",
+    "answers": ["10 minut", "30 minut nebo hodinu", "6 hodin", "24 hodin"],
+    "correct": 1
+  },
+  {
+    "id": 48,
+    "question": "Zkratka CAVOK v METARu znamená:",
+    "answers": ["jasno", "dohlednost nad 10 km, žádná oblačnost pod 5000 ft a žádné význačné jevy", "teplota nad 20°C", "silný vítr"],
+    "correct": 1
+  },
+  {
+    "id": 49,
+    "question": "Zkratka TAF v meteorologii znamená:",
+    "answers": ["aktuální zprávu o počasí", "předpověď pro letiště", "výstrahu před bouřkami", "mapu výškového větru"],
+    "correct": 1
+  },
+  {
+    "id": 50,
+    "question": "Zkratka SIGMET znamená:",
+    "answers": ["předpověď pro letiště", "výstrahu před nebezpečnými jevy pro letový provoz", "zprávu o stavu dráhy", "měření tlaku"],
+    "correct": 1
+  },
+  {
+    "id": 51,
+    "question": "Atmosféra: Tropopauza je rozhraní mezi:",
+    "answers": ["troposférou a stratosférou", "stratosférou a mezosférou", "zemí a vzduchem", "mraky a jasnou oblohou"],
+    "correct": 0
+  },
+  {
+    "id": 52,
+    "question": "Tlak: S rostoucí výškou atmosférický tlak:",
+    "answers": ["klesá", "roste", "nemění se", "kolísá"],
+    "correct": 0
+  },
+  {
+    "id": 53,
+    "question": "Vítr: V přízemní vrstvě je vítr brzděn třením o zemský povrch, což způsobuje:",
+    "answers": ["pokles rychlosti a stočení směru (doleva na sev. polokouli)", "zvýšení rychlosti", "stočení doprava", "žádnou změnu"],
+    "correct": 0
+  },
+  {
+    "id": 54,
+    "question": "Oblačnost: Mraky typu 'Alto' (např. Altocumulus) se nacházejí v patře:",
+    "answers": ["středním (2-6 km)", "nízkém (0-2 km)", "vysokém (nad 6 km)", "pouze v bouřkách"],
+    "correct": 0
+  },
+  {
+    "id": 55,
+    "question": "Oblačnost: Mraky typu 'Cirro' (např. Cirrostratus) se nacházejí v patře:",
+    "answers": ["vysokém (nad 6 km)", "středním", "nízkém", "vždy pod 1 km"],
+    "correct": 0
+  },
+  {
+    "id": 56,
+    "question": "Srážky: 'Drizzle' (mrholení) vypadává obvykle z oblačnosti:",
+    "answers": ["Stratus", "Cumulus", "Cirrus", "Altocumulus"],
+    "correct": 0
+  },
+  {
+    "id": 57,
+    "question": "Dohlednost: 'RVR' (Runway Visual Range) je:",
+    "answers": ["dráhová dohlednost měřená přístroji podél dráhy", "dohlednost z věže", "dohlednost z kokpitu za letu", "předpověď mlhy"],
+    "correct": 0
+  },
+  {
+    "id": 58,
+    "question": "Bouřky: 'Microburst' je:",
+    "answers": ["extrémně silný a nebezpečný sestupný proud pod bouřkovým mrakem", "malý blesk", "krátký déšť", "typ mraku"],
+    "correct": 0
+  },
+  {
+    "id": 59,
+    "question": "Inverze: Přízemní radiační inverze vzniká nejčastěji:",
+    "answers": ["v noci při jasné obloze a slabém větru ochlazením země", "ve dne při slunečném počasí", "při přechodu studené fronty", "v bouřce"],
+    "correct": 0
+  },
+  {
+    "id": 60,
+    "question": "Meteorologické mapy: Čáry spojující místa se stejnou teplotou se nazývají:",
+    "answers": ["izotermy", "izobary", "izogony", "izohypsy"],
+    "correct": 0
+  }
+]

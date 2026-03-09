@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "question": "Vztlak na křídle vzniká především díky:",
+    "answers": ["rozdílu tlaků nad a pod křídlem (Bernoulliho princip)", "odporu vzduchu", "tahu motoru", "hmotnosti letadla"],
+    "correct": 0
+  },
+  {
+    "id": 2,
+    "question": "Úhel náběhu (Angle of Attack) je úhel mezi:",
+    "answers": ["tětivou profilu a směrem nabíhajícího proudu vzduchu", "osou trupu a horizontem", "křídlem a zemí", "vrtulí a motorem"],
+    "correct": 0
+  },
+  {
+    "id": 3,
+    "question": "Pád (Stall) nastává, když:",
+    "answers": ["je překročen kritický úhel náběhu", "je rychlost příliš vysoká", "motor vysadí", "letadlo letí příliš vysoko"],
+    "correct": 0
+  },
+  {
+    "id": 4,
+    "question": "Indukovaný odpor (Induced Drag) je způsoben:",
+    "answers": ["vznikem vztlaku (víry na koncích křídel)", "tvarem trupu", "třením vzduchu o povrch", "podvozkem"],
+    "correct": 0
+  },
+  {
+    "id": 5,
+    "question": "Při vysunutí klapek se:",
+    "answers": ["zvýší vztlak i odpor", "zvýší pouze vztlak", "sníží odpor", "zvýší pádová rychlost"],
+    "correct": 0
+  },
+  {
+    "id": 6,
+    "question": "Těžiště letadla (Center of Gravity) musí být:",
+    "answers": ["v povoleném rozsahu stanoveném výrobcem", "vždy co nejvíce vepředu", "vždy co nejvíce vzadu", "přesně uprostřed křídla"],
+    "correct": 0
+  },
+  {
+    "id": 7,
+    "question": "Stabilita letadla kolem příčné osy se nazývá:",
+    "answers": ["podélná stabilita", "směrová stabilita", "příčná stabilita", "spirální stabilita"],
+    "correct": 0
+  },
+  {
+    "id": 8,
+    "question": "Která plocha ovládá letadlo kolem svislé osy (zatáčení)?",
+    "answers": ["směrovka (rudder)", "výškovka (elevator)", "křidélka (ailerons)", "klapky"],
+    "correct": 0
+  },
+  {
+    "id": 9,
+    "question": "Která plocha ovládá letadlo kolem podélné osy (klonění)?",
+    "answers": ["křidélka (ailerons)", "směrovka", "výškovka", "stabilizátor"],
+    "correct": 0
+  },
+  {
+    "id": 10,
+    "question": "Která plocha ovládá letadlo kolem příčné osy (sklonění)?",
+    "answers": ["výškovka (elevator)", "křidélka", "směrovka", "trim"],
+    "correct": 0
+  },
+  {
+    "id": 11,
+    "question": "Vliv přízemního efektu (Ground Effect) na letadlo:",
+    "answers": ["snižuje indukovaný odpor v blízkosti země", "zvyšuje odpor", "snižuje vztlak", "způsobuje pád"],
+    "correct": 0
+  },
+  {
+    "id": 12,
+    "question": "Při zatáčce s velkým náklonem se pádová rychlost:",
+    "answers": ["zvyšuje", "snižuje", "nemění", "klesá na nulu"],
+    "correct": 0
+  },
+  {
+    "id": 13,
+    "question": "Štíhlost křídla (Aspect Ratio) je poměr:",
+    "answers": ["rozpětí křídla k jeho střední tětivě", "tloušťky k délce", "hmotnosti k ploše", "vztlaku k odporu"],
+    "correct": 0
+  },
+  {
+    "id": 14,
+    "question": "Mezní vrstva (Boundary Layer) je:",
+    "answers": ["tenká vrstva vzduchu těsně u povrchu křídla", "vrstva atmosféry nad 10 km", "prostor mezi křídlem a trupem", "oblast za vrtulí"],
+    "correct": 0
+  },
+  {
+    "id": 15,
+    "question": "Parazitní odpor zahrnuje:",
+    "answers": ["tvarový odpor, odpor třením a interferenční odpor", "pouze indukovaný odpor", "odpor motoru", "hmotnost letadla"],
+    "correct": 0
+  },
+  {
+    "id": 16,
+    "question": "Vztlaková čára vyjadřuje závislost:",
+    "answers": ["součinitele vztlaku na úhlu náběhu", "rychlosti na výšce", "odporu na tahu", "hmotnosti na palivu"],
+    "correct": 0
+  },
+  {
+    "id": 17,
+    "question": "Při letu ve vývrtce (Spin) je letadlo:",
+    "answers": ["v režimu pádu na obou křídlech, ale jedno je více 'odtržené'", "v normálním letu", "v letu s vypnutým motorem", "v letu s maximální rychlostí"],
+    "correct": 0
+  },
+  {
+    "id": 18,
+    "question": "Vrtulový moment (P-factor) způsobuje u letadel s pravotočivou vrtulí tendenci:",
+    "answers": ["zatáčet doleva při velkém úhlu náběhu a vysokém výkonu", "zatáčet doprava", "stoupat", "klesat"],
+    "correct": 0
+  },
+  {
+    "id": 19,
+    "question": "Klouzavost letadla (L/D ratio) je poměr:",
+    "answers": ["vztlaku k odporu", "hmotnosti k výkonu", "rychlosti k výšce", "paliva k času"],
+    "correct": 0
+  },
+  {
+    "id": 20,
+    "question": "Zatížení křídla (Wing Loading) je:",
+    "answers": ["hmotnost letadla dělená plochou křídla", "hmotnost nákladu", "síla působící na nosník", "hmotnost paliva v křídlech"],
+    "correct": 0
+  },
+  {
+    "id": 21,
+    "question": "Který faktor nejvíce ovlivňuje pádovou rychlost letadla?",
+    "answers": ["hmotnost letadla a konfigurace (klapky)", "barva letadla", "množství oleje", "typ vrtule"],
+    "correct": 0
+  },
+  {
+    "id": 22,
+    "question": "Vztah mezi rychlostí letu a odporem:",
+    "answers": ["parazitní odpor roste s druhou mocninou rychlosti", "odpor klesá s rychlostí", "odpor je konstantní", "indukovaný odpor roste s rychlostí"],
+    "correct": 0
+  },
+  {
+    "id": 23,
+    "question": "Aerodynamické vyvážení kormidel (např. rohovým odlehčením) slouží k:",
+    "answers": ["snížení sil potřebných k ovládání kormidel", "zvýšení pevnosti", "snížení hmotnosti", "zlepšení vzhledu"],
+    "correct": 0
+  },
+  {
+    "id": 24,
+    "question": "Vzepětí křídel (Dihedral) zvyšuje:",
+    "answers": ["příčnou stabilitu (kolem podélné osy)", "podélnou stabilitu", "rychlost", "stoupavost"],
+    "correct": 0
+  },
+  {
+    "id": 25,
+    "question": "Který jev způsobuje, že se letadlo po vychýlení z rovnovážné polohy samo vrací zpět?",
+    "answers": ["statická stabilita", "dynamická stabilita", "odpor vzduchu", "vztlak"],
+    "correct": 0
+  },
+  {
+    "id": 26,
+    "question": "Při letu v zatáčce působí na letadlo a posádku:",
+    "answers": ["odstředivá síla (násobek zatížení 'g')", "pouze tíhová síla", "magnetická síla", "žádná síla navíc"],
+    "correct": 0
+  },
+  {
+    "id": 27,
+    "question": "Kritický úhel náběhu je úhel, při kterém:",
+    "answers": ["dochází k odtržení proudění a prudkému poklesu vztlaku", "letadlo letí nejrychleji", "vrtule má největší tah", "podvozek se musí vysunout"],
+    "correct": 0
+  },
+  {
+    "id": 28,
+    "question": "Aerodynamický střed profilu je bod, ke kterému:",
+    "answers": ["je moment vztlaku přibližně konstantní při změnách úhlu náběhu", "působí veškerá tíha", "se upevňuje motor", "se měří délka trupu"],
+    "correct": 0
+  },
+  {
+    "id": 29,
+    "question": "Vliv námrazy na aerodynamiku křídla:",
+    "answers": ["narušuje proudění, zvyšuje pádovou rychlost a snižuje kritický úhel náběhu", "zlepšuje klouzavost", "snižuje odpor", "nemá vliv na vztlak"],
+    "correct": 0
+  },
+  {
+    "id": 30,
+    "question": "Při stoupavém letu s konstantní rychlostí je tah motoru:",
+    "answers": ["větší než odpor", "rovný odporu", "menší než odpor", "nulový"],
+    "correct": 0
+  }
+]

@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Verdana", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --bg: #E4E3E0;
+  --ink: #141414;
+  --ink-text: #dcd9d9;
+  --line: #141414;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px; /* Increased base font size for better legibility */
+  line-height: 1.5;
+}
+
+.data-row {
+  display: grid;
+  grid-template-columns: 50px 1fr 100px 100px 50px;
+  padding: 1rem 1.5rem;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  width: 100%;
+}
+
+.data-row:hover {
+  background: var(--ink);
+  color: #FFFFFF;
+}
+
+.data-row:hover .opacity-60,
+.data-row:hover .opacity-40 {
+  opacity: 1;
+}
+
+.col-header {
+  font-family: var(--font-sans);
+  font-weight: 700; /* Bold instead of italic */
+  font-size: 12px;
+  opacity: 0.7; /* Increased opacity for better contrast */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.data-value {
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
+}
+
+/* Cockpit Mode (Dark) - High Contrast */
+.dark {
+  --bg: #000000; /* Pure black for maximum contrast */
+  --ink: #FFFFFF;
+  --ink-text: #FFFFFF;
+  --line: rgba(255, 255, 255, 0.2);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+

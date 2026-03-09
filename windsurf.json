@@ -1,0 +1,22 @@
+{
+  "name": "Aeropilot Exam Prep",
+  "description": "EASA PPL Knowledge Test Preparation with AI",
+  "version": "1.0.0",
+  "type": "react-app",
+  "main": "src/index.tsx",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": ["aviation", "easa", "ppl", "exam", "ai", "claude", "gemini"],
+  "author": "Aeropilot Team",
+  "license": "MIT",
+  "windsurf": {
+    "type": "react",
+    "port": 5173,
+    "openAI": false,
+    "anthropic": true,
+    "google": true
+  }
+}

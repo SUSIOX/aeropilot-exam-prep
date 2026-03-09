@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "question": "Vliv zvýšení hmotnosti letadla na délku vzletu:",
+    "answers": ["prodlužuje délku vzletu", "zkracuje délku vzletu", "nemá vliv", "zkracuje pouze rozjezd"],
+    "correct": 0
+  },
+  {
+    "id": 2,
+    "question": "Vliv vysoké teploty vzduchu na výkon motoru a délku vzletu:",
+    "answers": ["snižuje výkon a prodlužuje vzlet", "zvyšuje výkon a zkracuje vzlet", "zvyšuje pouze výkon", "nemá vliv"],
+    "correct": 0
+  },
+  {
+    "id": 3,
+    "question": "Tlaková výška (Pressure Altitude) je výška:",
+    "answers": ["nad standardní hladinou 1013.25 hPa", "nad terénem", "nad mořem (MSL)", "naměřená radarem"],
+    "correct": 0
+  },
+  {
+    "id": 4,
+    "question": "Hustotní výška (Density Altitude) se zvyšuje s:",
+    "answers": ["rostoucí teplotou a klesajícím tlakem", "klesající teplotou", "rostoucím tlakem", "klesající vlhkostí"],
+    "correct": 0
+  },
+  {
+    "id": 5,
+    "question": "Zadní poloha těžiště (mimo povolený rozsah) způsobuje:",
+    "answers": ["nestabilitu a obtížné vybírání pádu", "zvýšenou stabilitu", "snadnější ovládání", "zkrácení délky vzletu"],
+    "correct": 0
+  },
+  {
+    "id": 6,
+    "question": "Přední poloha těžiště (mimo povolený rozsah) může způsobit:",
+    "answers": ["problémy s rotací při vzletu a podrovnáním při přistání", "přepadávání letadla na ocas", "zvýšení cestovní rychlosti", "snížení pádové rychlosti"],
+    "correct": 0
+  },
+  {
+    "id": 7,
+    "question": "Užitečné zatížení (Useful Load) je:",
+    "answers": ["rozdíl mezi maximální vzletovou hmotností a prázdnou hmotností", "pouze hmotnost cestujících", "hmotnost paliva", "hmotnost zavazadel"],
+    "correct": 0
+  },
+  {
+    "id": 8,
+    "question": "Při plánování paliva musí být započítána rezerva pro:",
+    "answers": ["možné zdržení, protivítr a dolet na náhradní letiště", "pouze pro cestu do cíle", "jen pro pojíždění", "není vyžadována"],
+    "correct": 0
+  },
+  {
+    "id": 9,
+    "question": "Vliv větru do zad (Tailwind) na délku vzletu:",
+    "answers": ["výrazně prodlužuje délku vzletu", "zkracuje délku vzletu", "nemá vliv", "zvyšuje stoupavost"],
+    "correct": 0
+  },
+  {
+    "id": 10,
+    "question": "Optimální rychlost pro nejlepší úhel stoupání (Vx) se používá pro:",
+    "answers": ["překonání překážek po vzletu", "co nejrychlejší dosažení výšky", "úsporu paliva", "chlazení motoru"],
+    "correct": 0
+  },
+  {
+    "id": 11,
+    "question": "Optimální rychlost pro nejlepší stoupavost (Vy) se používá pro:",
+    "answers": ["dosažení určité výšky v co nejkratším čase", "překonání překážek", "maximální dolet", "maximální výdrž ve vzduchu"],
+    "correct": 0
+  },
+  {
+    "id": 12,
+    "question": "Vliv vysunutých klapek na délku vzletu:",
+    "answers": ["zkracují rozjezd, ale snižují stoupavost", "prodlužují rozjezd", "zvyšují pádovou rychlost", "nemají vliv"],
+    "correct": 0
+  },
+  {
+    "id": 13,
+    "question": "Bod návratu (Point of No Return) je:",
+    "answers": ["poslední bod, ze kterého se lze vrátit s bezpečnou rezervou paliva", "polovina trasy", "bod, kde se mění kmitočet", "bod, kde začíná klesání"],
+    "correct": 0
+  },
+  {
+    "id": 14,
+    "question": "Při výpočtu spotřeby paliva je nejdůležitější znát:",
+    "answers": ["hodinovou spotřebu motoru v daném režimu a předpokládaný čas letu", "pouze objem nádrží", "hmotnost letadla", "venkovní teplotu"],
+    "correct": 0
+  },
+  {
+    "id": 15,
+    "question": "Vliv vlhkosti trávy na délku rozjezdu:",
+    "answers": ["mokrá tráva prodlužuje rozjezd", "mokrá tráva zkracuje rozjezd", "nemá vliv", "zkracuje pouze dojezd"],
+    "correct": 0
+  },
+  {
+    "id": 16,
+    "question": "Sklon dráhy (Slope) směrem nahoru:",
+    "answers": ["prodlužuje délku rozjezdu", "zkracuje délku rozjezdu", "nemá vliv na rozjezd", "zvyšuje rychlost vzletu"],
+    "correct": 0
+  },
+  {
+    "id": 17,
+    "question": "Vliv námrazy na profilu křídla na výkon letadla:",
+    "answers": ["zvyšuje odpor, snižuje vztlak a zvyšuje pádovou rychlost", "zvyšuje vztlak", "snižuje odpor", "nemá vliv"],
+    "correct": 0
+  },
+  {
+    "id": 18,
+    "question": "Při plánování letu VFR je minimální rezerva paliva pro denní let obvykle:",
+    "answers": ["30 minut letu při cestovní rychlosti", "10 minut", "60 minut", "není stanovena"],
+    "correct": 0
+  },
+  {
+    "id": 19,
+    "question": "Který graf v příručce letadla slouží k určení délky dráhy pro přistání?",
+    "answers": ["Landing Distance", "Take-off Performance", "Cruise Power Settings", "Weight and Balance"],
+    "correct": 0
+  },
+  {
+    "id": 20,
+    "question": "Vliv větru do zad na délku přistání (dojezd):",
+    "answers": ["výrazně prodlužuje dojezd", "zkracuje dojezd", "nemá vliv", "zlepšuje brzdění"],
+    "correct": 0
+  }
+]

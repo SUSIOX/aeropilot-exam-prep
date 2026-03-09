@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "question": "Hlavní funkcí motorového oleje je:",
+    "answers": ["mazání, chlazení, čištění a ochrana proti korozi", "pouze mazání", "zvyšování výkonu", "pohon palivového čerpadla"],
+    "correct": 0
+  },
+  {
+    "id": 2,
+    "question": "Příliš chudá směs (Lean mixture) může způsobit:",
+    "answers": ["přehřívání motoru a detonační spalování", "nadměrnou spotřebu paliva", "karbonizaci svíček", "zamrzání karburátoru"],
+    "correct": 0
+  },
+  {
+    "id": 3,
+    "question": "Zamrzání karburátoru se nejčastěji projevuje:",
+    "answers": ["poklesem otáček (nebo plnícího tlaku) a nepravidelným chodem", "zvýšením otáček", "únikem oleje", "vysokou teplotou hlav válců"],
+    "correct": 0
+  },
+  {
+    "id": 4,
+    "question": "Dvojité zapalování (dvě svíčky na válec) se používá pro:",
+    "answers": ["zvýšení bezpečnosti a účinnosti spalování", "zvýšení maximálních otáček", "snížení hlučnosti", "usnadnění startování v zimě"],
+    "correct": 0
+  },
+  {
+    "id": 5,
+    "question": "Při kontrole magnet (Magneto check) je přípustný:",
+    "answers": ["mírný pokles otáček v definovaných mezích", "jakýkoliv pokles", "pouze nárůst otáček", "vysazení motoru"],
+    "correct": 0
+  },
+  {
+    "id": 6,
+    "question": "Hlavní funkcí akumulátoru v letadle je:",
+    "answers": ["startování motoru a napájení systémů při poruše alternátoru", "trvalé napájení všech systémů za letu", "pohon vrtule", "stabilizace letadla"],
+    "correct": 0
+  },
+  {
+    "id": 7,
+    "question": "Alternátor (nebo generátor) slouží k:",
+    "answers": ["napájení elektrické sítě a dobíjení akumulátoru za chodu motoru", "pouze k osvětlení kabiny", "startování motoru", "pohonu palivoměru"],
+    "correct": 0
+  },
+  {
+    "id": 8,
+    "question": "Pojistky (Circuit breakers) v elektrické síti slouží k:",
+    "answers": ["ochraně obvodů před přetížením a zkratem", "měření napětí", "regulaci proudu", "zapínání spotřebičů"],
+    "correct": 0
+  },
+  {
+    "id": 9,
+    "question": "Pitot-statický systém napájí tyto přístroje:",
+    "answers": ["rychloměr, výškoměr a variometr", "umělý horizont a zatáčkoměr", "magnetický kompas", "palivoměr"],
+    "correct": 0
+  },
+  {
+    "id": 10,
+    "question": "Pokud se ucpe Pitotova trubice (ale statický odběr zůstane volný):",
+    "answers": ["rychloměr nebude fungovat správně", "výškoměr se zastaví", "variometr bude ukazovat nulu", "všechny přístroje přestanou fungovat"],
+    "correct": 0
+  },
+  {
+    "id": 11,
+    "question": "Umělý horizont a směrový setrvačník jsou obvykle poháněny:",
+    "answers": ["podtlakem (vakuem) nebo elektricky", "tlakem oleje", "náporovým vzduchem", "magnetickým polem země"],
+    "correct": 0
+  },
+  {
+    "id": 12,
+    "question": "Barevné značení na rychloměru – bílý oblouk značí:",
+    "answers": ["rozsah rychlostí pro let s vysunutými klapkami", "normální provozní rozsah", "rozsah pro turbulenci", "zakázané rychlosti"],
+    "correct": 0
+  },
+  {
+    "id": 13,
+    "question": "Barevné značení na rychloměru – zelený oblouk značí:",
+    "answers": ["normální provozní rozsah", "rychlosti s klapkami", "nebezpečný rozsah", "maximální rychlost"],
+    "correct": 0
+  },
+  {
+    "id": 14,
+    "question": "Červená ryska na rychloměru (Vne) značí:",
+    "answers": ["nepřekročitelnou rychlost", "minimální rychlost", "rychlost pro vzlet", "rychlost pro nejlepší stoupavost"],
+    "correct": 0
+  },
+  {
+    "id": 15,
+    "question": "Který přístroj využívá k činnosti aneroidní krabice?",
+    "answers": ["výškoměr", "zatáčkoměr", "umělý horizont", "magnetický kompas"],
+    "correct": 0
+  },
+  {
+    "id": 16,
+    "question": "Funkcí klapek (Flaps) je:",
+    "answers": ["zvýšení vztlaku a odporu pro pomalejší let a strmější klesání", "pouze zvýšení rychlosti", "zatáčení letadla", "brzdění na zemi"],
+    "correct": 0
+  },
+  {
+    "id": 17,
+    "question": "Vyvažovací ploška (Trim tab) slouží k:",
+    "answers": ["snížení sil v řízení pro udržení daného režimu letu", "zatáčení letadla", "vysunutí podvozku", "zvýšení stability v turbulenci"],
+    "correct": 0
+  },
+  {
+    "id": 18,
+    "question": "Při pohybu kniplem (řídící pákou) doleva se:",
+    "answers": ["levé křidélko zvedne nahoru, pravé klesne dolů", "obě křidélka se zvednou", "směrovka se vychýlí doleva", "výškovka se zvedne"],
+    "correct": 0
+  },
+  {
+    "id": 19,
+    "question": "Při přitažení kniplu (řídící páky) k sobě se:",
+    "answers": ["výškovka vychýlí nahoru", "výškovka vychýlí dolů", "klapky se vysunou", "letadlo zrychlí"],
+    "correct": 0
+  },
+  {
+    "id": 20,
+    "question": "Hlavním účelem tlumiče kmitů (Shimmy damper) na příďovém podvozku je:",
+    "answers": ["zabránit kmitání příďového kola při pojíždění a vzletu", "odpružení letadla při přistání", "zatáčení na zemi", "brzdění kola"],
+    "correct": 0
+  }
+]

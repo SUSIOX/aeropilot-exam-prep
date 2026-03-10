@@ -1,32 +1,37 @@
-// AWS Configuration for DynamoDB
+// AWS Configuration for DynamoDB - SECURE VERSION
+import { secureCredentials } from './secureCredentials';
+
 export interface AWSConfig {
   region: string;
-  accessKeyId: string;
-  secretAccessKey: string;
   tableNamePrefix: string;
 }
 
-// Get AWS configuration from environment variables
+// Get AWS configuration (no credentials - using Cognito)
 export const getAWSConfig = (): AWSConfig => {
   const config: AWSConfig = {
     region: process.env.AWS_REGION || 'eu-central-1',
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID || '',
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
     tableNamePrefix: process.env.DYNAMODB_TABLE_PREFIX || 'aeropilot-'
   };
 
-  // Validate required fields
-  if (!config.accessKeyId || !config.secretAccessKey) {
-    console.warn('AWS credentials not found in environment variables. Using fallback mode.');
-    // For development, we'll use mock credentials
-    return {
-      ...config,
-      accessKeyId: 'mock-access-key',
-      secretAccessKey: 'mock-secret-key'
-    };
-  }
-
   return config;
+};
+
+// Legacy export for backward compatibility
+export const awsConfig = getAWSConfig();
+
+// Check if secure credentials are available
+export const isSecureCredentialsAvailable = (): boolean => {
+  return secureCredentials.isInitialized();
+};
+
+// Get secure DynamoDB client
+export const getSecureDynamoClient = () => {
+  return secureCredentials.getDynamoClient();
+};
+
+// Get secure DynamoDB Document client  
+export const getSecureDocClient = () => {
+  return secureCredentials.getDocClient();
 };
 
 // DynamoDB table names
@@ -40,8 +45,5 @@ export const TABLE_NAMES = {
 // Get full table name with prefix
 export const getTableName = (baseName: keyof typeof TABLE_NAMES): string => {
   const prefix = getAWSConfig().tableNamePrefix;
-  return `${prefix}${baseName}`;
+  return `${prefix}${TABLE_NAMES[baseName]}`;
 };
-
-// Export configuration for use in services
-export const awsConfig = getAWSConfig();

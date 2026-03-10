@@ -1,6 +1,7 @@
+// AWS DynamoDB Service - LAZY INITIALIZATION VERSION
 import { DynamoDBClient, GetItemCommand, PutItemCommand, UpdateItemCommand, DeleteItemCommand, BatchWriteItemCommand } from '@aws-sdk/client-dynamodb';
-import { DynamoDBDocumentClient, GetCommand as DocGetCommand, PutCommand as DocPutCommand, UpdateCommand as DocUpdateCommand, DeleteCommand as DocDeleteCommand, QueryCommand as DocQueryCommand, BatchWriteCommand as DocBatchWriteCommand } from '@aws-sdk/lib-dynamodb';
-import { awsConfig, getTableName, TABLE_NAMES } from './awsConfig';
+import { DynamoDBDocumentClient, GetCommand as DocGetCommand, PutCommand as DocPutCommand, UpdateCommand as DocUpdateCommand, DeleteCommand as DocDeleteCommand, QueryCommand as DocQueryCommand, ScanCommand as DocScanCommand, BatchWriteCommand as DocBatchWriteCommand } from '@aws-sdk/lib-dynamodb';
+import { awsConfig, getTableName, TABLE_NAMES, getSecureDynamoClient, getSecureDocClient, isSecureCredentialsAvailable } from './awsConfig';
 import { 
   DynamoDBResponse, 
   ExplanationItem, 
@@ -14,32 +15,56 @@ import {
 } from '../types/aws';
 
 export class DynamoDBService {
-  private client: DynamoDBClient;
-  private docClient: DynamoDBDocumentClient;
+  private client: DynamoDBClient | null = null;
+  private docClient: DynamoDBDocumentClient | null = null;
   private isInitialized: boolean = false;
+  private isInitializing: boolean = false;
 
   constructor() {
-    this.client = new DynamoDBClient({
-      region: awsConfig.region,
-      credentials: {
-        accessKeyId: awsConfig.accessKeyId,
-        secretAccessKey: awsConfig.secretAccessKey
-      }
-    });
-
-    this.docClient = DynamoDBDocumentClient.from(this.client);
-    this.isInitialized = true;
+    // Už žádné throw new Error()! 
+    // Jen zkusíme tichou inicializaci při startu.
+    this.tryInitialize();
   }
 
-  // Check if service is properly initialized
-  private checkInitialization(): void {
-    if (!this.isInitialized) {
-      throw new Error('DynamoDB service not initialized');
+  private tryInitialize() {
+    if (this.isInitializing || this.isInitialized) {
+      return;
     }
 
-    if (!awsConfig.accessKeyId || !awsConfig.secretAccessKey) {
-      throw new Error('AWS credentials not configured');
+    this.isInitializing = true;
+
+    try {
+      if (!isSecureCredentialsAvailable()) {
+        return;
+      }
+
+      this.client = getSecureDynamoClient();
+      this.docClient = getSecureDocClient();
+      this.isInitialized = true;
+      
+    } catch (error) {
+      // Silent fail - initialization will be retried
+    } finally {
+      this.isInitializing = false;
     }
+  }
+
+  // Metoda, kterou zavoláš před každým dotazem do DB
+  private async ensureInitialized(): Promise<void> {
+    if (this.isInitialized && this.client && this.docClient) {
+      return;
+    }
+
+    // Retry up to 50x with 100ms delay (5 seconds total) waiting for credentials
+    for (let i = 0; i < 50; i++) {
+      this.tryInitialize();
+      if (this.isInitialized && this.client && this.docClient) {
+        return;
+      }
+      await new Promise(r => setTimeout(r, 100));
+    }
+
+    throw new Error('DynamoDB client není připraven. Zkontrolujte AWS konfiguraci.');
   }
 
   // Generic error handler
@@ -68,7 +93,7 @@ export class DynamoDBService {
   
   async getCachedExplanation(questionId: string, model: string): Promise<DynamoDBResponse<ExplanationItem>> {
     try {
-      this.checkInitialization();
+      await this.ensureInitialized();
 
       const command = new DocGetCommand({
         TableName: getTableName('AI_EXPLANATIONS'),
@@ -109,14 +134,14 @@ export class DynamoDBService {
     model: string
   ): Promise<DynamoDBResponse> {
     try {
-      this.checkInitialization();
+      await this.ensureInitialized();
 
       const now = new Date().toISOString();
-      const item: ExplanationItem = {
+      const item = {
         questionId,
         model,
         explanation,
-        detailedExplanation: detailedExplanation || undefined,
+        ...(detailedExplanation ? { detailedExplanation } : {}),
         provider,
         usageCount: 1,
         createdAt: now,
@@ -125,23 +150,14 @@ export class DynamoDBService {
 
       const command = new DocPutCommand({
         TableName: getTableName('AI_EXPLANATIONS'),
-        Item: item,
-        ConditionExpression: 'attribute_not_exists(questionId) OR attribute_not_exists(model)'
+        Item: item
       });
 
-      const result = await this.docClient.send(command);
+      await this.docClient.send(command);
 
-      return {
-        success: true,
-        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
-      };
+      return { success: true };
 
     } catch (error) {
-      // If item exists, update it instead
-      if (error.name === 'ConditionalCheckFailedException') {
-        return this.updateExplanation(questionId, explanation, detailedExplanation, provider, model);
-      }
-
       return {
         success: false,
         error: this.handleError(error, 'saveExplanation').message
@@ -206,7 +222,7 @@ export class DynamoDBService {
 
   async getCachedObjective(questionId: string): Promise<DynamoDBResponse<ObjectiveItem>> {
     try {
-      this.checkInitialization();
+      await this.ensureInitialized();
 
       const command = new DocGetCommand({
         TableName: getTableName('LEARNING_OBJECTIVES'),
@@ -231,7 +247,7 @@ export class DynamoDBService {
 
   async saveObjective(questionId: string, objective: string, confidence: number = 0.8): Promise<DynamoDBResponse> {
     try {
-      this.checkInitialization();
+      await this.ensureInitialized();
 
       const item: ObjectiveItem = {
         questionId,
@@ -269,7 +285,7 @@ export class DynamoDBService {
     attempts: number = 1
   ): Promise<DynamoDBResponse> {
     try {
-      this.checkInitialization();
+      await this.ensureInitialized();
 
       const item: UserProgressItem = {
         userId,
@@ -303,7 +319,7 @@ export class DynamoDBService {
 
   async toggleQuestionFlag(questionId: string, isFlagged: boolean, flagReason?: string): Promise<DynamoDBResponse> {
     try {
-      this.checkInitialization();
+      await this.ensureInitialized();
 
       if (isFlagged) {
         const item: QuestionFlagItem = {
@@ -349,7 +365,7 @@ export class DynamoDBService {
 
   async getQuestionFlag(questionId: string): Promise<DynamoDBResponse<QuestionFlagItem>> {
     try {
-      this.checkInitialization();
+      await this.ensureInitialized();
 
       const command = new DocGetCommand({
         TableName: getTableName('QUESTION_FLAGS'),
@@ -376,7 +392,7 @@ export class DynamoDBService {
 
   async getCacheStats(): Promise<DynamoDBResponse<CacheStats>> {
     try {
-      this.checkInitialization();
+      await this.ensureInitialized();
 
       // For simplicity, we'll do basic counts. In production, you might want
       // to use DynamoDB streams or CloudWatch for better performance
@@ -432,7 +448,7 @@ export class DynamoDBService {
   // Health check
   async healthCheck(): Promise<DynamoDBResponse<{ status: string; timestamp: string }>> {
     try {
-      this.checkInitialization();
+      await this.ensureInitialized();
 
       // Simple health check - try to get a non-existent item
       const command = new DocGetCommand({
@@ -465,6 +481,132 @@ export class DynamoDBService {
       return {
         success: false,
         error: this.handleError(error, 'healthCheck').message
+      };
+    }
+  }
+
+  // Questions Operations
+  async getAllQuestionCounts(): Promise<DynamoDBResponse<{
+    total: Record<number, number>;
+    user: Record<number, number>;
+    ai: Record<number, number>;
+  }>> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocScanCommand({
+        TableName: 'aeropilot-questions'
+      });
+
+      const result = await this.docClient.send(command);
+      const total: Record<number, number> = {};
+      const user: Record<number, number> = {};
+      const ai: Record<number, number> = {};
+
+      for (const item of result.Items || []) {
+        const sid = item.subjectId as number;
+        const src = item.source as string || 'user'; // Missing source = user
+        total[sid] = (total[sid] || 0) + 1;
+        if (src === 'ai') {
+          ai[sid] = (ai[sid] || 0) + 1;
+        } else {
+          user[sid] = (user[sid] || 0) + 1;
+        }
+      }
+
+      return { success: true, data: { total, user, ai } };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'getAllQuestionCounts').message
+      };
+    }
+  }
+
+  async getQuestionsBySubject(subjectId: number): Promise<DynamoDBResponse<any[]>> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocScanCommand({
+        TableName: 'aeropilot-questions',
+        FilterExpression: 'subjectId = :sid',
+        ExpressionAttributeValues: { ':sid': subjectId }
+      });
+
+      const result = await this.docClient.send(command);
+
+      return {
+        success: true,
+        data: result.Items as any[] || []
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'getQuestionsBySubject').message
+      };
+    }
+  }
+
+  async saveQuestion(subjectId: number, question: any): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      const optionKeys = ['A', 'B', 'C', 'D'];
+      const item = {
+        questionId: `subject${subjectId}_ai_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+        subjectId,
+        question: question.question,
+        answers: question.answers,
+        correct: question.correct,
+        correctOption: optionKeys[question.correct] || 'A',
+        explanation: question.explanation || null,
+        loId: question.lo_id || null,
+        source: 'ai',
+        createdAt: new Date().toISOString(),
+        createdBy: 'ai_generator'
+      };
+
+      await this.docClient.send(new DocPutCommand({
+        TableName: 'aeropilot-questions',
+        Item: item
+      }));
+
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: this.handleError(error, 'saveQuestion').message };
+    }
+  }
+
+  // User Profile Operations
+  async saveUserProfile(username: string): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      const item = {
+        userId: username,
+        username,
+        createdAt: new Date().toISOString(),
+        lastLoginAt: new Date().toISOString()
+      };
+
+      const command = new DocPutCommand({
+        TableName: 'aeropilot-users',
+        Item: item
+      });
+
+      const result = await this.docClient.send(command);
+
+      return {
+        success: true,
+        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'saveUserProfile').message
       };
     }
   }

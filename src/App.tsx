@@ -35,9 +35,22 @@ import { LearningEngine } from './lib/LearningEngine';
 import { mockLOs, generateBatchQuestions, getDetailedExplanation, getDetailedHumanExplanation, translateQuestion, EasaLO, SYLLABUS_SCOPE, verifyApiKey, AIProvider } from './services/aiService';
 import { DynamoDBStatus } from './components/DynamoDBStatus';
 import { AdminDashboard } from './components/AdminDashboard';
+import { LoginPrompt, useLoginPrompt } from './components/LoginPrompt';
 import { dynamoCache } from './services/dynamoCache';
+import { dynamoDBService } from './services/dynamoService';
+import { initializeSecureCredentials } from './services/secureCredentials';
 
 export default function App() {
+  // Guest/Login Mode Management
+  const [userMode, setUserMode] = useState<'guest' | 'logged-in'>(() => {
+    const token = localStorage.getItem('token');
+    const userData = localStorage.getItem('user_data');
+    return token && userData ? 'logged-in' : 'guest';
+  });
+  
+  // Login Prompt Management
+  const { isOpen: isLoginPromptOpen, feature: loginPromptFeature, showLoginPrompt, closeLoginPrompt } = useLoginPrompt();
+  
   const [view, setView] = useState<ViewMode>('dashboard');
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('darkMode');
@@ -124,8 +137,17 @@ export default function App() {
   const [keyStatus, setKeyStatus] = useState<'idle' | 'valid' | 'invalid'>('idle');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Auth State
-  const [user, setUser] = useState<{id: number, username: string} | null>(null);
+  // Auth State - restore user from localStorage on init
+  const [user, setUser] = useState<{id: number, username: string} | null>(() => {
+    try {
+      const saved = localStorage.getItem('user_data');
+      if (saved) {
+        const data = JSON.parse(saved);
+        return { id: 1, username: data.username || data.id };
+      }
+    } catch (e) {}
+    return null;
+  });
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
   const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
   const [authForm, setAuthForm] = useState({ username: '', password: '' });
@@ -133,22 +155,6 @@ export default function App() {
 
   // Engine instance (we use it for logic, but keep state in React for reactivity)
   const [examAnswers, setExamAnswers] = useState<Record<number, string>>({});
-
-  // Authenticated Fetch Helper
-  const authFetch = async (url: string, options: RequestInit = {}) => {
-    const headers = {
-      ...options.headers,
-      'Authorization': `Bearer ${token}`
-    };
-    const res = await fetch(url, { ...options, headers });
-    if (res.status === 401 || res.status === 403) {
-      setToken(null);
-      localStorage.removeItem('token');
-      setUser(null);
-      throw new Error('Unauthorized');
-    }
-    return res;
-  };
 
   useEffect(() => {
     if (token) {
@@ -158,32 +164,43 @@ export default function App() {
 
   const fetchMe = async () => {
     try {
-      const res = await authFetch('/api/auth/me');
-      const data = await res.json();
-      if (data.user) setUser(data.user);
-    } catch (err) {
+      const saved = localStorage.getItem('user_data');
+      if (saved) {
+        const data = JSON.parse(saved);
+        setUser({ id: 1, username: data.username || data.id });
+      }
+    } catch (error) {
       setToken(null);
       localStorage.removeItem('token');
+      localStorage.removeItem('user_data');
+      setUser(null);
     }
   };
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setAuthError(null);
+
+    const username = authForm.username.trim();
+    if (!username || username.length < 3) {
+      setAuthError('Uživatelské jméno musí mít alespoň 3 znaky.');
+      return;
+    }
+
     try {
-      const endpoint = authMode === 'login' ? '/api/auth/login' : '/api/auth/register';
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(authForm)
-      });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error);
-      
-      setToken(data.token);
-      localStorage.setItem('token', data.token);
-      setUser(data.user);
+      const newToken = `token_${username}_${Date.now()}`;
+      const userData = { username };
+
+      setToken(newToken);
+      localStorage.setItem('token', newToken);
+      localStorage.setItem('user_data', JSON.stringify(userData));
+      setUser({ id: 1, username });
+      setUserMode('logged-in');
       setAuthForm({ username: '', password: '' });
+
+      // Save user to DynamoDB async (non-blocking)
+      dynamoDBService.saveUserProfile(username).catch(() => {});
+
     } catch (err: any) {
       setAuthError(err.message);
     }
@@ -192,15 +209,65 @@ export default function App() {
   const handleLogout = () => {
     setToken(null);
     localStorage.removeItem('token');
+    localStorage.removeItem('user_data');
     setUser(null);
+    setUserMode('guest');
     setView('dashboard');
   };
 
+  // Guest mode functions
+  const switchToGuestMode = () => {
+    setUserMode('guest');
+    setToken(null);
+    localStorage.removeItem('token');
+    setUser(null);
+    // Clear user-specific data but keep guest session
+    localStorage.removeItem('user_progress');
+    localStorage.removeItem('user_stats');
+  };
+
+  const switchToLoginMode = () => {
+    setUserMode('logged-in');
+    setAuthMode('login');
+  };
+
+  // Helper functions
+  const isGuestMode = userMode === 'guest';
+  const isLoggedIn = userMode === 'logged-in' && user;
+
   useEffect(() => {
-    // Use static data loading for GitHub Pages deployment
+    // Initialize credentials FIRST, then load data
+    const credentialsInitialized = initializeSecureCredentials();
+      // Credentials initialization - silent fail
     loadStaticSubjects();
+    fetchStats();
     loadStaticStats();
-  }, []);
+    if (isGuestMode) {
+      initializeGuestSession();
+    }
+  }, [])
+
+  // Initialize guest session
+  const initializeGuestSession = () => {
+    if (!localStorage.getItem('guest_session_start')) {
+      localStorage.setItem('guest_session_start', new Date().toISOString());
+    }
+  };
+
+  // Load guest stats
+  const loadGuestStats = () => {
+    const guestStats = JSON.parse(localStorage.getItem('guest_stats') || '{}');
+    if (guestStats.totalAnswers > 0) {
+      // Convert guest stats to Stats format
+      return {
+        totalAnswers: guestStats.totalAnswers,
+        correctAnswers: guestStats.correctAnswers,
+        overallSuccess: guestStats.successRate,
+        subjectStats: [] // Guest mode doesn't track per-subject stats
+      };
+    }
+    return null;
+  };
 
   useEffect(() => {
     if (darkMode) {
@@ -226,6 +293,8 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('aiModel', aiModel);
   }, [aiModel]);
+
+  // Credentials are now initialized in the main startup useEffect above
 
   useEffect(() => {
     // Reset model when provider changes
@@ -289,31 +358,91 @@ export default function App() {
   }, [drillSettings]);
 
   // Static data loading for GitHub Pages deployment
-  const loadStaticSubjects = () => {
-    const staticSubjects: Subject[] = [
-      { id: 1, name: "Air Law", description: "Pravidla letectví", question_count: 0, success_rate: 0.75 },
-      { id: 2, name: "Human Performance", description: "Lidská výkonnost", question_count: 0, success_rate: 0.75 },
-      { id: 3, name: "Meteorology", description: "Meteorologie", question_count: 0, success_rate: 0.75 },
-      { id: 4, name: "Communications", description: "Komunikace", question_count: 0, success_rate: 0.75 },
-      { id: 5, name: "Principles of Flight", description: "Principy letu", question_count: 0, success_rate: 0.75 },
-      { id: 6, name: "Operational Procedures", description: "Provozní postupy", question_count: 0, success_rate: 0.75 },
-      { id: 7, name: "Flight Performance", description: "Výkony letadla", question_count: 0, success_rate: 0.75 },
-      { id: 8, name: "Aircraft General", description: "Všeobecně o letadlech", question_count: 0, success_rate: 0.75 },
-      { id: 9, name: "Navigation", description: "Navigace", question_count: 0, success_rate: 0.75 }
+  const loadStaticSubjects = async () => {
+    const subjectDefs = [
+      { id: 1, name: "Air Law", description: "Pravidla letectví" },
+      { id: 2, name: "Human Performance", description: "Lidská výkonnost" },
+      { id: 3, name: "Meteorology", description: "Meteorologie" },
+      { id: 4, name: "Communications", description: "Komunikace" },
+      { id: 5, name: "Principles of Flight", description: "Principy letu" },
+      { id: 6, name: "Operational Procedures", description: "Provozní postupy" },
+      { id: 7, name: "Flight Performance", description: "Výkony letadla" },
+      { id: 8, name: "Aircraft General", description: "Všeobecně o letadlech" },
+      { id: 9, name: "Navigation", description: "Navigace" }
     ];
+
+    // First set with 0 counts so UI loads immediately
+    const staticSubjects: Subject[] = subjectDefs.map(s => ({
+      ...s, question_count: 0, success_rate: 0.75
+    }));
     setSubjects(staticSubjects);
     if (staticSubjects.length > 0 && !importSubjectId) {
       setImportSubjectId(staticSubjects[0].id);
+    }
+
+    // Then fetch real counts from DynamoDB async (single scan with source breakdown)
+    try {
+      const result = await dynamoDBService.getAllQuestionCounts();
+      if (result.success && result.data) {
+        const { total, user, ai } = result.data!;
+        const withCounts: Subject[] = subjectDefs.map(s => ({
+          ...s,
+          question_count: total[s.id] || 0,
+          user_count: user[s.id] || 0,
+          ai_count: ai[s.id] || 0,
+          success_rate: 0.75
+        }));
+        setSubjects(withCounts);
+      }
+    } catch (err) {
+      // Silent fail - keep default counts
     }
   };
 
   const loadStaticQuestions = async (subjectId: number) => {
     try {
+      // Try DynamoDB first
+      const result = await dynamoDBService.getQuestionsBySubject(subjectId);
+      if (result.success && result.data && result.data.length > 0) {
+                const questions: Question[] = result.data.map((q: any) => ({
+          id: q.originalId || q.questionId,
+          subject_id: q.subjectId,
+          text: q.question,
+          text_cz: q.question_cz || undefined,
+          option_a: q.answers[0],
+          option_a_cz: q.answers_cz?.[0] || undefined,
+          option_b: q.answers[1],
+          option_b_cz: q.answers_cz?.[1] || undefined,
+          option_c: q.answers[2],
+          option_c_cz: q.answers_cz?.[2] || undefined,
+          option_d: q.answers[3],
+          option_d_cz: q.answers_cz?.[3] || undefined,
+          correct_option: q.correctOption || ['A', 'B', 'C', 'D'][q.correct] || 'A',
+          explanation: q.explanation || '',
+          explanation_cz: q.explanation_cz || undefined,
+          lo_id: q.loId || q.lo_id || undefined,
+          is_ai: q.source === 'ai' ? 1 : 0,
+          source: q.source || 'user',
+          difficulty: q.difficulty || 1,
+          image: null,
+          correct_count: null,
+          incorrect_count: null,
+          is_flagged: false,
+          last_practiced: null,
+          created_at: q.createdAt || new Date().toISOString(),
+          updated_at: q.createdAt || new Date().toISOString()
+        }));
+        return questions;
+      }
+    } catch (err) {
+      console.warn('⚠️ DynamoDB načítání selhalo, záloha na JSON:', err);
+    }
+
+    // Fallback: load from JSON file
+    try {
       const response = await fetch(`/subject_${subjectId}.json`);
       if (!response.ok) throw new Error('Failed to load questions');
       const jsonQuestions = await response.json();
-      
-      // Transform JSON structure to Question interface
       const questions: Question[] = jsonQuestions.map((q: any) => ({
         id: q.id,
         subject_id: subjectId,
@@ -331,21 +460,20 @@ export default function App() {
         explanation: q.explanation || undefined,
         explanation_cz: q.explanation_cz || undefined,
         lo_id: q.lo_id || undefined,
-        is_ai: 1, // Mark as AI questions
-        source: 'ai', // Mark as AI questions to match filter
+        is_ai: 1,
+        source: 'ai',
         difficulty: q.difficulty || 1,
-        ai_explanation: undefined,
-        ai_explanation_provider: undefined,
-        ai_explanation_model: undefined,
-        ai_detailed_explanation: undefined,
+        image: null,
+        correct_count: null,
+        incorrect_count: null,
         is_flagged: false,
+        last_practiced: null,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       }));
-      
       return questions;
     } catch (error) {
-      console.error('Error loading static questions:', error);
+      console.error('Error loading questions:', error);
       return [];
     }
   };
@@ -362,21 +490,40 @@ export default function App() {
   };
 
   const fetchSubjects = async () => {
-    try {
-      const res = await authFetch('/api/subjects');
-      const data = await res.json();
-      setSubjects(data);
-      if (data.length > 0 && !importSubjectId) {
-        setImportSubjectId(data[0].id);
-      }
-    } catch (err) {}
+    // Reload counts from DynamoDB (don't use localStorage - it has stale counts)
+    await loadStaticSubjects();
   };
 
   const fetchStats = async () => {
     try {
-      const res = await authFetch('/api/stats');
-      const data = await res.json();
-      setStats(data);
+      if (isGuestMode) {
+        const guestStats = loadGuestStats();
+        if (guestStats) setStats(guestStats);
+      } else {
+        // Fetch question counts with source breakdown
+        const countsResult = await dynamoDBService.getAllQuestionCounts();
+        if (countsResult.success && countsResult.data) {
+          const { total, user, ai } = countsResult.data;
+          const totalQ = Object.values(total).reduce((a, b) => a + b, 0);
+          const userQ = Object.values(user).reduce((a, b) => a + b, 0);
+          const aiQ = Object.values(ai).reduce((a, b) => a + b, 0);
+
+          const savedStats = localStorage.getItem('user_stats');
+          const baseStats = savedStats ? JSON.parse(savedStats) : {};
+          setStats({
+            ...baseStats,
+            totalQuestions: totalQ,
+            userQuestions: userQ,
+            aiQuestions: aiQ,
+            practicedQuestions: baseStats.practicedQuestions || 0,
+            overallSuccess: baseStats.overallSuccess || 0,
+            subjectStats: baseStats.subjectStats || []
+          });
+        } else {
+          const savedStats = localStorage.getItem('user_stats');
+          if (savedStats) setStats(JSON.parse(savedStats));
+        }
+      }
     } catch (err) {}
   };
 
@@ -384,7 +531,7 @@ export default function App() {
     if (source === 'ai') {
       const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
       if (!currentApiKey) {
-        const key = prompt(`Pro použití AI funkcí (EASA databáze, vysvětlení, překlady) je doporučeno vložit vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč. Chcete jej vložit nyní?`);
+        const key = prompt(`Pro použití AI generovaných funkcí (EASA databáze, vysvětlení, překlady) je doporučeno vložit vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč. Chcete jej vložit nyní?`);
         if (key) {
           if (aiProvider === 'gemini') {
             setUserApiKey(key);
@@ -450,12 +597,21 @@ export default function App() {
   const startMix = async () => {
     try {
       setSelectedSubject({ id: 0, name: 'MIX - Náhodné otázky', question_count: 100, success_rate: 0 });
-      const res = await authFetch('/api/questions/mix');
-      const data: Question[] = await res.json();
+      
+      // For static deployment, get mix questions from localStorage or use static data
+      const savedQuestions = localStorage.getItem('questions');
+      let data: Question[] = [];
+      
+      if (savedQuestions) {
+        data = JSON.parse(savedQuestions);
+      } else {
+        // Fallback to static questions if no localStorage data
+        data = questions; // Use current questions state
+      }
       
       if (!Array.isArray(data)) {
-        console.error("Server did not return an array for MIX:", data);
-        alert('Chyba serveru: MIX nevrátil očekávaná data.');
+        console.error("No valid questions data available for MIX");
+        alert('Žádné dostupné otázky pro MIX.');
         return;
       }
 
@@ -487,10 +643,21 @@ export default function App() {
   };
 
   const startErrors = async () => {
+    if (isGuestMode) {
+      showLoginPrompt('errors');
+      return;
+    }
+    
     try {
       setSelectedSubject({ id: -1, name: 'Procvičit chyby', question_count: 100, success_rate: 0 });
-      const res = await authFetch('/api/questions/errors');
-      const data: Question[] = await res.json();
+      
+      // For static deployment, get error questions from localStorage
+      const savedErrors = localStorage.getItem('error_questions');
+      let data: Question[] = [];
+      
+      if (savedErrors) {
+        data = JSON.parse(savedErrors);
+      }
       
       if (data.length === 0) {
         alert('Nemáte žádné chyby k procvičení.');
@@ -511,10 +678,15 @@ export default function App() {
   const startExam = async () => {
     try {
       const allQuestions: Question[] = [];
-      for (const s of subjects) {
-        const res = await authFetch(`/api/questions/${s.id}`);
-        const data: Question[] = await res.json();
+      
+      // For static deployment, get questions from localStorage
+      const savedQuestions = localStorage.getItem('questions');
+      if (savedQuestions) {
+        const data = JSON.parse(savedQuestions);
         allQuestions.push(...data);
+      } else {
+        // Fallback to current questions state
+        allQuestions.push(...questions);
       }
       
       const filteredQuestions = allQuestions.filter(q => {
@@ -554,18 +726,44 @@ export default function App() {
       const isCorrect = option === currentQuestion.correct_option;
       setAnswered(option);
       
-      await authFetch('/api/answer', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ questionId: currentQuestion.id, isCorrect })
-      });
-      fetchStats();
-      fetchSubjects();
+      // Save answer to localStorage + DynamoDB
+      try {
+        saveAnswerToLocalStorage(currentQuestion.id, isCorrect);
+        updateGuestStats();
+        // Sync to DynamoDB (non-blocking)
+        const userId = user?.username || 'guest';
+        dynamoDBService.saveUserProgress(userId, String(currentQuestion.id), isCorrect).catch(() => {});
+      } catch (error) {
+        // Silent fail
+      }
     } else {
       // Exam mode - track answers
       setExamAnswers(prev => ({ ...prev, [currentQuestion.id]: option }));
       setAnswered(option);
     }
+  };
+
+  // Helper functions for guest mode
+  const saveAnswerToLocalStorage = (questionId: number, isCorrect: boolean) => {
+    const guestAnswers = JSON.parse(localStorage.getItem('guest_answers') || '{}');
+    guestAnswers[questionId] = { isCorrect, timestamp: new Date().toISOString() };
+    localStorage.setItem('guest_answers', JSON.stringify(guestAnswers));
+  };
+
+  const updateGuestStats = () => {
+    const guestAnswers = JSON.parse(localStorage.getItem('guest_answers') || '{}');
+    const totalAnswers = Object.keys(guestAnswers).length;
+    const correctAnswers = Object.values(guestAnswers).filter((answer: any) => answer.isCorrect).length;
+    const successRate = totalAnswers > 0 ? correctAnswers / totalAnswers : 0;
+    
+    // Update guest stats in localStorage
+    const guestStats = {
+      totalAnswers,
+      correctAnswers,
+      successRate,
+      sessionStart: localStorage.getItem('guest_session_start') || new Date().toISOString()
+    };
+    localStorage.setItem('guest_stats', JSON.stringify(guestStats));
   };
 
   const jumpToRandomQuestion = () => {
@@ -627,7 +825,7 @@ export default function App() {
       if (!q.text_cz) {
         const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
       if (!currentApiKey) {
-        const key = prompt(`Pro AI funkce je vyžadován vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč (${aiProvider === 'gemini' ? 'zdarma na ai.google.dev' : 'na console.anthropic.com'}). Vložte jej prosím nyní:`);
+        const key = prompt(`Pro AI generované je vyžadován vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč (${aiProvider === 'gemini' ? 'zdarma na ai.google.dev' : 'na console.anthropic.com'}). Vložte jej prosím nyní:`);
         if (key) {
           if (aiProvider === 'gemini') {
             setUserApiKey(key);
@@ -671,7 +869,7 @@ export default function App() {
 
     const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
     if (!currentApiKey) {
-      const key = prompt(`Pro AI funkce je vyžadován vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč (${aiProvider === 'gemini' ? 'zdarma na ai.google.dev' : 'na console.anthropic.com'}). Vložte jej prosím nyní:`);
+      const key = prompt(`Pro AI generované je vyžadován vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč (${aiProvider === 'gemini' ? 'zdarma na ai.google.dev' : 'na console.anthropic.com'}). Vložte jej prosím nyní:`);
       if (key) {
         if (aiProvider === 'gemini') {
           setUserApiKey(key);
@@ -687,24 +885,49 @@ export default function App() {
     
     setIsGeneratingAiExplanation(true);
     try {
-      console.log('Generating AI explanation with:', {
-        provider: aiProvider,
-        model: aiModel,
-        hasKey: !!(aiProvider === 'gemini' ? userApiKey : claudeApiKey)
-      });
-
-      // Zkusit získat z DynamoDB cache first
-      const cacheKey = `${q.subject_id}_${q.id}`;
-      const cachedExplanation = await dynamoCache.getCachedExplanation(
-        cacheKey,
-        aiProvider,
-        aiModel
-      );
-
-      if (cachedExplanation && cachedExplanation.explanation) {
-        console.log('Using cached AI explanation from DynamoDB/LocalStorage');
-        setAiExplanation(cachedExplanation.explanation);
-        setDetailedExplanation(cachedExplanation.detailedExplanation || null);
+      // For guest mode, show login prompt for advanced AI features
+      if (isGuestMode && !userApiKey && !claudeApiKey) {
+        showLoginPrompt('ai');
+        setIsGeneratingAiExplanation(false);
+        return;
+      }
+      
+      // Check DynamoDB cache first
+      try {
+        const cacheKey = `${q.subject_id}_${q.id}`;
+        const cached = await dynamoDBService.getCachedExplanation(cacheKey, aiModel);
+        if (cached.success && cached.data?.explanation) {
+          setAiExplanation(cached.data.explanation);
+          setDetailedExplanation(cached.data.detailedExplanation || null);
+          setShowExplanation(true);
+          setIsGeneratingAiExplanation(false);
+          return;
+        }
+      } catch (error) {}
+      
+      // Check localStorage as fallback
+      const localStorageKey = `ai_explanation_${q.subject_id}_${q.id}_${aiProvider}_${aiModel}`;
+      const localStorageData = localStorage.getItem(localStorageKey);
+      if (localStorageData) {
+        try {
+          const parsed = JSON.parse(localStorageData);
+          if (parsed.explanation) {
+            setAiExplanation(parsed.explanation);
+            setDetailedExplanation(parsed.detailedExplanation || null);
+            setShowExplanation(true);
+            setIsGeneratingAiExplanation(false);
+            // Backfill to DynamoDB if found only in localStorage
+            const cacheKey = `${q.subject_id}_${q.id}`;
+            dynamoDBService.saveExplanation(cacheKey, parsed.explanation, parsed.detailedExplanation || null, aiProvider as 'gemini' | 'claude', aiModel).catch(() => {});
+            return;
+          }
+        } catch (error) {}
+      }
+      
+      // Check question data cache
+      if (q.ai_explanation && q.ai_explanation_provider === aiProvider) {
+        setAiExplanation(q.ai_explanation);
+        setDetailedExplanation(q.ai_detailed_explanation || null);
         setShowExplanation(true);
         setIsGeneratingAiExplanation(false);
         return;
@@ -712,79 +935,60 @@ export default function App() {
       
       const lo = mockLOs.find(l => l.id === q.lo_id);
       
-      // Check if we already have AI explanation in database (localStorage)
-      if (q.ai_explanation && q.ai_explanation_provider === aiProvider) {
-        console.log('Using cached AI explanation from database');
-        setAiExplanation(q.ai_explanation);
-        setDetailedExplanation(q.ai_detailed_explanation || null);
-        setShowExplanation(true);
-        return;
-      }
-      
       const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : claudeApiKey, aiModel, aiProvider);
       
-      console.log('Explanation result:', result);
       
-      // Save objective to database if detected
-      if (result.objective && (!q.lo_id || q.source === 'user')) {
-        try {
-          await authFetch('/api/questions/objective', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              questionId: q.id,
-              objective: result.objective
-            })
-          });
-          console.log('Objective saved to database:', result.objective);
-          // Update the question in local state
-          setQuestions(prev => prev.map(question => 
-            question.id === q.id ? { ...question, lo_id: result.objective } : question
-          ));
-        } catch (error) {
-          console.error('Failed to save objective:', error);
+      // Save objective if detected
+      if (result.objective) {
+        // Always save to DynamoDB
+        dynamoDBService.saveObjective(String(q.id), result.objective).catch(() => {});
+        
+        // Update localStorage and local state if question doesn't have lo_id yet
+        if (!q.lo_id || q.source === 'user') {
+          try {
+            const objectives = JSON.parse(localStorage.getItem('learning_objectives') || '{}');
+            objectives[q.id] = result.objective;
+            localStorage.setItem('learning_objectives', JSON.stringify(objectives));
+            setQuestions(prev => prev.map(question => 
+              question.id === q.id ? { ...question, lo_id: result.objective } : question
+            ));
+          } catch (error) {
+            // Silent fail
+          }
         }
-        // Also store for immediate display
         setAiDetectedObjective(result.objective);
       }
       
       setAiExplanation(result.explanation);
       setShowExplanation(true);
       
-      // Save AI explanation to DynamoDB cache
+      // Save AI explanation to DynamoDB
       try {
         const cacheKey = `${q.subject_id}_${q.id}`;
-        const saved = await dynamoCache.saveExplanation(
+        await dynamoDBService.saveExplanation(
           cacheKey,
           result.explanation,
-          aiProvider,
-          aiModel,
-          null // detailed explanation
+          null,
+          aiProvider as 'gemini' | 'claude',
+          aiModel
         );
-        
-        if (saved) {
-          console.log('AI explanation saved to DynamoDB cache');
-        } else {
-          console.log('Failed to save AI explanation to DynamoDB cache');
-        }
       } catch (error) {
-        console.error('Error saving to DynamoDB cache:', error);
+        // Silent fail - localStorage fallback below
       }
       
-      // Save AI explanation to localStorage for reuse (fallback)
+      // Always save to localStorage as fallback
       try {
-        await authFetch('/api/questions/explanation', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            questionId: q.id,
-            explanation: result.explanation,
-            detailedExplanation: null,
-            provider: aiProvider,
-            model: aiModel
-          })
-        });
-        console.log('AI explanation saved to database');
+        const localStorageKey = `ai_explanation_${q.subject_id}_${q.id}_${aiProvider}_${aiModel}`;
+        const explanationData = {
+          questionId: q.id,
+          explanation: result.explanation,
+          detailedExplanation: null,
+          provider: aiProvider,
+          model: aiModel,
+          createdAt: new Date().toISOString()
+        };
+        localStorage.setItem(localStorageKey, JSON.stringify(explanationData));
+        
         // Update local state to reflect saved data
         setQuestions(prev => prev.map(question => 
           question.id === q.id ? { 
@@ -795,7 +999,7 @@ export default function App() {
           } : question
         ));
       } catch (error) {
-        console.error('Failed to save AI explanation:', error);
+        console.error('Failed to save AI explanation to localStorage:', error);
       }
     } catch (error: any) {
       console.error("Explanation failed:", error);
@@ -824,7 +1028,7 @@ export default function App() {
 
     const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
     if (!currentApiKey) {
-      const key = prompt(`Pro AI funkce je vyžadován vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč (${aiProvider === 'gemini' ? 'zdarma na ai.google.dev' : 'na console.anthropic.com'}). Vložte jej prosím nyní:`);
+      const key = prompt(`Pro AI generované je vyžadován vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč (${aiProvider === 'gemini' ? 'zdarma na ai.google.dev' : 'na console.anthropic.com'}). Vložte jej prosím nyní:`);
       if (key) {
         if (aiProvider === 'gemini') {
           setUserApiKey(key);
@@ -840,40 +1044,33 @@ export default function App() {
     
     setIsGeneratingDetailedExplanation(true);
     try {
-      console.log('Generating detailed AI explanation with:', {
-        provider: aiProvider,
-        model: aiModel,
-        hasKey: !!currentApiKey
-      });
       
       const lo = mockLOs.find(l => l.id === q.lo_id);
       
       // Check if we already have detailed explanation in database
       if (q.ai_detailed_explanation) {
-        console.log('Using cached detailed explanation from database');
         setDetailedExplanation(q.ai_detailed_explanation);
         return;
       }
       
       const detailedExplanationResult = await getDetailedHumanExplanation(q, lo, currentApiKey, aiModel, aiProvider);
       
-      console.log('Detailed explanation result:', detailedExplanationResult);
       setDetailedExplanation(detailedExplanationResult);
       
-      // Save detailed explanation to database
+      // Save detailed explanation to localStorage
       try {
-        await authFetch('/api/questions/explanation', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            questionId: q.id,
-            explanation: q.ai_explanation || aiExplanation || '',
-            detailedExplanation: detailedExplanationResult,
-            provider: aiProvider,
-            model: aiModel
-          })
-        });
-        console.log('Detailed explanation saved to database');
+        // For static deployment, save detailed explanation to localStorage
+        const explanations = JSON.parse(localStorage.getItem('ai_explanations') || '{}');
+        const explanationKey = `${q.subject_id}_${q.id}`;
+        explanations[explanationKey] = {
+          questionId: q.id,
+          explanation: q.ai_explanation || aiExplanation || '',
+          detailedExplanation: detailedExplanationResult,
+          provider: aiProvider,
+          model: aiModel,
+          createdAt: new Date().toISOString()
+        };
+        localStorage.setItem('ai_explanations', JSON.stringify(explanations));
         // Update local state
         setQuestions(prev => prev.map(question => 
           question.id === q.id ? { 
@@ -915,12 +1112,17 @@ export default function App() {
   };
 
   const toggleFlag = async (questionId: number, currentFlag: boolean) => {
-    await authFetch('/api/flag', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ questionId, isFlagged: !currentFlag })
-    });
-    setQuestions(prev => prev.map(q => q.id === questionId ? { ...q, is_flagged: !currentFlag } : q));
+    const newFlag = !currentFlag;
+    try {
+      const flags = JSON.parse(localStorage.getItem('question_flags') || '{}');
+      flags[questionId] = newFlag;
+      localStorage.setItem('question_flags', JSON.stringify(flags));
+      // Sync to DynamoDB
+      dynamoDBService.toggleQuestionFlag(String(questionId), newFlag).catch(() => {});
+    } catch (error) {
+      // Silent fail
+    }
+    setQuestions(prev => prev.map(q => q.id === questionId ? { ...q, is_flagged: newFlag } : q));
   };
 
   useEffect(() => {
@@ -931,12 +1133,13 @@ export default function App() {
 
   const fetchCoverage = async (subjectId: number) => {
     try {
-      const res = await authFetch(`/api/questions/${subjectId}?t=${Date.now()}`);
-      if (!res.ok) throw new Error('Failed to fetch questions');
-      const data: Question[] = await res.json();
-      const covered = new Set(data.map(q => q.lo_id).filter(Boolean).map(id => id?.trim()) as string[]);
-      console.log(`Fetched coverage for subject ${subjectId}: ${covered.size} LOs`);
-      setCoveredLOs(covered);
+      // For static deployment, get questions from localStorage
+      const savedQuestions = localStorage.getItem('questions');
+      if (savedQuestions) {
+        const data: Question[] = JSON.parse(savedQuestions);
+        const covered = new Set(data.map(q => q.lo_id).filter(Boolean).map(id => id?.trim()) as string[]);
+        setCoveredLOs(covered);
+      }
     } catch (error) {
       console.error("Error fetching coverage:", error);
     }
@@ -945,7 +1148,7 @@ export default function App() {
   const handleGenerateQuestions = async () => {
     const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
     if (!currentApiKey) {
-      const key = prompt(`Pro hromadné generování otázek pomocí AI je vyžadován vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč (${aiProvider === 'gemini' ? 'zdarma na ai.google.dev' : 'na console.anthropic.com'}). Vložte jej prosím nyní:`);
+      const key = prompt(`Pro hromadné generování otázek pomocí AI generovaných je vyžadován vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč (${aiProvider === 'gemini' ? 'zdarma na ai.google.dev' : 'na console.anthropic.com'}). Vložte jej prosím nyní:`);
       if (key) {
         if (aiProvider === 'gemini') {
           setUserApiKey(key);
@@ -959,7 +1162,7 @@ export default function App() {
       }
     }
 
-    setIsGenerating(true);
+    setIsGeneratingDetailedExplanation(true);
     setBatchResults([]);
     try {
       // Find LOs for the current subject
@@ -977,7 +1180,7 @@ export default function App() {
       // If still empty (no LOs for this subject at all), we can't proceed
       if (targets.length === 0) {
         alert('Pro tento předmět nejsou v databázi osnovy žádná témata.');
-        setIsGenerating(false);
+        setIsGeneratingDetailedExplanation(false);
         return;
       }
       
@@ -1005,7 +1208,7 @@ export default function App() {
         alert('Generování otázek se nezdařilo.');
       }
     } finally {
-      setIsGenerating(false);
+      setIsGeneratingDetailedExplanation(false);
     }
   };
 
@@ -1031,26 +1234,23 @@ export default function App() {
         }))
       );
 
-      const res = await authFetch('/api/import-questions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          subjectId: importSubjectId,
-          questions: allQuestionsToImport,
-          clearExisting: false
-        })
-      });
-
-      const data = await res.json();
-      if (data.success) {
-        setImportStatus({ type: 'success', message: `Úspěšně uloženo ${data.count} AI otázek pro ${batchResults.length} témat.` });
-        setBatchResults([]);
-        await Promise.all([
-          fetchSubjects(),
-          fetchStats(),
-          fetchCoverage(importSubjectId)
-        ]);
-      }
+      // Save to localStorage
+      const savedQuestions = JSON.parse(localStorage.getItem('questions') || '[]');
+      const updatedQuestions = [...savedQuestions, ...allQuestionsToImport];
+      localStorage.setItem('questions', JSON.stringify(updatedQuestions));
+      
+      // Save to DynamoDB (non-blocking)
+      Promise.all(
+        allQuestionsToImport.map((q: any) => dynamoDBService.saveQuestion(importSubjectId, q))
+      ).catch(() => {});
+      
+      setImportStatus({ type: 'success', message: `Úspěšně uloženo ${allQuestionsToImport.length} AI otázek pro ${batchResults.length} témat.` });
+      setBatchResults([]);
+      await Promise.all([
+        fetchSubjects(),
+        fetchStats(),
+        fetchCoverage(importSubjectId)
+      ]);
     } catch (error) {
       console.error("Saving failed:", error);
     }
@@ -1060,16 +1260,28 @@ export default function App() {
     if (!confirm('Opravdu chcete smazat veškerý váš postup a historii testů? Tato akce je nevratná.')) return;
     
     try {
-      const res = await authFetch('/api/reset-progress', { method: 'POST' });
-      const data = await res.json();
-      if (data.success) {
-        alert('Postup byl úspěšně smazán.');
-        fetchStats();
-        if (view === 'dashboard') fetchSubjects();
-      }
+      // For static deployment, clear progress from localStorage
+      localStorage.removeItem('user_progress');
+      localStorage.removeItem('user_stats');
+      localStorage.removeItem('guest_answers');
+      localStorage.removeItem('guest_stats');
+      localStorage.removeItem('guest_session_start');
+      
+      // Reset stats to default
+      setStats({
+        totalAnswers: 0,
+        correctAnswers: 0,
+        overallSuccess: 0.75,
+        userQuestions: 0,
+        aiQuestions: 1000,
+        practicedQuestions: 0,
+        totalQuestions: 1000
+      });
+      
+      alert('Váš postup byl úspěšně smazán.');
     } catch (error) {
       console.error("Reset failed:", error);
-      alert('Chyba při mazání postupu.');
+      alert('Nepodařilo se smazat postup.');
     }
   };
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -1100,33 +1312,28 @@ export default function App() {
         ? parsed.map(q => ({ ...q, source: q.source || 'user' }))
         : parsed;
 
-      const res = await authFetch('/api/import-questions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          subjectId: importSubjectId,
-          questions: questionsWithSource,
-          clearExisting
-        })
-      });
-
-      const data = await res.json();
-      if (data.success) {
-        setImportStatus({ type: 'success', message: `Úspěšně importováno ${data.count} otázek.` });
-        setImportJson('');
-        fetchSubjects();
-        fetchStats();
+      // For static deployment, save questions to localStorage
+      let savedQuestions = JSON.parse(localStorage.getItem('questions') || '[]');
+      
+      if (clearExisting) {
+        savedQuestions = questionsWithSource;
       } else {
-        setImportStatus({ type: 'error', message: data.error || 'Import selhal.' });
+        savedQuestions = [...savedQuestions, ...questionsWithSource];
       }
+      
+      localStorage.setItem('questions', JSON.stringify(savedQuestions));
+      
+      setImportStatus({ type: 'success', message: `Úspěšně importováno ${questionsWithSource.length} otázek.` });
+      setImportJson('');
+      fetchSubjects();
+      fetchStats();
     } catch (err) {
       setImportStatus({ type: 'error', message: 'Neplatný formát JSON.' });
     }
   };
 
-  // Skip authentication check for static deployment
-  /*
-  if (!token || !user) {
+  // Show login screen if not logged in and not in guest mode
+  if (userMode === 'guest' && !user && view === 'dashboard' && !localStorage.getItem('guest_accepted')) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4 bg-[var(--bg)]">
         <motion.div 
@@ -1158,21 +1365,6 @@ export default function App() {
               </div>
             </div>
 
-            <div className="space-y-2">
-              <label className="col-header">Heslo</label>
-              <div className="relative">
-                <ShieldCheck className="absolute left-3 top-1/2 -translate-y-1/2 opacity-30" size={16} />
-                <input 
-                  type="password"
-                  required
-                  value={authForm.password}
-                  onChange={e => setAuthForm(prev => ({ ...prev, password: e.target.value }))}
-                  className="w-full pl-10 pr-4 py-3 bg-transparent border border-[var(--line)] rounded-xl focus:outline-none focus:border-[var(--ink)]"
-                  placeholder="••••••••"
-                />
-              </div>
-            </div>
-
             {authError && (
               <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-500 text-xs flex items-center gap-2">
                 <AlertCircle size={14} />
@@ -1184,57 +1376,74 @@ export default function App() {
               type="submit"
               className="w-full py-4 bg-[var(--ink)] text-[var(--ink-text)] rounded-xl font-bold uppercase tracking-widest text-xs hover:scale-[1.02] transition-transform"
             >
-              {authMode === 'login' ? 'Přihlásit se' : 'Zaregistrovat se'}
+              Přihlásit se
             </button>
+            <p className="text-center text-[10px] opacity-50">
+              Zadej své jméno — pokud účet neexistuje, automaticky se vytvoří
+            </p>
           </form>
 
           <div className="text-center">
             <button 
-              onClick={() => setAuthMode(authMode === 'login' ? 'register' : 'login')}
+              onClick={() => {
+                localStorage.setItem('guest_accepted', 'true');
+                setUserMode('guest');
+              }}
               className="text-[10px] font-bold uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity"
             >
-              {authMode === 'login' ? 'Nemáte účet? Zaregistrujte se' : 'Již máte účet? Přihlaste se'}
+              Pokračovat jako host
             </button>
           </div>
         </motion.div>
       </div>
     );
   }
-  */
 
   return (
     <div className="min-h-screen transition-colors duration-300">
       {/* Header */}
-      <header className="border-b border-[var(--line)] p-4 flex justify-between items-center sticky top-0 bg-[var(--bg)] z-50">
+      <header className="border-b border-[var(--line)] px-4 py-3 flex justify-between items-center sticky top-0 bg-[var(--bg)] z-50 min-h-[60px]">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-[var(--ink)] text-[var(--ink-text)] flex items-center justify-center rounded-lg font-bold text-xl">
+          <div className="w-10 h-10 min-w-[40px] bg-[var(--ink)] text-[var(--ink-text)] flex items-center justify-center rounded-lg font-bold text-xl flex-shrink-0">
             A
           </div>
-          <div>
-            <h1 className="font-bold text-lg">Aeropilot Exam Prep</h1>
-            <div className="flex items-center gap-2 text-xs opacity-60">
-              <span className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-500' : 'bg-red-500'}`}></span>
-              <span>{isOnline ? 'Online' : 'Offline'}</span>
+          <div className="min-w-0">
+            <h1 className="font-bold text-lg leading-tight">Aeropilot Exam Prep</h1>
+            <div className="flex items-center gap-2 text-xs opacity-60 leading-tight">
+              <span className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-500' : 'bg-red-500'} flex-shrink-0`}></span>
+              <span className="truncate">{isOnline ? 'Online' : 'Offline'}</span>
             </div>
           </div>
         </div>
 
-        <nav className="hidden md:flex gap-8">
-          <button onClick={() => setView('dashboard')} className={`text-xs uppercase tracking-widest font-semibold flex items-center gap-2 ${view === 'dashboard' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}>
-            <LayoutDashboard size={14} /> Dashboard
+        <nav className="hidden md:flex gap-6 lg:gap-8 items-center">
+          <button onClick={() => setView('dashboard')} className={`text-xs uppercase tracking-widest font-semibold flex items-center gap-2 whitespace-nowrap transition-opacity ${view === 'dashboard' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}>
+            <LayoutDashboard size={14} className="flex-shrink-0" /> 
+            <span className="hidden sm:inline">Dashboard</span>
           </button>
-          <button onClick={() => setView('stats')} className={`text-xs uppercase tracking-widest font-semibold flex items-center gap-2 ${view === 'stats' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}>
-            <BarChart3 size={14} /> Statistiky
+          <button 
+            onClick={() => isGuestMode ? showLoginPrompt('stats') : setView('stats')} 
+            className={`text-xs uppercase tracking-widest font-semibold flex items-center gap-2 whitespace-nowrap transition-opacity ${view === 'stats' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
+          >
+            <BarChart3 size={14} className="flex-shrink-0" /> 
+            <span className="hidden sm:inline">Statistiky</span>
+          </button>
+          <button 
+            onClick={() => setView('ai')} 
+            className={`text-xs uppercase tracking-widest font-semibold flex items-center gap-2 whitespace-nowrap transition-opacity ${view === 'ai' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
+          >
+            <Cpu size={14} className="flex-shrink-0" /> 
+            <span className="hidden sm:inline">AI</span>
           </button>
         </nav>
 
-        <div className="flex items-center gap-4">
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-[var(--line)] rounded-full">
-            <User size={12} className="opacity-50" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white">{user?.username}</span>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <div className="hidden sm:flex items-center h-10 px-3 bg-[var(--badge-bg)] rounded-full min-w-0">
+            <User size={12} className="opacity-50 flex-shrink-0" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--ink)] truncate ml-1">{user?.username}</span>
             <button 
               onClick={handleLogout}
-              className="ml-2 p-1 hover:text-rose-500 transition-colors"
+              className="ml-2 p-1 hover:text-rose-500 transition-colors rounded flex-shrink-0"
               title="Odhlásit se"
             >
               <XCircle size={12} />
@@ -1243,29 +1452,25 @@ export default function App() {
           {!userApiKey && (
             <div 
               onClick={() => setView('settings')}
-              className="hidden lg:flex items-center gap-2 px-3 py-1 bg-red-500/10 text-red-600 rounded-full text-[10px] font-bold border border-red-500/20 cursor-pointer hover:bg-red-500/20 transition-colors"
+              className="hidden lg:flex items-center h-10 px-3 bg-red-500/10 text-red-600 rounded-full text-[10px] font-bold border border-red-500/20 cursor-pointer hover:bg-red-500/20 transition-colors min-w-0"
             >
-              <AlertCircle size={12} />
-              AI VYPNUTO
+              <AlertCircle size={12} className="flex-shrink-0" />
+              <span className="hidden xl:inline ml-1">AI VYPNUTO</span>
             </div>
           )}
           <button 
             onClick={() => setDarkMode(!darkMode)}
-            className="p-2 rounded-full hover:bg-[var(--ink)] hover:text-[var(--ink-text)] transition-colors"
+            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[var(--ink)] hover:text-[var(--ink-text)] transition-colors flex-shrink-0"
+            title="Přepnout tmavý režim"
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
           <button 
             onClick={() => setView('settings')}
-            className={`p-2 rounded-full transition-colors ${view === 'settings' ? 'bg-[var(--ink)] text-[var(--ink-text)]' : 'hover:bg-[var(--ink)] hover:text-[var(--ink-text)]'}`}
+            className={`w-10 h-10 flex items-center justify-center rounded-full transition-colors flex-shrink-0 ${view === 'settings' ? 'bg-[var(--ink)] text-[var(--ink-text)]' : 'hover:bg-[var(--ink)] hover:text-[var(--ink-text)]'}`}
+            title="Nastavení"
           >
             <Settings size={18} />
-          </button>
-          <button 
-            onClick={() => setView('ai')}
-            className={`bg-indigo-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform flex items-center gap-2 ${view === 'ai' ? 'ring-2 ring-indigo-400 ring-offset-2 dark:ring-offset-black' : ''}`}
-          >
-            <Sparkles size={14} /> AI - EASA LOs
           </button>
           <button 
             onClick={startExam}
@@ -1287,40 +1492,117 @@ export default function App() {
               className="space-y-8"
             >
               {/* Stats Overview */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="p-6 border border-[var(--line)] rounded-2xl space-y-2">
-                  <p className="col-header">Celková úspěšnost</p>
+                  <p className="col-header">
+                    {isGuestMode ? 'Úspěšnost v této session' : 'Celková úspěšnost'}
+                  </p>
                   <div className="flex items-end gap-2">
                     <span className="text-4xl font-mono font-bold">
-                      {stats ? Math.round(stats.overallSuccess * 100) : 0}%
+                      {(() => {
+                        const currentStats = isGuestMode ? loadGuestStats() : stats;
+                        return currentStats ? Math.round(currentStats.overallSuccess * 100) : 0;
+                      })()}%
                     </span>
                     <div className="h-2 flex-1 bg-[var(--line)] rounded-full overflow-hidden mb-2">
                       <div 
                         className="h-full bg-[var(--ink)] transition-all duration-1000" 
-                        style={{ width: `${stats ? stats.overallSuccess * 100 : 0}%` }}
+                        style={{ 
+                          width: `${(() => {
+                            const currentStats = isGuestMode ? loadGuestStats() : stats;
+                            return currentStats ? currentStats.overallSuccess * 100 : 0;
+                          })()}%` 
+                        }}
                       />
                     </div>
                   </div>
                 </div>
                 <div className="p-6 border border-[var(--line)] rounded-2xl space-y-2">
-                  <p className="col-header">Databáze otázek</p>
-                  <p className="text-4xl font-mono font-bold">
-                    {stats?.userQuestions || 0} <span className="text-sm opacity-40">/ {stats?.aiQuestions || 0}</span>
+                  <p className="col-header">
+                    {isGuestMode ? 'Odpovědi v session' : 'Databáze otázek'}
                   </p>
-                  <p className="text-[10px] uppercase tracking-widest opacity-40 font-bold">Uživatel / AI</p>
+                  <p className="text-4xl font-mono font-bold">
+                    {(() => {
+                      if (isGuestMode) {
+                        const guestStats = loadGuestStats();
+                        return guestStats ? guestStats.totalAnswers : 0;
+                      }
+                      return (
+                        <span className="tabular-nums">
+                          {stats?.userQuestions || 0}
+                          <span className="opacity-30">/</span>
+                          {stats?.aiQuestions || 0}
+                        </span>
+                      );
+                    })()}
+                  </p>
+                  <p className="text-[10px] uppercase tracking-widest opacity-40 font-bold">
+                    {isGuestMode ? 'Zodpovězeno' : 'Uživatel / EASA'}
+                  </p>
                 </div>
                 <div className="p-6 border border-[var(--line)] rounded-2xl space-y-2">
-                  <p className="col-header">Procvičeno otázek</p>
-                  <p className="text-4xl font-mono font-bold">
-                    {stats?.practicedQuestions} <span className="text-sm opacity-40">/ {stats?.totalQuestions}</span>
+                  <p className="col-header">
+                    {isGuestMode ? 'Aktuální předmět' : 'Procvičeno otázek'}
                   </p>
+                  <p className="text-4xl font-mono font-bold">
+                    {(() => {
+                      if (isGuestMode) {
+                        return selectedSubject ? selectedSubject.question_count : 0;
+                      }
+                      return (
+                        <span className="tabular-nums">
+                          {(stats?.practicedUserQuestions || 0) + (stats?.practicedAiQuestions || 0)}
+                          <span className="text-sm opacity-40">/ {stats?.totalQuestions}</span>
+                        </span>
+                      );
+                    })()}
+                  </p>
+                  <p className="text-[10px] uppercase tracking-widest opacity-40 font-bold">
+                    {isGuestMode ? 'Otázek k dispozici' : 'Procvičeno / Celkem'}
+                  </p>
+                  {stats?.practicedUserQuestions || stats?.practicedAiQuestions ? (
+                    <p className="text-[9px] opacity-50">
+                      {stats?.practicedUserQuestions || 0}u / {stats?.practicedAiQuestions || 0}easa
+                    </p>
+                  ) : null}
                 </div>
                 <div className="p-6 border border-[var(--line)] rounded-2xl space-y-2">
-                  <p className="col-header">Aktuální licence</p>
-                  <div className="flex gap-2">
-                    <span className="px-3 py-1 bg-[var(--ink)] text-[var(--ink-text)] rounded-full text-[10px] font-bold">PPL(A)</span>
-                    <span className="px-3 py-1 border border-[var(--line)] rounded-full text-[10px] font-bold opacity-50">SPL</span>
-                  </div>
+                  <p className="col-header">
+                    {isGuestMode ? 'Session čas' : 'Aktuální licence'}
+                  </p>
+                  <p className="text-4xl font-mono font-bold">
+                    {(() => {
+                      if (isGuestMode) {
+                        const sessionStart = localStorage.getItem('guest_session_start');
+                        if (sessionStart) {
+                          const start = new Date(sessionStart);
+                          const now = new Date();
+                          const diff = Math.floor((now.getTime() - start.getTime()) / 60000);
+                          return (
+                            <>
+                              {Math.min(diff, 999)}
+                              <span className="text-sm opacity-40"> min</span>
+                            </>
+                          );
+                        }
+                        return (
+                          <>
+                            0
+                            <span className="text-sm opacity-40"> min</span>
+                          </>
+                        );
+                      }
+                      return (
+                        <span className="flex gap-2">
+                          <span className="px-3 py-1 bg-[var(--ink)] text-[var(--ink-text)] rounded-full text-[10px] font-bold">PPL(A)</span>
+                          <span className="px-3 py-1 border border-[var(--line)] rounded-full text-[10px] font-bold opacity-50">SPL</span>
+                        </span>
+                      );
+                    })()}
+                  </p>
+                  <p className="text-[10px] uppercase tracking-widest opacity-40 font-bold">
+                    {isGuestMode ? 'Délka session' : 'Licence'}
+                  </p>
                 </div>
               </div>
 
@@ -1353,9 +1635,20 @@ export default function App() {
                       <div className="flex justify-center">
                         <BookOpen size={16} className="opacity-40 group-hover:opacity-100" />
                       </div>
-                      <div className="font-medium flex items-center min-w-0 truncate">{s.name}</div>
-                      <div className="font-mono text-xs flex justify-center opacity-60">
-                        {s.user_count || 0} / {s.ai_count || 0}
+                      <div className="flex items-center min-w-0">
+                        <span className="font-medium truncate">{s.description}</span>
+                        <span className="text-xs opacity-50 ml-2 truncate">{s.name}</span>
+                      </div>
+                      <div className="font-mono text-xs flex justify-center">
+                        {(s.ai_count || 0) > 0 ? (
+                          <span className="opacity-60">
+                            {s.user_count || 0}/{s.ai_count}
+                          </span>
+                        ) : (
+                          <span className="opacity-60">
+                            {s.question_count || 0}
+                          </span>
+                        )}
                       </div>
                       <div className="font-mono text-sm flex justify-center">
                         {Math.round(s.success_rate * 100)}%
@@ -1374,12 +1667,19 @@ export default function App() {
                     <div className="flex justify-center">
                       <AlertCircle size={16} className="text-orange-500 group-hover:text-white" />
                     </div>
-                    <div className="font-bold flex items-center">Procvičit chyby</div>
+                    <div className="font-bold flex items-center gap-2">
+                      Procvičit chyby
+                      {isGuestMode && (
+                        <span className="px-2 py-1 bg-blue-500/20 text-blue-400 text-[10px] rounded-full font-medium">
+                          Přihlášení
+                        </span>
+                      )}
+                    </div>
                     <div className="font-mono text-sm flex justify-center opacity-60">
-                      {stats?.practicedQuestions && stats.overallSuccess < 1 ? 'Dostupné' : '-'}
+                      {isGuestMode ? '-' : (stats?.practicedQuestions && stats.overallSuccess < 1 ? 'Dostupné' : '-')}
                     </div>
                     <div className="font-mono text-sm flex justify-center">
-                      {stats ? Math.round((1 - stats.overallSuccess) * 100) : 0}% chyb
+                      {isGuestMode ? '0%' : (stats ? Math.round((1 - stats.overallSuccess) * 100) : 0)}% chyb
                     </div>
                     <div className="flex justify-end">
                       <ChevronRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -2422,11 +2722,11 @@ export default function App() {
 
                       <button 
                         onClick={handleGenerateQuestions}
-                        disabled={isGenerating}
+                        disabled={isGeneratingDetailedExplanation}
                         className="w-full py-4 bg-indigo-600 text-white rounded-full text-xs font-bold uppercase tracking-widest hover:scale-[1.01] transition-transform flex items-center justify-center gap-2 disabled:opacity-50"
                       >
-                        {isGenerating ? <RotateCcw size={16} className="animate-spin" /> : <Sparkles size={16} />}
-                        {isGenerating ? 'Generuji hromadně...' : `Spustit generování (${batchSize} témat)`}
+                        {isGeneratingDetailedExplanation ? <RotateCcw size={16} className="animate-spin" /> : <Sparkles size={16} />}
+                        {isGeneratingDetailedExplanation ? 'Generuji hromadně...' : `Spustit generování (${batchSize} témat)`}
                       </button>
                     </div>
 
@@ -2587,6 +2887,14 @@ export default function App() {
       
       {/* Admin Dashboard Component */}
       <AdminDashboard />
+      
+      {/* Login Prompt Component */}
+      <LoginPrompt
+        isOpen={isLoginPromptOpen}
+        onClose={closeLoginPrompt}
+        onLogin={switchToLoginMode}
+        feature={loginPromptFeature || 'stats'}
+      />
     </div>
   );
 }

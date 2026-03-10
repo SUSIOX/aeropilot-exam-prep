@@ -103,17 +103,9 @@ export class DynamoDBCacheService {
       // 5. Uložit do DynamoDB (jen pokud povoleno)
       if (throttleLevel !== 'EMERGENCY') {
         await this.saveToDynamoDB(entry);
-        
-        // Zvýšit write counter
         dynamoMonitor.incrementUsage('write');
-        
-        // Odhadnout velikost dat
         const dataSize = JSON.stringify(entry).length;
         dynamoMonitor.estimateStorageSize(dataSize);
-        
-        console.log('Cache saved to DynamoDB');
-      } else {
-        console.log('Cache saved to localStorage only (DynamoDB limited)');
       }
 
       return true;
@@ -216,11 +208,10 @@ export class DynamoDBCacheService {
   private async saveToDynamoDB(entry: CacheEntry): Promise<void> {
     try {
       if (!entry.provider || !entry.model) {
-        console.warn('Provider and model are required for DynamoDB cache save');
         return;
       }
 
-      const result = await dynamoDBService.saveExplanation(
+      await dynamoDBService.saveExplanation(
         entry.questionId,
         entry.explanation || '',
         entry.detailedExplanation || null,
@@ -228,14 +219,8 @@ export class DynamoDBCacheService {
         entry.model
       );
       
-      if (result.success) {
-        console.log('Cache saved to DynamoDB:', entry.questionId);
-      } else {
-        console.error('Failed to save to DynamoDB:', result.error);
-      }
-      
     } catch (error) {
-      console.error('Error writing to DynamoDB:', error);
+      console.error('❌ Error writing to DynamoDB:', error);
     }
   }
 

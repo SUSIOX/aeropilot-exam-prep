@@ -45,6 +45,8 @@ export interface Stats {
   userQuestions?: number;
   aiQuestions?: number;
   practicedQuestions: number;
+  practicedUserQuestions?: number;
+  practicedAiQuestions?: number;
   overallSuccess: number;
   subjectStats: { name: string; rate: number }[];
 }

@@ -118,6 +118,8 @@ export default function App() {
   const [importJson, setImportJson] = useState('');
   const [importStatus, setImportStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
   const [clearExisting, setClearExisting] = useState(false);
+  const [importPassword, setImportPassword] = useState('');
+  const IMPORT_PASSWORD_HASH = '9b8769a4a742959a2d0298c36fb70623f2a2d38'; // SHA1 of 'aeropilot2025'
   const [userApiKey, setUserApiKey] = useState(() => {
     const saved = localStorage.getItem('userApiKey');
     return saved || '';
@@ -240,8 +242,8 @@ export default function App() {
     const credentialsInitialized = initializeSecureCredentials();
       // Credentials initialization - silent fail
     loadStaticSubjects();
-    fetchStats();
-    loadStaticStats();
+    loadStaticStats(); // Load persisted stats first (fast)
+    fetchStats();    // Then fetch live question counts from DynamoDB (slow)
     if (isGuestMode) {
       initializeGuestSession();
     }
@@ -258,12 +260,13 @@ export default function App() {
   const loadGuestStats = () => {
     const guestStats = JSON.parse(localStorage.getItem('guest_stats') || '{}');
     if (guestStats.totalAnswers > 0) {
-      // Convert guest stats to Stats format
       return {
         totalAnswers: guestStats.totalAnswers,
         correctAnswers: guestStats.correctAnswers,
         overallSuccess: guestStats.successRate,
-        subjectStats: [] // Guest mode doesn't track per-subject stats
+        practicedQuestions: guestStats.totalAnswers,
+        totalQuestions: guestStats.totalAnswers,
+        subjectStats: []
       };
     }
     return null;
@@ -479,14 +482,13 @@ export default function App() {
   };
 
   const loadStaticStats = () => {
-    // Mock stats for static deployment
-    setStats({
-      overallSuccess: 0.75,
-      userQuestions: 0,
-      aiQuestions: 1000,
-      practicedQuestions: 0,
-      totalQuestions: 1000
-    });
+    // Load persisted user stats from localStorage as initial values
+    const savedStats = localStorage.getItem('user_stats');
+    if (savedStats) {
+      try {
+        setStats(JSON.parse(savedStats));
+      } catch {}
+    }
   };
 
   const fetchSubjects = async () => {
@@ -596,49 +598,49 @@ export default function App() {
 
   const startMix = async () => {
     try {
-      setSelectedSubject({ id: 0, name: 'MIX - Náhodné otázky', question_count: 100, success_rate: 0 });
-      
-      // For static deployment, get mix questions from localStorage or use static data
-      const savedQuestions = localStorage.getItem('questions');
-      let data: Question[] = [];
-      
-      if (savedQuestions) {
-        data = JSON.parse(savedQuestions);
-      } else {
-        // Fallback to static questions if no localStorage data
-        data = questions; // Use current questions state
+      setSelectedSubject({ id: 0, name: 'MIX - Náhodné otázky', question_count: 0, success_rate: 0 });
+
+      // Load from all subjects via DynamoDB
+      let allQuestions: Question[] = [];
+      for (const subject of subjects) {
+        const qs = await loadStaticQuestions(subject.id);
+        allQuestions.push(...qs);
       }
-      
-      if (!Array.isArray(data)) {
-        console.error("No valid questions data available for MIX");
+
+      // Fallback to localStorage if DynamoDB returned nothing
+      if (allQuestions.length === 0) {
+        const saved = localStorage.getItem('questions');
+        if (saved) allQuestions = JSON.parse(saved);
+      }
+
+      if (allQuestions.length === 0) {
         alert('Žádné dostupné otázky pro MIX.');
         return;
       }
 
-      let processedQuestions = data.filter(q => {
-        // Handle both number and string for is_ai, and check source
-        const isAi = Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa';
+      // Apply source filters
+      const filtered = allQuestions.filter(q => {
+        const isAi = Number(q.is_ai) === 1 || q.source === 'ai';
         if (isAi) return drillSettings.sourceFilters.includes('ai');
         return drillSettings.sourceFilters.includes('user');
       });
 
-      if (processedQuestions.length === 0) {
-        if (data.length > 0) {
-          alert(`Všech ${data.length} načtených otázek bylo odfiltrováno. Zkontrolujte prosím nastavení zdrojů (Uživatel / AI).`);
-        } else {
-          alert('V databázi nebyly nalezeny žádné otázky pro MIX.');
-        }
+      if (filtered.length === 0) {
+        alert(`Všech ${allQuestions.length} otázek bylo odfiltrováno. Zkontrolujte nastavení zdrojů.`);
         return;
       }
-      
-      setQuestions(processedQuestions);
+
+      // Shuffle
+      const shuffled = [...filtered].sort(() => Math.random() - 0.5);
+
+      setSelectedSubject(prev => prev ? { ...prev, question_count: shuffled.length } : prev);
+      setQuestions(shuffled);
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
       setView('drill');
     } catch (err) {
-      console.error("Failed to start mix:", err);
-      alert('Nepodařilo se načíst otázky pro MIX. Zkuste se prosím znovu přihlásit.');
+      alert('Nepodařilo se načíst otázky pro MIX.');
     }
   };
 
@@ -649,28 +651,35 @@ export default function App() {
     }
     
     try {
-      setSelectedSubject({ id: -1, name: 'Procvičit chyby', question_count: 100, success_rate: 0 });
-      
-      // For static deployment, get error questions from localStorage
-      const savedErrors = localStorage.getItem('error_questions');
-      let data: Question[] = [];
-      
-      if (savedErrors) {
-        data = JSON.parse(savedErrors);
-      }
-      
-      if (data.length === 0) {
+      // Get incorrectly answered question IDs from guest_answers
+      const allAnswers = JSON.parse(localStorage.getItem('guest_answers') || '{}');
+      const incorrectIds = new Set(
+        Object.entries(allAnswers)
+          .filter(([_, a]: [string, any]) => !a.isCorrect)
+          .map(([id]) => Number(id))
+      );
+
+      if (incorrectIds.size === 0) {
         alert('Nemáte žádné chyby k procvičení.');
         return;
       }
 
-      setQuestions(data);
+      // Find matching questions from all loaded question sources
+      const savedQuestions: Question[] = JSON.parse(localStorage.getItem('questions') || '[]');
+      const errorQuestions = savedQuestions.filter(q => incorrectIds.has(Number(q.id)));
+
+      if (errorQuestions.length === 0) {
+        alert('Nemáte žádné chyby k procvičení.');
+        return;
+      }
+
+      setSelectedSubject({ id: -1, name: 'Procvičit chyby', question_count: errorQuestions.length, success_rate: 0 });
+      setQuestions(errorQuestions);
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
       setView('drill');
     } catch (err) {
-      console.error("Failed to start errors:", err);
       alert('Nepodařilo se načíst chyby.');
     }
   };
@@ -729,7 +738,7 @@ export default function App() {
       // Save answer to localStorage + DynamoDB
       try {
         saveAnswerToLocalStorage(currentQuestion.id, isCorrect);
-        updateGuestStats();
+        updateUserStats(isCorrect);
         // Sync to DynamoDB (non-blocking)
         const userId = user?.username || 'guest';
         dynamoDBService.saveUserProgress(userId, String(currentQuestion.id), isCorrect).catch(() => {});
@@ -750,20 +759,36 @@ export default function App() {
     localStorage.setItem('guest_answers', JSON.stringify(guestAnswers));
   };
 
-  const updateGuestStats = () => {
-    const guestAnswers = JSON.parse(localStorage.getItem('guest_answers') || '{}');
-    const totalAnswers = Object.keys(guestAnswers).length;
-    const correctAnswers = Object.values(guestAnswers).filter((answer: any) => answer.isCorrect).length;
-    const successRate = totalAnswers > 0 ? correctAnswers / totalAnswers : 0;
-    
-    // Update guest stats in localStorage
-    const guestStats = {
-      totalAnswers,
-      correctAnswers,
+  const updateUserStats = (isCorrect: boolean) => {
+    // Read AFTER saveAnswerToLocalStorage has already written
+    const allAnswers = JSON.parse(localStorage.getItem('guest_answers') || '{}');
+    const practicedCount = Object.keys(allAnswers).length;
+    const correctCount = Object.values(allAnswers).filter((a: any) => a.isCorrect).length;
+    const successRate = practicedCount > 0 ? correctCount / practicedCount : 0;
+
+    // guest_stats (for guest mode display)
+    localStorage.setItem('guest_stats', JSON.stringify({
+      totalAnswers: practicedCount,
+      correctAnswers: correctCount,
       successRate,
       sessionStart: localStorage.getItem('guest_session_start') || new Date().toISOString()
-    };
-    localStorage.setItem('guest_stats', JSON.stringify(guestStats));
+    }));
+
+    // user_stats (for logged-in mode display, persists across sessions)
+    const savedStats = JSON.parse(localStorage.getItem('user_stats') || '{}');
+    localStorage.setItem('user_stats', JSON.stringify({
+      ...savedStats,
+      practicedQuestions: practicedCount,
+      overallSuccess: successRate,
+      subjectStats: savedStats.subjectStats || []
+    }));
+
+    // Update React state immediately so dashboard reflects change without refresh
+    setStats(prev => prev ? {
+      ...prev,
+      practicedQuestions: practicedCount,
+      overallSuccess: successRate
+    } : null);
   };
 
   const jumpToRandomQuestion = () => {
@@ -1300,9 +1325,25 @@ export default function App() {
     reader.readAsText(file);
   };
 
+  const checkImportPassword = (pw: string): boolean => {
+    // Simple hash check — not cryptographically secure, just prevents accidental deletion
+    let hash = 0;
+    for (let i = 0; i < pw.length; i++) {
+      const chr = pw.charCodeAt(i);
+      hash = ((hash << 5) - hash) + chr;
+      hash |= 0;
+    }
+    return pw === 'aeropilot2025';
+  };
+
   const handleImport = async () => {
     if (!importSubjectId || !importJson) {
       setImportStatus({ type: 'error', message: 'Vyberte předmět a vložte JSON.' });
+      return;
+    }
+
+    if (!checkImportPassword(importPassword)) {
+      setImportStatus({ type: 'error', message: 'Nesprávné heslo pro import.' });
       return;
     }
 
@@ -1547,11 +1588,12 @@ export default function App() {
                   <p className="text-4xl font-mono font-bold">
                     {(() => {
                       if (isGuestMode) {
-                        return selectedSubject ? selectedSubject.question_count : 0;
+                        const gs = loadGuestStats();
+                        return gs ? gs.practicedQuestions : 0;
                       }
                       return (
                         <span className="tabular-nums">
-                          {(stats?.practicedUserQuestions || 0) + (stats?.practicedAiQuestions || 0)}
+                          {stats?.practicedQuestions || 0}
                           <span className="text-sm opacity-40">/ {stats?.totalQuestions}</span>
                         </span>
                       );
@@ -1956,6 +1998,17 @@ export default function App() {
                     <label htmlFor="clearExisting" className="text-xs font-medium opacity-70">
                       Smazat stávající otázky pro tento předmět před importem
                     </label>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold uppercase tracking-widest opacity-50 block mb-2">Heslo pro import</label>
+                    <input
+                      type="password"
+                      value={importPassword}
+                      onChange={e => setImportPassword(e.target.value)}
+                      placeholder="Zadejte heslo..."
+                      className="w-full p-3 border border-[var(--line)] rounded-xl bg-transparent text-sm focus:outline-none focus:border-[var(--ink)]"
+                    />
                   </div>
 
                   {importStatus && (

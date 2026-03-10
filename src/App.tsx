@@ -743,7 +743,7 @@ export default function App() {
       
       // Save answer to localStorage + DynamoDB
       try {
-        saveAnswerToLocalStorage(currentQuestion.id, isCorrect);
+        saveAnswerToLocalStorage(currentQuestion.id, isCorrect, currentQuestion.subject_id);
         updateUserStats(isCorrect);
         // Sync to DynamoDB (non-blocking)
         const userId = user?.username || 'guest';
@@ -759,9 +759,9 @@ export default function App() {
   };
 
   // Helper functions for guest mode
-  const saveAnswerToLocalStorage = (questionId: number, isCorrect: boolean) => {
+  const saveAnswerToLocalStorage = (questionId: number, isCorrect: boolean, subjectId?: number) => {
     const guestAnswers = JSON.parse(localStorage.getItem('guest_answers') || '{}');
-    guestAnswers[questionId] = { isCorrect, timestamp: new Date().toISOString() };
+    guestAnswers[questionId] = { isCorrect, subjectId, timestamp: new Date().toISOString() };
     localStorage.setItem('guest_answers', JSON.stringify(guestAnswers));
   };
 
@@ -771,6 +771,23 @@ export default function App() {
     const practicedCount = Object.keys(allAnswers).length;
     const correctCount = Object.values(allAnswers).filter((a: any) => a.isCorrect).length;
     const successRate = practicedCount > 0 ? correctCount / practicedCount : 0;
+
+    // Compute per-subject stats for heatmap
+    const perSubject: Record<number, { correct: number; total: number }> = {};
+    for (const a of Object.values(allAnswers) as any[]) {
+      const sid = a.subjectId;
+      if (!sid) continue;
+      if (!perSubject[sid]) perSubject[sid] = { correct: 0, total: 0 };
+      perSubject[sid].total++;
+      if (a.isCorrect) perSubject[sid].correct++;
+    }
+    const subjectStats = subjects.map(s => ({
+      name: s.description || s.name,
+      rate: perSubject[s.id] ? perSubject[s.id].correct / perSubject[s.id].total : 0
+    })).filter(s => {
+      const sid = subjects.find(sub => sub.description === s.name || sub.name === s.name);
+      return sid ? (perSubject[sid.id]?.total || 0) > 0 : false;
+    });
 
     // guest_stats (for guest mode display)
     localStorage.setItem('guest_stats', JSON.stringify({
@@ -786,14 +803,15 @@ export default function App() {
       ...savedStats,
       practicedQuestions: practicedCount,
       overallSuccess: successRate,
-      subjectStats: savedStats.subjectStats || []
+      subjectStats
     }));
 
     // Update React state immediately so dashboard reflects change without refresh
     setStats(prev => prev ? {
       ...prev,
       practicedQuestions: practicedCount,
-      overallSuccess: successRate
+      overallSuccess: successRate,
+      subjectStats
     } : null);
   };
 

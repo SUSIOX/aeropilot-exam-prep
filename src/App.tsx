@@ -28,11 +28,15 @@ import {
   Terminal,
   Binary,
   Languages,
-  FileJson
+  FileJson,
+  X,
+  ChevronDown,
+  Filter,
+  Search
 } from 'lucide-react';
 import { Subject, Question, Stats, ViewMode, DrillSettings } from './types';
 import { LearningEngine } from './lib/LearningEngine';
-import { mockLOs, generateBatchQuestions, getDetailedExplanation, getDetailedHumanExplanation, translateQuestion, EasaLO, SYLLABUS_SCOPE, verifyApiKey, AIProvider } from './services/aiService';
+import { mockLOs, generateBatchQuestions, getDetailedExplanation, getDetailedHumanExplanation, translateQuestion, EasaLO, SYLLABUS_SCOPE, SUBJECT_NAMES, buildSyllabusTree, SyllabusSubjectNode, verifyApiKey, AIProvider } from './services/aiService';
 import { DynamoDBStatus } from './components/DynamoDBStatus';
 import { AdminDashboard } from './components/AdminDashboard';
 import { LoginPrompt, useLoginPrompt } from './components/LoginPrompt';
@@ -115,6 +119,16 @@ export default function App() {
   const [selectedLicense, setSelectedLicense] = useState<'PPL' | 'SPL'>(() => {
     return (localStorage.getItem('selectedLicense') as 'PPL' | 'SPL') || 'PPL';
   });
+
+  // Syllabus Browser state
+  const [syllabusOpen, setSyllabusOpen] = useState(false);
+  const [focusedLOId, setFocusedLOId] = useState<string | null>(null);
+  const [syllabusSelectedLO, setSyllabusSelectedLO] = useState<string | null>(null);
+  const [syllabusExpandedSubjects, setSyllabusExpandedSubjects] = useState<Set<number>>(new Set());
+  const [syllabusExpandedTopics, setSyllabusExpandedTopics] = useState<Set<string>>(new Set());
+  const [syllabusExpandedSubtopics, setSyllabusExpandedSubtopics] = useState<Set<string>>(new Set());
+  const [syllabusLicenseFilter, setSyllabusLicenseFilter] = useState<'ALL' | 'PPL' | 'SPL'>('ALL');
+  const [syllabusSearch, setSyllabusSearch] = useState('');
 
   // Import states
   const [importSubjectId, setImportSubjectId] = useState<number | null>(null);
@@ -1178,7 +1192,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (view === 'ai' && importSubjectId) {
+    if (view === 'settings' && importSubjectId) {
       fetchCoverage(importSubjectId);
     }
   }, [view, importSubjectId]);
@@ -1192,6 +1206,36 @@ export default function App() {
     } catch (error) {
       console.error("Error fetching coverage:", error);
     }
+  };
+
+  const openSyllabusAtLO = (loId: string | null | undefined) => {
+    if (loId) {
+      setFocusedLOId(loId);
+      setSyllabusSelectedLO(loId);
+      // Auto-expand the path to this LO
+      const parts = loId.split('.');
+      const lo = mockLOs.find(l => l.id === loId);
+      if (lo?.subject_id) {
+        setSyllabusExpandedSubjects(prev => new Set([...prev, lo.subject_id!]));
+      }
+      if (parts.length >= 2) setSyllabusExpandedTopics(prev => new Set([...prev, parts.slice(0,2).join('.')]));
+      if (parts.length >= 3) setSyllabusExpandedSubtopics(prev => new Set([...prev, parts.slice(0,3).join('.')]));
+    }
+    setSyllabusOpen(true);
+  };
+
+  const startDrillForLO = (loId: string) => {
+    setSyllabusOpen(false);
+    const loQuestions = questions.filter(q => q.lo_id === loId);
+    if (loQuestions.length === 0) {
+      alert(`Žádné otázky pro téma ${loId}. Nejprve vygenerujte otázky v AI modulu.`);
+      return;
+    }
+    setQuestions(loQuestions);
+    setCurrentQuestionIndex(0);
+    setAnswered(null);
+    setShowExplanation(false);
+    setView('drill');
   };
 
   const handleGenerateQuestions = async () => {
@@ -1468,12 +1512,12 @@ export default function App() {
     <div className="min-h-screen transition-colors duration-300">
       {/* Header */}
       <header className="border-b border-[var(--line)] px-4 py-3 flex justify-between items-center sticky top-0 bg-[var(--bg)] z-50 min-h-[60px]">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 min-w-[40px] bg-[var(--ink)] text-[var(--ink-text)] flex items-center justify-center rounded-lg font-bold text-xl flex-shrink-0">
+        <div className="flex items-center gap-3 cursor-pointer group" onClick={() => setView('dashboard')}>
+          <div className="w-10 h-10 min-w-[40px] bg-[var(--ink)] text-[var(--ink-text)] flex items-center justify-center rounded-lg font-bold text-xl flex-shrink-0 group-hover:scale-105 transition-transform">
             A
           </div>
           <div className="min-w-0">
-            <h1 className="font-bold text-lg leading-tight">Aeropilot Exam Prep</h1>
+            <h1 className="font-bold text-lg leading-tight group-hover:text-indigo-600 transition-colors">Aeropilot Exam Prep</h1>
             <div className="flex items-center gap-2 text-xs opacity-60 leading-tight">
               <span className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-500' : 'bg-red-500'} flex-shrink-0`}></span>
               <span className="truncate">{isOnline ? 'Online' : 'Offline'}</span>
@@ -1494,26 +1538,36 @@ export default function App() {
             <span className="hidden sm:inline">Statistiky</span>
           </button>
           <button 
-            onClick={() => setView('ai')} 
-            className={`text-xs uppercase tracking-widest font-semibold flex items-center gap-2 whitespace-nowrap transition-opacity ${view === 'ai' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
+            onClick={() => setSyllabusOpen(true)} 
+            className={`text-xs uppercase tracking-widest font-semibold flex items-center gap-2 whitespace-nowrap transition-opacity ${syllabusOpen ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
           >
-            <Cpu size={14} className="flex-shrink-0" /> 
-            <span className="hidden sm:inline">AI</span>
+            <BookOpen size={14} className="flex-shrink-0" /> 
+            <span className="hidden sm:inline">Osnovy</span>
           </button>
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <div className="hidden sm:flex items-center h-10 px-3 bg-[var(--badge-bg)] rounded-full min-w-0">
-            <User size={12} className="opacity-50 flex-shrink-0" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--ink)] truncate ml-1">{user?.username}</span>
-            <button 
-              onClick={handleLogout}
-              className="ml-2 p-1 hover:text-rose-500 transition-colors rounded flex-shrink-0"
-              title="Odhlásit se"
+          {isGuestMode ? (
+            <button
+              onClick={() => showLoginPrompt('stats')}
+              className="hidden sm:flex items-center h-10 px-3 bg-[var(--badge-bg)] rounded-full min-w-0 hover:bg-[var(--line)] transition-colors"
             >
-              <XCircle size={12} />
+              <User size={12} className="opacity-50 flex-shrink-0" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--ink)] truncate ml-1">Guest</span>
             </button>
-          </div>
+          ) : (
+            <div className="hidden sm:flex items-center h-10 px-3 bg-[var(--badge-bg)] rounded-full min-w-0">
+              <User size={12} className="opacity-50 flex-shrink-0" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--ink)] truncate ml-1">{user?.username}</span>
+              <button 
+                onClick={handleLogout}
+                className="ml-2 p-1 hover:text-rose-500 transition-colors rounded flex-shrink-0"
+                title="Odhlásit se"
+              >
+                <XCircle size={12} />
+              </button>
+            </div>
+          )}
           {!userApiKey && (
             <div 
               onClick={() => setView('settings')}
@@ -1769,7 +1823,7 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="max-w-2xl mx-auto space-y-8"
+              className="max-w-4xl mx-auto space-y-12 pb-20"
             >
               <div className="flex items-center gap-4">
                 <button onClick={() => setView('dashboard')} className="p-2 rounded-full hover:bg-[var(--line)]">
@@ -1778,113 +1832,146 @@ export default function App() {
                 <h2 className="font-bold text-3xl">Nastavení</h2>
               </div>
 
-              <section className="p-8 border border-[var(--line)] rounded-3xl space-y-6">
-                <div className="flex items-center gap-2">
-                  <BookOpen size={20} className="opacity-50" />
-                  <h3 className="font-bold uppercase tracking-widest text-sm">Drill Mode (Cvičení)</h3>
+              {/* 1. Uživatelská nastavení (Obecná) */}
+              <section className="space-y-6">
+                <div className="flex items-center gap-2 px-2">
+                  <User size={20} className="opacity-50" />
+                  <h3 className="font-bold uppercase tracking-widest text-sm">Obecná nastavení</h3>
                 </div>
-
-                <div className="space-y-6">
-                  <div className="space-y-2">
-                    <label className="col-header">Řazení otázek</label>
-                    <select 
-                      value={drillSettings.sorting} 
-                      onChange={(e) => setDrillSettings(prev => ({ ...prev, sorting: e.target.value as any }))}
-                      className="w-full p-3 bg-transparent border border-[var(--line)] rounded-xl focus:outline-none focus:border-[var(--ink)]"
-                    >
-                      <option value="default">Výchozí (ID)</option>
-                      <option value="random">Náhodné</option>
-                      <option value="hardest_first">Nejtěžší nejdříve</option>
-                      <option value="least_practiced">Nejméně procvičované</option>
-                    </select>
-                  </div>
-
-                  <div className="flex items-center justify-between p-4 border border-[var(--line)] rounded-2xl">
-                    <div>
-                      <p className="text-sm font-bold">Okamžitá zpětná vazba</p>
-                      <p className="text-[10px] opacity-50">Zobrazit správnou odpověď ihned po kliknutí</p>
+                
+                <div className="p-8 border border-[var(--line)] rounded-3xl space-y-8 bg-white/5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-2">
+                      <label className="col-header">Řazení otázek</label>
+                      <select 
+                        value={drillSettings.sorting} 
+                        onChange={(e) => setDrillSettings(prev => ({ ...prev, sorting: e.target.value as any }))}
+                        className="w-full p-3 bg-transparent border border-[var(--line)] rounded-xl focus:outline-none focus:border-[var(--ink)]"
+                      >
+                        <option value="default">Výchozí (ID)</option>
+                        <option value="random">Náhodné</option>
+                        <option value="hardest_first">Nejtěžší nejdříve</option>
+                        <option value="least_practiced">Nejméně procvičované</option>
+                      </select>
                     </div>
-                    <button 
-                      onClick={() => setDrillSettings(prev => ({ ...prev, immediateFeedback: !prev.immediateFeedback }))}
-                      className={`w-12 h-6 rounded-full transition-colors relative ${drillSettings.immediateFeedback ? 'bg-[var(--ink)]' : 'bg-[var(--line)]'}`}
-                    >
-                      <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${drillSettings.immediateFeedback ? 'left-7' : 'left-1'}`} />
-                    </button>
-                  </div>
 
-                  <div className="flex items-center justify-between p-4 border border-[var(--line)] rounded-2xl">
-                    <div>
-                      <p className="text-sm font-bold">Vysvětlení na vyžádání</p>
-                      <p className="text-[10px] opacity-50">Možnost zobrazit vysvětlení u každé otázky</p>
+                    <div className="space-y-3">
+                      <label className="col-header">Zdroje otázek (Filtry)</label>
+                      <div className="flex gap-3">
+                        {[
+                          { id: 'user', icon: User, label: 'Uživatel' },
+                          { id: 'ai', icon: Bot, label: 'AI / EASA' }
+                        ].map((src) => {
+                          const isActive = drillSettings.sourceFilters.includes(src.id as any);
+                          return (
+                            <button
+                              key={src.id}
+                              onClick={() => toggleSourceFilter(src.id as any)}
+                              className={`flex-1 flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all ${
+                                isActive 
+                                  ? 'border-indigo-600 bg-indigo-600/5 text-indigo-600 scale-105 shadow-sm' 
+                                  : 'border-[var(--line)] opacity-40 grayscale hover:opacity-60'
+                              }`}
+                            >
+                              <src.icon size={24} strokeWidth={isActive ? 2.5 : 2} />
+                              <span className="text-[10px] font-bold uppercase tracking-widest">{src.label}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
-                    <button 
-                      onClick={() => setDrillSettings(prev => ({ ...prev, showExplanationOnDemand: !prev.showExplanationOnDemand }))}
-                      className={`w-12 h-6 rounded-full transition-colors relative ${drillSettings.showExplanationOnDemand ? 'bg-[var(--ink)]' : 'bg-[var(--line)]'}`}
-                    >
-                      <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${drillSettings.showExplanationOnDemand ? 'left-7' : 'left-1'}`} />
-                    </button>
                   </div>
 
-                  <div className="space-y-3">
-                    <label className="col-header">Zdroje otázek (Filtry)</label>
-                    <div className="flex gap-3">
-                      {[
-                        { id: 'user', icon: User, label: 'Uživatel' },
-                        { id: 'ai', icon: Bot, label: 'AI / EASA' }
-                      ].map((src) => {
-                        const isActive = drillSettings.sourceFilters.includes(src.id as any);
-                        return (
-                          <button
-                            key={src.id}
-                            onClick={() => toggleSourceFilter(src.id as any)}
-                            className={`flex-1 flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all ${
-                              isActive 
-                                ? 'border-indigo-600 bg-indigo-600/5 text-indigo-600 scale-105 shadow-sm' 
-                                : 'border-[var(--line)] opacity-40 grayscale hover:opacity-60'
-                            }`}
-                          >
-                            <src.icon size={24} strokeWidth={isActive ? 2.5 : 2} />
-                            <span className="text-[10px] font-bold uppercase tracking-widest">{src.label}</span>
-                          </button>
-                        );
-                      })}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="flex items-center justify-between p-4 border border-[var(--line)] rounded-2xl">
+                      <div>
+                        <p className="text-sm font-bold">Okamžitá zpětná vazba</p>
+                        <p className="text-[10px] opacity-50">Zobrazit správnou odpověď ihned po kliknutí</p>
+                      </div>
+                      <button 
+                        onClick={() => setDrillSettings(prev => ({ ...prev, immediateFeedback: !prev.immediateFeedback }))}
+                        className={`w-12 h-6 rounded-full transition-colors relative ${drillSettings.immediateFeedback ? 'bg-[var(--ink)]' : 'bg-[var(--line)]'}`}
+                      >
+                        <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${drillSettings.immediateFeedback ? 'left-7' : 'left-1'}`} />
+                      </button>
+                    </div>
+
+                    <div className="flex items-center justify-between p-4 border border-[var(--line)] rounded-2xl">
+                      <div>
+                        <p className="text-sm font-bold">Vysvětlení na vyžádání</p>
+                        <p className="text-[10px] opacity-50">Možnost zobrazit vysvětlení u každé otázky</p>
+                      </div>
+                      <button 
+                        onClick={() => setDrillSettings(prev => ({ ...prev, showExplanationOnDemand: !prev.showExplanationOnDemand }))}
+                        className={`w-12 h-6 rounded-full transition-colors relative ${drillSettings.showExplanationOnDemand ? 'bg-[var(--ink)]' : 'bg-[var(--line)]'}`}
+                      >
+                        <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${drillSettings.showExplanationOnDemand ? 'left-7' : 'left-1'}`} />
+                      </button>
                     </div>
                   </div>
                 </div>
               </section>
 
-              <section className="p-8 border border-[var(--line)] rounded-3xl space-y-6">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck size={20} className="opacity-50" />
-                  <h3 className="font-bold uppercase tracking-widest text-sm">Systémová nastavení</h3>
+              {/* 2. AI Konfigurace (Klíče) */}
+              <section className="space-y-6">
+                <div className="flex items-center gap-2 px-2">
+                  <Cpu size={20} className="opacity-50" />
+                  <h3 className="font-bold uppercase tracking-widest text-sm">Konfigurace AI (API Klíče)</h3>
                 </div>
 
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <label className="col-header">AI Provider</label>
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        onClick={() => setAiProvider('gemini')}
-                        className={`p-3 rounded-xl border text-[10px] font-bold transition-all flex items-center justify-center gap-2 ${
-                          aiProvider === 'gemini' 
-                            ? 'border-blue-600 bg-blue-600/5 text-blue-600' 
-                            : 'border-[var(--line)] opacity-40 hover:opacity-60'
-                        }`}
+                <div className="p-8 border border-[var(--line)] rounded-3xl space-y-6 bg-white/5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="col-header">AI Provider</label>
+                      <div className="grid grid-cols-2 gap-2">
+                        <button
+                          onClick={() => setAiProvider('gemini')}
+                          className={`p-3 rounded-xl border text-[10px] font-bold transition-all flex items-center justify-center gap-2 ${
+                            aiProvider === 'gemini' 
+                              ? 'border-blue-600 bg-blue-600/5 text-blue-600' 
+                              : 'border-[var(--line)] opacity-40 hover:opacity-60'
+                          }`}
+                        >
+                          <div className="w-4 h-4 bg-blue-600 rounded-full" />
+                          Gemini
+                        </button>
+                        <button
+                          onClick={() => setAiProvider('claude')}
+                          className={`p-3 rounded-xl border text-[10px] font-bold transition-all flex items-center justify-center gap-2 ${
+                            aiProvider === 'claude' 
+                              ? 'border-orange-600 bg-orange-600/5 text-orange-600' 
+                              : 'border-[var(--line)] opacity-40 hover:opacity-60'
+                          }`}
+                        >
+                          <div className="w-4 h-4 bg-orange-600 rounded-full" />
+                          Claude
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="col-header">AI Model</label>
+                      <select 
+                        value={aiModel}
+                        onChange={(e) => setAiModel(e.target.value)}
+                        className="w-full p-3 bg-transparent border border-[var(--line)] rounded-xl focus:outline-none focus:border-[var(--ink)]"
                       >
-                        <div className="w-4 h-4 bg-blue-600 rounded-full" />
-                        Gemini
-                      </button>
-                      <button
-                        onClick={() => setAiProvider('claude')}
-                        className={`p-3 rounded-xl border text-[10px] font-bold transition-all flex items-center justify-center gap-2 ${
-                          aiProvider === 'claude' 
-                            ? 'border-orange-600 bg-orange-600/5 text-orange-600' 
-                            : 'border-[var(--line)] opacity-40 hover:opacity-60'
-                        }`}
-                      >
-                        <div className="w-4 h-4 bg-orange-600 rounded-full" />
-                        Claude
-                      </button>
+                        {aiProvider === 'gemini' ? (
+                          <>
+                            <option value="gemini-3-flash-preview">Gemini 3 Flash (Rychlý, vysoké limity)</option>
+                            <option value="gemini-3.1-pro-preview">Gemini 3.1 Pro (Chytřejší, nižší limity)</option>
+                            <option value="gemini-1.5-flash">Gemini 1.5 Flash (Starší)</option>
+                          </>
+                        ) : (
+                          <>
+                            <option value="claude-sonnet-4-6">Claude Sonnet 4.6 (Nejnovější)</option>
+                            <option value="claude-opus-4-6">Claude Opus 4.6 (Nejlepší)</option>
+                            <option value="claude-sonnet-4-20250514">Claude Sonnet 4 (Stabilní)</option>
+                            <option value="claude-opus-4-20250514">Claude Opus 4 (Výkonný)</option>
+                            <option value="claude-haiku-4-5-20251001">Claude Haiku 4.5 (Rychlý, levný)</option>
+                          </>
+                        )}
+                      </select>
                     </div>
                   </div>
 
@@ -1929,149 +2016,237 @@ export default function App() {
                         : ' Získejte klíč na console.anthropic.com.'}
                     </p>
                   </div>
+                </div>
+              </section>
 
-                  <div className="space-y-2">
-                    <label className="col-header">AI Model</label>
-                    <select 
-                      value={aiModel}
-                      onChange={(e) => setAiModel(e.target.value)}
-                      className="w-full p-3 bg-transparent border border-[var(--line)] rounded-xl focus:outline-none focus:border-[var(--ink)]"
-                    >
-                      {aiProvider === 'gemini' ? (
-                        <>
-                          <option value="gemini-3-flash-preview">Gemini 3 Flash (Rychlý, vysoké limity)</option>
-                          <option value="gemini-3.1-pro-preview">Gemini 3.1 Pro (Chytřejší, nižší limity)</option>
-                          <option value="gemini-1.5-flash">Gemini 1.5 Flash (Starší)</option>
-                        </>
-                      ) : (
-                        <>
-                          <option value="claude-sonnet-4-6">Claude Sonnet 4.6 (Nejnovější)</option>
-                          <option value="claude-opus-4-6">Claude Opus 4.6 (Nejlepší)</option>
-                          <option value="claude-sonnet-4-20250514">Claude Sonnet 4 (Stabilní)</option>
-                          <option value="claude-opus-4-20250514">Claude Opus 4 (Výkonný)</option>
-                          <option value="claude-haiku-4-5-20251001">Claude Haiku 4.5 (Rychlý, levný)</option>
-                        </>
-                      )}
-                    </select>
-                    <p className="text-[10px] opacity-40">
-                      {aiProvider === 'gemini' 
-                        ? 'Flash modely jsou doporučeny pro běžné použití díky rychlosti.'
-                        : 'Claude 4 Sonnet je nejnovější a nejvýkonnější model pro nejlepší výsledky.'}
-                    </p>
+              {/* 3. AI Generátor (Dříve samostatné zobrazení) */}
+              <section className="space-y-6">
+                <div className="flex items-center gap-2 px-2">
+                  <Sparkles size={20} className="opacity-50" />
+                  <h3 className="font-bold uppercase tracking-widest text-sm">AI Generátor otázek (Batch Fill)</h3>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                  <div className="md:col-span-3 space-y-6">
+                    {/* Step 1: Syllabus Management */}
+                    <div className="p-8 border border-[var(--line)] rounded-3xl space-y-4 bg-white/5">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-[var(--ink)] text-[var(--bg)] rounded-lg flex items-center justify-center font-bold text-xs">1</div>
+                          <h3 className="text-xl font-bold">Osnovy & EASA LOs</h3>
+                        </div>
+                      </div>
+                      <p className="text-sm opacity-60">
+                        AI využívá strukturu Subject → Topic → Subtopic z AMC/GM Part-FCL pro generování přesných otázek.
+                      </p>
+                      
+                      <div className="space-y-6 pt-4">
+                        <div className="space-y-2">
+                          <label className="col-header">Licence</label>
+                          <div className="flex gap-3">
+                            {(['PPL', 'SPL'] as const).map(lic => (
+                              <button
+                                key={lic}
+                                onClick={() => { setSelectedLicense(lic); localStorage.setItem('selectedLicense', lic); }}
+                                className={`flex-1 py-3 rounded-xl border text-xs font-bold uppercase tracking-widest transition-all ${selectedLicense === lic ? 'bg-indigo-600 text-white border-indigo-600' : 'border-[var(--line)] opacity-60 hover:opacity-100'}`}
+                              >
+                                {lic === 'PPL' ? 'PPL(A) — Motorový' : 'SPL — Kluzák'}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <label className="col-header">Cílový předmět</label>
+                            <select 
+                              value={importSubjectId || ''} 
+                              onChange={(e) => setImportSubjectId(Number(e.target.value))}
+                              className="w-full p-3 bg-transparent border border-[var(--line)] rounded-xl text-xs font-bold focus:outline-none focus:border-indigo-600"
+                            >
+                              {subjects.map(s => (
+                                <option key={s.id} value={s.id}>{s.name} (Scope: {SYLLABUS_SCOPE[s.id] || 0} LOs)</option>
+                              ))}
+                            </select>
+                          </div>
+                          <div className="space-y-2">
+                            <label className="col-header">Počet témat v dávce</label>
+                            <div className="flex gap-2">
+                              {[1, 5, 10, 50].map(n => (
+                                <button
+                                  key={n}
+                                  onClick={() => setBatchSize(n)}
+                                  className={`flex-1 py-2 rounded-xl border text-xs font-bold transition-all ${batchSize === n ? 'bg-indigo-600 text-white border-indigo-600' : 'border-[var(--line)] opacity-60 hover:opacity-100'}`}
+                                >
+                                  {n} LOs
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        <button 
+                          onClick={handleGenerateQuestions}
+                          disabled={isGeneratingDetailedExplanation}
+                          className="w-full py-4 bg-indigo-600 text-white rounded-2xl text-xs font-bold uppercase tracking-widest hover:scale-[1.01] transition-transform flex items-center justify-center gap-2 disabled:opacity-50"
+                        >
+                          {isGeneratingDetailedExplanation ? <RotateCcw size={16} className="animate-spin" /> : <Sparkles size={16} />}
+                          {isGeneratingDetailedExplanation ? 'Generuji hromadně...' : `Spustit generování (${batchSize} témat)`}
+                        </button>
+                      </div>
+                    </div>
+
+                    {batchResults.length > 0 && (
+                      <div className="space-y-6 pt-6 animate-in fade-in slide-in-from-top-4">
+                        <div className="flex justify-between items-center">
+                          <h4 className="font-bold text-sm uppercase tracking-widest">Výsledek ({batchResults.length} témat)</h4>
+                          <button 
+                            onClick={saveGeneratedQuestions}
+                            className="px-6 py-2 bg-emerald-600 text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform"
+                          >
+                            Uložit vše do databáze
+                          </button>
+                        </div>
+                        <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                          {batchResults.map((result, i) => (
+                            <div key={i} className="p-4 border border-[var(--line)] rounded-2xl bg-white/5 space-y-2">
+                              <div className="flex items-center gap-2">
+                                <span className="px-2 py-0.5 bg-indigo-600 text-white rounded text-[10px] font-bold">{result.loId}</span>
+                                <span className="text-xs font-bold opacity-70 truncate">{mockLOs.find(l => l.id === result.loId)?.text}</span>
+                              </div>
+                              <p className="text-[10px] opacity-40 italic">Generováno: {result.questions.length} otázek</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="pt-4 border-t border-[var(--line)]">
-                    <button 
-                      onClick={handleResetProgress}
-                      className="w-full p-4 rounded-2xl border border-red-500/20 text-red-500 hover:bg-red-500/5 transition-all flex items-center justify-center gap-2 font-bold uppercase tracking-widest text-[10px]"
-                    >
-                      <RotateCcw size={14} />
-                      Smazat veškerý postup a historii
-                    </button>
+                  <div className="space-y-6">
+                    <div className="p-6 border border-[var(--line)] rounded-3xl space-y-4 bg-white/5">
+                      <h4 className="col-header">Progres předmětu</h4>
+                      <div className="space-y-4">
+                        <div className="space-y-1">
+                          <div className="flex justify-between text-[10px] font-bold">
+                            <span>EASA Pokrytí</span>
+                            <span>{Math.round((coveredLOs.size / (SYLLABUS_SCOPE[importSubjectId || 0] || 1)) * 100)}%</span>
+                          </div>
+                          <div className="h-2 bg-[var(--line)] rounded-full overflow-hidden">
+                            <div 
+                              className="h-full bg-emerald-500 transition-all duration-1000" 
+                              style={{ width: `${(coveredLOs.size / (SYLLABUS_SCOPE[importSubjectId || 0] || 1)) * 100}%` }} 
+                            />
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 text-[10px]">
+                          <div className="p-2 border border-[var(--line)] rounded-lg">
+                            <p className="opacity-40">Pokryto</p>
+                            <p className="font-bold">{coveredLOs.size}</p>
+                          </div>
+                          <div className="p-2 border border-[var(--line)] rounded-lg">
+                            <p className="opacity-40">Zbývá</p>
+                            <p className="font-bold">{Math.max(0, (SYLLABUS_SCOPE[importSubjectId || 0] || 0) - coveredLOs.size)}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </section>
 
-              <section className="p-8 border border-[var(--line)] rounded-3xl space-y-6">
-                <div className="flex items-center gap-2">
+              {/* 4. Vlastní import (JSON) */}
+              <section className="space-y-6">
+                <div className="flex items-center gap-2 px-2">
                   <Upload size={20} className="opacity-50" />
-                  <h3 className="font-bold uppercase tracking-widest text-sm">Import otázek (JSON)</h3>
+                  <h3 className="font-bold uppercase tracking-widest text-sm">Vlastní import (JSON)</h3>
                 </div>
 
-                <div className="space-y-4">
-                  <div className="space-y-2">
-                    <label className="col-header">Vyberte předmět</label>
-                    <select 
-                      value={importSubjectId || ''} 
-                      onChange={(e) => setImportSubjectId(Number(e.target.value))}
-                      className="w-full p-3 bg-transparent border border-[var(--line)] rounded-xl focus:outline-none focus:border-[var(--ink)]"
-                    >
-                      {subjects.map(s => (
-                        <option key={s.id} value={s.id}>{s.name}</option>
-                      ))}
-                    </select>
+                <div className="p-8 border border-[var(--line)] rounded-3xl space-y-6 bg-white/5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="col-header">Cílový předmět</label>
+                      <select 
+                        value={importSubjectId || ''} 
+                        onChange={(e) => setImportSubjectId(Number(e.target.value))}
+                        className="w-full p-3 bg-transparent border border-[var(--line)] rounded-xl focus:outline-none focus:border-[var(--ink)]"
+                      >
+                        {subjects.map(s => (
+                          <option key={s.id} value={s.id}>{s.name}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="col-header">JSON Data</label>
+                      <div className="flex gap-2">
+                        <button 
+                          onClick={() => fileInputRef.current?.click()}
+                          className="flex-1 p-3 border border-[var(--line)] rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-[var(--line)] transition-colors flex items-center justify-center gap-2"
+                        >
+                          <FileJson size={14} />
+                          Nahrát soubor
+                        </button>
+                        <input type="file" ref={fileInputRef} onChange={handleFileUpload} accept=".json" className="hidden" />
+                      </div>
+                    </div>
                   </div>
 
                   <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <label className="col-header">JSON Data</label>
-                      <button 
-                        onClick={() => fileInputRef.current?.click()}
-                        className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity"
-                      >
-                        <FileJson size={14} />
-                        Nahrát soubor
-                      </button>
-                      <input 
-                        type="file" 
-                        ref={fileInputRef} 
-                        onChange={handleFileUpload} 
-                        accept=".json" 
-                        className="hidden" 
-                      />
-                    </div>
                     <textarea 
                       value={importJson}
                       onChange={(e) => setImportJson(e.target.value)}
                       placeholder='[{"id": 1, "question": "...", "answers": ["...", ...], "correct": 0}]'
-                      className="w-full h-64 p-4 bg-transparent border border-[var(--line)] rounded-xl font-mono text-xs focus:outline-none focus:border-[var(--ink)] resize-none"
+                      className="w-full h-32 p-4 bg-transparent border border-[var(--line)] rounded-xl font-mono text-[10px] focus:outline-none focus:border-[var(--ink)] resize-none"
                     />
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <input 
-                      type="checkbox" 
-                      id="clearExisting" 
-                      checked={clearExisting}
-                      onChange={(e) => setClearExisting(e.target.checked)}
-                      className="w-4 h-4 accent-[var(--ink)]"
-                    />
-                    <label htmlFor="clearExisting" className="text-xs font-medium opacity-70">
-                      Smazat stávající otázky pro tento předmět před importem
-                    </label>
-                  </div>
-
-                  <div>
-                    <label className="text-xs font-bold uppercase tracking-widest opacity-50 block mb-2">Heslo pro import</label>
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
+                      <input 
+                        type="checkbox" 
+                        id="clearExisting" 
+                        checked={clearExisting}
+                        onChange={(e) => setClearExisting(e.target.checked)}
+                        className="w-4 h-4 accent-[var(--ink)]"
+                      />
+                      <label htmlFor="clearExisting" className="text-xs font-medium opacity-70">
+                        Smazat stávající
+                      </label>
+                    </div>
                     <input
                       type="password"
                       value={importPassword}
                       onChange={e => setImportPassword(e.target.value)}
-                      placeholder="Zadejte heslo..."
-                      className="w-full p-3 border border-[var(--line)] rounded-xl bg-transparent text-sm focus:outline-none focus:border-[var(--ink)]"
+                      placeholder="Heslo..."
+                      className="flex-1 p-2 border border-[var(--line)] rounded-lg bg-transparent text-xs focus:outline-none focus:border-[var(--ink)]"
                     />
                   </div>
 
                   {importStatus && (
-                    <div className={`p-4 rounded-xl flex items-center gap-3 text-sm ${importStatus.type === 'success' ? 'bg-emerald-500/10 text-emerald-600 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-600 border border-rose-500/20'}`}>
-                      {importStatus.type === 'success' ? <CheckCircle2 size={18} /> : <AlertCircle size={18} />}
+                    <div className={`p-4 rounded-xl flex items-center gap-3 text-xs ${importStatus.type === 'success' ? 'bg-emerald-500/10 text-emerald-600 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-600 border border-rose-500/20'}`}>
+                      {importStatus.type === 'success' ? <CheckCircle2 size={16} /> : <AlertCircle size={16} />}
                       {importStatus.message}
                     </div>
                   )}
 
                   <button 
                     onClick={handleImport}
-                    className="w-full py-4 bg-[var(--ink)] text-[var(--bg)] rounded-full text-xs font-bold uppercase tracking-widest hover:scale-[1.01] transition-transform"
+                    className="w-full py-4 bg-[var(--ink)] text-[var(--bg)] rounded-2xl text-xs font-bold uppercase tracking-widest hover:scale-[1.01] transition-transform"
                   >
                     Importovat otázky
                   </button>
                 </div>
               </section>
 
-              <div className="p-6 bg-[var(--line)] rounded-2xl opacity-50">
-                <p className="text-[10px] uppercase tracking-widest font-bold mb-2">Očekávaný formát JSON:</p>
-                <pre className="text-[9px] font-mono whitespace-pre-wrap">
-{`[
-  {
-    "id": 1,
-    "question": "Text otázky",
-    "answers": ["Možnost A", "Možnost B", "Možnost C", "Možnost D"],
-    "correct": 0,
-    "image": null
-  }
-]`}
-                </pre>
-              </div>
+              {/* Reset History */}
+              <section className="pt-12 border-t border-[var(--line)]">
+                <button 
+                  onClick={handleResetProgress}
+                  className="w-full p-4 rounded-2xl border border-red-500/20 text-red-500 hover:bg-red-500/5 transition-all flex items-center justify-center gap-2 font-bold uppercase tracking-widest text-[10px]"
+                >
+                  <RotateCcw size={14} />
+                  Smazat veškerý postup a historii
+                </button>
+              </section>
             </motion.div>
           )}
 
@@ -2326,9 +2501,21 @@ export default function App() {
                       <div className="space-y-6 animate-in fade-in slide-in-from-top-2 duration-300">
                         {/* Learning Objective Section */}
                         <div className="p-4 bg-indigo-500/5 border border-indigo-500/20 rounded-2xl space-y-2">
-                          <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400">
-                            <GraduationCap size={14} />
-                            <span className="text-[10px] font-bold uppercase tracking-widest">Cíl učení (Learning Objective)</span>
+                          <div className="flex items-center justify-between text-indigo-600 dark:text-indigo-400">
+                            <div className="flex items-center gap-2">
+                              <GraduationCap size={14} />
+                              <span className="text-[10px] font-bold uppercase tracking-widest">Cíl učení (Learning Objective)</span>
+                            </div>
+                            {(questions[currentQuestionIndex].lo_id || aiDetectedObjective) && (
+                              <button
+                                onClick={() => openSyllabusAtLO(aiDetectedObjective || questions[currentQuestionIndex].lo_id)}
+                                className="flex items-center gap-1 px-2 py-0.5 rounded border border-indigo-500/30 text-[9px] font-bold uppercase tracking-widest hover:bg-indigo-500/10 transition-colors"
+                                title="Otevřít v osnově"
+                              >
+                                <BookOpen size={10} />
+                                Osnovy
+                              </button>
+                            )}
                           </div>
                           <div className="flex items-start gap-3">
                             <span className={`px-2 py-0.5 rounded text-[10px] font-bold mt-0.5 ${!questions[currentQuestionIndex].lo_id ? 'bg-orange-500/20 text-orange-600 border border-orange-500/30' : 'bg-indigo-600 text-white'}`}>
@@ -2629,9 +2816,9 @@ export default function App() {
             </motion.div>
           )}
 
-          {view === 'ai' && (
+          {false && (
             <motion.div 
-              key="ai"
+              key="ai-removed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -3048,6 +3235,323 @@ export default function App() {
         AeroPilot Exam Prep &copy; 2026 • EASA ECQB Standard • Czech Republic
       </footer>
 
+      {/* ─── Syllabus Browser Modal ─── */}
+      {syllabusOpen && (() => {
+        const searchTerm = syllabusSearch.toLowerCase();
+        
+        // Filter mockLOs first if there's a search term
+        const filteredLOs = searchTerm 
+          ? mockLOs.filter(lo => 
+              lo.id.toLowerCase().includes(searchTerm) || 
+              lo.text.toLowerCase().includes(searchTerm) ||
+              lo.context?.toLowerCase().includes(searchTerm)
+            )
+          : mockLOs;
+
+        const syllabusTree = buildSyllabusTree(filteredLOs);
+        const selectedLOData = syllabusSelectedLO ? mockLOs.find(l => l.id === syllabusSelectedLO) : null;
+        const selectedLOQuestionCount = syllabusSelectedLO ? questions.filter(q => q.lo_id === syllabusSelectedLO).length : 0;
+        const selectedLOSubject = selectedLOData?.subject_id ? syllabusTree.find(s => s.subjectId === selectedLOData.subject_id) : null;
+        const selectedLOTopic = selectedLOData ? selectedLOSubject?.topics.find(t => selectedLOData.id.startsWith(t.code + '.')) : null;
+        const selectedLOSubtopic = selectedLOData ? selectedLOTopic?.subtopics.find(s => selectedLOData.id.startsWith(s.code + '.')) : null;
+
+        return (
+          <div className="fixed inset-0 z-[200] flex flex-col bg-[var(--bg)]" style={{ backdropFilter: 'blur(8px)' }}>
+            {/* Modal Header */}
+            <div className="border-b border-[var(--line)] px-6 py-4 flex items-center justify-between flex-shrink-0">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-indigo-600 text-white rounded-xl flex items-center justify-center">
+                  <BookOpen size={20} />
+                </div>
+                <div>
+                  <h2 className="font-bold text-xl">EASA Syllabus Browser</h2>
+                  <p className="text-[10px] opacity-50 uppercase tracking-widest">AMC/GM Part-FCL — Learning Objectives</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                {/* Search box */}
+                <div className="relative">
+                  <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-30" />
+                  <input
+                    type="text"
+                    placeholder="Hledat v sylabu..."
+                    value={syllabusSearch}
+                    onChange={(e) => setSyllabusSearch(e.target.value)}
+                    className="pl-9 pr-4 py-1.5 bg-[var(--line)]/30 border border-[var(--line)] rounded-xl text-xs focus:outline-none focus:border-indigo-600 w-48 lg:w-64 transition-all"
+                  />
+                  {syllabusSearch && (
+                    <button 
+                      onClick={() => setSyllabusSearch('')}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-[var(--line)] rounded-full opacity-50 hover:opacity-100"
+                    >
+                      <X size={10} />
+                    </button>
+                  )}
+                </div>
+
+                {/* License filter */}
+                <div className="flex gap-1 border border-[var(--line)] rounded-xl p-1">
+                  {(['ALL', 'PPL', 'SPL'] as const).map(f => (
+                    <button
+                      key={f}
+                      onClick={() => setSyllabusLicenseFilter(f)}
+                      className={`px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all ${syllabusLicenseFilter === f ? 'bg-indigo-600 text-white' : 'opacity-50 hover:opacity-80'}`}
+                    >
+                      {f === 'ALL' ? 'Vše' : f === 'PPL' ? 'PPL(A)' : 'SPL'}
+                    </button>
+                  ))}
+                </div>
+                <button
+                  onClick={() => setSyllabusOpen(false)}
+                  className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[var(--line)] transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Body */}
+            <div className="flex flex-1 overflow-hidden">
+              {/* Tree Panel */}
+              <div className="w-full md:w-3/5 overflow-y-auto border-r border-[var(--line)] p-4 space-y-1">
+                {syllabusTree.map(subject => {
+                  const subjectExpanded = syllabusExpandedSubjects.has(subject.subjectId) || (syllabusSearch.length > 0);
+                  const subjectLOs = subject.topics.flatMap(t => t.subtopics.flatMap(s => s.los));
+                  const filteredSubjectLOs = syllabusLicenseFilter === 'ALL'
+                    ? subjectLOs
+                    : subjectLOs.filter(n => (n.lo.applies_to || ['PPL','SPL']).includes(syllabusLicenseFilter));
+                  if (filteredSubjectLOs.length === 0) return null;
+
+                  return (
+                    <div key={subject.subjectId} className="border border-[var(--line)] rounded-2xl overflow-hidden">
+                      {/* Subject row */}
+                      <button
+                        onClick={() => setSyllabusExpandedSubjects(prev => {
+                          const next = new Set(prev);
+                          next.has(subject.subjectId) ? next.delete(subject.subjectId) : next.add(subject.subjectId);
+                          return next;
+                        })}
+                        className="w-full flex items-center justify-between px-4 py-3 hover:bg-[var(--line)]/50 transition-colors"
+                      >
+                        <div className="flex items-center gap-3">
+                          {subjectExpanded ? <ChevronDown size={14} className="opacity-50 flex-shrink-0" /> : <ChevronRight size={14} className="opacity-50 flex-shrink-0" />}
+                          <span className="text-xs font-bold">{subject.name}</span>
+                        </div>
+                        <span className="text-[9px] font-mono opacity-40">{filteredSubjectLOs.length} LOs</span>
+                      </button>
+
+                      {subjectExpanded && (
+                        <div className="border-t border-[var(--line)]">
+                          {subject.topics.map(topic => {
+                            const topicExpanded = syllabusExpandedTopics.has(topic.code) || (syllabusSearch.length > 0);
+                            const topicLOs = topic.subtopics.flatMap(s => s.los);
+                            const filteredTopicLOs = syllabusLicenseFilter === 'ALL'
+                              ? topicLOs
+                              : topicLOs.filter(n => (n.lo.applies_to || ['PPL','SPL']).includes(syllabusLicenseFilter));
+                            if (filteredTopicLOs.length === 0) return null;
+
+                            return (
+                              <div key={topic.code} className="border-b border-[var(--line)]/50 last:border-b-0">
+                                {/* Topic row */}
+                                <button
+                                  onClick={() => setSyllabusExpandedTopics(prev => {
+                                    const next = new Set(prev);
+                                    next.has(topic.code) ? next.delete(topic.code) : next.add(topic.code);
+                                    return next;
+                                  })}
+                                  className="w-full flex items-center justify-between px-6 py-2.5 hover:bg-[var(--line)]/30 transition-colors"
+                                >
+                                  <div className="flex items-center gap-2">
+                                    {topicExpanded ? <ChevronDown size={12} className="opacity-40 flex-shrink-0" /> : <ChevronRight size={12} className="opacity-40 flex-shrink-0" />}
+                                    <span className="text-[10px] font-mono opacity-40 w-16 flex-shrink-0">{topic.code}</span>
+                                    <span className="text-[11px] font-semibold">{topic.label}</span>
+                                  </div>
+                                  <span className="text-[9px] font-mono opacity-30">{filteredTopicLOs.length}</span>
+                                </button>
+
+                                {topicExpanded && (
+                                  <div>
+                                    {topic.subtopics.map(subtopic => {
+                                      const subtopicExpanded = syllabusExpandedSubtopics.has(subtopic.code) || (syllabusSearch.length > 0);
+                                      const filteredSubtopicLOs = syllabusLicenseFilter === 'ALL'
+                                        ? subtopic.los
+                                        : subtopic.los.filter(n => (n.lo.applies_to || ['PPL','SPL']).includes(syllabusLicenseFilter));
+                                      if (filteredSubtopicLOs.length === 0) return null;
+
+                                      return (
+                                        <div key={subtopic.code} className="border-t border-[var(--line)]/30">
+                                          {/* Subtopic row */}
+                                          <button
+                                            onClick={() => setSyllabusExpandedSubtopics(prev => {
+                                              const next = new Set(prev);
+                                              next.has(subtopic.code) ? next.delete(subtopic.code) : next.add(subtopic.code);
+                                              return next;
+                                            })}
+                                            className="w-full flex items-center justify-between px-8 py-2 hover:bg-[var(--line)]/20 transition-colors"
+                                          >
+                                            <div className="flex items-center gap-2">
+                                              {subtopicExpanded ? <ChevronDown size={11} className="opacity-30 flex-shrink-0" /> : <ChevronRight size={11} className="opacity-30 flex-shrink-0" />}
+                                              <span className="text-[9px] font-mono opacity-30 w-20 flex-shrink-0">{subtopic.code}</span>
+                                              <span className="text-[10px] font-medium opacity-70">{subtopic.label}</span>
+                                            </div>
+                                            <span className="text-[9px] font-mono opacity-25">{filteredSubtopicLOs.length}</span>
+                                          </button>
+
+                                          {subtopicExpanded && (
+                                            <div className="bg-[var(--line)]/10">
+                                              {filteredSubtopicLOs.map(({ lo, licenseType }) => {
+                                                const isFocused = focusedLOId === lo.id;
+                                                const isSelected = syllabusSelectedLO === lo.id;
+                                                const isCovered = coveredLOs.has(lo.id);
+                                                const qCount = questions.filter(q => q.lo_id === lo.id).length;
+
+                                                return (
+                                                  <div
+                                                    key={lo.id}
+                                                    className={`px-10 py-2.5 flex items-start justify-between gap-3 cursor-pointer transition-colors border-t border-[var(--line)]/20 ${isSelected ? 'bg-indigo-600/10 border-l-2 border-l-indigo-600' : isFocused ? 'bg-amber-500/10 border-l-2 border-l-amber-500' : 'hover:bg-[var(--line)]/20'}`}
+                                                    onClick={() => { setSyllabusSelectedLO(lo.id); setFocusedLOId(null); }}
+                                                  >
+                                                    <div className="flex items-start gap-2 flex-1 min-w-0">
+                                                      {/* License dot */}
+                                                      <span
+                                                        className={`mt-1 flex-shrink-0 w-2 h-2 rounded-full ${licenseType === 'BOTH' ? 'bg-gray-400' : licenseType === 'PPL' ? 'bg-indigo-500' : 'bg-emerald-500'}`}
+                                                        title={licenseType === 'BOTH' ? 'PPL + SPL' : licenseType}
+                                                      />
+                                                      <div className="min-w-0">
+                                                        <p className="text-[9px] font-mono opacity-50">{lo.id}</p>
+                                                        <p className="text-[10px] leading-snug font-medium">{lo.text}</p>
+                                                      </div>
+                                                    </div>
+                                                    <div className="flex items-center gap-1.5 flex-shrink-0">
+                                                      {isCovered && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" title="Pokryto otázkami" />}
+                                                      {qCount > 0 && <span className="text-[8px] font-mono opacity-40">{qCount}q</span>}
+                                                      <button
+                                                        onClick={(e) => { e.stopPropagation(); startDrillForLO(lo.id); }}
+                                                        className="px-1.5 py-0.5 rounded border border-[var(--line)] text-[8px] font-bold uppercase tracking-widest hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all"
+                                                      >
+                                                        ▶
+                                                      </button>
+                                                    </div>
+                                                  </div>
+                                                );
+                                              })}
+                                            </div>
+                                          )}
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Info Panel */}
+              <div className="hidden md:flex md:w-2/5 flex-col overflow-y-auto p-6 space-y-6">
+                {selectedLOData ? (
+                  <>
+                    {/* Breadcrumb */}
+                    <div className="space-y-1">
+                      <p className="text-[9px] uppercase tracking-widest opacity-40 font-bold">Cesta v sylabu</p>
+                      <p className="text-[10px] font-mono opacity-60 leading-relaxed">
+                        {selectedLOSubject?.name}
+                        {selectedLOTopic && <> <span className="opacity-40">›</span> {selectedLOTopic.label}</>}
+                        {selectedLOSubtopic && <> <span className="opacity-40">›</span> {selectedLOSubtopic.label}</>}
+                      </p>
+                    </div>
+
+                    {/* LO ID + license badges */}
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="px-2.5 py-1 bg-indigo-600 text-white rounded-lg text-[10px] font-mono font-bold">{selectedLOData.id}</span>
+                        {(selectedLOData.applies_to || ['PPL','SPL']).map(lic => (
+                          <span key={lic} className={`px-2 py-0.5 rounded-full text-[9px] font-bold border ${lic === 'PPL' ? 'border-indigo-500/40 text-indigo-600 bg-indigo-500/10' : 'border-emerald-500/40 text-emerald-600 bg-emerald-500/10'}`}>
+                            {lic}
+                          </span>
+                        ))}
+                      </div>
+                      <h3 className="text-lg font-bold leading-snug">{selectedLOData.text}</h3>
+                    </div>
+
+                    {/* Context / What you need to know */}
+                    {selectedLOData.context && (
+                      <div className="p-4 bg-[var(--line)]/20 rounded-2xl space-y-1.5">
+                        <p className="text-[9px] uppercase tracking-widest opacity-40 font-bold">Co potřebujete znát (eRules context)</p>
+                        <p className="text-xs leading-relaxed opacity-80">{selectedLOData.context}</p>
+                      </div>
+                    )}
+
+                    {/* License note */}
+                    {(selectedLOData.applies_to || ['PPL','SPL']).length === 1 && (
+                      <div className={`p-3 rounded-xl border text-[10px] leading-relaxed ${(selectedLOData.applies_to || [])[0] === 'PPL' ? 'border-indigo-500/30 bg-indigo-500/5 text-indigo-700' : 'border-emerald-500/30 bg-emerald-500/5 text-emerald-700'}`}>
+                        Toto téma je specifické pouze pro <strong>{(selectedLOData.applies_to || [])[0]}</strong> licenci.
+                        {selectedLicense !== (selectedLOData.applies_to || [])[0] && ' Pro vaši vybranou licenci jde o doplňující znalost.'}
+                      </div>
+                    )}
+
+                    {/* Question stats */}
+                    <div className="p-4 border border-[var(--line)] rounded-2xl space-y-3">
+                      <p className="text-[9px] uppercase tracking-widest opacity-40 font-bold">Otázky v databázi</p>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-3xl font-mono font-bold">{selectedLOQuestionCount}</span>
+                        <span className="text-xs opacity-50">otázek</span>
+                      </div>
+                      {selectedLOQuestionCount > 0 ? (
+                        <button
+                          onClick={() => startDrillForLO(selectedLOData.id)}
+                          className="w-full py-2.5 bg-indigo-600 text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
+                        >
+                          <ChevronRight size={12} />
+                          Procvičit toto téma ({selectedLOQuestionCount} otázek)
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => {
+                            setSyllabusOpen(false);
+                            setImportSubjectId(selectedLOData.subject_id ?? null);
+                            setView('settings');
+                          }}
+                          className="w-full py-2.5 border border-indigo-600 text-indigo-600 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-600 hover:text-white transition-colors flex items-center justify-center gap-2"
+                        >
+                          <Sparkles size={12} />
+                          Generovat otázky (AI)
+                        </button>
+                      )}
+                    </div>
+
+                    {/* License icon legend */}
+                    <div className="flex gap-4 text-[9px] font-bold opacity-50 pt-2">
+                      <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-indigo-500 inline-block" /> PPL(A) only</span>
+                      <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" /> SPL only</span>
+                      <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-gray-400 inline-block" /> Both</span>
+                    </div>
+                  </>
+                ) : (
+                  <div className="flex flex-col items-center justify-center flex-1 text-center space-y-4 opacity-40">
+                    <BookOpen size={48} />
+                    <div>
+                      <p className="font-bold">Vyberte Learning Objective</p>
+                      <p className="text-xs mt-1">Klikněte na LO v stromě vlevo pro zobrazení detailů.</p>
+                    </div>
+                    <div className="text-[9px] space-y-1 mt-4">
+                      <p className="flex items-center gap-2 justify-center"><span className="w-2 h-2 rounded-full bg-indigo-500 inline-block" /> Modrá = PPL(A) only</p>
+                      <p className="flex items-center gap-2 justify-center"><span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" /> Zelená = SPL only</p>
+                      <p className="flex items-center gap-2 justify-center"><span className="w-2 h-2 rounded-full bg-gray-400 inline-block" /> Šedá = Obě licence</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
       {/* DynamoDB Status Component */}
       <DynamoDBStatus />
       
@@ -3058,7 +3562,16 @@ export default function App() {
       <LoginPrompt
         isOpen={isLoginPromptOpen}
         onClose={closeLoginPrompt}
-        onLogin={switchToLoginMode}
+        onLoginSuccess={(userData) => {
+          const newToken = `token_${userData.username}_${Date.now()}`;
+          localStorage.setItem('token', newToken);
+          localStorage.setItem('user_data', JSON.stringify(userData));
+          setToken(newToken);
+          setUser(userData);
+          setUserMode('logged-in');
+          setView('dashboard');
+          closeLoginPrompt();
+        }}
         feature={loginPromptFeature || 'stats'}
       />
     </div>

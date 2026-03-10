@@ -82,6 +82,95 @@ export const SYLLABUS_SCOPE: Record<number, number> = {
   9: 120  // Navigation
 };
 
+export const SUBJECT_NAMES: Record<number, string> = {
+  1: 'Air Law (010)',
+  2: 'Human Performance (040)',
+  3: 'Meteorology (050)',
+  4: 'Communications (090)',
+  5: 'Principles of Flight (081)',
+  6: 'Operational Procedures (070)',
+  7: 'Flight Performance & Planning (033)',
+  8: 'Aircraft General Knowledge (021)',
+  9: 'Navigation (061)',
+};
+
+export interface SyllabusLONode {
+  lo: EasaLO;
+  licenseType: 'PPL' | 'SPL' | 'BOTH';
+}
+
+export interface SyllabusSubtopicNode {
+  code: string; // e.g. "010.01.01"
+  label: string;
+  los: SyllabusLONode[];
+}
+
+export interface SyllabusTopicNode {
+  code: string; // e.g. "010.01"
+  label: string;
+  subtopics: SyllabusSubtopicNode[];
+}
+
+export interface SyllabusSubjectNode {
+  subjectId: number;
+  name: string;
+  topics: SyllabusTopicNode[];
+  totalLOs: number;
+  licenseLOs: number;
+}
+
+export function buildSyllabusTree(los: EasaLO[]): SyllabusSubjectNode[] {
+  const subjectMap = new Map<number, Map<string, Map<string, SyllabusLONode[]>>>();
+
+  for (const lo of los) {
+    const sid = lo.subject_id ?? 0;
+    const parts = lo.id.split('.');
+    const topicCode = parts.slice(0, 2).join('.');
+    const subtopicCode = parts.slice(0, 3).join('.');
+
+    const appliesToPPL = (lo.applies_to || ['PPL', 'SPL']).includes('PPL');
+    const appliesToSPL = (lo.applies_to || ['PPL', 'SPL']).includes('SPL');
+    const licenseType: 'PPL' | 'SPL' | 'BOTH' =
+      appliesToPPL && appliesToSPL ? 'BOTH' : appliesToPPL ? 'PPL' : 'SPL';
+
+    if (!subjectMap.has(sid)) subjectMap.set(sid, new Map());
+    const topicMap = subjectMap.get(sid)!;
+    if (!topicMap.has(topicCode)) topicMap.set(topicCode, new Map());
+    const subtopicMap = topicMap.get(topicCode)!;
+    if (!subtopicMap.has(subtopicCode)) subtopicMap.set(subtopicCode, []);
+    subtopicMap.get(subtopicCode)!.push({ lo, licenseType });
+  }
+
+  const result: SyllabusSubjectNode[] = [];
+  for (const [sid, topicMap] of Array.from(subjectMap.entries()).sort((a, b) => a[0] - b[0])) {
+    const topics: SyllabusTopicNode[] = [];
+    for (const [topicCode, subtopicMap] of Array.from(topicMap.entries()).sort((a, b) => a[0].localeCompare(b[0]))) {
+      const subtopics: SyllabusSubtopicNode[] = [];
+      for (const [subtopicCode, loNodes] of Array.from(subtopicMap.entries()).sort((a, b) => a[0].localeCompare(b[0]))) {
+        subtopics.push({
+          code: subtopicCode,
+          label: loNodes[0]?.lo.text.split(':')[0].trim() || subtopicCode,
+          los: loNodes,
+        });
+      }
+      topics.push({
+        code: topicCode,
+        label: subtopics[0]?.los[0]?.lo.text.split(':')[0].trim() || topicCode,
+        subtopics,
+      });
+    }
+    const allLOs = topics.flatMap(t => t.subtopics.flatMap(s => s.los));
+    result.push({
+      subjectId: sid,
+      name: SUBJECT_NAMES[sid] || `Subject ${sid}`,
+      topics,
+      totalLOs: allLOs.length,
+      licenseLOs: allLOs.length,
+    });
+  }
+  return result;
+}
+
 export const mockLOs: EasaLO[] = [
   // Subject 1: Air Law (010) — shared PPL+SPL
   { id: "010.01.01.01", text: "International Agreements and Organizations: ICAO", context: "The Convention on International Civil Aviation (Chicago Convention).", subject_id: 1, applies_to: ["PPL", "SPL"] },

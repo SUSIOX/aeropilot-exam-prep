@@ -1164,13 +1164,10 @@ export default function App() {
 
   const fetchCoverage = async (subjectId: number) => {
     try {
-      // For static deployment, get questions from localStorage
-      const savedQuestions = localStorage.getItem('questions');
-      if (savedQuestions) {
-        const data: Question[] = JSON.parse(savedQuestions);
-        const covered = new Set(data.map(q => q.lo_id).filter(Boolean).map(id => id?.trim()) as string[]);
-        setCoveredLOs(covered);
-      }
+      // Load questions from DynamoDB for the specific subject
+      const data = await loadStaticQuestions(subjectId);
+      const covered = new Set(data.map(q => q.lo_id).filter(Boolean).map(id => id?.trim()) as string[]);
+      setCoveredLOs(covered);
     } catch (error) {
       console.error("Error fetching coverage:", error);
     }

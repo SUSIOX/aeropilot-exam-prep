@@ -1333,7 +1333,7 @@ export default function App() {
       hash = ((hash << 5) - hash) + chr;
       hash |= 0;
     }
-    return pw === 'aeropilot2025';
+    return pw === 'aeropilot2026';
   };
 
   const handleImport = async () => {

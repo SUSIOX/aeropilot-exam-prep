@@ -30,8 +30,16 @@ jobs:
     - name: Install dependencies
       run: npm ci
       
-    - name: Build frontend
-      run: npm run build
+    - name: Build frontend with production AWS config
+      run: |
+        # Create production environment file with GitHub Secrets
+        cat > .env.production << EOF
+        COGNITO_IDENTITY_POOL_ID=${{ secrets.COGNITO_IDENTITY_POOL_ID }}
+        AWS_REGION=${{ secrets.AWS_REGION }}
+        EOF
+        
+        # Build with production environment
+        npm run build
       
     - name: Setup Pages
       uses: actions/configure-pages@v4

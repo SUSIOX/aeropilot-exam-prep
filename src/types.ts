@@ -38,6 +38,7 @@ export interface Question {
   ai_explanation_provider?: string;
   ai_explanation_model?: string;
   ai_explanation_updated_at?: string;
+  metadata?: { applies_to: string[]; license_note?: string | null };
 }
 
 export interface Stats {

@@ -112,6 +112,9 @@ export default function App() {
   const [questionsPerLO, setQuestionsPerLO] = useState<number>(2);
   const [genLanguage, setGenLanguage] = useState<'EN' | 'CZ'>('EN');
   const [coveredLOs, setCoveredLOs] = useState<Set<string>>(new Set());
+  const [selectedLicense, setSelectedLicense] = useState<'PPL' | 'SPL'>(() => {
+    return (localStorage.getItem('selectedLicense') as 'PPL' | 'SPL') || 'PPL';
+  });
 
   // Import states
   const [importSubjectId, setImportSubjectId] = useState<number | null>(null);
@@ -1236,7 +1239,7 @@ export default function App() {
       
       for (let i = 0; i < targets.length; i += CHUNK_SIZE) {
         const chunk = targets.slice(i, i + CHUNK_SIZE);
-        const chunkResults = await generateBatchQuestions(chunk, questionsPerLO, genLanguage, aiProvider === 'gemini' ? userApiKey : claudeApiKey, aiModel, aiProvider);
+        const chunkResults = await generateBatchQuestions(chunk, questionsPerLO, genLanguage, aiProvider === 'gemini' ? userApiKey : claudeApiKey, aiModel, aiProvider, selectedLicense);
         allResults.push(...chunkResults);
         setBatchResults([...allResults]); // Update UI incrementally
       }
@@ -1657,8 +1660,15 @@ export default function App() {
                       }
                       return (
                         <span className="flex gap-2">
-                          <span className="px-3 py-1 bg-[var(--ink)] text-[var(--ink-text)] rounded-full text-[10px] font-bold">PPL(A)</span>
-                          <span className="px-3 py-1 border border-[var(--line)] rounded-full text-[10px] font-bold opacity-50">SPL</span>
+                          {(['PPL', 'SPL'] as const).map(lic => (
+                            <button
+                              key={lic}
+                              onClick={() => { setSelectedLicense(lic); localStorage.setItem('selectedLicense', lic); }}
+                              className={`px-3 py-1 rounded-full text-[10px] font-bold transition-all ${selectedLicense === lic ? 'bg-[var(--ink)] text-[var(--ink-text)]' : 'border border-[var(--line)] opacity-50 hover:opacity-80'}`}
+                            >
+                              {lic === 'PPL' ? 'PPL(A)' : 'SPL'}
+                            </button>
+                          ))}
                         </span>
                       );
                     })()}
@@ -2678,9 +2688,9 @@ export default function App() {
                     <p className="text-sm opacity-60">
                       AI používá ECQB Sample Annexes jako vzory pro generování otázek ve správném formátu (4 možnosti, jedna správná).
                     </p>
-                    <div className="flex gap-2">
-                      <span className="px-3 py-1 border border-[var(--line)] rounded-full text-[10px] font-bold opacity-50">PPL(A) Pattern</span>
-                      <span className="px-3 py-1 border border-[var(--line)] rounded-full text-[10px] font-bold opacity-50">SPL Pattern</span>
+                    <div className="flex gap-2 flex-wrap">
+                      <span className={`px-3 py-1 rounded-full text-[10px] font-bold transition-all ${selectedLicense === 'PPL' ? 'bg-indigo-600 text-white border border-indigo-600' : 'border border-[var(--line)] opacity-40'}`}>PPL(A) Pattern</span>
+                      <span className={`px-3 py-1 rounded-full text-[10px] font-bold transition-all ${selectedLicense === 'SPL' ? 'bg-indigo-600 text-white border border-indigo-600' : 'border border-[var(--line)] opacity-40'}`}>SPL Pattern</span>
                       <span className="px-3 py-1 border border-[var(--line)] rounded-full text-[10px] font-bold opacity-50">Multiple Choice 4-way</span>
                     </div>
                   </section>
@@ -2693,6 +2703,26 @@ export default function App() {
                     </div>
                     
                     <div className="space-y-6">
+                      <div className="space-y-2">
+                        <label className="col-header">Licence (Selected License)</label>
+                        <div className="flex gap-3">
+                          {(['PPL', 'SPL'] as const).map(lic => (
+                            <button
+                              key={lic}
+                              onClick={() => { setSelectedLicense(lic); localStorage.setItem('selectedLicense', lic); }}
+                              className={`flex-1 py-3 rounded-xl border text-xs font-bold uppercase tracking-widest transition-all ${selectedLicense === lic ? 'bg-indigo-600 text-white border-indigo-600' : 'border-[var(--line)] opacity-60 hover:opacity-100'}`}
+                            >
+                              {lic === 'PPL' ? 'PPL(A) — Motorový letoun' : 'SPL — Kluzák'}
+                            </button>
+                          ))}
+                        </div>
+                        <p className="text-[10px] opacity-50 leading-relaxed">
+                          {selectedLicense === 'PPL'
+                            ? 'AI prioritizuje: pístové motory, radionavigaci (VOR/DME/ILS), hmotnost & vyvážení s palivem.'
+                            : 'AI prioritizuje: aerodynamiku kluzáků, meteorologii termiky, vzlety navijákem/vlekem, klouzavý výkon.'}
+                        </p>
+                      </div>
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <label className="col-header">Cílový předmět (Syllabus Scope)</label>
@@ -2854,6 +2884,7 @@ export default function App() {
                 </div>
 
                 <div className="space-y-6">
+                  {/* Capacity analysis */}
                   <div className="p-6 border border-[var(--line)] rounded-2xl space-y-4">
                     <h4 className="col-header">Analýza kapacity</h4>
                     <div className="space-y-4">
@@ -2870,6 +2901,67 @@ export default function App() {
                         Aktuálně máte pokryto {coveredLOs.size} z {mockLOs.length} definovaných cílů učení. 
                         Hromadný generátor vám pomůže rychle doplnit chybějící oblasti.
                       </p>
+                    </div>
+                  </div>
+
+                  {/* Dynamic Info Panel — Syllabus breadcrumb */}
+                  <div className="p-6 border border-indigo-500/30 bg-indigo-500/5 rounded-2xl space-y-4">
+                    <div className="flex items-center gap-2">
+                      <div className={`w-2 h-2 rounded-full ${selectedLicense === 'PPL' ? 'bg-indigo-500' : 'bg-emerald-500'}`} />
+                      <h4 className="text-xs font-bold uppercase tracking-widest">Info Panel — {selectedLicense === 'PPL' ? 'PPL(A)' : 'SPL'} Syllabus</h4>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-[9px] uppercase tracking-widest opacity-40 font-bold">Cesta v sylabu</p>
+                      <p className="text-[10px] font-mono opacity-70">
+                        {subjects.find(s => s.id === importSubjectId)?.name || 'Vyberte předmět'}
+                        {' > '}
+                        <span className={selectedLicense === 'PPL' ? 'text-indigo-400' : 'text-emerald-400'}>
+                          {selectedLicense === 'PPL' ? 'Part-FCL (Aeroplane)' : 'Part-FCL (Sailplane)'}
+                        </span>
+                        {' > LOs'}
+                      </p>
+                    </div>
+                    <div className="space-y-1 max-h-48 overflow-y-auto pr-1">
+                      {(() => {
+                        const subjectLOs = mockLOs.filter(lo => lo.subject_id === importSubjectId);
+                        const primaryLOs = subjectLOs.filter(lo => (lo.applies_to || []).includes(selectedLicense));
+                        const suppLOs = subjectLOs.filter(lo => !(lo.applies_to || []).includes(selectedLicense));
+                        return (
+                          <>
+                            {primaryLOs.map(lo => (
+                              <div key={lo.id} className="flex items-start gap-2 py-1 border-b border-[var(--line)]/30">
+                                <span className={`mt-0.5 shrink-0 w-1.5 h-1.5 rounded-full ${coveredLOs.has(lo.id) ? 'bg-emerald-500' : 'bg-[var(--line)]'}`} />
+                                <div>
+                                  <p className="text-[9px] font-mono opacity-60">{lo.id}</p>
+                                  <p className="text-[9px] leading-tight">{lo.text}</p>
+                                </div>
+                              </div>
+                            ))}
+                            {suppLOs.length > 0 && (
+                              <div className="pt-2">
+                                <p className="text-[8px] uppercase tracking-widest opacity-40 font-bold mb-1">Doplňující ({suppLOs.length})</p>
+                                {suppLOs.map(lo => (
+                                  <div key={lo.id} className="flex items-start gap-2 py-1 border-b border-[var(--line)]/20 opacity-50">
+                                    <span className="mt-0.5 shrink-0 w-1.5 h-1.5 rounded-full bg-amber-400" />
+                                    <div>
+                                      <p className="text-[9px] font-mono opacity-60">{lo.id}</p>
+                                      <p className="text-[9px] leading-tight">{lo.text}</p>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                            {subjectLOs.length === 0 && (
+                              <p className="text-[10px] opacity-40">Vyberte předmět pro zobrazení LOs.</p>
+                            )}
+                          </>
+                        );
+                      })()}
+                    </div>
+                    <div className="flex gap-3 text-[9px] font-bold pt-1">
+                      <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" /> Pokryto</span>
+                      <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-[var(--line)] inline-block" /> Chybí</span>
+                      <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block" /> Doplňující</span>
                     </div>
                   </div>
 

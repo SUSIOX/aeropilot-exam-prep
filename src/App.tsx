@@ -1157,10 +1157,10 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (view === 'ai' && importSubjectId && token) {
+    if (view === 'ai' && importSubjectId) {
       fetchCoverage(importSubjectId);
     }
-  }, [view, importSubjectId, token]);
+  }, [view, importSubjectId]);
 
   const fetchCoverage = async (subjectId: number) => {
     try {

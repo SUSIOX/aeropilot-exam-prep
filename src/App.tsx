@@ -664,9 +664,15 @@ export default function App() {
         return;
       }
 
-      // Find matching questions from all loaded question sources
-      const savedQuestions: Question[] = JSON.parse(localStorage.getItem('questions') || '[]');
-      const errorQuestions = savedQuestions.filter(q => incorrectIds.has(Number(q.id)));
+      // Load all questions from DynamoDB across all subjects
+      let allQuestions: Question[] = [];
+      for (const subject of subjects) {
+        const qs = await loadStaticQuestions(subject.id);
+        allQuestions.push(...qs);
+      }
+
+      // Filter to only incorrectly answered questions
+      const errorQuestions = allQuestions.filter(q => incorrectIds.has(Number(q.id)));
 
       if (errorQuestions.length === 0) {
         alert('Nemáte žádné chyby k procvičení.');

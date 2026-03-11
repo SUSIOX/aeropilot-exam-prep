@@ -612,14 +612,83 @@ export class DynamoDBService {
     }
   }
 
-  async getUserProfile(username: string): Promise<DynamoDBResponse & { data?: any }> {
+  // Cognito User Profile Operations
+  async saveCognitoUserProfile(userData: {
+    userId: string;
+    username: string;
+    email?: string;
+  }): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      const item = {
+        userId: userData.userId, // Cognito UUID
+        username: userData.username, // cognito:username
+        email: userData.email,
+        authProvider: 'cognito',
+        createdAt: new Date().toISOString(),
+        lastLoginAt: new Date().toISOString()
+      };
+
+      const command = new DocPutCommand({
+        TableName: 'aeropilot-users',
+        Item: item,
+        ConditionExpression: 'attribute_not_exists(userId)' // Only create if doesn't exist
+      });
+
+      await this.docClient!.send(command);
+
+      return {
+        success: true
+      };
+
+    } catch (error: any) {
+      if (error.name === 'ConditionalCheckFailedException') {
+        // User already exists - just update last login
+        return this.updateUserLastLogin(userData.userId);
+      }
+      return {
+        success: false,
+        error: this.handleError(error, 'saveCognitoUserProfile').message
+      };
+    }
+  }
+
+  async updateUserLastLogin(userId: string): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocUpdateCommand({
+        TableName: 'aeropilot-users',
+        Key: { userId },
+        UpdateExpression: 'SET lastLoginAt = :lastLoginAt',
+        ExpressionAttributeValues: {
+          ':lastLoginAt': new Date().toISOString()
+        }
+      });
+
+      await this.docClient!.send(command);
+
+      return {
+        success: true
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'updateUserLastLogin').message
+      };
+    }
+  }
+
+  async getCognitoUserProfile(userId: string): Promise<DynamoDBResponse & { data?: any }> {
     try {
       await this.ensureInitialized();
 
       const command = new DocGetCommand({
         TableName: 'aeropilot-users',
         Key: {
-          userId: username
+          userId: userId // Cognito UUID
         }
       });
 

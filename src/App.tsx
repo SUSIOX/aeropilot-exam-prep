@@ -282,8 +282,9 @@ export default function App() {
     localStorage.removeItem('token');
     setUser(null);
     // Clear user-specific data but keep guest session
-    localStorage.removeItem('user_progress');
-    localStorage.removeItem('user_stats');
+    const uid = user?.id || 'guest';
+    localStorage.removeItem(`${uid}:user_progress`);
+    localStorage.removeItem(`${uid}:user_stats`);
   };
 
   const switchToLoginMode = () => {
@@ -316,14 +317,15 @@ export default function App() {
 
   // Initialize guest session
   const initializeGuestSession = () => {
-    if (!localStorage.getItem('guest_session_start')) {
-      localStorage.setItem('guest_session_start', new Date().toISOString());
+    const key = `${user?.id || 'guest'}:session_start`;
+    if (!localStorage.getItem(key)) {
+      localStorage.setItem(key, new Date().toISOString());
     }
   };
 
   // Load guest stats
   const loadGuestStats = () => {
-    const guestStats = JSON.parse(localStorage.getItem('guest_stats') || '{}');
+    const guestStats = JSON.parse(localStorage.getItem(`${user?.id || 'guest'}:guest_stats`) || '{}');
     if (guestStats.totalAnswers > 0) {
       return {
         totalAnswers: guestStats.totalAnswers,
@@ -548,7 +550,7 @@ export default function App() {
 
   const loadStaticStats = () => {
     // Load persisted user stats from localStorage as initial values
-    const savedStats = localStorage.getItem('user_stats');
+    const savedStats = localStorage.getItem(`${user?.id || 'guest'}:user_stats`);
     if (savedStats) {
       try {
         setStats(JSON.parse(savedStats));
@@ -570,12 +572,12 @@ export default function App() {
         // Fetch question counts with source breakdown
         const countsResult = await dynamoDBService.getAllQuestionCounts();
         if (countsResult.success && countsResult.data) {
-          const { total, user, ai } = countsResult.data;
+          const { total, user: userQuestions, ai } = countsResult.data;
           const totalQ = Object.values(total).reduce((a, b) => a + b, 0);
-          const userQ = Object.values(user).reduce((a, b) => a + b, 0);
+          const userQ = Object.values(userQuestions).reduce((a, b) => a + b, 0);
           const aiQ = Object.values(ai).reduce((a, b) => a + b, 0);
 
-          const savedStats = localStorage.getItem('user_stats');
+          const savedStats = localStorage.getItem(`${user?.id || 'guest'}:user_stats`);
           const baseStats = savedStats ? JSON.parse(savedStats) : {};
           setStats({
             ...baseStats,
@@ -587,7 +589,7 @@ export default function App() {
             subjectStats: baseStats.subjectStats || []
           });
         } else {
-          const savedStats = localStorage.getItem('user_stats');
+          const savedStats = localStorage.getItem(`${user?.id || 'guest'}:user_stats`);
           if (savedStats) setStats(JSON.parse(savedStats));
         }
       }
@@ -716,8 +718,8 @@ export default function App() {
     }
     
     try {
-      // Get incorrectly answered question IDs from guest_answers
-      const allAnswers = JSON.parse(localStorage.getItem('guest_answers') || '{}');
+      // Get incorrectly answered question IDs from user-specific answers
+      const allAnswers = JSON.parse(localStorage.getItem(`${user?.id || 'guest'}:answers`) || '{}');
       const incorrectIds = new Set(
         Object.entries(allAnswers)
           .filter(([_, a]: [string, any]) => !a.isCorrect)
@@ -811,7 +813,7 @@ export default function App() {
         saveAnswerToLocalStorage(currentQuestion.id, isCorrect, currentQuestion.subject_id);
         updateUserStats(isCorrect);
         // Sync to DynamoDB (non-blocking)
-        const userId = user?.username || 'guest';
+        const userId = user?.id || 'guest'; // Use Cognito UUID, not username
         dynamoDBService.saveUserProgress(userId, String(currentQuestion.id), isCorrect).catch(() => {});
       } catch (error) {
         // Silent fail
@@ -823,16 +825,23 @@ export default function App() {
     }
   };
 
+  // User-specific localStorage key helper
+  const userKey = (key: string) => {
+    const userId = user?.id || 'guest';
+    return `${userId}:${key}`;
+  };
+
   // Helper functions for guest mode
   const saveAnswerToLocalStorage = (questionId: number, isCorrect: boolean, subjectId?: number) => {
-    const guestAnswers = JSON.parse(localStorage.getItem('guest_answers') || '{}');
+    const answersKey = userKey('answers');
+    const guestAnswers = JSON.parse(localStorage.getItem(answersKey) || '{}');
     guestAnswers[questionId] = { isCorrect, subjectId, timestamp: new Date().toISOString() };
-    localStorage.setItem('guest_answers', JSON.stringify(guestAnswers));
+    localStorage.setItem(answersKey, JSON.stringify(guestAnswers));
   };
 
   const updateUserStats = (isCorrect: boolean) => {
     // Read AFTER saveAnswerToLocalStorage has already written
-    const allAnswers = JSON.parse(localStorage.getItem('guest_answers') || '{}');
+    const allAnswers = JSON.parse(localStorage.getItem(userKey('answers')) || '{}');
     const practicedCount = Object.keys(allAnswers).length;
     const correctCount = Object.values(allAnswers).filter((a: any) => a.isCorrect).length;
     const successRate = practicedCount > 0 ? correctCount / practicedCount : 0;
@@ -855,16 +864,16 @@ export default function App() {
     });
 
     // guest_stats (for guest mode display)
-    localStorage.setItem('guest_stats', JSON.stringify({
+    localStorage.setItem(userKey('guest_stats'), JSON.stringify({
       totalAnswers: practicedCount,
       correctAnswers: correctCount,
       successRate,
-      sessionStart: localStorage.getItem('guest_session_start') || new Date().toISOString()
+      sessionStart: localStorage.getItem(userKey('session_start')) || new Date().toISOString()
     }));
 
     // user_stats (for logged-in mode display, persists across sessions)
-    const savedStats = JSON.parse(localStorage.getItem('user_stats') || '{}');
-    localStorage.setItem('user_stats', JSON.stringify({
+    const savedStats = JSON.parse(localStorage.getItem(userKey('user_stats')) || '{}');
+    localStorage.setItem(userKey('user_stats'), JSON.stringify({
       ...savedStats,
       practicedQuestions: practicedCount,
       overallSuccess: successRate,
@@ -1446,12 +1455,13 @@ export default function App() {
     if (!confirm('Opravdu chcete smazat veškerý váš postup a historii testů? Tato akce je nevratná.')) return;
     
     try {
-      // For static deployment, clear progress from localStorage
-      localStorage.removeItem('user_progress');
-      localStorage.removeItem('user_stats');
-      localStorage.removeItem('guest_answers');
-      localStorage.removeItem('guest_stats');
-      localStorage.removeItem('guest_session_start');
+      // For static deployment, clear progress from localStorage (user-specific)
+      const uid = user?.id || 'guest';
+      localStorage.removeItem(`${uid}:user_progress`);
+      localStorage.removeItem(`${uid}:user_stats`);
+      localStorage.removeItem(`${uid}:answers`);
+      localStorage.removeItem(`${uid}:guest_stats`);
+      localStorage.removeItem(`${uid}:session_start`);
       
       // Reset stats to default
       setStats({
@@ -1547,7 +1557,7 @@ export default function App() {
             console.log('📦 Received userData:', userData);
             try {
               console.log('👤 Setting user state...');
-              setUser({ id: 1, username: userData.username }); // Use fixed ID for Cognito users
+              setUser({ id: userData.id, username: userData.username }); // Use Cognito UUID
               console.log('✅ User state set');
               
               console.log('🔄 Setting userMode to logged-in...');
@@ -1565,9 +1575,13 @@ export default function App() {
                 console.log('✅ Cognito auth state verified');
               }
               
-              console.log('💾 Saving user profile to DynamoDB...');
-              await dynamoDBService.saveUserProfile(userData.username);
-              console.log('✅ User profile saved');
+              console.log('💾 Saving Cognito user profile to DynamoDB...');
+              await dynamoDBService.saveCognitoUserProfile({
+                userId: userData.id, // Cognito UUID
+                username: userData.username,
+                email: userData.email
+              });
+              console.log('✅ Cognito user profile saved');
               
               console.log('🎉 SPLASH SCREEN onAuthSuccess completed successfully!');
             } catch (error) {
@@ -1824,7 +1838,7 @@ export default function App() {
                   <p className="text-4xl font-mono font-bold">
                     {(() => {
                       if (isGuestMode) {
-                        const sessionStart = localStorage.getItem('guest_session_start');
+                        const sessionStart = localStorage.getItem(`${user?.id || 'guest'}:session_start`);
                         if (sessionStart) {
                           const start = new Date(sessionStart);
                           const now = new Date();
@@ -3696,7 +3710,7 @@ export default function App() {
         onAuthSuccess={async (userData) => {
           try {
             // Set user state
-            setUser({ id: 1, username: userData.username }); // Use fixed ID for Cognito users
+            setUser({ id: userData.id, username: userData.username }); // Use Cognito UUID
             setUserMode('logged-in');
             setView('dashboard');
             
@@ -3709,8 +3723,12 @@ export default function App() {
               }
             }, 100);
             
-            // Save user profile to DynamoDB (without password - handled by Cognito)
-            await dynamoDBService.saveUserProfile(userData.username);
+            // Save Cognito user profile to DynamoDB
+            await dynamoDBService.saveCognitoUserProfile({
+              userId: userData.id, // Cognito UUID
+              username: userData.username,
+              email: userData.email
+            });
             
             console.log('✅ User authenticated via Cognito:', userData);
           } catch (error) {

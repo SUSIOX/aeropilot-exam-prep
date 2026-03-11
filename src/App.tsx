@@ -1538,6 +1538,22 @@ export default function App() {
   if (userMode === 'guest' && !user && view === 'dashboard' && !localStorage.getItem('guest_accepted')) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4 bg-[var(--bg)]">
+        {/* CognitoAuth must be here to handle callback redirect even on splash screen */}
+        <CognitoAuth
+          isOpen={false}
+          onClose={closeAuthPrompt}
+          onAuthSuccess={async (userData) => {
+            try {
+              setUser({ id: parseInt(userData.id), username: userData.username });
+              setUserMode('logged-in');
+              setView('dashboard');
+              await dynamoDBService.saveUserProfile(userData.username);
+            } catch (error) {
+              console.error('Auth setup error:', error);
+            }
+          }}
+          feature={authPromptFeature}
+        />
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}

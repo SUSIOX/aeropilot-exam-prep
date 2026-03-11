@@ -5,7 +5,7 @@ import { X, LogIn, BarChart3, Target, Sparkles, ShieldCheck, UserPlus, Eye, EyeO
 interface LoginPromptProps {
   isOpen: boolean;
   onClose: () => void;
-  onLoginSuccess: (userData: { id: number; username: string }) => void;
+  onLoginSuccess: (userData: { id: number; username: string; password?: string }) => void;
   feature: 'stats' | 'errors' | 'ai' | 'admin';
 }
 
@@ -63,16 +63,36 @@ export function LoginPrompt({ isOpen, onClose, onLoginSuccess, feature }: LoginP
     setIsLoading(true);
     setError(null);
     
+    // Validate inputs
+    if (!form.username.trim() || !form.password.trim()) {
+      setError('Vyplňte prosím všechna pole');
+      setIsLoading(false);
+      return;
+    }
+    
+    if (form.username.length < 3) {
+      setError('Uživatelské jméno musí mít alespoň 3 znaky');
+      setIsLoading(false);
+      return;
+    }
+    
+    if (form.password.length < 6) {
+      setError('Heslo musí mít alespoň 6 znaků');
+      setIsLoading(false);
+      return;
+    }
+    
     // Simulate API call
-    setTimeout(() => {
-      if (form.username && form.password) {
-        onLoginSuccess({ id: Date.now(), username: form.username });
+    setTimeout(async () => {
+      try {
+        await onLoginSuccess({ id: Date.now(), username: form.username, password: form.password });
         setMode('prompt');
         setForm({ username: '', password: '' });
-      } else {
-        setError('Vyplňte prosím všechna pole');
+        setIsLoading(false);
+      } catch (error) {
+        setError(error instanceof Error ? error.message : 'Přihlášení selhalo');
+        setIsLoading(false);
       }
-      setIsLoading(false);
     }, 1000);
   };
 
@@ -81,16 +101,36 @@ export function LoginPrompt({ isOpen, onClose, onLoginSuccess, feature }: LoginP
     setIsLoading(true);
     setError(null);
     
+    // Validate inputs
+    if (!form.username.trim() || !form.password.trim()) {
+      setError('Vyplňte prosím všechna pole');
+      setIsLoading(false);
+      return;
+    }
+    
+    if (form.username.length < 3) {
+      setError('Uživatelské jméno musí mít alespoň 3 znaky');
+      setIsLoading(false);
+      return;
+    }
+    
+    if (form.password.length < 6) {
+      setError('Heslo musí mít alespoň 6 znaků');
+      setIsLoading(false);
+      return;
+    }
+    
     // Simulate API call
-    setTimeout(() => {
-      if (form.username && form.password) {
-        onLoginSuccess({ id: Date.now(), username: form.username });
+    setTimeout(async () => {
+      try {
+        await onLoginSuccess({ id: Date.now(), username: form.username, password: form.password });
         setMode('prompt');
         setForm({ username: '', password: '' });
-      } else {
-        setError('Vyplňte prosím všechna pole');
+        setIsLoading(false);
+      } catch (error) {
+        setError(error instanceof Error ? error.message : 'Registrace selhala');
+        setIsLoading(false);
       }
-      setIsLoading(false);
     }, 1000);
   };
 

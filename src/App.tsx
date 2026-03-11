@@ -39,21 +39,37 @@ import { LearningEngine } from './lib/LearningEngine';
 import { mockLOs, generateBatchQuestions, getDetailedExplanation, getDetailedHumanExplanation, translateQuestion, EasaLO, SYLLABUS_SCOPE, SUBJECT_NAMES, buildSyllabusTree, SyllabusSubjectNode, verifyApiKey, AIProvider } from './services/aiService';
 import { DynamoDBStatus } from './components/DynamoDBStatus';
 import { AdminDashboard } from './components/AdminDashboard';
-import { LoginPrompt, useLoginPrompt } from './components/LoginPrompt';
+import { CognitoAuth } from './components/CognitoAuth';
 import { dynamoCache } from './services/dynamoCache';
 import { dynamoDBService } from './services/dynamoService';
 import { initializeSecureCredentials } from './services/secureCredentials';
+import { cognitoAuthService } from './services/cognitoAuthService';
 
 export default function App() {
   // Guest/Login Mode Management
   const [userMode, setUserMode] = useState<'guest' | 'logged-in'>(() => {
+    // Check Cognito tokens first
+    if (cognitoAuthService.isAuthenticated()) {
+      return 'logged-in';
+    }
+    // Fallback to old token system for migration
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user_data');
     return token && userData ? 'logged-in' : 'guest';
   });
   
-  // Login Prompt Management
-  const { isOpen: isLoginPromptOpen, feature: loginPromptFeature, showLoginPrompt, closeLoginPrompt } = useLoginPrompt();
+  // Cognito Auth Management
+  const [isAuthPromptOpen, setIsAuthPromptOpen] = useState(false);
+  const [authPromptFeature, setAuthPromptFeature] = useState<'stats' | 'errors' | 'ai' | 'admin'>('stats');
+  
+  const showAuthPrompt = (feature: 'stats' | 'errors' | 'ai' | 'admin') => {
+    setAuthPromptFeature(feature);
+    setIsAuthPromptOpen(true);
+  };
+  
+  const closeAuthPrompt = () => {
+    setIsAuthPromptOpen(false);
+  };
   
   const [view, setView] = useState<ViewMode>('dashboard');
   const [darkMode, setDarkMode] = useState(() => {
@@ -159,6 +175,13 @@ export default function App() {
   // Auth State - restore user from localStorage on init
   const [user, setUser] = useState<{id: number, username: string} | null>(() => {
     try {
+      // Try Cognito auth first
+      const cognitoUser = cognitoAuthService.getCurrentUser();
+      if (cognitoUser) {
+        return { id: parseInt(cognitoUser.id), username: cognitoUser.username };
+      }
+      
+      // Fallback to old system
       const saved = localStorage.getItem('user_data');
       if (saved) {
         const data = JSON.parse(saved);
@@ -196,19 +219,33 @@ export default function App() {
     }
   };
 
+  // Simple password hashing function (for demo purposes)
+  const hashPassword = (password: string): string => {
+    // In production, use bcrypt or similar
+    return btoa(password + 'salt'); // Simple encoding for demo
+  };
+
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setAuthError(null);
 
     const username = authForm.username.trim();
+    const password = authForm.password.trim();
+    
     if (!username || username.length < 3) {
       setAuthError('Uživatelské jméno musí mít alespoň 3 znaky.');
       return;
     }
 
+    if (!password || password.length < 6) {
+      setAuthError('Heslo musí mít alespoň 6 znaků.');
+      return;
+    }
+
     try {
       const newToken = `token_${username}_${Date.now()}`;
-      const userData = { username };
+      const hashedPassword = hashPassword(password);
+      const userData = { username, password: hashedPassword };
 
       setToken(newToken);
       localStorage.setItem('token', newToken);
@@ -218,7 +255,7 @@ export default function App() {
       setAuthForm({ username: '', password: '' });
 
       // Save user to DynamoDB async (non-blocking)
-      dynamoDBService.saveUserProfile(username).catch(() => {});
+      dynamoDBService.saveUserProfile(username, hashedPassword).catch(() => {});
 
     } catch (err: any) {
       setAuthError(err.message);
@@ -226,12 +263,16 @@ export default function App() {
   };
 
   const handleLogout = () => {
+    // Clear old system
     setToken(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user_data');
     setUser(null);
     setUserMode('guest');
     setView('dashboard');
+    
+    // Use Cognito logout
+    cognitoAuthService.logout();
   };
 
   // Guest mode functions
@@ -257,7 +298,14 @@ export default function App() {
   useEffect(() => {
     // Initialize credentials FIRST, then load data
     const credentialsInitialized = initializeSecureCredentials();
-      // Credentials initialization - silent fail
+    console.log('🔐 Secure credentials initialized:', credentialsInitialized);
+    
+    if (credentialsInitialized) {
+      console.log('✅ DynamoDB should be available');
+    } else {
+      console.log('⚠️ DynamoDB not available - using fallback mode');
+    }
+    
     loadStaticSubjects();
     loadStaticStats(); // Load persisted stats first (fast)
     fetchStats();    // Then fetch live question counts from DynamoDB (slow)
@@ -380,14 +428,14 @@ export default function App() {
   // Static data loading for GitHub Pages deployment
   const loadStaticSubjects = async () => {
     const subjectDefs = [
-      { id: 1, name: "Air Law", description: "Pravidla letectví" },
+      { id: 1, name: "Air Law", description: "Právní předpisy v oblasti letectví" },
       { id: 2, name: "Human Performance", description: "Lidská výkonnost" },
       { id: 3, name: "Meteorology", description: "Meteorologie" },
       { id: 4, name: "Communications", description: "Komunikace" },
-      { id: 5, name: "Principles of Flight", description: "Principy letu" },
+      { id: 5, name: "Principles of Flight", description: "Letové zásady" },
       { id: 6, name: "Operational Procedures", description: "Provozní postupy" },
-      { id: 7, name: "Flight Performance", description: "Výkony letadla" },
-      { id: 8, name: "Aircraft General", description: "Všeobecně o letadlech" },
+      { id: 7, name: "Flight Performance", description: "Provedení a plánování letu" },
+      { id: 8, name: "Aircraft General", description: "Obecné znalosti o letadle" },
       { id: 9, name: "Navigation", description: "Navigace" }
     ];
 
@@ -663,7 +711,7 @@ export default function App() {
 
   const startErrors = async () => {
     if (isGuestMode) {
-      showLoginPrompt('errors');
+      showAuthPrompt('errors');
       return;
     }
     
@@ -953,7 +1001,7 @@ export default function App() {
     try {
       // For guest mode, show login prompt for advanced AI features
       if (isGuestMode && !userApiKey && !claudeApiKey) {
-        showLoginPrompt('ai');
+        showAuthPrompt('ai');
         setIsGeneratingAiExplanation(false);
         return;
       }
@@ -1332,18 +1380,63 @@ export default function App() {
       const updatedQuestions = [...savedQuestions, ...allQuestionsToImport];
       localStorage.setItem('questions', JSON.stringify(updatedQuestions));
       
-      // Save to DynamoDB (non-blocking)
-      Promise.all(
-        allQuestionsToImport.map((q: any) => dynamoDBService.saveQuestion(importSubjectId, q))
-      ).catch(() => {});
+      // Check DynamoDB availability before saving
+      console.log('🔍 Checking DynamoDB availability...');
       
-      setImportStatus({ type: 'success', message: `Úspěšně uloženo ${allQuestionsToImport.length} AI otázek pro ${batchResults.length} témat.` });
+      // Test DynamoDB connection first
+      const testSave = dynamoDBService.saveQuestion(importSubjectId, {
+        question: 'Connection test',
+        answers: ['A', 'B', 'C', 'D'],
+        correct: 0,
+        explanation: 'Test',
+        lo_id: 'test',
+        source: 'test'
+      });
+      
+      testSave.then(testResult => {
+        if (testResult.success) {
+          console.log('✅ DynamoDB connection verified, proceeding with batch save...');
+          
+          // Save to DynamoDB with proper error handling
+          const savePromises = allQuestionsToImport.map((q: any) => 
+            dynamoDBService.saveQuestion(importSubjectId, q)
+          .then(result => {
+            if (!result.success) {
+              console.error('❌ Failed to save question to DynamoDB:', result.error);
+              return { success: false, error: result.error };
+            }
+            console.log('✅ Question saved to DynamoDB successfully');
+            return { success: true };
+          })
+          .catch(error => {
+            console.error('❌ DynamoDB save error:', error);
+            return { success: false, error: error.message };
+          })
+      );
+      
+      Promise.all(savePromises).then(results => {
+        const successful = results.filter(r => r.success).length;
+        const failed = results.length - successful;
+        console.log(`📊 DynamoDB save summary: ${successful} successful, ${failed} failed`);
+        
+        setImportStatus({ type: 'success', message: `Úspěšně uloženo ${allQuestionsToImport.length} AI otázek pro ${batchResults.length} témat (${successful} v DynamoDB).` });
+        setBatchResults([]);
+        return Promise.all([
+          fetchSubjects(),
+          fetchStats(),
+          fetchCoverage(importSubjectId)
+        ]);
+      });
+    } else {
+      console.log('❌ DynamoDB not available, questions saved only to localStorage');
+      setImportStatus({ type: 'success', message: `AI otázky uloženy pouze lokálně (DynamoDB nedostupné).` });
       setBatchResults([]);
-      await Promise.all([
-        fetchSubjects(),
-        fetchStats(),
-        fetchCoverage(importSubjectId)
-      ]);
+    }
+  }).catch(error => {
+    console.error('❌ DynamoDB test failed:', error);
+    setImportStatus({ type: 'success', message: `AI otázky uloženy pouze lokálně (chyba DynamoDB).` });
+    setBatchResults([]);
+  });
     } catch (error) {
       console.error("Saving failed:", error);
     }
@@ -1531,7 +1624,7 @@ export default function App() {
             <span className="hidden sm:inline">Dashboard</span>
           </button>
           <button 
-            onClick={() => isGuestMode ? showLoginPrompt('stats') : setView('stats')} 
+            onClick={() => isGuestMode ? showAuthPrompt('stats') : setView('stats')} 
             className={`text-xs uppercase tracking-widest font-semibold flex items-center gap-2 whitespace-nowrap transition-opacity ${view === 'stats' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
           >
             <BarChart3 size={14} className="flex-shrink-0" /> 
@@ -1549,7 +1642,7 @@ export default function App() {
         <div className="flex items-center gap-2 sm:gap-3">
           {isGuestMode ? (
             <button
-              onClick={() => showLoginPrompt('stats')}
+              onClick={() => showAuthPrompt('stats')}
               className="hidden sm:flex items-center h-10 px-3 bg-[var(--badge-bg)] rounded-full min-w-0 hover:bg-[var(--line)] transition-colors"
             >
               <User size={12} className="opacity-50 flex-shrink-0" />
@@ -3558,21 +3651,26 @@ export default function App() {
       {/* Admin Dashboard Component */}
       <AdminDashboard />
       
-      {/* Login Prompt Component */}
-      <LoginPrompt
-        isOpen={isLoginPromptOpen}
-        onClose={closeLoginPrompt}
-        onLoginSuccess={(userData) => {
-          const newToken = `token_${userData.username}_${Date.now()}`;
-          localStorage.setItem('token', newToken);
-          localStorage.setItem('user_data', JSON.stringify(userData));
-          setToken(newToken);
-          setUser(userData);
-          setUserMode('logged-in');
-          setView('dashboard');
-          closeLoginPrompt();
+      {/* Cognito Auth Component */}
+      <CognitoAuth
+        isOpen={isAuthPromptOpen}
+        onClose={closeAuthPrompt}
+        onAuthSuccess={async (userData) => {
+          try {
+            // Set user state
+            setUser({ id: parseInt(userData.id), username: userData.username });
+            setUserMode('logged-in');
+            setView('dashboard');
+            
+            // Save user profile to DynamoDB (without password - handled by Cognito)
+            await dynamoDBService.saveUserProfile(userData.username);
+            
+            console.log('✅ User authenticated via Cognito:', userData);
+          } catch (error) {
+            console.error('Auth setup error:', error);
+          }
         }}
-        feature={loginPromptFeature || 'stats'}
+        feature={authPromptFeature}
       />
     </div>
   );

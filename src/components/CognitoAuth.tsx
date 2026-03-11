@@ -1,0 +1,280 @@
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { X, LogIn, BarChart3, Target, Sparkles, ShieldCheck, Loader2 } from 'lucide-react';
+
+interface CognitoAuthProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onAuthSuccess: (userData: { id: string; username: string; email?: string }) => void;
+  feature: 'stats' | 'errors' | 'ai' | 'admin';
+}
+
+interface TokenResponse {
+  access_token: string;
+  id_token: string;
+  refresh_token: string;
+  expires_in: number;
+}
+
+export function CognitoAuth({ isOpen, onClose, onAuthSuccess, feature }: CognitoAuthProps) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const getFeatureInfo = () => {
+    switch (feature) {
+      case 'stats':
+        return {
+          icon: BarChart3,
+          title: 'Statistiky a postup',
+          description: 'Sledujte své pokroky, zobrazte detailní statistiky a sledujte vývoj vaší úspěšnosti.',
+          benefits: ['Grafy a vizualizace', 'Historie odpovědí', 'Srovnání výkonu', 'Dlouhodobý postup']
+        };
+      case 'errors':
+        return {
+          icon: Target,
+          title: 'Procvičování chyb',
+          description: 'Zaměřte se na otázky, které vám dělají problémy, a zlepšete své slabiny.',
+          benefits: ['Inteligentní výběr chyb', 'Adaptivní procvičování', 'Rychlé zlepšení', 'Personalizovaný plán']
+        };
+      case 'ai':
+        return {
+          icon: Sparkles,
+          title: 'AI vysvětlení',
+          description: 'Získejte podrobná AI vysvětlení otázek a učte se efektivněji.',
+          benefits: ['Podrobné vysvětlení', 'Příklady z praxe', 'Interaktivní učení', 'Synchronizace zařízení']
+        };
+      case 'admin':
+        return {
+          icon: ShieldCheck,
+          title: 'Admin funkce',
+          description: 'Spravujte obsah, přidávejte otázky a monitorujte systém.',
+          benefits: ['Správa obsahu', 'Import otázek', 'Monitorování', 'Pokročilé nastavení']
+        };
+      default:
+        return {
+          icon: LogIn,
+          title: 'Pokročilé funkce',
+          description: 'Odemkněte všechny funkce aplikace pro lepší výsledky.',
+          benefits: ['Všechny funkce', 'Synchronizace', 'Statistiky', 'Podpora']
+        };
+    }
+  };
+
+  const { icon: FeatureIcon, title, description, benefits } = getFeatureInfo();
+
+  // Generate Cognito auth URL
+  const generateAuthUrl = () => {
+    const domain = process.env.COGNITO_DOMAIN;
+    const clientId = process.env.COGNITO_CLIENT_ID;
+    const redirectUri = process.env.COGNITO_REDIRECT_URI;
+    const state = generateRandomString(32); // CSRF protection
+    
+    // Store state for verification
+    sessionStorage.setItem('cognito_state', state);
+    
+    const params = new URLSearchParams({
+      client_id: clientId || '',
+      response_type: 'code',
+      scope: 'email openid profile',
+      redirect_uri: redirectUri || window.location.origin,
+      state: state
+    });
+    
+    return `https://${domain}/login?${params.toString()}`;
+  };
+
+  // Generate random string for state parameter
+  const generateRandomString = (length: number) => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  };
+
+  // Exchange authorization code for tokens via Lambda
+  const exchangeCodeForTokens = async (code: string) => {
+    try {
+      const lambdaUrl = process.env.LAMBDA_TOKEN_EXCHANGE_URL;
+      
+      if (!lambdaUrl) {
+        throw new Error('Lambda URL not configured');
+      }
+      
+      console.log('🔄 Exchanging authorization code via Lambda...');
+      
+      // Call Lambda function with authorization code
+      const response = await fetch(lambdaUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ code: code })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('❌ Token exchange error:', errorData);
+        throw new Error(errorData.error_description || errorData.error || 'Token exchange failed');
+      }
+
+      const tokenData: TokenResponse = await response.json();
+      console.log('✅ Token exchange successful');
+      
+      // Parse JWT to get user info
+      const payload = JSON.parse(atob(tokenData.id_token.split('.')[1]));
+      
+      // Store tokens
+      localStorage.setItem('access_token', tokenData.access_token);
+      localStorage.setItem('id_token', tokenData.id_token);
+      localStorage.setItem('refresh_token', tokenData.refresh_token);
+      localStorage.setItem('token_expires_at', String(Date.now() + tokenData.expires_in * 1000));
+      
+      // Store user data
+      const userData = {
+        id: payload.sub,
+        username: payload['cognito:username'] || payload.email,
+        email: payload.email
+      };
+      
+      localStorage.setItem('user_data', JSON.stringify(userData));
+      
+      return userData;
+    } catch (error) {
+      console.error('Token exchange error:', error);
+      throw new Error('Authentication failed');
+    }
+  };
+
+  // Handle redirect from Cognito
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    const state = urlParams.get('state');
+    const storedState = sessionStorage.getItem('cognito_state');
+    
+    if (code && state === storedState) {
+      setIsLoading(true);
+      setError(null);
+      
+      exchangeCodeForTokens(code)
+        .then(userData => {
+          onAuthSuccess(userData);
+          onClose();
+          // Clean URL
+          window.history.replaceState({}, document.title, window.location.pathname);
+        })
+        .catch(error => {
+          setError(error instanceof Error ? error.message : 'Authentication failed');
+        })
+        .finally(() => {
+          setIsLoading(false);
+          sessionStorage.removeItem('cognito_state');
+        });
+    } else if (code && state !== storedState) {
+      setError('Security validation failed');
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, [onAuthSuccess, onClose]);
+
+  const handleLogin = () => {
+    const authUrl = generateAuthUrl();
+    window.location.href = authUrl;
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[250] flex items-center justify-center p-4"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="w-full max-w-md bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-indigo-500/20 rounded-lg flex items-center justify-center">
+                  <FeatureIcon className="w-5 h-5 text-indigo-500" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-indigo-500">Vyžadováno přihlášení</h3>
+                  <p className="text-[10px] opacity-50 uppercase tracking-widest">Pro přístup k této funkci</p>
+                </div>
+              </div>
+              <button
+                onClick={onClose}
+                className="p-2 hover:bg-[var(--line)] rounded-lg transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Feature Info */}
+            <div className="space-y-4 mb-6">
+              <div>
+                <h4 className="font-semibold mb-2">{title}</h4>
+                <p className="text-sm opacity-70 leading-relaxed">{description}</p>
+              </div>
+
+              <div className="space-y-2">
+                <p className="text-[10px] font-semibold uppercase tracking-widest opacity-50">S přihlášením získáte:</p>
+                <div className="space-y-2">
+                  {benefits.map((benefit, index) => (
+                    <div key={index} className="flex items-center gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></div>
+                      <span className="opacity-80">{benefit}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Loading State */}
+            {isLoading && (
+              <div className="flex flex-col items-center gap-4 py-6">
+                <Loader2 className="w-8 h-8 animate-spin text-indigo-500" />
+                <p className="text-sm opacity-70">Přihlašuji...</p>
+              </div>
+            )}
+
+            {/* Error State */}
+            {error && !isLoading && (
+              <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4 mb-6">
+                <p className="text-sm text-red-500">{error}</p>
+              </div>
+            )}
+
+            {/* Actions */}
+            {!isLoading && (
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={handleLogin}
+                  className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold uppercase tracking-widest text-[10px] transition-all flex items-center justify-center gap-2"
+                >
+                  <LogIn className="w-4 h-4" />
+                  Přihlásit se přes Cognito
+                </button>
+                <button
+                  onClick={onClose}
+                  className="w-full py-2 text-[10px] font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity"
+                >
+                  Zpět k aplikaci
+                </button>
+              </div>
+            )}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}

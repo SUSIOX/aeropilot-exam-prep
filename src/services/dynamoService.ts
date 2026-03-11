@@ -580,13 +580,14 @@ export class DynamoDBService {
   }
 
   // User Profile Operations
-  async saveUserProfile(username: string): Promise<DynamoDBResponse> {
+  async saveUserProfile(username: string, password?: string): Promise<DynamoDBResponse> {
     try {
       await this.ensureInitialized();
 
       const item = {
         userId: username,
         username,
+        ...(password && { password }), // Only include password if provided
         createdAt: new Date().toISOString(),
         lastLoginAt: new Date().toISOString()
       };
@@ -607,6 +608,32 @@ export class DynamoDBService {
       return {
         success: false,
         error: this.handleError(error, 'saveUserProfile').message
+      };
+    }
+  }
+
+  async getUserProfile(username: string): Promise<DynamoDBResponse & { data?: any }> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocGetCommand({
+        TableName: 'aeropilot-users',
+        Key: {
+          userId: username
+        }
+      });
+
+      const result = await this.docClient.send(command);
+
+      return {
+        success: true,
+        data: result.Item
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'getUserProfile').message
       };
     }
   }

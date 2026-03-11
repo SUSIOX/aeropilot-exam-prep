@@ -12,6 +12,10 @@ export interface UserData {
   email?: string;
 }
 
+export type UserRole = 'admin' | 'user' | 'guest';
+
+export const ADMIN_GROUP = 'aeropilot-admins';
+
 export class CognitoAuthService {
   private static instance: CognitoAuthService;
 
@@ -180,6 +184,31 @@ export class CognitoAuthService {
   // Check if user is authenticated
   isAuthenticated(): boolean {
     return this.isTokenValid() && !!this.getCurrentUser();
+  }
+
+  // Get user role from Cognito groups in JWT
+  getUserRole(): UserRole {
+    if (!this.isAuthenticated()) return 'guest';
+
+    const tokens = this.getTokens();
+    if (!tokens) return 'guest';
+
+    const payload = this.parseJWT(tokens.id_token);
+    if (!payload) return 'guest';
+
+    const groups: string[] = payload['cognito:groups'] || [];
+    if (groups.includes(ADMIN_GROUP)) return 'admin';
+
+    return 'user';
+  }
+
+  isAdmin(): boolean {
+    return this.getUserRole() === 'admin';
+  }
+
+  isUser(): boolean {
+    const role = this.getUserRole();
+    return role === 'user' || role === 'admin';
   }
 }
 

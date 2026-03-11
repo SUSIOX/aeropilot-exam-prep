@@ -16,7 +16,11 @@ import { dynamoMonitor } from '../services/dynamoMonitor';
 import { rateLimiter } from '../services/rateLimiter';
 import { dynamoCache } from '../services/dynamoCache';
 
-export const AdminDashboard: React.FC = () => {
+interface AdminDashboardProps {
+  userRole?: 'admin' | 'user' | 'guest';
+}
+
+export const AdminDashboard: React.FC<AdminDashboardProps> = ({ userRole = 'guest' }) => {
   const [usage, setUsage] = useState(dynamoMonitor.getUsageStats());
   const [projection, setProjection] = useState(dynamoMonitor.getMonthlyProjection());
   const [queueStatus, setQueueStatus] = useState(rateLimiter.getQueueStatus());
@@ -34,6 +38,8 @@ export const AdminDashboard: React.FC = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  if (userRole !== 'admin') return null;
 
   // Formátování čísel
   const formatNumber = (num: number): string => {

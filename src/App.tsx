@@ -40,10 +40,12 @@ import { mockLOs, generateBatchQuestions, getDetailedExplanation, getDetailedHum
 import { DynamoDBStatus } from './components/DynamoDBStatus';
 import { AdminDashboard } from './components/AdminDashboard';
 import { CognitoAuth } from './components/CognitoAuth';
+import { LandingPage } from './components/LandingPage';
 import { dynamoCache } from './services/dynamoCache';
 import { dynamoDBService } from './services/dynamoService';
 import { initializeSecureCredentials } from './services/secureCredentials';
-import { cognitoAuthService } from './services/cognitoAuthService';
+import { cognitoAuthService, UserRole } from './services/cognitoAuthService';
+import { AccessDenied } from './components/AccessDenied';
 
 export default function App() {
   // Guest/Login Mode Management
@@ -56,6 +58,15 @@ export default function App() {
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user_data');
     return token && userData ? 'logged-in' : 'guest';
+  });
+  
+  // Role-based access control
+  const [userRole, setUserRole] = useState<UserRole>(() => cognitoAuthService.getUserRole());
+
+  // Landing Page Management
+  const [showLandingPage, setShowLandingPage] = useState(() => {
+    // Show landing page only for first-time guests
+    return userMode === 'guest' && !localStorage.getItem('landingPageShown');
   });
   
   // Cognito Auth Management
@@ -191,9 +202,6 @@ export default function App() {
     return null;
   });
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
-  const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
-  const [authForm, setAuthForm] = useState({ username: '', password: '' });
-  const [authError, setAuthError] = useState<string | null>(null);
 
   // Engine instance (we use it for logic, but keep state in React for reactivity)
   const [examAnswers, setExamAnswers] = useState<Record<number, string>>({});
@@ -219,49 +227,7 @@ export default function App() {
     }
   };
 
-  // Simple password hashing function (for demo purposes)
-  const hashPassword = (password: string): string => {
-    // In production, use bcrypt or similar
-    return btoa(password + 'salt'); // Simple encoding for demo
-  };
-
-  const handleAuth = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setAuthError(null);
-
-    const username = authForm.username.trim();
-    const password = authForm.password.trim();
-    
-    if (!username || username.length < 3) {
-      setAuthError('Uživatelské jméno musí mít alespoň 3 znaky.');
-      return;
-    }
-
-    if (!password || password.length < 6) {
-      setAuthError('Heslo musí mít alespoň 6 znaků.');
-      return;
-    }
-
-    try {
-      const newToken = `token_${username}_${Date.now()}`;
-      const hashedPassword = hashPassword(password);
-      const userData = { username, password: hashedPassword };
-
-      setToken(newToken);
-      localStorage.setItem('token', newToken);
-      localStorage.setItem('user_data', JSON.stringify(userData));
-      setUser({ id: 1, username });
-      setUserMode('logged-in');
-      setAuthForm({ username: '', password: '' });
-
-      // Save user to DynamoDB async (non-blocking)
-      dynamoDBService.saveUserProfile(username, hashedPassword).catch(() => {});
-
-    } catch (err: any) {
-      setAuthError(err.message);
-    }
-  };
-
+  
   const handleLogout = () => {
     // Clear old system
     setToken(null);
@@ -273,6 +239,11 @@ export default function App() {
     
     // Use Cognito logout
     cognitoAuthService.logout();
+    
+    // Reset landing page and role for next session
+    localStorage.removeItem('landingPageShown');
+    setShowLandingPage(true);
+    setUserRole('guest');
   };
 
   // Guest mode functions
@@ -287,9 +258,38 @@ export default function App() {
     localStorage.removeItem(`${uid}:user_stats`);
   };
 
-  const switchToLoginMode = () => {
+  
+  // Landing Page functions
+  const handleLandingGuestMode = () => {
+    // Mark landing page as shown
+    localStorage.setItem('landingPageShown', 'true');
+    setShowLandingPage(false);
+    
+    // Switch to guest mode and show dashboard
+    setUserMode('guest');
+    setToken(null);
+    localStorage.removeItem('token');
+    setUser(null);
+    setView('dashboard');
+  };
+
+  const handleLandingAuthSuccess = async (userData: { id: string; username: string; email?: string }) => {
+    // Mark landing page as shown
+    localStorage.setItem('landingPageShown', 'true');
+    setShowLandingPage(false);
+    
+    // Set user state
+    setUser({ id: userData.id, username: userData.username });
     setUserMode('logged-in');
-    setAuthMode('login');
+    setUserRole(cognitoAuthService.getUserRole());
+    setView('dashboard');
+    
+    // Save user profile to DynamoDB
+    await dynamoDBService.saveCognitoUserProfile({
+      userId: userData.id,
+      username: userData.username,
+      email: userData.email
+    });
   };
 
   // Helper functions
@@ -812,9 +812,10 @@ export default function App() {
       try {
         saveAnswerToLocalStorage(currentQuestion.id, isCorrect, currentQuestion.subject_id);
         updateUserStats(isCorrect);
-        // Sync to DynamoDB (non-blocking)
-        const userId = user?.id || 'guest'; // Use Cognito UUID, not username
-        dynamoDBService.saveUserProgress(userId, String(currentQuestion.id), isCorrect).catch(() => {});
+        // Sync to DynamoDB only for authenticated users (not guests)
+        if (userRole !== 'guest' && user?.id) {
+          dynamoDBService.saveUserProgress(user.id, String(currentQuestion.id), isCorrect).catch(() => {});
+        }
       } catch (error) {
         // Silent fail
       }
@@ -1296,6 +1297,10 @@ export default function App() {
   };
 
   const handleGenerateQuestions = async () => {
+    if (userRole === 'guest') {
+      alert('Tato funkce je jen pro ověřené uživatele');
+      return;
+    }
     const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
     if (!currentApiKey) {
       const key = prompt(`Pro hromadné generování otázek pomocí AI generovaných je vyžadován vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč (${aiProvider === 'gemini' ? 'zdarma na ai.google.dev' : 'na console.anthropic.com'}). Vložte jej prosím nyní:`);
@@ -1363,6 +1368,10 @@ export default function App() {
   };
 
   const saveGeneratedQuestions = async () => {
+    if (userRole === 'guest') {
+      alert('Tato funkce je jen pro ověřené uživatele');
+      return;
+    }
     if (batchResults.length === 0 || !importSubjectId) return;
     
     try {
@@ -1508,6 +1517,10 @@ export default function App() {
   };
 
   const handleImport = async () => {
+    if (userRole === 'guest') {
+      alert('Tato funkce je jen pro ověřené uživatele');
+      return;
+    }
     if (!importSubjectId || !importJson) {
       setImportStatus({ type: 'error', message: 'Vyberte předmět a vložte JSON.' });
       return;
@@ -1515,6 +1528,11 @@ export default function App() {
 
     if (!checkImportPassword(importPassword)) {
       setImportStatus({ type: 'error', message: 'Nesprávné heslo pro import.' });
+      return;
+    }
+
+    if (clearExisting && userRole !== 'admin') {
+      setImportStatus({ type: 'error', message: 'Smazání stávajících otázek je oprávnění pouze pro administrátora.' });
       return;
     }
 
@@ -1544,117 +1562,62 @@ export default function App() {
     }
   };
 
-  // Show login screen if not logged in and not in guest mode
-  if (userMode === 'guest' && !user && view === 'dashboard' && !localStorage.getItem('guest_accepted')) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-4 bg-[var(--bg)]">
-        {/* CognitoAuth must be here to handle callback redirect even on splash screen */}
-        <CognitoAuth
-          isOpen={false}
-          onClose={closeAuthPrompt}
-          onAuthSuccess={async (userData) => {
-            console.log('🎯 onAuthSuccess called in SPLASH SCREEN');
-            console.log('📦 Received userData:', userData);
-            try {
-              console.log('👤 Setting user state...');
-              setUser({ id: userData.id, username: userData.username }); // Use Cognito UUID
-              console.log('✅ User state set');
-              
-              console.log('🔄 Setting userMode to logged-in...');
-              setUserMode('logged-in');
-              console.log('✅ UserMode set to logged-in');
-              
-              console.log('📊 Setting view to dashboard...');
-              setView('dashboard');
-              console.log('✅ View set to dashboard');
-              
-              // Force re-evaluation of authentication state
-              if (!cognitoAuthService.isAuthenticated()) {
-                console.warn('⚠️ Cognito auth state inconsistency detected');
-              } else {
-                console.log('✅ Cognito auth state verified');
-              }
-              
-              console.log('💾 Saving Cognito user profile to DynamoDB...');
-              await dynamoDBService.saveCognitoUserProfile({
-                userId: userData.id, // Cognito UUID
-                username: userData.username,
-                email: userData.email
-              });
-              console.log('✅ Cognito user profile saved');
-              
-              console.log('🎉 SPLASH SCREEN onAuthSuccess completed successfully!');
-            } catch (error) {
-              console.error('💥 SPLASH SCREEN Auth setup error:', error);
-            }
-          }}
-          feature={authPromptFeature}
-        />
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-md p-8 glass-panel rounded-3xl space-y-8 border border-[var(--line)]"
-        >
-          <div className="text-center space-y-2">
-            <div className="w-16 h-16 bg-[var(--ink)] text-[var(--ink-text)] flex items-center justify-center rounded-2xl font-bold text-3xl mx-auto">
-              A
-            </div>
-            <h1 className="text-2xl font-bold tracking-tight">AeroPilot</h1>
-            <p className="text-xs uppercase tracking-widest opacity-50 font-mono">EASA ECQB PREP</p>
-          </div>
-
-          <form onSubmit={handleAuth} className="space-y-4">
-            <div className="space-y-2">
-              <label className="col-header">Uživatelské jméno</label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 opacity-30" size={16} />
-                <input 
-                  type="text"
-                  required
-                  value={authForm.username}
-                  onChange={e => setAuthForm(prev => ({ ...prev, username: e.target.value }))}
-                  className="w-full pl-10 pr-4 py-3 bg-transparent border border-[var(--line)] rounded-xl focus:outline-none focus:border-[var(--ink)]"
-                  placeholder="pilot123"
-                />
-              </div>
-            </div>
-
-            {authError && (
-              <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-500 text-xs flex items-center gap-2">
-                <AlertCircle size={14} />
-                {authError}
-              </div>
-            )}
-
-            <button 
-              type="submit"
-              className="w-full py-4 bg-[var(--ink)] text-[var(--ink-text)] rounded-xl font-bold uppercase tracking-widest text-xs hover:scale-[1.02] transition-transform"
-            >
-              Přihlásit se
-            </button>
-            <p className="text-center text-[10px] opacity-50">
-              Zadej své jméno — pokud účet neexistuje, automaticky se vytvoří
-            </p>
-          </form>
-
-          <div className="text-center">
-            <button 
-              onClick={() => {
-                localStorage.setItem('guest_accepted', 'true');
-                setUserMode('guest');
-              }}
-              className="text-[10px] font-bold uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity"
-            >
-              Pokračovat jako host
-            </button>
-          </div>
-        </motion.div>
-      </div>
-    );
-  }
-
+  
   return (
     <div className="min-h-screen transition-colors duration-300">
+      {/* Landing Page - Gatekeeper */}
+      {showLandingPage && (
+        <>
+          <LandingPage 
+            onGuestMode={handleLandingGuestMode}
+            onAuthSuccess={handleLandingAuthSuccess}
+            onClose={() => {}}
+          />
+          {/* Render dashboard content in background for blur effect */}
+          <div className="opacity-0">
+            {/* Header */}
+            <header className="border-b border-[var(--line)] px-4 py-3 flex justify-between items-center sticky top-0 bg-[var(--bg)] z-50 min-h-[60px]">
+              <div className="flex items-center gap-3 cursor-pointer group">
+                <div className="w-10 h-10 min-w-[40px] bg-[var(--ink)] text-[var(--ink-text)] flex items-center justify-center rounded-lg font-bold text-xl flex-shrink-0 group-hover:scale-105 transition-transform">
+                  A
+                </div>
+                <div className="min-w-0">
+                  <h1 className="font-bold text-lg leading-tight group-hover:text-indigo-600 transition-colors">Aeropilot Exam Prep</h1>
+                  <div className="flex items-center gap-2 text-xs opacity-60 leading-tight">
+                    <span className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-500' : 'bg-red-500'} flex-shrink-0`}></span>
+                    <span className="truncate">{isOnline ? 'Online' : 'Offline'}</span>
+                  </div>
+                </div>
+              </div>
+            </header>
+            {/* Dashboard content for background blur */}
+            <main className="p-4">
+              <div className="max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                  {/* Stats cards for background */}
+                  <div className="p-6 border border-[var(--line)] rounded-2xl space-y-2">
+                    <p className="col-header">Total Questions</p>
+                    <p className="text-4xl font-mono font-bold">1000</p>
+                  </div>
+                  <div className="p-6 border border-[var(--line)] rounded-2xl space-y-2">
+                    <p className="col-header">Practiced</p>
+                    <p className="text-4xl font-mono font-bold">0</p>
+                  </div>
+                  <div className="p-6 border border-[var(--line)] rounded-2xl space-y-2">
+                    <p className="col-header">Success Rate</p>
+                    <p className="text-4xl font-mono font-bold">75%</p>
+                  </div>
+                  <div className="p-6 border border-[var(--line)] rounded-2xl space-y-2">
+                    <p className="col-header">Session Time</p>
+                    <p className="text-4xl font-mono font-bold">0 min</p>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </>
+      )}
+      
       {/* Header */}
       <header className="border-b border-[var(--line)] px-4 py-3 flex justify-between items-center sticky top-0 bg-[var(--bg)] z-50 min-h-[60px]">
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => setView('dashboard')}>
@@ -2230,9 +2193,12 @@ export default function App() {
                           </div>
                         </div>
 
+                        {userRole === 'guest' && (
+                          <AccessDenied variant="guest" className="mb-2" />
+                        )}
                         <button 
                           onClick={handleGenerateQuestions}
-                          disabled={isGeneratingDetailedExplanation}
+                          disabled={isGeneratingDetailedExplanation || userRole === 'guest'}
                           className="w-full py-4 bg-indigo-600 text-white rounded-2xl text-xs font-bold uppercase tracking-widest hover:scale-[1.01] transition-transform flex items-center justify-center gap-2 disabled:opacity-50"
                         >
                           {isGeneratingDetailedExplanation ? <RotateCcw size={16} className="animate-spin" /> : <Sparkles size={16} />}
@@ -2247,7 +2213,9 @@ export default function App() {
                           <h4 className="font-bold text-sm uppercase tracking-widest">Výsledek ({batchResults.length} témat)</h4>
                           <button 
                             onClick={saveGeneratedQuestions}
-                            className="px-6 py-2 bg-emerald-600 text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform"
+                            disabled={userRole === 'guest'}
+                            className="px-6 py-2 bg-emerald-600 text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform disabled:opacity-40 disabled:cursor-not-allowed"
+                            title={userRole === 'guest' ? 'Tato funkce je jen pro ověřené uživatele' : undefined}
                           >
                             Uložit vše do databáze
                           </button>
@@ -2351,10 +2319,11 @@ export default function App() {
                         id="clearExisting" 
                         checked={clearExisting}
                         onChange={(e) => setClearExisting(e.target.checked)}
-                        className="w-4 h-4 accent-[var(--ink)]"
+                        disabled={userRole !== 'admin'}
+                        className="w-4 h-4 accent-[var(--ink)] disabled:opacity-40 disabled:cursor-not-allowed"
                       />
-                      <label htmlFor="clearExisting" className="text-xs font-medium opacity-70">
-                        Smazat stávající
+                      <label htmlFor="clearExisting" className={`text-xs font-medium opacity-70 ${userRole !== 'admin' ? 'line-through opacity-40' : ''}`}>
+                        Smazat stávající {userRole !== 'admin' && <span className="text-rose-500">(jen admin)</span>}
                       </label>
                     </div>
                     <input
@@ -2373,9 +2342,13 @@ export default function App() {
                     </div>
                   )}
 
+                  {userRole === 'guest' && (
+                    <AccessDenied variant="guest" />
+                  )}
                   <button 
                     onClick={handleImport}
-                    className="w-full py-4 bg-[var(--ink)] text-[var(--bg)] rounded-2xl text-xs font-bold uppercase tracking-widest hover:scale-[1.01] transition-transform"
+                    disabled={userRole === 'guest'}
+                    className="w-full py-4 bg-[var(--ink)] text-[var(--bg)] rounded-2xl text-xs font-bold uppercase tracking-widest hover:scale-[1.01] transition-transform disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     Importovat otázky
                   </button>
@@ -3700,8 +3673,8 @@ export default function App() {
       {/* DynamoDB Status Component */}
       <DynamoDBStatus />
       
-      {/* Admin Dashboard Component */}
-      <AdminDashboard />
+      {/* Admin Dashboard Component - admin only */}
+      <AdminDashboard userRole={userRole} />
       
       {/* Cognito Auth Component */}
       <CognitoAuth
@@ -3712,16 +3685,8 @@ export default function App() {
             // Set user state
             setUser({ id: userData.id, username: userData.username }); // Use Cognito UUID
             setUserMode('logged-in');
+            setUserRole(cognitoAuthService.getUserRole());
             setView('dashboard');
-            
-            // Force re-evaluation of authentication state
-            setTimeout(() => {
-              if (cognitoAuthService.isAuthenticated()) {
-                console.log('✅ Cognito auth state confirmed');
-              } else {
-                console.warn('⚠️ Cognito auth state inconsistency detected');
-              }
-            }, 100);
             
             // Save Cognito user profile to DynamoDB
             await dynamoDBService.saveCognitoUserProfile({

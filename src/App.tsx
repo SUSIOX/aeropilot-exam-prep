@@ -18,6 +18,7 @@ import {
   Trophy,
   Settings,
   Upload,
+  Download,
   ShieldCheck,
   User,
   AlertCircle,
@@ -1516,9 +1517,55 @@ export default function App() {
     return pw === 'aeropilot2026';
   };
 
+  const handleDownloadQuestions = async () => {
+    if (userRole !== 'admin') {
+      alert('Toto oprávnění má jen administrátor');
+      return;
+    }
+
+    try {
+      const result = await dynamoDBService.getAllQuestions();
+      
+      if (!result.success) {
+        alert(`Chyba při stahování: ${result.error}`);
+        return;
+      }
+
+      const questions = result.data || [];
+      
+      // Transform DynamoDB format to app format
+      const formattedQuestions = questions.map((q: any) => ({
+        id: q.questionId,
+        question: q.question,
+        answers: q.answers,
+        correct: ['A', 'B', 'C', 'D'].indexOf(q.correctOption),
+        explanation: q.explanation,
+        lo_id: q.loId,
+        source: q.source,
+        subject_id: q.subjectId,
+        created_at: q.createdAt,
+        created_by: q.createdBy
+      }));
+
+      // Create and download JSON file
+      const blob = new Blob([JSON.stringify(formattedQuestions, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `aeropilot-questions-${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      console.log(`✅ Staženo ${formattedQuestions.length} otázek z DynamoDB`);
+    } catch (error) {
+      console.error('Download error:', error);
+      alert('Nepodařilo se stáhnout otázky z databáze.');
+    }
+  };
+
   const handleImport = async () => {
-    if (userRole === 'guest') {
-      alert('Tato funkce je jen pro ověřené uživatele');
+    if (userRole !== 'admin') {
+      setImportStatus({ type: 'error', message: 'Toto oprávnění má jen administrátor' });
       return;
     }
     if (!importSubjectId || !importJson) {
@@ -1528,11 +1575,6 @@ export default function App() {
 
     if (!checkImportPassword(importPassword)) {
       setImportStatus({ type: 'error', message: 'Nesprávné heslo pro import.' });
-      return;
-    }
-
-    if (clearExisting && userRole !== 'admin') {
-      setImportStatus({ type: 'error', message: 'Smazání stávajících otázek je oprávnění pouze pro administrátora.' });
       return;
     }
 
@@ -2313,19 +2355,20 @@ export default function App() {
                   </div>
 
                   <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-2">
-                      <input 
-                        type="checkbox" 
-                        id="clearExisting" 
-                        checked={clearExisting}
-                        onChange={(e) => setClearExisting(e.target.checked)}
-                        disabled={userRole !== 'admin'}
-                        className="w-4 h-4 accent-[var(--ink)] disabled:opacity-40 disabled:cursor-not-allowed"
-                      />
-                      <label htmlFor="clearExisting" className={`text-xs font-medium opacity-70 ${userRole !== 'admin' ? 'line-through opacity-40' : ''}`}>
-                        Smazat stávající {userRole !== 'admin' && <span className="text-rose-500">(jen admin)</span>}
-                      </label>
-                    </div>
+                    {userRole === 'admin' && (
+                      <div className="flex items-center gap-2">
+                        <input 
+                          type="checkbox" 
+                          id="clearExisting" 
+                          checked={clearExisting}
+                          onChange={(e) => setClearExisting(e.target.checked)}
+                          className="w-4 h-4 accent-[var(--ink)]"
+                        />
+                        <label htmlFor="clearExisting" className="text-xs font-medium opacity-70">
+                          Smazat stávající
+                        </label>
+                      </div>
+                    )}
                     <input
                       type="password"
                       value={importPassword}
@@ -2342,18 +2385,42 @@ export default function App() {
                     </div>
                   )}
 
-                  {userRole === 'guest' && (
-                    <AccessDenied variant="guest" />
+                  {userRole !== 'admin' && (
+                    <AccessDenied variant="user" />
                   )}
                   <button 
                     onClick={handleImport}
-                    disabled={userRole === 'guest'}
+                    disabled={userRole !== 'admin'}
                     className="w-full py-4 bg-[var(--ink)] text-[var(--bg)] rounded-2xl text-xs font-bold uppercase tracking-widest hover:scale-[1.01] transition-transform disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     Importovat otázky
                   </button>
                 </div>
               </section>
+
+              {/* Admin: Download Questions */}
+              {userRole === 'admin' && (
+                <section className="pt-12 border-t border-[var(--line)]">
+                  <div className="p-6 border border-[var(--line)] rounded-3xl space-y-4 bg-white/5">
+                    <h3 className="col-header">Admin: Správa databáze</h3>
+                    <p className="text-xs opacity-60">
+                      Stáhněte všechny uživatelské otázky z DynamoDB pro editaci a zálohu.
+                    </p>
+                    
+                    <button 
+                      onClick={handleDownloadQuestions}
+                      className="w-full py-4 bg-blue-600 text-white rounded-2xl text-xs font-bold uppercase tracking-widest hover:scale-[1.01] transition-transform flex items-center justify-center gap-2"
+                    >
+                      <Download size={16} />
+                      Stáhnout všechny otázky z DB
+                    </button>
+                    
+                    <p className="text-[10px] opacity-40 text-center">
+                      Formát: JSON • Všechny předměty • Včetně metadat
+                    </p>
+                  </div>
+                </section>
+              )}
 
               {/* Reset History */}
               <section className="pt-12 border-t border-[var(--line)]">

@@ -549,6 +549,29 @@ export class DynamoDBService {
     }
   }
 
+  async getAllQuestions(): Promise<DynamoDBResponse<any[]>> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocScanCommand({
+        TableName: 'aeropilot-questions'
+      });
+
+      const result = await this.docClient.send(command);
+
+      return {
+        success: true,
+        data: result.Items as any[] || []
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'getAllQuestions').message
+      };
+    }
+  }
+
   async saveQuestion(subjectId: number, question: any): Promise<DynamoDBResponse> {
     try {
       await this.ensureInitialized();

@@ -14,7 +14,7 @@ export default defineConfig(({mode}) => {
       'process.env.COGNITO_DOMAIN': JSON.stringify(mode === 'production' ? 'eu-central-1cfdn8kqio.auth.eu-central-1.amazoncognito.com' : env.COGNITO_DOMAIN),
       'process.env.COGNITO_CLIENT_ID': JSON.stringify(mode === 'production' ? '32d9ivfbtnpo69jaq7vld9p2jp' : env.COGNITO_CLIENT_ID),
       'process.env.COGNITO_REDIRECT_URI': JSON.stringify(mode === 'production' ? 'https://susiox.github.io/aeropilot-exam-prep/' : env.COGNITO_REDIRECT_URI),
-      'process.env.LAMBDA_TOKEN_EXCHANGE_URL': JSON.stringify(mode === 'production' ? 'https://tf53kvzipuiavhoorbp3ltt56i0rkjow.lambda-url.eu-central-1.on.aws/' : env.LAMBDA_TOKEN_EXCHANGE_URL),
+      'process.env.LAMBDA_TOKEN_EXCHANGE_URL': JSON.stringify(mode === 'production' ? 'https://tf53kvzipuiavhoorbp3ltt56i0rkjow.lambda-url.eu-central-1.on.aws/' : '/api/token'),
     },
     resolve: {
       alias: {
@@ -31,6 +31,13 @@ export default defineConfig(({mode}) => {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modify—file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
+      proxy: {
+        '/api/token': {
+          target: 'https://tf53kvzipuiavhoorbp3ltt56i0rkjow.lambda-url.eu-central-1.on.aws',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/token/, '/'),
+        },
+      },
     },
   };
 });

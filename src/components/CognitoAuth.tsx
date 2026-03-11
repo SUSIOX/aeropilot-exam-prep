@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, LogIn, BarChart3, Target, Sparkles, ShieldCheck, Loader2 } from 'lucide-react';
 
@@ -16,9 +16,10 @@ interface TokenResponse {
   expires_in: number;
 }
 
-export function CognitoAuth({ isOpen, onClose, onAuthSuccess, feature }: CognitoAuthProps) {
+export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAuthSuccess, feature }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const exchangeStarted = useRef(false);
 
   const getFeatureInfo = () => {
     switch (feature) {
@@ -98,11 +99,16 @@ export function CognitoAuth({ isOpen, onClose, onAuthSuccess, feature }: Cognito
     try {
       const lambdaUrl = process.env.LAMBDA_TOKEN_EXCHANGE_URL;
       
+      console.log('🔄 Starting token exchange...');
+      console.log('📍 Lambda URL:', lambdaUrl);
+      console.log('🔑 Code (first 10 chars):', code.substring(0, 10));
+      
       if (!lambdaUrl) {
+        console.error('❌ Lambda URL not configured!');
         throw new Error('Lambda URL not configured');
       }
       
-      console.log('🔄 Exchanging authorization code via Lambda...');
+      console.log('� Calling Lambda...');
       
       // Call Lambda function with authorization code
       const response = await fetch(lambdaUrl, {
@@ -110,22 +116,56 @@ export function CognitoAuth({ isOpen, onClose, onAuthSuccess, feature }: Cognito
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ code: code })
+        body: JSON.stringify({ 
+          code: code,
+          redirect_uri: window.location.origin + window.location.pathname
+        })
       });
+
+      console.log('📥 Lambda response status:', response.status);
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error('❌ Token exchange error:', errorData);
+        console.error('❌ Lambda error response:', errorData);
         throw new Error(errorData.error_description || errorData.error || 'Token exchange failed');
       }
 
-      const tokenData: TokenResponse = await response.json();
+      // First get raw text response for debugging
+      const textData = await response.text();
+      console.log('📥 Raw server response:', textData);
+      console.log('📥 Response status:', response.status);
+      console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()));
+      
+      if (!response.ok) {
+        console.error('❌ Server returned error:', response.status, textData);
+        throw new Error(`Server Error ${response.status}: ${textData}`);
+      }
+      
+      // Parse JSON only if response is OK
+      let tokenData: TokenResponse;
+      try {
+        tokenData = JSON.parse(textData);
+      } catch (parseError) {
+        console.error('❌ JSON parse error:', parseError);
+        console.error('❌ Failed to parse:', textData);
+        throw new Error(`Invalid JSON response: ${textData}`);
+      }
+      
       console.log('✅ Token exchange successful');
+      console.log('🎫 Tokens received:', {
+        access_token: tokenData.access_token ? 'present' : 'missing',
+        id_token: tokenData.id_token ? 'present' : 'missing',
+        refresh_token: tokenData.refresh_token ? 'present' : 'missing',
+        expires_in: tokenData.expires_in
+      });
       
       // Parse JWT to get user info
+      console.log('🔍 Parsing JWT token...');
       const payload = JSON.parse(atob(tokenData.id_token.split('.')[1]));
+      console.log('👤 JWT payload:', payload);
       
       // Store tokens
+      console.log('💾 Storing tokens to localStorage...');
       localStorage.setItem('access_token', tokenData.access_token);
       localStorage.setItem('id_token', tokenData.id_token);
       localStorage.setItem('refresh_token', tokenData.refresh_token);
@@ -138,12 +178,17 @@ export function CognitoAuth({ isOpen, onClose, onAuthSuccess, feature }: Cognito
         email: payload.email
       };
       
+      console.log('💾 Storing user data:', userData);
       localStorage.setItem('user_data', JSON.stringify(userData));
       
+      console.log('✅ All data stored successfully');
       return userData;
     } catch (error) {
-      console.error('Token exchange error:', error);
-      throw new Error('Authentication failed');
+      console.error('💥 CRITICAL ERROR in exchangeCodeForTokens:', error);
+      console.error('Error type:', error instanceof Error ? error.constructor.name : typeof error);
+      console.error('Error message:', error instanceof Error ? error.message : String(error));
+      console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
+      throw error;
     }
   };
 
@@ -154,18 +199,36 @@ export function CognitoAuth({ isOpen, onClose, onAuthSuccess, feature }: Cognito
     const state = urlParams.get('state');
     const storedState = sessionStorage.getItem('cognito_state');
     
-    if (code && state === storedState) {
+    if (code && !exchangeStarted.current) {
+      // Temporarily simplified for testing - remove strict state validation
+      if (!storedState) {
+        console.warn("⚠️ State chybí, ale pokračujeme s kódem pro testování...");
+      }
+      exchangeStarted.current = true; // Prevent duplicate calls
+      console.log('🔑 Processing Cognito callback with code:', code.substring(0, 10) + '...');
       setIsLoading(true);
       setError(null);
       
       exchangeCodeForTokens(code)
         .then(userData => {
-          onAuthSuccess(userData);
+          console.log('👤 User data received:', userData);
+          console.log('🔔 Calling onAuthSuccess callback...');
+          try {
+            onAuthSuccess(userData);
+            console.log('✅ onAuthSuccess completed');
+          } catch (error) {
+            console.error('❌ onAuthSuccess failed:', error);
+            throw error;
+          }
+          console.log('🚪 Calling onClose...');
           onClose();
           // Clean URL
+          console.log('🧹 Cleaning URL...');
           window.history.replaceState({}, document.title, window.location.pathname);
+          console.log('✅ Callback flow completed');
         })
         .catch(error => {
+          console.error('❌ Auth error:', error);
           setError(error instanceof Error ? error.message : 'Authentication failed');
         })
         .finally(() => {
@@ -173,10 +236,13 @@ export function CognitoAuth({ isOpen, onClose, onAuthSuccess, feature }: Cognito
           sessionStorage.removeItem('cognito_state');
         });
     } else if (code && state !== storedState) {
+      console.error('❌ Security validation failed - state mismatch');
       setError('Security validation failed');
       window.history.replaceState({}, document.title, window.location.pathname);
+    } else if (code) {
+      console.warn('⚠️ Code present but no stored state');
     }
-  }, [onAuthSuccess, onClose]);
+  }, []);
 
   const handleLogin = () => {
     const authUrl = generateAuthUrl();

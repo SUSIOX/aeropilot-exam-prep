@@ -53,12 +53,13 @@ exports.handler = async (event) => {
             });
         } else if (code) {
             // Authorization code flow
-            tokenParams = new URLSearchParams({
-                grant_type: 'authorization_code',
-                client_id: CLIENT_ID,
-                code: code,
-                redirect_uri: REDIRECT_URI
-            });
+            tokenParams = new URLSearchParams();
+            tokenParams.append('grant_type', 'authorization_code');
+            tokenParams.append('client_id', CLIENT_ID);
+            tokenParams.append('code', code);
+            // Use dynamic redirect_uri from request, fallback to env var
+            const redirectUri = body.redirect_uri || REDIRECT_URI;
+            tokenParams.append('redirect_uri', redirectUri);
         } else {
             throw new Error('Missing required parameters: code or refresh_token');
         }

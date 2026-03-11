@@ -1543,13 +1543,35 @@ export default function App() {
           isOpen={false}
           onClose={closeAuthPrompt}
           onAuthSuccess={async (userData) => {
+            console.log('🎯 onAuthSuccess called in SPLASH SCREEN');
+            console.log('📦 Received userData:', userData);
             try {
-              setUser({ id: parseInt(userData.id), username: userData.username });
+              console.log('👤 Setting user state...');
+              setUser({ id: 1, username: userData.username }); // Use fixed ID for Cognito users
+              console.log('✅ User state set');
+              
+              console.log('🔄 Setting userMode to logged-in...');
               setUserMode('logged-in');
+              console.log('✅ UserMode set to logged-in');
+              
+              console.log('📊 Setting view to dashboard...');
               setView('dashboard');
+              console.log('✅ View set to dashboard');
+              
+              // Force re-evaluation of authentication state
+              if (!cognitoAuthService.isAuthenticated()) {
+                console.warn('⚠️ Cognito auth state inconsistency detected');
+              } else {
+                console.log('✅ Cognito auth state verified');
+              }
+              
+              console.log('💾 Saving user profile to DynamoDB...');
               await dynamoDBService.saveUserProfile(userData.username);
+              console.log('✅ User profile saved');
+              
+              console.log('🎉 SPLASH SCREEN onAuthSuccess completed successfully!');
             } catch (error) {
-              console.error('Auth setup error:', error);
+              console.error('💥 SPLASH SCREEN Auth setup error:', error);
             }
           }}
           feature={authPromptFeature}
@@ -3674,9 +3696,18 @@ export default function App() {
         onAuthSuccess={async (userData) => {
           try {
             // Set user state
-            setUser({ id: parseInt(userData.id), username: userData.username });
+            setUser({ id: 1, username: userData.username }); // Use fixed ID for Cognito users
             setUserMode('logged-in');
             setView('dashboard');
+            
+            // Force re-evaluation of authentication state
+            setTimeout(() => {
+              if (cognitoAuthService.isAuthenticated()) {
+                console.log('✅ Cognito auth state confirmed');
+              } else {
+                console.warn('⚠️ Cognito auth state inconsistency detected');
+              }
+            }, 100);
             
             // Save user profile to DynamoDB (without password - handled by Cognito)
             await dynamoDBService.saveUserProfile(userData.username);

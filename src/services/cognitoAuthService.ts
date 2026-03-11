@@ -14,7 +14,8 @@ export interface UserData {
 
 export type UserRole = 'admin' | 'user' | 'guest';
 
-export const ADMIN_GROUP = 'aeropilot-admins';
+export const ADMIN_GROUP = 'Admins';
+export const USER_GROUP = 'Users';
 
 export class CognitoAuthService {
   private static instance: CognitoAuthService;
@@ -197,9 +198,16 @@ export class CognitoAuthService {
     if (!payload) return 'guest';
 
     const groups: string[] = payload['cognito:groups'] || [];
+    console.log('🔍 Debug - Cognito groups:', groups);
+    console.log('🔍 Debug - ADMIN_GROUP:', ADMIN_GROUP);
+    console.log('🔍 Debug - USER_GROUP:', USER_GROUP);
+    console.log('🔍 Debug - Is admin:', groups.includes(ADMIN_GROUP));
+    console.log('🔍 Debug - Is user:', groups.includes(USER_GROUP));
+    
     if (groups.includes(ADMIN_GROUP)) return 'admin';
+    if (groups.includes(USER_GROUP)) return 'user';
 
-    return 'user';
+    return 'guest'; // If no groups, treat as guest
   }
 
   isAdmin(): boolean {

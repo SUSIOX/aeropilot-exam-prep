@@ -62,7 +62,11 @@ export default function App() {
   });
   
   // Role-based access control
-  const [userRole, setUserRole] = useState<UserRole>(() => cognitoAuthService.getUserRole());
+  const [userRole, setUserRole] = useState<UserRole>(() => {
+    const role = cognitoAuthService.getUserRole();
+    console.log('🔍 Debug - Initial userRole:', role);
+    return role;
+  });
 
   // Landing Page Management
   const [showLandingPage, setShowLandingPage] = useState(() => {

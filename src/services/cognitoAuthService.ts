@@ -164,8 +164,7 @@ export class CognitoAuthService {
 
     const params = new URLSearchParams({
       client_id: clientId || '',
-      logout_uri: redirectUri || window.location.origin,
-      response_type: 'code'
+      logout_uri: redirectUri || window.location.origin
     });
 
     return `https://${domain}/logout?${params.toString()}`;

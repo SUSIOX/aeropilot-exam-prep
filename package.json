@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "test-key": "tsx test-scripts/verify-key.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

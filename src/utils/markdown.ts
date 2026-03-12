@@ -1,0 +1,38 @@
+// Simple Markdown to HTML converter
+export function markdownToHtml(markdown: string): string {
+  if (!markdown) return '';
+  
+  return markdown
+    // Headers
+    .replace(/^### (.*$)/gim, '<h3 class="text-lg font-bold mt-4 mb-2">$1</h3>')
+    .replace(/^## (.*$)/gim, '<h2 class="text-xl font-bold mt-4 mb-2">$1</h2>')
+    .replace(/^# (.*$)/gim, '<h1 class="text-2xl font-bold mt-4 mb-2">$1</h1>')
+    
+    // Bold
+    .replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold">$1</strong>')
+    
+    // Italic
+    .replace(/\*(.+?)\*/g, '<em class="italic">$1</em>')
+    
+    // Lists
+    .replace(/^\* (.+)/gim, '<li class="ml-4">• $1</li>')
+    .replace(/^- (.+)/gim, '<li class="ml-4">• $1</li>')
+    
+    // Line breaks
+    .replace(/\n\n/g, '</p><p class="mb-4">')
+    .replace(/\n/g, '<br />')
+    
+    // Wrap in paragraphs
+    .replace(/^(.+)/g, '<p class="mb-4">$1</p>');
+}
+
+// Sanitize HTML to prevent XSS
+export function sanitizeHtml(html: string): string {
+  return html
+    .replace(/<script[^>]*>.*?<\/script>/gi, '')
+    .replace(/<iframe[^>]*>.*?<\/iframe>/gi, '')
+    .replace(/<object[^>]*>.*?<\/object>/gi, '')
+    .replace(/<embed[^>]*>.*?<\/embed>/gi, '')
+    .replace(/javascript:/gi, '')
+    .replace(/on\w+\s*=/gi, '');
+}

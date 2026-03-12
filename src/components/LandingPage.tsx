@@ -61,15 +61,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGuestMode, onAuthSuc
       
       {/* Background header (non-clickable, under glass) */}
       <div className="absolute top-0 left-0 right-0 z-0">
-        <header className="border-b border-white/20 px-4 py-3 flex justify-between items-center bg-black/20 backdrop-blur-sm min-h-[60px] pointer-events-none">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 min-w-[40px] bg-white/10 backdrop-blur-sm text-white/60 flex items-center justify-center rounded-lg font-bold text-xl flex-shrink-0 border border-white/20">
+        <header className="border-b border-white/20 px-3 py-2 flex justify-between items-center bg-black/20 backdrop-blur-sm min-h-[50px] pointer-events-none">
+          <div className="flex items-center gap-1 sm:gap-2">
+            <div className="w-6 h-6 sm:w-8 sm:h-8 min-w-[24px] sm:min-w-[32px] bg-white/10 backdrop-blur-sm text-white/60 flex items-center justify-center rounded-lg font-bold text-sm sm:text-lg flex-shrink-0 border border-white/20">
               A
             </div>
-            <div className="min-w-0">
-              <h1 className="font-bold text-lg leading-tight text-white/80">Aeropilot Exam Prep</h1>
-              <div className="flex items-center gap-2 text-xs opacity-60 leading-tight">
-                <span className="w-2 h-2 rounded-full bg-green-500/60 flex-shrink-0"></span>
+            <div className="min-w-0 flex-1">
+              <h1 className="font-bold text-xs sm:text-sm leading-tight text-white/80 truncate">Aeropilot Exam Prep</h1>
+              <div className="flex items-center gap-1 text-[8px] sm:text-[10px] opacity-60 leading-tight">
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500/60 flex-shrink-0"></span>
                 <span className="truncate text-white/70">Online</span>
               </div>
             </div>
@@ -94,18 +94,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGuestMode, onAuthSuc
             </div>
           </nav>
 
-          <div className="flex items-center gap-2 sm:gap-3 opacity-60">
-            <div className="hidden sm:flex items-center h-10 px-3 bg-white/10 rounded-full min-w-0 border border-white/20">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-white truncate ml-1">Guest</span>
+          <div className="flex items-center gap-1 opacity-60">
+            <div className="w-6 h-6 sm:w-8 sm:h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20">
+              <div className="w-2.5 h-2.5 sm:w-3 sm:w-4 rounded-full bg-white/40"></div>
             </div>
-            <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20">
-              <div className="w-4 h-4 rounded-full bg-white/40"></div>
-            </div>
-            <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20">
-              <div className="w-4 h-4 rounded-full bg-white/40"></div>
-            </div>
-            <div className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest border border-white/30">
-              Simulace zkoušky
+            <div className="w-6 h-6 sm:w-8 sm:h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20">
+              <div className="w-2.5 h-2.5 sm:w-3 sm:w-4 rounded-full bg-white/40"></div>
             </div>
           </div>
         </header>
@@ -123,27 +117,27 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGuestMode, onAuthSuc
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="relative z-10 w-full max-w-md p-8 glass-panel rounded-3xl space-y-8 border border-white/20 bg-white/10 backdrop-blur-xl"
+        className="relative z-10 w-full max-w-xs mx-2 p-3 sm:p-4 glass-panel rounded-xl space-y-3 sm:space-y-4 border border-white/20 bg-white/10 backdrop-blur-xl"
       >
         {/* Logo and Title */}
-        <div className="text-center space-y-2">
-          <div className="w-16 h-16 bg-white/10 backdrop-blur-sm text-white/80 flex items-center justify-center rounded-2xl font-bold text-3xl mx-auto border border-white/20">
+        <div className="text-center space-y-1">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/10 backdrop-blur-sm text-white/80 flex items-center justify-center rounded-lg sm:rounded-xl font-bold text-xl sm:text-2xl mx-auto border border-white/20">
             A
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">Aeropilot Exam Prep</h1>
-          <p className="text-xs uppercase tracking-widest opacity-70 font-mono text-white">EASA ECQB PREP</p>
+          <h1 className="text-base sm:text-lg font-bold tracking-tight text-white">Aeropilot Exam Prep</h1>
+          <p className="text-[8px] sm:text-[10px] uppercase tracking-widest opacity-70 font-mono text-white">EASA ECQB PREP</p>
         </div>
 
         {/* Simple two-button interface */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="space-y-6"
+          className="space-y-3 sm:space-y-4"
         >
           {/* Cognito Login Button */}
           <button
             onClick={handleLoginClick}
-            className="w-full py-5 bg-white/20 backdrop-blur-sm text-white border border-white/30 rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-white/30 hover:scale-[1.02] transition-all"
+            className="w-full py-2.5 sm:py-3 bg-white/20 backdrop-blur-sm text-white border border-white/30 rounded-md sm:rounded-lg font-bold uppercase tracking-widest text-[10px] sm:text-xs hover:bg-white/30 hover:scale-[1.02] transition-all"
           >
             SIGN IN
           </button>
@@ -152,13 +146,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGuestMode, onAuthSuc
           <div className="text-center">
             <button 
               onClick={onGuestMode}
-              className="text-[12px] font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
+              className="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
             >
               Pokračovat jako DEMO host
             </button>
           </div>
 
-          <p className="text-center text-[10px] text-white/60">
+          <p className="text-center text-[6px] sm:text-[8px] text-white/60">
             Guest mode provides limited access • Sign in for full features
           </p>
         </motion.div>

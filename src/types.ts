@@ -49,7 +49,7 @@ export interface Stats {
   practicedUserQuestions?: number;
   practicedAiQuestions?: number;
   overallSuccess: number;
-  subjectStats: { name: string; rate: number }[];
+  subjectStats: { [subjectId: number]: { correctAnswers: number; totalAnswered: number } };
 }
 
 export type ViewMode = 'dashboard' | 'drill' | 'exam' | 'stats' | 'settings' | 'ai';

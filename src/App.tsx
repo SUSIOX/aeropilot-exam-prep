@@ -2,39 +2,40 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   LayoutDashboard, 
-  BookOpen, 
-  GraduationCap, 
-  BarChart3, 
-  Moon, 
-  Sun, 
-  ChevronLeft,
   ChevronRight, 
+  ChevronDown,
+  AlertCircle, 
   CheckCircle2, 
   XCircle, 
+  BookOpen, 
+  GraduationCap, 
+  Terminal, 
+  Binary, 
+  RotateCcw, 
+  RefreshCw, 
   Flag, 
   Clock, 
   ArrowLeft,
-  RotateCcw,
   Trophy,
   Settings,
   Upload,
   Download,
   ShieldCheck,
   User,
-  AlertCircle,
   Sparkles,
   Bot,
   HelpCircle,
   Cpu,
-  Terminal,
-  Binary,
   Languages,
   FileJson,
   X,
-  ChevronDown,
-  Filter,
+  ChevronLeft,
   Search,
-  Database
+  Database,
+  BarChart3,
+  Sun,
+  Moon,
+  Menu
 } from 'lucide-react';
 import { Subject, Question, Stats, ViewMode, DrillSettings } from './types';
 import { LearningEngine } from './lib/LearningEngine';
@@ -42,6 +43,9 @@ import { mockLOs, getAllLOs, importMockLOsToDB, generateBatchQuestions, getDetai
 import { DynamoDBStatus } from './components/DynamoDBStatus';
 import { AdminDashboard } from './components/AdminDashboard';
 import { CognitoAuth } from './components/CognitoAuth';
+import { useLanguage, LanguageButton, TranslatedText, TranslatedOption } from './utils/language';
+import { markdownToHtml, sanitizeHtml } from './utils/markdown';
+import { AICancellationManager, useAICancellation } from './utils/aiCancellation';
 import { LandingPage } from './components/LandingPage';
 import { dynamoCache } from './services/dynamoCache';
 import { dynamoDBService } from './services/dynamoService';
@@ -52,6 +56,9 @@ import { AccessDenied } from './components/AccessDenied';
 export default function App() {
   // Loading state for auth
   const [isAuthLoading, setIsAuthLoading] = useState(true);
+  
+  // AI cleanup on unmount
+  useAICancellation('App');
 
   // Guest/Login Mode Management
   const [userMode, setUserMode] = useState<'guest' | 'logged-in'>(() => {
@@ -113,13 +120,15 @@ export default function App() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [answered, setAnswered] = useState<string | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
-  const [language, setLanguage] = useState<'EN' | 'CZ'>('EN');
-  const [isTranslating, setIsTranslating] = useState(false);
   const [aiExplanation, setAiExplanation] = useState<string | null>(null);
   const [aiDetectedObjective, setAiDetectedObjective] = useState<string | null>(null);
   const [detailedExplanation, setDetailedExplanation] = useState<string | null>(null);
   const [isGeneratingDetailedExplanation, setIsGeneratingDetailedExplanation] = useState(false);
   const [isGeneratingAiExplanation, setIsGeneratingAiExplanation] = useState(false);
+  const [isRegeneratingExplanation, setIsRegeneratingExplanation] = useState(false);
+  const [isExpandedLO, setIsExpandedLO] = useState(false);
+  const [expandedLOContent, setExpandedLOContent] = useState<{id: string, text: string, type: string, level?: number} | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [examResults, setExamResults] = useState<{ score: number; total: number } | null>(null);
   const [timer, setTimer] = useState(0);
@@ -166,7 +175,6 @@ export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true); // Always true for static
   const [batchSize, setBatchSize] = useState<number>(5);
   const [questionsPerLO, setQuestionsPerLO] = useState<number>(2);
-  const [genLanguage, setGenLanguage] = useState<'EN' | 'CZ'>('EN');
   const [coveredLOs, setCoveredLOs] = useState<Set<string>>(new Set());
   const [selectedLicense, setSelectedLicense] = useState<'PPL' | 'SPL'>(() => {
     return (localStorage.getItem('selectedLicense') as 'PPL' | 'SPL') || 'PPL';
@@ -188,6 +196,7 @@ export default function App() {
   const [importStatus, setImportStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
   const [clearExisting, setClearExisting] = useState(false);
   const [importPassword, setImportPassword] = useState('');
+  const [isImportSectionOpen, setIsImportSectionOpen] = useState(false);
   const IMPORT_PASSWORD_HASH = '9b8769a4a742959a2d0298c36fb70623f2a2d38'; // SHA1 of 'aeropilot2025'
   const [userApiKey, setUserApiKey] = useState('');
   const [claudeApiKey, setClaudeApiKey] = useState('');
@@ -215,7 +224,14 @@ export default function App() {
       'claude-4-5-haiku-20251015': 'claude-haiku-4-5-20251001',
       'claude-4-6-opus-20260205': 'claude-opus-4-6',
     };
-    if (saved && modelMap[saved]) return modelMap[saved];
+    
+    // Clean up old models and migrate
+    if (saved && modelMap[saved]) {
+      console.log(`🔄 Migrating old model: ${saved} → ${modelMap[saved]}`);
+      localStorage.setItem('aiModel', modelMap[saved]);
+      return modelMap[saved];
+    }
+    
     return saved || 'gemini-flash-latest';
   });
   const [isVerifyingKey, setIsVerifyingKey] = useState(false);
@@ -244,6 +260,20 @@ export default function App() {
 
   // Engine instance (we use it for logic, but keep state in React for reactivity)
   const [examAnswers, setExamAnswers] = useState<Record<number, string>>({});
+
+  // Language management with centralized hook
+  const language = useLanguage(
+    questions,
+    currentQuestionIndex,
+    aiProvider,
+    aiModel,
+    userApiKey,
+    claudeApiKey,
+    setUserApiKey,
+    setClaudeApiKey,
+    setAiProvider,
+    setQuestions
+  );
 
   useEffect(() => {
     if (token) {
@@ -454,7 +484,7 @@ export default function App() {
     if (aiProvider === 'gemini' && !aiModel.startsWith('gemini')) {
       setAiModel('gemini-flash-latest');
     } else if (aiProvider === 'claude' && !aiModel.startsWith('claude')) {
-      setAiModel('claude-3-5-sonnet-20241022'); 
+      setAiModel('claude-sonnet-4-6'); 
     }
   }, [aiProvider, aiModel]);
 
@@ -462,6 +492,19 @@ export default function App() {
   useEffect(() => {
     const savedModel = localStorage.getItem('aiModel');
     if (savedModel) {
+      // Validate that saved model is still supported
+      const supportedModels = [
+        'gemini-flash-latest', 'gemini-2.5-flash', 'gemini-3.1-flash-lite-preview', 'gemini-2.5-pro', 'gemini-3.1-pro-preview',
+        'claude-sonnet-4-6', 'claude-haiku-4-5-20251001', 'claude-opus-4-6'
+      ];
+      
+      if (!supportedModels.includes(savedModel)) {
+        console.warn(`⚠️ Unsupported model detected: ${savedModel}, resetting to default`);
+        localStorage.setItem('aiModel', 'gemini-flash-latest');
+        setAiModel('gemini-flash-latest');
+        return;
+      }
+      
       if (savedModel.startsWith('claude') && aiProvider !== 'claude') {
         setAiProvider('claude');
       } else if (savedModel.startsWith('gemini') && aiProvider !== 'gemini') {
@@ -741,6 +784,7 @@ export default function App() {
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
+      language.resetTranslation(); // Reset translation when starting new drill
       setView('drill');
     } catch (err) {
       console.error("Failed to start drill:", err);
@@ -790,6 +834,7 @@ export default function App() {
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
+      language.resetTranslation(); // Reset translation when starting MIX
       setView('drill');
     } catch (err) {
       alert('Nepodařilo se načíst otázky pro MIX.');
@@ -836,9 +881,57 @@ export default function App() {
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
+      language.resetTranslation(); // Reset translation when starting errors practice
       setView('drill');
     } catch (err) {
       alert('Nepodařilo se načíst chyby.');
+    }
+  };
+
+  const startFlagged = async () => {
+    if (isGuestMode) {
+      showAuthPrompt('stats');
+      return;
+    }
+    
+    try {
+      // Get flagged question IDs from localStorage
+      const flags = JSON.parse(localStorage.getItem('question_flags') || '{}');
+      const flaggedIds = new Set(
+        Object.entries(flags)
+          .filter(([_, isFlagged]: [string, boolean]) => isFlagged)
+          .map(([id]) => Number(id))
+      );
+
+      if (flaggedIds.size === 0) {
+        alert('Nemáte žádné označené otázky k procvičení.');
+        return;
+      }
+
+      // Load all questions from DynamoDB across all subjects
+      let allQuestions: Question[] = [];
+      for (const subject of subjects) {
+        const qs = await loadStaticQuestions(subject.id);
+        allQuestions.push(...qs);
+      }
+
+      // Filter to only flagged questions
+      const flaggedQuestions = allQuestions.filter(q => flaggedIds.has(Number(q.id)));
+
+      if (flaggedQuestions.length === 0) {
+        alert('Nemáte žádné označené otázky k procvičení.');
+        return;
+      }
+
+      setSelectedSubject({ id: -2, name: 'Označené otázky', question_count: flaggedQuestions.length, success_rate: 0 });
+      setQuestions(flaggedQuestions);
+      setCurrentQuestionIndex(0);
+      setAnswered(null);
+      setShowExplanation(false);
+      setView('drill');
+    } catch (error) {
+      console.error('Error loading flagged questions:', error);
+      alert('Nepodařilo se načíst označené otázky.');
     }
   };
 
@@ -876,6 +969,7 @@ export default function App() {
       setExamAnswers({});
       setExamResults(null);
       setTimer(1800);
+      language.resetTranslation(); // Reset translation when starting exam
       setView('exam');
     } catch (err) {
       console.error("Failed to start exam:", err);
@@ -941,12 +1035,12 @@ export default function App() {
       perSubject[sid].total++;
       if (a.isCorrect) perSubject[sid].correct++;
     }
-    const subjectStats = subjects.map(s => ({
-      name: s.description || s.name,
-      rate: perSubject[s.id] ? perSubject[s.id].correct / perSubject[s.id].total : 0
-    })).filter(s => {
-      const sid = subjects.find(sub => sub.description === s.name || sub.name === s.name);
-      return sid ? (perSubject[sid.id]?.total || 0) > 0 : false;
+    const subjectStats: { [subjectId: number]: { correctAnswers: number; totalAnswered: number } } = {};
+    subjects.forEach(s => {
+      subjectStats[s.id] = {
+        correctAnswers: perSubject[s.id] ? perSubject[s.id].correct : 0,
+        totalAnswered: perSubject[s.id] ? perSubject[s.id].total : 0
+      };
     });
 
     // guest_stats (for guest mode display)
@@ -981,14 +1075,16 @@ export default function App() {
   };
 
   const jumpToRandomQuestion = () => {
-    if (questions.length <= 1) return;
-    let randomIndex = currentQuestionIndex;
+    if (questions.length === 0) return;
+    
+    let randomIndex = Math.floor(Math.random() * questions.length);
     while (randomIndex === currentQuestionIndex) {
       randomIndex = Math.floor(Math.random() * questions.length);
     }
     setCurrentQuestionIndex(randomIndex);
     setAnswered(null);
     setShowExplanation(false);
+    language.resetTranslation(); // Reset translation when changing question
   };
 
   const nextQuestion = () => {
@@ -999,7 +1095,11 @@ export default function App() {
       // Check if already answered in exam mode
       if (view === 'exam') {
         const nextQ = questions[nextIdx];
-        setAnswered(examAnswers[nextQ.id] || null);
+        if (nextQ && examAnswers[nextQ.id]) {
+          setAnswered(examAnswers[nextQ.id]);
+        } else {
+          setAnswered(null);
+        }
       } else {
         setAnswered(null);
       }
@@ -1008,93 +1108,11 @@ export default function App() {
       setAiExplanation(null);
       setAiDetectedObjective(null);
       setDetailedExplanation(null);
+      language.resetTranslation(); // Reset translation when changing question
     } else if (view === 'exam') {
       finishExam();
     } else {
       setView('dashboard');
-    }
-  };
-
-  // Auto-translate if language is CZ
-  useEffect(() => {
-    const q = questions[currentQuestionIndex];
-    if (language === 'CZ' && q && !q.text_cz && !isTranslating) {
-      const translate = async () => {
-        setIsTranslating(true);
-        try {
-          const translation = await translateQuestion(q, aiProvider === 'gemini' ? userApiKey : claudeApiKey, aiModel, aiProvider);
-          setQuestions(prev => prev.map(item => item.id === q.id ? { ...item, ...translation } : item));
-        } catch (err) {
-          console.error(err);
-        } finally {
-          setIsTranslating(false);
-        }
-      };
-      translate();
-    }
-  }, [currentQuestionIndex, language, questions]);
-  const handleToggleLanguage = async () => {
-    if (language === 'EN') {
-      const q = questions[currentQuestionIndex];
-      if (!q.text_cz) {
-        const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
-      if (!currentApiKey) {
-        const key = prompt(`⚠️ Pro použití AI je nutný API klíč
-Vložte Gemini nebo Claude API klíč (aktuálně vybráno: ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'}).
-
-💡 Klíč se automaticky rozpozná.
-V nastavení lze změnit defaultni model.`);
-        if (key) {
-          // Inteligentní detekce typu klíče
-          if (key.startsWith('AIza')) {
-            // Gemini klíč
-            setUserApiKey(key);
-            if (aiProvider !== 'gemini') {
-              setAiProvider('gemini');
-              console.log('🔄 Automaticky přepnuto na Gemini provider');
-            }
-          } else if (key.startsWith('sk-ant-')) {
-            // Claude klíč
-            setClaudeApiKey(key);
-            if (aiProvider !== 'claude') {
-              setAiProvider('claude');
-              console.log('🔄 Automaticky přepnuto na Claude provider');
-            }
-          } else {
-            // Neznámý formát - uložit podle aktuálního provideru
-            if (aiProvider === 'gemini') {
-              setUserApiKey(key);
-            } else {
-              setClaudeApiKey(key);
-            }
-            console.warn('⚠️ Neznámý formát API klíče, uloženo podle aktuálního provideru');
-          }
-        } else {
-          return;
-        }
-      }
-        setIsTranslating(true);
-        try {
-          const translation = await translateQuestion(q, aiProvider === 'gemini' ? userApiKey : claudeApiKey, aiModel, aiProvider);
-          setQuestions(prev => prev.map(item => item.id === q.id ? { ...item, ...translation } : item));
-        } catch (error: any) {
-          console.error("Translation failed:", error);
-          if (error?.message === 'API_KEY_MISSING') {
-            alert('Chybí API klíč. Vložte prosím API klíč (Gemini nebo Claude).');
-          } else if (error?.message === 'API_KEY_INVALID') {
-            alert('Vložený API klíč není platný.');
-          } else if (error?.message?.toLowerCase().includes('429') || error?.message?.toLowerCase().includes('resource_exhausted') || error?.message?.toLowerCase().includes('rate exceeded')) {
-            alert('Limit požadavků (Rate Limit) byl vyčerpán. Prosím počkejte minutu.');
-          } else {
-            alert('Překlad se nezdařilo vygenerovat.');
-          }
-        } finally {
-          setIsTranslating(false);
-        }
-      }
-      setLanguage('CZ');
-    } else {
-      setLanguage('EN');
     }
   };
 
@@ -1174,7 +1192,14 @@ V nastavení lze změnit defaultni model.`);
             setIsGeneratingAiExplanation(false);
             // Backfill to DynamoDB if found only in localStorage
             const cacheKey = `${q.subject_id}_${q.id}`;
-            dynamoDBService.saveExplanation(cacheKey, parsed.explanation, parsed.detailedExplanation || null, aiProvider as 'gemini' | 'claude', aiModel).catch(() => {});
+            dynamoDBService.saveExplanationWithObjective(
+              cacheKey, 
+              parsed.explanation, 
+              parsed.detailedExplanation || null, 
+              null, // No objective in localStorage data
+              aiProvider as 'gemini' | 'claude', 
+              aiModel
+            ).catch(() => {});
             return;
           }
         } catch (error) {}
@@ -1221,13 +1246,19 @@ V nastavení lze změnit defaultni model.`);
       // Save AI explanation to DynamoDB
       try {
         const cacheKey = `${q.subject_id}_${q.id}`;
-        await dynamoDBService.saveExplanation(
+        await dynamoDBService.saveExplanationWithObjective(
           cacheKey,
           result.explanation,
           null,
+          result.objective || null,
           aiProvider as 'gemini' | 'claude',
           aiModel
         );
+        
+        // Also save the LO directly to the question if it's an AI-generated question
+        if (q.source === 'ai' && result.objective) {
+          dynamoDBService.updateQuestionLO(q.questionId || q.id, result.objective).catch(() => {});
+        }
       } catch (error) {
         // Silent fail - localStorage fallback below
       }
@@ -1275,6 +1306,86 @@ V nastavení lze změnit defaultni model.`);
       }
     } finally {
       setIsGeneratingAiExplanation(false);
+    }
+  };
+
+  const handleRegenerateExplanation = async () => {
+    const q = questions[currentQuestionIndex];
+    if (!q) return;
+
+    setIsRegeneratingExplanation(true);
+    try {
+      // For guest mode, show login prompt for advanced AI features
+      if (isGuestMode && !userApiKey && !claudeApiKey) {
+        showAuthPrompt('ai');
+        setIsRegeneratingExplanation(false);
+        return;
+      }
+
+      const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
+      if (!currentApiKey) {
+        const key = prompt(`⚠️ Pro použití AI je nutný API klíč
+Vložte Gemini nebo Claude API klíč (aktuálně vybráno: ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'}).
+Klíč bude uložen pouze ve vašem prohlížeči.`);
+        if (key) {
+          if (aiProvider === 'gemini') {
+            setUserApiKey(key);
+          } else {
+            setClaudeApiKey(key);
+          }
+        } else {
+          setIsRegeneratingExplanation(false);
+          return;
+        }
+      }
+
+      // Cancel any existing AI operations
+      AICancellationManager.cancelAllOperations();
+
+      const lo = allLOs.find(l => l.id === q.lo_id);
+      const controller = AICancellationManager.createController('regenerate');
+      
+      const explanation = await getDetailedExplanation(
+        q, 
+        lo, 
+        aiProvider === 'gemini' ? userApiKey : claudeApiKey, 
+        aiModel, 
+        aiProvider,
+        controller.signal
+      );
+      
+      setAiExplanation(explanation.explanation);
+      setAiDetectedObjective(explanation.objective || null);
+      
+      // Clear detailed explanation when regenerating
+      setDetailedExplanation(null);
+      
+      // Save to cache
+      const cacheKey = `${q.subject_id}_${q.id}`;
+      dynamoDBService.saveExplanationWithObjective(
+        cacheKey, 
+        explanation.explanation, 
+        null, 
+        explanation.objective || null, 
+        aiProvider as 'gemini' | 'claude', 
+        aiModel
+      ).catch(() => {});
+      
+      // Also save the LO directly to the question if it's an AI-generated question
+      if (q.source === 'ai' && explanation.objective) {
+        dynamoDBService.updateQuestionLO(q.questionId || q.id, explanation.objective).catch(() => {});
+      }
+      
+    } catch (error: any) {
+      console.error("Error regenerating explanation:", error);
+      if (error?.message === 'Operation cancelled') {
+        console.log('Explanation regeneration cancelled');
+      } else {
+        alert(`Vysvětlení se nepodařilo vygenerovat. Chyba: ${error?.message || 'Neznámá chyba'}`);
+      }
+    } finally {
+      setIsRegeneratingExplanation(false);
+      AICancellationManager.cleanupOperation('regenerate');
     }
   };
 
@@ -1446,6 +1557,7 @@ V nastavení lze změnit defaultni model.`);
     setCurrentQuestionIndex(0);
     setAnswered(null);
     setShowExplanation(false);
+    language.resetTranslation(); // Reset translation when opening from syllabus
     setView('drill');
   };
 
@@ -1532,7 +1644,7 @@ V nastavení lze změnit defaultni model.`);
       
       for (let i = 0; i < targets.length; i += CHUNK_SIZE) {
         const chunk = targets.slice(i, i + CHUNK_SIZE);
-        const chunkResults = await generateBatchQuestions(chunk, questionsPerLO, genLanguage, effectiveApiKey, aiModel, aiProvider, selectedLicense);
+        const chunkResults = await generateBatchQuestions(chunk, questionsPerLO, language.generateLanguage, effectiveApiKey, aiModel, aiProvider, selectedLicense);
         allResults.push(...chunkResults);
         setBatchResults([...allResults]); // Update UI incrementally
       }
@@ -1815,7 +1927,7 @@ V nastavení lze změnit defaultni model.`);
       <header className="border-b border-[var(--line)] px-4 py-3 flex justify-between items-center sticky top-0 bg-[var(--bg)] z-50 min-h-[60px]">
         {/* Left section - Logo and title (always visible) */}
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => setView('dashboard')}>
-          <div className="w-10 h-10 min-w-[40px] bg-[var(--ink)] text-[var(--ink-text)] flex items-center justify-center rounded-lg font-bold text-xl flex-shrink-0 group-hover:scale-105 transition-transform">
+          <div className="w-10 h-10 min-w-[40px] bg-gray-600 dark:bg-gray-700 text-white flex items-center justify-center rounded-lg font-bold text-xl flex-shrink-0 group-hover:scale-105 transition-transform">
             A
           </div>
           <div className="min-w-0">
@@ -1827,7 +1939,7 @@ V nastavení lze změnit defaultni model.`);
           </div>
         </div>
 
-        {/* Center navigation - Fixed items (always visible on mobile) */}
+        {/* Desktop navigation - Hidden on mobile */}
         <nav className="hidden md:flex gap-4 lg:gap-6 items-center">
           <button onClick={() => setView('dashboard')} className={`text-xs uppercase tracking-widest font-semibold flex items-center gap-2 whitespace-nowrap transition-opacity ${view === 'dashboard' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}>
             <LayoutDashboard size={14} className="flex-shrink-0" /> 
@@ -1860,10 +1972,27 @@ V nastavení lze změnit defaultni model.`);
 
         {/* Right section - Desktop vs Mobile layout */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Fixed controls (always visible) */}
+          {/* Mobile translate button - Only visible for English questions */}
+          <LanguageButton 
+            question={questions[currentQuestionIndex]} 
+            language={language} 
+            mode="mobile" 
+            className="opacity-50"
+          />
+
+          {/* Mobile menu button - Only visible on mobile */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-[var(--ink)] hover:text-[var(--ink-text)] transition-colors flex-shrink-0"
+            title="Menu"
+          >
+            <Menu size={18} />
+          </button>
+
+          {/* Fixed controls (hidden on mobile, visible on tablet+) */}
           <button 
             onClick={() => setDarkMode(!darkMode)}
-            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[var(--ink)] hover:text-[var(--ink-text)] transition-colors flex-shrink-0"
+            className="hidden md:flex w-10 h-10 items-center justify-center rounded-full hover:bg-[var(--ink)] hover:text-[var(--ink-text)] transition-colors flex-shrink-0"
             title="Přepnout tmavý režim"
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
@@ -1871,7 +2000,7 @@ V nastavení lze změnit defaultni model.`);
 
           <button 
             onClick={() => setView('settings')}
-            className={`w-10 h-10 flex items-center justify-center rounded-full transition-colors flex-shrink-0 ${view === 'settings' ? 'bg-[var(--ink)] text-[var(--ink-text)]' : 'hover:bg-[var(--ink)] hover:text-[var(--ink-text)]'}`}
+            className={`hidden md:flex w-10 h-10 items-center justify-center rounded-full transition-colors flex-shrink-0 ${view === 'settings' ? 'bg-[var(--ink)] text-[var(--ink-text)]' : 'hover:bg-[var(--ink)] hover:text-[var(--ink-text)]'}`}
             title="Nastavení"
           >
             <Settings size={18} />
@@ -1881,17 +2010,17 @@ V nastavení lze změnit defaultni model.`);
           <div className="hidden xl:flex items-center gap-2">
             {/* Guest/User status */}
             {isGuestMode ? (
-              <button
-                onClick={() => showAuthPrompt('stats')}
-                className="hidden sm:flex items-center h-10 px-3 bg-[var(--badge-bg)] rounded-full min-w-0 hover:bg-[var(--line)] transition-colors"
-              >
-                <User size={12} className="opacity-50 flex-shrink-0" />
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--ink)] truncate ml-1">Guest</span>
-              </button>
+              <button 
+              onClick={() => showAuthPrompt('stats')}
+              className="hidden sm:flex items-center h-10 px-3 text-gray-600 dark:text-gray-300 rounded-full min-w-0 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            >
+              <User size={12} className="opacity-50 flex-shrink-0" />
+              <span className="text-[10px] font-bold uppercase tracking-widest truncate ml-1">Guest</span>
+            </button>
             ) : (
-              <div className="hidden sm:flex items-center h-10 px-3 bg-[var(--badge-bg)] rounded-full min-w-0">
+              <div className="hidden sm:flex items-center h-10 px-3 text-gray-600 dark:text-gray-300 rounded-full min-w-0">
                 <User size={12} className="opacity-50 flex-shrink-0" />
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--ink)] truncate ml-1">{user?.username}</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest truncate ml-1">{user?.username}</span>
                 <button 
                   onClick={handleLogout}
                   className="ml-2 p-1 hover:text-rose-500 transition-colors rounded flex-shrink-0"
@@ -1905,27 +2034,27 @@ V nastavení lze změnit defaultni model.`);
             {/* Exam simulation button */}
             <button 
               onClick={startExam}
-              className="bg-[var(--ink)] text-[var(--ink-text)] px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform"
+              className="bg-gray-600 dark:bg-gray-700 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform"
             >
               Simulace zkoušky
             </button>
           </div>
 
-          {/* Mobile/Tablet layout - scrollable overflow */}
+          {/* Tablet layout - scrollable overflow */}
           <div className="hidden md:flex xl:hidden items-center gap-2 overflow-x-auto scrollbar-hide max-w-[150px] lg:max-w-[200px]">
             {/* Guest/User status - scrollable */}
             {isGuestMode ? (
               <button
-                onClick={() => showAuthPrompt('stats')}
-                className="hidden sm:flex items-center h-10 px-3 bg-[var(--badge-bg)] rounded-full min-w-0 hover:bg-[var(--line)] transition-colors flex-shrink-0"
-              >
-                <User size={12} className="opacity-50 flex-shrink-0" />
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--ink)] truncate ml-1">Guest</span>
-              </button>
+              onClick={() => showAuthPrompt('stats')}
+              className="hidden sm:flex items-center h-10 px-3 text-gray-600 dark:text-gray-300 rounded-full min-w-0 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex-shrink-0"
+            >
+              <User size={12} className="opacity-50 flex-shrink-0" />
+              <span className="text-[10px] font-bold uppercase tracking-widest truncate ml-1">Guest</span>
+            </button>
             ) : (
-              <div className="hidden sm:flex items-center h-10 px-3 bg-[var(--badge-bg)] rounded-full min-w-0 flex-shrink-0">
+              <div className="hidden sm:flex items-center h-10 px-3 text-gray-600 dark:text-gray-300 rounded-full min-w-0 flex-shrink-0">
                 <User size={12} className="opacity-50 flex-shrink-0" />
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--ink)] truncate ml-1">{user?.username}</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest truncate ml-1">{user?.username}</span>
                 <button 
                   onClick={handleLogout}
                   className="ml-2 p-1 hover:text-rose-500 transition-colors rounded flex-shrink-0"
@@ -1939,7 +2068,7 @@ V nastavení lze změnit defaultni model.`);
             {/* Exam simulation button - scrollable */}
             <button 
               onClick={startExam}
-              className="bg-[var(--ink)] text-[var(--ink-text)] px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform flex-shrink-0"
+              className="bg-gray-600 dark:bg-gray-700 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform flex-shrink-0"
             >
               Test
             </button>
@@ -1947,6 +2076,161 @@ V nastavení lze změnit defaultni model.`);
         </div>
       </header>
       )}
+
+      {/* Mobile Menu - Full screen overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 md:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <motion.div
+              initial={{ y: -100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -100, opacity: 0 }}
+              className="glass-panel border-b border-[var(--line)] p-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Mobile menu header */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-16 h-16 bg-gray-600 dark:bg-gray-700 text-white flex items-center justify-center rounded-2xl font-bold text-3xl mb-6">
+                    A
+                  </div>
+                  <div>
+                    <h2 className="font-bold text-lg">Aeropilot Exam Prep</h2>
+                    <div className="flex items-center gap-2 text-xs opacity-60">
+                      <span className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                      <span>{isOnline ? 'Online' : 'Offline'}</span>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[var(--ink)] hover:text-[var(--ink-text)] transition-colors"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {/* Mobile navigation */}
+              <nav className="space-y-2">
+                <button
+                  onClick={() => {
+                    setView('dashboard');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${view === 'dashboard' ? 'bg-[var(--ink)] text-[var(--ink-text)]' : 'hover:bg-[var(--ink)] hover:text-[var(--ink-text)]'}`}
+                >
+                  <LayoutDashboard size={18} />
+                  <span className="font-semibold">Dashboard</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    isGuestMode ? showAuthPrompt('stats') : setView('stats');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${view === 'stats' ? 'bg-[var(--ink)] text-[var(--ink-text)]' : 'hover:bg-[var(--ink)] hover:text-[var(--ink-text)]'}`}
+                >
+                  <BarChart3 size={18} />
+                  <span className="font-semibold">Statistiky</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    setSyllabusOpen(true);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${syllabusOpen ? 'bg-[var(--ink)] text-[var(--ink-text)]' : 'hover:bg-[var(--ink)] hover:text-[var(--ink-text)]'}`}
+                >
+                  <BookOpen size={18} />
+                  <span className="font-semibold">Osnovy</span>
+                </button>
+
+                {userApiKey && (
+                  <button
+                    onClick={() => {
+                      isGuestMode ? showAuthPrompt('ai') : setView('ai');
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${view === 'ai' ? 'bg-[var(--ink)] text-[var(--ink-text)]' : 'hover:bg-[var(--ink)] hover:text-[var(--ink-text)]'}`}
+                  >
+                    <Sparkles size={18} />
+                    <span className="font-semibold">AI Generátor</span>
+                  </button>
+                )}
+
+                <div className="border-t border-[var(--line)] pt-2 mt-2">
+                  <button
+                    onClick={() => {
+                      setDarkMode(!darkMode);
+                    }}
+                    className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-[var(--ink)] hover:text-[var(--ink-text)] transition-colors"
+                  >
+                    {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+                    <span className="font-semibold">{darkMode ? 'Světlý režim' : 'Tmavý režim'}</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setView('settings');
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${view === 'settings' ? 'bg-[var(--ink)] text-[var(--ink-text)]' : 'hover:bg-[var(--ink)] hover:text-[var(--ink-text)]'}`}
+                  >
+                    <Settings size={18} />
+                    <span className="font-semibold">Nastavení</span>
+                  </button>
+                </div>
+
+                {/* User status and exam button */}
+                <div className="border-t border-[var(--line)] pt-2 mt-2 space-y-2">
+                  {isGuestMode ? (
+                    <button
+                      onClick={() => {
+                        showAuthPrompt('stats');
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="w-full flex items-center gap-3 p-3 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    >
+                      <User size={18} />
+                      <span className="font-semibold">Guest - Přihlásit se</span>
+                    </button>
+                  ) : (
+                    <div className="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-300 rounded-lg">
+                      <User size={18} />
+                      <span className="font-semibold">{user?.username}</span>
+                      <button
+                        onClick={() => {
+                          handleLogout();
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="ml-auto p-2 hover:text-rose-500 transition-colors rounded"
+                      >
+                        <XCircle size={18} />
+                      </button>
+                    </div>
+                  )}
+
+                  <button
+                    onClick={() => {
+                      startExam();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="w-full bg-gray-600 dark:bg-gray-700 text-white p-3 rounded-lg font-bold uppercase tracking-widest hover:scale-105 transition-transform"
+                  >
+                    Simulace zkoušky
+                  </button>
+                </div>
+              </nav>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <main className="max-w-7xl mx-auto p-6">
         <AnimatePresence mode="wait">
@@ -1956,22 +2240,22 @@ V nastavení lze změnit defaultni model.`);
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="space-y-8"
+              className="space-y-4"
             >
               {/* Stats Overview */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="p-6 border border-[var(--line)] rounded-2xl space-y-2">
-                  <p className="col-header">
-                    {isGuestMode ? 'Úspěšnost v této session' : 'Celková úspěšnost'}
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-1 sm:gap-2 md:gap-4">
+                <div className="p-1 sm:p-2 md:p-6 border border-[var(--line)] rounded sm:rounded-lg md:rounded-2xl space-y-0 sm:space-y-0.5 md:space-y-2">
+                  <p className="col-header text-[8px] sm:text-[10px] md:text-sm">
+                    {isGuestMode ? 'Úspěšnost v session' : 'Celková úspěšnost'}
                   </p>
-                  <div className="flex items-end gap-2">
-                    <span className="text-4xl font-mono font-bold">
+                  <div className="flex items-end gap-0 sm:gap-0.5 md:gap-2">
+                    <span className="text-sm sm:text-lg md:text-4xl font-mono font-bold">
                       {(() => {
                         const currentStats = isGuestMode ? loadGuestStats() : stats;
                         return currentStats ? Math.round(currentStats.overallSuccess * 100) : 0;
                       })()}%
                     </span>
-                    <div className="h-2 flex-1 bg-[var(--line)] rounded-full overflow-hidden mb-2">
+                    <div className="h-0.5 sm:h-0.5 md:h-2 flex-1 bg-[var(--line)] rounded-full overflow-hidden mb-0 sm:mb-0.5 md:mb-2">
                       <div 
                         className="h-full bg-[var(--ink)] transition-all duration-1000" 
                         style={{ 
@@ -1984,61 +2268,68 @@ V nastavení lze změnit defaultni model.`);
                     </div>
                   </div>
                 </div>
-                <div className="p-6 border border-[var(--line)] rounded-2xl space-y-2">
-                  <p className="col-header">
+                <div className="p-1 sm:p-2 md:p-6 border border-[var(--line)] rounded sm:rounded-lg md:rounded-2xl space-y-0 sm:space-y-0.5 md:space-y-2">
+                  <p className="col-header text-[8px] sm:text-[10px] md:text-sm">
                     {isGuestMode ? 'Odpovědi v session' : 'Databáze otázek'}
                   </p>
-                  <p className="text-4xl font-mono font-bold">
+                  <p className="text-sm sm:text-lg md:text-4xl font-mono font-bold">
                     {(() => {
                       if (isGuestMode) {
                         const guestStats = loadGuestStats();
                         return guestStats ? guestStats.totalAnswers : 0;
+                      } else {
+                        return stats ? (stats.totalQuestions || 0) : 0;
                       }
-                      return (
-                        <span className="tabular-nums">
-                          {stats?.userQuestions || 0}
-                          <span className="opacity-30">/</span>
-                          {stats?.aiQuestions || 0}
-                        </span>
-                      );
+                    })()}
+                    {(() => {
+                      if (!isGuestMode && stats) {
+                        return (
+                          <span className="text-sm sm:text-base md:text-lg opacity-60 ml-2">
+                            {stats.userQuestions || 0}/{stats.aiQuestions || 0}
+                          </span>
+                        );
+                      }
+                      return null;
                     })()}
                   </p>
-                  <p className="text-[10px] uppercase tracking-widest opacity-40 font-bold">
-                    {isGuestMode ? 'Zodpovězeno' : 'Uživatel / EASA'}
+                  <p className="text-[8px] sm:text-[10px] md:text-sm opacity-50">
+                    {isGuestMode ? 'otázek' : (stats ? `otázek • uživatel/EASA` : 'otázek')}
                   </p>
                 </div>
-                <div className="p-6 border border-[var(--line)] rounded-2xl space-y-2">
-                  <p className="col-header">
+                <div className="p-1 sm:p-2 md:p-6 border border-[var(--line)] rounded sm:rounded-lg md:rounded-2xl space-y-0 sm:space-y-0.5 md:space-y-2">
+                  <p className="col-header text-[8px] sm:text-[10px] md:text-sm">
                     {isGuestMode ? 'Aktuální předmět' : 'Procvičeno otázek'}
                   </p>
-                  <p className="text-4xl font-mono font-bold">
+                  <p className="text-sm sm:text-lg md:text-4xl font-mono font-bold">
                     {(() => {
                       if (isGuestMode) {
-                        const gs = loadGuestStats();
-                        return gs ? gs.practicedQuestions : 0;
+                        return selectedSubject ? selectedSubject.name : 'Nezvoleno';
+                      } else {
+                        const practiced = stats ? (stats.practicedQuestions || 0) : 0;
+                        const total = stats ? (stats.totalQuestions || 0) : 0;
+                        const percentage = total > 0 ? Math.round((practiced / total) * 100) : 0;
+                        return (
+                          <>
+                            {practiced.toLocaleString()}
+                            {total > 0 && (
+                              <span className="text-sm sm:text-base md:text-lg opacity-60 ml-2">
+                                {percentage}%
+                              </span>
+                            )}
+                          </>
+                        );
                       }
-                      return (
-                        <span className="tabular-nums">
-                          {stats?.practicedQuestions || 0}
-                          <span className="text-sm opacity-40">/ {stats?.totalQuestions}</span>
-                        </span>
-                      );
                     })()}
                   </p>
-                  <p className="text-[10px] uppercase tracking-widest opacity-40 font-bold">
-                    {isGuestMode ? 'Otázek k dispozici' : 'Procvičeno / Celkem'}
+                  <p className="text-[8px] sm:text-[10px] md:text-sm opacity-50">
+                    {isGuestMode ? '' : (stats && stats.overallSuccess < 1 ? 'Dostupné' : '')}
                   </p>
-                  {stats?.practicedUserQuestions || stats?.practicedAiQuestions ? (
-                    <p className="text-[9px] opacity-50">
-                      {stats?.practicedUserQuestions || 0}u / {stats?.practicedAiQuestions || 0}easa
-                    </p>
-                  ) : null}
                 </div>
-                <div className="p-6 border border-[var(--line)] rounded-2xl space-y-2">
-                  <p className="col-header">
+                <div className="p-1 sm:p-2 md:p-6 border border-[var(--line)] rounded sm:rounded-lg md:rounded-2xl space-y-0 sm:space-y-0.5 md:space-y-2">
+                  <p className="col-header text-[8px] sm:text-[10px] md:text-sm">
                     {isGuestMode ? 'Session čas' : 'Aktuální licence'}
                   </p>
-                  <p className="text-4xl font-mono font-bold">
+                  <p className="text-sm sm:text-lg md:text-4xl font-mono font-bold">
                     {(() => {
                       if (isGuestMode) {
                         const sessionStart = localStorage.getItem(`${user?.id || 'guest'}:session_start`);
@@ -2048,25 +2339,25 @@ V nastavení lze změnit defaultni model.`);
                           const diff = Math.floor((now.getTime() - start.getTime()) / 60000);
                           return (
                             <>
-                              {Math.min(diff, 999)}
-                              <span className="text-sm opacity-40"> min</span>
+                              {Math.min(diff, 99)}
+                              <span className="text-[8px] sm:text-[10px] md:text-sm opacity-40 ml-0">min</span>
                             </>
                           );
                         }
                         return (
                           <>
                             0
-                            <span className="text-sm opacity-40"> min</span>
+                            <span className="text-[8px] sm:text-[10px] md:text-sm opacity-40 ml-0">min</span>
                           </>
                         );
                       }
                       return (
-                        <span className="flex gap-2">
+                        <span className="flex gap-0.5 sm:gap-1 md:gap-2">
                           {(['PPL', 'SPL'] as const).map(lic => (
                             <button
                               key={lic}
                               onClick={() => { setSelectedLicense(lic); localStorage.setItem('selectedLicense', lic); }}
-                              className={`px-3 py-1 rounded-full text-[10px] font-bold transition-all ${selectedLicense === lic ? 'bg-[var(--ink)] text-[var(--ink-text)]' : 'border border-[var(--line)] opacity-50 hover:opacity-80'}`}
+                              className={`w-[3rem] sm:w-[3.5rem] md:w-[4rem] px-1 sm:px-1.5 md:px-3 py-1 rounded-full text-[6px] sm:text-[8px] font-bold transition-all ${selectedLicense === lic ? 'bg-gray-600 dark:bg-gray-700 text-white' : 'border border-gray-400 dark:border-gray-600 text-gray-600 dark:text-gray-400 opacity-50 hover:opacity-80'}`}
                             >
                               {lic === 'PPL' ? 'PPL(A)' : 'SPL'}
                             </button>
@@ -2075,7 +2366,7 @@ V nastavení lze změnit defaultni model.`);
                       );
                     })()}
                   </p>
-                  <p className="text-[10px] uppercase tracking-widest opacity-40 font-bold">
+                  <p className="text-[8px] sm:text-[10px] md:text-sm opacity-50">
                     {isGuestMode ? 'Délka session' : 'Licence'}
                   </p>
                 </div>
@@ -2087,48 +2378,49 @@ V nastavení lze změnit defaultni model.`);
                   <h2 className="font-bold text-2xl">Předměty EASA</h2>
                   <button 
                     onClick={startMix}
-                    className="flex items-center gap-2 bg-[var(--ink)] text-[var(--ink-text)] px-8 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-lg"
+                    className="flex items-center gap-2 bg-gray-600 dark:bg-gray-700 text-white px-8 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-lg"
                   >
                     <RotateCcw size={14} /> MIX
                   </button>
                 </div>
                 <div className="border-t border-[var(--line)]">
-                  <div className="data-row opacity-40 uppercase text-[10px] tracking-widest font-bold cursor-default hover:bg-transparent hover:text-inherit border-b-0">
-                    <div className="flex justify-center"></div>
-                    <div className="flex items-center">Předmět</div>
-                    <div className="flex justify-center">OTÁZKY</div>
-                    <div className="flex justify-center">Úspěšnost</div>
-                    <div className="flex justify-end">Akce</div>
+                  <div className="flex items-center py-3 px-4 border-b border-[var(--line)] opacity-40 uppercase text-[10px] sm:text-xs tracking-widest font-bold cursor-default">
+                    <div className="hidden sm:flex justify-center w-8 flex-shrink-0"></div>
+                    <div className="flex items-center flex-1">Předmět</div>
+                    <div className="flex justify-end gap-4 sm:gap-8">
+                      <div className="flex justify-center">OTÁZKY</div>
+                      <div className="flex justify-center">Úspěšnost</div>
+                    </div>
+                    <div className="hidden sm:flex justify-end w-8 flex-shrink-0">Akce</div>
                   </div>
 
                   {subjects.map((s) => (
                     <div 
                       key={s.id} 
                       onClick={() => startDrill(s)}
-                      className="data-row group"
+                      className="flex items-center py-3 px-4 border-b border-[var(--line)] hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
                     >
-                      <div className="flex justify-center">
+                      <div className="hidden sm:flex justify-center w-8 flex-shrink-0">
                         <BookOpen size={16} className="opacity-40 group-hover:opacity-100" />
                       </div>
-                      <div className="flex items-center min-w-0">
-                        <span className="font-medium truncate">{s.description}</span>
-                        <span className="text-xs opacity-50 ml-2 truncate">{s.name}</span>
+
+                      <div className="flex items-center min-w-0 flex-1">
+                        <span className="font-medium text-sm">{s.description}</span>
+                        <span className="hidden sm:inline text-xs opacity-50 ml-2 truncate">{s.name}</span>
                       </div>
-                      <div className="font-mono text-xs flex justify-center">
-                        {(s.ai_count || 0) > 0 ? (
-                          <span className="opacity-60">
-                            {s.user_count || 0}/{s.ai_count}
-                          </span>
-                        ) : (
-                          <span className="opacity-60">
-                            {s.question_count || 0}
-                          </span>
-                        )}
+
+                      <div className="flex justify-end gap-4">
+                        <div className="font-mono text-xs flex justify-center">
+                          {(s.ai_count || 0) > 0 ? (
+                            <span className="opacity-60">{s.user_count || 0}/{s.ai_count}</span>
+                          ) : (
+                            <span className="opacity-60">{s.question_count || 0}</span>
+                          )}
+                        </div>
+                        <div className="font-mono text-sm flex justify-center min-w-[3rem]">{Math.round(s.success_rate * 100)}%</div>
                       </div>
-                      <div className="font-mono text-sm flex justify-center">
-                        {Math.round(s.success_rate * 100)}%
-                      </div>
-                      <div className="flex justify-end">
+
+                      <div className="hidden sm:flex justify-end w-8 flex-shrink-0">
                         <ChevronRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
                     </div>
@@ -2137,26 +2429,71 @@ V nastavení lze změnit defaultni model.`);
                   {/* Special Row: Procvičit chyby */}
                   <div 
                     onClick={startErrors}
-                    className="data-row group bg-orange-500/5 hover:bg-orange-500 hover:text-white transition-colors border border-[var(--line)] rounded-xl mt-4"
+                    className="flex items-center py-3 px-4 border border-[var(--line)] rounded-xl mt-4 bg-orange-500/5 hover:bg-orange-500/10 dark:hover:bg-orange-500/20 transition-colors cursor-pointer"
                   >
-                    <div className="flex justify-center">
+                    <div className="hidden sm:flex justify-center w-8 flex-shrink-0">
                       <AlertCircle size={16} className="text-orange-500 group-hover:text-white" />
                     </div>
-                    <div className="font-bold flex items-center gap-2">
+
+                    <div className="font-bold flex items-center gap-2 min-w-0 flex-1">
                       Procvičit chyby
                       {isGuestMode && (
-                        <span className="px-2 py-1 bg-blue-500/20 text-blue-400 text-[10px] rounded-full font-medium">
+                        <span className="hidden sm:inline px-2 py-1 bg-blue-500/20 text-blue-400 text-[10px] rounded-full font-medium">
                           Přihlášení
                         </span>
                       )}
                     </div>
-                    <div className="font-mono text-sm flex justify-center opacity-60">
-                      {isGuestMode ? '-' : (stats?.practicedQuestions && stats.overallSuccess < 1 ? 'Dostupné' : '-')}
+
+                    <div className="flex justify-end gap-4">
+                      <div className="font-mono text-sm flex justify-center opacity-60">
+                        {isGuestMode ? '-' : (stats?.practicedQuestions && stats.overallSuccess < 1 ? 'Dostupné' : '-')}
+                      </div>
+                      <div className="font-mono text-sm flex justify-center min-w-[3rem]">
+                        {isGuestMode ? '0%' : (stats ? Math.round((1 - stats.overallSuccess) * 100) : 0)}% chyb
+                      </div>
                     </div>
-                    <div className="font-mono text-sm flex justify-center">
-                      {isGuestMode ? '0%' : (stats ? Math.round((1 - stats.overallSuccess) * 100) : 0)}% chyb
+
+                    <div className="hidden sm:flex justify-end w-8 flex-shrink-0">
+                      <ChevronRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
-                    <div className="flex justify-end">
+                  </div>
+
+                  {/* Special Row: Označené otázky */}
+                  <div 
+                    onClick={startFlagged}
+                    className="flex items-center py-3 px-4 border border-[var(--line)] rounded-xl mt-2 bg-blue-500/5 hover:bg-blue-500/10 dark:hover:bg-blue-500/20 transition-colors cursor-pointer"
+                  >
+                    <div className="hidden sm:flex justify-center w-8 flex-shrink-0">
+                      <Flag size={16} className="text-blue-500 group-hover:text-white" />
+                    </div>
+
+                    <div className="font-bold flex items-center gap-2 min-w-0 flex-1">
+                      Označené otázky
+                      {isGuestMode && (
+                        <span className="hidden sm:inline px-2 py-1 bg-blue-500/20 text-blue-400 text-[10px] rounded-full font-medium">
+                          Přihlášení
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex justify-end gap-4">
+                      <div className="font-mono text-sm flex justify-center opacity-60">
+                        {isGuestMode ? '-' : (() => {
+                          const flags = JSON.parse(localStorage.getItem('question_flags') || '{}');
+                          const flaggedCount = Object.values(flags).filter(Boolean).length;
+                          return flaggedCount > 0 ? `${flaggedCount} ks` : '0 ks';
+                        })()}
+                      </div>
+                      <div className="font-mono text-sm flex justify-center min-w-[3rem]">
+                        {isGuestMode ? '0%' : (() => {
+                          const flags = JSON.parse(localStorage.getItem('question_flags') || '{}');
+                          const flaggedCount = Object.values(flags).filter(Boolean).length;
+                          return flaggedCount > 0 ? `${flaggedCount}` : '0';
+                        })()}
+                      </div>
+                    </div>
+
+                    <div className="hidden sm:flex justify-end w-8 flex-shrink-0">
                       <ChevronRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                   </div>
@@ -2388,11 +2725,19 @@ V nastavení lze změnit defaultni model.`);
 
               {/* 4. Vlastní import (JSON) */}
               <section className="space-y-6">
-                <div className="flex items-center gap-2 px-2">
+                <div 
+                  className="flex items-center gap-2 px-2 cursor-pointer hover:opacity-80 transition-opacity"
+                  onClick={() => setIsImportSectionOpen(!isImportSectionOpen)}
+                >
                   <Upload size={20} className="opacity-50" />
                   <h3 className="font-bold uppercase tracking-widest text-sm">Vlastní import (JSON)</h3>
+                  <ChevronRight 
+                    size={16} 
+                    className={`ml-auto transition-transform duration-200 ${isImportSectionOpen ? 'rotate-90' : ''}`} 
+                  />
                 </div>
 
+                {isImportSectionOpen && (
                 <div className="p-8 border border-[var(--line)] rounded-3xl space-y-6 bg-white/5">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
@@ -2473,6 +2818,7 @@ V nastavení lze změnit defaultni model.`);
                     Importovat otázky
                   </button>
                 </div>
+                )}
               </section>
 
               {/* Admin: Download Questions */}
@@ -2557,7 +2903,7 @@ V nastavení lze změnit defaultni model.`);
                     <button 
                       onClick={jumpToRandomQuestion}
                       title="Skočit na náhodnou otázku"
-                      className="font-mono text-xs opacity-50 hover:opacity-100 hover:text-white transition-all cursor-pointer px-2 py-1 rounded hover:bg-[var(--line)]"
+                      className="font-mono text-xs sm:text-xs md:text-xs opacity-50 hover:opacity-100 hover:text-white transition-all cursor-pointer px-2 py-1 rounded hover:bg-[var(--line)] whitespace-nowrap"
                     >
                       {currentQuestionIndex + 1} / {questions.length}
                     </button>
@@ -2597,14 +2943,13 @@ V nastavení lze změnit defaultni model.`);
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <button 
-                    onClick={handleToggleLanguage}
-                    disabled={isTranslating}
-                    className={`px-3 py-1.5 rounded-lg border text-[10px] font-bold transition-all flex items-center gap-2 ${language === 'CZ' ? 'bg-indigo-600 text-white border-indigo-600' : 'border-[var(--line)] opacity-60 hover:opacity-100'}`}
-                  >
-                    {isTranslating ? <RotateCcw size={12} className="animate-spin" /> : <Languages size={12} />}
-                    {language}
-                  </button>
+                  <div className="hidden md:block">
+                    <LanguageButton 
+                      question={questions[currentQuestionIndex]} 
+                      language={language} 
+                      mode="desktop" 
+                    />
+                  </div>
                   <button 
                     onClick={() => toggleFlag(questions[currentQuestionIndex].id, questions[currentQuestionIndex].is_flagged)}
                     className={`p-2 rounded-full transition-colors ${questions[currentQuestionIndex].is_flagged ? 'bg-orange-500 text-white' : 'hover:bg-[var(--line)]'}`}
@@ -2632,15 +2977,16 @@ V nastavení lze změnit defaultni model.`);
                       <Bot size={20} className="text-indigo-600 animate-pulse" />
                     </div>
                   )}
-                  <span>
-                    {language === 'CZ' ? questions[currentQuestionIndex].text_cz || questions[currentQuestionIndex].text : questions[currentQuestionIndex].text}
-                  </span>
+                  <TranslatedText 
+                    question={questions[currentQuestionIndex]} 
+                    field="text"
+                    language={language}
+                    className="flex-1"
+                  />
                 </h3>
 
                 <div className="grid gap-3">
                   {['A', 'B', 'C', 'D'].map((opt) => {
-                    const optionKey = `option_${opt.toLowerCase()}` as keyof Question;
-                    const optionCzKey = `${optionKey}_cz` as keyof Question;
                     const isCorrect = opt === questions[currentQuestionIndex].correct_option;
                     const isSelected = answered === opt;
                     
@@ -2663,11 +3009,12 @@ V nastavení lze změnit defaultni model.`);
                         <span className="w-8 h-8 flex items-center justify-center rounded-lg border border-current font-mono text-xs">
                           {opt}
                         </span>
-                        <span className="flex-1">
-                          {language === 'CZ' 
-                            ? (questions[currentQuestionIndex][optionCzKey] as string) || (questions[currentQuestionIndex][optionKey] as string) 
-                            : (questions[currentQuestionIndex][optionKey] as string)}
-                        </span>
+                        <TranslatedOption 
+                          question={questions[currentQuestionIndex]}
+                          option={opt as 'A' | 'B' | 'C' | 'D'}
+                          language={language}
+                          className="flex-1"
+                        />
                         {answered && drillSettings.immediateFeedback && isCorrect && <CheckCircle2 size={20} className="text-emerald-500" />}
                         {answered && drillSettings.immediateFeedback && isSelected && !isCorrect && <XCircle size={20} className="text-rose-500" />}
                       </button>
@@ -2758,15 +3105,35 @@ V nastavení lze změnit defaultni model.`);
                     {showExplanation && drillSettings.showExplanationOnDemand && (
                       <div className="space-y-6 animate-in fade-in slide-in-from-top-2 duration-300">
                         {/* Learning Objective Section */}
-                        <div className="p-4 bg-indigo-500/5 border border-indigo-500/20 rounded-2xl space-y-2">
+                        <div 
+                          className="p-4 bg-indigo-500/5 border border-indigo-500/20 rounded-2xl space-y-2 cursor-pointer transition-all duration-300 hover:bg-indigo-500/10"
+                          onClick={() => {
+                            const lo = allLOs.find(l => l.id === questions[currentQuestionIndex].lo_id);
+                            setExpandedLOContent({
+                              id: aiDetectedObjective || questions[currentQuestionIndex].lo_id || 'Importovaná otázka',
+                              text: lo?.text || 'Obecné znalosti letectví.',
+                              type: aiDetectedObjective ? 'AI detekovaný' : 'Oficiální EASA',
+                              level: lo?.level
+                            });
+                            setIsExpandedLO(true);
+                          }}
+                        >
                           <div className="flex items-center justify-between text-indigo-600 dark:text-indigo-400">
                             <div className="flex items-center gap-2">
                               <GraduationCap size={14} />
-                              <span className="text-[10px] font-bold uppercase tracking-widest">Cíl učení (Learning Objective)</span>
+                              <span className="text-[10px] font-bold uppercase tracking-widest">
+                                Cíl učení (Learning Objective)
+                              </span>
+                              <div className="text-indigo-400 opacity-60">
+                                <ChevronRight size={14} />
+                              </div>
                             </div>
                             {(questions[currentQuestionIndex].lo_id || aiDetectedObjective) && (
                               <button
-                                onClick={() => openSyllabusAtLO(aiDetectedObjective || questions[currentQuestionIndex].lo_id)}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  openSyllabusAtLO(aiDetectedObjective || questions[currentQuestionIndex].lo_id);
+                                }}
                                 className="flex items-center gap-1 px-2 py-0.5 rounded border border-indigo-500/30 text-[9px] font-bold uppercase tracking-widest hover:bg-indigo-500/10 transition-colors"
                                 title="Otevřít v osnově"
                               >
@@ -2775,25 +3142,33 @@ V nastavení lze změnit defaultni model.`);
                               </button>
                             )}
                           </div>
-                          <div className="flex items-start gap-3">
+                          <div className="flex flex-col gap-3">
                             <span className={`px-2 py-0.5 rounded text-[10px] font-bold mt-0.5 ${!questions[currentQuestionIndex].lo_id ? 'bg-orange-500/20 text-orange-600 border border-orange-500/30' : 'bg-indigo-600 text-white'}`}>
-                              {aiDetectedObjective || questions[currentQuestionIndex].lo_id || 'User Import'}
+                              {aiDetectedObjective || questions[currentQuestionIndex].lo_id || 'Importovaná otázka'}
                             </span>
-                            <p className="text-xs font-medium opacity-80">
-                              {aiDetectedObjective 
-                                ? 'AI detekovaný cíl učení' 
-                                : allLOs.find(l => l.id === questions[currentQuestionIndex].lo_id)?.text || 'Obecné znalosti letectví.'
-                              }
-                            </p>
+                            <div className="flex-1">
+                              <p className="text-xs font-medium opacity-80">
+                                {allLOs.find(l => l.id === questions[currentQuestionIndex].lo_id)?.text || 'Obecné znalosti letectví.'}
+                              </p>
+                              {aiDetectedObjective && (
+                                <p className="text-xs font-medium opacity-60 italic mt-1">
+                                  AI detekovaný cíl učení
+                                </p>
+                              )}
+                            </div>
                           </div>
                         </div>
 
                         {/* Standard Explanation */}
                         <div className="space-y-2">
                           <p className="text-[10px] font-bold uppercase tracking-widest opacity-40">Základní vysvětlení</p>
-                          <p className="text-base opacity-80 leading-relaxed font-medium">
-                            {language === 'CZ' ? questions[currentQuestionIndex].explanation_cz || questions[currentQuestionIndex].explanation : questions[currentQuestionIndex].explanation}
-                          </p>
+                          <TranslatedText 
+                            question={questions[currentQuestionIndex]} 
+                            field="explanation"
+                            language={language}
+                            className="text-base opacity-80 leading-relaxed font-medium"
+                            as="p"
+                          />
                         </div>
 
                         {/* AI Loading State */}
@@ -2843,16 +3218,31 @@ V nastavení lze změnit defaultni model.`);
 
                             {/* Detailed Explanation Button */}
                             {!detailedExplanation && (
-                              <button 
-                                onClick={handleFetchDetailedExplanation}
-                                disabled={isGeneratingDetailedExplanation}
-                                className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 hover:opacity-80 transition-opacity"
-                              >
-                                <div className="w-8 h-8 rounded-full bg-emerald-600/10 flex items-center justify-center">
-                                  {isGeneratingDetailedExplanation ? <RotateCcw size={14} className="animate-spin" /> : <BookOpen size={14} />}
-                                </div>
-                                <span className="text-[10px] font-bold uppercase tracking-widest">Podrobněji (Lidské vysvětlení)</span>
-                              </button>
+                              <div className="flex items-center gap-4">
+                                <button 
+                                  onClick={handleFetchDetailedExplanation}
+                                  disabled={isGeneratingDetailedExplanation || isRegeneratingExplanation}
+                                  className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 hover:opacity-80 transition-opacity"
+                                >
+                                  <div className="w-8 h-8 rounded-full bg-emerald-600/10 flex items-center justify-center">
+                                    {isGeneratingDetailedExplanation ? <RotateCcw size={14} className="animate-spin" /> : <BookOpen size={14} />}
+                                  </div>
+                                  <span className="text-[10px] font-bold uppercase tracking-widest">Podrobněji (Lidské vysvětlení)</span>
+                                </button>
+                                
+                                {/* Regenerate Button */}
+                                <button 
+                                  onClick={handleRegenerateExplanation}
+                                  disabled={isRegeneratingExplanation || isGeneratingDetailedExplanation}
+                                  className="flex items-center gap-2 text-orange-600 dark:text-orange-400 hover:opacity-80 transition-opacity"
+                                  title="Vygenerovat nové vysvětlení"
+                                >
+                                  <div className="w-8 h-8 rounded-full bg-orange-600/10 flex items-center justify-center">
+                                    {isRegeneratingExplanation ? <RotateCcw size={14} className="animate-spin" /> : <RefreshCw size={14} />}
+                                  </div>
+                                  <span className="text-[10px] font-bold uppercase tracking-widest">Regenerovat</span>
+                                </button>
+                              </div>
                             )}
 
                             {/* Detailed Explanation Loading State */}
@@ -2884,11 +3274,12 @@ V nastavení lze změnit defaultni model.`);
                                   <BookOpen size={14} />
                                   <span className="text-[10px] font-bold uppercase tracking-widest">Podrobné vysvětlení pro studenty</span>
                                 </div>
-                                <div className="text-sm leading-relaxed opacity-90">
-                                  {detailedExplanation.split('\n').map((line, i) => (
-                                    <p key={i} className="mb-2">{line}</p>
-                                  ))}
-                                </div>
+                                <div 
+                                  className="text-sm leading-relaxed opacity-90 prose prose-sm max-w-none"
+                                  dangerouslySetInnerHTML={{ 
+                                    __html: sanitizeHtml(markdownToHtml(detailedExplanation)) 
+                                  }}
+                                />
                               </div>
                             )}
                           </div>
@@ -2898,6 +3289,50 @@ V nastavení lze změnit defaultni model.`);
                   </motion.div>
                 )}
               </div>
+
+              {/* Progress Banner */}
+              {selectedSubject && (
+                <div className="p-3 border border-[var(--line)] rounded-xl bg-gradient-to-r from-gray-500/5 to-blue-500/5">
+                  <div className="flex flex-col">
+                    <p className="text-xs font-bold">Progres v {selectedSubject.name}</p>
+                    <div className="flex items-center gap-3">
+                      <div className="text-left">
+                        <p className="text-lg font-mono font-bold">
+                          {(() => {
+                            const subjectStats = stats?.subjectStats?.[selectedSubject.id];
+                            if (!subjectStats) return '0%';
+                            const percentage = Math.round((subjectStats.correctAnswers / subjectStats.totalAnswered) * 100);
+                            return `${percentage}%`;
+                          })()}
+                        </p>
+                        <p className="text-[10px] opacity-60">
+                          {(() => {
+                            const subjectStats = stats?.subjectStats?.[selectedSubject.id];
+                            if (!subjectStats) return '0/0';
+                            return (
+                              <span>
+                                {subjectStats.correctAnswers} OK / {subjectStats.totalAnswered - subjectStats.correctAnswers} Fail
+                              </span>
+                            );
+                          })()}
+                        </p>
+                      </div>
+                      <div className="flex-1 h-1.5 bg-gray-700 dark:bg-black rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-500"
+                          style={{
+                            width: `${(() => {
+                              const subjectStats = stats?.subjectStats?.[selectedSubject.id];
+                              if (!subjectStats) return '0%';
+                              return Math.round((subjectStats.correctAnswers / subjectStats.totalAnswered) * 100);
+                            })()}%`
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </>
           )}
         </motion.div>
@@ -2919,14 +3354,13 @@ V nastavení lze změnit defaultni model.`);
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <button 
-                    onClick={handleToggleLanguage}
-                    disabled={isTranslating}
-                    className={`px-3 py-1.5 rounded-lg border text-[10px] font-bold transition-all flex items-center gap-2 ${language === 'CZ' ? 'bg-indigo-600 text-white border-indigo-600' : 'border-[var(--line)] opacity-60 hover:opacity-100'}`}
-                  >
-                    {isTranslating ? <RotateCcw size={12} className="animate-spin" /> : <Languages size={12} />}
-                    {language}
-                  </button>
+                  <LanguageButton 
+                    question={questions[currentQuestionIndex]} 
+                    language={language} 
+                    mode="desktop" 
+                    className="hidden"
+            style={{ display: 'none' }}
+                  />
                   <div className="flex items-center gap-2 font-mono text-xl font-bold">
                     <Clock size={20} className="opacity-50" />
                     {Math.floor(timer / 60)}:{(timer % 60).toString().padStart(2, '0')}
@@ -3011,13 +3445,15 @@ V nastavení lze změnit defaultni model.`);
                           );
                         })}
                       </div>
-                      <h3 className="text-xl font-medium leading-relaxed">
-                        {language === 'CZ' ? questions[currentQuestionIndex].text_cz || questions[currentQuestionIndex].text : questions[currentQuestionIndex].text}
-                      </h3>
+                      <TranslatedText 
+                        question={questions[currentQuestionIndex]} 
+                        field="text"
+                        language={language}
+                        className="text-xl font-medium leading-relaxed"
+                        as="h3"
+                      />
                       <div className="grid gap-3">
                         {['A', 'B', 'C', 'D'].map((opt) => {
-                          const optionKey = `option_${opt.toLowerCase()}` as keyof Question;
-                          const optionCzKey = `${optionKey}_cz` as keyof Question;
                           const isSelected = answered === opt;
                           return (
                             <button
@@ -3028,11 +3464,12 @@ V nastavení lze změnit defaultni model.`);
                               <span className="w-8 h-8 flex items-center justify-center rounded-lg border border-current font-mono text-xs">
                                 {opt}
                               </span>
-                              <span className="flex-1">
-                                {language === 'CZ' 
-                                  ? (questions[currentQuestionIndex][optionCzKey] as string) || (questions[currentQuestionIndex][optionKey] as string) 
-                                  : (questions[currentQuestionIndex][optionKey] as string)}
-                              </span>
+                              <TranslatedOption 
+                                question={questions[currentQuestionIndex]}
+                                option={opt as 'A' | 'B' | 'C' | 'D'}
+                                language={language}
+                                className="flex-1"
+                              />
                             </button>
                           );
                         })}
@@ -3189,7 +3626,7 @@ V nastavení lze změnit defaultni model.`);
                             <button
                               key={lic}
                               onClick={() => { setSelectedLicense(lic); localStorage.setItem('selectedLicense', lic); }}
-                              className={`flex-1 py-3 rounded-xl border text-xs font-bold uppercase tracking-widest transition-all ${selectedLicense === lic ? 'bg-indigo-600 text-white border-indigo-600' : 'border-[var(--line)] opacity-60 hover:opacity-100'}`}
+                              className={`flex-1 py-3 rounded-xl border text-xs font-bold uppercase tracking-widest transition-all ${selectedLicense === lic ? 'bg-gray-600 dark:bg-gray-700 text-white border-gray-600 dark:border-gray-700' : 'border-gray-400 dark:border-gray-600 text-gray-600 dark:text-gray-400 opacity-60 hover:opacity-100'}`}
                             >
                               {lic === 'PPL' ? 'PPL(A) — Motorový letoun' : 'SPL — Kluzák'}
                             </button>
@@ -3252,8 +3689,8 @@ V nastavení lze změnit defaultni model.`);
                             {['EN', 'CZ'].map(lang => (
                               <button
                                 key={lang}
-                                onClick={() => setGenLanguage(lang as 'EN' | 'CZ')}
-                                className={`flex-1 py-2 rounded-xl border text-xs font-bold transition-all ${genLanguage === lang ? 'bg-indigo-600 text-white border-indigo-600' : 'border-[var(--line)] opacity-60 hover:opacity-100'}`}
+                                onClick={() => language.setGenerateLanguage(lang as 'EN' | 'CZ')}
+                                className={`flex-1 py-2 rounded-xl border text-xs font-bold transition-all ${language.generateLanguage === lang ? 'bg-indigo-600 text-white border-indigo-600' : 'border-[var(--line)] opacity-60 hover:opacity-100'}`}
                               >
                                 {lang === 'EN' ? 'English' : 'Czech'}
                               </button>
@@ -3499,21 +3936,26 @@ V nastavení lze změnit defaultni model.`);
                 <section className="space-y-6">
                   <h3 className="uppercase tracking-widest text-xs font-bold opacity-40">Heatmapa témat</h3>
                   <div className="space-y-4">
-                    {stats?.subjectStats.map((s, i) => (
-                      <div key={i} className="space-y-1">
-                        <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider">
-                          <span>{s.name}</span>
-                          <span className="font-mono">{Math.round(s.rate * 100)}%</span>
+                    {Object.entries(stats?.subjectStats || {}).map(([subjectId, s]: [string, { correctAnswers: number; totalAnswered: number }]) => {
+                      const subject = subjects.find(sub => sub.id === Number(subjectId));
+                      if (!subject || s.totalAnswered === 0) return null;
+                      const rate = s.correctAnswers / s.totalAnswered;
+                      return (
+                        <div key={subjectId} className="space-y-1">
+                          <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider">
+                            <span>{subject.description || subject.name}</span>
+                            <span className="font-mono">{Math.round(rate * 100)}%</span>
+                          </div>
+                          <div className="h-4 bg-[var(--line)] rounded-sm overflow-hidden">
+                            <motion.div 
+                              initial={{ width: 0 }}
+                              animate={{ width: `${rate * 100}%` }}
+                              className={`h-full ${rate > 0.75 ? 'bg-emerald-500' : rate > 0.5 ? 'bg-amber-500' : 'bg-rose-500'}`}
+                            />
+                          </div>
                         </div>
-                        <div className="h-4 bg-[var(--line)] rounded-sm overflow-hidden">
-                          <motion.div 
-                            initial={{ width: 0 }}
-                            animate={{ width: `${s.rate * 100}%` }}
-                            className={`h-full ${s.rate > 0.75 ? 'bg-emerald-500' : s.rate > 0.5 ? 'bg-amber-500' : 'bg-rose-500'}`}
-                          />
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    }).filter(Boolean)}
                   </div>
                 </section>
 
@@ -3541,7 +3983,7 @@ V nastavení lze změnit defaultni model.`);
         </AnimatePresence>
       </main>
 
-      <footer className="p-8 border-t border-[var(--line)] mt-12 opacity-30 text-[10px] uppercase tracking-[0.2em] text-center">
+      <footer className="p-8 sm:p-8 border-t border-[var(--line)] mt-1 opacity-30 text-[10px] uppercase tracking-[0.2em] text-center" style={{ paddingBottom: 'calc(var(--spacing) * 2)' }}>
         AeroPilot Exam Prep &copy; 2026 • EASA ECQB Standard • Czech Republic
       </footer>
 
@@ -3822,6 +4264,8 @@ V nastavení lze změnit defaultni model.`);
                           Procvičit toto téma ({selectedLOQuestionCount} otázek)
                         </button>
                       ) : (
+                        // TODO: Implementovat později - generování otázek pro LO
+                        /*
                         <button
                           onClick={() => {
                             setSyllabusOpen(false);
@@ -3833,6 +4277,11 @@ V nastavení lze změnit defaultni model.`);
                           <Sparkles size={12} />
                           Generovat otázky (AI)
                         </button>
+                        */
+                        <div className="w-full py-2.5 border border-dashed border-indigo-300 text-indigo-400 rounded-xl text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 opacity-60">
+                          <Sparkles size={12} />
+                          Generovat otázky (brzy)
+                        </div>
                       )}
                     </div>
 
@@ -3895,6 +4344,92 @@ V nastavení lze změnit defaultni model.`);
         }}
         feature={authPromptFeature}
       />
+      
+      {/* Expanded Learning Objective Modal */}
+      <AnimatePresence>
+        {isExpandedLO && expandedLOContent && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setIsExpandedLO(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="glass-panel rounded-3xl p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto border-2 border-indigo-500/30"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-3 text-indigo-600 dark:text-indigo-400">
+                  <GraduationCap size={24} />
+                  <h2 className="text-xl font-bold uppercase tracking-widest">Cíl učení (Learning Objective)</h2>
+                </div>
+                <button
+                  onClick={() => setIsExpandedLO(false)}
+                  className="p-2 rounded-full bg-indigo-500/10 text-indigo-600 hover:bg-indigo-500/20 transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              
+              <div className="space-y-6">
+                {/* LO ID and Type */}
+                <div className="space-y-3">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="px-3 py-1.5 rounded-lg text-sm font-bold bg-indigo-600 text-white">
+                      {expandedLOContent.id}
+                    </span>
+                    <div className="flex items-center gap-2 text-sm text-indigo-400 font-semibold">
+                      <span>Typ:</span>
+                      <span className="text-indigo-300 opacity-80">{expandedLOContent.type}</span>
+                    </div>
+                  </div>
+                  {expandedLOContent.level !== undefined && (
+                    <div className="flex items-center gap-2 text-sm text-indigo-400 font-semibold">
+                      <span>Úroveň:</span>
+                      <span className="text-indigo-300 opacity-80">
+                        {expandedLOContent.level === 1 ? 'Povědomí' : 
+                         expandedLOContent.level === 2 ? 'Znalost' : 'Porozumění'}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                
+                {/* LO Text */}
+                <div className="p-6 bg-indigo-500/5 border border-indigo-500/20 rounded-2xl">
+                  <p className="text-base leading-relaxed opacity-90 whitespace-pre-wrap font-mono">
+                    {expandedLOContent.text}
+                  </p>
+                </div>
+                
+                {/* Actions */}
+                <div className="flex items-center justify-between pt-4 border-t border-indigo-500/20">
+                  <button
+                    onClick={() => {
+                      openSyllabusAtLO(expandedLOContent.id);
+                      setIsExpandedLO(false);
+                    }}
+                    className="flex items-center gap-2 px-4 py-2 rounded-lg border border-indigo-500/30 text-sm font-bold uppercase tracking-widest hover:bg-indigo-500/10 transition-colors text-indigo-600"
+                  >
+                    <BookOpen size={14} />
+                    Otevřít v osnově
+                  </button>
+                  
+                  <button
+                    onClick={() => setIsExpandedLO(false)}
+                    className="px-4 py-2 rounded-lg bg-[var(--ink)] text-[var(--bg)] text-sm font-bold uppercase tracking-widest hover:opacity-80 transition-opacity"
+                  >
+                    Zavřít
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
         </>
       )}
     </div>

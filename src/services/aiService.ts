@@ -100,10 +100,14 @@ const getClaudeInstance = (apiKey?: string) => {
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-async function callWithRetry<T>(fn: () => Promise<T>, retries = 2, provider: AIProvider = 'gemini'): Promise<T> {
+async function callWithRetry<T>(fn: () => Promise<T>, retries = 2, provider: AIProvider = 'gemini', signal?: AbortSignal): Promise<T> {
   try {
     return await fn();
   } catch (error: any) {
+    // Check if operation was cancelled
+    if (signal?.aborted) {
+      throw new Error('Operation cancelled');
+    }
     const errorMsg = error?.message?.toLowerCase() || "";
     
     if (provider === 'gemini') {
@@ -113,7 +117,7 @@ async function callWithRetry<T>(fn: () => Promise<T>, retries = 2, provider: AIP
       if (isRateLimit && retries > 0) {
         console.log(`Gemini rate limit hit, retrying in 2s... (${retries} left)`);
         await sleep(2000);
-        return callWithRetry(fn, retries - 1, provider);
+        return callWithRetry(fn, retries - 1, provider, signal);
       }
       
       if (isInvalidKey) {
@@ -126,7 +130,7 @@ async function callWithRetry<T>(fn: () => Promise<T>, retries = 2, provider: AIP
       if (isRateLimit && retries > 0) {
         console.log(`Claude rate limit hit, retrying in 2s... (${retries} left)`);
         await sleep(2000);
-        return callWithRetry(fn, retries - 1, provider);
+        return callWithRetry(fn, retries - 1, provider, signal);
       }
       
       if (isInvalidKey) {
@@ -504,7 +508,8 @@ export async function generateBatchQuestions(
   apiKey?: string,
   model: string = "gemini-flash-latest",
   provider: AIProvider = 'gemini',
-  license: 'PPL' | 'SPL' = 'PPL'
+  license: 'PPL' | 'SPL' = 'PPL',
+  signal?: AbortSignal
 ): Promise<{loId: string, questions: Partial<Question>[]}[]> {
 
   const pplExamples = `
@@ -666,7 +671,7 @@ export async function generateBatchQuestions(
         config: {
           responseMimeType: "application/json"
         }
-      }), 2, 'gemini');
+      }), 2, 'gemini', signal);
       
       const text = response.text;
       if (!text) return [];
@@ -685,7 +690,7 @@ export async function generateBatchQuestions(
         model: model,
         max_tokens: estimatedTokens,
         messages: [{ role: 'user', content: prompt }]
-      }), 2, 'claude');
+      }), 2, 'claude', signal);
       
       const text = (response.content[0] as any)?.text || "";
       if (!text) return [];
@@ -726,27 +731,47 @@ function processBatchResponse(data: any): {loId: string, questions: Partial<Ques
     }));
 }
 
-export async function getDetailedExplanation(question: Question, lo: EasaLO | undefined, apiKey?: string, model: string = "gemini-flash-latest", provider: AIProvider = 'gemini'): Promise<{explanation: string, objective?: string}> {
+export async function getDetailedExplanation(question: Question, lo: EasaLO | undefined, apiKey?: string, model: string = "gemini-flash-latest", provider: AIProvider = 'gemini', signal?: AbortSignal): Promise<{explanation: string, objective?: string}> {
   console.log('getDetailedExplanation called with:', { provider, model, hasKey: !!apiKey });
   
   const isImport = question.source === 'user' || !question.lo_id;
   
   const prompt = `
-    You are a technical EASA Knowledge Engine.
-    Provide a machine-precise, strictly concise technical explanation in Czech.
-    
+    You are a technical EASA Aviation Knowledge Engine specializing in ATPL/PPL theoretical exam preparation.
+
+    Your task: Explain ONLY why the correct answer is technically correct.
+
     Question: ${question.text}
     Correct Answer: ${question.correct_option}
-    LO: ${lo ? `${lo.id} - ${lo.text}` : "User Import (N/A)"}
-    Knowledge Content: ${lo?.knowledgeContent || lo?.context || "Standard aviation knowledge"}
-    Level: ${lo?.level === 1 ? 'Awareness' : lo?.level === 2 ? 'Knowledge' : 'Understanding'}
-    
-    Rules:
-    1. Language: Czech.
-    2. Style: Machine-like, precise, no filler.
-    3. Format: [LO ID]: [Technical justification].
-    4. ${isImport ? "Since this is a User Import with no LO ID, first analyze the question content and identify the most likely EASA Learning Objective (LO) ID and Name. Start your response with 'Pravděpodobně se jedná o objective [ID] - [Name]' followed by the explanation." : "Use the provided LO ID in the bracket."}
-    5. Max 4 sentences.
+    Correct Answer Text: ${question[`option_${question.correct_option.toLowerCase()}`]}
+    LO: ${lo ? `${lo.id} - ${lo.text}` : "Neurčeno"}
+
+    RULES:
+    1. Explain ONLY why answer "${question.correct_option}" is correct. Never mention other options. Don't repeat the question.
+    2. Base explanation on sources in this strict priority order:
+       1st — EASA Learning Objectives Syllabus (primary source)
+       2nd — EASA CS regulations (CS-23, CS-25, CS-ETSO, etc.)
+       3rd — ÚCL / CAA Czech national documents
+       4th — ICAO documents (Annexes, DOCs)
+       5th — Physics / engineering principles (only if no regulatory source applies)
+    3. Cite the source used (e.g., "Dle EASA LO 061.01.02.03:", "Dle CS-25.143:", "Dle ICAO Annex 2:").
+    4. Maximum 3 sentences. Be precise and technical — no hedging words ("probably", "likely", "might").
+    5. Respond in Czech language.
+
+    ${isImport
+      ? `6. No LO ID is provided. Analyze the question content and identify the most likely EASA LO.
+         Start with: "Pravděpodobně se jedná o objective [XXX.XX.XX.XX] - [Name]:"
+         Then provide the technical explanation with source citation.`
+      : `6. Use the provided LO ID as the bracket prefix.` 
+    }
+
+    OUTPUT FORMAT (strict):
+    [LO ID]: Dle [source]: [Technical explanation in Czech, max 3 sentences.]
+
+    EXAMPLES:
+    061.01.02.03: Dle EASA LO Syllabus: Přímočarý ustálený let nastane, když je výslednice všech sil nulová. Podmínkou je rovnováha tahu, odporu, vztlaku a tíhy.
+
+    031.02.01.04: Dle CS-25.143: Letoun musí být ovladatelný při všech fázích letu bez nadměrného úsilí pilota. Tato podmínka zahrnuje i asymetrický tah při výpadku motoru.
   `;
 
   try {
@@ -756,7 +781,7 @@ export async function getDetailedExplanation(question: Question, lo: EasaLO | un
       const response = await callWithRetry(() => ai.models.generateContent({
         model: model,
         contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      }), 2, 'gemini');
+      }), 2, 'gemini', signal);
       
       const text = response.text || "Vysvětlení se nepodařilo vygenerovat.";
       return parseExplanation(text);
@@ -785,8 +810,11 @@ export async function getDetailedExplanation(question: Question, lo: EasaLO | un
 }
 
 function parseExplanation(text: string): {explanation: string, objective?: string} {
+  // Clean up markdown formatting
+  const cleanText = text.replace(/\*\*/g, '').replace(/\*/g, '');
+  
   // Check if text starts with objective identification
-  const objectiveMatch = text.match(/^Pravděpodobně se jedná o objective\s+([^-]+)-\s*([^.]+)\.\s*(.+)/);
+  const objectiveMatch = cleanText.match(/^Pravděpodobně se jedná o objective\s+([^-]+)-\s*([^.]+)\.\s*(.+)/);
   
   if (objectiveMatch) {
     const objective = `${objectiveMatch[1].trim()} - ${objectiveMatch[2].trim()}`;
@@ -799,45 +827,56 @@ function parseExplanation(text: string): {explanation: string, objective?: strin
   }
   
   // For existing LOs, extract LO ID from the response
-  const loMatch = text.match(/^([0-9]{3}\.[0-9]{2}\.[0-9]{2}\.[0-9]{2}):\s*(.+)/);
+  const loMatch = cleanText.match(/^([0-9]{3}\.[0-9]{2}\.[0-9]{2}\.[0-9]{2}):\s*(.+)/);
   if (loMatch) {
     return {
-      explanation: text
+      explanation: cleanText
     };
   }
   
+  // Fallback: return the cleaned text
   return {
-    explanation: text
+    explanation: cleanText
   };
 }
 
-export async function getDetailedHumanExplanation(question: Question, lo: EasaLO | undefined, apiKey?: string, model: string = "gemini-flash-latest", provider: AIProvider = 'gemini'): Promise<string> {
+export async function getDetailedHumanExplanation(question: Question, lo: EasaLO | undefined, apiKey?: string, model: string = "gemini-flash-latest", provider: AIProvider = 'gemini', signal?: AbortSignal): Promise<string> {
   console.log('getDetailedHumanExplanation called with:', { provider, model, hasKey: !!apiKey });
   
   const prompt = `
-    Jsi zkušený letecký instruktor a vysvětluješ letecké koncepty studentům pilotního výcviku.
+    Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.
     
     Otázka: ${question.text}
     Správná odpověď: ${question.correct_option}
-    LO: ${lo ? `${lo.id} - ${lo.text}` : "User Import (N/A)"}
-    Znalostní obsah: ${lo?.knowledgeContent || lo?.context || "Standardní aviation knowledge"}
-    Úroveň: ${lo?.level === 1 ? 'Povědomí' : lo?.level === 2 ? 'Znalost' : 'Porozumění'}
+    Text správné odpovědi: ${question[`option_${question.correct_option.toLowerCase()}`]}
+    LO: ${lo ? `${lo.id} - ${lo.text}` : "Neurčeno"}
+    
+    DŮLEŽITÉ INSTRUKCE:
+    1. MUSÍŠ vysvětlit PROČ je odpověď "${question.correct_option}" ("${question[`option_${question.correct_option.toLowerCase()}`]}") správná podle leteckých předpisů
+    2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL (Úřad civilního letectví), atd.)
+    3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách
+    4. NEZMIŇUJ alternativní akce nebo intuitivní reakce
+    5. ZAMĚŘ SE POUZE na technické odůvodnění dané správné odpovědi
+    6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. "Podle EASA CS-23.1309...")
+    7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů
     
     Pravidla:
     1. Jazyk: Česky
-    2. Styl: Přátelský, srozumitelný, jako pro studenta
-    3. Použij analogie a praktické příklady ze skutečného života pilota
-    4. Vysvětli krok za krokem proč je správná odpověď správná
-    5. Zmiň praktické dopady pro pilota
-    6. Přidej tip, jak si to zapamatovat
-    7. Délka: 150-200 slov
-    8. Struktura: 
-       - Krátký úvod (co to je)
-       - Proč to funguje takto (fyzika/pravidla)
-       - Praktické použití v letadle
-       - Paměťový tip
+    2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné "Ahoj", "Čau", "Pilote", atd.)
+    3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky
+    4. Struktura:
+       - **Krátký úvod** (co to je)
+       - **Proč je odpověď ${question.correct_option} správná** (technické vysvětlení, neopakuj odpověď)
+       - **Praktické použití** v letadle
+       - **Paměťový tip**
+    5. Použij krátké věty a odstavce
+    6. Použij analogie a praktické příklady ze skutečného života pilota
+    7. Délka: 200-300 slov
     
     Vysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.
+    ZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.
+    POUŽÍVEJ MARKDOWN PRO LEPSÍ FORMÁTOVÁNÍ.
+    MUSÍŠ ODŮVODNIT PROČ JE ODPOVĚĎ "${question.correct_option}" SPRÁVNÁ.
   `;
 
   try {
@@ -847,10 +886,17 @@ export async function getDetailedHumanExplanation(question: Question, lo: EasaLO
       const response = await callWithRetry(() => ai.models.generateContent({
         model: model,
         contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      }), 2, 'gemini');
+      }), 2, 'gemini', signal);
       
       const text = response.text || "Podrobné vysvětlení se nepodařilo vygenerovat.";
-      return text;
+      
+      // Clean up only greetings and informal addresses, KEEP markdown formatting
+      const cleanedText = text
+        .replace(/^(Ahoj|Čau|Dobrý den|Dobrý den|Pilote|Studente|Příteli|Kámo|Příteli)[,\s]*/gi, '')
+        .replace(/^(Ahoj|Čau|Dobrý den|Dobrý den|Pilote|Studente|Příteli|Kámo|Příteli)[^\n]*\n/gi, '')
+        .trim();
+      
+      return cleanedText;
       
     } else if (provider === 'claude') {
       console.log('Using Claude provider for detailed explanation');
@@ -862,7 +908,14 @@ export async function getDetailedHumanExplanation(question: Question, lo: EasaLO
       }), 2, 'claude');
       
       const text = (response.content[0] as any)?.text || "";
-      return text || "Podrobné vysvětlení se nepodařilo vygenerovat.";
+      
+      // Clean up only greetings and informal addresses, KEEP markdown formatting
+      const cleanedText = text
+        .replace(/^(Ahoj|Čau|Dobrý den|Dobrý den|Pilote|Studente|Příteli|Kámo|Příteli)[,\s]*/gi, '')
+        .replace(/^(Ahoj|Čau|Dobrý den|Dobrý den|Pilote|Studente|Příteli|Kámo|Příteli)[^\n]*\n/gi, '')
+        .trim();
+      
+      return cleanedText || "Podrobné vysvětlení se nepodařilo vygenerovat.";
     }
     
     return "Podrobné vysvětlení se nepodařilo vygenerovat.";
@@ -873,7 +926,7 @@ export async function getDetailedHumanExplanation(question: Question, lo: EasaLO
   }
 }
 
-export async function translateQuestion(question: Question, apiKey?: string, model: string = "gemini-flash-latest", provider: AIProvider = 'gemini'): Promise<Partial<Question>> {
+export async function translateQuestion(question: Question, apiKey?: string, model: string = "gemini-flash-latest", provider: AIProvider = 'gemini', signal?: AbortSignal): Promise<Partial<Question>> {
   const prompt = `
     You are a technical EASA Translation Engine.
     Translate the following aviation question and its options into Czech.
@@ -908,7 +961,13 @@ export async function translateQuestion(question: Question, apiKey?: string, mod
       }), 2, 'gemini');
       
       const text = response.text || "{}";
-      return JSON.parse(text);
+      
+      try {
+        return JSON.parse(text);
+      } catch (parseError) {
+        console.error('Gemini JSON parse error:', parseError, 'Raw text:', text);
+        throw new Error('Gemini returned invalid JSON format');
+      }
       
     } else if (provider === 'claude') {
       const claude = getClaudeInstance(apiKey);
@@ -916,12 +975,25 @@ export async function translateQuestion(question: Question, apiKey?: string, mod
       const response = await callWithRetry(() => claude.messages.create({
         model: model,
         max_tokens: 2000,
-        messages: [{ role: 'user', content: prompt }]
+        messages: [{ 
+          role: 'user', 
+          content: prompt + "\n\nIMPORTANT: Return ONLY valid JSON object, no other text."
+        }]
       }), 2, 'claude');
       
       const content = response.content[0];
       const text = content && 'text' in content ? content.text : "{}";
-      return JSON.parse(text);
+      
+      // Extract JSON from Claude response (it might include extra text)
+      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      const jsonString = jsonMatch ? jsonMatch[0] : text;
+      
+      try {
+        return JSON.parse(jsonString);
+      } catch (parseError) {
+        console.error('Claude JSON parse error:', parseError, 'Raw text:', text);
+        throw new Error('Claude returned invalid JSON format');
+      }
     }
     
     return {};
@@ -938,7 +1010,7 @@ export async function verifyApiKey(apiKey: string, provider: AIProvider = 'gemin
       const ai = getAiInstance(apiKey);
       
       // Attempt discovery across common model aliases to find one that is both found (not 404) and has quota (not 429)
-      const modelsToTry = ["gemini-flash-latest", "gemini-1.5-flash-latest", "gemini-2.0-flash"];
+      const modelsToTry = ["gemini-flash-latest", "gemini-2.5-flash"];
       let lastError: any = null;
       
       for (const modelName of modelsToTry) {

@@ -33,11 +33,12 @@ import {
   X,
   ChevronDown,
   Filter,
-  Search
+  Search,
+  Database
 } from 'lucide-react';
 import { Subject, Question, Stats, ViewMode, DrillSettings } from './types';
 import { LearningEngine } from './lib/LearningEngine';
-import { mockLOs, generateBatchQuestions, getDetailedExplanation, getDetailedHumanExplanation, translateQuestion, EasaLO, SYLLABUS_SCOPE, SUBJECT_NAMES, buildSyllabusTree, SyllabusSubjectNode, verifyApiKey, AIProvider } from './services/aiService';
+import { mockLOs, getAllLOs, importMockLOsToDB, generateBatchQuestions, getDetailedExplanation, getDetailedHumanExplanation, translateQuestion, EasaLO, SYLLABUS_SCOPE, SUBJECT_NAMES, buildSyllabusTree, SyllabusSubjectNode, verifyApiKey, AIProvider } from './services/aiService';
 import { DynamoDBStatus } from './components/DynamoDBStatus';
 import { AdminDashboard } from './components/AdminDashboard';
 import { CognitoAuth } from './components/CognitoAuth';
@@ -49,6 +50,9 @@ import { cognitoAuthService, UserRole } from './services/cognitoAuthService';
 import { AccessDenied } from './components/AccessDenied';
 
 export default function App() {
+  // Loading state for auth
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
+
   // Guest/Login Mode Management
   const [userMode, setUserMode] = useState<'guest' | 'logged-in'>(() => {
     // Check Cognito tokens first
@@ -70,6 +74,16 @@ export default function App() {
 
   // Landing Page Management
   const [showLandingPage, setShowLandingPage] = useState(() => {
+    // Check if we're returning from Cognito (has code in URL)
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasAuthCode = urlParams.has('code');
+    const authInProgress = localStorage.getItem('auth_in_progress');
+    
+    // Don't show landing page if auth is in progress or we have auth code
+    if (hasAuthCode || authInProgress) {
+      return false;
+    }
+    
     // Show landing page only for first-time guests
     return userMode === 'guest' && !localStorage.getItem('landingPageShown');
   });
@@ -140,6 +154,12 @@ export default function App() {
     };
   });
 
+  // LOs loaded from DB (falls back to mockLOs)
+  const [allLOs, setAllLOs] = useState<EasaLO[]>(mockLOs);
+  const [losLoading, setLosLoading] = useState(false);
+  const [isImportingLOs, setIsImportingLOs] = useState(false);
+  const [loImportStatus, setLoImportStatus] = useState<{type: 'success'|'error', message: string} | null>(null);
+
   // AI Generation states
   const [selectedLO, setSelectedLO] = useState<EasaLO>(mockLOs[0]);
   const [batchResults, setBatchResults] = useState<{loId: string, questions: Partial<Question>[]}[]>([]);
@@ -169,39 +189,53 @@ export default function App() {
   const [clearExisting, setClearExisting] = useState(false);
   const [importPassword, setImportPassword] = useState('');
   const IMPORT_PASSWORD_HASH = '9b8769a4a742959a2d0298c36fb70623f2a2d38'; // SHA1 of 'aeropilot2025'
-  const [userApiKey, setUserApiKey] = useState(() => {
-    const saved = localStorage.getItem('userApiKey');
-    return saved || '';
-  });
-  const [claudeApiKey, setClaudeApiKey] = useState(() => {
-    const saved = localStorage.getItem('claudeApiKey');
-    return saved || '';
-  });
+  const [userApiKey, setUserApiKey] = useState('');
+  const [claudeApiKey, setClaudeApiKey] = useState('');
   const [aiProvider, setAiProvider] = useState<AIProvider>(() => {
     const saved = localStorage.getItem('aiProvider');
     return (saved === 'claude' ? 'claude' : 'gemini');
   });
   const [aiModel, setAiModel] = useState(() => {
-    return localStorage.getItem('aiModel') || 'gemini-3-flash-preview';
+    const saved = localStorage.getItem('aiModel');
+    // Migrate old/invalid model names to current supported models
+    const modelMap: Record<string, string> = {
+      'gemini-3-flash-preview': 'gemini-3.1-flash-lite-preview',
+      'gemini-3.1-pro-preview': 'gemini-3.1-pro-preview',
+      'gemini-pro': 'gemini-2.5-pro',
+      'gemini-1.5-flash': 'gemini-2.5-flash',
+      'gemini-1.5-flash-latest': 'gemini-flash-latest',
+      'gemini-2.0-flash-exp': 'gemini-2.5-flash',
+      'gemini-2.0-flash': 'gemini-2.5-flash',
+      'gemini-1.0-pro': 'gemini-2.5-pro',
+      'claude-3-5-sonnet-20241022': 'claude-sonnet-4-6',
+      'claude-3-5-haiku-20241022': 'claude-haiku-4-5-20251001',
+      'claude-3-haiku-20240307': 'claude-haiku-4-5-20251001',
+      'claude-3-opus-20240229': 'claude-opus-4-6',
+      'claude-4-6-sonnet-20260217': 'claude-sonnet-4-6',
+      'claude-4-5-haiku-20251015': 'claude-haiku-4-5-20251001',
+      'claude-4-6-opus-20260205': 'claude-opus-4-6',
+    };
+    if (saved && modelMap[saved]) return modelMap[saved];
+    return saved || 'gemini-flash-latest';
   });
   const [isVerifyingKey, setIsVerifyingKey] = useState(false);
   const [keyStatus, setKeyStatus] = useState<'idle' | 'valid' | 'invalid'>('idle');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Auth State - restore user from localStorage on init
-  const [user, setUser] = useState<{id: number, username: string} | null>(() => {
+  const [user, setUser] = useState<{id: string, username: string} | null>(() => {
     try {
       // Try Cognito auth first
       const cognitoUser = cognitoAuthService.getCurrentUser();
       if (cognitoUser) {
-        return { id: parseInt(cognitoUser.id), username: cognitoUser.username };
+        return { id: cognitoUser.id, username: cognitoUser.username };
       }
       
       // Fallback to old system
       const saved = localStorage.getItem('user_data');
       if (saved) {
         const data = JSON.parse(saved);
-        return { id: 1, username: data.username || data.id };
+        return { id: '1', username: data.username || data.id };
       }
     } catch (e) {}
     return null;
@@ -222,7 +256,7 @@ export default function App() {
       const saved = localStorage.getItem('user_data');
       if (saved) {
         const data = JSON.parse(saved);
-        setUser({ id: 1, username: data.username || data.id });
+        setUser({ id: '1', username: data.username || data.id });
       }
     } catch (error) {
       setToken(null);
@@ -252,31 +286,22 @@ export default function App() {
   };
 
   // Guest mode functions
-  const switchToGuestMode = () => {
+  const switchToGuestMode = (fromLanding = false) => {
     setUserMode('guest');
     setToken(null);
     localStorage.removeItem('token');
-    setUser(null);
-    // Clear user-specific data but keep guest session
     const uid = user?.id || 'guest';
     localStorage.removeItem(`${uid}:user_progress`);
     localStorage.removeItem(`${uid}:user_stats`);
+    setUser(null);
+    if (fromLanding) {
+      localStorage.setItem('landingPageShown', 'true');
+      setShowLandingPage(false);
+      setView('dashboard');
+    }
   };
 
-  
-  // Landing Page functions
-  const handleLandingGuestMode = () => {
-    // Mark landing page as shown
-    localStorage.setItem('landingPageShown', 'true');
-    setShowLandingPage(false);
-    
-    // Switch to guest mode and show dashboard
-    setUserMode('guest');
-    setToken(null);
-    localStorage.removeItem('token');
-    setUser(null);
-    setView('dashboard');
-  };
+  const handleLandingGuestMode = () => switchToGuestMode(true);
 
   const handleLandingAuthSuccess = async (userData: { id: string; username: string; email?: string }) => {
     // Mark landing page as shown
@@ -315,10 +340,19 @@ export default function App() {
     loadStaticSubjects();
     loadStaticStats(); // Load persisted stats first (fast)
     fetchStats();    // Then fetch live question counts from DynamoDB (slow)
+    // Load LOs from DB (with fallback to mockLOs)
+    setLosLoading(true);
+    
+    // Set auth loading to false after initialization
+    setIsAuthLoading(false);
+    
+    getAllLOs().then(los => {
+      if (los && los.length > 0) setAllLOs(los);
+    }).finally(() => setLosLoading(false));
     if (isGuestMode) {
       initializeGuestSession();
     }
-  }, [])
+  }, []);
 
   // Initialize guest session
   const initializeGuestSession = () => {
@@ -354,12 +388,27 @@ export default function App() {
   }, [darkMode]);
 
   useEffect(() => {
-    localStorage.setItem('userApiKey', userApiKey);
-  }, [userApiKey]);
+    const uid = user?.id || 'guest';
+    const savedGemini = localStorage.getItem(`${uid}:userApiKey`);
+    const savedClaude = localStorage.getItem(`${uid}:claudeApiKey`);
+    setUserApiKey(savedGemini || '');
+    setClaudeApiKey(savedClaude || '');
+    setKeyStatus('idle');
+  }, [user]);
 
   useEffect(() => {
-    localStorage.setItem('claudeApiKey', claudeApiKey);
-  }, [claudeApiKey]);
+    if (userApiKey) {
+      const uid = user?.id || 'guest';
+      localStorage.setItem(`${uid}:userApiKey`, userApiKey);
+    }
+  }, [userApiKey, user]);
+
+  useEffect(() => {
+    if (claudeApiKey) {
+      const uid = user?.id || 'guest';
+      localStorage.setItem(`${uid}:claudeApiKey`, claudeApiKey);
+    }
+  }, [claudeApiKey, user]);
 
   useEffect(() => {
     localStorage.setItem('aiProvider', aiProvider);
@@ -369,14 +418,43 @@ export default function App() {
     localStorage.setItem('aiModel', aiModel);
   }, [aiModel]);
 
+  // Admin function to refresh explanation cache
+  const handleRefreshExplanation = async (questionId: string, subjectId: number) => {
+    if (userRole !== 'admin') {
+      alert('Tato funkce je jen pro adminy');
+      return;
+    }
+
+    if (!confirm(`Opravdu chcete smazat cache pro otázku ${questionId}? Tím se přegeneruje vysvětlení.`)) {
+      return;
+    }
+
+    try {
+      const cacheKey = `${subjectId}_${questionId}`;
+      const result = await dynamoDBService.refreshExplanation(cacheKey, aiModel);
+      
+      if (result.success) {
+        alert(`✅ Cache smazána. Vysvětlení se přegeneruje při dalším načtení.`);
+        // Clear local state to force regeneration
+        setAiExplanation('');
+        setDetailedExplanation('');
+      } else {
+        alert(`❌ Cache refresh selhal: ${result.error}`);
+      }
+    } catch (error) {
+      console.error('Cache refresh error:', error);
+      alert('Cache refresh selhal. Zkontrolujte konzoli.');
+    }
+  };
+
   // Credentials are now initialized in the main startup useEffect above
 
   useEffect(() => {
     // Reset model when provider changes
     if (aiProvider === 'gemini' && !aiModel.startsWith('gemini')) {
-      setAiModel('gemini-3-flash-preview');
+      setAiModel('gemini-flash-latest');
     } else if (aiProvider === 'claude' && !aiModel.startsWith('claude')) {
-      setAiModel('claude-sonnet-4-6'); // Use newest Sonnet 4.6 as default
+      setAiModel('claude-3-5-sonnet-20241022'); 
     }
   }, [aiProvider, aiModel]);
 
@@ -412,17 +490,19 @@ export default function App() {
     setIsVerifyingKey(true);
     setKeyStatus('idle');
     try {
-      const isValid = await verifyApiKey(currentApiKey, aiProvider);
-      setKeyStatus(isValid ? 'valid' : 'invalid');
-      if (isValid) {
-        alert(`API klíč pro ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} je platný a byl uložen.`);
+      const result = await verifyApiKey(currentApiKey, aiProvider);
+      
+      if (result.success) {
+        setKeyStatus('valid');
+        alert(`✅ API klíč pro ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} je platný a byl uložen.`);
       } else {
-        alert(`Vložený ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč není platný.`);
+        setKeyStatus('invalid');
+        alert(`❌ ${result.error || 'Vložený API klíč není platný.'}`);
       }
     } catch (err: any) {
       console.error(err);
       setKeyStatus('invalid');
-      alert('Chyba při ověřování API klíče.');
+      alert('Chyba při ověřování API klíče. Zkuste to prosím později.');
     } finally {
       setIsVerifyingKey(false);
     }
@@ -819,7 +899,7 @@ export default function App() {
         updateUserStats(isCorrect);
         // Sync to DynamoDB only for authenticated users (not guests)
         if (userRole !== 'guest' && user?.id) {
-          dynamoDBService.saveUserProgress(user.id, String(currentQuestion.id), isCorrect).catch(() => {});
+          dynamoDBService.saveUserProgress(String(user.id), String(currentQuestion.id), isCorrect).catch(() => {});
         }
       } catch (error) {
         // Silent fail
@@ -895,6 +975,11 @@ export default function App() {
     } : null);
   };
 
+  const getIsCurrentSource = (srcId: string, q: { is_ai?: number | boolean; source?: string }): boolean => {
+    const isAi = Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa';
+    return srcId === 'ai' ? isAi : !isAi;
+  };
+
   const jumpToRandomQuestion = () => {
     if (questions.length <= 1) return;
     let randomIndex = currentQuestionIndex;
@@ -954,14 +1039,35 @@ export default function App() {
       if (!q.text_cz) {
         const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
       if (!currentApiKey) {
-        const key = prompt(`Pro AI generované je vyžadován vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč (${aiProvider === 'gemini' ? 'zdarma na ai.google.dev' : 'na console.anthropic.com'}). Vložte jej prosím nyní:`);
+        const key = prompt(`⚠️ Pro použití AI je nutný API klíč
+Vložte Gemini nebo Claude API klíč (aktuálně vybráno: ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'}).
+
+💡 Klíč se automaticky rozpozná.
+V nastavení lze změnit defaultni model.`);
         if (key) {
-          if (aiProvider === 'gemini') {
+          // Inteligentní detekce typu klíče
+          if (key.startsWith('AIza')) {
+            // Gemini klíč
             setUserApiKey(key);
-            localStorage.setItem('userApiKey', key);
-          } else {
+            if (aiProvider !== 'gemini') {
+              setAiProvider('gemini');
+              console.log('🔄 Automaticky přepnuto na Gemini provider');
+            }
+          } else if (key.startsWith('sk-ant-')) {
+            // Claude klíč
             setClaudeApiKey(key);
-            localStorage.setItem('claudeApiKey', key);
+            if (aiProvider !== 'claude') {
+              setAiProvider('claude');
+              console.log('🔄 Automaticky přepnuto na Claude provider');
+            }
+          } else {
+            // Neznámý formát - uložit podle aktuálního provideru
+            if (aiProvider === 'gemini') {
+              setUserApiKey(key);
+            } else {
+              setClaudeApiKey(key);
+            }
+            console.warn('⚠️ Neznámý formát API klíče, uloženo podle aktuálního provideru');
           }
         } else {
           return;
@@ -974,7 +1080,7 @@ export default function App() {
         } catch (error: any) {
           console.error("Translation failed:", error);
           if (error?.message === 'API_KEY_MISSING') {
-            alert('Chybí API klíč. Vložte jej prosím v nastavení.');
+            alert('Chybí API klíč. Vložte prosím API klíč (Gemini nebo Claude).');
           } else if (error?.message === 'API_KEY_INVALID') {
             alert('Vložený API klíč není platný.');
           } else if (error?.message?.toLowerCase().includes('429') || error?.message?.toLowerCase().includes('resource_exhausted') || error?.message?.toLowerCase().includes('rate exceeded')) {
@@ -998,14 +1104,35 @@ export default function App() {
 
     const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
     if (!currentApiKey) {
-      const key = prompt(`Pro AI generované je vyžadován vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč (${aiProvider === 'gemini' ? 'zdarma na ai.google.dev' : 'na console.anthropic.com'}). Vložte jej prosím nyní:`);
+      const key = prompt(`⚠️ Pro použití AI je nutný API klíč
+Vložte Gemini nebo Claude API klíč (aktuálně vybráno: ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'}).
+
+💡 Klíč se automaticky rozpozná.
+V nastavení lze změnit defaultni model.`);
       if (key) {
-        if (aiProvider === 'gemini') {
+        // Inteligentní detekce typu klíče
+        if (key.startsWith('AIza')) {
+          // Gemini klíč
           setUserApiKey(key);
-          localStorage.setItem('userApiKey', key);
-        } else {
+          if (aiProvider !== 'gemini') {
+            setAiProvider('gemini');
+            console.log('🔄 Automaticky přepnuto na Gemini provider');
+          }
+        } else if (key.startsWith('sk-ant-')) {
+          // Claude klíč
           setClaudeApiKey(key);
-          localStorage.setItem('claudeApiKey', key);
+          if (aiProvider !== 'claude') {
+            setAiProvider('claude');
+            console.log('🔄 Automaticky přepnuto na Claude provider');
+          }
+        } else {
+          // Neznámý formát - uložit podle aktuálního provideru
+          if (aiProvider === 'gemini') {
+            setUserApiKey(key);
+          } else {
+            setClaudeApiKey(key);
+          }
+          console.warn('⚠️ Neznámý formát API klíče, uloženo podle aktuálního provideru');
         }
       } else {
         return;
@@ -1062,7 +1189,7 @@ export default function App() {
         return;
       }
       
-      const lo = mockLOs.find(l => l.id === q.lo_id);
+      const lo = allLOs.find(l => l.id === q.lo_id);
       
       const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : claudeApiKey, aiModel, aiProvider);
       
@@ -1138,7 +1265,7 @@ export default function App() {
         stack: error?.stack
       });
       if (error?.message === 'API_KEY_MISSING') {
-        alert('Chybí API klíč. Vložte jej prosím v nastavení.');
+        alert('Chybí API klíč. Vložte prosím API klíč (Gemini nebo Claude).');
       } else if (error?.message === 'API_KEY_INVALID') {
         alert('Vložený API klíč není platný.');
       } else if (error?.message?.toLowerCase().includes('429') || error?.message?.toLowerCase().includes('resource_exhausted') || error?.message?.toLowerCase().includes('rate exceeded')) {
@@ -1157,14 +1284,35 @@ export default function App() {
 
     const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
     if (!currentApiKey) {
-      const key = prompt(`Pro AI generované je vyžadován vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč (${aiProvider === 'gemini' ? 'zdarma na ai.google.dev' : 'na console.anthropic.com'}). Vložte jej prosím nyní:`);
+      const key = prompt(`⚠️ Pro použití AI je nutný API klíč
+Vložte Gemini nebo Claude API klíč (aktuálně vybráno: ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'}).
+
+💡 Klíč se automaticky rozpozná.
+V nastavení lze změnit defaultni model.`);
       if (key) {
-        if (aiProvider === 'gemini') {
+        // Inteligentní detekce typu klíče
+        if (key.startsWith('AIza')) {
+          // Gemini klíč
           setUserApiKey(key);
-          localStorage.setItem('userApiKey', key);
-        } else {
+          if (aiProvider !== 'gemini') {
+            setAiProvider('gemini');
+            console.log('🔄 Automaticky přepnuto na Gemini provider');
+          }
+        } else if (key.startsWith('sk-ant-')) {
+          // Claude klíč
           setClaudeApiKey(key);
-          localStorage.setItem('claudeApiKey', key);
+          if (aiProvider !== 'claude') {
+            setAiProvider('claude');
+            console.log('🔄 Automaticky přepnuto na Claude provider');
+          }
+        } else {
+          // Neznámý formát - uložit podle aktuálního provideru
+          if (aiProvider === 'gemini') {
+            setUserApiKey(key);
+          } else {
+            setClaudeApiKey(key);
+          }
+          console.warn('⚠️ Neznámý formát API klíče, uloženo podle aktuálního provideru');
         }
       } else {
         return;
@@ -1174,7 +1322,7 @@ export default function App() {
     setIsGeneratingDetailedExplanation(true);
     try {
       
-      const lo = mockLOs.find(l => l.id === q.lo_id);
+      const lo = allLOs.find(l => l.id === q.lo_id);
       
       // Check if we already have detailed explanation in database
       if (q.ai_detailed_explanation) {
@@ -1218,7 +1366,7 @@ export default function App() {
         stack: error?.stack
       });
       if (error?.message === 'API_KEY_MISSING') {
-        alert('Chybí API klíč. Vložte jej prosím v nastavení.');
+        alert('Chybí API klíč. Vložte prosím API klíč (Gemini nebo Claude).');
       } else if (error?.message === 'API_KEY_INVALID') {
         alert('Vložený API klíč není platný.');
       } else if (error?.message?.toLowerCase().includes('429') || error?.message?.toLowerCase().includes('resource_exhausted') || error?.message?.toLowerCase().includes('rate exceeded')) {
@@ -1255,7 +1403,7 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (view === 'settings' && importSubjectId) {
+    if ((view === 'settings' || view === 'ai') && importSubjectId) {
       fetchCoverage(importSubjectId);
     }
   }, [view, importSubjectId]);
@@ -1277,7 +1425,7 @@ export default function App() {
       setSyllabusSelectedLO(loId);
       // Auto-expand the path to this LO
       const parts = loId.split('.');
-      const lo = mockLOs.find(l => l.id === loId);
+      const lo = allLOs.find(l => l.id === loId);
       if (lo?.subject_id) {
         setSyllabusExpandedSubjects(prev => new Set([...prev, lo.subject_id!]));
       }
@@ -1302,20 +1450,54 @@ export default function App() {
   };
 
   const handleGenerateQuestions = async () => {
+    console.log('🔍 Debug: handleGenerateQuestions spuštěno');
+    console.log('🔍 Debug: userRole =', userRole);
+    console.log('🔍 Debug: aiProvider =', aiProvider);
+    console.log('🔍 Debug: userApiKey =', userApiKey ? 'exists' : 'empty');
+    console.log('🔍 Debug: claudeApiKey =', claudeApiKey ? 'exists' : 'empty');
+    
     if (userRole === 'guest') {
       alert('Tato funkce je jen pro ověřené uživatele');
       return;
     }
-    const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
-    if (!currentApiKey) {
-      const key = prompt(`Pro hromadné generování otázek pomocí AI generovaných je vyžadován vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč (${aiProvider === 'gemini' ? 'zdarma na ai.google.dev' : 'na console.anthropic.com'}). Vložte jej prosím nyní:`);
+    let effectiveApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
+    console.log('🔍 Debug: effectiveApiKey =', effectiveApiKey ? 'exists' : 'empty');
+    
+    if (!effectiveApiKey) {
+      console.log('🔍 Debug: Zobrazuji prompt pro vložení klíče');
+      const key = prompt(`⚠️ Pro použití AI je nutný API klíč
+Vložte Gemini nebo Claude API klíč (aktuálně vybráno: ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'}).
+
+💡 Klíč se automaticky rozpozná.
+V nastavení lze změnit defaultni model.`);
+      console.log('🔍 Debug: Uživatel vložil klíč =', key ? 'yes' : 'no/cancel');
       if (key) {
-        if (aiProvider === 'gemini') {
+        // Inteligentní detekce typu klíče
+        if (key.startsWith('AIza')) {
+          // Gemini klíč
           setUserApiKey(key);
-          localStorage.setItem('userApiKey', key);
-        } else {
+          if (aiProvider !== 'gemini') {
+            setAiProvider('gemini');
+            console.log('🔄 Automaticky přepnuto na Gemini provider');
+          }
+          effectiveApiKey = key;
+        } else if (key.startsWith('sk-ant-')) {
+          // Claude klíč
           setClaudeApiKey(key);
-          localStorage.setItem('claudeApiKey', key);
+          if (aiProvider !== 'claude') {
+            setAiProvider('claude');
+            console.log('🔄 Automaticky přepnuto na Claude provider');
+          }
+          effectiveApiKey = key;
+        } else {
+          // Neznámý formát - uložit podle aktuálního provideru
+          if (aiProvider === 'gemini') {
+            setUserApiKey(key);
+          } else {
+            setClaudeApiKey(key);
+          }
+          effectiveApiKey = key;
+          console.warn('⚠️ Neznámý formát API klíče, uloženo podle aktuálního provideru');
         }
       } else {
         return;
@@ -1326,7 +1508,7 @@ export default function App() {
     setBatchResults([]);
     try {
       // Find LOs for the current subject
-      const allSubjectLOs = mockLOs.filter(lo => lo.subject_id === importSubjectId);
+      const allSubjectLOs = allLOs.filter(lo => lo.subject_id === importSubjectId);
       const missingLOs = allSubjectLOs.filter(lo => !coveredLOs.has(lo.id));
       
       // Prioritize missing LOs, then fill with already covered ones to reach batchSize
@@ -1350,7 +1532,7 @@ export default function App() {
       
       for (let i = 0; i < targets.length; i += CHUNK_SIZE) {
         const chunk = targets.slice(i, i + CHUNK_SIZE);
-        const chunkResults = await generateBatchQuestions(chunk, questionsPerLO, genLanguage, aiProvider === 'gemini' ? userApiKey : claudeApiKey, aiModel, aiProvider, selectedLicense);
+        const chunkResults = await generateBatchQuestions(chunk, questionsPerLO, genLanguage, effectiveApiKey, aiModel, aiProvider, selectedLicense);
         allResults.push(...chunkResults);
         setBatchResults([...allResults]); // Update UI incrementally
       }
@@ -1359,13 +1541,13 @@ export default function App() {
     } catch (error: any) {
       console.error("Generation failed:", error);
       if (error?.message === 'API_KEY_MISSING') {
-        alert('Chybí API klíč. Vložte jej prosím v nastavení.');
+        alert('Chybí API klíč. Vložte prosím API klíč (Gemini nebo Claude).');
       } else if (error?.message === 'API_KEY_INVALID') {
         alert('Vložený API klíč není platný.');
       } else if (error?.message?.toLowerCase().includes('429') || error?.message?.toLowerCase().includes('resource_exhausted') || error?.message?.toLowerCase().includes('rate exceeded')) {
         alert('Limit požadavků (Rate Limit) byl vyčerpán. Prosím počkejte minutu.');
       } else {
-        alert('Generování otázek se nezdařilo.');
+        alert(`Generování otázek se nezdařilo.\n\nDetail: ${error?.message || String(error)}`);
       }
     } finally {
       setIsGeneratingDetailedExplanation(false);
@@ -1378,90 +1560,53 @@ export default function App() {
       return;
     }
     if (batchResults.length === 0 || !importSubjectId) return;
-    
-    try {
-      const allQuestionsToImport = batchResults.flatMap(result => 
-        result.questions.map((q: any) => ({
-          id: Date.now() + Math.random(),
-          question: q.text || q.text_cz || "Bez textu",
-          answers: [
-            q.option_a || q.option_a_cz || "Možnost A", 
-            q.option_b || q.option_b_cz || "Možnost B", 
-            q.option_c || q.option_c_cz || "Možnost C", 
-            q.option_d || q.option_d_cz || "Možnost D"
-          ],
-          correct: ['A', 'B', 'C', 'D'].indexOf(q.correct_option || 'A'),
-          explanation: q.explanation || q.explanation_cz || "",
-          image: null,
-          lo_id: result.loId,
-          source: 'ai'
-        }))
-      );
 
-      // Save to localStorage
-      const savedQuestions = JSON.parse(localStorage.getItem('questions') || '[]');
-      const updatedQuestions = [...savedQuestions, ...allQuestionsToImport];
-      localStorage.setItem('questions', JSON.stringify(updatedQuestions));
-      
-      // Check DynamoDB availability before saving
-      console.log('🔍 Checking DynamoDB availability...');
-      
-      // Test DynamoDB connection first
-      const testSave = dynamoDBService.saveQuestion(importSubjectId, {
-        question: 'Connection test',
-        answers: ['A', 'B', 'C', 'D'],
-        correct: 0,
-        explanation: 'Test',
-        lo_id: 'test',
-        source: 'test'
-      });
-      
-      testSave.then(testResult => {
-        if (testResult.success) {
-          console.log('✅ DynamoDB connection verified, proceeding with batch save...');
-          
-          // Save to DynamoDB with proper error handling
-          const savePromises = allQuestionsToImport.map((q: any) => 
-            dynamoDBService.saveQuestion(importSubjectId, q)
-          .then(result => {
-            if (!result.success) {
-              console.error('❌ Failed to save question to DynamoDB:', result.error);
-              return { success: false, error: result.error };
-            }
-            console.log('✅ Question saved to DynamoDB successfully');
-            return { success: true };
-          })
-          .catch(error => {
-            console.error('❌ DynamoDB save error:', error);
-            return { success: false, error: error.message };
-          })
+    const allQuestionsToImport = batchResults.flatMap(result =>
+      result.questions.map((q: any) => ({
+        id: Date.now() + Math.random(),
+        question: q.text || q.text_cz || "Bez textu",
+        answers: [
+          q.option_a || q.option_a_cz || "Možnost A",
+          q.option_b || q.option_b_cz || "Možnost B",
+          q.option_c || q.option_c_cz || "Možnost C",
+          q.option_d || q.option_d_cz || "Možnost D"
+        ],
+        correct: ['A', 'B', 'C', 'D'].indexOf(q.correct_option || 'A'),
+        explanation: q.explanation || q.explanation_cz || "",
+        explanation_cz: q.explanation_cz || undefined,
+        text_cz: q.text_cz || undefined,
+        option_a_cz: q.option_a_cz || undefined,
+        option_b_cz: q.option_b_cz || undefined,
+        option_c_cz: q.option_c_cz || undefined,
+        option_d_cz: q.option_d_cz || undefined,
+        image: null,
+        lo_id: result.loId,
+        source: 'ai'
+      }))
+    );
+
+    try {
+      // Save to DynamoDB
+      const savePromises = allQuestionsToImport.map((q: any) =>
+        dynamoDBService.saveQuestion(importSubjectId, q)
       );
-      
-      Promise.all(savePromises).then(results => {
-        const successful = results.filter(r => r.success).length;
-        const failed = results.length - successful;
-        console.log(`📊 DynamoDB save summary: ${successful} successful, ${failed} failed`);
-        
-        setImportStatus({ type: 'success', message: `Úspěšně uloženo ${allQuestionsToImport.length} AI otázek pro ${batchResults.length} témat (${successful} v DynamoDB).` });
-        setBatchResults([]);
-        return Promise.all([
-          fetchSubjects(),
-          fetchStats(),
-          fetchCoverage(importSubjectId)
-        ]);
+      const results = await Promise.all(savePromises);
+      const successful = results.filter(r => r.success).length;
+      const failed = results.length - successful;
+
+      // Also persist to localStorage as cache
+      const cached = JSON.parse(localStorage.getItem('questions') || '[]');
+      localStorage.setItem('questions', JSON.stringify([...cached, ...allQuestionsToImport]));
+
+      setImportStatus({
+        type: 'success',
+        message: `✅ Uloženo ${successful} otázek do DB${failed > 0 ? ` (${failed} selhalo)` : ''} pro ${batchResults.length} témat.`
       });
-    } else {
-      console.log('❌ DynamoDB not available, questions saved only to localStorage');
-      setImportStatus({ type: 'success', message: `AI otázky uloženy pouze lokálně (DynamoDB nedostupné).` });
       setBatchResults([]);
-    }
-  }).catch(error => {
-    console.error('❌ DynamoDB test failed:', error);
-    setImportStatus({ type: 'success', message: `AI otázky uloženy pouze lokálně (chyba DynamoDB).` });
-    setBatchResults([]);
-  });
-    } catch (error) {
+      await Promise.all([fetchSubjects(), fetchStats(), fetchCoverage(importSubjectId)]);
+    } catch (error: any) {
       console.error("Saving failed:", error);
+      setImportStatus({ type: 'error', message: `❌ Uložení selhalo: ${error.message}` });
     }
   };
 
@@ -1476,7 +1621,13 @@ export default function App() {
       localStorage.removeItem(`${uid}:answers`);
       localStorage.removeItem(`${uid}:guest_stats`);
       localStorage.removeItem(`${uid}:session_start`);
-      
+      // Clear API keys for current user only
+      localStorage.removeItem(`${uid}:userApiKey`);
+      localStorage.removeItem(`${uid}:claudeApiKey`);
+      setUserApiKey('');
+      setClaudeApiKey('');
+      setKeyStatus('idle');
+
       // Reset stats to default
       setStats({
         totalAnswers: 0,
@@ -1611,8 +1762,18 @@ export default function App() {
   
   return (
     <div className="min-h-screen transition-colors duration-300">
-      {/* Landing Page - Gatekeeper */}
-      {showLandingPage && (
+      {/* Loading State - Prevent landing page flash */}
+      {isAuthLoading ? (
+        <div className="min-h-screen bg-[var(--bg)] flex items-center justify-center">
+          <div className="text-center">
+            <div className="w-8 h-8 border-2 border-[var(--ink)] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-sm opacity-50">Loading...</p>
+          </div>
+        </div>
+      ) : (
+        <>
+          {/* Landing Page - Gatekeeper */}
+          {showLandingPage && (
         <>
           <LandingPage 
             onGuestMode={handleLandingGuestMode}
@@ -1621,23 +1782,8 @@ export default function App() {
           />
           {/* Render dashboard content in background for blur effect */}
           <div className="opacity-0">
-            {/* Header */}
-            <header className="border-b border-[var(--line)] px-4 py-3 flex justify-between items-center sticky top-0 bg-[var(--bg)] z-50 min-h-[60px]">
-              <div className="flex items-center gap-3 cursor-pointer group">
-                <div className="w-10 h-10 min-w-[40px] bg-[var(--ink)] text-[var(--ink-text)] flex items-center justify-center rounded-lg font-bold text-xl flex-shrink-0 group-hover:scale-105 transition-transform">
-                  A
-                </div>
-                <div className="min-w-0">
-                  <h1 className="font-bold text-lg leading-tight group-hover:text-indigo-600 transition-colors">Aeropilot Exam Prep</h1>
-                  <div className="flex items-center gap-2 text-xs opacity-60 leading-tight">
-                    <span className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-500' : 'bg-red-500'} flex-shrink-0`}></span>
-                    <span className="truncate">{isOnline ? 'Online' : 'Offline'}</span>
-                  </div>
-                </div>
-              </div>
-            </header>
             {/* Dashboard content for background blur */}
-            <main className="p-4">
+            <main className="p-4 pt-[80px]">
               <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                   {/* Stats cards for background */}
@@ -1664,8 +1810,10 @@ export default function App() {
         </>
       )}
       
-      {/* Header */}
+      {/* Header - Hide when landing page is shown */}
+      {!showLandingPage && (
       <header className="border-b border-[var(--line)] px-4 py-3 flex justify-between items-center sticky top-0 bg-[var(--bg)] z-50 min-h-[60px]">
+        {/* Left section - Logo and title (always visible) */}
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => setView('dashboard')}>
           <div className="w-10 h-10 min-w-[40px] bg-[var(--ink)] text-[var(--ink-text)] flex items-center justify-center rounded-lg font-bold text-xl flex-shrink-0 group-hover:scale-105 transition-transform">
             A
@@ -1679,7 +1827,8 @@ export default function App() {
           </div>
         </div>
 
-        <nav className="hidden md:flex gap-6 lg:gap-8 items-center">
+        {/* Center navigation - Fixed items (always visible on mobile) */}
+        <nav className="hidden md:flex gap-4 lg:gap-6 items-center">
           <button onClick={() => setView('dashboard')} className={`text-xs uppercase tracking-widest font-semibold flex items-center gap-2 whitespace-nowrap transition-opacity ${view === 'dashboard' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}>
             <LayoutDashboard size={14} className="flex-shrink-0" /> 
             <span className="hidden sm:inline">Dashboard</span>
@@ -1698,39 +1847,20 @@ export default function App() {
             <BookOpen size={14} className="flex-shrink-0" /> 
             <span className="hidden sm:inline">Osnovy</span>
           </button>
+          {userApiKey && (
+          <button
+            onClick={() => isGuestMode ? showAuthPrompt('ai') : setView('ai')}
+            className={`text-xs uppercase tracking-widest font-semibold flex items-center gap-2 whitespace-nowrap transition-opacity ${view === 'ai' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
+          >
+            <Sparkles size={14} className="flex-shrink-0" />
+            <span className="hidden sm:inline">AI Generátor</span>
+          </button>
+        )}
         </nav>
 
+        {/* Right section - Desktop vs Mobile layout */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {isGuestMode ? (
-            <button
-              onClick={() => showAuthPrompt('stats')}
-              className="hidden sm:flex items-center h-10 px-3 bg-[var(--badge-bg)] rounded-full min-w-0 hover:bg-[var(--line)] transition-colors"
-            >
-              <User size={12} className="opacity-50 flex-shrink-0" />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--ink)] truncate ml-1">Guest</span>
-            </button>
-          ) : (
-            <div className="hidden sm:flex items-center h-10 px-3 bg-[var(--badge-bg)] rounded-full min-w-0">
-              <User size={12} className="opacity-50 flex-shrink-0" />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--ink)] truncate ml-1">{user?.username}</span>
-              <button 
-                onClick={handleLogout}
-                className="ml-2 p-1 hover:text-rose-500 transition-colors rounded flex-shrink-0"
-                title="Odhlásit se"
-              >
-                <XCircle size={12} />
-              </button>
-            </div>
-          )}
-          {!userApiKey && (
-            <div 
-              onClick={() => setView('settings')}
-              className="hidden lg:flex items-center h-10 px-3 bg-red-500/10 text-red-600 rounded-full text-[10px] font-bold border border-red-500/20 cursor-pointer hover:bg-red-500/20 transition-colors min-w-0"
-            >
-              <AlertCircle size={12} className="flex-shrink-0" />
-              <span className="hidden xl:inline ml-1">AI VYPNUTO</span>
-            </div>
-          )}
+          {/* Fixed controls (always visible) */}
           <button 
             onClick={() => setDarkMode(!darkMode)}
             className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[var(--ink)] hover:text-[var(--ink-text)] transition-colors flex-shrink-0"
@@ -1738,6 +1868,7 @@ export default function App() {
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
+
           <button 
             onClick={() => setView('settings')}
             className={`w-10 h-10 flex items-center justify-center rounded-full transition-colors flex-shrink-0 ${view === 'settings' ? 'bg-[var(--ink)] text-[var(--ink-text)]' : 'hover:bg-[var(--ink)] hover:text-[var(--ink-text)]'}`}
@@ -1745,14 +1876,77 @@ export default function App() {
           >
             <Settings size={18} />
           </button>
-          <button 
-            onClick={startExam}
-            className="bg-[var(--ink)] text-[var(--ink-text)] px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform"
-          >
-            Simulace zkoušky
-          </button>
+
+          {/* Desktop layout - everything visible */}
+          <div className="hidden xl:flex items-center gap-2">
+            {/* Guest/User status */}
+            {isGuestMode ? (
+              <button
+                onClick={() => showAuthPrompt('stats')}
+                className="hidden sm:flex items-center h-10 px-3 bg-[var(--badge-bg)] rounded-full min-w-0 hover:bg-[var(--line)] transition-colors"
+              >
+                <User size={12} className="opacity-50 flex-shrink-0" />
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--ink)] truncate ml-1">Guest</span>
+              </button>
+            ) : (
+              <div className="hidden sm:flex items-center h-10 px-3 bg-[var(--badge-bg)] rounded-full min-w-0">
+                <User size={12} className="opacity-50 flex-shrink-0" />
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--ink)] truncate ml-1">{user?.username}</span>
+                <button 
+                  onClick={handleLogout}
+                  className="ml-2 p-1 hover:text-rose-500 transition-colors rounded flex-shrink-0"
+                  title="Odhlásit se"
+                >
+                  <XCircle size={12} />
+                </button>
+              </div>
+            )}
+
+            {/* Exam simulation button */}
+            <button 
+              onClick={startExam}
+              className="bg-[var(--ink)] text-[var(--ink-text)] px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform"
+            >
+              Simulace zkoušky
+            </button>
+          </div>
+
+          {/* Mobile/Tablet layout - scrollable overflow */}
+          <div className="hidden md:flex xl:hidden items-center gap-2 overflow-x-auto scrollbar-hide max-w-[150px] lg:max-w-[200px]">
+            {/* Guest/User status - scrollable */}
+            {isGuestMode ? (
+              <button
+                onClick={() => showAuthPrompt('stats')}
+                className="hidden sm:flex items-center h-10 px-3 bg-[var(--badge-bg)] rounded-full min-w-0 hover:bg-[var(--line)] transition-colors flex-shrink-0"
+              >
+                <User size={12} className="opacity-50 flex-shrink-0" />
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--ink)] truncate ml-1">Guest</span>
+              </button>
+            ) : (
+              <div className="hidden sm:flex items-center h-10 px-3 bg-[var(--badge-bg)] rounded-full min-w-0 flex-shrink-0">
+                <User size={12} className="opacity-50 flex-shrink-0" />
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--ink)] truncate ml-1">{user?.username}</span>
+                <button 
+                  onClick={handleLogout}
+                  className="ml-2 p-1 hover:text-rose-500 transition-colors rounded flex-shrink-0"
+                  title="Odhlásit se"
+                >
+                  <XCircle size={12} />
+                </button>
+              </div>
+            )}
+
+            {/* Exam simulation button - scrollable */}
+            <button 
+              onClick={startExam}
+              className="bg-[var(--ink)] text-[var(--ink-text)] px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform flex-shrink-0"
+            >
+              Test
+            </button>
+          </div>
         </div>
       </header>
+      )}
 
       <main className="max-w-7xl mx-auto p-6">
         <AnimatePresence mode="wait">
@@ -2112,17 +2306,16 @@ export default function App() {
                       >
                         {aiProvider === 'gemini' ? (
                           <>
-                            <option value="gemini-3-flash-preview">Gemini 3 Flash (Rychlý, vysoké limity)</option>
-                            <option value="gemini-3.1-pro-preview">Gemini 3.1 Pro (Chytřejší, nižší limity)</option>
-                            <option value="gemini-1.5-flash">Gemini 1.5 Flash (Starší)</option>
+                            <option value="gemini-2.5-flash">Gemini 2.5 Flash (Doporučeno)</option>
+                            <option value="gemini-3.1-flash-lite-preview">Gemini 3.1 Flash-Lite (Nejrychlejší)</option>
+                            <option value="gemini-2.5-pro">Gemini 2.5 Pro (Pokročilý)</option>
+                            <option value="gemini-3.1-pro-preview">Gemini 3.1 Pro (Nejsilnější)</option>
                           </>
                         ) : (
                           <>
-                            <option value="claude-sonnet-4-6">Claude Sonnet 4.6 (Nejnovější)</option>
-                            <option value="claude-opus-4-6">Claude Opus 4.6 (Nejlepší)</option>
-                            <option value="claude-sonnet-4-20250514">Claude Sonnet 4 (Stabilní)</option>
-                            <option value="claude-opus-4-20250514">Claude Opus 4 (Výkonný)</option>
-                            <option value="claude-haiku-4-5-20251001">Claude Haiku 4.5 (Rychlý, levný)</option>
+                            <option value="claude-sonnet-4-6">Claude 4.6 Sonnet (Nejlepší)</option>
+                            <option value="claude-haiku-4-5-20251001">Claude 4.5 Haiku (Nejrychlejší)</option>
+                            <option value="claude-opus-4-6">Claude 4.6 Opus (Nejsilnější)</option>
                           </>
                         )}
                       </select>
@@ -2173,144 +2366,24 @@ export default function App() {
                 </div>
               </section>
 
-              {/* 3. AI Generátor (Dříve samostatné zobrazení) */}
+              {/* 3. AI Generátor — odkaz */}
               <section className="space-y-6">
                 <div className="flex items-center gap-2 px-2">
                   <Sparkles size={20} className="opacity-50" />
-                  <h3 className="font-bold uppercase tracking-widest text-sm">AI Generátor otázek (Batch Fill)</h3>
+                  <h3 className="font-bold uppercase tracking-widest text-sm">AI Generátor otázek</h3>
                 </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                  <div className="md:col-span-3 space-y-6">
-                    {/* Step 1: Syllabus Management */}
-                    <div className="p-8 border border-[var(--line)] rounded-3xl space-y-4 bg-white/5">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 bg-[var(--ink)] text-[var(--bg)] rounded-lg flex items-center justify-center font-bold text-xs">1</div>
-                          <h3 className="text-xl font-bold">Osnovy & EASA LOs</h3>
-                        </div>
-                      </div>
-                      <p className="text-sm opacity-60">
-                        AI využívá strukturu Subject → Topic → Subtopic z AMC/GM Part-FCL pro generování přesných otázek.
-                      </p>
-                      
-                      <div className="space-y-6 pt-4">
-                        <div className="space-y-2">
-                          <label className="col-header">Licence</label>
-                          <div className="flex gap-3">
-                            {(['PPL', 'SPL'] as const).map(lic => (
-                              <button
-                                key={lic}
-                                onClick={() => { setSelectedLicense(lic); localStorage.setItem('selectedLicense', lic); }}
-                                className={`flex-1 py-3 rounded-xl border text-xs font-bold uppercase tracking-widest transition-all ${selectedLicense === lic ? 'bg-indigo-600 text-white border-indigo-600' : 'border-[var(--line)] opacity-60 hover:opacity-100'}`}
-                              >
-                                {lic === 'PPL' ? 'PPL(A) — Motorový' : 'SPL — Kluzák'}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div className="space-y-2">
-                            <label className="col-header">Cílový předmět</label>
-                            <select 
-                              value={importSubjectId || ''} 
-                              onChange={(e) => setImportSubjectId(Number(e.target.value))}
-                              className="w-full p-3 bg-transparent border border-[var(--line)] rounded-xl text-xs font-bold focus:outline-none focus:border-indigo-600"
-                            >
-                              {subjects.map(s => (
-                                <option key={s.id} value={s.id}>{s.name} (Scope: {SYLLABUS_SCOPE[s.id] || 0} LOs)</option>
-                              ))}
-                            </select>
-                          </div>
-                          <div className="space-y-2">
-                            <label className="col-header">Počet témat v dávce</label>
-                            <div className="flex gap-2">
-                              {[1, 5, 10, 50].map(n => (
-                                <button
-                                  key={n}
-                                  onClick={() => setBatchSize(n)}
-                                  className={`flex-1 py-2 rounded-xl border text-xs font-bold transition-all ${batchSize === n ? 'bg-indigo-600 text-white border-indigo-600' : 'border-[var(--line)] opacity-60 hover:opacity-100'}`}
-                                >
-                                  {n} LOs
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-
-                        {userRole === 'guest' && (
-                          <AccessDenied variant="guest" className="mb-2" />
-                        )}
-                        <button 
-                          onClick={handleGenerateQuestions}
-                          disabled={isGeneratingDetailedExplanation || userRole === 'guest'}
-                          className="w-full py-4 bg-indigo-600 text-white rounded-2xl text-xs font-bold uppercase tracking-widest hover:scale-[1.01] transition-transform flex items-center justify-center gap-2 disabled:opacity-50"
-                        >
-                          {isGeneratingDetailedExplanation ? <RotateCcw size={16} className="animate-spin" /> : <Sparkles size={16} />}
-                          {isGeneratingDetailedExplanation ? 'Generuji hromadně...' : `Spustit generování (${batchSize} témat)`}
-                        </button>
-                      </div>
+                <button
+                  onClick={() => setView('ai')}
+                  className="w-full p-6 border border-indigo-500/30 bg-indigo-500/5 rounded-3xl text-left hover:bg-indigo-500/10 transition-colors group"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="space-y-1">
+                      <p className="font-bold">Hromadný Generátor (Batch Fill)</p>
+                      <p className="text-xs opacity-60">Licence · ECQB vzory · Batch size · Jazyk · Pokrytí LOs</p>
                     </div>
-
-                    {batchResults.length > 0 && (
-                      <div className="space-y-6 pt-6 animate-in fade-in slide-in-from-top-4">
-                        <div className="flex justify-between items-center">
-                          <h4 className="font-bold text-sm uppercase tracking-widest">Výsledek ({batchResults.length} témat)</h4>
-                          <button 
-                            onClick={saveGeneratedQuestions}
-                            disabled={userRole === 'guest'}
-                            className="px-6 py-2 bg-emerald-600 text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform disabled:opacity-40 disabled:cursor-not-allowed"
-                            title={userRole === 'guest' ? 'Tato funkce je jen pro ověřené uživatele' : undefined}
-                          >
-                            Uložit vše do databáze
-                          </button>
-                        </div>
-                        <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
-                          {batchResults.map((result, i) => (
-                            <div key={i} className="p-4 border border-[var(--line)] rounded-2xl bg-white/5 space-y-2">
-                              <div className="flex items-center gap-2">
-                                <span className="px-2 py-0.5 bg-indigo-600 text-white rounded text-[10px] font-bold">{result.loId}</span>
-                                <span className="text-xs font-bold opacity-70 truncate">{mockLOs.find(l => l.id === result.loId)?.text}</span>
-                              </div>
-                              <p className="text-[10px] opacity-40 italic">Generováno: {result.questions.length} otázek</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                    <ChevronRight size={20} className="text-indigo-500 group-hover:translate-x-1 transition-transform" />
                   </div>
-
-                  <div className="space-y-6">
-                    <div className="p-6 border border-[var(--line)] rounded-3xl space-y-4 bg-white/5">
-                      <h4 className="col-header">Progres předmětu</h4>
-                      <div className="space-y-4">
-                        <div className="space-y-1">
-                          <div className="flex justify-between text-[10px] font-bold">
-                            <span>EASA Pokrytí</span>
-                            <span>{Math.round((coveredLOs.size / (SYLLABUS_SCOPE[importSubjectId || 0] || 1)) * 100)}%</span>
-                          </div>
-                          <div className="h-2 bg-[var(--line)] rounded-full overflow-hidden">
-                            <div 
-                              className="h-full bg-emerald-500 transition-all duration-1000" 
-                              style={{ width: `${(coveredLOs.size / (SYLLABUS_SCOPE[importSubjectId || 0] || 1)) * 100}%` }} 
-                            />
-                          </div>
-                        </div>
-                        <div className="grid grid-cols-2 gap-2 text-[10px]">
-                          <div className="p-2 border border-[var(--line)] rounded-lg">
-                            <p className="opacity-40">Pokryto</p>
-                            <p className="font-bold">{coveredLOs.size}</p>
-                          </div>
-                          <div className="p-2 border border-[var(--line)] rounded-lg">
-                            <p className="opacity-40">Zbývá</p>
-                            <p className="font-bold">{Math.max(0, (SYLLABUS_SCOPE[importSubjectId || 0] || 0) - coveredLOs.size)}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                </button>
               </section>
 
               {/* 4. Vlastní import (JSON) */}
@@ -2354,7 +2427,7 @@ export default function App() {
                       value={importJson}
                       onChange={(e) => setImportJson(e.target.value)}
                       placeholder='[{"id": 1, "question": "...", "answers": ["...", ...], "correct": 0}]'
-                      className="w-full h-32 p-4 bg-transparent border border-[var(--line)] rounded-xl font-mono text-[10px] focus:outline-none focus:border-[var(--ink)] resize-none"
+                      className="w-full h-48 p-4 bg-transparent border border-[var(--line)] rounded-xl font-mono text-[10px] focus:outline-none focus:border-[var(--ink)] resize-y overflow-y-auto"
                     />
                   </div>
 
@@ -2501,8 +2574,7 @@ export default function App() {
                         { id: 'ai', icon: Bot, label: 'AI Generováno' }
                       ].map(src => {
                         const q = questions[currentQuestionIndex];
-                        const isCurrentSource = (src.id === 'user' && q.is_ai !== 1) || 
-                                               (src.id === 'ai' && q.is_ai === 1);
+                        const isCurrentSource = getIsCurrentSource(src.id, q);
                         const isFilteringThis = drillSettings.sourceFilters.length === 1 && drillSettings.sourceFilters[0] === src.id;
                         
                         return (
@@ -2657,17 +2729,14 @@ export default function App() {
                                 disabled={isGeneratingAiExplanation}
                               >
                                 <optgroup label="Google Gemini">
-                                  <option value="gemini-3-flash-preview">Gemini 3 Flash (Rychlý)</option>
-                                  <option value="gemini-3.1-pro-preview">Gemini 3.1 Pro (Chytřejší)</option>
-                                  <option value="gemini-1.5-flash">Gemini 1.5 Flash (Starší)</option>
+                                  <option value="gemini-2.5-flash">Gemini 2.5 Flash (Doporučeno)</option>
+                                  <option value="gemini-3.1-flash-lite-preview">Gemini 3.1 Flash-Lite (Rychlý)</option>
+                                  <option value="gemini-2.5-pro">Gemini 2.5 Pro (Silný)</option>
                                 </optgroup>
                                 <optgroup label="Anthropic Claude">
-                                  <option value="claude-sonnet-4-6">Claude Sonnet 4.6 (Nejnovější)</option>
-                                  <option value="claude-opus-4-6">Claude Opus 4.6 (Nejlepší)</option>
-                                  <option value="claude-sonnet-4-20250514">Claude Sonnet 4 (Stabilní)</option>
-                                  <option value="claude-opus-4-20250514">Claude Opus 4 (Výkonný)</option>
-                                  <option value="claude-sonnet-4-5-20250929">Claude Sonnet 4.5 (Vyvážený)</option>
-                                  <option value="claude-haiku-4-5-20251001">Claude Haiku 4.5 (Rychlý)</option>
+                                  <option value="claude-sonnet-4-6">Claude 4.6 Sonnet (Nejlepší)</option>
+                                  <option value="claude-haiku-4-5-20251001">Claude 4.5 Haiku (Rychlý)</option>
+                                  <option value="claude-opus-4-6">Claude 4.6 Opus (Silný)</option>
                                 </optgroup>
                               </select>
                               <span className="text-xs text-orange-600 dark:text-orange-400 opacity-60">
@@ -2713,7 +2782,7 @@ export default function App() {
                             <p className="text-xs font-medium opacity-80">
                               {aiDetectedObjective 
                                 ? 'AI detekovaný cíl učení' 
-                                : mockLOs.find(l => l.id === questions[currentQuestionIndex].lo_id)?.text || 'Obecné znalosti letectví.'
+                                : allLOs.find(l => l.id === questions[currentQuestionIndex].lo_id)?.text || 'Obecné znalosti letectví.'
                               }
                             </p>
                           </div>
@@ -2920,7 +2989,7 @@ export default function App() {
                           { id: 'user', icon: User, label: 'Uživatel' },
                           { id: 'ai', icon: Bot, label: 'AI Engine / EASA' }
                         ].map(src => {
-                          const isCurrentSource = (src.id === 'user' && questions[currentQuestionIndex].source === 'user') || (src.id === 'ai' && (questions[currentQuestionIndex].source === 'ai' || questions[currentQuestionIndex].source === 'easa' || !questions[currentQuestionIndex].source));
+                          const isCurrentSource = getIsCurrentSource(src.id, questions[currentQuestionIndex]);
                           const isFilteringThis = drillSettings.sourceFilters.length === 1 && drillSettings.sourceFilters[0] === src.id;
                           
                           return (
@@ -3005,9 +3074,9 @@ export default function App() {
             </motion.div>
           )}
 
-          {false && (
+          {view === 'ai' && (
             <motion.div 
-              key="ai-removed"
+              key="ai"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -3049,10 +3118,44 @@ export default function App() {
                         <p className="text-sm font-bold">Easy Access Rules XML</p>
                       </button>
                       <button className="p-4 border border-[var(--line)] rounded-2xl text-left hover:bg-[var(--line)] transition-colors">
-                        <p className="text-[10px] uppercase tracking-widest font-bold opacity-50 mb-1">Stav</p>
-                        <p className="text-sm font-bold">AMC/GM Part-FCL Načteno</p>
+                        <p className="text-[10px] uppercase tracking-widest font-bold opacity-50 mb-1">LOs v paměti</p>
+                        <p className="text-sm font-bold">{allLOs.length} LOs {losLoading ? '(načítám...)' : '(načteno)'}</p>
                       </button>
                     </div>
+                    {userRole === 'admin' && (
+                      <div className="pt-2 space-y-2">
+                        <button
+                          onClick={async () => {
+                            setIsImportingLOs(true);
+                            setLoImportStatus(null);
+                            try {
+                              const result = await importMockLOsToDB();
+                              if (result.success) {
+                                setLoImportStatus({ type: 'success', message: `✅ Importováno ${result.imported} LOs do databáze (${result.failed} chyb).` });
+                                const fresh = await getAllLOs();
+                                if (fresh.length > 0) setAllLOs(fresh);
+                              } else {
+                                setLoImportStatus({ type: 'error', message: `❌ Import selhal: ${result.errors?.[0] || 'Neznámá chyba'}` });
+                              }
+                            } catch(e: any) {
+                              setLoImportStatus({ type: 'error', message: `❌ ${e.message}` });
+                            } finally {
+                              setIsImportingLOs(false);
+                            }
+                          }}
+                          disabled={isImportingLOs}
+                          className="w-full py-3 border border-indigo-500/50 text-indigo-500 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-500/10 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                        >
+                          {isImportingLOs ? <RotateCcw size={14} className="animate-spin" /> : <Database size={14} />}
+                          {isImportingLOs ? 'Importuji LOs...' : 'Naplnit databázi LOs (mockLOs → DB)'}
+                        </button>
+                        {loImportStatus && (
+                          <p className={`text-[10px] px-3 py-2 rounded-lg ${loImportStatus.type === 'success' ? 'bg-emerald-500/10 text-emerald-600' : 'bg-rose-500/10 text-rose-600'}`}>
+                            {loImportStatus.message}
+                          </p>
+                        )}
+                      </div>
+                    )}
                   </section>
 
                   {/* Step 2: Few-Shot Patterns */}
@@ -3201,7 +3304,11 @@ export default function App() {
                       </div>
 
                       <button 
-                        onClick={handleGenerateQuestions}
+                        onClick={() => {
+                          console.log('🔍 Debug: Tlačítko generování kliknuto!');
+                          console.log('🔍 Debug: isGeneratingDetailedExplanation =', isGeneratingDetailedExplanation);
+                          handleGenerateQuestions();
+                        }}
                         disabled={isGeneratingDetailedExplanation}
                         className="w-full py-4 bg-indigo-600 text-white rounded-full text-xs font-bold uppercase tracking-widest hover:scale-[1.01] transition-transform flex items-center justify-center gap-2 disabled:opacity-50"
                       >
@@ -3220,18 +3327,26 @@ export default function App() {
                           <h4 className="font-bold text-sm uppercase tracking-widest">Výsledek generování ({batchResults.length} témat)</h4>
                           <button 
                             onClick={saveGeneratedQuestions}
-                            className="px-6 py-2 bg-emerald-600 text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform"
+                            disabled={userRole === 'guest'}
+                            className="px-6 py-2 bg-emerald-600 text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform disabled:opacity-40 disabled:cursor-not-allowed"
+                            title={userRole === 'guest' ? 'Přihlaste se pro uložení' : undefined}
                           >
                             Uložit vše do databáze
                           </button>
                         </div>
+                        {importStatus && (
+                          <div className={`p-3 rounded-xl flex items-center gap-2 text-xs ${importStatus.type === 'success' ? 'bg-emerald-500/10 text-emerald-600 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-600 border border-rose-500/20'}`}>
+                            {importStatus.type === 'success' ? <CheckCircle2 size={14} /> : <AlertCircle size={14} />}
+                            {importStatus.message}
+                          </div>
+                        )}
 
                         <div className="space-y-8">
                           {batchResults.map((result, i) => (
                             <div key={i} className="space-y-3">
                               <div className="flex items-center gap-2">
                                 <span className="px-2 py-0.5 bg-indigo-600 text-white rounded text-[10px] font-bold">{result.loId}</span>
-                                <span className="text-xs font-bold opacity-70">{mockLOs.find(l => l.id === result.loId)?.text}</span>
+                                <span className="text-xs font-bold opacity-70">{allLOs.find(l => l.id === result.loId)?.text}</span>
                               </div>
                               <div className="grid grid-cols-1 gap-3 pl-4 border-l-2 border-indigo-600/20">
                                 {result.questions.map((q, j) => (
@@ -3263,21 +3378,27 @@ export default function App() {
                   {/* Capacity analysis */}
                   <div className="p-6 border border-[var(--line)] rounded-2xl space-y-4">
                     <h4 className="col-header">Analýza kapacity</h4>
+                    {(() => {
+                      const subjectTotal = SYLLABUS_SCOPE[importSubjectId || 0] || allLOs.filter(lo => lo.subject_id === importSubjectId).length || 1;
+                      const pct = Math.round((coveredLOs.size / subjectTotal) * 100);
+                      return (
                     <div className="space-y-4">
                       <div className="space-y-1">
                         <div className="flex justify-between text-[10px] font-bold">
                           <span>Pokrytí témat (LOs)</span>
-                          <span>{Math.round((coveredLOs.size / mockLOs.length) * 100)}%</span>
+                          <span>{pct}%</span>
                         </div>
                         <div className="h-2 bg-[var(--line)] rounded-full overflow-hidden">
-                          <div className="h-full bg-indigo-600 transition-all duration-500" style={{ width: `${(coveredLOs.size / mockLOs.length) * 100}%` }} />
+                          <div className="h-full bg-indigo-600 transition-all duration-500" style={{ width: `${pct}%` }} />
                         </div>
                       </div>
                       <p className="text-[10px] opacity-50 leading-relaxed">
-                        Aktuálně máte pokryto {coveredLOs.size} z {mockLOs.length} definovaných cílů učení. 
+                        Aktuálně máte pokryto {coveredLOs.size} z {subjectTotal} LOs v tomto předmětu.
                         Hromadný generátor vám pomůže rychle doplnit chybějící oblasti.
                       </p>
                     </div>
+                      );
+                    })()}
                   </div>
 
                   {/* Dynamic Info Panel — Syllabus breadcrumb */}
@@ -3299,7 +3420,7 @@ export default function App() {
                     </div>
                     <div className="space-y-1 max-h-48 overflow-y-auto pr-1">
                       {(() => {
-                        const subjectLOs = mockLOs.filter(lo => lo.subject_id === importSubjectId);
+                        const subjectLOs = allLOs.filter(lo => lo.subject_id === importSubjectId);
                         const primaryLOs = subjectLOs.filter(lo => (lo.applies_to || []).includes(selectedLicense));
                         const suppLOs = subjectLOs.filter(lo => !(lo.applies_to || []).includes(selectedLicense));
                         return (
@@ -3428,17 +3549,18 @@ export default function App() {
       {syllabusOpen && (() => {
         const searchTerm = syllabusSearch.toLowerCase();
         
-        // Filter mockLOs first if there's a search term
+        // Filter allLOs (DB-loaded) if there's a search term
         const filteredLOs = searchTerm 
-          ? mockLOs.filter(lo => 
+          ? allLOs.filter(lo => 
               lo.id.toLowerCase().includes(searchTerm) || 
               lo.text.toLowerCase().includes(searchTerm) ||
+              lo.knowledgeContent?.toLowerCase().includes(searchTerm) ||
               lo.context?.toLowerCase().includes(searchTerm)
             )
-          : mockLOs;
+          : allLOs;
 
         const syllabusTree = buildSyllabusTree(filteredLOs);
-        const selectedLOData = syllabusSelectedLO ? mockLOs.find(l => l.id === syllabusSelectedLO) : null;
+        const selectedLOData = syllabusSelectedLO ? allLOs.find(l => l.id === syllabusSelectedLO) : null;
         const selectedLOQuestionCount = syllabusSelectedLO ? questions.filter(q => q.lo_id === syllabusSelectedLO).length : 0;
         const selectedLOSubject = selectedLOData?.subject_id ? syllabusTree.find(s => s.subjectId === selectedLOData.subject_id) : null;
         const selectedLOTopic = selectedLOData ? selectedLOSubject?.topics.find(t => selectedLOData.id.startsWith(t.code + '.')) : null;
@@ -3704,7 +3826,7 @@ export default function App() {
                           onClick={() => {
                             setSyllabusOpen(false);
                             setImportSubjectId(selectedLOData.subject_id ?? null);
-                            setView('settings');
+                            setView('ai');
                           }}
                           className="w-full py-2.5 border border-indigo-600 text-indigo-600 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-600 hover:text-white transition-colors flex items-center justify-center gap-2"
                         >
@@ -3773,6 +3895,8 @@ export default function App() {
         }}
         feature={authPromptFeature}
       />
+        </>
+      )}
     </div>
   );
 }

@@ -14,6 +14,15 @@ export interface ExplanationItem extends DynamoDBItem {
   lastUsed: string;
 }
 
+export interface QuestionObjective extends DynamoDBItem {
+  questionId: string;      // Foreign key to Questions
+  loId: string;           // Foreign key to EasaObjective
+  confidence: number;      // AI confidence score 0-1
+  matchedBy: string;       // "ai-gemini", "ai-claude", "manual"
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface ObjectiveItem extends DynamoDBItem {
   questionId: string;
   objective: string;
@@ -34,6 +43,33 @@ export interface QuestionFlagItem extends DynamoDBItem {
   isFlagged: boolean;
   flaggedAt: string;
   flagReason?: string;
+}
+
+export interface EasaObjective extends DynamoDBItem {
+  loId: string;              // PK: "010.01.01.01" (Subject.Topic.Subtopic.LO)
+  subjectId: number;         // 1-9 — index pro filtrování
+  text: string;              // Název LO: "Chicago Convention"
+  knowledgeContent: string;  // Obsah ze kterého AI tvoří otázky (EASA AMC/GM text)
+  appliesTo: string[];       // ['PPL', 'SPL', 'CPL', 'ATPL']
+  level: 1 | 2 | 3;         // 1=Awareness, 2=Knowledge, 3=Understanding
+  version: string;           // EASA syllabus verze, např. "2021"
+  context?: string;          // Legacy - zachováno pro kompatibilitu
+  createdAt: string;
+  updatedAt: string;
+  source?: string;           // "easa-import", "manual", "mock-import"
+}
+
+// Legacy interface for backward compatibility
+export interface LOItem extends DynamoDBItem {
+  losid: string;           // "010.01.01.01" (PK)
+  text: string;           // "International Agreements..."
+  context?: string;       // "The Convention..."
+  subject_id: number;     // 1-9
+  applies_to?: string[];  // ["PPL", "SPL"]
+  createdAt: string;      // ISO timestamp
+  updatedAt: string;      // ISO timestamp
+  source?: string;        // "easa-import", "manual"
+  version?: number;       // Pro aktualizace
 }
 
 export interface CacheStats {

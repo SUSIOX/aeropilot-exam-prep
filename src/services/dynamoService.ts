@@ -8,6 +8,9 @@ import {
   ObjectiveItem, 
   UserProgressItem, 
   QuestionFlagItem,
+  LOItem,
+  QuestionObjective,
+  EasaObjective,
   CacheStats,
   DynamoDBError,
   createDynamoDBError,
@@ -225,8 +228,8 @@ export class DynamoDBService {
       await this.ensureInitialized();
 
       const command = new DocGetCommand({
-        TableName: getTableName('LEARNING_OBJECTIVES'),
-        Key: { questionId }
+        TableName: getTableName('EASA_OBJECTIVES'),
+        Key: { loId: `q_${questionId}` }
       });
 
       const result = await this.docClient.send(command);
@@ -251,13 +254,14 @@ export class DynamoDBService {
 
       const item: ObjectiveItem = {
         questionId,
+        loId: `q_${questionId}`,
         objective,
         confidence,
         createdAt: new Date().toISOString()
       };
 
       const command = new DocPutCommand({
-        TableName: getTableName('LEARNING_OBJECTIVES'),
+        TableName: getTableName('EASA_OBJECTIVES'),
         Item: item
       });
 
@@ -414,10 +418,12 @@ export class DynamoDBService {
       const explanationsResult = await this.docClient.send(explanationsCommand);
       stats.explanations = explanationsResult.Count || 0;
 
-      // Count objectives
-      const objectivesCommand = new DocQueryCommand({
-        TableName: getTableName('LEARNING_OBJECTIVES'),
-        Select: 'COUNT'
+      // Count cached objectives (q_ prefixed records in EASA_OBJECTIVES)
+      const objectivesCommand = new DocScanCommand({
+        TableName: getTableName('EASA_OBJECTIVES'),
+        Select: 'COUNT',
+        FilterExpression: 'begins_with(loId, :prefix)',
+        ExpressionAttributeValues: { ':prefix': 'q_' }
       });
 
       const objectivesResult = await this.docClient.send(objectivesCommand);
@@ -529,7 +535,7 @@ export class DynamoDBService {
       await this.ensureInitialized();
 
       const command = new DocScanCommand({
-        TableName: 'aeropilot-questions',
+        TableName: getTableName('QUESTIONS'),
         FilterExpression: 'subjectId = :sid',
         ExpressionAttributeValues: { ':sid': subjectId }
       });
@@ -592,13 +598,112 @@ export class DynamoDBService {
       };
 
       await this.docClient.send(new DocPutCommand({
-        TableName: 'aeropilot-questions',
+        TableName: getTableName('QUESTIONS'),
         Item: item
       }));
 
       return { success: true };
     } catch (error) {
       return { success: false, error: this.handleError(error, 'saveQuestion').message };
+    }
+  }
+
+  // Set or update the loId on an existing question (links question → EasaObjective)
+  async updateQuestionLO(questionId: string, loId: string): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocUpdateCommand({
+        TableName: getTableName('QUESTIONS'),
+        Key: { questionId },
+        UpdateExpression: 'SET loId = :loId, updatedAt = :now',
+        ExpressionAttributeValues: {
+          ':loId': loId,
+          ':now': new Date().toISOString()
+        }
+      });
+
+      await this.docClient.send(command);
+
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: this.handleError(error, 'updateQuestionLO').message };
+    }
+  }
+
+  // Get a question together with its linked EasaObjective (single read + join)
+  async getQuestionWithLO(questionId: string): Promise<DynamoDBResponse<{ question: any; objective: EasaObjective | null }>> {
+    try {
+      await this.ensureInitialized();
+
+      // 1. Fetch the question
+      const qCmd = new DocGetCommand({
+        TableName: getTableName('QUESTIONS'),
+        Key: { questionId }
+      });
+      const qResult = await this.docClient.send(qCmd);
+      const question = qResult.Item;
+
+      if (!question) {
+        return { success: false, error: 'Question not found' };
+      }
+
+      // 2. If question has loId, fetch the EasaObjective
+      let objective: EasaObjective | null = null;
+      if (question.loId) {
+        const loCmd = new DocGetCommand({
+          TableName: getTableName('EASA_OBJECTIVES'),
+          Key: { loId: question.loId }
+        });
+        const loResult = await this.docClient.send(loCmd);
+        objective = (loResult.Item as EasaObjective) || null;
+      }
+
+      return { success: true, data: { question, objective } };
+
+    } catch (error) {
+      return { success: false, error: this.handleError(error, 'getQuestionWithLO').message };
+    }
+  }
+
+  // Bulk-link questions to EasaObjectives based on their existing loId field
+  async syncQuestionLOs(questionIds: string[]): Promise<DynamoDBResponse<{ linked: number; skipped: number }>> {
+    try {
+      await this.ensureInitialized();
+
+      let linked = 0;
+      let skipped = 0;
+
+      for (const questionId of questionIds) {
+        const qCmd = new DocGetCommand({
+          TableName: getTableName('QUESTIONS'),
+          Key: { questionId }
+        });
+        const qResult = await this.docClient.send(qCmd);
+        const question = qResult.Item;
+
+        if (!question?.loId) { skipped++; continue; }
+
+        // Verify the EasaObjective exists
+        const loCmd = new DocGetCommand({
+          TableName: getTableName('EASA_OBJECTIVES'),
+          Key: { loId: question.loId }
+        });
+        const loResult = await this.docClient.send(loCmd);
+
+        if (loResult.Item) {
+          // Link via QuestionObjectives table
+          await this.linkQuestionToLO(questionId, question.loId, 1.0, 'sync');
+          linked++;
+        } else {
+          skipped++;
+        }
+      }
+
+      return { success: true, data: { linked, skipped } };
+
+    } catch (error) {
+      return { success: false, error: this.handleError(error, 'syncQuestionLOs').message };
     }
   }
 
@@ -616,7 +721,7 @@ export class DynamoDBService {
       };
 
       const command = new DocPutCommand({
-        TableName: 'aeropilot-users',
+        TableName: getTableName('USERS'),
         Item: item
       });
 
@@ -654,7 +759,7 @@ export class DynamoDBService {
       };
 
       const command = new DocPutCommand({
-        TableName: 'aeropilot-users',
+        TableName: getTableName('USERS'),
         Item: item,
         ConditionExpression: 'attribute_not_exists(userId)' // Only create if doesn't exist
       });
@@ -682,7 +787,7 @@ export class DynamoDBService {
       await this.ensureInitialized();
 
       const command = new DocUpdateCommand({
-        TableName: 'aeropilot-users',
+        TableName: getTableName('USERS'),
         Key: { userId },
         UpdateExpression: 'SET lastLoginAt = :lastLoginAt',
         ExpressionAttributeValues: {
@@ -709,7 +814,7 @@ export class DynamoDBService {
       await this.ensureInitialized();
 
       const command = new DocGetCommand({
-        TableName: 'aeropilot-users',
+        TableName: getTableName('USERS'),
         Key: {
           userId: userId // Cognito UUID
         }
@@ -726,6 +831,358 @@ export class DynamoDBService {
       return {
         success: false,
         error: this.handleError(error, 'getUserProfile').message
+      };
+    }
+  }
+
+  // Learning Objectives Operations
+
+  async getLOById(losid: string): Promise<DynamoDBResponse<LOItem>> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocGetCommand({
+        TableName: getTableName('EASA_OBJECTIVES'),
+        Key: { loId: losid }
+      });
+
+      const result = await this.docClient.send(command);
+
+      return {
+        success: true,
+        data: result.Item as LOItem,
+        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'getLOById').message
+      };
+    }
+  }
+
+  async getLOsBySubject(subjectId: number): Promise<DynamoDBResponse<LOItem[]>> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocScanCommand({
+        TableName: getTableName('EASA_OBJECTIVES'),
+        FilterExpression: 'subjectId = :sid',
+        ExpressionAttributeValues: { ':sid': subjectId }
+      });
+
+      const result = await this.docClient.send(command);
+
+      return {
+        success: true,
+        data: result.Items as LOItem[] || [],
+        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'getLOsBySubject').message
+      };
+    }
+  }
+
+  async getAllLOs(): Promise<DynamoDBResponse<LOItem[]>> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocScanCommand({
+        TableName: getTableName('EASA_OBJECTIVES')
+      });
+
+      const result = await this.docClient.send(command);
+
+      return {
+        success: true,
+        data: result.Items as LOItem[] || [],
+        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'getAllLOs').message
+      };
+    }
+  }
+
+  async batchImportLOs(los: (LOItem | EasaObjective | any)[]): Promise<DynamoDBResponse<{ imported: number; failed: number; errors: string[] }>> {
+    try {
+      await this.ensureInitialized();
+
+      const batchSize = 25; // DynamoDB batch write limit
+      let imported = 0;
+      let failed = 0;
+      const errors: string[] = [];
+
+      for (let i = 0; i < los.length; i += batchSize) {
+        const batch = los.slice(i, i + batchSize);
+        
+        const writeRequests = batch.map(lo => ({
+          PutRequest: { Item: lo }
+        }));
+
+        const command = new DocBatchWriteCommand({
+          RequestItems: {
+            [getTableName('EASA_OBJECTIVES')]: writeRequests
+          }
+        });
+
+        try {
+          const result = await this.docClient.send(command);
+          
+          // Check for unprocessed items
+          const losTableName = getTableName('EASA_OBJECTIVES');
+          if (result.UnprocessedItems && Object.keys(result.UnprocessedItems).length > 0) {
+            failed += Object.keys(result.UnprocessedItems[losTableName] || []).length;
+            errors.push(`Batch ${Math.floor(i / batchSize) + 1}: ${Object.keys(result.UnprocessedItems[losTableName] || []).length} items failed`);
+          } else {
+            imported += batch.length;
+          }
+        } catch (batchError) {
+          failed += batch.length;
+          errors.push(`Batch ${Math.floor(i / batchSize) + 1}: ${batchError.message}`);
+        }
+      }
+
+      return {
+        success: true,
+        data: { imported, failed, errors }
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'batchImportLOs').message
+      };
+    }
+  }
+
+  async saveLO(lo: Omit<LOItem, 'createdAt' | 'updatedAt' | 'version'> & { losid: string; text: string; subject_id: number }): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      const now = new Date().toISOString();
+      const item: LOItem = {
+        ...lo,
+        createdAt: now,
+        updatedAt: now,
+        version: 1
+      };
+
+      const command = new DocPutCommand({
+        TableName: getTableName('EASA_OBJECTIVES'),
+        Item: item
+      });
+
+      await this.docClient.send(command);
+
+      return { success: true };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'saveLO').message
+      };
+    }
+  }
+
+  async getLOCount(): Promise<DynamoDBResponse<number>> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocScanCommand({
+        TableName: getTableName('EASA_OBJECTIVES'),
+        Select: 'COUNT'
+      });
+
+      const result = await this.docClient.send(command);
+
+      return {
+        success: true,
+        data: result.Count || 0,
+        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'getLOCount').message
+      };
+    }
+  }
+
+  // Batch operation: save explanation + link question → EasaObjective
+  async saveExplanationWithObjective(
+    questionId: string,
+    explanation: string,
+    detailedExplanation: string | null,
+    loId: string | null,               // EasaObjective.loId (e.g. "010.01.01.01")
+    provider: 'gemini' | 'claude',
+    model: string,
+    confidence: number = 0.8
+  ): Promise<DynamoDBResponse<{ explanationSaved: boolean; loLinked: boolean }>> {
+    try {
+      await this.ensureInitialized();
+
+      const now = new Date().toISOString();
+      const results = { explanationSaved: false, loLinked: false };
+
+      // 1. Save AI explanation cache
+      const explanationItem = {
+        questionId,
+        model,
+        explanation,
+        ...(detailedExplanation && { detailedExplanation }),
+        provider,
+        usageCount: 1,
+        createdAt: now,
+        lastUsed: now
+      };
+
+      await this.docClient.send(new DocPutCommand({
+        TableName: getTableName('AI_EXPLANATIONS'),
+        Item: explanationItem
+      }));
+      results.explanationSaved = true;
+
+      // 2. If loId provided, link question → EasaObjective in both places
+      if (loId) {
+        // 2a. Update loId directly on the question record
+        await this.updateQuestionLO(questionId, loId).catch(() => {});
+
+        // 2b. Create M:N record in question-objectives table
+        await this.linkQuestionToLO(questionId, loId, confidence, `ai-${provider}`).catch(() => {});
+
+        results.loLinked = true;
+      }
+
+      return { success: true, data: results };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'saveExplanationWithObjective').message
+      };
+    }
+  }
+
+  // Cache refresh - force regeneration of explanation
+  async refreshExplanation(
+    questionId: string,
+    model: string
+  ): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocDeleteCommand({
+        TableName: getTableName('AI_EXPLANATIONS'),
+        Key: { questionId, model }
+      });
+
+      await this.docClient.send(command);
+
+      return { success: true };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'refreshExplanation').message
+      };
+    }
+  }
+// QuestionObjectives Operations (Many-to-Many)
+  
+  async linkQuestionToLO(
+    questionId: string, 
+    loId: string, 
+    confidence: number = 0.8,
+    matchedBy: string = 'ai-gemini'
+  ): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      const now = new Date().toISOString();
+      const item = {
+        questionId,
+        loId,
+        confidence,
+        matchedBy,
+        createdAt: now,
+        updatedAt: now
+      };
+
+      const command = new DocPutCommand({
+        TableName: getTableName('QUESTION_OBJECTIVES'),
+        Item: item
+      });
+
+      await this.docClient.send(command);
+
+      return { success: true };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'linkQuestionToLO').message
+      };
+    }
+  }
+
+  async getQuestionLOs(questionId: string): Promise<DynamoDBResponse<QuestionObjective[]>> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocQueryCommand({
+        TableName: getTableName('QUESTION_OBJECTIVES'),
+        KeyConditionExpression: 'questionId = :qid',
+        ExpressionAttributeValues: { ':qid': questionId }
+      });
+
+      const result = await this.docClient.send(command);
+
+      return {
+        success: true,
+        data: result.Items as QuestionObjective[] || [],
+        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'getQuestionLOs').message
+      };
+    }
+  }
+
+  async getLOQuestions(loId: string): Promise<DynamoDBResponse<QuestionObjective[]>> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocScanCommand({
+        TableName: getTableName('QUESTION_OBJECTIVES'),
+        FilterExpression: 'loId = :loid',
+        ExpressionAttributeValues: { ':loid': loId }
+      });
+
+      const result = await this.docClient.send(command);
+
+      return {
+        success: true,
+        data: result.Items as QuestionObjective[] || [],
+        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'getLOQuestions').message
       };
     }
   }

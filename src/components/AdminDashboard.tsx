@@ -15,6 +15,7 @@ import {
 import { dynamoMonitor } from '../services/dynamoMonitor';
 import { rateLimiter } from '../services/rateLimiter';
 import { dynamoCache } from '../services/dynamoCache';
+import { formatNumber, formatBytes, getStatusColor, getStatusBackgroundClass } from '../utils/format';
 
 interface AdminDashboardProps {
   userRole?: 'admin' | 'user' | 'guest';
@@ -41,35 +42,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ userRole = 'gues
 
   if (userRole !== 'admin') return null;
 
-  // Formátování čísel
-  const formatNumber = (num: number): string => {
-    if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
-    if (num >= 1000) return `${(num / 1000).toFixed(1)}K`;
-    return num.toString();
-  };
-
-  // Formátování velikosti
-  const formatBytes = (bytes: number): string => {
-    if (bytes >= 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(1)}MB`;
-    if (bytes >= 1024) return `${(bytes / 1024).toFixed(1)}KB`;
-    return `${bytes}B`;
-  };
-
-  // Získání barvy podle procenta
-  const getStatusColor = (percentage: number): string => {
-    if (percentage > 95) return 'text-red-500';
-    if (percentage > 85) return 'text-orange-500';
-    if (percentage > 70) return 'text-yellow-500';
-    return 'text-green-500';
-  };
-
-  // Získání barvy pozadí
-  const getBackgroundClass = (percentage: number): string => {
-    if (percentage > 95) return 'bg-red-50 border-red-200';
-    if (percentage > 85) return 'bg-orange-50 border-orange-200';
-    if (percentage > 70) return 'bg-yellow-50 border-yellow-200';
-    return 'bg-green-50 border-green-200';
-  };
+  const getBackgroundClass = getStatusBackgroundClass;
 
   // Export statistik
   const exportStats = () => {

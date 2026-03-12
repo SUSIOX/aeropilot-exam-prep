@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, LogIn, BarChart3, Target, Sparkles, ShieldCheck, UserPlus, Eye, EyeOff } from 'lucide-react';
+import { X, LogIn, UserPlus, Eye, EyeOff } from 'lucide-react';
+import { getFeatureInfo } from '../utils/featureInfo';
 
 interface LoginPromptProps {
   isOpen: boolean;
@@ -16,47 +17,7 @@ export function LoginPrompt({ isOpen, onClose, onLoginSuccess, feature }: LoginP
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const getFeatureInfo = () => {
-    switch (feature) {
-      case 'stats':
-        return {
-          icon: BarChart3,
-          title: 'Statistiky a postup',
-          description: 'Sledujte své pokroky, zobrazte detailní statistiky a sledujte vývoj vaší úspěšnosti.',
-          benefits: ['Grafy a vizualizace', 'Historie odpovědí', 'Srovnání výkonu', 'Dlouhodobý postup']
-        };
-      case 'errors':
-        return {
-          icon: Target,
-          title: 'Procvičování chyb',
-          description: 'Zaměřte se na otázky, které vám dělají problémy, a zlepšete své slabiny.',
-          benefits: ['Inteligentní výběr chyb', 'Adaptivní procvičování', 'Rychlé zlepšení', 'Personalizovaný plán']
-        };
-      case 'ai':
-        return {
-          icon: Sparkles,
-          title: 'AI vysvětlení',
-          description: 'Získejte podrobná AI vysvětlení otázek a učte se efektivněji.',
-          benefits: ['Podrobné vysvětlení', 'Příklady z praxe', 'Interaktivní učení', 'Synchronizace zařízení']
-        };
-      case 'admin':
-        return {
-          icon: ShieldCheck,
-          title: 'Admin funkce',
-          description: 'Spravujte obsah, přidávejte otázky a monitorujte systém.',
-          benefits: ['Správa obsahu', 'Import otázek', 'Monitorování', 'Pokročilé nastavení']
-        };
-      default:
-        return {
-          icon: LogIn,
-          title: 'Pokročilé funkce',
-          description: 'Odemkněte všechny funkce aplikace pro lepší výsledky.',
-          benefits: ['Všechny funkce', 'Synchronizace', 'Statistiky', 'Podpora']
-        };
-    }
-  };
-
-  const { icon: FeatureIcon, title, description, benefits } = getFeatureInfo();
+  const { icon: FeatureIcon, title, description, benefits } = getFeatureInfo(feature);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();

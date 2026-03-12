@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, LogIn, BarChart3, Target, Sparkles, ShieldCheck, Loader2 } from 'lucide-react';
+import { X, Loader2, LogIn } from 'lucide-react';
+import { getFeatureInfo } from '../utils/featureInfo';
 
 interface CognitoAuthProps {
   isOpen: boolean;
@@ -21,47 +22,7 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
   const [error, setError] = useState<string | null>(null);
   const exchangeStarted = useRef(false);
 
-  const getFeatureInfo = () => {
-    switch (feature) {
-      case 'stats':
-        return {
-          icon: BarChart3,
-          title: 'Statistiky a postup',
-          description: 'Sledujte své pokroky, zobrazte detailní statistiky a sledujte vývoj vaší úspěšnosti.',
-          benefits: ['Grafy a vizualizace', 'Historie odpovědí', 'Srovnání výkonu', 'Dlouhodobý postup']
-        };
-      case 'errors':
-        return {
-          icon: Target,
-          title: 'Procvičování chyb',
-          description: 'Zaměřte se na otázky, které vám dělají problémy, a zlepšete své slabiny.',
-          benefits: ['Inteligentní výběr chyb', 'Adaptivní procvičování', 'Rychlé zlepšení', 'Personalizovaný plán']
-        };
-      case 'ai':
-        return {
-          icon: Sparkles,
-          title: 'AI vysvětlení',
-          description: 'Získejte podrobná AI vysvětlení otázek a učte se efektivněji.',
-          benefits: ['Podrobné vysvětlení', 'Příklady z praxe', 'Interaktivní učení', 'Synchronizace zařízení']
-        };
-      case 'admin':
-        return {
-          icon: ShieldCheck,
-          title: 'Admin funkce',
-          description: 'Spravujte obsah, přidávejte otázky a monitorujte systém.',
-          benefits: ['Správa obsahu', 'Import otázek', 'Monitorování', 'Pokročilé nastavení']
-        };
-      default:
-        return {
-          icon: LogIn,
-          title: 'Pokročilé funkce',
-          description: 'Odemkněte všechny funkce aplikace pro lepší výsledky.',
-          benefits: ['Všechny funkce', 'Synchronizace', 'Statistiky', 'Podpora']
-        };
-    }
-  };
-
-  const { icon: FeatureIcon, title, description, benefits } = getFeatureInfo();
+  const { icon: FeatureIcon, title, description, benefits } = getFeatureInfo(feature);
 
   // Generate Cognito auth URL
   const generateAuthUrl = () => {
@@ -200,6 +161,9 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
     const storedState = sessionStorage.getItem('cognito_state');
     
     if (code && !exchangeStarted.current) {
+      // Set auth in progress flag to prevent landing page flash
+      localStorage.setItem('auth_in_progress', 'true');
+      
       // Temporarily simplified for testing - remove strict state validation
       if (!storedState) {
         console.warn("⚠️ State chybí, ale pokračujeme s kódem pro testování...");
@@ -234,6 +198,8 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
         .finally(() => {
           setIsLoading(false);
           sessionStorage.removeItem('cognito_state');
+          // Clear auth in progress flag
+          localStorage.removeItem('auth_in_progress');
         });
     } else if (code && state !== storedState) {
       console.error('❌ Security validation failed - state mismatch');
@@ -328,7 +294,7 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
                   className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold uppercase tracking-widest text-[10px] transition-all flex items-center justify-center gap-2"
                 >
                   <LogIn className="w-4 h-4" />
-                  Přihlásit se přes Cognito
+                  Registrovat se jako uživatel
                 </button>
                 <button
                   onClick={onClose}

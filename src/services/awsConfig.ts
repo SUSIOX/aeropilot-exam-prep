@@ -37,9 +37,12 @@ export const getSecureDocClient = () => {
 // DynamoDB table names
 export const TABLE_NAMES = {
   AI_EXPLANATIONS: 'ai-explanations',
-  LEARNING_OBJECTIVES: 'learning-objectives', 
   USER_PROGRESS: 'user-progress',
-  QUESTION_FLAGS: 'question-flags'
+  QUESTION_FLAGS: 'question-flags',
+  EASA_OBJECTIVES: 'easa-objectives',          // Master LO data (EasaObjective)
+  QUESTION_OBJECTIVES: 'question-objectives',   // Many-to-many: question → loId
+  QUESTIONS: 'questions',                       // aeropilot-questions
+  USERS: 'users'                                // aeropilot-users
 } as const;
 
 // Get full table name with prefix

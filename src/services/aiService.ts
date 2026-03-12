@@ -1,8 +1,85 @@
 import { GoogleGenAI } from "@google/genai";
 import { Anthropic } from "@anthropic-ai/sdk";
 import { Question } from "../types";
+import { LOItem } from "../types/aws";
+import { dynamoDBService } from "./dynamoService";
 
 export type AIProvider = 'gemini' | 'claude';
+
+// LO Cache for performance
+const loCache = new Map<string, EasaLO[]>();
+let cacheLoaded = false;
+
+// Convert LOItem / EasaObjective to EasaLO
+const loItemToEasaLO = (item: LOItem | any): EasaLO => ({
+  id: item.losid || item.loId,
+  text: item.text,
+  knowledgeContent: item.knowledgeContent || item.context,
+  level: item.level,
+  context: item.context,
+  subject_id: item.subject_id || item.subjectId,
+  applies_to: item.applies_to || item.appliesTo
+});
+
+// Load all LOs from DB and cache them
+function extractJSON(raw: string): string {
+  // Strip markdown code fences: ```json ... ``` or ``` ... ```
+  const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fenced) return fenced[1].trim();
+  // Fallback: find first { or [ and last } or ]
+  const start = raw.search(/[{[]/);
+  const end = Math.max(raw.lastIndexOf('}'), raw.lastIndexOf(']'));
+  if (start !== -1 && end > start) return raw.slice(start, end + 1);
+  return raw.trim();
+}
+
+async function loadLOsFromDB(): Promise<EasaLO[]> {
+  if (cacheLoaded && loCache.has('all')) {
+    return loCache.get('all')!;
+  }
+
+  try {
+    const result = await dynamoDBService.getAllLOs();
+    if (result.success && result.data) {
+      const easaLOs = result.data.map(loItemToEasaLO);
+      loCache.set('all', easaLOs);
+      cacheLoaded = true;
+      return easaLOs;
+    }
+  } catch (error) {
+    console.error('Failed to load LOs from DB:', error);
+  }
+
+  // Fallback to mockLOs if DB fails
+  console.warn('Using mockLOs as fallback');
+  return mockLOs;
+}
+
+// Get LOs by subject (cached)
+export async function getLOsBySubject(subjectId: number): Promise<EasaLO[]> {
+  const cacheKey = `subject_${subjectId}`;
+  
+  if (loCache.has(cacheKey)) {
+    return loCache.get(cacheKey)!;
+  }
+
+  const allLOs = await loadLOsFromDB();
+  const subjectLOs = allLOs.filter(lo => lo.subject_id === subjectId);
+  loCache.set(cacheKey, subjectLOs);
+  
+  return subjectLOs;
+}
+
+// Get LO by ID (cached)
+export async function getLOById(losid: string): Promise<EasaLO | undefined> {
+  const allLOs = await loadLOsFromDB();
+  return allLOs.find(lo => lo.id === losid);
+}
+
+// Get all LOs (cached)
+export async function getAllLOs(): Promise<EasaLO[]> {
+  return loadLOsFromDB();
+}
 
 const getAiInstance = (apiKey?: string) => {
   if (!apiKey) {
@@ -64,9 +141,11 @@ async function callWithRetry<T>(fn: () => Promise<T>, retries = 2, provider: AIP
 export interface EasaLO {
   id: string;
   text: string;
-  context?: string;
+  knowledgeContent?: string; // EASA AMC/GM text - obsah ze kterého AI tvoří otázky
+  level?: 1 | 2 | 3;        // 1=Awareness, 2=Knowledge, 3=Understanding
+  context?: string;          // Legacy pole
   subject_id?: number;
-  applies_to?: string[]; // e.g., ["PPL", "SPL"]
+  applies_to?: string[];
 }
 
 // Simulated syllabus scope per subject
@@ -149,13 +228,13 @@ export function buildSyllabusTree(los: EasaLO[]): SyllabusSubjectNode[] {
       for (const [subtopicCode, loNodes] of Array.from(subtopicMap.entries()).sort((a, b) => a[0].localeCompare(b[0]))) {
         subtopics.push({
           code: subtopicCode,
-          label: loNodes[0]?.lo.text.split(':')[0].trim() || subtopicCode,
+          label: loNodes[0]?.lo?.text?.split(':')[0].trim() || subtopicCode,
           los: loNodes,
         });
       }
       topics.push({
         code: topicCode,
-        label: subtopics[0]?.los[0]?.lo.text.split(':')[0].trim() || topicCode,
+        label: subtopics[0]?.los[0]?.lo?.text?.split(':')[0].trim() || topicCode,
         subtopics,
       });
     }
@@ -423,7 +502,7 @@ export async function generateBatchQuestions(
   questionsPerLO: number = 2, 
   targetLanguage: 'EN' | 'CZ' = 'EN',
   apiKey?: string,
-  model: string = "gemini-3-flash-preview",
+  model: string = "gemini-flash-latest",
   provider: AIProvider = 'gemini',
   license: 'PPL' | 'SPL' = 'PPL'
 ): Promise<{loId: string, questions: Partial<Question>[]}[]> {
@@ -532,8 +611,14 @@ export async function generateBatchQuestions(
     
     Target Language: ${targetLanguage === 'CZ' ? 'Czech (with technical terms preserved)' : 'English'}
     
+    CRITICAL: Generate exactly ${questionsPerLO} question(s) for EACH Learning Objective below. No more, no less.
+    
     Known/Priority Objectives:
-    ${los.map(lo => `- ${lo.id}: ${lo.text} [applies_to: ${(lo.applies_to || ['PPL','SPL']).join(', ')}] (Context: ${lo.context || "Standard aviation knowledge"})`).join('\n')}
+    ${los.map(lo => {
+      const levelLabel = lo.level === 1 ? 'Awareness' : lo.level === 2 ? 'Knowledge' : lo.level === 3 ? 'Understanding' : 'Knowledge';
+      const content = lo.knowledgeContent || lo.context || 'Standard aviation knowledge';
+      return `- ${lo.id}: ${lo.text} [applies_to: ${(lo.applies_to || ['PPL','SPL']).join(', ')}] [Level: ${levelLabel}]\n  Knowledge Content: ${content}`;
+    }).join('\n')}
 
     ${loNoteInstruction}
     
@@ -577,7 +662,7 @@ export async function generateBatchQuestions(
       const ai = getAiInstance(apiKey);
       response = await callWithRetry(() => ai.models.generateContent({
         model: model,
-        contents: prompt,
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
         config: {
           responseMimeType: "application/json"
         }
@@ -585,21 +670,35 @@ export async function generateBatchQuestions(
       
       const text = response.text;
       if (!text) return [];
-      const data = JSON.parse(text);
-      return processBatchResponse(data);
+      try {
+        const data = JSON.parse(extractJSON(text));
+        return processBatchResponse(data);
+      } catch (parseError) {
+        console.error("❌ JSON parse error (Gemini). Response length:", text.length, "Last 100 chars:", text.slice(-100));
+        throw new Error(`AI vrátila neplatný JSON (${text.length} znaků). Zkuste menší dávku nebo méně otázek na téma.`);
+      }
       
     } else if (provider === 'claude') {
       const claude = getClaudeInstance(apiKey);
+      const estimatedTokens = Math.max(4000, los.length * questionsPerLO * 400 + 500);
       response = await callWithRetry(() => claude.messages.create({
         model: model,
-        max_tokens: 4000,
+        max_tokens: estimatedTokens,
         messages: [{ role: 'user', content: prompt }]
       }), 2, 'claude');
       
       const text = (response.content[0] as any)?.text || "";
       if (!text) return [];
-      const data = JSON.parse(text);
-      return processBatchResponse(data);
+      try {
+        const data = JSON.parse(extractJSON(text));
+        return processBatchResponse(data);
+      } catch (parseError) {
+        console.error("❌ JSON parse error (Claude). Response length:", text.length, "Stop reason:", response.stop_reason, "Last 100 chars:", text.slice(-100));
+        if (response.stop_reason === 'max_tokens') {
+          throw new Error(`Claude odpověď oříznutá (max_tokens: ${estimatedTokens}). Zkuste menší dávku.`);
+        }
+        throw new Error(`AI vrátila neplatný JSON (${text.length} znaků). Zkuste menší dávku nebo méně otázek na téma.`);
+      }
     }
     
     return [];
@@ -627,7 +726,7 @@ function processBatchResponse(data: any): {loId: string, questions: Partial<Ques
     }));
 }
 
-export async function getDetailedExplanation(question: Question, lo: EasaLO | undefined, apiKey?: string, model: string = "gemini-3-flash-preview", provider: AIProvider = 'gemini'): Promise<{explanation: string, objective?: string}> {
+export async function getDetailedExplanation(question: Question, lo: EasaLO | undefined, apiKey?: string, model: string = "gemini-flash-latest", provider: AIProvider = 'gemini'): Promise<{explanation: string, objective?: string}> {
   console.log('getDetailedExplanation called with:', { provider, model, hasKey: !!apiKey });
   
   const isImport = question.source === 'user' || !question.lo_id;
@@ -639,7 +738,8 @@ export async function getDetailedExplanation(question: Question, lo: EasaLO | un
     Question: ${question.text}
     Correct Answer: ${question.correct_option}
     LO: ${lo ? `${lo.id} - ${lo.text}` : "User Import (N/A)"}
-    Context: ${lo?.context || "Standard aviation knowledge"}
+    Knowledge Content: ${lo?.knowledgeContent || lo?.context || "Standard aviation knowledge"}
+    Level: ${lo?.level === 1 ? 'Awareness' : lo?.level === 2 ? 'Knowledge' : 'Understanding'}
     
     Rules:
     1. Language: Czech.
@@ -655,7 +755,7 @@ export async function getDetailedExplanation(question: Question, lo: EasaLO | un
       const ai = getAiInstance(apiKey);
       const response = await callWithRetry(() => ai.models.generateContent({
         model: model,
-        contents: prompt,
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
       }), 2, 'gemini');
       
       const text = response.text || "Vysvětlení se nepodařilo vygenerovat.";
@@ -711,7 +811,7 @@ function parseExplanation(text: string): {explanation: string, objective?: strin
   };
 }
 
-export async function getDetailedHumanExplanation(question: Question, lo: EasaLO | undefined, apiKey?: string, model: string = "gemini-3-flash-preview", provider: AIProvider = 'gemini'): Promise<string> {
+export async function getDetailedHumanExplanation(question: Question, lo: EasaLO | undefined, apiKey?: string, model: string = "gemini-flash-latest", provider: AIProvider = 'gemini'): Promise<string> {
   console.log('getDetailedHumanExplanation called with:', { provider, model, hasKey: !!apiKey });
   
   const prompt = `
@@ -720,7 +820,8 @@ export async function getDetailedHumanExplanation(question: Question, lo: EasaLO
     Otázka: ${question.text}
     Správná odpověď: ${question.correct_option}
     LO: ${lo ? `${lo.id} - ${lo.text}` : "User Import (N/A)"}
-    Kontext: ${lo?.context || "Standardní aviation knowledge"}
+    Znalostní obsah: ${lo?.knowledgeContent || lo?.context || "Standardní aviation knowledge"}
+    Úroveň: ${lo?.level === 1 ? 'Povědomí' : lo?.level === 2 ? 'Znalost' : 'Porozumění'}
     
     Pravidla:
     1. Jazyk: Česky
@@ -745,7 +846,7 @@ export async function getDetailedHumanExplanation(question: Question, lo: EasaLO
       const ai = getAiInstance(apiKey);
       const response = await callWithRetry(() => ai.models.generateContent({
         model: model,
-        contents: prompt,
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
       }), 2, 'gemini');
       
       const text = response.text || "Podrobné vysvětlení se nepodařilo vygenerovat.";
@@ -772,7 +873,7 @@ export async function getDetailedHumanExplanation(question: Question, lo: EasaLO
   }
 }
 
-export async function translateQuestion(question: Question, apiKey?: string, model: string = "gemini-3-flash-preview", provider: AIProvider = 'gemini'): Promise<Partial<Question>> {
+export async function translateQuestion(question: Question, apiKey?: string, model: string = "gemini-flash-latest", provider: AIProvider = 'gemini'): Promise<Partial<Question>> {
   const prompt = `
     You are a technical EASA Translation Engine.
     Translate the following aviation question and its options into Czech.
@@ -799,21 +900,28 @@ export async function translateQuestion(question: Question, apiKey?: string, mod
   try {
     if (provider === 'gemini') {
       const ai = getAiInstance(apiKey);
+      console.log(`[Gemini] Translating question with model: ${model}`);
       const response = await callWithRetry(() => ai.models.generateContent({
         model: model,
-        contents: prompt,
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
         config: { responseMimeType: "application/json" }
       }), 2, 'gemini');
-      return JSON.parse(response.text || "{}");
+      
+      const text = response.text || "{}";
+      return JSON.parse(text);
       
     } else if (provider === 'claude') {
       const claude = getClaudeInstance(apiKey);
+      console.log(`[Claude] Translating question with model: ${model}`);
       const response = await callWithRetry(() => claude.messages.create({
         model: model,
         max_tokens: 2000,
         messages: [{ role: 'user', content: prompt }]
       }), 2, 'claude');
-      return JSON.parse((response.content[0] as any)?.text || "{}");
+      
+      const content = response.content[0];
+      const text = content && 'text' in content ? content.text : "{}";
+      return JSON.parse(text);
     }
     
     return {};
@@ -824,31 +932,116 @@ export async function translateQuestion(question: Question, apiKey?: string, mod
   }
 }
 
-export async function verifyApiKey(apiKey: string, provider: AIProvider = 'gemini'): Promise<boolean> {
+export async function verifyApiKey(apiKey: string, provider: AIProvider = 'gemini'): Promise<{success: boolean, error?: string, quotaExceeded?: boolean}> {
   try {
     if (provider === 'gemini') {
       const ai = getAiInstance(apiKey);
-      // Smallest possible request to verify key
-      await ai.models.generateContent({
-        model: "gemini-3-flash-preview",
-        contents: "ping",
-      });
-      return true;
+      
+      // Attempt discovery across common model aliases to find one that is both found (not 404) and has quota (not 429)
+      const modelsToTry = ["gemini-flash-latest", "gemini-1.5-flash-latest", "gemini-2.0-flash"];
+      let lastError: any = null;
+      
+      for (const modelName of modelsToTry) {
+        try {
+          console.log(`[Gemini] Verifying key with model: ${modelName}`);
+          await ai.models.generateContent({
+            model: modelName,
+            contents: [{ role: 'user', parts: [{ text: "ping" }] }],
+          });
+          console.log(`[Gemini] Model ${modelName} verification successful.`);
+          return { success: true };
+        } catch (err: any) {
+          lastError = err;
+          const msg = err?.message?.toLowerCase() || "";
+          
+          // If we hit a quota error (429), we stop here because it means the key is valid but quota is the issue
+          if (msg.includes('429') || msg.includes('resource_exhausted') || msg.includes('quota')) {
+            return { success: false, error: `Kvóta vyčerpána pro model ${modelName} (váš free-tier limit je pro tento model pravděpodobně nulový).`, quotaExceeded: true };
+          }
+          
+          // If we hit an invalid key error (403/invalid), we stop immediately - no point trying other models
+          if (msg.includes('api key not valid') || msg.includes('invalid api key') || msg.includes('403')) {
+            return { success: false, error: 'Neplatný API klíč.' };
+          }
+          
+          // If it's a 404, we continue to the next model in the list
+          if (msg.includes('404') || msg.includes('not found')) {
+            console.log(`Model ${modelName} nebyl nalezen, zkouším další...`);
+            continue;
+          }
+        }
+      }
+      
+      // If we exhausted all models and still have a 404 on the last one
+      if (lastError?.message?.toLowerCase().includes('404')) {
+        return { success: false, error: 'Model nebyl nalezen pro vaši verzi API. Zkuste prosím model gemini-flash-latest v nastavení.' };
+      }
+      
+      return { success: false, error: lastError?.message || 'Neznámá chyba při ověřování.' };
       
     } else if (provider === 'claude') {
       const claude = getClaudeInstance(apiKey);
-      // Use Claude 4 Sonnet for verification
+      console.log(`[Claude] Verifying key with model: claude-haiku-4-5-20251001`);
       await claude.messages.create({
-        model: "claude-sonnet-4-20250514",
+        model: "claude-haiku-4-5-20251001",
         max_tokens: 10,
         messages: [{ role: 'user', content: "ping" }]
       });
-      return true;
+      console.log(`[Claude] Verification successful.`);
+      return { success: true };
     }
     
-    return false;
+    return { success: false, error: 'Nepodporovaný poskytovatel' };
+  } catch (error: any) {
+    console.error("Key verification error (catch-all):", error);
+    return { success: false, error: error?.message || 'Kritická chyba při ověřování.' };
+  }
+}
+
+// Import mockLOs to DynamoDB
+export async function importMockLOsToDB(): Promise<{ success: boolean; imported: number; failed: number; errors: string[] }> {
+  try {
+    // Convert mockLOs to EasaObjective format
+    const now = new Date().toISOString();
+    const loItems = mockLOs.map(lo => ({
+      loId: lo.id,
+      text: lo.text,
+      knowledgeContent: lo.knowledgeContent || lo.context || lo.text,
+      level: lo.level || 2,
+      subjectId: lo.subject_id,
+      appliesTo: lo.applies_to || ['PPL', 'SPL'],
+      version: '2021',
+      context: lo.context,
+      source: 'mock-import',
+      createdAt: now,
+      updatedAt: now
+    }));
+
+    // Import to DynamoDB
+    const result = await dynamoDBService.batchImportLOs(loItems);
+    
+    if (result.success && result.data) {
+      return {
+        success: true,
+        imported: result.data.imported,
+        failed: result.data.failed,
+        errors: result.data.errors
+      };
+    } else {
+      return {
+        success: false,
+        imported: 0,
+        failed: loItems.length,
+        errors: [result.error || 'Unknown error']
+      };
+    }
   } catch (error) {
-    console.error("Key verification error:", error);
-    return false;
+    console.error('Import mockLOs error:', error);
+    return {
+      success: false,
+      imported: 0,
+      failed: mockLOs.length,
+      errors: [error instanceof Error ? error.message : 'Unknown error']
+    };
   }
 }

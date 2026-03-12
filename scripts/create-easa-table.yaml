@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Creates aeropilot-easa-objectives DynamoDB table for EASA Learning Objectives
+
+Resources:
+  EasaObjectivesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: aeropilot-easa-objectives
+      BillingMode: PAY_PER_REQUEST
+      TableClass: STANDARD
+      KeySchema:
+        - AttributeName: loId
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: loId
+          AttributeType: S
+      Tags:
+        - Key: project
+          Value: aeropilot
+
+Outputs:
+  TableName:
+    Value: !Ref EasaObjectivesTable
+    Description: EASA Objectives DynamoDB table name
+  TableArn:
+    Value: !GetAtt EasaObjectivesTable.Arn

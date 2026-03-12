@@ -170,3 +170,27 @@ body {
   }
 }
 
+/* Scrollbar utilities for iPhone 17 optimization */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;     /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+/* iPhone 17 specific optimizations */
+@media (max-width: 450px) {
+  .header-scrollable {
+    max-width: 120px !important;
+  }
+}
+
+/* Smooth scrolling for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .scrollbar-hide {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+

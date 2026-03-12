@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Activity, AlertTriangle, CheckCircle, XCircle, Clock } from 'lucide-react';
 import { dynamoMonitor, ThrottleLevel } from '../services/dynamoMonitor';
 import { rateLimiter } from '../services/rateLimiter';
+import { formatNumber, getStatusColor, getStatusBackgroundClass } from '../utils/format';
 
 export const DynamoDBStatus: React.FC = () => {
   const [usage, setUsage] = useState(dynamoMonitor.getUsageStats());
@@ -20,43 +21,25 @@ export const DynamoDBStatus: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Získání barvy podle procentuálního využití
-  const getUsageColor = (percentage: number): string => {
-    if (percentage > 95) return 'text-red-500';
-    if (percentage > 85) return 'text-orange-500';
-    if (percentage > 70) return 'text-yellow-500';
-    return 'text-green-500';
-  };
+  const getUsageColor = getStatusColor;
 
-  // Získání barvy pozadí podle celkového stavu
   const getBackgroundColor = (): string => {
-    const readsPercentage = parseFloat(usage.reads.percentage);
-    const writesPercentage = parseFloat(usage.writes.percentage);
-    const maxPercentage = Math.max(readsPercentage, writesPercentage);
-
-    if (maxPercentage > 95) return 'bg-red-50 border-red-200';
-    if (maxPercentage > 85) return 'bg-orange-50 border-orange-200';
-    if (maxPercentage > 70) return 'bg-yellow-50 border-yellow-200';
-    return 'bg-green-50 border-green-200';
+    const maxPercentage = Math.max(
+      parseFloat(usage.reads.percentage),
+      parseFloat(usage.writes.percentage)
+    );
+    return getStatusBackgroundClass(maxPercentage);
   };
 
-  // Získání ikony podle stavu
   const getStatusIcon = (): React.ReactNode => {
-    const readsPercentage = parseFloat(usage.reads.percentage);
-    const writesPercentage = parseFloat(usage.writes.percentage);
-    const maxPercentage = Math.max(readsPercentage, writesPercentage);
-
+    const maxPercentage = Math.max(
+      parseFloat(usage.reads.percentage),
+      parseFloat(usage.writes.percentage)
+    );
     if (maxPercentage > 95) return <XCircle size={16} className="text-red-500" />;
     if (maxPercentage > 85) return <AlertTriangle size={16} className="text-orange-500" />;
     if (maxPercentage > 70) return <Clock size={16} className="text-yellow-500" />;
     return <CheckCircle size={16} className="text-green-500" />;
-  };
-
-  // Formátování čísel
-  const formatNumber = (num: number): string => {
-    if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
-    if (num >= 1000) return `${(num / 1000).toFixed(1)}K`;
-    return num.toString();
   };
 
   const maxPercentage = Math.max(

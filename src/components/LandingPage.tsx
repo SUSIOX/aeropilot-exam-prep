@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { CognitoAuth } from './CognitoAuth';
+import { LayoutDashboard, BookOpen, BarChart3, Sparkles } from 'lucide-react';
 
 interface LandingPageProps {
   onGuestMode: () => void;
@@ -48,8 +49,67 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGuestMode, onAuthSuc
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      {/* Blurred background - will show dashboard content underneath */}
-      <div className="absolute inset-0 backdrop-blur-[20px] bg-[var(--bg)]/80" />
+      {/* Background image with overlay */}
+      <div className="absolute inset-0">
+        <img 
+          src="/mrak_bckg.webp" 
+          alt="Aviation background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+      
+      {/* Background header (non-clickable, under glass) */}
+      <div className="absolute top-0 left-0 right-0 z-0">
+        <header className="border-b border-white/20 px-4 py-3 flex justify-between items-center bg-black/20 backdrop-blur-sm min-h-[60px] pointer-events-none">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 min-w-[40px] bg-white/10 backdrop-blur-sm text-white/60 flex items-center justify-center rounded-lg font-bold text-xl flex-shrink-0 border border-white/20">
+              A
+            </div>
+            <div className="min-w-0">
+              <h1 className="font-bold text-lg leading-tight text-white/80">Aeropilot Exam Prep</h1>
+              <div className="flex items-center gap-2 text-xs opacity-60 leading-tight">
+                <span className="w-2 h-2 rounded-full bg-green-500/60 flex-shrink-0"></span>
+                <span className="truncate text-white/70">Online</span>
+              </div>
+            </div>
+          </div>
+
+          <nav className="hidden md:flex gap-6 lg:gap-8 items-center">
+            <div className="text-xs uppercase tracking-widest font-semibold flex items-center gap-2 whitespace-nowrap text-white/60">
+              <LayoutDashboard size={14} className="flex-shrink-0" /> 
+              <span className="hidden sm:inline">Dashboard</span>
+            </div>
+            <div className="text-xs uppercase tracking-widest font-semibold flex items-center gap-2 whitespace-nowrap text-white/60">
+              <BarChart3 size={14} className="flex-shrink-0" /> 
+              <span className="hidden sm:inline">Statistiky</span>
+            </div>
+            <div className="text-xs uppercase tracking-widest font-semibold flex items-center gap-2 whitespace-nowrap text-white/60">
+              <BookOpen size={14} className="flex-shrink-0" /> 
+              <span className="hidden sm:inline">Osnovy</span>
+            </div>
+            <div className="text-xs uppercase tracking-widest font-semibold flex items-center gap-2 whitespace-nowrap text-white/60">
+              <Sparkles size={14} className="flex-shrink-0" />
+              <span className="hidden sm:inline">AI Generátor</span>
+            </div>
+          </nav>
+
+          <div className="flex items-center gap-2 sm:gap-3 opacity-60">
+            <div className="hidden sm:flex items-center h-10 px-3 bg-white/10 rounded-full min-w-0 border border-white/20">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-white truncate ml-1">Guest</span>
+            </div>
+            <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20">
+              <div className="w-4 h-4 rounded-full bg-white/40"></div>
+            </div>
+            <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 border border-white/20">
+              <div className="w-4 h-4 rounded-full bg-white/40"></div>
+            </div>
+            <div className="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest border border-white/30">
+              Simulace zkoušky
+            </div>
+          </div>
+        </header>
+      </div>
       
       {/* CognitoAuth must be rendered to handle callback redirect */}
       <CognitoAuth
@@ -63,15 +123,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGuestMode, onAuthSuc
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="relative z-10 w-full max-w-md p-8 glass-panel rounded-3xl space-y-8 border border-[var(--line)]"
+        className="relative z-10 w-full max-w-md p-8 glass-panel rounded-3xl space-y-8 border border-white/20 bg-white/10 backdrop-blur-xl"
       >
         {/* Logo and Title */}
         <div className="text-center space-y-2">
-          <div className="w-16 h-16 bg-[var(--ink)] text-[var(--ink-text)] flex items-center justify-center rounded-2xl font-bold text-3xl mx-auto">
+          <div className="w-16 h-16 bg-white/10 backdrop-blur-sm text-white/80 flex items-center justify-center rounded-2xl font-bold text-3xl mx-auto border border-white/20">
             A
           </div>
-          <h1 className="text-2xl font-bold tracking-tight">AeroPilot</h1>
-          <p className="text-xs uppercase tracking-widest opacity-50 font-mono">EASA ECQB PREP</p>
+          <h1 className="text-2xl font-bold tracking-tight text-white">Aeropilot Exam Prep</h1>
+          <p className="text-xs uppercase tracking-widest opacity-70 font-mono text-white">EASA ECQB PREP</p>
         </div>
 
         {/* Simple two-button interface */}
@@ -83,7 +143,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGuestMode, onAuthSuc
           {/* Cognito Login Button */}
           <button
             onClick={handleLoginClick}
-            className="w-full py-4 bg-[var(--ink)] text-[var(--ink-text)] rounded-xl font-bold uppercase tracking-widest text-xs hover:scale-[1.02] transition-transform"
+            className="w-full py-5 bg-white/20 backdrop-blur-sm text-white border border-white/30 rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-white/30 hover:scale-[1.02] transition-all"
           >
             SIGN IN
           </button>
@@ -92,100 +152,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGuestMode, onAuthSuc
           <div className="text-center">
             <button 
               onClick={onGuestMode}
-              className="text-[10px] font-bold uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity"
+              className="text-[12px] font-bold uppercase tracking-widest text-white/70 hover:text-white transition-colors"
             >
-              Pokračovat jako host
+              Pokračovat jako DEMO host
             </button>
           </div>
 
-          <p className="text-center text-[10px] opacity-50">
+          <p className="text-center text-[10px] text-white/60">
             Guest mode provides limited access • Sign in for full features
           </p>
         </motion.div>
 
-        {/* Commented out static auth form - was creating demo users */}
-        {/*
-        <AnimatePresence mode="wait">
-          {!showAuthForm ? (
-            <motion.div
-              key="landing"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="space-y-6"
-            >
-              <button
-                onClick={handleLoginClick}
-                className="w-full py-4 bg-[var(--ink)] text-[var(--ink-text)] rounded-xl font-bold uppercase tracking-widest text-xs hover:scale-[1.02] transition-transform"
-              >
-                SIGN IN
-              </button>
-
-              <div className="text-center">
-                <button 
-                  onClick={onGuestMode}
-                  className="text-[10px] font-bold uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity"
-                >
-                  Pokračovat jako host
-                </button>
-              </div>
-
-              <p className="text-center text-[10px] opacity-50">
-                Guest mode provides limited access • Sign in for full features
-              </p>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="auth"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="space-y-4"
-            >
-              <button
-                onClick={() => setShowAuthForm(false)}
-                className="text-[10px] opacity-50 hover:opacity-100 transition-opacity mb-4"
-              >
-                ← Zpět
-              </button>
-
-              <form onSubmit={handleAuth} className="space-y-4">
-                <div className="space-y-2">
-                  <label className="col-header">Uživatelské jméno</label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 opacity-30" size={16} />
-                    <input 
-                      type="text"
-                      required
-                      value={authForm.username}
-                      onChange={e => setAuthForm(prev => ({ ...prev, username: e.target.value }))}
-                      className="w-full pl-10 pr-4 py-3 bg-transparent border border-[var(--line)] rounded-xl focus:outline-none focus:border-[var(--ink)]"
-                      placeholder="pilot123"
-                    />
-                  </div>
-                </div>
-
-                {authError && (
-                  <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-500 text-xs flex items-center gap-2">
-                    <AlertCircle size={14} />
-                    {authError}
-                  </div>
-                )}
-
-                <button 
-                  type="submit"
-                  className="w-full py-4 bg-[var(--ink)] text-[var(--ink-text)] rounded-xl font-bold uppercase tracking-widest text-xs hover:scale-[1.02] transition-transform"
-                >
-                  Přihlásit se
-                </button>
-                <p className="text-center text-[10px] opacity-50">
-                  Zadej své jméno — pokud účet neexistuje, automaticky se vytvoří
-                </p>
-              </form>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        */}
+      
       </motion.div>
     </div>
   );

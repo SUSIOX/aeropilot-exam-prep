@@ -1117,3 +1117,163 @@ export async function importMockLOsToDB(): Promise<{ success: boolean; imported:
     };
   }
 }
+
+export async function generateMissingLearningObjectives(
+  existingLOs: EasaLO[],
+  subjectId: number,
+  licenseType: 'PPL(A)' | 'SPL' | 'BOTH',
+  apiKey?: string,
+  model: string = "gemini-flash-latest",
+  provider: AIProvider = 'gemini',
+  signal?: AbortSignal
+): Promise<{success: boolean, los: EasaLO[], error?: string}> {
+  
+  if (!apiKey) {
+    return { success: false, los: [], error: 'API key is required' };
+  }
+
+  try {
+    // Get subject name for context
+    const subjectNames: Record<number, string> = {
+      1: 'Air Law', 
+      2: 'Human Performance', 
+      3: 'Meteorology', 
+      4: 'Communications',
+      5: 'Principles of Flight', 
+      6: 'Operational Procedures',
+      7: 'Flight Performance & Planning',
+      8: 'Aircraft General Knowledge',
+      9: 'Navigation'
+    };
+
+    const subjectName = subjectNames[subjectId] || `Subject ${subjectId}`;
+
+    // Calculate estimated tokens based on input size
+    const estimatedTokens = Math.max(4000, existingLOs.length * 50 + 2000);
+
+    // Create enhanced prompt with more existing LOs context
+    const prompt = `
+Find 3-5 missing Learning Objectives for ${subjectName} (${licenseType} license).
+
+EXISTING LOs (${existingLOs.length}):
+${existingLOs.map(lo => `${lo.id}: ${lo.text}`).join('\n')}
+
+IMPORTANT: Generate ONLY LOs that are NOT in the existing list above.
+Focus on gaps in coverage for ${licenseType} requirements.
+
+Return JSON array:
+[
+  {"id": "XXX.XX.XX.XX", "text": "New objective not in existing list", "context": "Details", "level": 1, "subject_id": ${subjectId}, "applies_to": ["PPL(A)"]}
+]
+`;
+
+    let response: string;
+    
+    if (provider === 'gemini') {
+      const ai = getAiInstance(apiKey);
+      const result = await callWithRetry(() => ai.models.generateContent({
+        model: model,
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
+        config: {
+          responseMimeType: "application/json"
+        }
+      }), 2, 'gemini', signal);
+      
+      const text = result.text;
+      if (!text) {
+        return { success: false, los: [], error: 'Empty response from AI' };
+      }
+      
+      try {
+        const missingLOs = JSON.parse(extractJSON(text)) as any[];
+        
+        // Validate and format LOs
+        const validLOs = missingLOs.map(lo => ({
+          id: lo.id || generateLOId(subjectId, existingLOs.length + 1),
+          text: lo.text,
+          context: lo.context || lo.text,
+          level: (typeof lo.level === 'number' ? lo.level : lo.level === 'Recall' ? 1 : lo.level === 'State' ? 2 : lo.level === 'Explain' ? 3 : 1) as 1 | 2 | 3,
+          subject_id: subjectId,
+          applies_to: Array.isArray(lo.applies_to) ? lo.applies_to : [lo.applies_to || 'PPL(A)']
+        }));
+
+        return {
+          success: true,
+          los: validLOs
+        };
+        
+      } catch (parseError) {
+        console.error("❌ JSON parse error (LO Generator). Response length:", text.length, "Last 100 chars:", text.slice(-100));
+        return { success: false, los: [], error: `Invalid JSON response: ${parseError instanceof Error ? parseError.message : 'Unknown error'}` };
+      }
+    } else if (provider === 'claude') {
+      const claude = getClaudeInstance(apiKey);
+      const claudeResponse = await callWithRetry(() => claude.messages.create({
+        model: model,
+        max_tokens: estimatedTokens,
+        messages: [{ role: 'user', content: prompt }]
+      }), 2, 'claude', signal);
+      
+      const text = (claudeResponse.content[0] as any)?.text || "";
+      if (!text) {
+        return { success: false, los: [], error: 'Empty response from Claude' };
+      }
+      
+      console.log('🔍 Claude LO Generator Response:', text.slice(0, 200));
+      
+      try {
+        const missingLOs = JSON.parse(extractJSON(text)) as any[];
+        
+        // Validate and format LOs
+        const validLOs = missingLOs.map(lo => ({
+          id: lo.id || generateLOId(subjectId, existingLOs.length + 1),
+          text: lo.text,
+          context: lo.context || lo.text,
+          level: (typeof lo.level === 'number' ? lo.level : lo.level === 'Recall' ? 1 : lo.level === 'State' ? 2 : lo.level === 'Explain' ? 3 : 1) as 1 | 2 | 3,
+          subject_id: subjectId,
+          applies_to: Array.isArray(lo.applies_to) ? lo.applies_to : [lo.applies_to || 'PPL(A)']
+        }));
+
+        return {
+          success: true,
+          los: validLOs
+        };
+        
+      } catch (parseError) {
+        console.error("❌ JSON parse error (Claude LO Generator). Response length:", text.length, "Stop reason:", claudeResponse.stop_reason, "Last 100 chars:", text.slice(-100));
+        if (claudeResponse.stop_reason === 'max_tokens') {
+          return { success: false, los: [], error: `Claude response truncated (max_tokens: ${estimatedTokens}). Try smaller batch.` };
+        }
+        return { success: false, los: [], error: `Invalid JSON response: ${parseError instanceof Error ? parseError.message : 'Unknown error'}` };
+      }
+    }
+    
+    return { success: false, los: [], error: 'Unsupported AI provider' };
+
+  } catch (error) {
+    console.error('Error generating missing LOs:', error);
+    return {
+      success: false,
+      los: [],
+      error: error instanceof Error ? error.message : 'Unknown error'
+    };
+  }
+}
+
+// Helper function to generate LO IDs
+function generateLOId(subjectId: number, index: number): string {
+  const subjectPrefixes: Record<number, string> = {
+    1: '021', // Air Law
+    2: '022', // Human Performance  
+    3: '050', // Meteorology
+    4: '090', // Communications
+    5: '080', // Principles of Flight
+    6: '020', // Operational Procedures
+    7: '040', // Flight Performance
+    8: '021', // Aircraft General (shared with Air Law)
+    9: '061'  // Navigation
+  };
+  
+  const prefix = subjectPrefixes[subjectId] || `${subjectId}00`;
+  return `${prefix}.${String(index).padStart(2, '0')}.01.01`;
+}

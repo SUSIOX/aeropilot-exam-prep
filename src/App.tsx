@@ -39,7 +39,8 @@ import {
 } from 'lucide-react';
 import { Subject, Question, Stats, ViewMode, DrillSettings } from './types';
 import { LearningEngine } from './lib/LearningEngine';
-import { mockLOs, getAllLOs, importMockLOsToDB, generateBatchQuestions, getDetailedExplanation, getDetailedHumanExplanation, translateQuestion, EasaLO, SYLLABUS_SCOPE, SUBJECT_NAMES, buildSyllabusTree, SyllabusSubjectNode, verifyApiKey, AIProvider } from './services/aiService';
+import { mockLOs, getAllLOs, importMockLOsToDB, generateBatchQuestions, getDetailedExplanation, getDetailedHumanExplanation, translateQuestion, EasaLO, SYLLABUS_SCOPE, SUBJECT_NAMES, buildSyllabusTree, SyllabusSubjectNode, verifyApiKey, AIProvider, generateMissingLearningObjectives } from './services/aiService';
+import { checkSubjectDuplicates, checkAllDuplicates, findDuplicatesInQuestions } from './utils/duplicateChecker';
 import { DynamoDBStatus } from './components/DynamoDBStatus';
 import { AdminDashboard } from './components/AdminDashboard';
 import { CognitoAuth } from './components/CognitoAuth';
@@ -175,6 +176,12 @@ export default function App() {
   const [batchSize, setBatchSize] = useState<number>(5);
   const [questionsPerLO, setQuestionsPerLO] = useState<number>(2);
   const [coveredLOs, setCoveredLOs] = useState<Set<string>>(new Set());
+  const [actualCoveredLOs, setActualCoveredLOs] = useState<number>(0);
+  const [duplicateReport, setDuplicateReport] = useState<any>(null);
+  const [isCheckingDuplicates, setIsCheckingDuplicates] = useState(false);
+  const [isGeneratingLOs, setIsGeneratingLOs] = useState(false);
+  const [loLicenseType, setLoLicenseType] = useState<'PPL(A)' | 'SPL' | 'BOTH'>('BOTH');
+  const [generatedLOs, setGeneratedLOs] = useState<EasaLO[]>([]);
   const [selectedLicense, setSelectedLicense] = useState<'PPL' | 'SPL'>(() => {
     return (localStorage.getItem('selectedLicense') as 'PPL' | 'SPL') || 'PPL';
   });
@@ -194,6 +201,7 @@ export default function App() {
   const [importJson, setImportJson] = useState('');
   const [importStatus, setImportStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
   const [clearExisting, setClearExisting] = useState(false);
+  const [updateExisting, setUpdateExisting] = useState(false);
   const [isImportSectionOpen, setIsImportSectionOpen] = useState(false);
   const [userApiKey, setUserApiKey] = useState('');
   const [claudeApiKey, setClaudeApiKey] = useState('');
@@ -1472,8 +1480,170 @@ V nastavení lze změnit defaultni model.`);
       const data = await loadStaticQuestions(subjectId);
       const covered = new Set(data.map(q => q.lo_id).filter(Boolean).map(id => id?.trim()) as string[]);
       setCoveredLOs(covered);
+      
+      // Calculate actual covered LOs like AI generator
+      const allSubjectLOs = allLOs.filter(lo => lo.subject_id === subjectId);
+      const losWithQuestions = new Set(data.map(q => q.lo_id).filter(Boolean));
+      
+      const uniqueLosWithQuestions = new Set();
+      allSubjectLOs.forEach(lo => {
+        if (losWithQuestions.has(lo.id)) {
+          uniqueLosWithQuestions.add(lo.id);
+        }
+      });
+      
+      setActualCoveredLOs(uniqueLosWithQuestions.size);
     } catch (error) {
       // Error fetching coverage
+    }
+  };
+
+  const handleCheckDuplicates = async () => {
+    if (!importSubjectId) return;
+    
+    setIsCheckingDuplicates(true);
+    try {
+      const report = await checkSubjectDuplicates(importSubjectId, loadStaticQuestions);
+      setDuplicateReport(report);
+      console.log('🔍 Duplicate Report:', report);
+    } catch (error) {
+      console.error('Error checking duplicates:', error);
+    } finally {
+      setIsCheckingDuplicates(false);
+    }
+  };
+
+  const handleGenerateLOs = async () => {
+    if (!importSubjectId) return;
+    
+    setIsGeneratingLOs(true);
+    setGeneratedLOs([]);
+    
+    try {
+      // Get existing LOs for the subject
+      const existingLOs = allLOs.filter(lo => lo.subject_id === importSubjectId);
+      
+      // Get API key
+      let effectiveApiKey = userApiKey;
+      if (!effectiveApiKey && claudeApiKey) {
+        effectiveApiKey = claudeApiKey;
+      }
+      
+      if (!effectiveApiKey) {
+        alert('Pro generování Learning Objectives je potřeba API klíč');
+        return;
+      }
+      
+      const result = await generateMissingLearningObjectives(
+        existingLOs,
+        importSubjectId,
+        loLicenseType,
+        effectiveApiKey,
+        aiModel,
+        aiProvider
+      );
+      
+      if (result.success) {
+        setGeneratedLOs(result.los);
+        console.log('🎯 Generated LOs:', result.los);
+      } else {
+        console.error('Error generating LOs:', result.error);
+        alert(`Chyba při generování LOs: ${result.error}`);
+      }
+    } catch (error) {
+      console.error('Error generating LOs:', error);
+      alert('Chyba při generování Learning Objectives');
+    } finally {
+      setIsGeneratingLOs(false);
+    }
+  };
+
+  const handleSaveGeneratedLOs = async () => {
+    if (generatedLOs.length === 0) return;
+    
+    try {
+      // Check for duplicates before saving
+      const existingLOs = allLOs.filter(lo => lo.subject_id === importSubjectId);
+      const existingIds = new Set(existingLOs.map(lo => lo.id));
+      
+      // Filter out any duplicates
+      const uniqueNewLOs = generatedLOs.filter(lo => !existingIds.has(lo.id));
+      
+      if (uniqueNewLOs.length === 0) {
+        alert('Všechny vygenerované LOs již existují v databázi.');
+        setGeneratedLOs([]);
+        return;
+      }
+      
+      console.log('💾 Saving LOs to DynamoDB:', uniqueNewLOs);
+      
+      // Save each LO to DynamoDB
+      let successCount = 0;
+      let failCount = 0;
+      
+      for (const lo of uniqueNewLOs) {
+        try {
+          const result = await dynamoDBService.saveLO({
+            losid: lo.id,
+            loId: lo.id, // Add loId for EasaObjective table
+            text: lo.text,
+            context: lo.context,
+            subject_id: lo.subject_id,
+            subjectId: lo.subject_id, // Add subjectId for EasaObjective
+            applies_to: lo.applies_to,
+            source: 'ai-generated'
+          });
+          
+          if (result.success) {
+            successCount++;
+          } else {
+            failCount++;
+            console.error('Failed to save LO:', lo.id, result.error);
+          }
+        } catch (error) {
+          failCount++;
+          console.error('Error saving LO:', lo.id, error);
+        }
+      }
+      
+      // Update allLOs state
+      const updatedLOs = [...allLOs, ...uniqueNewLOs];
+      // Note: In a real implementation, you'd update the actual allLOs state
+      // For now, we'll trigger a refresh of LOs from DB
+      
+      // Refresh LOs from database to get the updated state
+      try {
+        const freshLOs = await getAllLOs();
+        if (freshLOs.length > 0) setAllLOs(freshLOs);
+      } catch (error) {
+        console.warn('Failed to refresh LOs from DB:', error);
+      }
+      
+      // Refresh coverage calculations
+      if (importSubjectId) {
+        await fetchCoverage(importSubjectId);
+      }
+      
+      // Show success message
+      const message = successCount > 0 
+        ? `✅ Úspěšně uloženo ${successCount} nových Learning Objectives!${failCount > 0 ? ` (${failCount} selhalo)` : ''}\n\nCelkem pro subject ${importSubjectId}: ${updatedLOs.filter(lo => lo.subject_id === importSubjectId).length} LOs`
+        : `❌ Nepodařilo se uložit žádné LOs (${failCount} chyb)`;
+      
+      alert(message);
+      
+      // Clear generated LOs
+      setGeneratedLOs([]);
+      
+      console.log('📊 Save summary:', {
+        total: uniqueNewLOs.length,
+        success: successCount,
+        failed: failCount,
+        updatedTotal: updatedLOs.filter(lo => lo.subject_id === importSubjectId).length
+      });
+      
+    } catch (error) {
+      console.error('Error saving LOs:', error);
+      alert('Chyba při ukládání Learning Objectives');
     }
   };
 
@@ -1555,22 +1725,54 @@ V nastavení lze změnit defaultni model.`);
     try {
       // Find LOs for the current subject
       const allSubjectLOs = allLOs.filter(lo => lo.subject_id === importSubjectId);
-      const missingLOs = allSubjectLOs.filter(lo => !coveredLOs.has(lo.id));
       
-      // Prioritize missing LOs, then fill with already covered ones to reach batchSize
+      // Load existing questions to check which LOs already have questions
+      const existingQuestions = await loadStaticQuestions(importSubjectId);
+      const losWithQuestions = new Set(existingQuestions.map(q => q.lo_id).filter(Boolean));
+      
+      // Count unique LOs that have questions (not total question LO IDs)
+      const uniqueLosWithQuestions = new Set();
+      allSubjectLOs.forEach(lo => {
+        if (losWithQuestions.has(lo.id)) {
+          uniqueLosWithQuestions.add(lo.id);
+        }
+      });
+      
+      // Update the actual coverage state
+      setActualCoveredLOs(uniqueLosWithQuestions.size);
+      
+      // Debug: Show LO IDs and question LO IDs
+      console.log('🔍 Debug - LOs analysis:', {
+        subjectId: importSubjectId,
+        totalLOs: allSubjectLOs.length,
+        loIds: allSubjectLOs.slice(0, 5).map(lo => ({ id: lo.id, title: lo.title })),
+        questionsCount: existingQuestions.length,
+        questionLoIds: existingQuestions.slice(0, 5).map(q => ({ lo_id: q.lo_id, question: q.text.substring(0, 50) })),
+        losWithQuestions: Array.from(losWithQuestions).slice(0, 5),
+        uniqueLosWithQuestionsCount: uniqueLosWithQuestions.size
+      });
+      
+      // Filter LOs that don't have questions yet
+      const missingLOs = allSubjectLOs.filter(lo => !losWithQuestions.has(lo.id));
+      
+      console.log(`📊 LOs analysis:`, {
+        total: allSubjectLOs.length,
+        withQuestions: uniqueLosWithQuestions.size,
+        missing: missingLOs.length,
+        batchSize
+      });
+      
+      // Only generate for LOs that don't have questions yet
       let targets = missingLOs.slice(0, batchSize);
-      if (targets.length < batchSize) {
-        const alreadyCovered = allSubjectLOs.filter(lo => coveredLOs.has(lo.id));
-        const additionalNeeded = batchSize - targets.length;
-        targets = [...targets, ...alreadyCovered.slice(0, additionalNeeded)];
-      }
 
-      // If still empty (no LOs for this subject at all), we can't proceed
+      // If no missing LOs, all topics are already covered
       if (targets.length === 0) {
-        alert('Pro tento předmět nejsou v databázi osnovy žádná témata.');
+        alert('Všechna témata pro tento předmět už mají vygenerované otázky.');
         setIsGeneratingDetailedExplanation(false);
         return;
       }
+
+      console.log(`🎯 Selected ${targets.length} LOs for generation:`, targets.map(t => t.id));
       
       // Process in chunks of 5 LOs to avoid hitting output token limits
       const CHUNK_SIZE = 5;
@@ -1704,6 +1906,60 @@ V nastavení lze změnit defaultni model.`);
     reader.readAsText(file);
   };
 
+  const handleDownloadCategories = async () => {
+    if (userRole !== 'admin') {
+      alert('Toto oprávnění má jen administrátor');
+      return;
+    }
+
+    try {
+      const allCategories: any[] = [];
+      
+      // Get all subjects with their questions
+      for (const subject of subjects) {
+        const questions = await loadStaticQuestions(subject.id);
+        const categoryData = {
+          id: subject.id,
+          name: subject.name,
+          description: subject.description,
+          question_count: questions.length,
+          success_rate: subject.success_rate,
+          user_count: subject.user_count,
+          ai_count: subject.ai_count,
+          questions: questions.map(q => ({
+            id: q.id,
+            question: q.text,
+            answers: [q.option_a, q.option_b, q.option_c, q.option_d],
+            correct: q.correct_option,
+            subject_id: q.subject_id,
+            source: q.source || 'user',
+            lo_id: q.lo_id,
+            explanation: q.explanation,
+            explanation_cz: q.explanation_cz,
+            difficulty: q.difficulty,
+            is_flagged: q.is_flagged,
+            correct_count: q.correct_count,
+            incorrect_count: q.incorrect_count
+          }))
+        };
+        allCategories.push(categoryData);
+      }
+
+      // Create and download JSON file
+      const blob = new Blob([JSON.stringify(allCategories, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `aeropilot-categories-${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      console.log(`✅ Staženo ${allCategories.length} kategorií s otázkami`);
+    } catch (error) {
+      alert('Nepodařilo se stáhnout kategorie z databáze.');
+    }
+  };
+
   const handleDownloadQuestions = async () => {
     if (userRole !== 'admin') {
       alert('Toto oprávnění má jen administrátor');
@@ -1765,21 +2021,105 @@ V nastavení lze změnit defaultni model.`);
         ? parsed.map(q => ({ ...q, source: q.source || 'user' }))
         : parsed;
 
-      // For static deployment, save questions to localStorage
-      let savedQuestions = JSON.parse(localStorage.getItem('questions') || '[]');
-      
-      if (clearExisting) {
-        savedQuestions = questionsWithSource;
-      } else {
-        savedQuestions = [...savedQuestions, ...questionsWithSource];
+      // Convert to proper Question format (matching saveGeneratedQuestions)
+      const allQuestionsToImport = questionsWithSource.map((q: any) => ({
+        id: q.id || Date.now() + Math.random(),
+        question: q.question || q.text || "Bez textu",
+        answers: [
+          q.answers[0] || q.option_a || "Možnost A",
+          q.answers[1] || q.option_b || "Možnost B", 
+          q.answers[2] || q.option_c || "Možnost C",
+          q.answers[3] || q.option_d || "Možnost D"
+        ],
+        correct: typeof q.correct === 'string' ? ['A', 'B', 'C', 'D'].indexOf(q.correct) : q.correct,
+        explanation: q.explanation || "",
+        explanation_cz: q.explanation_cz || undefined,
+        text_cz: q.text_cz || undefined,
+        option_a_cz: q.option_a_cz || undefined,
+        option_b_cz: q.option_b_cz || undefined,
+        option_c_cz: q.option_c_cz || undefined,
+        option_d_cz: q.option_d_cz || undefined,
+        image: q.image || null,
+        lo_id: q.lo_id || null,
+        source: q.source || 'user'
+      }));
+
+      try {
+        // If clearExisting is checked, first delete existing questions for this subject
+        if (clearExisting) {
+          try {
+            await dynamoDBService.deleteQuestionsBySubject(importSubjectId!);
+          } catch (error) {
+            // Continue even if delete fails
+          }
+        }
+
+        let importResults;
+        
+        if (updateExisting) {
+          // Update logic: check for existing questions by ID and update or insert
+          const existingQuestions = await dynamoDBService.getQuestionsBySubject(importSubjectId!);
+          const existingMap = new Map();
+          
+          if (existingQuestions.success && existingQuestions.data) {
+            existingQuestions.data.forEach((q: any) => {
+              // Find original ID from question data
+              const originalId = q.originalId || q.question?.split('_').pop();
+              if (originalId) {
+                existingMap.set(originalId, q);
+              }
+            });
+          }
+
+          importResults = await Promise.all(allQuestionsToImport.map(async (q: any) => {
+            const existing = existingMap.get(String(q.id));
+            
+            if (existing) {
+              // Update existing question
+              const result = await dynamoDBService.updateQuestion(existing.questionId, q);
+              return { ...result, action: 'updated', id: q.id };
+            } else {
+              // Insert new question
+              const result = await dynamoDBService.saveQuestion(importSubjectId!, q);
+              return { ...result, action: 'inserted', id: q.id };
+            }
+          }));
+        } else {
+          // Normal save logic
+          importResults = await Promise.all(allQuestionsToImport.map((q: any) =>
+            dynamoDBService.saveQuestion(importSubjectId!, q)
+          ));
+        }
+
+        const successful = importResults.filter(r => r.success).length;
+        const failed = importResults.length - successful;
+        
+        const updated = importResults.filter(r => r.action === 'updated' && r.success).length;
+        const inserted = importResults.filter(r => r.action === 'inserted' && r.success).length;
+
+        // Also persist to localStorage as cache
+        if (clearExisting) {
+          // Replace all questions for this subject
+          const cached = JSON.parse(localStorage.getItem('questions') || '[]');
+          const otherSubjectsQuestions = cached.filter((q: any) => q.subject_id !== importSubjectId);
+          localStorage.setItem('questions', JSON.stringify([...otherSubjectsQuestions, ...allQuestionsToImport]));
+        } else {
+          // Add to existing
+          const cached = JSON.parse(localStorage.getItem('questions') || '[]');
+          localStorage.setItem('questions', JSON.stringify([...cached, ...allQuestionsToImport]));
+        }
+
+        setImportStatus({
+          type: 'success',
+          message: updateExisting 
+            ? `✅ Aktualizováno ${updated} otázek, přidáno ${inserted} nových${failed > 0 ? ` (${failed} selhalo)` : ''}.`
+            : `✅ Uloženo ${successful} otázek do DB${failed > 0 ? ` (${failed} selhalo)` : ''}.`
+        });
+        setImportJson('');
+        await Promise.all([fetchSubjects(), fetchStats()]);
+      } catch (error: any) {
+        setImportStatus({ type: 'error', message: `❌ Uložení selhalo: ${error.message}` });
       }
-      
-      localStorage.setItem('questions', JSON.stringify(savedQuestions));
-      
-      setImportStatus({ type: 'success', message: `Úspěšně importováno ${questionsWithSource.length} otázek.` });
-      setImportJson('');
-      fetchSubjects();
-      fetchStats();
     } catch (err) {
       setImportStatus({ type: 'error', message: 'Neplatný formát JSON.' });
     }
@@ -2671,10 +3011,17 @@ V nastavení lze změnit defaultni model.`);
                       <div className="flex gap-2">
                         <button 
                           onClick={() => fileInputRef.current?.click()}
-                          className="flex-1 p-3 border border-[var(--line)] rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-[var(--line)] transition-colors flex items-center justify-center gap-2"
+                          className="flex-1 py-3 bg-[var(--ink)] text-[var(--bg)] rounded-xl text-[10px] font-bold uppercase tracking-widest hover:scale-[1.01] transition-transform flex items-center justify-center gap-2"
                         >
                           <FileJson size={14} />
                           Nahrát soubor
+                        </button>
+                        <button 
+                          onClick={handleDownloadCategories}
+                          className="flex-1 py-3 bg-[var(--ink)] text-[var(--bg)] rounded-xl text-[10px] font-bold uppercase tracking-widest hover:scale-[1.01] transition-transform flex items-center justify-center gap-2"
+                        >
+                          <Download size={14} />
+                          Stáhnout kategorie
                         </button>
                         <input type="file" ref={fileInputRef} onChange={handleFileUpload} accept=".json" className="hidden" />
                       </div>
@@ -2692,18 +3039,39 @@ V nastavení lze změnit defaultni model.`);
 
                   <div className="flex items-center gap-4">
                     {userRole === 'admin' && (
-                      <div className="flex items-center gap-2">
-                        <input 
-                          type="checkbox" 
-                          id="clearExisting" 
-                          checked={clearExisting}
-                          onChange={(e) => setClearExisting(e.target.checked)}
-                          className="w-4 h-4 accent-[var(--ink)]"
-                        />
-                        <label htmlFor="clearExisting" className="text-xs font-medium opacity-70">
-                          Smazat stávající
-                        </label>
-                      </div>
+                      <>
+                        <div className="flex items-center gap-2">
+                          <input 
+                            type="checkbox" 
+                            id="clearExisting" 
+                            checked={clearExisting}
+                            onChange={(e) => {
+                              setClearExisting(e.target.checked);
+                              if (e.target.checked) setUpdateExisting(false);
+                            }}
+                            className="w-4 h-4 accent-[var(--ink)]"
+                          />
+                          <label htmlFor="clearExisting" className="text-xs font-medium opacity-70">
+                            Smazat stávající
+                          </label>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <input 
+                            type="checkbox" 
+                            id="updateExisting" 
+                            checked={updateExisting}
+                            onChange={(e) => {
+                              setUpdateExisting(e.target.checked);
+                              if (e.target.checked) setClearExisting(false);
+                            }}
+                            className="w-4 h-4 accent-[var(--ink)]"
+                            title="Pokud se najde shoda podle ID otázky, updatuje se text. Jinak se nahraje jako nová."
+                          />
+                          <label htmlFor="updateExisting" className="text-xs font-medium opacity-70" title="Pokud se najde shoda podle ID otázky, updatuje se text. Jinak se nahraje jako nová.">
+                            Update
+                          </label>
+                        </div>
+                      </>
                     )}
                   </div>
 
@@ -3610,30 +3978,36 @@ V nastavení lze změnit defaultni model.`);
                           <span className="text-[10px] font-mono opacity-50">AMC1 FCL.310 Compliance</span>
                         </div>
                         
+                        <div className="p-3 bg-[var(--ink)]/10 rounded-xl border border-[var(--ink)]/20">
+                          <p className="text-sm font-bold text-center">
+                            V databázi: {subjects.find(s => s.id === importSubjectId)?.question_count || 0} otázek
+                          </p>
+                        </div>
+                        
                         <div className="grid grid-cols-3 gap-4">
                           <div className="space-y-1">
-                            <p className="text-[10px] opacity-50">Celkem v EASA</p>
-                            <p className="text-lg font-bold">{SYLLABUS_SCOPE[importSubjectId || 0] || 0}</p>
+                            <p className="text-[10px] opacity-50">Learning Objectives</p>
+                            <p className="text-lg font-bold">{allLOs.filter(lo => lo.subject_id === importSubjectId).length}</p>
                           </div>
                           <div className="space-y-1">
                             <p className="text-[10px] opacity-50">Pokryto v DB</p>
-                            <p className="text-lg font-bold text-emerald-600">{coveredLOs.size}</p>
+                            <p className="text-lg font-bold text-emerald-600">{actualCoveredLOs}</p>
                           </div>
                           <div className="space-y-1">
                             <p className="text-[10px] opacity-50">Zbývá doplnit</p>
-                            <p className="text-lg font-bold text-amber-600">{Math.max(0, (SYLLABUS_SCOPE[importSubjectId || 0] || 0) - coveredLOs.size)}</p>
+                            <p className="text-lg font-bold text-amber-600">{Math.max(0, allLOs.filter(lo => lo.subject_id === importSubjectId).length - actualCoveredLOs)}</p>
                           </div>
                         </div>
 
                         <div className="space-y-1 pt-2">
                           <div className="flex justify-between text-[10px] font-bold">
                             <span>Celková naplněnost předmětu</span>
-                            <span>{Math.round((coveredLOs.size / (SYLLABUS_SCOPE[importSubjectId || 0] || 1)) * 100)}%</span>
+                            <span>{allLOs.filter(lo => lo.subject_id === importSubjectId).length > 0 ? Math.round((actualCoveredLOs / allLOs.filter(lo => lo.subject_id === importSubjectId).length) * 100) : 0}%</span>
                           </div>
                           <div className="h-1.5 bg-[var(--line)] rounded-full overflow-hidden">
                             <div 
                               className="h-full bg-emerald-500 transition-all duration-1000" 
-                              style={{ width: `${(coveredLOs.size / (SYLLABUS_SCOPE[importSubjectId || 0] || 1)) * 100}%` }} 
+                              style={{ width: `${allLOs.filter(lo => lo.subject_id === importSubjectId).length > 0 ? (actualCoveredLOs / allLOs.filter(lo => lo.subject_id === importSubjectId).length) * 100 : 0}%` }} 
                             />
                           </div>
                           <div className="mt-3 p-2 bg-slate-50 rounded border border-slate-200">
@@ -3642,6 +4016,122 @@ V nastavení lze změnit defaultni model.`);
                               Při generování AI automaticky identifikuje chybějící témata a doplňuje je do vaší databáze, dokud nedosáhnete 100%.
                             </p>
                           </div>
+                        </div>
+                      </div>
+
+                      <div className="pt-2">
+                        <button
+                          onClick={handleCheckDuplicates}
+                          disabled={isCheckingDuplicates || !importSubjectId}
+                          className="w-full py-2 px-4 bg-amber-600 hover:bg-amber-700 disabled:bg-gray-400 text-white text-sm font-bold rounded-xl transition-colors"
+                        >
+                          {isCheckingDuplicates ? 'Kontroluji duplicity...' : '🔍 Kontrola duplicit v DB'}
+                        </button>
+                      </div>
+
+                      {duplicateReport && (
+                        <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-xl space-y-3">
+                          <h5 className="font-bold text-sm text-amber-800">🔍 Výsledek kontroly duplicit</h5>
+                          
+                          <div className="grid grid-cols-2 gap-4 text-xs">
+                            <div>
+                              <p className="font-semibold text-amber-700">Celkem otázek:</p>
+                              <p className="text-lg font-bold">{duplicateReport.totalQuestions}</p>
+                            </div>
+                            <div>
+                              <p className="font-semibold text-amber-700">Unikátní LOs:</p>
+                              <p className="text-lg font-bold">{duplicateReport.uniqueQuestions}</p>
+                            </div>
+                            <div>
+                              <p className="font-semibold text-red-600">Duplicitní otázky:</p>
+                              <p className="text-lg font-bold text-red-600">{duplicateReport.duplicates}</p>
+                            </div>
+                            <div>
+                              <p className="font-semibold text-amber-700">LOs s duplicitami:</p>
+                              <p className="text-lg font-bold">{duplicateReport.duplicateGroups.length}</p>
+                            </div>
+                          </div>
+
+                          {duplicateReport.duplicateGroups.length > 0 && (
+                            <div className="space-y-2">
+                              <p className="font-semibold text-xs text-amber-700">LOs s nejvíce duplicitami:</p>
+                              {duplicateReport.duplicateGroups.slice(0, 3).map((group, index) => (
+                                <div key={group.loId} className="text-xs p-2 bg-white rounded border border-amber-200">
+                                  <p className="font-bold">{group.loId}: {group.questionCount} otázek</p>
+                                  <p className="text-gray-600 truncate">{group.questions[0]?.text.substring(0, 50)}...</p>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          {duplicateReport.questionsWithoutLo.length > 0 && (
+                            <div>
+                              <p className="font-semibold text-xs text-amber-700">Otázky bez LO:</p>
+                              <p className="text-xs">{duplicateReport.questionsWithoutLo.length}</p>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Learning Objectives Generator */}
+                      <div className="pt-2">
+                        <div className="p-4 border border-[var(--line)] rounded-xl bg-white/5 space-y-3">
+                          <h5 className="font-bold text-sm">🎯 AI Generátor Learning Objectives</h5>
+                          
+                          <div className="flex items-center gap-2">
+                            <label className="text-xs font-medium">Typ licence:</label>
+                            <select
+                              value={loLicenseType}
+                              onChange={(e) => setLoLicenseType(e.target.value as 'PPL(A)' | 'SPL' | 'BOTH')}
+                              className="flex-1 px-2 py-1 text-xs border border-[var(--line)] rounded bg-white"
+                            >
+                              <option value="PPL(A)">PPL(A)</option>
+                              <option value="SPL">SPL</option>
+                              <option value="BOTH">OBĚ</option>
+                            </select>
+                          </div>
+
+                          <button
+                            onClick={handleGenerateLOs}
+                            disabled={isGeneratingLOs || !importSubjectId}
+                            className="w-full py-2 px-4 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-400 text-white text-sm font-bold rounded-xl transition-colors"
+                          >
+                            {isGeneratingLOs ? 'Analyzuji EASA zdroje...' : '🔍 Najít chybějící LOs'}
+                          </button>
+
+                          {generatedLOs.length > 0 && (
+                            <div className="mt-3 p-3 bg-purple-50 border border-purple-200 rounded-xl space-y-2">
+                              <p className="font-semibold text-xs text-purple-800">
+                                🎯 Nalezeno {generatedLOs.length} chybějících LOs:
+                              </p>
+                              <div className="max-h-32 overflow-y-auto space-y-1">
+                                {generatedLOs.slice(0, 5).map((lo, index) => (
+                                  <div key={index} className="text-xs p-2 bg-white rounded border border-purple-100">
+                                    <p className="font-bold text-purple-700">{lo.id}</p>
+                                    <p className="text-gray-600 truncate">{lo.text}</p>
+                                    <p className="text-purple-500 text-xs">Level: {lo.level} | Applies: {Array.isArray(lo.applies_to) ? lo.applies_to.join(', ') : lo.applies_to}</p>
+                                  </div>
+                                ))}
+                                {generatedLOs.length > 5 && (
+                                  <p className="text-xs text-purple-600 text-center">...a {generatedLOs.length - 5} dalších</p>
+                                )}
+                              </div>
+                              <div className="flex gap-2">
+                                <button
+                                  onClick={handleSaveGeneratedLOs}
+                                  className="flex-1 py-1 px-2 bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold rounded transition-colors"
+                                >
+                                  Uložit všechny LOs
+                                </button>
+                                <button
+                                  onClick={() => setGeneratedLOs([])}
+                                  className="py-1 px-2 bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs font-bold rounded transition-colors"
+                                >
+                                  Zavřít
+                                </button>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
 

@@ -584,7 +584,7 @@ export class DynamoDBService {
 
       const optionKeys = ['A', 'B', 'C', 'D'];
       const item = {
-        questionId: `subject${subjectId}_ai_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+        questionId: `subject${subjectId}_${question.source || 'user'}_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
         subjectId,
         question: question.question,
         answers: question.answers,
@@ -592,9 +592,9 @@ export class DynamoDBService {
         correctOption: optionKeys[question.correct] || 'A',
         explanation: question.explanation || null,
         loId: question.lo_id || null,
-        source: 'ai',
+        source: question.source || 'user',
         createdAt: new Date().toISOString(),
-        createdBy: 'ai_generator'
+        createdBy: question.source === 'ai' ? 'ai_generator' : 'user_import'
       };
 
       await this.docClient.send(new DocPutCommand({
@@ -605,6 +605,90 @@ export class DynamoDBService {
       return { success: true };
     } catch (error) {
       return { success: false, error: this.handleError(error, 'saveQuestion').message };
+    }
+  }
+
+  async deleteQuestion(questionId: string): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      await this.docClient.send(new DocDeleteCommand({
+        TableName: getTableName('QUESTIONS'),
+        Key: {
+          questionId: questionId
+        }
+      }));
+
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: this.handleError(error, 'deleteQuestion').message };
+    }
+  }
+
+  async deleteQuestionsBySubject(subjectId: number): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      // First get all questions for this subject
+      const questions = await this.getQuestionsBySubject(subjectId);
+      if (!questions.success || !questions.data) {
+        return { success: false, error: 'Failed to get questions to delete' };
+      }
+
+      // Delete all questions in batch
+      const deletePromises = questions.data.map((q: any) => 
+        this.deleteQuestion(q.questionId)
+      );
+      
+      const results = await Promise.all(deletePromises);
+      const successful = results.filter(r => r.success).length;
+      const failed = results.length - successful;
+
+      return { 
+        success: failed === 0, 
+        data: { deleted: successful, failed },
+        error: failed > 0 ? `Failed to delete ${failed} questions` : undefined
+      };
+    } catch (error) {
+      return { success: false, error: this.handleError(error, 'deleteQuestionsBySubject').message };
+    }
+  }
+
+  async updateQuestion(questionId: string, updatedQuestion: any): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      const optionKeys = ['A', 'B', 'C', 'D'];
+      const updateExpression = `
+        SET question = :question,
+            answers = :answers,
+            correct = :correct,
+            correctOption = :correctOption,
+            explanation = :explanation,
+            loId = :loId,
+            updatedAt = :now
+      `;
+
+      await this.docClient.send(new DocUpdateCommand({
+        TableName: getTableName('QUESTIONS'),
+        Key: {
+          questionId: questionId
+        },
+        UpdateExpression: updateExpression,
+        ExpressionAttributeValues: {
+          ':question': updatedQuestion.question,
+          ':answers': updatedQuestion.answers,
+          ':correct': updatedQuestion.correct,
+          ':correctOption': optionKeys[updatedQuestion.correct] || 'A',
+          ':explanation': updatedQuestion.explanation || null,
+          ':loId': updatedQuestion.lo_id || null,
+          ':now': new Date().toISOString()
+        }
+      }));
+
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: this.handleError(error, 'updateQuestion').message };
     }
   }
 

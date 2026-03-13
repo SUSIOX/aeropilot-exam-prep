@@ -20,13 +20,11 @@ export class AICancellationManager {
     if (controller) {
       controller.abort();
       this.controllers.delete(operationId);
-      console.log(`🛑 AI operation cancelled: ${operationId}`);
     }
   }
 
   // Cancel all operations
   static cancelAllOperations(): void {
-    console.log(`🛑 Cancelling ${this.controllers.size} AI operations...`);
     this.controllers.forEach(controller => controller.abort());
     this.controllers.clear();
   }

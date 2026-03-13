@@ -34,8 +34,8 @@ body {
 }
 
 .data-row:hover {
-  background: var(--ink);
-  color: #FFFFFF;
+  background: #f3f4f6;
+  color: var(--ink);
 }
 
 .data-row:hover .opacity-60,

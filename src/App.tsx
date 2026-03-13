@@ -75,7 +75,6 @@ export default function App() {
   // Role-based access control
   const [userRole, setUserRole] = useState<UserRole>(() => {
     const role = cognitoAuthService.getUserRole();
-    console.log('🔍 Debug - Initial userRole:', role);
     return role;
   });
 
@@ -152,7 +151,7 @@ export default function App() {
         }
         return parsed;
       } catch (e) {
-        console.error("Failed to parse drillSettings", e);
+        // Failed to parse drillSettings
       }
     }
     return {
@@ -195,9 +194,7 @@ export default function App() {
   const [importJson, setImportJson] = useState('');
   const [importStatus, setImportStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
   const [clearExisting, setClearExisting] = useState(false);
-  const [importPassword, setImportPassword] = useState('');
   const [isImportSectionOpen, setIsImportSectionOpen] = useState(false);
-  const IMPORT_PASSWORD_HASH = '9b8769a4a742959a2d0298c36fb70623f2a2d38'; // SHA1 of 'aeropilot2025'
   const [userApiKey, setUserApiKey] = useState('');
   const [claudeApiKey, setClaudeApiKey] = useState('');
   const [aiProvider, setAiProvider] = useState<AIProvider>(() => {
@@ -227,7 +224,6 @@ export default function App() {
     
     // Clean up old models and migrate
     if (saved && modelMap[saved]) {
-      console.log(`🔄 Migrating old model: ${saved} → ${modelMap[saved]}`);
       localStorage.setItem('aiModel', modelMap[saved]);
       return modelMap[saved];
     }
@@ -359,13 +355,6 @@ export default function App() {
   useEffect(() => {
     // Initialize credentials FIRST, then load data
     const credentialsInitialized = initializeSecureCredentials();
-    console.log('🔐 Secure credentials initialized:', credentialsInitialized);
-    
-    if (credentialsInitialized) {
-      console.log('✅ DynamoDB should be available');
-    } else {
-      console.log('⚠️ DynamoDB not available - using fallback mode');
-    }
     
     loadStaticSubjects();
     loadStaticStats(); // Load persisted stats first (fast)
@@ -472,7 +461,6 @@ export default function App() {
         alert(`❌ Cache refresh selhal: ${result.error}`);
       }
     } catch (error) {
-      console.error('Cache refresh error:', error);
       alert('Cache refresh selhal. Zkontrolujte konzoli.');
     }
   };
@@ -499,7 +487,6 @@ export default function App() {
       ];
       
       if (!supportedModels.includes(savedModel)) {
-        console.warn(`⚠️ Unsupported model detected: ${savedModel}, resetting to default`);
         localStorage.setItem('aiModel', 'gemini-flash-latest');
         setAiModel('gemini-flash-latest');
         return;
@@ -543,7 +530,6 @@ export default function App() {
         alert(`❌ ${result.error || 'Vložený API klíč není platný.'}`);
       }
     } catch (err: any) {
-      console.error(err);
       setKeyStatus('invalid');
       alert('Chyba při ověřování API klíče. Zkuste to prosím později.');
     } finally {
@@ -633,7 +619,7 @@ export default function App() {
         return questions;
       }
     } catch (err) {
-      console.warn('⚠️ DynamoDB načítání selhalo, záloha na JSON:', err);
+      // DynamoDB loading failed, fallback to JSON
     }
 
     // Fallback: load from JSON file
@@ -671,7 +657,6 @@ export default function App() {
       }));
       return questions;
     } catch (error) {
-      console.error('Error loading questions:', error);
       return [];
     }
   };
@@ -787,7 +772,6 @@ export default function App() {
       language.resetTranslation(); // Reset translation when starting new drill
       setView('drill');
     } catch (err) {
-      console.error("Failed to start drill:", err);
       alert('Nepodařilo se načíst otázky.');
     }
   };
@@ -930,7 +914,6 @@ export default function App() {
       setShowExplanation(false);
       setView('drill');
     } catch (error) {
-      console.error('Error loading flagged questions:', error);
       alert('Nepodařilo se načíst označené otázky.');
     }
   };
@@ -972,7 +955,6 @@ export default function App() {
       language.resetTranslation(); // Reset translation when starting exam
       setView('exam');
     } catch (err) {
-      console.error("Failed to start exam:", err);
       alert('Nepodařilo se spustit simulaci zkoušky.');
     }
   };
@@ -1134,15 +1116,13 @@ V nastavení lze změnit defaultni model.`);
           setUserApiKey(key);
           if (aiProvider !== 'gemini') {
             setAiProvider('gemini');
-            console.log('🔄 Automaticky přepnuto na Gemini provider');
-          }
+                      }
         } else if (key.startsWith('sk-ant-')) {
           // Claude klíč
           setClaudeApiKey(key);
           if (aiProvider !== 'claude') {
             setAiProvider('claude');
-            console.log('🔄 Automaticky přepnuto na Claude provider');
-          }
+                      }
         } else {
           // Neznámý formát - uložit podle aktuálního provideru
           if (aiProvider === 'gemini') {
@@ -1150,8 +1130,7 @@ V nastavení lze změnit defaultni model.`);
           } else {
             setClaudeApiKey(key);
           }
-          console.warn('⚠️ Neznámý formát API klíče, uloženo podle aktuálního provideru');
-        }
+                  }
       } else {
         return;
       }
@@ -1286,24 +1265,10 @@ V nastavení lze změnit defaultni model.`);
           } : question
         ));
       } catch (error) {
-        console.error('Failed to save AI explanation to localStorage:', error);
+        // Failed to save AI explanation to localStorage
       }
     } catch (error: any) {
-      console.error("Explanation failed:", error);
-      console.error("Error details:", {
-        message: error?.message,
-        status: error?.status,
-        stack: error?.stack
-      });
-      if (error?.message === 'API_KEY_MISSING') {
-        alert('Chybí API klíč. Vložte prosím API klíč (Gemini nebo Claude).');
-      } else if (error?.message === 'API_KEY_INVALID') {
-        alert('Vložený API klíč není platný.');
-      } else if (error?.message?.toLowerCase().includes('429') || error?.message?.toLowerCase().includes('resource_exhausted') || error?.message?.toLowerCase().includes('rate exceeded')) {
-        alert('Limit požadavků (Rate Limit) byl vyčerpán. Prosím počkejte minutu.');
-      } else {
-        alert(`Vysvětlení se nepodařilo vygenerovat. Chyba: ${error?.message || 'Neznámá chyba'}`);
-      }
+      alert(`Vysvětlení se nepodařilo vygenerovat. Chyba: ${error?.message || 'Neznámá chyba'}`);
     } finally {
       setIsGeneratingAiExplanation(false);
     }
@@ -1377,9 +1342,8 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
       }
       
     } catch (error: any) {
-      console.error("Error regenerating explanation:", error);
       if (error?.message === 'Operation cancelled') {
-        console.log('Explanation regeneration cancelled');
+        // Explanation regeneration cancelled
       } else {
         alert(`Vysvětlení se nepodařilo vygenerovat. Chyba: ${error?.message || 'Neznámá chyba'}`);
       }
@@ -1407,15 +1371,13 @@ V nastavení lze změnit defaultni model.`);
           setUserApiKey(key);
           if (aiProvider !== 'gemini') {
             setAiProvider('gemini');
-            console.log('🔄 Automaticky přepnuto na Gemini provider');
-          }
+                      }
         } else if (key.startsWith('sk-ant-')) {
           // Claude klíč
           setClaudeApiKey(key);
           if (aiProvider !== 'claude') {
             setAiProvider('claude');
-            console.log('🔄 Automaticky přepnuto na Claude provider');
-          }
+                      }
         } else {
           // Neznámý formát - uložit podle aktuálního provideru
           if (aiProvider === 'gemini') {
@@ -1423,8 +1385,7 @@ V nastavení lze změnit defaultni model.`);
           } else {
             setClaudeApiKey(key);
           }
-          console.warn('⚠️ Neznámý formát API klíče, uloženo podle aktuálního provideru');
-        }
+                  }
       } else {
         return;
       }
@@ -1467,24 +1428,10 @@ V nastavení lze změnit defaultni model.`);
           } : question
         ));
       } catch (error) {
-        console.error('Failed to save detailed explanation:', error);
+        // Failed to save detailed explanation
       }
     } catch (error: any) {
-      console.error("Detailed explanation failed:", error);
-      console.error("Error details:", {
-        message: error?.message,
-        status: error?.status,
-        stack: error?.stack
-      });
-      if (error?.message === 'API_KEY_MISSING') {
-        alert('Chybí API klíč. Vložte prosím API klíč (Gemini nebo Claude).');
-      } else if (error?.message === 'API_KEY_INVALID') {
-        alert('Vložený API klíč není platný.');
-      } else if (error?.message?.toLowerCase().includes('429') || error?.message?.toLowerCase().includes('resource_exhausted') || error?.message?.toLowerCase().includes('rate exceeded')) {
-        alert('Limit požadavků (Rate Limit) byl vyčerpán. Prosím počkejte minutu.');
-      } else {
-        alert(`Podrobné vysvětlení se nepodařilo vygenerovat. Chyba: ${error?.message || 'Neznámá chyba'}`);
-      }
+      alert(`Podrobné vysvětlení se nepodařilo vygenerovat. Chyba: ${error?.message || 'Neznámá chyba'}`);
     } finally {
       setIsGeneratingDetailedExplanation(false);
     }
@@ -1526,7 +1473,7 @@ V nastavení lze změnit defaultni model.`);
       const covered = new Set(data.map(q => q.lo_id).filter(Boolean).map(id => id?.trim()) as string[]);
       setCoveredLOs(covered);
     } catch (error) {
-      console.error("Error fetching coverage:", error);
+      // Error fetching coverage
     }
   };
 
@@ -1562,27 +1509,18 @@ V nastavení lze změnit defaultni model.`);
   };
 
   const handleGenerateQuestions = async () => {
-    console.log('🔍 Debug: handleGenerateQuestions spuštěno');
-    console.log('🔍 Debug: userRole =', userRole);
-    console.log('🔍 Debug: aiProvider =', aiProvider);
-    console.log('🔍 Debug: userApiKey =', userApiKey ? 'exists' : 'empty');
-    console.log('🔍 Debug: claudeApiKey =', claudeApiKey ? 'exists' : 'empty');
-    
     if (userRole === 'guest') {
       alert('Tato funkce je jen pro ověřené uživatele');
       return;
     }
     let effectiveApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
-    console.log('🔍 Debug: effectiveApiKey =', effectiveApiKey ? 'exists' : 'empty');
     
     if (!effectiveApiKey) {
-      console.log('🔍 Debug: Zobrazuji prompt pro vložení klíče');
       const key = prompt(`⚠️ Pro použití AI je nutný API klíč
 Vložte Gemini nebo Claude API klíč (aktuálně vybráno: ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'}).
 
 💡 Klíč se automaticky rozpozná.
 V nastavení lze změnit defaultni model.`);
-      console.log('🔍 Debug: Uživatel vložil klíč =', key ? 'yes' : 'no/cancel');
       if (key) {
         // Inteligentní detekce typu klíče
         if (key.startsWith('AIza')) {
@@ -1590,7 +1528,6 @@ V nastavení lze změnit defaultni model.`);
           setUserApiKey(key);
           if (aiProvider !== 'gemini') {
             setAiProvider('gemini');
-            console.log('🔄 Automaticky přepnuto na Gemini provider');
           }
           effectiveApiKey = key;
         } else if (key.startsWith('sk-ant-')) {
@@ -1598,7 +1535,6 @@ V nastavení lze změnit defaultni model.`);
           setClaudeApiKey(key);
           if (aiProvider !== 'claude') {
             setAiProvider('claude');
-            console.log('🔄 Automaticky přepnuto na Claude provider');
           }
           effectiveApiKey = key;
         } else {
@@ -1608,8 +1544,6 @@ V nastavení lze změnit defaultni model.`);
           } else {
             setClaudeApiKey(key);
           }
-          effectiveApiKey = key;
-          console.warn('⚠️ Neznámý formát API klíče, uloženo podle aktuálního provideru');
         }
       } else {
         return;
@@ -1651,7 +1585,6 @@ V nastavení lze změnit defaultni model.`);
       
       setBatchResults(allResults);
     } catch (error: any) {
-      console.error("Generation failed:", error);
       if (error?.message === 'API_KEY_MISSING') {
         alert('Chybí API klíč. Vložte prosím API klíč (Gemini nebo Claude).');
       } else if (error?.message === 'API_KEY_INVALID') {
@@ -1717,7 +1650,6 @@ V nastavení lze změnit defaultni model.`);
       setBatchResults([]);
       await Promise.all([fetchSubjects(), fetchStats(), fetchCoverage(importSubjectId)]);
     } catch (error: any) {
-      console.error("Saving failed:", error);
       setImportStatus({ type: 'error', message: `❌ Uložení selhalo: ${error.message}` });
     }
   };
@@ -1752,9 +1684,8 @@ V nastavení lze změnit defaultni model.`);
       });
       
       alert('Váš postup byl úspěšně smazán.');
-    } catch (error) {
-      console.error("Reset failed:", error);
-      alert('Nepodařilo se smazat postup.');
+    } catch (err) {
+      alert('Nepodařilo se spustit simulaci zkoušky.');
     }
   };
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -1771,17 +1702,6 @@ V nastavení lze změnit defaultni model.`);
       setImportStatus({ type: 'error', message: 'Chyba při čtení souboru.' });
     };
     reader.readAsText(file);
-  };
-
-  const checkImportPassword = (pw: string): boolean => {
-    // Simple hash check — not cryptographically secure, just prevents accidental deletion
-    let hash = 0;
-    for (let i = 0; i < pw.length; i++) {
-      const chr = pw.charCodeAt(i);
-      hash = ((hash << 5) - hash) + chr;
-      hash |= 0;
-    }
-    return pw === 'aeropilot2026';
   };
 
   const handleDownloadQuestions = async () => {
@@ -1823,9 +1743,8 @@ V nastavení lze změnit defaultni model.`);
       a.click();
       URL.revokeObjectURL(url);
 
-      console.log(`✅ Staženo ${formattedQuestions.length} otázek z DynamoDB`);
+      // Removed console log here
     } catch (error) {
-      console.error('Download error:', error);
       alert('Nepodařilo se stáhnout otázky z databáze.');
     }
   };
@@ -1835,13 +1754,8 @@ V nastavení lze změnit defaultni model.`);
       setImportStatus({ type: 'error', message: 'Toto oprávnění má jen administrátor' });
       return;
     }
-    if (!importSubjectId || !importJson) {
-      setImportStatus({ type: 'error', message: 'Vyberte předmět a vložte JSON.' });
-      return;
-    }
-
-    if (!checkImportPassword(importPassword)) {
-      setImportStatus({ type: 'error', message: 'Nesprávné heslo pro import.' });
+    if (!importSubjectId || !importJson.trim()) {
+      setImportStatus({ type: 'error', message: 'Vložte JSON data nebo nahrajte soubor.' });
       return;
     }
 
@@ -2020,13 +1934,13 @@ V nastavení lze změnit defaultni model.`);
             ) : (
               <div className="hidden sm:flex items-center h-10 px-3 text-gray-600 dark:text-gray-300 rounded-full min-w-0">
                 <User size={12} className="opacity-50 flex-shrink-0" />
-                <span className="text-[10px] font-bold uppercase tracking-widest truncate ml-1">{user?.username}</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest truncate ml-1" style={{ color: 'var(--gray-800, rgb(31 41 55))' }}>{user?.username}</span>
                 <button 
                   onClick={handleLogout}
                   className="ml-2 p-1 hover:text-rose-500 transition-colors rounded flex-shrink-0"
                   title="Odhlásit se"
                 >
-                  <XCircle size={12} />
+                  <XCircle size={12} style={{ color: 'var(--gray-700, rgb(55 65 81))' }} />
                 </button>
               </div>
             )}
@@ -2054,13 +1968,13 @@ V nastavení lze změnit defaultni model.`);
             ) : (
               <div className="hidden sm:flex items-center h-10 px-3 text-gray-600 dark:text-gray-300 rounded-full min-w-0 flex-shrink-0">
                 <User size={12} className="opacity-50 flex-shrink-0" />
-                <span className="text-[10px] font-bold uppercase tracking-widest truncate ml-1">{user?.username}</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest truncate ml-1" style={{ color: 'var(--gray-800, rgb(31 41 55))' }}>{user?.username}</span>
                 <button 
                   onClick={handleLogout}
                   className="ml-2 p-1 hover:text-rose-500 transition-colors rounded flex-shrink-0"
                   title="Odhlásit se"
                 >
-                  <XCircle size={12} />
+                  <XCircle size={12} style={{ color: 'var(--gray-700, rgb(55 65 81))' }} />
                 </button>
               </div>
             )}
@@ -2398,26 +2312,26 @@ V nastavení lze změnit defaultni model.`);
                     <div 
                       key={s.id} 
                       onClick={() => startDrill(s)}
-                      className="flex items-center py-3 px-4 border-b border-[var(--line)] hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+                      className="group flex items-center py-3 px-4 border-b border-[var(--line)] hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors cursor-pointer"
                     >
                       <div className="hidden sm:flex justify-center w-8 flex-shrink-0">
                         <BookOpen size={16} className="opacity-40 group-hover:opacity-100" />
                       </div>
 
                       <div className="flex items-center min-w-0 flex-1">
-                        <span className="font-medium text-sm">{s.description}</span>
-                        <span className="hidden sm:inline text-xs opacity-50 ml-2 truncate">{s.name}</span>
+                        <span className="font-medium text-sm group-hover:text-gray-900 dark:group-hover:text-gray-100">{s.description}</span>
+                        <span className="hidden sm:inline text-xs opacity-50 ml-2 truncate group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">{s.name}</span>
                       </div>
 
                       <div className="flex justify-end gap-4">
                         <div className="font-mono text-xs flex justify-center">
                           {(s.ai_count || 0) > 0 ? (
-                            <span className="opacity-60">{s.user_count || 0}/{s.ai_count}</span>
+                            <span className="opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">{s.user_count || 0}/{s.ai_count}</span>
                           ) : (
-                            <span className="opacity-60">{s.question_count || 0}</span>
+                            <span className="opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">{s.question_count || 0}</span>
                           )}
                         </div>
-                        <div className="font-mono text-sm flex justify-center min-w-[3rem]">{Math.round(s.success_rate * 100)}%</div>
+                        <div className="font-mono text-sm flex justify-center min-w-[3rem] group-hover:text-gray-900 dark:group-hover:text-gray-100">{Math.round(s.success_rate * 100)}%</div>
                       </div>
 
                       <div className="hidden sm:flex justify-end w-8 flex-shrink-0">
@@ -2791,13 +2705,6 @@ V nastavení lze změnit defaultni model.`);
                         </label>
                       </div>
                     )}
-                    <input
-                      type="password"
-                      value={importPassword}
-                      onChange={e => setImportPassword(e.target.value)}
-                      placeholder="Heslo..."
-                      className="flex-1 p-2 border border-[var(--line)] rounded-lg bg-transparent text-xs focus:outline-none focus:border-[var(--ink)]"
-                    />
                   </div>
 
                   {importStatus && (
@@ -2807,16 +2714,14 @@ V nastavení lze změnit defaultni model.`);
                     </div>
                   )}
 
-                  {userRole !== 'admin' && (
-                    <AccessDenied variant="user" />
+                  {userRole === 'admin' && (
+                    <button 
+                      onClick={handleImport}
+                      className="w-full py-4 bg-[var(--ink)] text-[var(--bg)] rounded-2xl text-xs font-bold uppercase tracking-widest hover:scale-[1.01] transition-transform"
+                    >
+                      Importovat otázky
+                    </button>
                   )}
-                  <button 
-                    onClick={handleImport}
-                    disabled={userRole !== 'admin'}
-                    className="w-full py-4 bg-[var(--ink)] text-[var(--bg)] rounded-2xl text-xs font-bold uppercase tracking-widest hover:scale-[1.01] transition-transform disabled:opacity-40 disabled:cursor-not-allowed"
-                  >
-                    Importovat otázky
-                  </button>
                 </div>
                 )}
               </section>
@@ -3742,8 +3647,6 @@ V nastavení lze změnit defaultni model.`);
 
                       <button 
                         onClick={() => {
-                          console.log('🔍 Debug: Tlačítko generování kliknuto!');
-                          console.log('🔍 Debug: isGeneratingDetailedExplanation =', isGeneratingDetailedExplanation);
                           handleGenerateQuestions();
                         }}
                         disabled={isGeneratingDetailedExplanation}
@@ -4337,9 +4240,9 @@ V nastavení lze změnit defaultni model.`);
               email: userData.email
             });
             
-            console.log('✅ User authenticated via Cognito:', userData);
+            // User authenticated via Cognito
           } catch (error) {
-            console.error('Auth setup error:', error);
+            // Auth setup error
           }
         }}
         feature={authPromptFeature}

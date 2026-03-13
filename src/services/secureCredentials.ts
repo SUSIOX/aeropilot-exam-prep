@@ -41,8 +41,6 @@ export class SecureCredentialsManager {
     });
 
     this.docClient = DynamoDBDocumentClient.from(this.dynamoClient);
-    
-    console.log('Secure credentials initialized with Cognito Identity Pool');
   }
 
   // Get DynamoDB client

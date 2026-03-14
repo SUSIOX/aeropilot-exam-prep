@@ -38,6 +38,22 @@ export interface UserProgressItem extends DynamoDBItem {
   attempts: number;
 }
 
+export interface UserSettingsItem extends DynamoDBItem {
+  userId: string;
+  settings: {
+    sorting: 'default' | 'random' | 'hardest_first' | 'least_practiced';
+    immediateFeedback: boolean;
+    showExplanationOnDemand: boolean;
+    sourceFilters: ('user' | 'ai')[];
+    shuffleAnswers: boolean;
+    userApiKey: string;
+    claudeApiKey: string;
+    aiProvider: 'gemini' | 'claude';
+    aiModel: string;
+  };
+  updatedAt: string;
+}
+
 export interface QuestionFlagItem extends DynamoDBItem {
   questionId: string;
   isFlagged: boolean;

@@ -59,4 +59,5 @@ export interface DrillSettings {
   immediateFeedback: boolean;
   showExplanationOnDemand: boolean;
   sourceFilters: ('user' | 'ai')[];
+  shuffleAnswers: boolean;
 }

@@ -38,6 +38,7 @@ export const getSecureDocClient = () => {
 export const TABLE_NAMES = {
   AI_EXPLANATIONS: 'ai-explanations',
   USER_PROGRESS: 'user-progress',
+  USER_SETTINGS: 'user-settings',
   QUESTION_FLAGS: 'question-flags',
   EASA_OBJECTIVES: 'easa-objectives',          // Master LO data (EasaObjective)
   QUESTION_OBJECTIVES: 'question-objectives',   // Many-to-many: question → loId

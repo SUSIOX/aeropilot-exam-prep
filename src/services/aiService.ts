@@ -3,6 +3,7 @@ import { Anthropic } from "@anthropic-ai/sdk";
 import { Question } from "../types";
 import { LOItem } from "../types/aws";
 import { dynamoDBService } from "./dynamoService";
+import { cacheAircademyPDF, generateAircademyPrompt } from './aircademyService';
 
 export type AIProvider = 'gemini' | 'claude';
 
@@ -1125,7 +1126,9 @@ export async function generateMissingLearningObjectives(
   apiKey?: string,
   model: string = "gemini-flash-latest",
   provider: AIProvider = 'gemini',
-  signal?: AbortSignal
+  signal?: AbortSignal,
+  useAircademy: boolean = true,
+  additionalDocuments: string[] = []
 ): Promise<{success: boolean, los: EasaLO[], error?: string}> {
   
   if (!apiKey) {
@@ -1133,6 +1136,11 @@ export async function generateMissingLearningObjectives(
   }
 
   try {
+    // Cache Aircademy PDF for reference if enabled
+    if (useAircademy) {
+      await cacheAircademyPDF();
+    }
+    
     // Get subject name for context
     const subjectNames: Record<number, string> = {
       1: 'Air Law', 
@@ -1151,19 +1159,46 @@ export async function generateMissingLearningObjectives(
     // Calculate estimated tokens based on input size
     const estimatedTokens = Math.max(4000, existingLOs.length * 50 + 2000);
 
-    // Create enhanced prompt with more existing LOs context
-    const prompt = `
+    // Create enhanced prompt with conditional references
+    let prompt = `
 Find 3-5 missing Learning Objectives for ${subjectName} (${licenseType} license).
 
+REFERENCE SOURCES:
+1. EASA Official Learning Objectives Syllabus (primary)
+`;
+
+    if (useAircademy) {
+      prompt += `2. Aircademy ECQB-PPL Detailed Syllabus (https://aircademy.com/downloads/ECQB-PPL-DetailedSyllabus.pdf)
+3. EASA Acceptable Means of Compliance (AMC) & Guidance Material (GM)
+
+AIRCADEMY SYLLABUS:
+The Aircademy syllabus provides detailed explanations and practical examples for each LO.
+Use this as supplementary material to enhance understanding and identify gaps.
+`;
+    } else {
+      prompt += `2. EASA Acceptable Means of Compliance (AMC) & Guidance Material (GM)
+`;
+    }
+
+    if (additionalDocuments.length > 0) {
+      prompt += `
+ADDITIONAL DOCUMENTS:
+Analyze these resources for additional insights:
+${additionalDocuments.map((doc, index) => `${index + 1}. ${doc}`).join('\n')}
+`;
+    }
+
+    prompt += `
 EXISTING LOs (${existingLOs.length}):
 ${existingLOs.map(lo => `${lo.id}: ${lo.text}`).join('\n')}
 
 IMPORTANT: Generate ONLY LOs that are NOT in the existing list above.
 Focus on gaps in coverage for ${licenseType} requirements.
+${useAircademy ? 'Use Aircademy syllabus insights for detailed context.' : 'Use official EASA materials for context.'}
 
 Return JSON array:
 [
-  {"id": "XXX.XX.XX.XX", "text": "New objective not in existing list", "context": "Details", "level": 1, "subject_id": ${subjectId}, "applies_to": ["PPL(A)"]}
+  {"id": "XXX.XX.XX.XX", "text": "New objective not in existing list", "context": "Details${useAircademy ? ' with Aircademy insights' : ''}", "level": 1, "subject_id": ${subjectId}, "applies_to": ["PPL(A)"]}
 ]
 `;
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   LayoutDashboard, 
@@ -45,6 +45,7 @@ import { checkSubjectDuplicates, checkAllDuplicates, findDuplicatesInQuestions }
 import { DynamoDBStatus } from './components/DynamoDBStatus';
 import { AdminDashboard } from './components/AdminDashboard';
 import { AircademySyllabus } from './components/AircademySyllabus';
+import { getStorageService } from './services/storageService';
 
 // Shuffle utility interfaces and functions
 interface ShuffledQuestion {
@@ -55,13 +56,29 @@ interface ShuffledQuestion {
 }
 
 const shuffleAnswers = (question: Question): ShuffledQuestion => {
-  const result = LearningEngine.shuffleAnswers(question);
+  const answers = [
+    question.option_a,
+    question.option_b,
+    question.option_c,
+    question.option_d
+  ];
+  
+  const originalCorrectIndex = ['A', 'B', 'C', 'D'].indexOf(question.correct_option);
+  
+  // Generate shuffle map: [2, 0, 3, 1] means display A shows original answer[2], etc.
+  const shuffleMap = LearningEngine.shuffle([0, 1, 2, 3]);
+  
+  // Create display answers using shuffle map
+  const displayAnswers = shuffleMap.map(index => answers[index]);
+  
+  // Find display position of correct answer
+  const displayCorrect = shuffleMap.indexOf(originalCorrectIndex);
   
   return {
     originalQuestion: question,
-    shuffleMap: result.shuffleMap,
-    displayAnswers: result.shuffledAnswers,
-    displayCorrect: result.correctIndex
+    shuffleMap,
+    displayAnswers,
+    displayCorrect
   };
 };
 
@@ -106,6 +123,15 @@ export default function App() {
     return role;
   });
 
+  // AI Generation states
+  const [selectedLO, setSelectedLO] = useState<EasaLO>(mockLOs[0]);
+  const [batchResults, setBatchResults] = useState<{loId: string, questions: Partial<Question>[]}[]>([]);
+  const [isAuthenticated, setIsAuthenticated] = useState(true); // Always true for static
+  const [batchSize, setBatchSize] = useState<number>(5);
+  
+  // Shuffle answers state
+  const [shuffledQuestion, setShuffledQuestion] = useState<ShuffledQuestion | null>(null);
+
   // Landing Page Management
   const [showLandingPage, setShowLandingPage] = useState(() => {
     // Check if we're returning from Cognito (has code in URL)
@@ -143,7 +169,6 @@ export default function App() {
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [originalQuestions, setOriginalQuestions] = useState<Question[]>([]); // Store unfiltered questions
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [stats, setStats] = useState<Stats | null>(null);
   const [answered, setAnswered] = useState<string | null>(null);
@@ -161,36 +186,53 @@ export default function App() {
   const [examResults, setExamResults] = useState<{ score: number; total: number } | null>(null);
   const [timer, setTimer] = useState(0);
 
-  // Drill Settings
-  const [drillSettings, setDrillSettings] = useState<DrillSettings>(() => {
-    const saved = localStorage.getItem('drillSettings');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        // Migration: Ensure we use 'ai' instead of 'easa' and have valid filters
-        if (parsed.sourceFilters) {
-          if (parsed.sourceFilters.includes('easa') && !parsed.sourceFilters.includes('ai')) {
-            parsed.sourceFilters = parsed.sourceFilters.map((f: string) => f === 'easa' ? 'ai' : f);
-          }
-          if (parsed.sourceFilters.length === 0) {
-            parsed.sourceFilters = ['user', 'ai'];
-          }
-        } else {
-          parsed.sourceFilters = ['user', 'ai'];
-        }
-        return parsed;
-      } catch (e) {
-        // Failed to parse drillSettings
+  // Auth State - restore user from localStorage on init
+  const [user, setUser] = useState<{id: string, username: string} | null>(() => {
+    try {
+      // Try Cognito auth first
+      const cognitoUser = cognitoAuthService.getCurrentUser();
+      if (cognitoUser) {
+        return { id: cognitoUser.id, username: cognitoUser.username };
       }
-    }
-    return {
-      sorting: 'default',
-      immediateFeedback: true,
-      showExplanationOnDemand: true,
-      sourceFilters: ['user', 'ai'],
-      shuffleAnswers: false
-    };
+      
+      // Fallback to old system
+      const saved = localStorage.getItem('user_data');
+      if (saved) {
+        const data = JSON.parse(saved);
+        return { id: '1', username: data.username || data.id };
+      }
+    } catch (e) {}
+    return null;
   });
+  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
+
+  // Engine instance (we use it for logic, but keep state in React for reactivity)
+  const [examAnswers, setExamAnswers] = useState<Record<number, string>>({});
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+  const [incorrectAnswersCount, setIncorrectAnswersCount] = useState(0);
+  const [view, setView] = useState<ViewMode>('dashboard');
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode');
+    return saved ? JSON.parse(saved) : false;
+  });
+  const [subjects, setSubjects] = useState<Subject[]>([]);
+  const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null);
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [stats, setStats] = useState<Stats | null>(null);
+  const [answered, setAnswered] = useState<string | null>(null);
+  const [showExplanation, setShowExplanation] = useState(false);
+  const [detailedExplanation, setDetailedExplanation] = useState<string | null>(null);
+  const [aiExplanation, setAiExplanation] = useState<string | null>(null);
+  const [isGeneratingDetailedExplanation, setIsGeneratingDetailedExplanation] = useState(false);
+  const [isGeneratingAiExplanation, setIsGeneratingAiExplanation] = useState(false);
+  const [isRegeneratingExplanation, setIsRegeneratingExplanation] = useState(false);
+  const [isExpandedLO, setIsExpandedLO] = useState(false);
+  const [expandedLOContent, setExpandedLOContent] = useState<{id: string, text: string, type: string, level?: number} | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const [examResults, setExamResults] = useState<{ score: number; total: number } | null>(null);
+  const [timer, setTimer] = useState(0);
 
   // LOs loaded from DB (falls back to mockLOs)
   const [allLOs, setAllLOs] = useState<EasaLO[]>(mockLOs);
@@ -198,14 +240,37 @@ export default function App() {
   const [isImportingLOs, setIsImportingLOs] = useState(false);
   const [loImportStatus, setLoImportStatus] = useState<{type: 'success'|'error', message: string} | null>(null);
 
-  // AI Generation states
-  const [selectedLO, setSelectedLO] = useState<EasaLO>(mockLOs[0]);
-  const [batchResults, setBatchResults] = useState<{loId: string, questions: Partial<Question>[]}[]>([]);
-  const [isAuthenticated, setIsAuthenticated] = useState(true); // Always true for static
-  const [batchSize, setBatchSize] = useState<number>(5);
-  
-  // Shuffle answers state
-  const [shuffledQuestion, setShuffledQuestion] = useState<ShuffledQuestion | null>(null);
+  // Storage service instance
+  const storageService = useMemo(() => getStorageService({
+    useDualStorage: true,
+    userId: user?.id || undefined
+  }), [user?.id]);
+
+  // Initialize drill settings from storage service
+  const [drillSettings, setDrillSettings] = useState<DrillSettings>(() => {
+    const defaultSettings = {
+      sorting: 'default' as const,
+      immediateFeedback: true,
+      showExplanationOnDemand: true,
+      sourceFilters: ['user', 'ai'] as const,
+      shuffleAnswers: false
+    };
+    
+    // Try to get from storage service, fallback to default
+    try {
+      const saved = localStorage.getItem('drillSettings');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && typeof parsed === 'object') {
+          return { ...defaultSettings, ...parsed };
+        }
+      }
+    } catch (e) {
+      console.warn('Failed to parse drillSettings from localStorage:', e);
+    }
+    
+    return defaultSettings;
+  });
 
   // Reshuffle when question changes or shuffle setting changes
   useEffect(() => {
@@ -218,6 +283,7 @@ export default function App() {
       }
     }
   }, [currentQuestionIndex, questions, drillSettings.shuffleAnswers]);
+
   const [questionsPerLO, setQuestionsPerLO] = useState<number>(2);
   const [coveredLOs, setCoveredLOs] = useState<Set<string>>(new Set());
   const [actualCoveredLOs, setActualCoveredLOs] = useState<number>(0);
@@ -453,14 +519,19 @@ export default function App() {
     return null;
   };
 
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode');
+    return saved ? JSON.parse(saved) : false;
+  });
+
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-    localStorage.setItem('darkMode', JSON.stringify(darkMode));
-  }, [darkMode]);
+    storageService.setDarkMode(darkMode);
+  }, [darkMode, storageService]);
 
   useEffect(() => {
     const uid = user?.id || 'guest';
@@ -486,12 +557,12 @@ export default function App() {
   }, [claudeApiKey, user]);
 
   useEffect(() => {
-    localStorage.setItem('aiProvider', aiProvider);
-  }, [aiProvider]);
+    storageService.setAIProvider(aiProvider);
+  }, [aiProvider, storageService]);
 
   useEffect(() => {
-    localStorage.setItem('aiModel', aiModel);
-  }, [aiModel]);
+    storageService.setAIModel(aiModel);
+  }, [aiModel, storageService]);
 
   // Admin function to refresh explanation cache
   const handleRefreshExplanation = async (questionId: string, subjectId: number) => {
@@ -594,72 +665,26 @@ export default function App() {
   };
 
   useEffect(() => {
-    localStorage.setItem('drillSettings', JSON.stringify(drillSettings));
-    
-    // Sync to DynamoDB for authenticated users (not guests)
-    if (userRole !== 'guest' && user?.id) {
-      dynamoDBService.saveUserSettings(String(user.id), {
-        ...drillSettings,
-        userApiKey,
-        claudeApiKey,
-        aiProvider,
-        aiModel
-      }).catch(() => {
-        // Silent fail - localStorage is primary storage
-      });
-    }
-  }, [drillSettings, user?.id, userRole, userApiKey, claudeApiKey, aiProvider, aiModel]);
+    // Save to storage service
+    storageService.setDrillSettings(drillSettings);
+  }, [drillSettings, storageService]);
 
   // Load user settings from DynamoDB on login
   useEffect(() => {
     if (userRole !== 'guest' && user?.id) {
-      // Try to load settings from DynamoDB
-      dynamoDBService.getUserSettings(String(user.id))
-        .then(result => {
-          if (result.success && result.settings) {
-            // Merge with localStorage settings (DynamoDB takes precedence)
-            setDrillSettings(prev => ({
-              ...prev,
-              ...result.settings
-            }));
-            
-            // Restore API keys and AI settings from DB
-            if (result.settings.userApiKey) setUserApiKey(result.settings.userApiKey);
-            if (result.settings.claudeApiKey) setClaudeApiKey(result.settings.claudeApiKey);
-            if (result.settings.aiProvider) setAiProvider(result.settings.aiProvider);
-            if (result.settings.aiModel) setAiModel(result.settings.aiModel);
+      // Try to load settings from storage service
+      storageService.getDrillSettings(user.id)
+        .then(settings => {
+          if (settings) {
+            // Merge with current settings (DynamoDB takes precedence)
+            setDrillSettings(prev => ({ ...prev, ...settings }));
           }
         })
         .catch(() => {
-          // Silent fail - use localStorage settings
+          // Silent fail - use current settings
         });
     }
-  }, [user?.id, userRole]);
-
-  // Re-filter questions when source filters change in drill mode
-  useEffect(() => {
-    if (view === 'drill' && originalQuestions.length > 0 && selectedSubject) {
-      // Re-apply filters to ORIGINAL questions, not already filtered ones
-      const filtered = originalQuestions.filter(q => {
-        const isAi = Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa';
-        if (isAi) return drillSettings.sourceFilters.includes('ai');
-        return drillSettings.sourceFilters.includes('user');
-      });
-
-      if (filtered.length === 0) {
-        // No questions match current filters - go back to selection
-        alert('Žádné otázky neodpovídají aktuálním filtrům. Změňte filtry nebo vyberte jiný předmět.');
-        setView('dashboard');
-        return;
-      }
-
-      // Update questions with filtered results
-      setQuestions(filtered);
-      setCurrentQuestionIndex(0); // Reset to first question
-      setAnswered(null); // Clear answer
-      setShowExplanation(false); // Hide explanation
-    }
-  }, [drillSettings.sourceFilters, view, originalQuestions.length, selectedSubject]);
+  }, [user?.id, userRole, storageService]);
 
   // Static data loading for GitHub Pages deployment
   const loadStaticSubjects = async () => {
@@ -830,7 +855,20 @@ export default function App() {
   };
 
   const toggleSourceFilter = (source: 'user' | 'ai') => {
-    // Toggle the filter - no API key needed for filtering existing questions
+    if (source === 'ai') {
+      const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
+      if (!currentApiKey) {
+        const key = prompt(`Pro použití AI generovaných funkcí (EASA databáze, vysvětlení, překlady) je doporučeno vložit vlastní ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč. Chcete jej vložit nyní?`);
+        if (key) {
+          if (aiProvider === 'gemini') {
+            setUserApiKey(key);
+          } else {
+            setClaudeApiKey(key);
+          }
+        }
+      }
+    }
+
     setDrillSettings(prev => {
       const filters = [...prev.sourceFilters];
       const index = filters.indexOf(source);
@@ -872,8 +910,6 @@ export default function App() {
         return;
       }
 
-      // Store original questions for dynamic filtering
-      setOriginalQuestions(data);
       setQuestions(processedQuestions);
       setCurrentQuestionIndex(0);
       setAnswered(null);
@@ -922,8 +958,6 @@ export default function App() {
       // Shuffle
       const shuffled = LearningEngine.shuffle(filtered);
 
-      // Store original questions for dynamic filtering
-      setOriginalQuestions(allQuestions);
       setSelectedSubject(prev => prev ? { ...prev, question_count: shuffled.length } : prev);
       setQuestions(shuffled);
       setCurrentQuestionIndex(0);
@@ -3340,18 +3374,23 @@ V nastavení lze změnit defaultni model.`);
                         { id: 'user', icon: User, label: 'Uživatel' },
                         { id: 'ai', icon: Bot, label: 'AI Generováno' }
                       ].map(src => {
-                        const isActive = drillSettings.sourceFilters.includes(src.id as any);
+                        const q = questions[currentQuestionIndex];
+                        const isCurrentSource = getIsCurrentSource(src.id, q);
+                        const isFilteringThis = drillSettings.sourceFilters.length === 1 && drillSettings.sourceFilters[0] === src.id;
+                        
                         return (
                           <button 
                             key={src.id}
                             onClick={() => toggleSourceFilter(src.id as any)}
+                            title={isFilteringThis ? `Zrušit filtr: ${src.label}` : `Filtrovat pouze: ${src.label}`}
                             className={`transition-all duration-300 flex items-center gap-1 relative ${
-                              isActive 
-                                ? 'text-indigo-600 opacity-100' 
-                                : 'text-[var(--ink)] opacity-40 hover:opacity-60'
-                            }`}
+                              isCurrentSource ? 'opacity-100' : 'opacity-20 hover:opacity-40'
+                            } ${isFilteringThis ? 'text-indigo-600' : 'text-[var(--ink)]'}`}
                           >
-                            <src.icon size={16} strokeWidth={isActive ? 2.5 : 2} />
+                            <src.icon size={16} strokeWidth={isCurrentSource ? 2.5 : 2} />
+                            {isCurrentSource && (
+                              <span className="absolute -top-1 -right-1 w-2 h-2 bg-indigo-600 rounded-full border-2 border-[var(--bg)]" />
+                            )}
                           </button>
                         );
                       })}

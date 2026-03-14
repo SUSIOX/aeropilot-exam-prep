@@ -147,6 +147,30 @@ export class LearningEngine {
   }
 
   /**
+   * Static helper to shuffle question answers.
+   * Returns shuffled answers array and the new index of the correct answer.
+   */
+  static shuffleAnswers(question: Question): { shuffledAnswers: string[]; correctIndex: number; shuffleMap: number[] } {
+    const answers = [question.option_a, question.option_b, question.option_c, question.option_d];
+    const originalCorrectIndex = ['A', 'B', 'C', 'D'].indexOf(question.correct_option);
+    
+    // Generate shuffle map: [2, 0, 3, 1] means display A shows original answer[2], etc.
+    const shuffleMap = this.shuffle([0, 1, 2, 3]);
+    
+    // Create shuffled answers using shuffle map
+    const shuffledAnswers = shuffleMap.map(index => answers[index]);
+    
+    // Find new position of correct answer
+    const correctIndex = shuffleMap.indexOf(originalCorrectIndex);
+    
+    return {
+      shuffledAnswers,
+      correctIndex,
+      shuffleMap
+    };
+  }
+
+  /**
    * Static helper to generate an exam set from a pool of questions.
    */
   static generateExamSet(pool: Question[], limit: number = 20): Question[] {

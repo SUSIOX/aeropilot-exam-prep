@@ -7,6 +7,7 @@ import {
   ExplanationItem, 
   ObjectiveItem, 
   UserProgressItem, 
+  UserSettingsItem,
   QuestionFlagItem,
   LOItem,
   QuestionObjective,
@@ -315,6 +316,82 @@ export class DynamoDBService {
       return {
         success: false,
         error: this.handleError(error, 'saveUserProgress').message
+      };
+    }
+  }
+
+  // User Settings Operations
+
+  async saveUserSettings(
+    userId: string,
+    settings: {
+      sorting: 'default' | 'random' | 'hardest_first' | 'least_practiced';
+      immediateFeedback: boolean;
+      showExplanationOnDemand: boolean;
+      sourceFilters: ('user' | 'ai')[];
+      shuffleAnswers: boolean;
+      userApiKey: string;
+      claudeApiKey: string;
+      aiProvider: 'gemini' | 'claude';
+      aiModel: string;
+    }
+  ): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      const item: UserSettingsItem = {
+        userId,
+        settings,
+        updatedAt: new Date().toISOString()
+      };
+
+      const command = new DocPutCommand({
+        TableName: getTableName('USER_SETTINGS'),
+        Item: item
+      });
+
+      const result = await this.docClient.send(command);
+
+      return {
+        success: true,
+        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'saveUserSettings').message
+      };
+    }
+  }
+
+  async getUserSettings(userId: string): Promise<{success: boolean, settings?: any, error?: string}> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocGetCommand({
+        TableName: getTableName('USER_SETTINGS'),
+        Key: { userId }
+      });
+
+      const result = await this.docClient.send(command);
+
+      if (result.Item) {
+        return {
+          success: true,
+          settings: result.Item.settings
+        };
+      } else {
+        return {
+          success: false,
+          error: 'User settings not found'
+        };
+      }
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'getUserSettings').message
       };
     }
   }

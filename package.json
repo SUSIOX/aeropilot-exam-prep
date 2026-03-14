@@ -9,12 +9,16 @@
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
-    "test-key": "tsx test-scripts/verify-key.ts"
+    "test-key": "tsx test-scripts/verify-key.ts",
+    "lambda:check": "node AWS/scripts/check-lambda-status.js",
+    "lambda:migrate": "node AWS/scripts/migrate-lambda-runtime.js",
+    "lambda:deploy": "./AWS/scripts/deploy-lambda-url.sh"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
     "@aws-sdk/client-cognito-identity": "^3.1005.0",
     "@aws-sdk/client-dynamodb": "^3.1004.0",
+    "@aws-sdk/client-lambda": "^3.1009.0",
     "@aws-sdk/client-sts": "^3.1004.0",
     "@aws-sdk/credential-provider-cognito-identity": "^3.972.11",
     "@aws-sdk/lib-dynamodb": "^3.1004.0",

@@ -7,3 +7,15 @@ coverage/
 .env*
 !.env.example
 PROJECT_CLEANUP_COMPLETE.md
+
+# AWS infrastructure scripts and documentation
+AWS/
+!AWS/.gitkeep
+
+# IAM setup scripts and configs (contain sensitive info)
+create-lambda-iam.sh
+create-cognito-roles.sh
+lambda-iam-policy.json
+lambda-trust-policy.json
+cognito-identity-policies.json
+IAM_SETUP_README.md

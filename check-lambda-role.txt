@@ -1,0 +1,16 @@
+AWS CloudShell příkazy pro kontrolu a dokončení Lambda role:
+
+# Zkontrolujte existující roli
+echo "Kontrola existující Lambda role:"
+aws iam get-role --role-name AeropilotLambdaExecutionRole --query "Role.{RoleName:RoleName,Arn:Arn,CreateDate:CreateDate}"
+
+echo -e "
+Kontrola připojených politik:" 
+aws iam list-attached-role-policies --role-name AeropilotLambdaExecutionRole --query "AttachedPolicies[*].{PolicyName:PolicyName,PolicyArn:PolicyArn}"
+
+# Pokud role existuje, připojte politiky (pokud nejsou už připojeny)
+echo -e "
+Připojování politik (pokud nejsou už připojeny):"
+aws iam attach-role-policy --role-name AeropilotLambdaExecutionRole --policy-arn arn:aws:iam::455982474805:policy/AeropilotLambdaPolicy 2>/dev/null && echo "✓ AeropilotLambdaPolicy připojena" || echo "✗ AeropilotLambdaPolicy už je připojena nebo chyba"
+
+aws iam attach-role-policy --role-name AeropilotLambdaExecutionRole --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole 2>/dev/null && echo "✓ AWSLambdaBasicExecutionRole připojena" || echo "✗ AWSLambdaBasicExecutionRole už je připojena nebo chyba"

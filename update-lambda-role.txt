@@ -1,0 +1,1 @@
+aws lambda update-function-configuration --function-name cognito-token-exchange --role arn:aws:iam::455982474805:role/AeropilotLambdaExecutionRole

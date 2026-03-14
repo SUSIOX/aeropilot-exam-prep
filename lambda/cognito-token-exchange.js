@@ -1,15 +1,21 @@
 // Lambda Function URL handler for Cognito token exchange
 // This function securely handles the client secret
 
+const { SecretsManagerClient, GetSecretValueCommand } = require('@aws-sdk/client-secrets-manager');
+
 export const handler = async (event) => {
     console.log('Received event:', JSON.stringify(event, null, 2));
     
     // CORS headers
     const headers = {
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': process.env.ALLOWED_ORIGIN || 'https://yourdomain.com', // Replace with actual domain
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-Content-Type-Options': 'nosniff',
+        'X-Frame-Options': 'DENY',
+        'X-XSS-Protection': '1; mode=block',
+        'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'
     };
     
     // Handle OPTIONS request for CORS preflight
@@ -22,6 +28,16 @@ export const handler = async (event) => {
     }
     
     try {
+        // Retrieve client secret from AWS Secrets Manager
+        const secretsClient = new SecretsManagerClient({ region: process.env.AWS_REGION || 'eu-central-1' });
+        const secretResponse = await secretsClient.send(
+            new GetSecretValueCommand({
+                SecretId: process.env.SECRET_NAME || 'aeropilot-cognito-client-secret'
+            })
+        );
+        const secretValue = JSON.parse(secretResponse.SecretString);
+        const CLIENT_SECRET = secretValue.client_secret;
+        
         // Parse request body
         let body;
         if (typeof event.body === 'string') {
@@ -35,7 +51,6 @@ export const handler = async (event) => {
         // Cognito configuration from environment variables
         const COGNITO_DOMAIN = process.env.COGNITO_DOMAIN;
         const CLIENT_ID = process.env.CLIENT_ID;
-        const CLIENT_SECRET = process.env.CLIENT_SECRET; // Stored securely in Lambda
         const REDIRECT_URI = process.env.REDIRECT_URI;
         
         console.log('Processing token exchange for client:', CLIENT_ID);

@@ -1,0 +1,1 @@
+aws cognito-identity set-identity-pool-roles --identity-pool-id eu-central-1:15cba94f-c5c9-4312-9185-d96ba144225c --roles authenticated=arn:aws:iam::455982474805:role/CognitoAeropilotUserRole,unauthenticated=arn:aws:iam::455982474805:role/CognitoAeropilotGuestRole

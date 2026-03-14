@@ -77,7 +77,7 @@ import { AICancellationManager, useAICancellation } from './utils/aiCancellation
 import { LandingPage } from './components/LandingPage';
 import { dynamoCache } from './services/dynamoCache';
 import { dynamoDBService } from './services/dynamoService';
-import { initializeSecureCredentials } from './services/secureCredentials';
+import { initializeSecureCredentials, initializeAuthenticatedCredentials, initializeGuestCredentials } from './services/secureCredentials';
 import { cognitoAuthService, UserRole } from './services/cognitoAuthService';
 import { AccessDenied } from './components/AccessDenied';
 
@@ -410,9 +410,27 @@ export default function App() {
   const isLoggedIn = userMode === 'logged-in' && user;
 
   useEffect(() => {
-    // Initialize credentials FIRST, then load data
-    const credentialsInitialized = initializeSecureCredentials();
-    
+    // Initialize credentials based on authentication status
+    const initializeCredentials = async () => {
+      if (cognitoAuthService.isAuthenticated()) {
+        // User is authenticated, try authenticated credentials
+        console.log('🔄 Initializing authenticated credentials...');
+        const success = await initializeAuthenticatedCredentials();
+        if (!success) {
+          console.log('🔄 Falling back to guest credentials...');
+          initializeGuestCredentials();
+        }
+      } else {
+        // User is not authenticated, use guest credentials
+        console.log('🔄 Initializing guest credentials...');
+        initializeGuestCredentials();
+      }
+    };
+
+    initializeCredentials();
+  }, [userMode]); // Re-run when userMode changes
+
+  useEffect(() => {
     loadStaticSubjects();
     loadStaticStats(); // Load persisted stats first (fast)
     fetchStats();    // Then fetch live question counts from DynamoDB (slow)
@@ -429,6 +447,21 @@ export default function App() {
       initializeGuestSession();
     }
   }, []);
+
+  // Load selected subject from localStorage for guest mode
+  useEffect(() => {
+    if (isGuestMode) {
+      const savedSubject = localStorage.getItem(`${user?.id || 'guest'}:selectedSubject`);
+      if (savedSubject) {
+        try {
+          const subject = JSON.parse(savedSubject);
+          setSelectedSubject(subject);
+        } catch (error) {
+          console.error('Failed to parse saved subject:', error);
+        }
+      }
+    }
+  }, [isGuestMode, user?.id]);
 
   // Initialize guest session
   const initializeGuestSession = () => {
@@ -598,7 +631,7 @@ export default function App() {
     localStorage.setItem('drillSettings', JSON.stringify(drillSettings));
     
     // Sync to DynamoDB for authenticated users (not guests)
-    if (userRole !== 'guest' && user?.id) {
+    if (user?.id && (userApiKey || claudeApiKey)) {
       dynamoDBService.saveUserSettings(String(user.id), {
         ...drillSettings,
         userApiKey,
@@ -609,11 +642,11 @@ export default function App() {
         // Silent fail - localStorage is primary storage
       });
     }
-  }, [drillSettings, user?.id, userRole, userApiKey, claudeApiKey, aiProvider, aiModel]);
+  }, [drillSettings, user?.id, userApiKey, claudeApiKey, aiProvider, aiModel]);
 
   // Load user settings from DynamoDB on login
   useEffect(() => {
-    if (userRole !== 'guest' && user?.id) {
+    if (user?.id) {
       // Try to load settings from DynamoDB
       dynamoDBService.getUserSettings(String(user.id))
         .then(result => {
@@ -635,7 +668,7 @@ export default function App() {
           // Silent fail - use localStorage settings
         });
     }
-  }, [user?.id, userRole]);
+  }, [user?.id]);
 
   // Re-filter questions when source filters change in drill mode
   useEffect(() => {
@@ -801,7 +834,46 @@ export default function App() {
     try {
       if (isGuestMode) {
         const guestStats = loadGuestStats();
-        if (guestStats) setStats(guestStats);
+        if (guestStats) {
+          // Guest has localStorage data, use it but also get DB counts for breakdown
+          const countsResult = await dynamoDBService.getAllQuestionCounts();
+          if (countsResult.success && countsResult.data) {
+            const { total, user: userQuestions, ai } = countsResult.data;
+            const totalQ = Object.values(total).reduce((a, b) => a + b, 0);
+            const userQ = Object.values(userQuestions).reduce((a, b) => a + b, 0);
+            const aiQ = Object.values(ai).reduce((a, b) => a + b, 0);
+            
+            setStats({
+              ...guestStats,
+              totalQuestions: totalQ,
+              userQuestions: userQ,
+              aiQuestions: aiQ,
+              practicedQuestions: guestStats.totalAnswers,
+              overallSuccess: guestStats.overallSuccess || 0,
+              subjectStats: guestStats.subjectStats || []
+            });
+          } else {
+            setStats(guestStats);
+          }
+        } else {
+          // First-time guest: load DB data as fallback
+          const countsResult = await dynamoDBService.getAllQuestionCounts();
+          if (countsResult.success && countsResult.data) {
+            const { total, user: userQuestions, ai } = countsResult.data;
+            const totalQ = Object.values(total).reduce((a, b) => a + b, 0);
+            const userQ = Object.values(userQuestions).reduce((a, b) => a + b, 0);
+            const aiQ = Object.values(ai).reduce((a, b) => a + b, 0);
+            
+            setStats({
+              totalQuestions: totalQ,
+              userQuestions: userQ,
+              aiQuestions: aiQ,
+              practicedQuestions: 0,
+              overallSuccess: 0,
+              subjectStats: []
+            });
+          }
+        }
       } else {
         // Fetch question counts with source breakdown
         const countsResult = await dynamoDBService.getAllQuestionCounts();
@@ -855,6 +927,10 @@ export default function App() {
   const startDrill = async (subject: Subject) => {
     try {
       setSelectedSubject(subject);
+      // Save selected subject to localStorage for guest mode persistence
+      if (isGuestMode) {
+        localStorage.setItem(`${user?.id || 'guest'}:selectedSubject`, JSON.stringify(subject));
+      }
       // Use static questions loading for GitHub Pages deployment
       const data: Question[] = await loadStaticQuestions(subject.id);
       
@@ -1095,7 +1171,7 @@ export default function App() {
         saveAnswerToLocalStorage(currentQuestion.id, isCorrect, currentQuestion.subject_id);
         updateUserStats(isCorrect);
         // Sync to DynamoDB only for authenticated users (not guests)
-        if (userRole !== 'guest' && user?.id) {
+        if (user?.id) {
           dynamoDBService.saveUserProgress(String(user.id), String(currentQuestion.id), isCorrect).catch(() => {});
         }
       } catch (error) {
@@ -2702,14 +2778,21 @@ V nastavení lze změnit defaultni model.`);
                 </div>
                 <div className="p-1 sm:p-2 md:p-6 border border-[var(--line)] rounded sm:rounded-lg md:rounded-2xl space-y-0 sm:space-y-0.5 md:space-y-2">
                   <p className="col-header text-[8px] sm:text-[10px] md:text-sm">
-                    {isGuestMode ? 'Odpovědi v session' : 'Databáze otázek'}
+                    Databáze otázek
                   </p>
                   <p className="text-sm sm:text-lg md:text-4xl font-mono font-bold">
                     {(() => {
                       if (isGuestMode) {
+                        // Guest: Use localStorage data, fallback to DB data
                         const guestStats = loadGuestStats();
-                        return guestStats ? guestStats.totalAnswers : 0;
+                        if (guestStats && guestStats.totalAnswers > 0) {
+                          return guestStats.totalAnswers;
+                        } else {
+                          // Fallback to DB data for first-time guests
+                          return stats ? (stats.totalQuestions || 0) : 0;
+                        }
                       } else {
+                        // User: Use existing logic
                         return stats ? (stats.totalQuestions || 0) : 0;
                       }
                     })()}
@@ -2720,23 +2803,50 @@ V nastavení lze změnit defaultni model.`);
                             {stats.userQuestions || 0}/{stats.aiQuestions || 0}
                           </span>
                         );
+                      } else if (isGuestMode && stats) {
+                        // Guest: Show DB breakdown if available
+                        return (
+                          <span className="text-sm sm:text-base md:text-lg opacity-60 ml-2">
+                            {stats.userQuestions || 0}/{stats.aiQuestions || 0}
+                          </span>
+                        );
                       }
                       return null;
                     })()}
                   </p>
                   <p className="text-[8px] sm:text-[10px] md:text-sm opacity-50">
-                    {isGuestMode ? 'otázek' : (stats ? `otázek • uživatel/EASA` : 'otázek')}
+                    {stats ? `otázek • uživatel/EASA` : 'otázek'}
                   </p>
                 </div>
                 <div className="p-1 sm:p-2 md:p-6 border border-[var(--line)] rounded sm:rounded-lg md:rounded-2xl space-y-0 sm:space-y-0.5 md:space-y-2">
                   <p className="col-header text-[8px] sm:text-[10px] md:text-sm">
-                    {isGuestMode ? 'Aktuální předmět' : 'Procvičeno otázek'}
+                    Procvičeno otázek
                   </p>
                   <p className="text-sm sm:text-lg md:text-4xl font-mono font-bold">
                     {(() => {
                       if (isGuestMode) {
-                        return selectedSubject ? selectedSubject.name : 'Guest';
+                        // Guest: Use localStorage data, fallback to DB data (0 for first-time)
+                        const guestStats = loadGuestStats();
+                        if (guestStats && guestStats.totalAnswers > 0) {
+                          const practiced = guestStats.totalAnswers;
+                          const total = stats ? (stats.totalQuestions || 0) : 0;
+                          const percentage = total > 0 ? Math.round((practiced / total) * 100) : 0;
+                          return (
+                            <>
+                              {practiced.toLocaleString()}
+                              {total > 0 && (
+                                <span className="text-sm sm:text-base md:text-lg opacity-60 ml-2">
+                                  {percentage}%
+                                </span>
+                              )}
+                            </>
+                          );
+                        } else {
+                          // First-time guest: show 0
+                          return 0;
+                        }
                       } else {
+                        // User: Use existing logic
                         const practiced = stats ? (stats.practicedQuestions || 0) : 0;
                         const total = stats ? (stats.totalQuestions || 0) : 0;
                         const percentage = total > 0 ? Math.round((practiced / total) * 100) : 0;
@@ -2754,35 +2864,16 @@ V nastavení lze změnit defaultni model.`);
                     })()}
                   </p>
                   <p className="text-[8px] sm:text-[10px] md:text-sm opacity-50">
-                    {isGuestMode ? '' : (stats && stats.overallSuccess < 1 ? 'Dostupné' : '')}
+                    {stats && stats.overallSuccess < 1 ? 'Dostupné' : ''}
                   </p>
                 </div>
                 <div className="p-1 sm:p-2 md:p-6 border border-[var(--line)] rounded sm:rounded-lg md:rounded-2xl space-y-0 sm:space-y-0.5 md:space-y-2">
                   <p className="col-header text-[8px] sm:text-[10px] md:text-sm">
-                    {isGuestMode ? 'Session čas' : 'Aktuální licence'}
+                    Aktuální licence
                   </p>
                   <p className="text-sm sm:text-lg md:text-4xl font-mono font-bold">
                     {(() => {
-                      if (isGuestMode) {
-                        const sessionStart = localStorage.getItem(`${user?.id || 'guest'}:session_start`);
-                        if (sessionStart) {
-                          const start = new Date(sessionStart);
-                          const now = new Date();
-                          const diff = Math.floor((now.getTime() - start.getTime()) / 60000);
-                          return (
-                            <>
-                              {Math.min(diff, 99)}
-                              <span className="text-[8px] sm:text-[10px] md:text-sm opacity-40 ml-0">min</span>
-                            </>
-                          );
-                        }
-                        return (
-                          <>
-                            0
-                            <span className="text-[8px] sm:text-[10px] md:text-sm opacity-40 ml-0">min</span>
-                          </>
-                        );
-                      }
+                      // Both User and Guest show the same license buttons
                       return (
                         <span className="flex gap-0.5 sm:gap-1 md:gap-2">
                           {(['PPL', 'SPL'] as const).map(lic => (
@@ -2799,7 +2890,7 @@ V nastavení lze změnit defaultni model.`);
                     })()}
                   </p>
                   <p className="text-[8px] sm:text-[10px] md:text-sm opacity-50">
-                    {isGuestMode ? 'Délka session' : 'Licence'}
+                    Licence
                   </p>
                 </div>
               </div>
@@ -5403,6 +5494,14 @@ V nastavení lze změnit defaultni model.`);
             setUserMode('logged-in');
             setUserRole(cognitoAuthService.getUserRole());
             setView('dashboard');
+            
+            // Switch to authenticated credentials after login
+            console.log('🔄 Switching to authenticated credentials after login...');
+            const success = await initializeAuthenticatedCredentials();
+            if (!success) {
+              console.log('🔄 Falling back to guest credentials...');
+              initializeGuestCredentials();
+            }
             
             // Save Cognito user profile to DynamoDB
             await dynamoDBService.saveCognitoUserProfile({

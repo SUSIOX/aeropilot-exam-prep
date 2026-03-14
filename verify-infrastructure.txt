@@ -1,0 +1,46 @@
+AWS příkazy pro ověření kompletní infrastruktury:
+
+# 1. KONTROLA IAM ROLÍ
+echo "=== IAM ROLE KONTROLA ==="
+echo "Lambda execution role:" 
+aws iam get-role --role-name AeropilotLambdaExecutionRole --query "Role.{RoleName:RoleName,Arn:Arn}"
+
+echo -e "
+Cognito role:" 
+aws iam get-role --role-name CognitoAeropilotAdminRole --query "Role.{RoleName:RoleName,Arn:Arn}"
+aws iam get-role --role-name CognitoAeropilotAuditorRole --query "Role.{RoleName:RoleName,Arn:Arn}"
+aws iam get-role --role-name CognitoAeropilotUserRole --query "Role.{RoleName:RoleName,Arn:Arn}"
+aws iam get-role --role-name CognitoAeropilotGuestRole --query "Role.{RoleName:RoleName,Arn:Arn}"
+
+# 2. KONTROLA IDENTITY POOL
+echo "=== IDENTITY POOL KONTROLA ==="
+aws cognito-identity describe-identity-pool --identity-pool-id eu-central-1:15cba94f-c5c9-4312-9185-d96ba144225c --query "IdentityPool.{IdentityPoolId:IdentityPoolId,IdentityPoolName:IdentityPoolName,AllowUnauthenticatedIdentities:AllowUnauthenticatedIdentities}"
+
+echo -e "
+Role nastavení pro Identity Pool:" 
+aws cognito-identity get-identity-pool-roles --identity-pool-id eu-central-1:15cba94f-c5c9-4312-9185-d96ba144225c
+
+# 3. KONTROLA LAMBDA FUNKCÍ
+echo "=== LAMBDA FUNKCE KONTROLA ==="
+echo "Token exchange funkce:" 
+aws lambda get-function --function-name cognito-token-exchange --query "Configuration.{FunctionName:FunctionName,Role:Role,Runtime:Runtime}"
+
+echo -e "
+Lambda execution role ARN kontrola:" 
+aws lambda get-function --function-name cognito-token-exchange --query "Configuration.Role"
+
+# 4. KONTROLA COGNITO USER POOL
+echo "=== COGNITO USER POOL KONTROLA ==="
+aws cognito-idp describe-user-pool --user-pool-id eu-central-1_cfdN8KQIo --query "UserPool.{Id:Id,Name:Name,LambdaConfig:LambdaConfig}"
+
+echo -e "
+User Pool klienti:" 
+aws cognito-idp list-user-pool-clients --user-pool-id eu-central-1_cfdN8KQIo --query "UserPoolClients[*].{ClientId:ClientId,ClientName:ClientName}"
+
+# 5. KONTROLA SEKRETŮ
+echo "=== SECRETS MANAGER KONTROLA ==="
+aws secretsmanager list-secrets --query "SecretList[?contains(Name, 'aeropilot')].{Name:Name,ARN:ARN}"
+
+echo -e "
+=== SHRNUTÍ ===
+echo "Pokud všechny příkazy proběhly bez chyb, infrastruktura je kompletní!"

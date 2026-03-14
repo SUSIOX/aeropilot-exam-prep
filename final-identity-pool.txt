@@ -1,0 +1,11 @@
+AWS CloudShell příkazy pro dokončení Identity Pool konfigurace:
+
+# Vytvořte Identity Pool s vašimi skutečnými hodnotami
+aws cognito-identity create-identity-pool --identity-pool-name AeropilotIdentityPool --allow-unauthenticated-identities --cognito-identity-providers ProviderName="cognito-idp.eu-central-1.amazonaws.com/eu-central-1_cfdN8KQIo",ClientId="32d9ivfbtnpo69jaq7vld9p2jp"
+
+# Získejte Identity Pool ID z výstupu výše a použijte ho zde
+# Nahraďte YOUR_IDENTITY_POOL_ID skutečným ID z předchozího příkazu
+aws cognito-identity set-identity-pool-roles --identity-pool-id YOUR_IDENTITY_POOL_ID --roles authenticated=arn:aws:iam::455982474805:role/CognitoAeropilotUserRole,unauthenticated=arn:aws:iam::455982474805:role/CognitoAeropilotGuestRole
+
+# Příklad s konkrétním ID (nahraďte skutečným):
+# aws cognito-identity set-identity-pool-roles --identity-pool-id eu-central-1:12345678-1234-1234-1234-123456789012 --roles authenticated=arn:aws:iam::455982474805:role/CognitoAeropilotUserRole,unauthenticated=arn:aws:iam::455982474805:role/CognitoAeropilotGuestRole

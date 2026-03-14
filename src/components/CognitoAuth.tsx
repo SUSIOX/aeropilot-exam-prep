@@ -126,11 +126,11 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
       console.log('👤 JWT payload:', payload);
       
       // Store tokens
-      console.log('💾 Storing tokens to localStorage...');
-      localStorage.setItem('access_token', tokenData.access_token);
-      localStorage.setItem('id_token', tokenData.id_token);
-      localStorage.setItem('refresh_token', tokenData.refresh_token);
-      localStorage.setItem('token_expires_at', String(Date.now() + tokenData.expires_in * 1000));
+      console.log('💾 Storing tokens to sessionStorage...');
+      sessionStorage.setItem('access_token', tokenData.access_token);
+      sessionStorage.setItem('id_token', tokenData.id_token);
+      sessionStorage.setItem('refresh_token', tokenData.refresh_token);
+      sessionStorage.setItem('token_expires_at', String(Date.now() + tokenData.expires_in * 1000));
       
       // Store user data
       const userData = {
@@ -140,7 +140,7 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
       };
       
       console.log('💾 Storing user data:', userData);
-      localStorage.setItem('user_data', JSON.stringify(userData));
+      sessionStorage.setItem('user_data', JSON.stringify(userData));
       
       console.log('✅ All data stored successfully');
       return userData;
@@ -164,9 +164,11 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
       // Set auth in progress flag to prevent landing page flash
       localStorage.setItem('auth_in_progress', 'true');
       
-      // Temporarily simplified for testing - remove strict state validation
-      if (!storedState) {
-        console.warn("⚠️ State chybí, ale pokračujeme s kódem pro testování...");
+      // Strict state validation for CSRF protection
+      if (!storedState || state !== storedState) {
+        console.error("❌ State validation failed - possible CSRF attack");
+        setError("Authentication failed: Invalid state parameter");
+        return;
       }
       exchangeStarted.current = true; // Prevent duplicate calls
       console.log('🔑 Processing Cognito callback with code:', code.substring(0, 10) + '...');

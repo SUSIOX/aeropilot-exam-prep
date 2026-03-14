@@ -1,0 +1,1 @@
+aws cognito-idp list-user-pool-clients --user-pool-id eu-central-1_cfdN8KQIo

@@ -6,11 +6,30 @@ export interface AWSConfig {
   tableNamePrefix: string;
 }
 
+export interface CognitoConfig {
+  region: string;
+  userPoolId: string;
+  clientId: string;
+  identityPoolId: string;
+}
+
 // Get AWS configuration (no credentials - using Cognito)
 export const getAWSConfig = (): AWSConfig => {
   const config: AWSConfig = {
     region: process.env.AWS_REGION || 'eu-central-1',
     tableNamePrefix: process.env.DYNAMODB_TABLE_PREFIX || 'aeropilot-'
+  };
+
+  return config;
+};
+
+// Get Cognito configuration for authentication
+export const getCognitoConfig = (): CognitoConfig => {
+  const config: CognitoConfig = {
+    region: process.env.AWS_REGION || 'eu-central-1',
+    userPoolId: 'eu-central-1_cfdN8KQIo',
+    clientId: '32d9ivfbtnpo69jaq7vld9p2jp',
+    identityPoolId: 'eu-central-1:15cba94f-c5c9-4312-9185-d96ba144225c'
   };
 
   return config;

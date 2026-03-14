@@ -3,6 +3,8 @@ import { CognitoIdentityClient } from '@aws-sdk/client-cognito-identity';
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-provider-cognito-identity';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
+import { cognitoAuthService } from './cognitoAuthService';
+import { getCognitoConfig } from './awsConfig';
 
 export interface CognitoConfig {
   identityPoolId: string;
@@ -24,29 +26,68 @@ export class SecureCredentialsManager {
     return SecureCredentialsManager.instance;
   }
 
-  // Initialize with Cognito configuration
-  initialize(config: CognitoConfig): void {
+  // Initialize with Cognito configuration and authenticated credentials
+  async initializeAuthenticated(): Promise<void> {
+    const config = getCognitoConfig();
     this.config = config;
-    
-    // Create credentials provider from Cognito Identity Pool
-    const credentials = fromCognitoIdentityPool({
-      client: new CognitoIdentityClient({ region: config.region }),
-      identityPoolId: config.identityPoolId
-    });
 
-    // Initialize DynamoDB clients with secure credentials
+    // Get AWS credentials from authenticated user
+    const awsCredentials = await cognitoAuthService.getValidAWSCredentials();
+
+    if (!awsCredentials) {
+      throw new Error('No valid AWS credentials available. User must be authenticated.');
+    }
+
+    // Initialize DynamoDB clients with authenticated credentials
     this.dynamoClient = new DynamoDBClient({
       region: config.region,
-      credentials
+      credentials: {
+        accessKeyId: awsCredentials.accessKeyId,
+        secretAccessKey: awsCredentials.secretAccessKey,
+        sessionToken: awsCredentials.sessionToken
+      }
     });
 
     this.docClient = DynamoDBDocumentClient.from(this.dynamoClient);
   }
 
+  // Initialize with unauthenticated (guest) credentials
+  initializeGuest(): void {
+    const config = getCognitoConfig();
+    this.config = config;
+
+    // For guest mode, try to use Cognito Identity Pool first
+    try {
+      const credentials = fromCognitoIdentityPool({
+        client: new CognitoIdentityClient({ region: config.region }),
+        identityPoolId: config.identityPoolId,
+        // For unauthenticated access, don't pass logins
+      });
+
+      // Initialize DynamoDB clients with guest credentials
+      this.dynamoClient = new DynamoDBClient({
+        region: config.region,
+        credentials
+      });
+
+      this.docClient = DynamoDBDocumentClient.from(this.dynamoClient);
+      console.log('✅ Guest credentials initialized via Cognito Identity Pool');
+    } catch (error) {
+      console.warn('❌ Failed to initialize guest credentials via Identity Pool:', error);
+      console.log('🔄 Falling back to mock/local mode for guest access');
+
+      // Fallback: Create a mock client that doesn't actually connect to AWS
+      // This allows the app to run in guest mode without AWS credentials
+      this.dynamoClient = null as any;
+      this.docClient = null as any;
+      this.config = config;
+    }
+  }
+
   // Get DynamoDB client
   getDynamoClient(): DynamoDBClient {
     if (!this.dynamoClient) {
-      throw new Error('Secure credentials not initialized. Call initialize() first.');
+      throw new Error('DynamoDB client not available. Guest mode may not have AWS access.');
     }
     return this.dynamoClient;
   }
@@ -54,14 +95,14 @@ export class SecureCredentialsManager {
   // Get DynamoDB Document client
   getDocClient(): DynamoDBDocumentClient {
     if (!this.docClient) {
-      throw new Error('Secure credentials not initialized. Call initialize() first.');
+      throw new Error('DynamoDB Document client not available. Guest mode may not have AWS access.');
     }
     return this.docClient;
   }
 
   // Check if credentials are properly initialized
   isInitialized(): boolean {
-    return this.dynamoClient !== null && this.docClient !== null && this.config !== null;
+    return this.config !== null; // Allow null clients for guest mode
   }
 
   // Get configuration
@@ -80,25 +121,48 @@ export class SecureCredentialsManager {
 // Export singleton instance
 export const secureCredentials = SecureCredentialsManager.getInstance();
 
-// Helper function to initialize from environment variables
+// Helper function to initialize authenticated credentials
+export const initializeAuthenticatedCredentials = async (): Promise<boolean> => {
+  try {
+    await secureCredentials.initializeAuthenticated();
+    console.log('✅ Authenticated AWS credentials initialized');
+    return true;
+  } catch (error) {
+    console.error('❌ Failed to initialize authenticated credentials:', error);
+    return false;
+  }
+};
+
+// Helper function to initialize guest credentials
+export const initializeGuestCredentials = (): boolean => {
+  try {
+    secureCredentials.initializeGuest();
+    console.log('✅ Guest AWS credentials initialized');
+    return true;
+  } catch (error) {
+    console.error('❌ Failed to initialize guest credentials:', error);
+    return false;
+  }
+};
+
+// Legacy helper function for backward compatibility
 export const initializeSecureCredentials = (): boolean => {
   const identityPoolId = process.env.COGNITO_IDENTITY_POOL_ID;
   const region = process.env.AWS_REGION || 'eu-central-1';
 
-
   if (!identityPoolId || identityPoolId === 'eu-central-1:xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx') {
-    console.warn('❌ Cognito Identity Pool ID not configured. Using fallback mode.');
-    return false;
+    console.warn('❌ Cognito Identity Pool ID not configured. Using guest mode.');
+    return initializeGuestCredentials();
   }
 
-  try {
-    secureCredentials.initialize({
-      identityPoolId,
-      region
-    });
-    return true;
-  } catch (error) {
-    console.error('❌ Failed to initialize secure credentials:', error);
-    return false;
-  }
+  // Try authenticated mode first, fallback to guest
+  console.log('🔄 Attempting authenticated credentials initialization...');
+  initializeAuthenticatedCredentials().then(success => {
+    if (!success) {
+      console.log('🔄 Falling back to guest credentials...');
+      initializeGuestCredentials();
+    }
+  });
+
+  return true;
 };

@@ -59,6 +59,11 @@ export class DynamoDBService {
       return;
     }
 
+    // Check if we're in guest mode (no AWS credentials)
+    if (!isSecureCredentialsAvailable()) {
+      throw new Error('Guest mode: AWS credentials not available. Using local storage only.');
+    }
+
     // Retry up to 50x with 100ms delay (5 seconds total) waiting for credentials
     for (let i = 0; i < 50; i++) {
       this.tryInitialize();
@@ -571,6 +576,15 @@ export class DynamoDBService {
     ai: Record<number, number>;
   }>> {
     try {
+      // Check if we're in guest mode
+      if (!isSecureCredentialsAvailable()) {
+        console.log('Guest mode: returning empty question counts');
+        return {
+          success: true,
+          data: { total: {}, user: {}, ai: {} }
+        };
+      }
+
       await this.ensureInitialized();
 
       const command = new DocScanCommand({
@@ -1045,30 +1059,6 @@ export class DynamoDBService {
     }
   }
 
-  async getAllLOs(): Promise<DynamoDBResponse<LOItem[]>> {
-    try {
-      await this.ensureInitialized();
-
-      const command = new DocScanCommand({
-        TableName: getTableName('EASA_OBJECTIVES')
-      });
-
-      const result = await this.docClient.send(command);
-
-      return {
-        success: true,
-        data: result.Items as LOItem[] || [],
-        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
-      };
-
-    } catch (error) {
-      return {
-        success: false,
-        error: this.handleError(error, 'getAllLOs').message
-      };
-    }
-  }
-
   async batchImportLOs(los: (LOItem | EasaObjective | any)[]): Promise<DynamoDBResponse<{ imported: number; failed: number; errors: string[] }>> {
     try {
       await this.ensureInitialized();
@@ -1146,6 +1136,39 @@ export class DynamoDBService {
       return {
         success: false,
         error: this.handleError(error, 'saveLO').message
+      };
+    }
+  }
+
+  async getAllLOs(): Promise<DynamoDBResponse<LOItem[]>> {
+    try {
+      // Check if we're in guest mode
+      if (!isSecureCredentialsAvailable()) {
+        console.log('Guest mode: returning empty LOs');
+        return {
+          success: true,
+          data: []
+        };
+      }
+
+      await this.ensureInitialized();
+
+      const command = new DocScanCommand({
+        TableName: getTableName('EASA_OBJECTIVES')
+      });
+
+      const result = await this.docClient.send(command);
+
+      return {
+        success: true,
+        data: result.Items as LOItem[] || [],
+        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'getAllLOs').message
       };
     }
   }

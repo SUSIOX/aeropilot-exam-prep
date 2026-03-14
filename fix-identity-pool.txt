@@ -1,0 +1,28 @@
+AWS CloudShell příkazy pro opravu Identity Pool konfigurace:
+
+# Najděte User Pool ID správně
+echo "Hledám Aeropilot User Pool..."
+USER_POOL=$(aws cognito-idp list-user-pools --max-results 10)
+echo "Dostupné User Pools:" 
+echo $USER_POOL | jq -r ".UserPools[] | \"\(.Name): \(.Id)\""
+
+# Ručně nastavte User Pool ID (nahraďte správným ID z výše)
+# USER_POOL_ID="eu-central-1_XXXXXXXXX"  # Nahraďte skutečným ID
+
+# Najděte Client ID
+echo -e "
+Hledám User Pool Client..."
+# CLIENT_ID=$(aws cognito-idp list-user-pool-clients --user-pool-id $USER_POOL_ID --query "UserPoolClients[0].ClientId" --output text)
+# echo "Client ID: $CLIENT_ID"
+
+echo "Ručně nastavte tyto hodnoty a spusťte příkazy:" 
+echo "1. Najděte User Pool ID z AWS Console nebo z výpisu výše" 
+echo "2. Najděte Client ID z AWS Console (Cognito -> User Pools -> App clients)" 
+echo "3. Spusťte tyto příkazy s vašimi hodnotami:" 
+echo "" 
+echo "# Vytvořte Identity Pool (nahraďte YOUR_USER_POOL_ID a YOUR_CLIENT_ID)" 
+echo "aws cognito-identity create-identity-pool --identity-pool-name AeropilotIdentityPool --allow-unauthenticated-identities --cognito-identity-providers ProviderName=\"cognito-idp.eu-central-1.amazonaws.com/YOUR_USER_POOL_ID\",ClientId=\"YOUR_CLIENT_ID\""
+
+echo "" 
+echo "# Nastavte role (nahraďte YOUR_IDENTITY_POOL_ID)" 
+echo "aws cognito-identity set-identity-pool-roles --identity-pool-id YOUR_IDENTITY_POOL_ID --roles authenticated=arn:aws:iam::455982474805:role/CognitoAeropilotUserRole,unauthenticated=arn:aws:iam::455982474805:role/CognitoAeropilotGuestRole"

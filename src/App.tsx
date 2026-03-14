@@ -2735,7 +2735,7 @@ V nastavení lze změnit defaultni model.`);
                   <p className="text-sm sm:text-lg md:text-4xl font-mono font-bold">
                     {(() => {
                       if (isGuestMode) {
-                        return selectedSubject ? selectedSubject.name : 'Nezvoleno';
+                        return selectedSubject ? selectedSubject.name : 'Guest';
                       } else {
                         const practiced = stats ? (stats.practicedQuestions || 0) : 0;
                         const total = stats ? (stats.totalQuestions || 0) : 0;

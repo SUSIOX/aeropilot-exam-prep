@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, Download, ExternalLink, CheckCircle, AlertCircle } from 'lucide-react';
 import { parseAircademyPDF, AircademySyllabusStructure } from '../services/aircademyService';
+import { generateMissingLearningObjectives } from '../services/aiService';
 
 interface AircademySyllabusProps {
   onLOGenerated?: (los: any[]) => void;
@@ -19,6 +20,7 @@ export const AircademySyllabus: React.FC<AircademySyllabusProps> = ({
   const [syllabus, setSyllabus] = useState<AircademySyllabusStructure | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [generating, setGenerating] = useState(false);
   const [pdfUrl] = useState("https://aircademy.com/downloads/ECQB-PPL-DetailedSyllabus.pdf");
 
   useEffect(() => {
@@ -43,10 +45,71 @@ export const AircademySyllabus: React.FC<AircademySyllabusProps> = ({
     window.open(pdfUrl, '_blank');
   };
 
-  const handleGenerateFromAircademy = () => {
-    // TODO: Implement LO generation from Aircademy syllabus
-    if (onLOGenerated) {
-      onLOGenerated([]);
+  const handleGenerateFromAircademy = async () => {
+    if (!subjectId) {
+      alert('Nejprve vyberte předmět pro generování LOs.');
+      return;
+    }
+
+    setGenerating(true);
+    
+    try {
+      // Get API key (same logic as other generators - direct localStorage read)
+      const uid = 'guest'; // Simplified for Aircademy component
+      let apiKey = localStorage.getItem(`${uid}:userApiKey`) || localStorage.getItem(`${uid}:claudeApiKey`) || localStorage.getItem('userApiKey') || localStorage.getItem('claudeApiKey');
+      
+      // For logged-in users, try to get from DB first
+      const userMode = localStorage.getItem('userMode') || 'guest';
+      const userId = localStorage.getItem('userId');
+      if (userMode === 'logged-in' && userId && !apiKey) {
+        try {
+          // This would need dynamoDB import - for now use localStorage fallback
+          console.log('Logged-in user detected, but DB access not available in this component');
+        } catch (err) {
+          console.error('Failed to load API keys from DB:', err);
+        }
+      }
+      
+      // Prompt for API key if missing (LO generation requires API key)
+      let effectiveApiKey = apiKey;
+      if (!effectiveApiKey) {
+        const key = prompt('Pro generování LOs je vyžadován API klíč. Chcete jej vložit nyní?');
+        if (key) {
+          localStorage.setItem(`${uid}:userApiKey`, key);
+          effectiveApiKey = key;
+        } else {
+          // Stop generation if no API key provided (LOs require API key)
+          alert('Generování LOs vyžaduje API klíč. Zadejte ho prosím v nastavení.');
+          setGenerating(false);
+          return;
+        }
+      }
+
+      // Use AI service to generate missing LOs with Aircademy insights
+      const result = await generateMissingLearningObjectives(
+        [], // existing LOs - will be fetched internally
+        subjectId,
+        'BOTH', // Generate for both PPL and SPL
+        effectiveApiKey, // API key (required for LO generation)
+        'gemini-flash-latest', // model
+        'gemini', // provider
+        undefined, // signal
+        true, // Use Aircademy syllabus
+        [] // Additional documents
+      );
+      
+      if (result.success && result.los.length > 0) {
+        onLOGenerated?.(result.los);
+        console.log('🎯 Generated LOs from Aircademy:', result.los);
+      } else {
+        console.error('No LOs generated:', result.error);
+        alert(result.error || 'Nepodařilo se vygenerovat žádné LOs z Aircademy syllabu.');
+      }
+    } catch (err) {
+      console.error('Error generating LOs from Aircademy:', err);
+      alert('Chyba při generování LOs z Aircademy syllabu.');
+    } finally {
+      setGenerating(false);
     }
   };
 
@@ -166,9 +229,17 @@ export const AircademySyllabus: React.FC<AircademySyllabusProps> = ({
       <div className="pt-2">
         <button
           onClick={handleGenerateFromAircademy}
-          className="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl font-medium hover:from-blue-600 hover:to-indigo-700 transition-all transform hover:scale-[1.02]"
+          disabled={generating || !subjectId}
+          className="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl font-medium hover:from-blue-600 hover:to-indigo-700 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
         >
-          Generate LOs with Aircademy Insights
+          {generating ? (
+            <div className="flex items-center justify-center gap-2">
+              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              <span>Generuji LOs...</span>
+            </div>
+          ) : (
+            'Generate LOs with Aircademy Insights'
+          )}
         </button>
         <p className="text-xs opacity-40 text-center mt-2">
           Uses Aircademy syllabus as reference for detailed context

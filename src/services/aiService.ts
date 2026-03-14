@@ -166,6 +166,40 @@ export const SYLLABUS_SCOPE: Record<number, number> = {
   9: 120  // Navigation
 };
 
+// Dynamic syllabus scope calculation based on actual LOs
+export const getDynamicSyllabusScope = (los: EasaLO[], subjectId?: number): Record<number, number> => {
+  const scope: Record<number, number> = {};
+  
+  // Calculate actual LO count per subject
+  const subjectCounts = los.reduce((acc, lo) => {
+    const subject = lo.subject_id || 0;
+    acc[subject] = (acc[subject] || 0) + 1;
+    return acc;
+  }, {} as Record<number, number>);
+  
+  // Use actual counts, fallback to static SYLLABUS_SCOPE if no data
+  Object.keys(SYLLABUS_SCOPE).forEach(key => {
+    const id = parseInt(key);
+    scope[id] = subjectCounts[id] || SYLLABUS_SCOPE[id];
+  });
+  
+  return scope;
+};
+
+// Get subject-specific analysis
+export const getSubjectAnalysis = (los: EasaLO[], subjectId: number, coveredLOs: Set<string>) => {
+  const subjectLOs = los.filter(lo => lo.subject_id === subjectId);
+  const coveredSubjectLOs = subjectLOs.filter(lo => coveredLOs.has(lo.id));
+  
+  return {
+    total: subjectLOs.length,
+    covered: coveredSubjectLOs.length,
+    percentage: subjectLOs.length > 0 ? Math.round((coveredSubjectLOs.length / subjectLOs.length) * 100) : 0,
+    remaining: subjectLOs.length - coveredSubjectLOs.length,
+    gaps: subjectLOs.filter(lo => !coveredLOs.has(lo.id))
+  };
+};
+
 export const SUBJECT_NAMES: Record<number, string> = {
   1: 'Air Law (010)',
   2: 'Human Performance (040)',
@@ -556,13 +590,55 @@ export async function generateBatchQuestions(
     }
   `;
 
+  const pplExamplesCZ = `
+    EASA ECQB Official Sample Examples — PPL(A) Pattern (Czech):
+
+    Example 1 (PPL - Aircraft General Knowledge):
+    LO: 021.02.01.01 Powerplant: Piston Engines
+    {
+      "text": "Jaká je hlavní příčina tvorby ledu v karburátoru pístového motoru?",
+      "text_cz": "Jaká je hlavní příčina tvorby ledu v karburátoru pístového motoru?",
+      "option_a": "Vysoká okolní teplota a nízká vlhkost",
+      "option_a_cz": "Vysoká okolní teplota a nízká vlhkost",
+      "option_b": "Vypařování paliva způsobující pokles teploty pod rosný bod",
+      "option_b_cz": "Vypařování paliva způsobující pokles teploty pod rosný bod",
+      "option_c": "Příliš bohatá směs při cestovním výkonu",
+      "option_c_cz": "Příliš bohatá směs při cestovním výkonu",
+      "option_d": "Selhání magnetka při nízkých otáčkách",
+      "option_d_cz": "Selhání magnetka při nízkých otáčkách",
+      "correct_option": "B",
+      "explanation": "Vypařování paliva v karburátorovém Venturiho kanálu způsobí pokles teploty až o 25°C, což může způsobit vznik ledu i při okolních teplotách až +30°C.",
+      "explanation_cz": "Vypařování paliva v karburátorovém Venturiho kanálu způsobí pokles teploty až o 25°C, což může způsobit vznik ledu i při okolních teplotách až +30°C.",
+      "metadata": { "applies_to": ["PPL"], "license_note": null }
+    }
+
+    Example 2 (PPL - Navigation):
+    LO: 061.03.01.01 Radio Navigation: VOR and DME
+    {
+      "text": "Pilot letící přímo na radiál 090 VORu bude letět přibližně kurzem:",
+      "text_cz": "Pilot letící přímo na radiál 090 VORu bude letět přibližně kurzem:",
+      "option_a": "090°",
+      "option_a_cz": "090°",
+      "option_b": "270°",
+      "option_b_cz": "270°",
+      "option_c": "180°",
+      "option_c_cz": "180°",
+      "option_d": "360°",
+      "option_d_cz": "360°",
+      "correct_option": "B",
+      "explanation": "Radiály jsou definovány OD VOR stanice. Pro let přímo na radiál 090 pilot letí K VOR stanici na magnetickém kurzu 270°.",
+      "explanation_cz": "Radiály jsou definovány OD VOR stanice. Pro let přímo na radiál 090 pilot letí K VOR stanici na magnetickém kurzu 270°.",
+      "metadata": { "applies_to": ["PPL"], "license_note": null }
+    }
+  `;
+
   const splExamples = `
     EASA ECQB Official Sample Examples — SPL Pattern:
 
     Example 1 (SPL - Principles of Flight / Glider Aerodynamics):
     LO: 081.05.02.01 Climb and Glide Performance
     {
-      "text": "A glider has a best glide ratio of 40:1. Flying at best glide speed from 1000 m AGL in still air, what is the maximum theoretical glide distance?",
+      "text": "A kluzák has a best glide ratio of 40:1. Flying at best glide speed from 1000 m AGL in still air, what is the maximum theoretical glide distance?",
       "option_a": "20 km",
       "option_b": "40 km",
       "option_c": "80 km",
@@ -589,7 +665,7 @@ export async function generateBatchQuestions(
     LO: 033.02.01.01 Performance: Take-off and Landing
     {
       "text": "During a winch launch, the pilot must release the cable immediately if:",
-      "option_a": "The glider reaches the maximum permitted angle of climb",
+      "option_a": "The kluzák reaches the maximum permitted angle of climb",
       "option_b": "The airspeed drops below the minimum safe towing speed",
       "option_c": "A break-off height of 150 ft AGL is reached",
       "option_d": "The release knob changes color",
@@ -599,13 +675,23 @@ export async function generateBatchQuestions(
     }
   `;
 
-  const examples = license === 'SPL' ? splExamples : pplExamples;
+  const examples = license === 'SPL' ? splExamples : (targetLanguage === 'CZ' ? pplExamplesCZ : pplExamples);
 
   const licenseContext = license === 'SPL'
-    ? `Active License: SPL (Sailplane Pilot Licence). Prioritize learning objectives relevant to glider aerodynamics (laminar aerofoils, glide ratio, best L/D), soaring meteorology (thermals, wave, convergence, orographic lift), winch/aerotow launch procedures, and cross-country soaring planning. For shared LOs, adapt distractor terminology to glider operations.`
+    ? `Active License: SPL (Sailplane Pilot Licence). Prioritize learning objectives relevant to kluzák aerodynamics (laminar aerofoils, glide ratio, best L/D), soaring meteorology (thermals, wave, convergence, orographic lift), winch/aerotow launch procedures, and cross-country soaring planning. For shared LOs, adapt distractor terminology to kluzák operations. Use "kluzák" NOT "plachetnice" or "plachťák".`
     : `Active License: PPL(A) (Private Pilot Licence — Aeroplane). Prioritize learning objectives relevant to piston-engine aircraft, four-stroke engine cycle, carburetor/fuel injection systems, VOR/DME/ILS radionavigation, weight & balance with fuel, IFR-adjacent procedures. For shared LOs, adapt distractor terminology to powered aeroplane operations.`;
 
   const loNoteInstruction = `For each LO below, check if its applies_to includes '${license}'. If the LO applies ONLY to the other license, set metadata.license_note to "Supplementary knowledge for ${license} pilots". Otherwise set it to null.`;
+
+  const languageInstruction = targetLanguage === 'CZ' 
+    ? `CRITICAL - GENERATE IN CZECH LANGUAGE: 
+       1. ALL primary fields (text, option_a, option_b, option_c, option_d, explanation) MUST be in Czech
+       2. Technical aviation terms should remain in English where appropriate (e.g., VOR, ILS, CARBURETOR)
+       3. Use Czech grammar and sentence structure
+       4. The examples above show the expected Czech format
+       5. DO NOT generate English questions - ALL output must be Czech
+       6. CRITICAL TERMINOLOGY: Always use "kluzák" for glider (NOT "plachetnice" or "plachťák")`
+    : `Generate in English language using standard aviation terminology.`;
 
   const prompt = `
     You are a professional EASA ECQB Question Generator.
@@ -613,9 +699,7 @@ export async function generateBatchQuestions(
 
     ${licenseContext}
 
-    IMPORTANT: Use the official EASA format and style as shown in the examples below.
-    
-    Target Language: ${targetLanguage === 'CZ' ? 'Czech (with technical terms preserved)' : 'English'}
+    ${languageInstruction}
     
     CRITICAL: Generate exactly ${questionsPerLO} question(s) for EACH Learning Objective below. No more, no less.
     
@@ -635,8 +719,9 @@ export async function generateBatchQuestions(
     4. Use real aviation terminology matching the active license (${license}).
     5. Explanation: Strictly technical, max 2 sentences.
     6. If you propose a NEW LO, use a valid EASA ID format (e.g. 021.XX.XX.XX) and a precise name.
-    7. If Target Language is Czech, provide translations in fields text_cz, option_a_cz, etc. 
-       Always provide English fields (text, option_a, etc.) as the primary source.
+    7. ${targetLanguage === 'CZ' 
+       ? 'Generate ALL fields (text, option_a, option_b, option_c, option_d, explanation) in Czech. No separate _cz fields needed.' 
+       : 'If Target Language is Czech, provide translations in fields text_cz, option_a_cz, etc. Always provide English fields (text, option_a, etc.) as the primary source.'}
 
     ${examples}
     
@@ -644,18 +729,18 @@ export async function generateBatchQuestions(
     {
       "LO_ID": [ { 
         "text": "...", 
-        "text_cz": "...", 
+        ${targetLanguage === 'CZ' ? '' : '"text_cz": "...", '}
         "option_a": "...", 
-        "option_a_cz": "...", 
+        ${targetLanguage === 'CZ' ? '' : '"option_a_cz": "...", '}
         "option_b": "...", 
-        "option_b_cz": "...", 
+        ${targetLanguage === 'CZ' ? '' : '"option_b_cz": "...", '}
         "option_c": "...", 
-        "option_c_z": "...", 
+        ${targetLanguage === 'CZ' ? '' : '"option_c_z": "...", '}
         "option_d": "...", 
-        "option_d_cz": "...", 
+        ${targetLanguage === 'CZ' ? '' : '"option_d_cz": "...", '}
         "correct_option": "A", 
         "explanation": "...",
-        "explanation_cz": "...",
+        ${targetLanguage === 'CZ' ? '' : '"explanation_cz": "...",'}
         "metadata": { "applies_to": ["PPL", "SPL"], "license_note": null }
       }, ... ]
     }
@@ -1132,7 +1217,7 @@ export async function generateMissingLearningObjectives(
 ): Promise<{success: boolean, los: EasaLO[], error?: string}> {
   
   if (!apiKey) {
-    return { success: false, los: [], error: 'API key is required' };
+    return { success: false, los: [], error: 'API klíč je vyžadován pro generování LOs' };
   }
 
   try {
@@ -1160,37 +1245,69 @@ export async function generateMissingLearningObjectives(
     const estimatedTokens = Math.max(4000, existingLOs.length * 50 + 2000);
 
     // Create enhanced prompt with conditional references
-    let prompt = `
+    let prompt = '';
+    
+    if (provider === 'claude') {
+      // Claude: Send only missing LOs (more efficient)
+      const totalExpected = SYLLABUS_SCOPE[subjectId] || 100;
+      const missingIds = findMissingLOIds(subjectId, existingLOs, totalExpected);
+      
+      if (missingIds.length === 0) {
+        return { success: false, los: [], error: 'Všechny LOs pro tento předmět již existují.' };
+      }
+      
+      // Take only first 10 missing IDs to avoid too large prompts
+      const missingLOs = missingIds.slice(0, 10);
+      
+      prompt = `
+Generate content for ${missingLOs.length} missing Learning Objectives for ${subjectName} (${licenseType} license).
+
+MISSING LO IDs to complete:
+${missingLOs.map(id => `- ${id}`).join('\n')}
+
+REFERENCE SOURCES:
+1. EASA Official Learning Objectives Syllabus (primary)
+${useAircademy ? `2. Aircademy ECQB-PPL Detailed Syllabus (https://aircademy.com/downloads/ECQB-PPL-DetailedSyllabus.pdf)
+3. EASA Acceptable Means of Compliance (AMC) & Guidance Material (GM)` : `2. EASA Acceptable Means of Compliance (AMC) & Guidance Material (GM)`}
+
+${additionalDocuments.length > 0 ? `
+ADDITIONAL DOCUMENTS:
+Analyze these resources for additional insights:
+${additionalDocuments.map((doc, index) => `${index + 1}. ${doc}`).join('\n')}
+` : ''}
+
+${useAircademy ? 'Use Aircademy syllabus insights for detailed context.' : 'Use official EASA materials for context.'}
+
+Return JSON array:
+[
+  {"id": "XXX.XX.XX.XX", "text": "Learning objective content", "context": "Detailed explanation${useAircademy ? ' with Aircademy insights' : ''}", "level": 1, "subject_id": ${subjectId}, "applies_to": ["PPL(A)"]}
+]
+`;
+      
+    } else {
+      // Gemini: Keep original logic for now
+      prompt = `
 Find 3-5 missing Learning Objectives for ${subjectName} (${licenseType} license).
 
 REFERENCE SOURCES:
 1. EASA Official Learning Objectives Syllabus (primary)
-`;
-
-    if (useAircademy) {
-      prompt += `2. Aircademy ECQB-PPL Detailed Syllabus (https://aircademy.com/downloads/ECQB-PPL-DetailedSyllabus.pdf)
+${useAircademy ? `2. Aircademy ECQB-PPL Detailed Syllabus (https://aircademy.com/downloads/ECQB-PPL-DetailedSyllabus.pdf)
 3. EASA Acceptable Means of Compliance (AMC) & Guidance Material (GM)
 
 AIRCADEMY SYLLABUS:
 The Aircademy syllabus provides detailed explanations and practical examples for each LO.
 Use this as supplementary material to enhance understanding and identify gaps.
-`;
-    } else {
-      prompt += `2. EASA Acceptable Means of Compliance (AMC) & Guidance Material (GM)
-`;
-    }
+` : `2. EASA Acceptable Means of Compliance (AMC) & Guidance Material (GM)`}
 
-    if (additionalDocuments.length > 0) {
-      prompt += `
+${additionalDocuments.length > 0 ? `
 ADDITIONAL DOCUMENTS:
 Analyze these resources for additional insights:
 ${additionalDocuments.map((doc, index) => `${index + 1}. ${doc}`).join('\n')}
-`;
-    }
+` : ''}
 
-    prompt += `
 EXISTING LOs (${existingLOs.length}):
-${existingLOs.map(lo => `${lo.id}: ${lo.text}`).join('\n')}
+${existingLOs.slice(0, 50).map(lo => `${lo.id}: ${lo.text}`).join('\n')}
+${existingLOs.length > 50 ? `\n... and ${existingLOs.length - 50} more (showing first 50)` : ''}
 
 IMPORTANT: Generate ONLY LOs that are NOT in the existing list above.
 Focus on gaps in coverage for ${licenseType} requirements.
@@ -1201,8 +1318,18 @@ Return JSON array:
   {"id": "XXX.XX.XX.XX", "text": "New objective not in existing list", "context": "Details${useAircademy ? ' with Aircademy insights' : ''}", "level": 1, "subject_id": ${subjectId}, "applies_to": ["PPL(A)"]}
 ]
 `;
+    }
 
     let response: string;
+    
+    if (!apiKey) {
+      // Return empty results without API key (no mock LOs)
+      return { 
+        success: false, 
+        los: [], 
+        error: 'API klíč je vyžadován pro generování LOs' 
+      };
+    }
     
     if (provider === 'gemini') {
       const ai = getAiInstance(apiKey);
@@ -1298,7 +1425,7 @@ Return JSON array:
 // Helper function to generate LO IDs
 function generateLOId(subjectId: number, index: number): string {
   const subjectPrefixes: Record<number, string> = {
-    1: '021', // Air Law
+    1: '010', // Air Law
     2: '022', // Human Performance  
     3: '050', // Meteorology
     4: '090', // Communications
@@ -1309,6 +1436,22 @@ function generateLOId(subjectId: number, index: number): string {
     9: '061'  // Navigation
   };
   
-  const prefix = subjectPrefixes[subjectId] || `${subjectId}00`;
+  const prefix = subjectPrefixes[subjectId] || `${String(subjectId).padStart(3, '0')}`;
   return `${prefix}.${String(index).padStart(2, '0')}.01.01`;
+}
+
+// Helper function to generate all possible LO IDs for a subject
+function generateAllPossibleIds(subjectId: number, totalCount: number): string[] {
+  const ids: string[] = [];
+  for (let i = 1; i <= totalCount; i++) {
+    ids.push(generateLOId(subjectId, i));
+  }
+  return ids;
+}
+
+// Helper function to find actually missing LO IDs
+function findMissingLOIds(subjectId: number, existingLOs: EasaLO[], totalCount: number): string[] {
+  const existingIds = new Set(existingLOs.map(lo => lo.id));
+  const allPossibleIds = generateAllPossibleIds(subjectId, totalCount);
+  return allPossibleIds.filter(id => !existingIds.has(id));
 }

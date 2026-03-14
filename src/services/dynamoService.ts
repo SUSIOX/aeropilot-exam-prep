@@ -328,29 +328,24 @@ export class DynamoDBService {
       sorting: 'default' | 'random' | 'hardest_first' | 'least_practiced';
       immediateFeedback: boolean;
       showExplanationOnDemand: boolean;
-      sourceFilters: ('user' | 'ai')[];
-      shuffleAnswers: boolean;
-      userApiKey: string;
-      claudeApiKey: string;
-      aiProvider: 'gemini' | 'claude';
-      aiModel: string;
     }
   ): Promise<DynamoDBResponse> {
     try {
       await this.ensureInitialized();
 
-      const item: UserSettingsItem = {
-        userId,
-        settings,
-        updatedAt: new Date().toISOString()
-      };
-
-      const command = new DocPutCommand({
-        TableName: getTableName('USER_SETTINGS'),
-        Item: item
+      // Update existing user record in USERS table with settings
+      const command = new DocUpdateCommand({
+        TableName: getTableName('USERS'),
+        Key: { userId },
+        UpdateExpression: 'SET settings = :settings, updatedAt = :updatedAt',
+        ExpressionAttributeValues: {
+          ':settings': settings,
+          ':updatedAt': new Date().toISOString()
+        },
+        ConditionExpression: 'attribute_exists(userId)' // Only update if user exists
       });
 
-      const result = await this.docClient.send(command);
+      const result = await this.docClient!.send(command);
 
       return {
         success: true,
@@ -369,14 +364,15 @@ export class DynamoDBService {
     try {
       await this.ensureInitialized();
 
+      // Get user record from USERS table and extract settings
       const command = new DocGetCommand({
-        TableName: getTableName('USER_SETTINGS'),
+        TableName: getTableName('USERS'),
         Key: { userId }
       });
 
       const result = await this.docClient.send(command);
 
-      if (result.Item) {
+      if (result.Item && result.Item.settings) {
         return {
           success: true,
           settings: result.Item.settings

@@ -40,7 +40,7 @@ import {
 } from 'lucide-react';
 import { Subject, Question, Stats, ViewMode, DrillSettings } from './types';
 import { LearningEngine } from './lib/LearningEngine';
-import { mockLOs, getAllLOs, importMockLOsToDB, generateBatchQuestions, getDetailedExplanation, getDetailedHumanExplanation, translateQuestion, EasaLO, SYLLABUS_SCOPE, SUBJECT_NAMES, buildSyllabusTree, SyllabusSubjectNode, verifyApiKey, AIProvider, generateMissingLearningObjectives } from './services/aiService';
+import { mockLOs, getAllLOs, importMockLOsToDB, generateBatchQuestions, getDetailedExplanation, getDetailedHumanExplanation, translateQuestion, EasaLO, SYLLABUS_SCOPE, SUBJECT_NAMES, buildSyllabusTree, SyllabusSubjectNode, verifyApiKey, AIProvider, generateMissingLearningObjectives, getDynamicSyllabusScope, getSubjectAnalysis } from './services/aiService';
 import { checkSubjectDuplicates, checkAllDuplicates, findDuplicatesInQuestions } from './utils/duplicateChecker';
 import { DynamoDBStatus } from './components/DynamoDBStatus';
 import { AdminDashboard } from './components/AdminDashboard';
@@ -144,6 +144,7 @@ export default function App() {
   const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [originalQuestions, setOriginalQuestions] = useState<Question[]>([]); // Store unfiltered questions
+  const [isEcqbPatternsOpen, setIsEcqbPatternsOpen] = useState(false); // ECQB patterns collapsible
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [stats, setStats] = useState<Stats | null>(null);
   const [answered, setAnswered] = useState<string | null>(null);
@@ -1635,14 +1636,56 @@ V nastavení lze změnit defaultni model.`);
       // Get existing LOs for the subject
       const existingLOs = allLOs.filter(lo => lo.subject_id === importSubjectId);
       
-      // Get API key
-      let effectiveApiKey = userApiKey;
-      if (!effectiveApiKey && claudeApiKey) {
-        effectiveApiKey = claudeApiKey;
+      // Get API key (same logic as other generators - direct localStorage read)
+      const uid = user?.id || 'guest';
+      let effectiveApiKey = localStorage.getItem(`${uid}:userApiKey`) || localStorage.getItem(`${uid}:claudeApiKey`) || userApiKey || claudeApiKey;
+      
+      // Check if user is logged in and has API keys in DB
+      if (userMode === 'logged-in' && user) {
+        // For logged-in users, API keys should be in DB/state
+        if (!effectiveApiKey) {
+          // Try to load from DB if not in state
+          try {
+            const userSettingsResult = await dynamoDBService.getUserSettings(user.id);
+            if (userSettingsResult.success && userSettingsResult.settings) {
+              const settings = userSettingsResult.settings;
+              const dbApiKey = settings.userApiKey || settings.claudeApiKey;
+              if (dbApiKey) {
+                effectiveApiKey = dbApiKey;
+                // Update state with DB key
+                if (settings.userApiKey) setUserApiKey(settings.userApiKey);
+                if (settings.claudeApiKey) setClaudeApiKey(settings.claudeApiKey);
+              }
+            }
+          } catch (err) {
+            console.error('Failed to load API keys from DB:', err);
+          }
+        }
       }
       
-      if (!effectiveApiKey) {
-        alert('Pro generování Learning Objectives je potřeba API klíč');
+      // Only prompt for API key if user is guest or still no key found
+      if (!effectiveApiKey && userMode === 'guest') {
+        const key = prompt(`Pro generování Learning Objectives je vyžadován API klíč. Chcete jej vložit nyní?`);
+        if (key) {
+          if (aiProvider === 'gemini') {
+            setUserApiKey(key);
+            effectiveApiKey = key;
+          } else {
+            setClaudeApiKey(key);
+            effectiveApiKey = key;
+          }
+        } else {
+          // Stop generation if no API key provided (LOs require API key)
+          alert('Generování LOs vyžaduje API klíč. Zadejte ho prosím v nastavení.');
+          setIsGeneratingLOs(false);
+          return;
+        }
+      }
+      
+      // If still no API key for logged-in user, show error (shouldn't happen with proper DB sync)
+      if (!effectiveApiKey && userMode === 'logged-in') {
+        alert('API klíč nenalezen v databázi. Přihlaste se znovu nebo kontaktujte administrátora.');
+        setIsGeneratingLOs(false);
         return;
       }
 
@@ -3993,13 +4036,18 @@ V nastavení lze změnit defaultni model.`);
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 bg-[var(--ink)] text-[var(--bg)] rounded-lg flex items-center justify-center font-bold text-xs">1</div>
-                        <h3 className="text-xl font-bold">Osnovy & Learning Objectives</h3>
+                        <h3 className="text-xl font-bold opacity-50">Osnovy & Learning Objectives</h3>
                       </div>
-                      <span className="px-3 py-1 bg-emerald-500/10 text-emerald-600 text-[10px] font-bold rounded-full border border-emerald-500/20">XML eRules Ready</span>
+                      <div className="flex items-center gap-2">
+                        <span className="px-3 py-1 bg-gray-500/10 text-gray-500 text-[10px] font-bold rounded-full border border-gray-500/20">Deprecated</span>
+                        <span className="px-3 py-1 bg-emerald-500/10 text-emerald-600 text-[10px] font-bold rounded-full border border-emerald-500/20 opacity-50">XML eRules Ready</span>
+                      </div>
                     </div>
-                    <p className="text-sm opacity-60">
-                      Importujte hierarchii LOs z platformy eRules (Regulation EU No 1178/2011). 
-                      AI využije strukturu Subject → Topic → Subtopic pro přesný kontext.
+                    <p className="text-sm opacity-40">
+                      <s>Importujte hierarchii LOs z platformy eRules (Regulation EU No 1178/2011). 
+                      AI využije strukturu Subject → Topic → Subtopic pro přesný kontext.</s>
+                      <br />
+                      <span className="text-xs opacity-60">Tato funkce není implementována - použijte stávající LOs databázi.</span>
                     </p>
                     <div className="grid grid-cols-2 gap-4 pt-2">
                       <button 
@@ -4415,18 +4463,52 @@ V nastavení lze změnit defaultni model.`);
 
                   {/* Step 2: Few-Shot Patterns */}
                   <section className="p-8 border border-[var(--line)] rounded-3xl space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-[var(--ink)] text-[var(--bg)] rounded-lg flex items-center justify-center font-bold text-xs">2</div>
-                      <h3 className="text-xl font-bold">Vzory ECQB (Few-Shot)</h3>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-[var(--ink)] text-[var(--bg)] rounded-lg flex items-center justify-center font-bold text-xs">2</div>
+                        <h3 className="text-xl font-bold">Vzory ECQB (Few-Shot)</h3>
+                      </div>
+                      <button
+                        onClick={() => setIsEcqbPatternsOpen(!isEcqbPatternsOpen)}
+                        className="p-2 rounded-full hover:bg-[var(--line)] transition-colors"
+                      >
+                        <ChevronDown 
+                          size={20} 
+                          className={`transition-transform ${isEcqbPatternsOpen ? 'rotate-180' : ''}`}
+                        />
+                      </button>
                     </div>
-                    <p className="text-sm opacity-60">
-                      AI používá ECQB Sample Annexes jako vzory pro generování otázek ve správném formátu (4 možnosti, jedna správná).
-                    </p>
-                    <div className="flex gap-2 flex-wrap">
-                      <span className={`px-3 py-1 rounded-full text-[10px] font-bold transition-all ${selectedLicense === 'PPL' ? 'bg-indigo-600 text-white border border-indigo-600' : 'border border-[var(--line)] opacity-40'}`}>PPL(A) Pattern</span>
-                      <span className={`px-3 py-1 rounded-full text-[10px] font-bold transition-all ${selectedLicense === 'SPL' ? 'bg-indigo-600 text-white border border-indigo-600' : 'border border-[var(--line)] opacity-40'}`}>SPL Pattern</span>
-                      <span className="px-3 py-1 border border-[var(--line)] rounded-full text-[10px] font-bold opacity-50">Multiple Choice 4-way</span>
-                    </div>
+                    
+                    {isEcqbPatternsOpen && (
+                      <>
+                        <p className="text-sm opacity-60">
+                          AI používá ECQB Sample Annexes jako vzory pro generování otázek ve správném formátu (4 možnosti, jedna správná).
+                        </p>
+                        <div className="flex gap-2 flex-wrap">
+                          <button 
+                            onClick={() => setSelectedLicense('PPL')}
+                            className={`px-3 py-1 rounded-full text-[10px] font-bold transition-all cursor-pointer ${
+                              selectedLicense === 'PPL' 
+                                ? 'bg-indigo-600 text-white border border-indigo-600' 
+                                : 'border border-[var(--line)] opacity-40 hover:opacity-60'
+                            }`}
+                          >
+                            PPL(A) Pattern
+                          </button>
+                          <button 
+                            onClick={() => setSelectedLicense('SPL')}
+                            className={`px-3 py-1 rounded-full text-[10px] font-bold transition-all cursor-pointer ${
+                              selectedLicense === 'SPL' 
+                                ? 'bg-indigo-600 text-white border border-indigo-600' 
+                                : 'border border-[var(--line)] opacity-40 hover:opacity-60'
+                            }`}
+                          >
+                            SPL Pattern
+                          </button>
+                          <span className="px-3 py-1 border border-[var(--line)] rounded-full text-[10px] font-bold opacity-50">Multiple Choice 4-way</span>
+                        </div>
+                      </>
+                    )}
                   </section>
 
                   {/* Step 3: Generation Interface */}
@@ -4742,24 +4824,90 @@ V nastavení lze změnit defaultni model.`);
                   <div className="p-6 border border-[var(--line)] rounded-2xl space-y-4">
                     <h4 className="col-header">Analýza kapacity</h4>
                     {(() => {
-                      const subjectTotal = SYLLABUS_SCOPE[importSubjectId || 0] || allLOs.filter(lo => lo.subject_id === importSubjectId).length || 1;
-                      const pct = Math.round((coveredLOs.size / subjectTotal) * 100);
+                      // Calculate overall progress across ALL subjects
+                      const dynamicScope = getDynamicSyllabusScope(allLOs);
+                      const totalSubjects = Object.keys(dynamicScope).length;
+                      const totalLOs = Object.values(dynamicScope).reduce((sum, count) => sum + count, 0);
+                      const overallPct = totalLOs > 0 ? Math.round((coveredLOs.size / totalLOs) * 100) : 0;
+                      
+                      // Calculate per-subject analysis
+                      const subjectAnalyses = Object.keys(dynamicScope).map(subjectId => {
+                        const id = parseInt(subjectId);
+                        return {
+                          subjectId: id,
+                          subjectName: SUBJECT_NAMES[id] || `Předmět ${id}`,
+                          ...getSubjectAnalysis(allLOs, id, coveredLOs)
+                        };
+                      });
+                      
+                      const completedSubjects = subjectAnalyses.filter(sa => sa.percentage >= 80).length;
+                      
                       return (
-                    <div className="space-y-4">
-                      <div className="space-y-1">
-                        <div className="flex justify-between text-[10px] font-bold">
-                          <span>Pokrytí témat (LOs)</span>
-                          <span>{pct}%</span>
+                        <div className="space-y-4">
+                          <div className="space-y-1">
+                            <div className="flex justify-between text-[10px] font-bold">
+                              <span>Celkové pokrytí (všechny předměty)</span>
+                              <span>{overallPct}%</span>
+                            </div>
+                            <div className="h-2 bg-[var(--line)] rounded-full overflow-hidden">
+                              <div className="h-full bg-indigo-600 transition-all duration-500" style={{ width: `${overallPct}%` }} />
+                            </div>
+                          </div>
+                          
+                          <div className="grid grid-cols-2 gap-4 text-[10px">
+                            <div className="space-y-1">
+                              <div className="font-bold opacity-70">Přehled</div>
+                              <div className="space-y-0.5">
+                                <div>Předmětů: {totalSubjects}</div>
+                                <div>Celkem LOs: {totalLOs}</div>
+                                <div>Pokryto LOs: {coveredLOs.size}</div>
+                                <div>Dokončeno: {completedSubjects}/{totalSubjects} předmětů</div>
+                              </div>
+                            </div>
+                            <div className="space-y-1">
+                              <div className="font-bold opacity-70">Stav</div>
+                              <div className={`font-bold ${overallPct >= 80 ? 'text-green-600' : overallPct >= 50 ? 'text-yellow-600' : 'text-red-600'}`}>
+                                {overallPct >= 80 ? '✅ Dobré pokrytí' : overallPct >= 50 ? '⚠️ Částečné pokrytí' : '❌ Nízké pokrytí'}
+                              </div>
+                              <div className="opacity-70">
+                                {totalLOs - coveredLOs.size} chybějících LOs
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Subject breakdown */}
+                          <div className="space-y-2">
+                            <div className="font-bold text-[10px] opacity-70">Detail podle předmětů</div>
+                            <div className="grid grid-cols-3 gap-2">
+                              {subjectAnalyses.map(sa => (
+                                <div key={sa.subjectId} className="p-2 border border-[var(--line)] rounded-lg space-y-1">
+                                  <div className="font-bold text-[9px] truncate">{sa.subjectName}</div>
+                                  <div className="flex justify-between items-center">
+                                    <span className="text-[8px] opacity-70">{sa.covered}/{sa.total}</span>
+                                    <span className={`text-[8px] font-bold ${sa.percentage >= 80 ? 'text-green-600' : sa.percentage >= 50 ? 'text-yellow-600' : 'text-red-600'}`}>
+                                      {sa.percentage}%
+                                    </span>
+                                  </div>
+                                  <div className="h-1 bg-[var(--line)] rounded-full overflow-hidden">
+                                    <div 
+                                      className={`h-full transition-all duration-500 ${
+                                        sa.percentage >= 80 ? 'bg-green-600' : 
+                                        sa.percentage >= 50 ? 'bg-yellow-600' : 'bg-red-600'
+                                      }`} 
+                                      style={{ width: `${sa.percentage}%` }} 
+                                    />
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                          
+                          <p className="text-[10px] opacity-50 leading-relaxed">
+                            Aktuálně máte pokryto {coveredLOs.size} z {totalLOs} LOs napříč všemi {totalSubjects} předměty.
+                            {completedSubjects > 0 && ` ${completedSubjects} předmětů má dobré pokrytí (80%+).`}
+                            Hromadný generátor vám pomůže rychle doplnit chybějící oblasti.
+                          </p>
                         </div>
-                        <div className="h-2 bg-[var(--line)] rounded-full overflow-hidden">
-                          <div className="h-full bg-indigo-600 transition-all duration-500" style={{ width: `${pct}%` }} />
-                        </div>
-                      </div>
-                      <p className="text-[10px] opacity-50 leading-relaxed">
-                        Aktuálně máte pokryto {coveredLOs.size} z {subjectTotal} LOs v tomto předmětu.
-                        Hromadný generátor vám pomůže rychle doplnit chybějící oblasti.
-                      </p>
-                    </div>
                       );
                     })()}
                   </div>

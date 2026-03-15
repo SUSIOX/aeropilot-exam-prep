@@ -31,7 +31,6 @@ import {
   X,
   ChevronLeft,
   Search,
-  Database,
   BarChart3,
   Sun,
   Moon,
@@ -40,7 +39,7 @@ import {
 } from 'lucide-react';
 import { Subject, Question, Stats, ViewMode, DrillSettings } from './types';
 import { LearningEngine } from './lib/LearningEngine';
-import { mockLOs, getAllLOs, importMockLOsToDB, generateBatchQuestions, getDetailedExplanation, getDetailedHumanExplanation, translateQuestion, EasaLO, SYLLABUS_SCOPE, SUBJECT_NAMES, buildSyllabusTree, SyllabusSubjectNode, verifyApiKey, AIProvider, generateMissingLearningObjectives, getDynamicSyllabusScope, getSubjectAnalysis } from './services/aiService';
+import { mockLOs, getAllLOs, generateBatchQuestions, getDetailedExplanation, getDetailedHumanExplanation, EasaLO, SYLLABUS_SCOPE, SUBJECT_NAMES, buildSyllabusTree, verifyApiKey, AIProvider, generateMissingLearningObjectives, getDynamicSyllabusScope, getSubjectAnalysis } from './services/aiService';
 import { checkSubjectDuplicates, checkAllDuplicates, findDuplicatesInQuestions } from './utils/duplicateChecker';
 import { DynamoDBStatus } from './components/DynamoDBStatus';
 import { AdminDashboard } from './components/AdminDashboard';
@@ -84,6 +83,13 @@ import { AccessDenied } from './components/AccessDenied';
 export default function App() {
   // Loading state for auth
   const [isAuthLoading, setIsAuthLoading] = useState(true);
+  // True once AWS credentials (and identity ID) are ready for DynamoDB calls.
+  // For guests this is immediately true; for authenticated users we wait for
+  // initializeAuthenticatedCredentials() to resolve so user.id = identity_id.
+  const [isCredentialsReady, setIsCredentialsReady] = useState(() => {
+    if (!cognitoAuthService.isAuthenticated()) return true; // guests ready immediately
+    return !!sessionStorage.getItem('identity_id'); // ready if identity_id already cached
+  });
   
   // AI cleanup on unmount
   useAICancellation('App');
@@ -196,8 +202,6 @@ export default function App() {
   // LOs loaded from DB (falls back to mockLOs)
   const [allLOs, setAllLOs] = useState<EasaLO[]>(mockLOs);
   const [losLoading, setLosLoading] = useState(false);
-  const [isImportingLOs, setIsImportingLOs] = useState(false);
-  const [loImportStatus, setLoImportStatus] = useState<{type: 'success'|'error', message: string} | null>(null);
 
   // AI Generation states
   const [selectedLO, setSelectedLO] = useState<EasaLO>(mockLOs[0]);
@@ -221,6 +225,7 @@ export default function App() {
   }, [currentQuestionIndex, questions, drillSettings.shuffleAnswers]);
   const [questionsPerLO, setQuestionsPerLO] = useState<number>(2);
   const [coveredLOs, setCoveredLOs] = useState<Set<string>>(new Set());
+  const [globalCoveredLOs, setGlobalCoveredLOs] = useState<Set<string>>(new Set());
   const [actualCoveredLOs, setActualCoveredLOs] = useState<number>(0);
   const [duplicateReport, setDuplicateReport] = useState<any>(null);
   const [isCheckingDuplicates, setIsCheckingDuplicates] = useState(false);
@@ -231,6 +236,7 @@ export default function App() {
   const [additionalDocumentLinks, setAdditionalDocumentLinks] = useState<string[]>([]);
   const [newDocumentLink, setNewDocumentLink] = useState<string>('');
   const [loControlsExpanded, setLoControlsExpanded] = useState<boolean>(true);
+  const [isLOSectionOpen, setIsLOSectionOpen] = useState<boolean>(false);
   const [selectedLicense, setSelectedLicense] = useState<'PPL' | 'SPL'>(() => {
     return (localStorage.getItem('selectedLicense') as 'PPL' | 'SPL') || 'PPL';
   });
@@ -297,7 +303,10 @@ export default function App() {
       // Try Cognito auth first
       const cognitoUser = cognitoAuthService.getCurrentUser();
       if (cognitoUser) {
-        return { id: cognitoUser.id, username: cognitoUser.username };
+        // Prefer Identity Pool identity ID (needed for DynamoDB LeadingKeys policy).
+        // It's stored in sessionStorage after the first getAWSCredentials() call.
+        const identityId = sessionStorage.getItem('identity_id') || cognitoUser.id;
+        return { id: identityId, username: cognitoUser.username };
       }
       
       // Fallback to old system
@@ -350,6 +359,20 @@ export default function App() {
   };
 
   
+  const getAIErrorMessage = (error: any): string => {
+    const msg: string = error?.message || '';
+    if (msg.includes('429') || msg.includes('RESOURCE_EXHAUSTED') || msg.includes('quota')) {
+      return 'Překročen limit API požadavků. Zkuste to za chvíli.';
+    }
+    if (msg.includes('401') || msg.includes('403') || msg.includes('API key')) {
+      return 'Neplatný API klíč.';
+    }
+    if (msg.includes('cancelled') || msg.includes('cancel')) {
+      return '';
+    }
+    return 'Nepodařilo se vygenerovat vysvětlení. Zkuste to znovu.';
+  };
+
   const handleLogout = () => {
     // Clear old system
     setToken(null);
@@ -390,16 +413,24 @@ export default function App() {
     // Mark landing page as shown
     localStorage.setItem('landingPageShown', 'true');
     setShowLandingPage(false);
-    
+
+    // Initialize authenticated credentials to get Identity Pool identity ID
+    const success = await initializeAuthenticatedCredentials();
+    if (!success) initializeGuestCredentials();
+    dynamoDBService.reinitialize();
+
+    // Use Identity Pool identity ID as userId (enables IAM fine-grained access)
+    const identityId = cognitoAuthService.getIdentityId() || userData.id;
+
     // Set user state
-    setUser({ id: userData.id, username: userData.username });
+    setUser({ id: identityId, username: userData.username });
     setUserMode('logged-in');
     setUserRole(cognitoAuthService.getUserRole());
     setView('dashboard');
-    
+
     // Save user profile to DynamoDB
     await dynamoDBService.saveCognitoUserProfile({
-      userId: userData.id,
+      userId: identityId,
       username: userData.username,
       email: userData.email
     });
@@ -419,11 +450,20 @@ export default function App() {
         if (!success) {
           console.log('🔄 Falling back to guest credentials...');
           initializeGuestCredentials();
+        } else {
+          // After credentials are fetched, Identity Pool identity ID is now in sessionStorage.
+          // Update user.id to use identity ID so DynamoDB LeadingKeys policy matches.
+          const identityId = cognitoAuthService.getIdentityId();
+          if (identityId) {
+            setUser((prev: {id: string, username: string} | null) => prev ? { ...prev, id: identityId } : prev);
+          }
+          setIsCredentialsReady(true);
         }
       } else {
         // User is not authenticated, use guest credentials
         console.log('🔄 Initializing guest credentials...');
         initializeGuestCredentials();
+        setIsCredentialsReady(true);
       }
     };
 
@@ -646,7 +686,7 @@ export default function App() {
 
   // Load user settings from DynamoDB on login
   useEffect(() => {
-    if (user?.id) {
+    if (user?.id && isCredentialsReady) {
       // Try to load settings from DynamoDB
       dynamoDBService.getUserSettings(String(user.id))
         .then(result => {
@@ -668,7 +708,7 @@ export default function App() {
           // Silent fail - use localStorage settings
         });
     }
-  }, [user?.id]);
+  }, [user?.id, isCredentialsReady]);
 
   // Re-filter questions when source filters change in drill mode
   useEffect(() => {
@@ -1465,7 +1505,7 @@ V nastavení lze změnit defaultni model.`);
         // Failed to save AI explanation to localStorage
       }
     } catch (error: any) {
-      alert(`Vysvětlení se nepodařilo vygenerovat. Chyba: ${error?.message || 'Neznámá chyba'}`);
+      const msg = getAIErrorMessage(error); if (msg) alert(msg);
     } finally {
       setIsGeneratingAiExplanation(false);
     }
@@ -1542,7 +1582,7 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
       if (error?.message === 'Operation cancelled') {
         // Explanation regeneration cancelled
       } else {
-        alert(`Vysvětlení se nepodařilo vygenerovat. Chyba: ${error?.message || 'Neznámá chyba'}`);
+        const msg = getAIErrorMessage(error); if (msg) alert(msg);
       }
     } finally {
       setIsRegeneratingExplanation(false);
@@ -1628,7 +1668,7 @@ V nastavení lze změnit defaultni model.`);
         // Failed to save detailed explanation
       }
     } catch (error: any) {
-      alert(`Podrobné vysvětlení se nepodařilo vygenerovat. Chyba: ${error?.message || 'Neznámá chyba'}`);
+      const msg = getAIErrorMessage(error); if (msg) alert(msg);
     } finally {
       setIsGeneratingDetailedExplanation(false);
     }
@@ -1661,7 +1701,23 @@ V nastavení lze změnit defaultni model.`);
     if ((view === 'settings' || view === 'ai') && importSubjectId) {
       fetchCoverage(importSubjectId);
     }
+    if (view === 'ai') {
+      fetchAllCoverage();
+    }
   }, [view, importSubjectId]);
+
+  const fetchAllCoverage = async () => {
+    try {
+      const subjectIds = Object.keys(getDynamicSyllabusScope(allLOs)).map(Number);
+      const allQuestions = await Promise.all(subjectIds.map(id => loadStaticQuestions(id)));
+      const global = new Set<string>(
+        allQuestions.flat().map(q => q.lo_id).filter(Boolean) as string[]
+      );
+      setGlobalCoveredLOs(global);
+    } catch {
+      // silent fail
+    }
+  };
 
   const fetchCoverage = async (subjectId: number) => {
     try {
@@ -1802,6 +1858,10 @@ V nastavení lze změnit defaultni model.`);
   };
 
   const handleSaveGeneratedLOs = async () => {
+    if (userRole !== 'admin') {
+      alert('Nemáte dostatečné oprávnění. Tuto akci může provést pouze administrátor.');
+      return;
+    }
     if (generatedLOs.length === 0) return;
     
     try {
@@ -2056,8 +2116,8 @@ V nastavení lze změnit defaultni model.`);
   };
 
   const saveGeneratedQuestions = async () => {
-    if (userRole === 'guest') {
-      alert('Tato funkce je jen pro ověřené uživatele');
+    if (userRole !== 'admin') {
+      alert('Nemáte dostatečné oprávnění. Tuto akci může provést pouze administrátor.');
       return;
     }
     if (batchResults.length === 0 || !importSubjectId) return;
@@ -4122,120 +4182,28 @@ V nastavení lze změnit defaultni model.`);
 
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div className="md:col-span-3 space-y-6">
-                  {/* Step 1: Syllabus Management */}
-                  <section className="p-8 border border-[var(--line)] rounded-3xl space-y-4">
-                    <div className="flex items-center justify-between">
+                  {/* Step 1: Learning Objectives — collapsible */}
+                  <section className="border border-[var(--line)] rounded-3xl overflow-hidden">
+                    {/* Section header / toggle */}
+                    <button
+                      onClick={() => setIsLOSectionOpen(!isLOSectionOpen)}
+                      className="w-full p-6 flex items-center justify-between hover:bg-[var(--line)]/30 transition-colors"
+                    >
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 bg-[var(--ink)] text-[var(--bg)] rounded-lg flex items-center justify-center font-bold text-xs">1</div>
-                        <h3 className="text-xl font-bold opacity-50">Osnovy & Learning Objectives</h3>
+                        <div className="text-left">
+                          <h3 className="text-xl font-bold">Learning Objectives</h3>
+                          <p className="text-xs opacity-40">{allLOs.length} LOs {losLoading ? '(načítám...)' : '(načteno)'}</p>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <span className="px-3 py-1 bg-gray-500/10 text-gray-500 text-[10px] font-bold rounded-full border border-gray-500/20">Deprecated</span>
-                        <span className="px-3 py-1 bg-emerald-500/10 text-emerald-600 text-[10px] font-bold rounded-full border border-emerald-500/20 opacity-50">XML eRules Ready</span>
-                      </div>
-                    </div>
-                    <p className="text-sm opacity-40">
-                      <s>Importujte hierarchii LOs z platformy eRules (Regulation EU No 1178/2011). 
-                      AI využije strukturu Subject → Topic → Subtopic pro přesný kontext.</s>
-                      <br />
-                      <span className="text-xs opacity-60">Tato funkce není implementována - použijte stávající LOs databázi.</span>
-                    </p>
-                    <div className="grid grid-cols-2 gap-4 pt-2">
-                      <button 
-                        className="p-4 border border-[var(--line)] rounded-2xl text-left transition-all opacity-60 hover:opacity-100"
-                        style={{
-                          backgroundColor: 'transparent',
-                          border: '1px solid var(--line)',
-                          padding: '16px',
-                          borderRadius: '16px',
-                          cursor: 'pointer',
-                          transition: 'all 0.2s ease-in-out',
-                          textAlign: 'left'
-                        }}
-                      >
-                        <p className="text-[10px] uppercase tracking-widest font-bold opacity-50 mb-1">Zdroj dat</p>
-                        <p className="text-sm font-bold">Easy Access Rules XML</p>
-                      </button>
-                      <button 
-                        className="p-4 border border-[var(--line)] rounded-2xl text-left transition-all opacity-60 hover:opacity-100"
-                        style={{
-                          backgroundColor: 'transparent',
-                          border: '1px solid var(--line)',
-                          padding: '16px',
-                          borderRadius: '16px',
-                          cursor: 'pointer',
-                          transition: 'all 0.2s ease-in-out',
-                          textAlign: 'left'
-                        }}
-                      >
-                        <p className="text-[10px] uppercase tracking-widest font-bold opacity-50 mb-1">LOs v paměti</p>
-                        <p className="text-sm font-bold">{allLOs.length} LOs {losLoading ? '(načítám...)' : '(načteno)'}</p>
-                      </button>
-                    </div>
-                    {userRole === 'admin' && (
-                      <div className="pt-2 space-y-2">
-                        <button
-                          onClick={async () => {
-                            setIsImportingLOs(true);
-                            setLoImportStatus(null);
-                            try {
-                              const result = await importMockLOsToDB();
-                              if (result.success) {
-                                setLoImportStatus({ type: 'success', message: `✅ Importováno ${result.imported} LOs do databáze (${result.failed} chyb).` });
-                                const fresh = await getAllLOs();
-                                if (fresh.length > 0) setAllLOs(fresh);
-                              } else {
-                                setLoImportStatus({ type: 'error', message: `❌ Import selhal: ${result.errors?.[0] || 'Neznámá chyba'}` });
-                              }
-                            } catch(e: any) {
-                              setLoImportStatus({ type: 'error', message: `❌ ${e.message}` });
-                            } finally {
-                              setIsImportingLOs(false);
-                            }
-                          }}
-                          disabled={isImportingLOs}
-                          className="w-full py-3 border border-indigo-500/50 text-indigo-500 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-2 disabled:opacity-50"
-                          style={{
-                            backgroundColor: isImportingLOs ? '#6366f1' : 'transparent',
-                            color: isImportingLOs ? '#ffffff' : '#6366f1',
-                            border: '1px solid rgba(99, 102, 241, 0.5)',
-                            padding: '12px',
-                            borderRadius: '12px',
-                            fontWeight: 'bold',
-                            fontSize: '10px',
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.1em',
-                            cursor: isImportingLOs ? 'not-allowed' : 'pointer',
-                            transition: 'all 0.2s ease-in-out',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            gap: '8px',
-                            opacity: isImportingLOs ? 1 : 0.6
-                          }}
-                          onMouseEnter={(e) => {
-                            if (!isImportingLOs) {
-                              e.currentTarget.style.backgroundColor = 'rgba(99, 102, 241, 0.1)';
-                              e.currentTarget.style.opacity = '1';
-                            }
-                          }}
-                          onMouseLeave={(e) => {
-                            if (!isImportingLOs) {
-                              e.currentTarget.style.backgroundColor = 'transparent';
-                              e.currentTarget.style.opacity = '0.6';
-                            }
-                          }}
-                        >
-                          {isImportingLOs ? <RotateCcw size={14} className="animate-spin" /> : <Database size={14} />}
-                          {isImportingLOs ? 'Importuji LOs...' : 'Naplnit databázi LOs (mockLOs → DB)'}
-                        </button>
-                        {loImportStatus && (
-                          <p className={`text-[10px] px-3 py-2 rounded-lg ${loImportStatus.type === 'success' ? 'bg-emerald-500/10 text-emerald-600' : 'bg-rose-500/10 text-rose-600'}`}>
-                            {loImportStatus.message}
-                          </p>
-                        )}
-                      </div>
-                    )}
+                      <ChevronDown
+                        size={20}
+                        className={`transition-transform opacity-50 ${isLOSectionOpen ? 'rotate-180' : ''}`}
+                      />
+                    </button>
+
+                    {isLOSectionOpen && (
+                    <div className="p-8 pt-2 space-y-4 border-t border-[var(--line)]">
 
                     {/* Learning Objectives Controls - Collapsible Card */}
                     <div className="pt-4">
@@ -4541,15 +4509,16 @@ V nastavení lze změnit defaultni model.`);
                               </div>
                             )}
 
-                            {/* Aircademy Syllabus Integration */}
-                            <AircademySyllabus 
-                              onLOGenerated={(los) => setGeneratedLOs(los)}
+                            {/* Aircademy Syllabus — manual PDF loader */}
+                            <AircademySyllabus
                               subjectId={importSubjectId || undefined}
                             />
                           </div>
                         )}
                       </div>
                     </div>
+                    </div>
+                    )}
                   </section>
 
                   {/* Step 2: Few-Shot Patterns */}
@@ -4919,15 +4888,15 @@ V nastavení lze změnit defaultni model.`);
                       const dynamicScope = getDynamicSyllabusScope(allLOs);
                       const totalSubjects = Object.keys(dynamicScope).length;
                       const totalLOs = Object.values(dynamicScope).reduce((sum, count) => sum + count, 0);
-                      const overallPct = totalLOs > 0 ? Math.round((coveredLOs.size / totalLOs) * 100) : 0;
-                      
+                      const overallPct = totalLOs > 0 ? Math.round((globalCoveredLOs.size / totalLOs) * 100) : 0;
+
                       // Calculate per-subject analysis
                       const subjectAnalyses = Object.keys(dynamicScope).map(subjectId => {
                         const id = parseInt(subjectId);
                         return {
                           subjectId: id,
                           subjectName: SUBJECT_NAMES[id] || `Předmět ${id}`,
-                          ...getSubjectAnalysis(allLOs, id, coveredLOs)
+                          ...getSubjectAnalysis(allLOs, id, globalCoveredLOs)
                         };
                       });
                       
@@ -4951,7 +4920,7 @@ V nastavení lze změnit defaultni model.`);
                               <div className="space-y-0.5">
                                 <div>Předmětů: {totalSubjects}</div>
                                 <div>Celkem LOs: {totalLOs}</div>
-                                <div>Pokryto LOs: {coveredLOs.size}</div>
+                                <div>Pokryto LOs: {globalCoveredLOs.size}</div>
                                 <div>Dokončeno: {completedSubjects}/{totalSubjects} předmětů</div>
                               </div>
                             </div>
@@ -4961,7 +4930,7 @@ V nastavení lze změnit defaultni model.`);
                                 {overallPct >= 80 ? '✅ Dobré pokrytí' : overallPct >= 50 ? '⚠️ Částečné pokrytí' : '❌ Nízké pokrytí'}
                               </div>
                               <div className="opacity-70">
-                                {totalLOs - coveredLOs.size} chybějících LOs
+                                {totalLOs - globalCoveredLOs.size} chybějících LOs
                               </div>
                             </div>
                           </div>
@@ -4994,7 +4963,7 @@ V nastavení lze změnit defaultni model.`);
                           </div>
                           
                           <p className="text-[10px] opacity-50 leading-relaxed">
-                            Aktuálně máte pokryto {coveredLOs.size} z {totalLOs} LOs napříč všemi {totalSubjects} předměty.
+                            Aktuálně máte pokryto {globalCoveredLOs.size} z {totalLOs} LOs napříč všemi {totalSubjects} předměty.
                             {completedSubjects > 0 && ` ${completedSubjects} předmětů má dobré pokrytí (80%+).`}
                             Hromadný generátor vám pomůže rychle doplnit chybějící oblasti.
                           </p>
@@ -5489,23 +5458,29 @@ V nastavení lze změnit defaultni model.`);
         onClose={closeAuthPrompt}
         onAuthSuccess={async (userData) => {
           try {
-            // Set user state
-            setUser({ id: userData.id, username: userData.username }); // Use Cognito UUID
-            setUserMode('logged-in');
-            setUserRole(cognitoAuthService.getUserRole());
-            setView('dashboard');
-            
-            // Switch to authenticated credentials after login
+            // Switch to authenticated credentials BEFORE setting user state
+            // to avoid race conditions in useEffects that depend on user
             console.log('🔄 Switching to authenticated credentials after login...');
             const success = await initializeAuthenticatedCredentials();
             if (!success) {
               console.log('🔄 Falling back to guest credentials...');
               initializeGuestCredentials();
             }
-            
+            dynamoDBService.reinitialize();
+
+            // Use Identity Pool identity ID as userId (enables IAM fine-grained access)
+            const identityId = cognitoAuthService.getIdentityId() || userData.id;
+            console.log('🆔 identityId:', identityId);
+
+            // Set user state after credentials are ready
+            setUser({ id: identityId, username: userData.username });
+            setUserMode('logged-in');
+            setUserRole(cognitoAuthService.getUserRole());
+            setView('dashboard');
+
             // Save Cognito user profile to DynamoDB
             await dynamoDBService.saveCognitoUserProfile({
-              userId: userData.id, // Cognito UUID
+              userId: identityId,
               username: userData.username,
               email: userData.email
             });

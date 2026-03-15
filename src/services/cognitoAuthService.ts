@@ -31,6 +31,7 @@ export const USER_GROUP = 'Users';
 export class CognitoAuthService {
   private static instance: CognitoAuthService;
   private cognitoIdentityClient: CognitoIdentityClient | null = null;
+  private identityId: string | null = null;
 
   constructor() {
     // Lazy initialization of client
@@ -88,6 +89,13 @@ export class CognitoAuthService {
     sessionStorage.removeItem('token_expires_at');
     sessionStorage.removeItem('user_data');
     sessionStorage.removeItem('aws_credentials');
+    sessionStorage.removeItem('identity_id');
+    this.identityId = null;
+  }
+
+  // Get Identity Pool identity ID (used as userId in DynamoDB)
+  getIdentityId(): string | null {
+    return this.identityId || sessionStorage.getItem('identity_id');
   }
 
   // Check if tokens are valid
@@ -286,6 +294,10 @@ export class CognitoAuthService {
       if (!identityId) {
         throw new Error('Failed to get identity ID');
       }
+
+      // Store identity ID for use as userId
+      this.identityId = identityId;
+      sessionStorage.setItem('identity_id', identityId);
 
       // Get credentials for identity
       const getCredentialsCommand = new GetCredentialsForIdentityCommand({

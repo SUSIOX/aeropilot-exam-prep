@@ -10,12 +10,22 @@ interface LandingPageProps {
 }
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onGuestMode, onAuthSuccess, onClose }) => {
+  // Generate random string for state parameter (same as CognitoAuth.tsx)
+  const generateRandomString = (length: number) => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  };
+
   // Generate Cognito auth URL and redirect
   const handleLoginClick = () => {
     const domain = process.env.COGNITO_DOMAIN;
     const clientId = process.env.COGNITO_CLIENT_ID;
     const redirectUri = process.env.COGNITO_REDIRECT_URI;
-    const state = Math.random().toString(36).substring(7); // Generate random state
+    const state = generateRandomString(32); // CSRF protection - same as CognitoAuth.tsx
     
     sessionStorage.setItem('cognito_state', state);
     

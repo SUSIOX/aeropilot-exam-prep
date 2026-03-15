@@ -1,9 +1,0 @@
-AWS CloudShell příkazy pro Lambda IAM role - zkopírujte a vložte do CloudShell:
-
-aws iam create-policy --policy-name AeropilotLambdaPolicy --policy-document "{\"Version\": \"2012-10-17\",\"Statement\": [{\"Effect\": \"Allow\",\"Action\": [\"secretsmanager:GetSecretValue\"],\"Resource\": \"arn:aws:secretsmanager:eu-central-1:455982474805:secret:aeropilot-cognito-client-secret-*\"},{\"Effect\": \"Allow\",\"Action\": [\"logs:CreateLogGroup\",\"logs:CreateLogStream\",\"logs:PutLogEvents\"],\"Resource\": \"arn:aws:logs:eu-central-1:455982474805:*\"}]}"
-
-aws iam create-role --role-name AeropilotLambdaExecutionRole --assume-role-policy-document "{\"Version\": \"2012-10-17\",\"Statement\": [{\"Effect\": \"Allow\",\"Principal\": {\"Service\": \"lambda.amazonaws.com\"},\"Action\": \"sts:AssumeRole\"}]}"
-
-aws iam attach-role-policy --role-name AeropilotLambdaExecutionRole --policy-arn arn:aws:iam::455982474805:policy/AeropilotLambdaPolicy
-
-aws iam attach-role-policy --role-name AeropilotLambdaExecutionRole --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole

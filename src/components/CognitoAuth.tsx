@@ -31,8 +31,8 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
     const redirectUri = process.env.COGNITO_REDIRECT_URI;
     const state = generateRandomString(32); // CSRF protection
     
-    // Store state for verification
-    sessionStorage.setItem('cognito_state', state);
+    // Store state for verification (localStorage persists across page reloads during OAuth redirect)
+    localStorage.setItem('cognito_state', state);
     
     const params = new URLSearchParams({
       client_id: clientId || '',
@@ -158,18 +158,24 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
     const state = urlParams.get('state');
-    const storedState = sessionStorage.getItem('cognito_state');
+    const storedState = localStorage.getItem('cognito_state');
     
     if (code && !exchangeStarted.current) {
       // Set auth in progress flag to prevent landing page flash
       localStorage.setItem('auth_in_progress', 'true');
       
       // Strict state validation for CSRF protection
-      if (!storedState || state !== storedState) {
+      if (!storedState) {
+        // State already consumed (StrictMode double-invoke or already processed)
+        return;
+      }
+      if (state !== storedState) {
         console.error("❌ State validation failed - possible CSRF attack");
         setError("Authentication failed: Invalid state parameter");
         return;
       }
+      // Consume state to prevent replay
+      localStorage.removeItem('cognito_state');
       exchangeStarted.current = true; // Prevent duplicate calls
       console.log('🔑 Processing Cognito callback with code:', code.substring(0, 10) + '...');
       setIsLoading(true);
@@ -203,7 +209,8 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
           // Clear auth in progress flag
           localStorage.removeItem('auth_in_progress');
         });
-    } else if (code && state !== storedState) {
+    } else if (code && storedState && state !== storedState) {
+      // storedState exists but doesn't match → real CSRF attempt
       console.error('❌ Security validation failed - state mismatch');
       setError('Security validation failed');
       window.history.replaceState({}, document.title, window.location.pathname);

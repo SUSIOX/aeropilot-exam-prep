@@ -53,6 +53,15 @@ export class DynamoDBService {
     }
   }
 
+  // Call this after switching credentials (e.g. guest → authenticated)
+  public reinitialize(): void {
+    this.isInitialized = false;
+    this.isInitializing = false;
+    this.client = null;
+    this.docClient = null;
+    this.tryInitialize();
+  }
+
   // Metoda, kterou zavoláš před každým dotazem do DB
   private async ensureInitialized(): Promise<void> {
     if (this.isInitialized && this.client && this.docClient) {

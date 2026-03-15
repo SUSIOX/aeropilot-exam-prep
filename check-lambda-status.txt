@@ -1,1 +1,0 @@
-aws lambda get-function --function-name cognito-token-exchange --query "Configuration.{FunctionName:FunctionName,Role:Role,LastModified:LastModified,State:State,StateReason:StateReason}"

@@ -29,7 +29,7 @@ export const getCognitoConfig = (): CognitoConfig => {
     region: process.env.AWS_REGION || 'eu-central-1',
     userPoolId: 'eu-central-1_cfdN8KQIo',
     clientId: '32d9ivfbtnpo69jaq7vld9p2jp',
-    identityPoolId: 'eu-central-1:15cba94f-c5c9-4312-9185-d96ba144225c'
+    identityPoolId: 'eu-central-1:b30b46cc-5882-4d11-ab16-00cc715a793d'
   };
 
   return config;

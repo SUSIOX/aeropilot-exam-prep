@@ -27,7 +27,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGuestMode, onAuthSuc
     const redirectUri = process.env.COGNITO_REDIRECT_URI;
     const state = generateRandomString(32); // CSRF protection - same as CognitoAuth.tsx
     
-    sessionStorage.setItem('cognito_state', state);
+    localStorage.setItem('cognito_state', state);
     
     const params = new URLSearchParams({
       client_id: clientId || '',

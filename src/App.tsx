@@ -96,6 +96,12 @@ export default function App() {
 
   // Guest/Login Mode Management
   const [userMode, setUserMode] = useState<'guest' | 'logged-in'>(() => {
+    // Zkontroluj, zda se náhodou zrovna nevracíme z Cognito s autentizačním kódem
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('code')) {
+      return 'logged-in'; // Zabraň pádu do Guest režimu během callback fáze
+    }
+
     // Check Cognito tokens first
     if (cognitoAuthService.isAuthenticated()) {
       return 'logged-in';
@@ -443,6 +449,13 @@ export default function App() {
   useEffect(() => {
     // Initialize credentials based on authentication status
     const initializeCredentials = async () => {
+      // Ignoruj standardní inicializaci, pokud zpracováváme autentizační kód v callbacku z Cognito
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('code')) {
+        console.log('🔄 Skipping standard credential init: Auth callback in progress...');
+        return; 
+      }
+
       if (cognitoAuthService.isAuthenticated()) {
         // User is authenticated, try authenticated credentials
         console.log('🔄 Initializing authenticated credentials...');
@@ -671,7 +684,7 @@ export default function App() {
     localStorage.setItem('drillSettings', JSON.stringify(drillSettings));
     
     // Sync to DynamoDB for authenticated users (not guests)
-    if (user?.id && (userApiKey || claudeApiKey)) {
+    if (!isGuestMode && user?.id && (userApiKey || claudeApiKey)) {
       dynamoDBService.saveUserSettings(String(user.id), {
         ...drillSettings,
         userApiKey,
@@ -686,7 +699,7 @@ export default function App() {
 
   // Load user settings from DynamoDB on login
   useEffect(() => {
-    if (user?.id && isCredentialsReady) {
+    if (!isGuestMode && user?.id && isCredentialsReady) {
       // Try to load settings from DynamoDB
       dynamoDBService.getUserSettings(String(user.id))
         .then(result => {
@@ -1211,7 +1224,7 @@ export default function App() {
         saveAnswerToLocalStorage(currentQuestion.id, isCorrect, currentQuestion.subject_id);
         updateUserStats(isCorrect);
         // Sync to DynamoDB only for authenticated users (not guests)
-        if (user?.id) {
+        if (!isGuestMode && user?.id) {
           dynamoDBService.saveUserProgress(String(user.id), String(currentQuestion.id), isCorrect).catch(() => {});
         }
       } catch (error) {
@@ -1689,8 +1702,10 @@ V nastavení lze změnit defaultni model.`);
       const flags = JSON.parse(localStorage.getItem('question_flags') || '{}');
       flags[questionId] = newFlag;
       localStorage.setItem('question_flags', JSON.stringify(flags));
-      // Sync to DynamoDB
-      dynamoDBService.toggleQuestionFlag(String(questionId), newFlag).catch(() => {});
+      // Sync to DynamoDB only if not guest
+      if (!isGuestMode) {
+        dynamoDBService.toggleQuestionFlag(String(questionId), newFlag).catch(() => {});
+      }
     } catch (error) {
       // Silent fail
     }

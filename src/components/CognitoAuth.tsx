@@ -205,7 +205,7 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
         })
         .finally(() => {
           setIsLoading(false);
-          sessionStorage.removeItem('cognito_state');
+          localStorage.removeItem('cognito_state');
           // Clear auth in progress flag
           localStorage.removeItem('auth_in_progress');
         });

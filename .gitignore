@@ -1,20 +1,43 @@
 node_modules/
+dist/
 build/
 coverage/
 .DS_Store
 *.log
 .env*
 !.env.example
-PROJECT_CLEANUP_COMPLETE.md
 
-# AWS infrastructure scripts and documentation
+# Local databases
+*.db
+*.sqlite
+*.db.backup
+*.backup
+
+# Testing and development scripts
+test-scripts/
+debug-*.mjs
+test-*.js
+test-*.mjs
+debug_db.ts
+
+# Build and assets (should be ignored for source control)
+assets/
+dist/
+
+# AWS infrastructure / deployment (sensitive info/mechanisms)
 AWS/
-!AWS/.gitkeep
-
-# IAM setup scripts and configs (contain sensitive info)
+lambda/
+scripts/
+admin-permissions-policy.json
 create-lambda-iam.sh
 create-cognito-roles.sh
 lambda-iam-policy.json
 lambda-trust-policy.json
 cognito-identity-policies.json
 IAM_SETUP_README.md
+
+# Editor/Project metadata
+.antigravity/
+.gemini/
+WINDSURF.md
+windsurf.json

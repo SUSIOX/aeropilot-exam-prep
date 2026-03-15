@@ -11,6 +11,7 @@ export default defineConfig(({mode}) => {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
       'process.env.COGNITO_IDENTITY_POOL_ID': JSON.stringify(env.COGNITO_IDENTITY_POOL_ID),
       'process.env.AWS_REGION': JSON.stringify(env.AWS_REGION || 'eu-central-1'),
+      'process.env.DYNAMODB_TABLE_PREFIX': JSON.stringify(env.DYNAMODB_TABLE_PREFIX || 'aeropilot-'),
       'process.env.COGNITO_DOMAIN': JSON.stringify(mode === 'production' ? 'eu-central-1cfdn8kqio.auth.eu-central-1.amazoncognito.com' : env.COGNITO_DOMAIN),
       'process.env.COGNITO_CLIENT_ID': JSON.stringify(mode === 'production' ? '32d9ivfbtnpo69jaq7vld9p2jp' : env.COGNITO_CLIENT_ID),
       'process.env.COGNITO_REDIRECT_URI': JSON.stringify(mode === 'production' ? 'https://susiox.github.io/aeropilot-exam-prep/' : env.COGNITO_REDIRECT_URI),

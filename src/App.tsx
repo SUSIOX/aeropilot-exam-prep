@@ -270,11 +270,31 @@ export default function App() {
   const [syllabusOpen, setSyllabusOpen] = useState(false);
   const [focusedLOId, setFocusedLOId] = useState<string | null>(null);
   const [syllabusSelectedLO, setSyllabusSelectedLO] = useState<string | null>(null);
+  const [syllabusLOQuestions, setSyllabusLOQuestions] = useState<any[]>([]);
+  const [syllabusLOQuestionsLoading, setSyllabusLOQuestionsLoading] = useState(false);
   const [syllabusExpandedSubjects, setSyllabusExpandedSubjects] = useState<Set<number>>(new Set());
   const [syllabusExpandedTopics, setSyllabusExpandedTopics] = useState<Set<string>>(new Set());
   const [syllabusExpandedSubtopics, setSyllabusExpandedSubtopics] = useState<Set<string>>(new Set());
   const [syllabusLicenseFilter, setSyllabusLicenseFilter] = useState<'ALL' | 'PPL' | 'SPL'>('ALL');
   const [syllabusSearch, setSyllabusSearch] = useState('');
+  const [expandedSyllabusQuestion, setExpandedSyllabusQuestion] = useState<any | null>(null);
+
+  useEffect(() => {
+    if (!syllabusSelectedLO) { setSyllabusLOQuestions([]); return; }
+    setSyllabusLOQuestionsLoading(true);
+    dynamoDBService.getQuestionsByLO(syllabusSelectedLO)
+      .then(r => {
+        const mapped = (r.data || []).map((q: any) => ({
+          ...q,
+          id: q.questionId || q.id,
+          text: q.question || q.text,
+          answers: q.answers || q.options || [],
+          correct_answer: q.correct !== undefined ? q.correct : (q.correct_answer ?? q.correctAnswer)
+        }));
+        setSyllabusLOQuestions(mapped);
+      })
+      .finally(() => setSyllabusLOQuestionsLoading(false));
+  }, [syllabusSelectedLO]);
 
   // Import states
   const [importSubjectId, setImportSubjectId] = useState<number | null>(null);
@@ -455,7 +475,7 @@ export default function App() {
     setView('dashboard');
 
     // Fetch data from DynamoDB now that we are authenticated
-    fetchStats();
+    syncUserData();
     setLosLoading(true);
     getAllLOs().then(los => {
       if (los && los.length > 0) setAllLOs(los);
@@ -489,24 +509,22 @@ export default function App() {
       }
 
       if (cognitoAuthService.isAuthenticated()) {
-        // User is authenticated, try authenticated credentials
-        if (isCredentialsReady && cognitoAuthService.getIdentityId()) {
-          console.log('✅ Credentials already initialized.');
-          return;
-        }
+        // Always initialize authenticated credentials (even on refresh) so DynamoDB client has valid credentials.
+        // Only skip setIsCredentialsReady if already true to avoid re-triggering the effect.
         console.log('🔄 Initializing authenticated credentials...');
         const success = await initializeAuthenticatedCredentials();
         if (!success) {
           console.log('🔄 Falling back to guest credentials...');
           initializeGuestCredentials();
+          if (!isCredentialsReady) setIsCredentialsReady(true);
         } else {
-          // After credentials are fetched, Identity Pool identity ID is now in sessionStorage.
-          // Update user.id to use identity ID so DynamoDB LeadingKeys policy matches.
+          dynamoDBService.reinitialize();
           const identityId = cognitoAuthService.getIdentityId();
           if (identityId) {
             setUser((prev: { id: string, username: string } | null) => prev ? { ...prev, id: identityId } : prev);
           }
-          setIsCredentialsReady(true);
+          if (!isCredentialsReady) setIsCredentialsReady(true);
+          else syncUserData(); // credentials were already ready, manually trigger sync
         }
       } else {
         // User is not authenticated, use guest credentials
@@ -534,7 +552,7 @@ export default function App() {
   useEffect(() => {
     if (!isCredentialsReady) return;
 
-    fetchStats();    // Then fetch live question counts from DynamoDB (slow)
+    syncUserData();    // Then fetch live question counts and user progress from DynamoDB
     // Load LOs from DB (with fallback to mockLOs)
     setLosLoading(true);
 
@@ -919,7 +937,11 @@ export default function App() {
     await loadStaticSubjects();
   };
 
-  const fetchStats = async () => {
+  /**
+   * Comprehensive sync of counts and user progress from DynamoDB.
+   * Hydrates localStorage and application state.
+   */
+  const syncUserData = async () => {
     try {
       if (isGuestMode) {
         const guestStats = loadGuestStats();
@@ -972,43 +994,83 @@ export default function App() {
             };
           });
         });
-      }
- else {
-        // Fetch question counts with source breakdown
+      } else {
+        // AUTHENTICATED MODE SYNC
+        const uid = user?.id;
+        if (!uid) return;
+
+        console.log(`📡 Starting data sync for user ${uid}...`);
+
+        // 1. Fetch Question Counts
         const countsResult = await dynamoDBService.getAllQuestionCounts();
-        
         let total: Record<number, number> = {};
         let userQuestions: Record<number, number> = {};
         let ai: Record<number, number> = {};
 
         if (countsResult.success && countsResult.data) {
           ({ total, user: userQuestions, ai } = countsResult.data);
+        }
+
+        // 2. Fetch User Profile (Progress & Settings)
+        const profileResult = await dynamoDBService.getUserProfileWithProgress(uid);
+        
+        if (profileResult.success && profileResult.data) {
+          const profile = profileResult.data;
+          
+          // Hydrate Answers Map
+          if (profile.progress) {
+            localStorage.setItem(`${uid}:answers`, JSON.stringify(profile.progress));
+          }
+
+          // Hydrate Settings
+          if (profile.settings) {
+            localStorage.setItem('drillSettings', JSON.stringify(profile.settings));
+            setDrillSettings(profile.settings);
+          }
+
+          // Compute Statistics
+          const allAnswers = profile.progress || {};
+          const practicedCount = Object.keys(allAnswers).length;
+          const correctCount = Object.values(allAnswers).filter((a: any) => a.isCorrect).length;
+          const successRate = practicedCount > 0 ? correctCount / practicedCount : 0;
+
+          const perSubject: Record<number, { correct: number; total: number }> = {};
+          for (const a of Object.values(allAnswers) as any[]) {
+            const sid = a.subjectId;
+            if (!sid) continue;
+            if (!perSubject[sid]) perSubject[sid] = { correct: 0, total: 0 };
+            perSubject[sid].total++;
+            if (a.isCorrect) perSubject[sid].correct++;
+          }
+
+          const subjectStats: { [subjectId: number]: { correctAnswers: number; totalAnswered: number } } = {};
+          SUBJECT_DEFS.forEach(s => {
+            subjectStats[s.id] = {
+              correctAnswers: perSubject[s.id] ? perSubject[s.id].correct : 0,
+              totalAnswered: perSubject[s.id] ? perSubject[s.id].total : 0
+            };
+          });
+
           const totalQ = Object.values(total).reduce((a, b) => a + b, 0);
           const userQ = Object.values(userQuestions).reduce((a, b) => a + b, 0);
           const aiQ = Object.values(ai).reduce((a, b) => a + b, 0);
 
-          const uid = user?.id || 'guest';
-          const savedStats = localStorage.getItem(`${uid}:user_stats`);
-          const baseStats = savedStats ? JSON.parse(savedStats) : {};
-          
-          setStats({
-            ...baseStats,
+          const newStats = {
             totalQuestions: totalQ,
             userQuestions: userQ,
             aiQuestions: aiQ,
-            practicedQuestions: baseStats.practicedQuestions || 0,
-            overallSuccess: baseStats.overallSuccess || 0,
-            subjectStats: baseStats.subjectStats || []
-          });
-        } else {
-          const uid = user?.id || 'guest';
-          const savedStats = localStorage.getItem(`${uid}:user_stats`);
-          if (savedStats) setStats(JSON.parse(savedStats));
+            practicedQuestions: practicedCount,
+            overallSuccess: successRate,
+            subjectStats
+          };
+
+          setStats(newStats);
+          localStorage.setItem(`${uid}:user_stats`, JSON.stringify(newStats));
         }
 
-        // ALWAYS update subjects row counts, even if live fetch fails (fallback to 0s or keep previous)
+        // 3. Update Subjects Row Counts
         setSubjects(prev => {
-          const newSubjects = SUBJECT_DEFS.map(s => {
+          return SUBJECT_DEFS.map(s => {
             const existing = prev.find(p => p.id === s.id);
             return {
               ...s,
@@ -1018,11 +1080,13 @@ export default function App() {
               success_rate: existing?.success_rate ?? 0.75
             };
           });
-          return newSubjects;
         });
-      }
 
-    } catch (err) { }
+        console.log(`✅ Data sync complete for ${uid}`);
+      }
+    } catch (err) {
+      console.error('❌ syncUserData failed:', err);
+    }
   };
 
   const toggleSourceFilter = (source: 'user' | 'ai') => {
@@ -2312,7 +2376,7 @@ V nastavení lze změnit defaultni model.`);
         message: `✅ Uloženo ${successful} otázek do DB${failed > 0 ? ` (${failed} selhalo)` : ''} pro ${batchResults.length} témat.`
       });
       setBatchResults([]);
-      await Promise.all([fetchSubjects(), fetchStats(), fetchCoverage(importSubjectId)]);
+      await Promise.all([fetchSubjects(), syncUserData(), fetchCoverage(importSubjectId)]);
     } catch (error: any) {
       setImportStatus({ type: 'error', message: `❌ Uložení selhalo: ${error.message}` });
     }
@@ -2578,7 +2642,7 @@ V nastavení lze změnit defaultni model.`);
             : `✅ Uloženo ${successful} otázek do DB${failed > 0 ? ` (${failed} selhalo)` : ''}.`
         });
         setImportJson('');
-        await Promise.all([fetchSubjects(), fetchStats()]);
+        await Promise.all([fetchSubjects(), syncUserData()]);
       } catch (error: any) {
         setImportStatus({ type: 'error', message: `❌ Uložení selhalo: ${error.message}` });
       }
@@ -4616,7 +4680,7 @@ V nastavení lze změnit defaultni model.`);
                                         }}
                                       >
                                         <p className="text-[10px] uppercase tracking-widest font-bold opacity-50 mb-1">Výsledky</p>
-                                        <p className="text-sm font-bold">🎯 Nalezeno {generatedLOs.length} chybějících LOs</p>
+                                        <p className="text-sm font-bold">Nalezeno {generatedLOs.length} chybějících LOs</p>
 
                                         <div className="mt-3 max-h-32 overflow-y-auto space-y-2">
                                           {generatedLOs.slice(0, 5).map((lo, index) => (
@@ -5307,7 +5371,7 @@ V nastavení lze změnit defaultni model.`);
 
             const syllabusTree = buildSyllabusTree(filteredLOs);
             const selectedLOData = syllabusSelectedLO ? allLOs.find(l => l.id === syllabusSelectedLO) : null;
-            const selectedLOQuestionCount = syllabusSelectedLO ? questions.filter(q => q.lo_id === syllabusSelectedLO).length : 0;
+            const selectedLOQuestionCount = syllabusLOQuestions.length;
             const selectedLOSubject = selectedLOData?.subject_id ? syllabusTree.find(s => s.subjectId === selectedLOData.subject_id) : null;
             const selectedLOTopic = selectedLOData ? selectedLOSubject?.topics.find(t => selectedLOData.id.startsWith(t.code + '.')) : null;
             const selectedLOSubtopic = selectedLOData ? selectedLOTopic?.subtopics.find(s => selectedLOData.id.startsWith(s.code + '.')) : null;
@@ -5560,13 +5624,30 @@ V nastavení lze změnit defaultni model.`);
                             <span className="text-xs opacity-50">otázek</span>
                           </div>
                           {selectedLOQuestionCount > 0 ? (
-                            <button
-                              onClick={() => startDrillForLO(selectedLOData.id)}
-                              className="w-full py-2.5 bg-indigo-600 text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2"
-                            >
-                              <ChevronRight size={12} />
-                              Procvičit toto téma ({selectedLOQuestionCount} otázek)
-                            </button>
+                            <>
+                              {syllabusLOQuestionsLoading ? (
+                                <div className="text-[10px] opacity-40 text-center py-2">Načítám otázky...</div>
+                              ) : (
+                                <div className="space-y-2 max-h-64 overflow-y-auto">
+                                  {syllabusLOQuestions.map((q) => (
+                                    <div
+                                      key={q.questionId || q.id}
+                                      onClick={() => setExpandedSyllabusQuestion(q)}
+                                      className="p-2.5 bg-[var(--line)]/10 rounded-xl border border-[var(--line)]/20 space-y-1.5 cursor-pointer hover:bg-indigo-500/5 hover:border-indigo-500/30 transition-all active:scale-[0.98]"
+                                    >
+                                      <p className="text-[10px] leading-snug font-medium">{q.text}</p>
+                                      <div className="space-y-0.5">
+                                        {(q.answers || q.options)?.map((a: string, ai: number) => (
+                                          <p key={ai} className={`text-[9px] leading-snug pl-2 ${ai === (q.correct_answer ?? q.correctAnswer) ? 'text-emerald-600 font-bold' : 'opacity-50'}`}>
+                                            {String.fromCharCode(65 + ai)}. {a}
+                                          </p>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </>
                           ) : (
                             // TODO: Implementovat později - generování otázek pro LO
                             /*
@@ -5657,7 +5738,7 @@ V nastavení lze změnit defaultni model.`);
 
                 // Mark credentials ready and fetch data
                 setIsCredentialsReady(true);
-                fetchStats();
+                syncUserData();
                 setLosLoading(true);
                 getAllLOs().then(los => {
                   if (los && los.length > 0) setAllLOs(los);
@@ -5751,6 +5832,83 @@ V nastavení lze změnit defaultni model.`);
                         Zavřít
                       </button>
                     </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+
+            {/* Expanded Syllabus Question Modal */}
+            {expandedSyllabusQuestion && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4"
+                onClick={() => setExpandedSyllabusQuestion(null)}
+              >
+                <motion.div
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.95, opacity: 0 }}
+                  className="glass-panel rounded-3xl p-8 max-w-xl w-full border-2 border-indigo-500/30 shadow-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3 text-indigo-600 dark:text-indigo-400">
+                      <Bot size={24} />
+                      <h2 className="text-xl font-bold uppercase tracking-widest">Detail otázky</h2>
+                    </div>
+                    <button
+                      onClick={() => setExpandedSyllabusQuestion(null)}
+                      className="p-2 rounded-full bg-indigo-500/10 text-indigo-600 hover:bg-indigo-500/20 transition-colors"
+                    >
+                      <X size={20} />
+                    </button>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className="p-6 bg-indigo-500/5 border border-indigo-500/20 rounded-2xl">
+                      <p className="text-lg font-bold leading-relaxed">
+                        {expandedSyllabusQuestion.text}
+                      </p>
+                    </div>
+
+                    <div className="space-y-3">
+                      {(expandedSyllabusQuestion.answers || expandedSyllabusQuestion.options)?.map((a: string, ai: number) => {
+                        const isCorrect = ai === (expandedSyllabusQuestion.correct_answer ?? expandedSyllabusQuestion.correctAnswer);
+                        return (
+                          <div
+                            key={ai}
+                            className={`p-4 rounded-xl border transition-all ${isCorrect
+                                ? 'bg-emerald-500/10 border-emerald-500/50 text-emerald-700'
+                                : 'bg-[var(--line)]/10 border-[var(--line)]/20 opacity-60'
+                              }`}
+                          >
+                            <div className="flex items-start gap-3">
+                              <span className="font-mono font-bold mt-0.5">{String.fromCharCode(65 + ai)}</span>
+                              <p className="text-sm font-medium">{a}</p>
+                              {isCorrect && <CheckCircle2 size={16} className="shrink-0 ml-auto" />}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {expandedSyllabusQuestion.explanation && (
+                      <div className="p-4 bg-amber-500/5 border border-amber-500/20 rounded-xl space-y-2">
+                        <p className="text-[10px] uppercase tracking-widest font-bold text-amber-600 flex items-center gap-2">
+                          <Bot size={12} /> Vysvětlení
+                        </p>
+                        <p className="text-xs leading-relaxed opacity-80">{expandedSyllabusQuestion.explanation}</p>
+                      </div>
+                    )}
+
+                    <button
+                      onClick={() => setExpandedSyllabusQuestion(null)}
+                      className="w-full py-4 rounded-2xl bg-[var(--ink)] text-[var(--bg)] font-bold uppercase tracking-widest hover:opacity-90 transition-all"
+                    >
+                      Zavřít detail
+                    </button>
                   </div>
                 </motion.div>
               </motion.div>

@@ -336,8 +336,12 @@ export class CognitoAuthService {
 
     try {
       const credentials: AWSCredentials = JSON.parse(cached);
+      // Restore expiration as Date object (JSON.parse returns string)
+      if (credentials.expiration) {
+        credentials.expiration = new Date(credentials.expiration);
+      }
       // Check if credentials are still valid
-      if (credentials.expiration && new Date(credentials.expiration) <= new Date()) {
+      if (credentials.expiration && credentials.expiration <= new Date()) {
         this.clearAWSCredentials();
         return null;
       }

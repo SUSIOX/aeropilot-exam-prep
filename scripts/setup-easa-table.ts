@@ -84,6 +84,7 @@ async function importLOs(docClient: DynamoDBDocumentClient) {
     context: lo.context,
     level: lo.level ?? 2,
     subjectId: lo.subject_id,
+    subject_id: lo.subject_id,
     appliesTo: lo.applies_to ?? ['PPL', 'SPL'],
     source: 'mock-import',
     version: '2021',

@@ -1,34 +1,34 @@
-<div align="center">
-  <h1>✈️ Aeropilot Exam Prep</h1>
-  <p><strong>EASA PPL Knowledge Test Preparation with AI</strong></p>
-  <p>Moderní aplikace pro přípravu na pilotní zkoušky s AI vysvětleními</p>
-</div>
+# Aeropilot Exam Prep
 
-## 🚀 Živá ukázka
+**EASA PPL Knowledge Test Preparation with AI**
+
+Moderní aplikace pro přípravu na pilotní zkoušky s AI vysvětleními.
+
+## Živá ukázka
 
 **GitHub Pages:** [https://vas-username.github.io/aeropilot-exam-prep/](https://vas-username.github.io/aeropilot-exam-prep/)
 
-## ✨ Funkce
+## Funkce
 
-### 🤖 AI Vysvětlení (Gemini + Claude)
+### AI Vysvětlení (Gemini + Claude)
 - **Technické analýzy** - strohý, přesný popis
 - **Lidská vysvětlení** - srozumitelné pro studenty
 - **Všechny modely** - včetně nejnovější Claude 4.6
 - **Ukládání odpovědí** - pro rychlé načítání
 
-### 📚 Learning Objectives
+### Learning Objectives
 - **Auto-detekce** - AI najde správné EASA LO
 - **Integrace s databází** - ukládá detekované témata
 - **Inteligentní kategorizace** - pro lepší organizaci
 
-### 🎯 Vlastnosti
+### Vlastnosti
 - **1000+ otázek** - z reálných EASA testů
 - **Vícejazyčný** - CZ/EN překlady
 - **Dark mode** - pro noční studium
 - **Responzivní** - mobilní, tablet, desktop
 - **Offline připraven** - localStorage cache
 
-## 🛠️ Lokální vývoj
+## Lokální vývoj
 
 **Prerequisites:** Node.js 20+
 
@@ -43,7 +43,7 @@ npm run dev
 npm run build
 ```
 
-## 🔑 AI API Klíče
+## AI API Klíče
 
 Pro plnou funkčnost potřebujete API klíče:
 
@@ -57,7 +57,7 @@ Pro plnou funkčnost potřebujete API klíče:
 2. Vytvořte API klíč
 3. Zadejte do aplikace
 
-## 📱 Nasazení
+## Nasazení
 
 ### GitHub Pages (doporučeno)
 1. Fork tohoto repository
@@ -74,14 +74,14 @@ npm install -g serve
 serve -s dist -l 3000
 ```
 
-## 🏗️ Architektura
+## Architektura
 
 - **Frontend:** React 19 + Vite + TailwindCSS
 - **AI:** Gemini SDK + Anthropic SDK
 - **Storage:** localStorage (statická verze)
 - **Deployment:** GitHub Pages
 
-## 📊 Podporované Modely
+## Podporované Modely
 
 ### Google Gemini
 - Gemini 3 Flash (rychlý)
@@ -95,7 +95,7 @@ serve -s dist -l 3000
 - Claude Opus 4 (výkonný)
 - Claude Haiku 4.5 (rychlý)
 
-## 🤝 Přispění
+## Přispění
 
 Vítáme pull requests! Hlavní oblasti:
 - Nové otázky a témata
@@ -103,13 +103,10 @@ Vítáme pull requests! Hlavní oblasti:
 - UI/UX vylepšení
 - Bug fixes
 
-## 📄 Licence
+## Licence
 
 MIT License - volné pro komerční i nekomerční použití
 
 ---
 
-<div align="center">
-  <p>Made with ❤️ for aviation enthusiasts</p>
-  <p><strong>Let's fly together! ✈️</strong></p>
-</div>
+Made with love for aviation enthusiasts.

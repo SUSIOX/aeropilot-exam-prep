@@ -68,12 +68,17 @@ export class DynamoDBService {
       return;
     }
 
-    // Check if we're in guest mode (no AWS credentials)
+    // Wait up to 5s for credentials to become available (handles async init on refresh)
+    for (let i = 0; i < 50; i++) {
+      if (isSecureCredentialsAvailable()) break;
+      await new Promise(r => setTimeout(r, 100));
+    }
+
     if (!isSecureCredentialsAvailable()) {
       throw new Error('Guest mode: AWS credentials not available. Using local storage only.');
     }
 
-    // Retry up to 50x with 100ms delay (5 seconds total) waiting for credentials
+    // Retry up to 50x with 100ms delay (5 seconds total) waiting for initialization
     for (let i = 0; i < 50; i++) {
       this.tryInitialize();
       if (this.isInitialized && this.client && this.docClient) {
@@ -631,18 +636,23 @@ export class DynamoDBService {
       });
 
       const result = await this.docClient.send(command);
-      console.log(`📡 getQuestionsBySubject(${subjectId}): Success, items: ${result.Items?.length || 0}`);
-
-      return {
-        success: true,
-        data: result.Items as any[] || []
-      };
-
+      return { success: true, data: result.Items as any[] || [] };
     } catch (error) {
-      return {
-        success: false,
-        error: this.handleError(error, 'getQuestionsBySubject').message
-      };
+      return { success: false, error: this.handleError(error, 'getQuestionsBySubject').message };
+    }
+  }
+
+  async getQuestionsByLO(loId: string): Promise<DynamoDBResponse<any[]>> {
+    try {
+      await this.ensureInitialized();
+      const result = await this.docClient.send(new DocScanCommand({
+        TableName: getTableName('QUESTIONS'),
+        FilterExpression: 'loId = :loId',
+        ExpressionAttributeValues: { ':loId': loId },
+      }));
+      return { success: true, data: result.Items as any[] || [] };
+    } catch (error) {
+      return { success: false, error: this.handleError(error, 'getQuestionsByLO').message };
     }
   }
 
@@ -991,6 +1001,35 @@ export class DynamoDBService {
       return {
         success: false,
         error: this.handleError(error, 'getUserProfile').message
+      };
+    }
+  }
+
+  /**
+   * Fetches full user profile including progress, signals, and settings.
+   * Useful for syncing state on refresh.
+   */
+  async getUserProfileWithProgress(userId: string): Promise<DynamoDBResponse & { data?: any }> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocGetCommand({
+        TableName: getTableName('USERS'),
+        Key: { userId }
+      });
+
+      const result = await this.docClient.send(command);
+      console.log(`📡 getUserProfileWithProgress(${userId}): Success, found: ${!!result.Item}`);
+
+      return {
+        success: true,
+        data: result.Item
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'getUserProfileWithProgress').message
       };
     }
   }

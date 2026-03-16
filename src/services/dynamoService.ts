@@ -336,6 +336,24 @@ export class DynamoDBService {
     }
   }
 
+  async deleteAllUserProgress(userId: string): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+      await this.docClient.send(new DocUpdateCommand({
+        TableName: getTableName('USERS'),
+        Key: { userId },
+        UpdateExpression: 'SET progress = :empty, updatedAt = :now',
+        ExpressionAttributeValues: {
+          ':empty': {},
+          ':now': new Date().toISOString()
+        }
+      }));
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: this.handleError(error, 'deleteAllUserProgress').message };
+    }
+  }
+
   // User Settings Operations
 
   async saveUserSettings(

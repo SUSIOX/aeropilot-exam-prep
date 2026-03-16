@@ -2429,21 +2429,18 @@ V nastavení lze změnit defaultni model.`);
     if (!confirm('Opravdu chcete smazat veškerý váš postup a historii testů? Tato akce je nevratná.')) return;
 
     try {
-      // For static deployment, clear progress from localStorage (user-specific)
       const uid = user?.id || 'guest';
       localStorage.removeItem(`${uid}:user_progress`);
       localStorage.removeItem(`${uid}:user_stats`);
       localStorage.removeItem(`${uid}:answers`);
       localStorage.removeItem(`${uid}:guest_stats`);
       localStorage.removeItem(`${uid}:session_start`);
-      // Clear API keys for current user only
-      localStorage.removeItem(`${uid}:userApiKey`);
-      localStorage.removeItem(`${uid}:claudeApiKey`);
-      setUserApiKey('');
-      setClaudeApiKey('');
-      setKeyStatus('idle');
 
-      // Reset stats to default
+      // Delete progress from DynamoDB for authenticated users
+      if (!isGuestMode && user?.id) {
+        await dynamoDBService.deleteAllUserProgress(String(user.id));
+      }
+
       setStats({
         totalAnswers: 0,
         correctAnswers: 0,
@@ -2451,12 +2448,13 @@ V nastavení lze změnit defaultni model.`);
         userQuestions: 0,
         aiQuestions: 1000,
         practicedQuestions: 0,
-        totalQuestions: 1000
+        totalQuestions: 1000,
+        subjectStats: {}
       });
 
       alert('Váš postup byl úspěšně smazán.');
     } catch (err) {
-      alert('Nepodařilo se spustit simulaci zkoušky.');
+      alert('Nepodařilo se smazat postup.');
     }
   };
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -5419,56 +5417,61 @@ V nastavení lze změnit defaultni model.`);
 
             return (
               <div className="fixed inset-0 z-[200] flex flex-col bg-[var(--bg)]" style={{ backdropFilter: 'blur(8px)' }}>
-                {/* Modal Header */}
-                <div className="border-b border-[var(--line)] px-6 py-4 flex items-center justify-between flex-shrink-0">
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-indigo-600 text-white rounded-xl flex items-center justify-center">
-                      <BookOpen size={20} />
+                {/* Modal Header — row 1: title + close, row 2: search + filter */}
+                <div className="border-b border-[var(--line)] flex-shrink-0">
+                  {/* Row 1 */}
+                  <div className="px-4 pt-3 pb-2 flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <div className="w-8 h-8 bg-indigo-600 text-white rounded-xl flex items-center justify-center flex-shrink-0">
+                        <BookOpen size={16} />
+                      </div>
+                      <div className="min-w-0">
+                        <h2 className="font-bold text-sm leading-tight truncate">EASA Syllabus Browser</h2>
+                        <p className="text-[9px] opacity-40 uppercase tracking-widest hidden sm:block">AMC/GM Part-FCL — Learning Objectives</p>
+                      </div>
                     </div>
-                    <div>
-                      <h2 className="font-bold text-xl">EASA Syllabus Browser</h2>
-                      <p className="text-[10px] opacity-50 uppercase tracking-widest">AMC/GM Part-FCL — Learning Objectives</p>
-                    </div>
+                    <button
+                      onClick={() => setSyllabusOpen(false)}
+                      className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[var(--line)] transition-colors flex-shrink-0"
+                    >
+                      <X size={18} />
+                    </button>
                   </div>
-                  <div className="flex items-center gap-3">
-                    {/* Search box */}
-                    <div className="relative">
-                      <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-30" />
+
+                  {/* Row 2: search + license filter */}
+                  <div className="px-4 pb-3 flex items-center gap-2">
+                    {/* Search box — full flex width */}
+                    <div className="relative flex-1">
+                      <Search size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 opacity-30" />
                       <input
                         type="text"
                         placeholder="Hledat v sylabu..."
                         value={syllabusSearch}
                         onChange={(e) => setSyllabusSearch(e.target.value)}
-                        className="pl-9 pr-4 py-1.5 bg-[var(--line)]/30 border border-[var(--line)] rounded-xl text-xs focus:outline-none focus:border-indigo-600 w-48 lg:w-64 transition-all"
+                        className="w-full pl-8 pr-7 py-1.5 bg-[var(--line)]/30 border border-[var(--line)] rounded-xl text-xs focus:outline-none focus:border-indigo-600 transition-all"
                       />
                       {syllabusSearch && (
                         <button
                           onClick={() => setSyllabusSearch('')}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-[var(--line)] rounded-full opacity-50 hover:opacity-100"
+                          className="absolute right-2 top-1/2 -translate-y-1/2 p-0.5 hover:bg-[var(--line)] rounded-full opacity-50 hover:opacity-100"
                         >
                           <X size={10} />
                         </button>
                       )}
                     </div>
 
-                    {/* License filter */}
-                    <div className="flex gap-1 border border-[var(--line)] rounded-xl p-1">
+                    {/* License filter pills — compact */}
+                    <div className="flex gap-0.5 border border-[var(--line)] rounded-xl p-0.5 flex-shrink-0">
                       {(['ALL', 'PPL', 'SPL'] as const).map(f => (
                         <button
                           key={f}
                           onClick={() => setSyllabusLicenseFilter(f)}
-                          className={`px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all ${syllabusLicenseFilter === f ? 'bg-indigo-600 text-white' : 'opacity-50 hover:opacity-80'}`}
+                          className={`px-2 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wide transition-all ${syllabusLicenseFilter === f ? 'bg-indigo-600 text-white' : 'opacity-50 hover:opacity-80'}`}
                         >
-                          {f === 'ALL' ? 'Vše' : f === 'PPL' ? 'PPL(A)' : 'SPL'}
+                          {f === 'ALL' ? 'Vše' : f}
                         </button>
                       ))}
                     </div>
-                    <button
-                      onClick={() => setSyllabusOpen(false)}
-                      className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[var(--line)] transition-colors"
-                    >
-                      <X size={20} />
-                    </button>
                   </div>
                 </div>
 
@@ -5979,15 +5982,7 @@ V nastavení lze změnit defaultni model.`);
                     <div className="h-1" />
                   </div>
 
-                  {/* Sticky footer button */}
-                  <div className="px-4 py-3 border-t border-[var(--line)]/20 flex-shrink-0">
-                    <button
-                      onClick={() => setExpandedSyllabusQuestion(null)}
-                      className="w-full py-3 rounded-xl bg-indigo-600 text-white text-[12px] font-bold uppercase tracking-widest hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/20 active:scale-[0.99]"
-                    >
-                      Rozumím
-                    </button>
-                  </div>
+
                 </motion.div>
               </motion.div>
             )}

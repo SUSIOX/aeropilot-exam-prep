@@ -31,6 +31,7 @@ import {
   X,
   ChevronLeft,
   Search,
+  Maximize2,
   BarChart3,
   Sun,
   Moon,
@@ -289,7 +290,8 @@ export default function App() {
           id: q.questionId || q.id,
           text: q.question || q.text,
           answers: q.answers || q.options || [],
-          correct_answer: q.correct !== undefined ? q.correct : (q.correct_answer ?? q.correctAnswer)
+          correct_answer: q.correct !== undefined ? q.correct : (q.correct_answer ?? q.correctAnswer),
+          _sourceLayoutId: `syllabus-q-${q.questionId || q.id}`
         }));
         setSyllabusLOQuestions(mapped);
       })
@@ -2191,6 +2193,28 @@ V nastavení lze změnit defaultni model.`);
     setShowExplanation(false);
     language.resetTranslation(); // Reset translation when opening from syllabus
     setView('drill');
+  };
+
+  const handlePreviewQuestionForLO = async (loId: string) => {
+    try {
+      const response = await dynamoDBService.getQuestionsByLO(loId);
+      if (response.success && response.data && response.data.length > 0) {
+        const q = response.data[0];
+        const mapped = {
+          ...q,
+          id: q.questionId || q.id,
+          text: q.question || q.text,
+          answers: q.answers || q.options || [],
+          correct_answer: q.correct !== undefined ? q.correct : (q.correct_answer ?? q.correctAnswer),
+          _sourceLayoutId: `syllabus-tree-lo-${loId}`
+        };
+        setExpandedSyllabusQuestion(mapped);
+      } else {
+        alert(`Pro téma ${loId} nebyly nalezeny žádné otázky.`);
+      }
+    } catch (error) {
+      console.error('Error fetching preview question:', error);
+    }
   };
 
   const handleAddDocumentLink = () => {
@@ -5546,12 +5570,13 @@ V nastavení lze změnit defaultni model.`);
                                                         <div className="flex items-center gap-1.5 flex-shrink-0">
                                                           {isCovered && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" title="Pokryto otázkami" />}
                                                           {qCount > 0 && <span className="text-[8px] font-mono opacity-40">{qCount}q</span>}
-                                                          <button
-                                                            onClick={(e) => { e.stopPropagation(); startDrillForLO(lo.id); }}
+                                                          <motion.button
+                                                            layoutId={`syllabus-tree-lo-${lo.id}`}
+                                                            onClick={(e) => { e.stopPropagation(); handlePreviewQuestionForLO(lo.id); }}
                                                             className="px-1.5 py-0.5 rounded border border-[var(--line)] text-[8px] font-bold uppercase tracking-widest hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all"
                                                           >
                                                             ▶
-                                                          </button>
+                                                          </motion.button>
                                                         </div>
                                                       </div>
                                                     );
@@ -5630,20 +5655,27 @@ V nastavení lze změnit defaultni model.`);
                               ) : (
                                 <div className="space-y-2 max-h-64 overflow-y-auto">
                                   {syllabusLOQuestions.map((q) => (
-                                    <div
+                                    <motion.div
                                       key={q.questionId || q.id}
+                                      layoutId={q._sourceLayoutId}
                                       onClick={() => setExpandedSyllabusQuestion(q)}
-                                      className="p-2.5 bg-[var(--line)]/10 rounded-xl border border-[var(--line)]/20 space-y-1.5 cursor-pointer hover:bg-indigo-500/5 hover:border-indigo-500/30 transition-all active:scale-[0.98]"
+                                      className="group p-3 bg-indigo-500/5 hover:bg-indigo-500/10 rounded-xl border border-indigo-500/10 hover:border-indigo-500/30 space-y-2 cursor-pointer transition-all active:scale-[0.98] relative"
                                     >
-                                      <p className="text-[10px] leading-snug font-medium">{q.text}</p>
-                                      <div className="space-y-0.5">
+                                      <div className="flex items-start justify-between gap-3">
+                                        <p className="text-xs leading-snug font-medium text-slate-700 dark:text-slate-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+                                          {q.text}
+                                        </p>
+                                        <Maximize2 size={12} className="shrink-0 mt-0.5 opacity-0 group-hover:opacity-40 transition-opacity text-indigo-600" />
+                                      </div>
+                                      
+                                      <div className="space-y-0.5 border-t border-indigo-500/5 pt-2">
                                         {(q.answers || q.options)?.map((a: string, ai: number) => (
-                                          <p key={ai} className={`text-[9px] leading-snug pl-2 ${ai === (q.correct_answer ?? q.correctAnswer) ? 'text-emerald-600 font-bold' : 'opacity-50'}`}>
+                                          <p key={ai} className={`text-[10px] leading-snug pl-2 ${ai === (q.correct_answer ?? q.correctAnswer) ? 'text-emerald-600 font-bold opacity-100' : 'opacity-40'}`}>
                                             {String.fromCharCode(65 + ai)}. {a}
                                           </p>
                                         ))}
                                       </div>
-                                    </div>
+                                    </motion.div>
                                   ))}
                                 </div>
                               )}
@@ -5843,51 +5875,58 @@ V nastavení lze změnit defaultni model.`);
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4"
+                className="fixed inset-0 bg-black/60 backdrop-blur-md z-[300] flex items-center justify-center p-4"
                 onClick={() => setExpandedSyllabusQuestion(null)}
               >
                 <motion.div
-                  initial={{ scale: 0.95, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.95, opacity: 0 }}
-                  className="glass-panel rounded-3xl p-8 max-w-xl w-full border-2 border-indigo-500/30 shadow-2xl"
+                  layoutId={expandedSyllabusQuestion._sourceLayoutId}
+                  className="glass-panel rounded-3xl p-8 max-w-xl w-full border-2 border-indigo-500/30 shadow-2xl relative overflow-hidden"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center justify-between mb-8">
                     <div className="flex items-center gap-3 text-indigo-600 dark:text-indigo-400">
-                      <Bot size={24} />
+                      <div className="p-2.5 rounded-xl bg-indigo-500/10">
+                        <GraduationCap size={24} />
+                      </div>
                       <h2 className="text-xl font-bold uppercase tracking-widest">Detail otázky</h2>
                     </div>
                     <button
                       onClick={() => setExpandedSyllabusQuestion(null)}
-                      className="p-2 rounded-full bg-indigo-500/10 text-indigo-600 hover:bg-indigo-500/20 transition-colors"
+                      className="p-2 rounded-full bg-slate-500/10 text-slate-500 hover:bg-slate-500/20 transition-colors"
                     >
                       <X size={20} />
                     </button>
                   </div>
 
-                  <div className="space-y-6">
-                    <div className="p-6 bg-indigo-500/5 border border-indigo-500/20 rounded-2xl">
-                      <p className="text-lg font-bold leading-relaxed">
-                        {expandedSyllabusQuestion.text}
+                  <div className="space-y-8">
+                    <div className="p-6 bg-slate-500/5 border border-slate-500/10 rounded-2xl">
+                      <p className="text-xl font-bold leading-relaxed text-slate-800 dark:text-slate-100 italic">
+                        "{expandedSyllabusQuestion.text}"
                       </p>
                     </div>
 
                     <div className="space-y-3">
+                      <p className="text-[10px] uppercase tracking-widest font-bold opacity-40 ml-1">Možnosti odpovědi</p>
                       {(expandedSyllabusQuestion.answers || expandedSyllabusQuestion.options)?.map((a: string, ai: number) => {
                         const isCorrect = ai === (expandedSyllabusQuestion.correct_answer ?? expandedSyllabusQuestion.correctAnswer);
                         return (
                           <div
                             key={ai}
-                            className={`p-4 rounded-xl border transition-all ${isCorrect
-                                ? 'bg-emerald-500/10 border-emerald-500/50 text-emerald-700'
-                                : 'bg-[var(--line)]/10 border-[var(--line)]/20 opacity-60'
+                            className={`p-5 rounded-2xl border transition-all ${isCorrect
+                                ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-700 dark:text-emerald-400 ring-1 ring-emerald-500/20'
+                                : 'bg-slate-500/5 border-slate-500/10 opacity-60'
                               }`}
                           >
-                            <div className="flex items-start gap-3">
-                              <span className="font-mono font-bold mt-0.5">{String.fromCharCode(65 + ai)}</span>
-                              <p className="text-sm font-medium">{a}</p>
-                              {isCorrect && <CheckCircle2 size={16} className="shrink-0 ml-auto" />}
+                            <div className="flex items-start gap-4">
+                              <span className={`w-6 h-6 rounded-lg flex items-center justify-center text-xs font-bold leading-none shrink-0 ${isCorrect ? 'bg-emerald-500 text-white' : 'bg-slate-200 dark:bg-slate-700 opacity-60'}`}>
+                                {String.fromCharCode(65 + ai)}
+                              </span>
+                              <p className="text-base font-medium pt-0.5">{a}</p>
+                              {isCorrect && (
+                                <div className="ml-auto p-1 rounded-full bg-emerald-500 text-white">
+                                  <CheckCircle2 size={14} />
+                                </div>
+                              )}
                             </div>
                           </div>
                         );
@@ -5895,19 +5934,21 @@ V nastavení lze změnit defaultni model.`);
                     </div>
 
                     {expandedSyllabusQuestion.explanation && (
-                      <div className="p-4 bg-amber-500/5 border border-amber-500/20 rounded-xl space-y-2">
+                      <div className="p-5 bg-amber-500/10 border border-amber-500/30 rounded-2xl space-y-2">
                         <p className="text-[10px] uppercase tracking-widest font-bold text-amber-600 flex items-center gap-2">
-                          <Bot size={12} /> Vysvětlení
+                          <Bot size={14} /> Vysvětlení AI
                         </p>
-                        <p className="text-xs leading-relaxed opacity-80">{expandedSyllabusQuestion.explanation}</p>
+                        <p className="text-sm leading-relaxed opacity-90 text-amber-900 dark:text-amber-100">
+                          {expandedSyllabusQuestion.explanation}
+                        </p>
                       </div>
                     )}
 
                     <button
                       onClick={() => setExpandedSyllabusQuestion(null)}
-                      className="w-full py-4 rounded-2xl bg-[var(--ink)] text-[var(--bg)] font-bold uppercase tracking-widest hover:opacity-90 transition-all"
+                      className="w-full py-4 rounded-2xl bg-indigo-600 text-white font-bold uppercase tracking-widest hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/20 active:scale-[0.99]"
                     >
-                      Zavřít detail
+                      Rozumím
                     </button>
                   </div>
                 </motion.div>

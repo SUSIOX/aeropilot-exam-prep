@@ -31,20 +31,21 @@ export class SecureCredentialsManager {
     const config = getCognitoConfig();
     this.config = config;
 
-    // Get AWS credentials from authenticated user
-    const awsCredentials = await cognitoAuthService.getValidAWSCredentials();
-
-    if (!awsCredentials) {
-      throw new Error('No valid AWS credentials available. User must be authenticated.');
-    }
-
-    // Initialize DynamoDB clients with authenticated credentials
+    // Initialize DynamoDB clients with a credentials provider function
+    // This allows the SDK to fetch fresh credentials (and refresh tokens) automatically
     this.dynamoClient = new DynamoDBClient({
       region: config.region,
-      credentials: {
-        accessKeyId: awsCredentials.accessKeyId,
-        secretAccessKey: awsCredentials.secretAccessKey,
-        sessionToken: awsCredentials.sessionToken
+      credentials: async () => {
+        const awsCredentials = await cognitoAuthService.getValidAWSCredentials();
+        if (!awsCredentials) {
+          throw new Error('No valid AWS credentials available. User must be authenticated.');
+        }
+        return {
+          accessKeyId: awsCredentials.accessKeyId,
+          secretAccessKey: awsCredentials.secretAccessKey,
+          sessionToken: awsCredentials.sessionToken,
+          expiration: awsCredentials.expiration
+        };
       }
     });
 
@@ -64,7 +65,7 @@ export class SecureCredentialsManager {
         // For unauthenticated access, don't pass logins
       });
 
-      // Initialize DynamoDB clients with guest credentials
+      // Initialize DynamoDB clients with guest credentials provider
       this.dynamoClient = new DynamoDBClient({
         region: config.region,
         credentials

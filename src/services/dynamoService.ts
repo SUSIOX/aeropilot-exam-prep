@@ -77,8 +77,10 @@ export class DynamoDBService {
     for (let i = 0; i < 50; i++) {
       this.tryInitialize();
       if (this.isInitialized && this.client && this.docClient) {
+        if (i > 0) console.log(`✅ DynamoDB initialized after ${i * 100}ms delay`);
         return;
       }
+      if (i === 0) console.log('⏳ Waiting for AWS credentials to be ready for DynamoDB...');
       await new Promise(r => setTimeout(r, 100));
     }
 
@@ -87,6 +89,14 @@ export class DynamoDBService {
 
   // Generic error handler
   private handleError(error: any, operation: string): DynamoDBError {
+    // Suppress expected guest mode errors to avoid console spam
+    if (error.message && error.message.includes('Guest mode: AWS credentials not available')) {
+      // Create silent error
+      const silentError: DynamoDBError = new Error(error.message);
+      silentError.code = DynamoDBErrorCode.VALIDATION_EXCEPTION;
+      return silentError;
+    }
+    
     console.error(`DynamoDB ${operation} error:`, error);
     
     const dynamoError = createDynamoDBError(error);
@@ -114,23 +124,27 @@ export class DynamoDBService {
       await this.ensureInitialized();
 
       const command = new DocGetCommand({
-        TableName: getTableName('AI_EXPLANATIONS'),
-        Key: {
-          questionId,
-          model
-        }
+        TableName: getTableName('QUESTIONS'),
+        Key: { questionId },
+        ProjectionExpression: 'ai_explanation, ai_detailed_explanation, ai_explanation_provider, ai_explanation_model, ai_explanation_updated_at'
       });
 
       const result = await this.docClient.send(command);
+      const item = result.Item;
 
-      if (result.Item) {
-        // Update usage count
-        await this.updateExplanationUsage(questionId, model);
-        
+      if (item && item.ai_explanation && item.ai_explanation_model === model) {
         return {
           success: true,
-          data: result.Item as ExplanationItem,
-          consumedCapacity: result.ConsumedCapacity?.CapacityUnits
+          data: {
+            questionId,
+            model: item.ai_explanation_model,
+            explanation: item.ai_explanation,
+            detailedExplanation: item.ai_detailed_explanation,
+            provider: item.ai_explanation_provider as any,
+            usageCount: 1, // Simplified
+            createdAt: item.ai_explanation_updated_at,
+            lastUsed: item.ai_explanation_updated_at
+          }
         };
       }
 
@@ -153,26 +167,22 @@ export class DynamoDBService {
   ): Promise<DynamoDBResponse> {
     try {
       await this.ensureInitialized();
-
       const now = new Date().toISOString();
-      const item = {
-        questionId,
-        model,
-        explanation,
-        ...(detailedExplanation ? { detailedExplanation } : {}),
-        provider,
-        usageCount: 1,
-        createdAt: now,
-        lastUsed: now
-      };
 
-      const command = new DocPutCommand({
-        TableName: getTableName('AI_EXPLANATIONS'),
-        Item: item
+      const command = new DocUpdateCommand({
+        TableName: getTableName('QUESTIONS'),
+        Key: { questionId },
+        UpdateExpression: 'SET ai_explanation = :exp, ai_detailed_explanation = :dexp, ai_explanation_provider = :prov, ai_explanation_model = :mod, ai_explanation_updated_at = :now, updatedAt = :now',
+        ExpressionAttributeValues: {
+          ':exp': explanation,
+          ':dexp': detailedExplanation,
+          ':prov': provider,
+          ':mod': model,
+          ':now': now
+        }
       });
 
       await this.docClient.send(command);
-
       return { success: true };
 
     } catch (error) {
@@ -183,58 +193,6 @@ export class DynamoDBService {
     }
   }
 
-  private async updateExplanationUsage(questionId: string, model: string): Promise<void> {
-    try {
-      const command = new DocUpdateCommand({
-        TableName: getTableName('AI_EXPLANATIONS'),
-        Key: { questionId, model },
-        UpdateExpression: 'ADD usageCount :inc SET lastUsed = :now',
-        ExpressionAttributeValues: {
-          ':inc': 1,
-          ':now': new Date().toISOString()
-        }
-      });
-
-      await this.docClient.send(command);
-    } catch (error) {
-      console.warn('Failed to update explanation usage:', error);
-    }
-  }
-
-  private async updateExplanation(
-    questionId: string,
-    explanation: string,
-    detailedExplanation: string | null,
-    provider: 'gemini' | 'claude',
-    model: string
-  ): Promise<DynamoDBResponse> {
-    try {
-      const command = new DocUpdateCommand({
-        TableName: getTableName('AI_EXPLANATIONS'),
-        Key: { questionId, model },
-        UpdateExpression: 'SET explanation = :exp, detailedExplanation = :detail, provider = :prov, lastUsed = :now',
-        ExpressionAttributeValues: {
-          ':exp': explanation,
-          ':detail': detailedExplanation,
-          ':prov': provider,
-          ':now': new Date().toISOString()
-        }
-      });
-
-      const result = await this.docClient.send(command);
-
-      return {
-        success: true,
-        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
-      };
-
-    } catch (error) {
-      return {
-        success: false,
-        error: this.handleError(error, 'updateExplanation').message
-      };
-    }
-  }
 
   // Learning Objectives Cache Operations
 
@@ -314,12 +272,51 @@ export class DynamoDBService {
         attempts
       };
 
-      const command = new DocPutCommand({
-        TableName: getTableName('USER_PROGRESS'),
-        Item: item
+      // This method shouldn't be used directly like this after consolidation, 
+      // but if called, map it to the user's progress sub-object.
+      const command = new DocUpdateCommand({
+        TableName: getTableName('USERS'),
+        Key: { userId },
+        UpdateExpression: 'SET progress.#qid = :prog, updatedAt = :now',
+        ExpressionAttributeNames: {
+          '#qid': questionId
+        },
+        ExpressionAttributeValues: {
+          ':prog': {
+            isCorrect,
+            answerTimestamp: new Date().toISOString(),
+            attempts
+          },
+          ':now': new Date().toISOString()
+        }
       });
 
-      const result = await this.docClient.send(command);
+      let result;
+      try {
+        result = await this.docClient.send(command);
+      } catch (error: any) {
+        // If the item doesn't exist OR the progress map doesn't exist yet
+        if (
+          error.name === 'ConditionalCheckFailedException' || 
+          (error.name === 'ValidationException' && (error.message.includes('document path') || error.message.includes('nested')))
+        ) {
+          // Ensure the item exists AND has a progress map
+          await this.docClient.send(new DocUpdateCommand({
+            TableName: getTableName('USERS'),
+            Key: { userId },
+            UpdateExpression: 'SET progress = if_not_exists(progress, :emptyMap), updatedAt = if_not_exists(updatedAt, :now)',
+            ExpressionAttributeValues: { 
+              ':emptyMap': {},
+              ':now': new Date().toISOString()
+            }
+          }));
+          // Retry the original update
+          console.log(`🔄 Retrying saveUserProgress after initializing user item for ${userId}`);
+          result = await this.docClient.send(command);
+        } else {
+          throw error;
+        }
+      }
 
       return {
         success: true,
@@ -408,45 +405,80 @@ export class DynamoDBService {
 
   // Question Flags Operations
 
-  async toggleQuestionFlag(questionId: string, isFlagged: boolean, flagReason?: string): Promise<DynamoDBResponse> {
+  async toggleQuestionFlag(userId: string, questionId: string, isFlagged: boolean, flagReason?: string): Promise<DynamoDBResponse> {
     try {
       await this.ensureInitialized();
+      const now = new Date().toISOString();
+
+      let updateExpr: string;
+      let attrNames: any = { '#qid': questionId };
+      let attrValues: any = { ':updatedAt': now };
 
       if (isFlagged) {
-        const item: QuestionFlagItem = {
-          questionId,
+        updateExpr = 'SET flags.#qid = :flag, updatedAt = :updatedAt';
+        attrValues[':flag'] = {
           isFlagged: true,
-          flaggedAt: new Date().toISOString(),
+          flaggedAt: now,
           flagReason
         };
-
-        const command = new DocPutCommand({
-          TableName: getTableName('QUESTION_FLAGS'),
-          Item: item
-        });
-
-        const result = await this.docClient.send(command);
-
-        return {
-          success: true,
-          consumedCapacity: result.ConsumedCapacity?.CapacityUnits
-        };
       } else {
-        // Remove the flag
-        const command = new DocDeleteCommand({
-          TableName: getTableName('QUESTION_FLAGS'),
-          Key: { questionId }
-        });
-
-        const result = await this.docClient.send(command);
-
-        return {
-          success: true,
-          consumedCapacity: result.ConsumedCapacity?.CapacityUnits
-        };
+        updateExpr = 'REMOVE flags.#qid SET updatedAt = :updatedAt';
       }
 
-    } catch (error) {
+      const command = new DocUpdateCommand({
+        TableName: getTableName('USERS'),
+        Key: { userId },
+        UpdateExpression: updateExpr,
+        ExpressionAttributeNames: attrNames,
+        ExpressionAttributeValues: attrValues,
+        ConditionExpression: 'attribute_exists(userId)'
+      });
+
+      let result;
+      try {
+        result = await this.docClient.send(command);
+      } catch (error: any) {
+        // If the flags map doesn't exist yet, we get a ValidationException about the document path
+        if (error.name === 'ValidationException' && error.message.includes('document path')) {
+          // Initialize the flags map
+          await this.docClient.send(new DocUpdateCommand({
+            TableName: getTableName('USERS'),
+            Key: { userId },
+            UpdateExpression: 'SET flags = if_not_exists(flags, :emptyMap)',
+            ExpressionAttributeValues: { ':emptyMap': {} }
+          }));
+          // Retry the original update
+          result = await this.docClient.send(command);
+        } else {
+          throw error;
+        }
+      }
+
+      return { success: true, consumedCapacity: result.ConsumedCapacity?.CapacityUnits };
+
+    } catch (error: any) {
+      if (error.name === 'ConditionalCheckFailedException') {
+        // This means the user doesn't exist, so we create a new user record with the flag
+        const now = new Date().toISOString();
+        const item = {
+          userId,
+          flags: isFlagged ? {
+            [questionId]: {
+              isFlagged: true,
+              flaggedAt: now,
+              flagReason
+            }
+          } : {},
+          updatedAt: now,
+          createdAt: now
+        };
+        const putCmd = new DocPutCommand({
+          TableName: getTableName('USERS'),
+          Item: item
+        });
+        await this.docClient.send(putCmd);
+        return { success: true };
+      }
       return {
         success: false,
         error: this.handleError(error, 'toggleQuestionFlag').message
@@ -454,27 +486,32 @@ export class DynamoDBService {
     }
   }
 
-  async getQuestionFlag(questionId: string): Promise<DynamoDBResponse<QuestionFlagItem>> {
+  async getQuestionFlags(userId: string): Promise<DynamoDBResponse<{ flags?: Record<string, { isFlagged: boolean; flaggedAt: string; flagReason?: string }> }>> {
     try {
+      if (!isSecureCredentialsAvailable()) {
+        return { success: true };
+      }
+
       await this.ensureInitialized();
 
       const command = new DocGetCommand({
-        TableName: getTableName('QUESTION_FLAGS'),
-        Key: { questionId }
+        TableName: getTableName('USERS'),
+        Key: { userId },
+        ProjectionExpression: 'flags'
       });
 
       const result = await this.docClient.send(command);
 
       return {
         success: true,
-        data: result.Item as QuestionFlagItem,
+        data: result.Item as any,
         consumedCapacity: result.ConsumedCapacity?.CapacityUnits
       };
 
     } catch (error) {
       return {
         success: false,
-        error: this.handleError(error, 'getQuestionFlag').message
+        error: this.handleError(error, 'getQuestionFlags').message
       };
     }
   }
@@ -482,60 +519,17 @@ export class DynamoDBService {
   // Cache Statistics
 
   async getCacheStats(): Promise<DynamoDBResponse<CacheStats>> {
-    try {
-      await this.ensureInitialized();
-
-      // For simplicity, we'll do basic counts. In production, you might want
-      // to use DynamoDB streams or CloudWatch for better performance
-      const stats: CacheStats = {
+    return {
+      success: true,
+      data: {
         explanations: 0,
         objectives: 0,
         userProgress: 0,
         flags: 0,
         totalUsage: 0,
         storageSize: 0
-      };
-
-      // Count explanations (simplified - would use scan in production)
-      const explanationsCommand = new DocQueryCommand({
-        TableName: getTableName('AI_EXPLANATIONS'),
-        Select: 'COUNT'
-      });
-
-      const explanationsResult = await this.docClient.send(explanationsCommand);
-      stats.explanations = explanationsResult.Count || 0;
-
-      // Count cached objectives (q_ prefixed records in EASA_OBJECTIVES)
-      const objectivesCommand = new DocScanCommand({
-        TableName: getTableName('EASA_OBJECTIVES'),
-        Select: 'COUNT',
-        FilterExpression: 'begins_with(loId, :prefix)',
-        ExpressionAttributeValues: { ':prefix': 'q_' }
-      });
-
-      const objectivesResult = await this.docClient.send(objectivesCommand);
-      stats.objectives = objectivesResult.Count || 0;
-
-      // Count flags
-      const flagsCommand = new DocQueryCommand({
-        TableName: getTableName('QUESTION_FLAGS'),
-        Select: 'COUNT'
-      });
-
-      const flagsResult = await this.docClient.send(flagsCommand);
-      stats.flags = flagsResult.Count || 0;
-
-      return {
-        success: true,
-        data: stats
-      };
-
-    } catch (error) {
-      return {
-        success: false,
-        error: this.handleError(error, 'getCacheStats').message
-      };
-    }
+      }
+    };
   }
 
   // Health check
@@ -545,7 +539,7 @@ export class DynamoDBService {
 
       // Simple health check - try to get a non-existent item
       const command = new DocGetCommand({
-        TableName: getTableName('AI_EXPLANATIONS'),
+        TableName: getTableName('QUESTIONS'),
         Key: { questionId: 'health-check', model: 'test' }
       });
 
@@ -585,19 +579,10 @@ export class DynamoDBService {
     ai: Record<number, number>;
   }>> {
     try {
-      // Check if we're in guest mode
-      if (!isSecureCredentialsAvailable()) {
-        console.log('Guest mode: returning empty question counts');
-        return {
-          success: true,
-          data: { total: {}, user: {}, ai: {} }
-        };
-      }
-
       await this.ensureInitialized();
 
       const command = new DocScanCommand({
-        TableName: 'aeropilot-questions'
+        TableName: getTableName('QUESTIONS')
       });
 
       const result = await this.docClient.send(command);
@@ -605,9 +590,17 @@ export class DynamoDBService {
       const user: Record<number, number> = {};
       const ai: Record<number, number> = {};
 
-      for (const item of result.Items || []) {
-        const sid = item.subjectId as number;
-        const src = item.source as string || 'user'; // Missing source = user
+      if (!result.Items || result.Items.length === 0) {
+        console.log('📡 getAllQuestionCounts: No questions found in DynamoDB');
+        return { success: true, data: { total, user, ai } };
+      }
+
+      for (const item of result.Items) {
+        // Ensure subjectId is treated as number
+        const sid = Number(item.subjectId);
+        if (isNaN(sid)) continue;
+
+        const src = item.source as string || 'user';
         total[sid] = (total[sid] || 0) + 1;
         if (src === 'ai') {
           ai[sid] = (ai[sid] || 0) + 1;
@@ -616,6 +609,7 @@ export class DynamoDBService {
         }
       }
 
+      console.log(`📡 getAllQuestionCounts: Success, counted ${result.Items.length} questions across ${Object.keys(total).length} subjects`);
       return { success: true, data: { total, user, ai } };
 
     } catch (error) {
@@ -637,6 +631,7 @@ export class DynamoDBService {
       });
 
       const result = await this.docClient.send(command);
+      console.log(`📡 getQuestionsBySubject(${subjectId}): Success, items: ${result.Items?.length || 0}`);
 
       return {
         success: true,
@@ -656,7 +651,7 @@ export class DynamoDBService {
       await this.ensureInitialized();
 
       const command = new DocScanCommand({
-        TableName: 'aeropilot-questions'
+        TableName: getTableName('QUESTIONS')
       });
 
       const result = await this.docClient.send(command);
@@ -718,6 +713,33 @@ export class DynamoDBService {
       return { success: true };
     } catch (error) {
       return { success: false, error: this.handleError(error, 'deleteQuestion').message };
+    }
+  }
+
+  async approveQuestion(
+    questionId: string,
+    approved: boolean,
+    approvedBy: string
+  ): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+      const now = new Date().toISOString();
+
+      await this.docClient.send(new DocUpdateCommand({
+        TableName: getTableName('QUESTIONS'),
+        Key: { questionId },
+        UpdateExpression: 'SET approved = :approved, approvedBy = :approvedBy, approvedAt = :approvedAt, updatedAt = :now',
+        ExpressionAttributeValues: {
+          ':approved': approved,
+          ':approvedBy': approved ? approvedBy : null,
+          ':approvedAt': approved ? now : null,
+          ':now': now,
+        },
+      }));
+
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: this.handleError(error, 'approveQuestion').message };
     }
   }
 
@@ -847,45 +869,7 @@ export class DynamoDBService {
   }
 
   // Bulk-link questions to EasaObjectives based on their existing loId field
-  async syncQuestionLOs(questionIds: string[]): Promise<DynamoDBResponse<{ linked: number; skipped: number }>> {
-    try {
-      await this.ensureInitialized();
 
-      let linked = 0;
-      let skipped = 0;
-
-      for (const questionId of questionIds) {
-        const qCmd = new DocGetCommand({
-          TableName: getTableName('QUESTIONS'),
-          Key: { questionId }
-        });
-        const qResult = await this.docClient.send(qCmd);
-        const question = qResult.Item;
-
-        if (!question?.loId) { skipped++; continue; }
-
-        // Verify the EasaObjective exists
-        const loCmd = new DocGetCommand({
-          TableName: getTableName('EASA_OBJECTIVES'),
-          Key: { loId: question.loId }
-        });
-        const loResult = await this.docClient.send(loCmd);
-
-        if (loResult.Item) {
-          // Link via QuestionObjectives table
-          await this.linkQuestionToLO(questionId, question.loId, 1.0, 'sync');
-          linked++;
-        } else {
-          skipped++;
-        }
-      }
-
-      return { success: true, data: { linked, skipped } };
-
-    } catch (error) {
-      return { success: false, error: this.handleError(error, 'syncQuestionLOs').message };
-    }
-  }
 
   // User Profile Operations
   async saveUserProfile(username: string, password?: string): Promise<DynamoDBResponse> {
@@ -929,19 +913,19 @@ export class DynamoDBService {
     try {
       await this.ensureInitialized();
 
-      const item = {
-        userId: userData.userId, // Cognito UUID
-        username: userData.username, // cognito:username
-        email: userData.email,
-        authProvider: 'cognito',
-        createdAt: new Date().toISOString(),
-        lastLoginAt: new Date().toISOString()
-      };
+      const now = new Date().toISOString();
 
-      const command = new DocPutCommand({
+      const command = new DocUpdateCommand({
         TableName: getTableName('USERS'),
-        Item: item,
-        ConditionExpression: 'attribute_not_exists(userId)' // Only create if doesn't exist
+        Key: { userId: userData.userId },
+        UpdateExpression: 'SET username = if_not_exists(username, :username), email = if_not_exists(email, :email), authProvider = if_not_exists(authProvider, :authProvider), createdAt = if_not_exists(createdAt, :createdAt), lastLoginAt = :lastLoginAt',
+        ExpressionAttributeValues: {
+          ':username': userData.username,
+          ':email': userData.email || null,
+          ':authProvider': 'cognito',
+          ':createdAt': now,
+          ':lastLoginAt': now
+        }
       });
 
       await this.docClient!.send(command);
@@ -951,10 +935,6 @@ export class DynamoDBService {
       };
 
     } catch (error: any) {
-      if (error.name === 'ConditionalCheckFailedException') {
-        // User already exists - just update last login
-        return this.updateUserLastLogin(userData.userId);
-      }
       return {
         success: false,
         error: this.handleError(error, 'saveCognitoUserProfile').message
@@ -1151,15 +1131,6 @@ export class DynamoDBService {
 
   async getAllLOs(): Promise<DynamoDBResponse<LOItem[]>> {
     try {
-      // Check if we're in guest mode
-      if (!isSecureCredentialsAvailable()) {
-        console.log('Guest mode: returning empty LOs');
-        return {
-          success: true,
-          data: []
-        };
-      }
-
       await this.ensureInitialized();
 
       const command = new DocScanCommand({
@@ -1167,6 +1138,7 @@ export class DynamoDBService {
       });
 
       const result = await this.docClient.send(command);
+      console.log(`📡 getAllLOs: Success, fetched ${result.Items?.length || 0} LOs`);
 
       return {
         success: true,
@@ -1223,23 +1195,11 @@ export class DynamoDBService {
       const now = new Date().toISOString();
       const results = { explanationSaved: false, loLinked: false };
 
-      // 1. Save AI explanation cache
-      const explanationItem = {
-        questionId,
-        model,
-        explanation,
-        ...(detailedExplanation && { detailedExplanation }),
-        provider,
-        usageCount: 1,
-        createdAt: now,
-        lastUsed: now
-      };
-
-      await this.docClient.send(new DocPutCommand({
-        TableName: getTableName('AI_EXPLANATIONS'),
-        Item: explanationItem
-      }));
-      results.explanationSaved = true;
+      // 1. Save AI explanation cache using the correct update method
+      const saveResult = await this.saveExplanation(questionId, explanation, detailedExplanation, provider, model);
+      if (saveResult.success) {
+        results.explanationSaved = true;
+      }
 
       // 2. If loId provided, link question → EasaObjective in both places
       if (loId) {
@@ -1270,9 +1230,10 @@ export class DynamoDBService {
     try {
       await this.ensureInitialized();
 
-      const command = new DocDeleteCommand({
-        TableName: getTableName('AI_EXPLANATIONS'),
-        Key: { questionId, model }
+      const command = new DocUpdateCommand({
+        TableName: getTableName('QUESTIONS'),
+        Key: { questionId },
+        UpdateExpression: 'REMOVE ai_explanation, ai_detailed_explanation, ai_explanation_provider, ai_explanation_model, ai_explanation_updated_at'
       });
 
       await this.docClient.send(command);
@@ -1298,18 +1259,15 @@ export class DynamoDBService {
       await this.ensureInitialized();
 
       const now = new Date().toISOString();
-      const item = {
-        questionId,
-        loId,
-        confidence,
-        matchedBy,
-        createdAt: now,
-        updatedAt: now
-      };
-
-      const command = new DocPutCommand({
-        TableName: getTableName('QUESTION_OBJECTIVES'),
-        Item: item
+      const command = new DocUpdateCommand({
+        TableName: getTableName('QUESTIONS'),
+        Key: { questionId },
+        UpdateExpression: 'SET loId = :loId, loConfidence = :conf, updatedAt = :now',
+        ExpressionAttributeValues: {
+          ':loId': loId,
+          ':conf': confidence,
+          ':now': now
+        }
       });
 
       await this.docClient.send(command);
@@ -1324,57 +1282,9 @@ export class DynamoDBService {
     }
   }
 
-  async getQuestionLOs(questionId: string): Promise<DynamoDBResponse<QuestionObjective[]>> {
-    try {
-      await this.ensureInitialized();
 
-      const command = new DocQueryCommand({
-        TableName: getTableName('QUESTION_OBJECTIVES'),
-        KeyConditionExpression: 'questionId = :qid',
-        ExpressionAttributeValues: { ':qid': questionId }
-      });
 
-      const result = await this.docClient.send(command);
 
-      return {
-        success: true,
-        data: result.Items as QuestionObjective[] || [],
-        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
-      };
-
-    } catch (error) {
-      return {
-        success: false,
-        error: this.handleError(error, 'getQuestionLOs').message
-      };
-    }
-  }
-
-  async getLOQuestions(loId: string): Promise<DynamoDBResponse<QuestionObjective[]>> {
-    try {
-      await this.ensureInitialized();
-
-      const command = new DocScanCommand({
-        TableName: getTableName('QUESTION_OBJECTIVES'),
-        FilterExpression: 'loId = :loid',
-        ExpressionAttributeValues: { ':loid': loId }
-      });
-
-      const result = await this.docClient.send(command);
-
-      return {
-        success: true,
-        data: result.Items as QuestionObjective[] || [],
-        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
-      };
-
-    } catch (error) {
-      return {
-        success: false,
-        error: this.handleError(error, 'getLOQuestions').message
-      };
-    }
-  }
 }
 
 // Singleton instance

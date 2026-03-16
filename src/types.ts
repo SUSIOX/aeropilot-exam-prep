@@ -27,6 +27,10 @@ export interface Question {
   difficulty: number;
   image: string | null;
   lo_id?: string;
+  loId?: string;
+  isVerified?: boolean;
+  verifiedBy?: string;
+  verifiedAt?: string;
   correct_count: number | null;
   incorrect_count: number | null;
   is_flagged: boolean;
@@ -39,6 +43,9 @@ export interface Question {
   ai_explanation_model?: string;
   ai_explanation_updated_at?: string;
   metadata?: { applies_to: string[]; license_note?: string | null };
+  approved?: boolean;
+  approvedBy?: string;
+  approvedAt?: string;
 }
 
 export interface Stats {

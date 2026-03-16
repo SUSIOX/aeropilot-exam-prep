@@ -167,11 +167,17 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
       // Strict state validation for CSRF protection
       if (!storedState) {
         // State already consumed (StrictMode double-invoke or already processed)
+        console.warn("⚠️ State already consumed, cleaning URL...");
+        localStorage.removeItem('auth_in_progress');
+        window.history.replaceState({}, document.title, window.location.pathname);
         return;
       }
       if (state !== storedState) {
         console.error("❌ State validation failed - possible CSRF attack");
         setError("Authentication failed: Invalid state parameter");
+        localStorage.removeItem('cognito_state');
+        localStorage.removeItem('auth_in_progress');
+        window.history.replaceState({}, document.title, window.location.pathname);
         return;
       }
       // Consume state to prevent replay
@@ -214,7 +220,7 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
       console.error('❌ Security validation failed - state mismatch');
       setError('Security validation failed');
       window.history.replaceState({}, document.title, window.location.pathname);
-    } else if (code) {
+    } else if (code && !exchangeStarted.current) {
       console.warn('⚠️ Code present but no stored state');
     }
   }, []);

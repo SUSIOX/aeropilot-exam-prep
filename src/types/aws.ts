@@ -61,6 +61,19 @@ export interface QuestionFlagItem extends DynamoDBItem {
   flagReason?: string;
 }
 
+export interface UserItem extends DynamoDBItem {
+  userId: string;
+  username: string;
+  email?: string;
+  authProvider?: string;
+  settings?: any;
+  progress?: Record<string, { isCorrect: boolean; answerTimestamp: string; attempts: number }>;
+  flags?: Record<string, { isFlagged: boolean; flaggedAt: string; flagReason?: string }>;
+  createdAt: string;
+  lastLoginAt: string;
+  updatedAt?: string;
+}
+
 export interface EasaObjective extends DynamoDBItem {
   loId: string;              // PK: "010.01.01.01" (Subject.Topic.Subtopic.LO)
   subjectId: number;         // 1-9 — index pro filtrování

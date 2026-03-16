@@ -719,7 +719,8 @@ export async function generateBatchQuestions(
     4. Use real aviation terminology matching the active license (${license}).
     5. Explanation: Strictly technical, max 2 sentences.
     6. If you propose a NEW LO, use a valid EASA ID format (e.g. 021.XX.XX.XX) and a precise name.
-    7. ${targetLanguage === 'CZ' 
+    7. For all physical formulas or math, use standard LaTeX notation enclosed in $ for inline (e.g., $v^2$) and $$ for block equations. Do NOT use HTML tags for formatting formulas.
+    8. ${targetLanguage === 'CZ' 
        ? 'Generate ALL fields (text, option_a, option_b, option_c, option_d, explanation) in Czech. No separate _cz fields needed.' 
        : 'If Target Language is Czech, provide translations in fields text_cz, option_a_cz, etc. Always provide English fields (text, option_a, etc.) as the primary source.'}
 
@@ -843,6 +844,7 @@ export async function getDetailedExplanation(question: Question, lo: EasaLO | un
     3. Cite the source used (e.g., "Dle EASA LO 061.01.02.03:", "Dle CS-25.143:", "Dle ICAO Annex 2:").
     4. Maximum 3 sentences. Be precise and technical — no hedging words ("probably", "likely", "might").
     5. Respond in Czech language.
+    6. For all physical formulas or math, use standard LaTeX notation enclosed in $ for inline (e.g., $v^2$) and $$ for block equations. Do NOT use HTML tags for formatting formulas.
 
     ${isImport
       ? `6. No LO ID is provided. Analyze the question content and identify the most likely EASA LO.
@@ -950,7 +952,8 @@ export async function getDetailedHumanExplanation(question: Question, lo: EasaLO
     1. Jazyk: Česky
     2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné "Ahoj", "Čau", "Pilote", atd.)
     3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky
-    4. Struktura:
+    4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.
+    5. Struktura:
        - **Krátký úvod** (co to je)
        - **Proč je odpověď ${question.correct_option} správná** (technické vysvětlení, neopakuj odpověď)
        - **Praktické použití** v letadle

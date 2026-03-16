@@ -87,6 +87,9 @@ async function importLOs(docClient: DynamoDBDocumentClient) {
     appliesTo: lo.applies_to ?? ['PPL', 'SPL'],
     source: 'mock-import',
     version: '2021',
+    approved: false,
+    approvedBy: null,
+    approvedAt: null,
     createdAt: now,
     updatedAt: now,
   }));

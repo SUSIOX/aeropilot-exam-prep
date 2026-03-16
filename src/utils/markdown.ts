@@ -1,8 +1,31 @@
+import katex from 'katex';
+
 // Simple Markdown to HTML converter
 export function markdownToHtml(markdown: string): string {
   if (!markdown) return '';
   
-  return markdown
+  let processed = markdown;
+  const mathBlocks: string[] = [];
+  
+  // Extract and render Block Math $$...$$
+  processed = processed.replace(/\$\$([\s\S]+?)\$\$/g, (match, math) => {
+    try {
+      const html = katex.renderToString(math, { displayMode: true, throwOnError: false });
+      mathBlocks.push(html);
+      return `__MATH_BLOCK_${mathBlocks.length - 1}__`;
+    } catch(e) { return match; }
+  });
+  
+  // Extract and render Inline Math $...$
+  processed = processed.replace(/\$([^$\n]+?)\$/g, (match, math) => {
+    try {
+      const html = katex.renderToString(math, { displayMode: false, throwOnError: false });
+      mathBlocks.push(html);
+      return `__MATH_BLOCK_${mathBlocks.length - 1}__`;
+    } catch(e) { return match; }
+  });
+
+  processed = processed
     // Headers
     .replace(/^### (.*$)/gim, '<h3 class="text-lg font-bold mt-4 mb-2">$1</h3>')
     .replace(/^## (.*$)/gim, '<h2 class="text-xl font-bold mt-4 mb-2">$1</h2>')
@@ -24,6 +47,13 @@ export function markdownToHtml(markdown: string): string {
     
     // Wrap in paragraphs
     .replace(/^(.+)/g, '<p class="mb-4">$1</p>');
+
+  // Put math blocks back in
+  processed = processed.replace(/__MATH_BLOCK_(\d+)__/g, (match, index) => {
+    return mathBlocks[parseInt(index, 10)] || match;
+  });
+    
+  return processed;
 }
 
 // Sanitize HTML to prevent XSS

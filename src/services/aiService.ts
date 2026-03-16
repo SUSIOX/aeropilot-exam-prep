@@ -59,7 +59,7 @@ async function loadLOsFromDB(): Promise<EasaLO[]> {
 // Get LOs by subject (cached)
 export async function getLOsBySubject(subjectId: number): Promise<EasaLO[]> {
   const cacheKey = `subject_${subjectId}`;
-  
+
   if (loCache.has(cacheKey)) {
     return loCache.get(cacheKey)!;
   }
@@ -67,7 +67,7 @@ export async function getLOsBySubject(subjectId: number): Promise<EasaLO[]> {
   const allLOs = await loadLOsFromDB();
   const subjectLOs = allLOs.filter(lo => lo.subject_id === subjectId);
   loCache.set(cacheKey, subjectLOs);
-  
+
   return subjectLOs;
 }
 
@@ -93,9 +93,9 @@ const getClaudeInstance = (apiKey?: string) => {
   if (!apiKey) {
     throw new Error('API_KEY_MISSING');
   }
-  return new Anthropic({ 
+  return new Anthropic({
     apiKey,
-    dangerouslyAllowBrowser: true 
+    dangerouslyAllowBrowser: true
   });
 };
 
@@ -110,35 +110,35 @@ async function callWithRetry<T>(fn: () => Promise<T>, retries = 2, provider: AIP
       throw new Error('Operation cancelled');
     }
     const errorMsg = error?.message?.toLowerCase() || "";
-    
+
     if (provider === 'gemini') {
       const isRateLimit = errorMsg.includes('429') || errorMsg.includes('resource_exhausted') || errorMsg.includes('rate exceeded');
       const isInvalidKey = errorMsg.includes('api key not valid') || errorMsg.includes('invalid api key');
-      
+
       if (isRateLimit && retries > 0) {
         console.log(`Gemini rate limit hit, retrying in 2s... (${retries} left)`);
         await sleep(2000);
         return callWithRetry(fn, retries - 1, provider, signal);
       }
-      
+
       if (isInvalidKey) {
         throw new Error('API_KEY_INVALID');
       }
     } else if (provider === 'claude') {
       const isRateLimit = errorMsg.includes('rate_limit') || errorMsg.includes('too many requests') || errorMsg.includes('429');
       const isInvalidKey = errorMsg.includes('authentication') || errorMsg.includes('invalid api key') || errorMsg.includes('unauthorized');
-      
+
       if (isRateLimit && retries > 0) {
         console.log(`Claude rate limit hit, retrying in 2s... (${retries} left)`);
         await sleep(2000);
         return callWithRetry(fn, retries - 1, provider, signal);
       }
-      
+
       if (isInvalidKey) {
         throw new Error('API_KEY_INVALID');
       }
     }
-    
+
     throw error;
   }
 }
@@ -169,20 +169,20 @@ export const SYLLABUS_SCOPE: Record<number, number> = {
 // Dynamic syllabus scope calculation based on actual LOs
 export const getDynamicSyllabusScope = (los: EasaLO[], subjectId?: number): Record<number, number> => {
   const scope: Record<number, number> = {};
-  
+
   // Calculate actual LO count per subject
   const subjectCounts = los.reduce((acc, lo) => {
     const subject = lo.subject_id || 0;
     acc[subject] = (acc[subject] || 0) + 1;
     return acc;
   }, {} as Record<number, number>);
-  
+
   // Use actual counts, fallback to static SYLLABUS_SCOPE if no data
   Object.keys(SYLLABUS_SCOPE).forEach(key => {
     const id = parseInt(key);
     scope[id] = subjectCounts[id] || SYLLABUS_SCOPE[id];
   });
-  
+
   return scope;
 };
 
@@ -190,7 +190,7 @@ export const getDynamicSyllabusScope = (los: EasaLO[], subjectId?: number): Reco
 export const getSubjectAnalysis = (los: EasaLO[], subjectId: number, coveredLOs: Set<string>) => {
   const subjectLOs = los.filter(lo => lo.subject_id === subjectId);
   const coveredSubjectLOs = subjectLOs.filter(lo => coveredLOs.has(lo.id));
-  
+
   return {
     total: subjectLOs.length,
     covered: coveredSubjectLOs.length,
@@ -537,15 +537,15 @@ export const mockLOs: EasaLO[] = [
 ];
 
 export async function generateBatchQuestions(
-  los: EasaLO[], 
-  questionsPerLO: number = 2, 
+  los: EasaLO[],
+  questionsPerLO: number = 2,
   targetLanguage: 'EN' | 'CZ' = 'EN',
   apiKey?: string,
   model: string = "gemini-flash-latest",
   provider: AIProvider = 'gemini',
   license: 'PPL' | 'SPL' = 'PPL',
   signal?: AbortSignal
-): Promise<{loId: string, questions: Partial<Question>[]}[]> {
+): Promise<{ loId: string, questions: Partial<Question>[] }[]> {
 
   const pplExamples = `
     EASA ECQB Official Sample Examples — PPL(A) Pattern:
@@ -683,7 +683,7 @@ export async function generateBatchQuestions(
 
   const loNoteInstruction = `For each LO below, check if its applies_to includes '${license}'. If the LO applies ONLY to the other license, set metadata.license_note to "Supplementary knowledge for ${license} pilots". Otherwise set it to null.`;
 
-  const languageInstruction = targetLanguage === 'CZ' 
+  const languageInstruction = targetLanguage === 'CZ'
     ? `CRITICAL - GENERATE IN CZECH LANGUAGE: 
        1. ALL primary fields (text, option_a, option_b, option_c, option_d, explanation) MUST be in Czech
        2. Technical aviation terms should remain in English where appropriate (e.g., VOR, ILS, CARBURETOR)
@@ -705,10 +705,10 @@ export async function generateBatchQuestions(
     
     Known/Priority Objectives:
     ${los.map(lo => {
-      const levelLabel = lo.level === 1 ? 'Awareness' : lo.level === 2 ? 'Knowledge' : lo.level === 3 ? 'Understanding' : 'Knowledge';
-      const content = lo.knowledgeContent || lo.context || 'Standard aviation knowledge';
-      return `- ${lo.id}: ${lo.text} [applies_to: ${(lo.applies_to || ['PPL','SPL']).join(', ')}] [Level: ${levelLabel}]\n  Knowledge Content: ${content}`;
-    }).join('\n')}
+    const levelLabel = lo.level === 1 ? 'Awareness' : lo.level === 2 ? 'Knowledge' : lo.level === 3 ? 'Understanding' : 'Knowledge';
+    const content = lo.knowledgeContent || lo.context || 'Standard aviation knowledge';
+    return `- ${lo.id}: ${lo.text} [applies_to: ${(lo.applies_to || ['PPL', 'SPL']).join(', ')}] [Level: ${levelLabel}]\n  Knowledge Content: ${content}`;
+  }).join('\n')}
 
     ${loNoteInstruction}
     
@@ -720,9 +720,9 @@ export async function generateBatchQuestions(
     5. Explanation: Strictly technical, max 2 sentences.
     6. If you propose a NEW LO, use a valid EASA ID format (e.g. 021.XX.XX.XX) and a precise name.
     7. For all physical formulas or math, use standard LaTeX notation enclosed in $ for inline (e.g., $v^2$) and $$ for block equations. Do NOT use HTML tags for formatting formulas.
-    8. ${targetLanguage === 'CZ' 
-       ? 'Generate ALL fields (text, option_a, option_b, option_c, option_d, explanation) in Czech. No separate _cz fields needed.' 
-       : 'If Target Language is Czech, provide translations in fields text_cz, option_a_cz, etc. Always provide English fields (text, option_a, etc.) as the primary source.'}
+    8. ${targetLanguage === 'CZ'
+      ? 'Generate ALL fields (text, option_a, option_b, option_c, option_d, explanation) in Czech. No separate _cz fields needed.'
+      : 'If Target Language is Czech, provide translations in fields text_cz, option_a_cz, etc. Always provide English fields (text, option_a, etc.) as the primary source.'}
 
     ${examples}
     
@@ -749,7 +749,7 @@ export async function generateBatchQuestions(
 
   try {
     let response: any;
-    
+
     if (provider === 'gemini') {
       const ai = getAiInstance(apiKey);
       response = await callWithRetry(() => ai.models.generateContent({
@@ -759,7 +759,7 @@ export async function generateBatchQuestions(
           responseMimeType: "application/json"
         }
       }), 2, 'gemini', signal);
-      
+
       const text = response.text;
       if (!text) return [];
       try {
@@ -769,7 +769,7 @@ export async function generateBatchQuestions(
         console.error("❌ JSON parse error (Gemini). Response length:", text.length, "Last 100 chars:", text.slice(-100));
         throw new Error(`AI vrátila neplatný JSON (${text.length} znaků). Zkuste menší dávku nebo méně otázek na téma.`);
       }
-      
+
     } else if (provider === 'claude') {
       const claude = getClaudeInstance(apiKey);
       const estimatedTokens = Math.max(4000, los.length * questionsPerLO * 400 + 500);
@@ -778,7 +778,7 @@ export async function generateBatchQuestions(
         max_tokens: estimatedTokens,
         messages: [{ role: 'user', content: prompt }]
       }), 2, 'claude', signal);
-      
+
       const text = (response.content[0] as any)?.text || "";
       if (!text) return [];
       try {
@@ -792,22 +792,22 @@ export async function generateBatchQuestions(
         throw new Error(`AI vrátila neplatný JSON (${text.length} znaků). Zkuste menší dávku nebo méně otázek na téma.`);
       }
     }
-    
+
     return [];
-    
+
   } catch (error) {
     console.error("Error generating batch questions:", error);
     throw error;
   }
 }
 
-function processBatchResponse(data: any): {loId: string, questions: Partial<Question>[]}[] {
+function processBatchResponse(data: any): { loId: string, questions: Partial<Question>[] }[] {
   return Object.entries(data)
     .filter(([_, questions]) => Array.isArray(questions))
     .map(([loId, questions]) => ({
       loId,
-      questions: (questions as any[]).map(q => ({ 
-        ...q, 
+      questions: (questions as any[]).map(q => ({
+        ...q,
         source: 'ai',
         is_ai: 1,
         option_a: q.option_a || q.option_a_cz || "N/A",
@@ -819,18 +819,18 @@ function processBatchResponse(data: any): {loId: string, questions: Partial<Ques
 }
 
 export async function getDetailedExplanation(
-  question: Question, 
-  lo: EasaLO | undefined, 
-  apiKey?: string, 
-  model: string = "gemini-flash-latest", 
-  provider: AIProvider = 'gemini', 
+  question: Question,
+  lo: EasaLO | undefined,
+  apiKey?: string,
+  model: string = "gemini-flash-latest",
+  provider: AIProvider = 'gemini',
   signal?: AbortSignal,
   displayCorrectOption?: string
-): Promise<{explanation: string, objective?: string}> {
+): Promise<{ explanation: string, objective?: string }> {
   console.log('getDetailedExplanation called with:', { provider, model, hasKey: !!apiKey });
-  
+
   const isImport = question.source === 'user' || !question.lo_id;
-  
+
   const prompt = `
     You are a technical EASA Aviation Knowledge Engine specializing in ATPL/PPL theoretical exam preparation.
 
@@ -858,7 +858,7 @@ export async function getDetailedExplanation(
       ? `6. No LO ID is provided. Analyze the question content and identify the most likely EASA LO.
          Start with: "Pravděpodobně se jedná o objective [XXX.XX.XX.XX] - [Name]:"
          Then provide the technical explanation with source citation.`
-      : `6. Use the provided LO ID as the bracket prefix.` 
+      : `6. Use the provided LO ID as the bracket prefix.`
     }
 
     OUTPUT FORMAT (strict):
@@ -878,10 +878,10 @@ export async function getDetailedExplanation(
         model: model,
         contents: [{ role: 'user', parts: [{ text: prompt }] }],
       }), 2, 'gemini', signal);
-      
+
       const text = response.text || "Vysvětlení se nepodařilo vygenerovat.";
       return parseExplanation(text);
-      
+
     } else if (provider === 'claude') {
       console.log('Using Claude provider with model:', model);
       const claude = getClaudeInstance(apiKey);
@@ -890,38 +890,38 @@ export async function getDetailedExplanation(
         max_tokens: 1000,
         messages: [{ role: 'user', content: prompt }]
       }), 2, 'claude');
-      
+
       console.log('Claude response:', response);
       const text = (response.content[0] as any)?.text || "";
       console.log('Claude text:', text);
       return parseExplanation(text);
     }
-    
+
     return { explanation: "Vysvětlení se nepodařilo vygenerovat." };
-    
+
   } catch (error) {
     console.error("Error generating detailed explanation:", error);
     throw error;
   }
 }
 
-function parseExplanation(text: string): {explanation: string, objective?: string} {
+function parseExplanation(text: string): { explanation: string, objective?: string } {
   // Clean up markdown formatting
   const cleanText = text.replace(/\*\*/g, '').replace(/\*/g, '');
-  
+
   // Check if text starts with objective identification
   const objectiveMatch = cleanText.match(/^Pravděpodobně se jedná o objective\s+([^-]+)-\s*([^.]+)\.\s*(.+)/);
-  
+
   if (objectiveMatch) {
     const objective = `${objectiveMatch[1].trim()} - ${objectiveMatch[2].trim()}`;
     const explanation = objectiveMatch[3]?.trim() || "Vysvětlení se nepodařilo vygenerovat.";
-    
+
     return {
       objective,
       explanation
     };
   }
-  
+
   // For existing LOs, extract LO ID from the response
   const loMatch = cleanText.match(/^([0-9]{3}\.[0-9]{2}\.[0-9]{2}\.[0-9]{2}):\s*(.+)/);
   if (loMatch) {
@@ -929,7 +929,7 @@ function parseExplanation(text: string): {explanation: string, objective?: strin
       explanation: cleanText
     };
   }
-  
+
   // Fallback: return the cleaned text
   return {
     explanation: cleanText
@@ -937,16 +937,16 @@ function parseExplanation(text: string): {explanation: string, objective?: strin
 }
 
 export async function getDetailedHumanExplanation(
-  question: Question, 
-  lo: EasaLO | undefined, 
-  apiKey?: string, 
-  model: string = "gemini-flash-latest", 
-  provider: AIProvider = 'gemini', 
+  question: Question,
+  lo: EasaLO | undefined,
+  apiKey?: string,
+  model: string = "gemini-flash-latest",
+  provider: AIProvider = 'gemini',
   signal?: AbortSignal,
   displayCorrectOption?: string
 ): Promise<string> {
   console.log('getDetailedHumanExplanation called with:', { provider, model, hasKey: !!apiKey });
-  
+
   const prompt = `
     Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.
     
@@ -992,17 +992,17 @@ export async function getDetailedHumanExplanation(
         model: model,
         contents: [{ role: 'user', parts: [{ text: prompt }] }],
       }), 2, 'gemini', signal);
-      
+
       const text = response.text || "Podrobné vysvětlení se nepodařilo vygenerovat.";
-      
+
       // Clean up only greetings and informal addresses, KEEP markdown formatting
       const cleanedText = text
         .replace(/^(Ahoj|Čau|Dobrý den|Dobrý den|Pilote|Studente|Příteli|Kámo|Příteli)[,\s]*/gi, '')
         .replace(/^(Ahoj|Čau|Dobrý den|Dobrý den|Pilote|Studente|Příteli|Kámo|Příteli)[^\n]*\n/gi, '')
         .trim();
-      
+
       return cleanedText;
-      
+
     } else if (provider === 'claude') {
       console.log('Using Claude provider for detailed explanation');
       const claude = getClaudeInstance(apiKey);
@@ -1011,20 +1011,20 @@ export async function getDetailedHumanExplanation(
         max_tokens: 1500,
         messages: [{ role: 'user', content: prompt }]
       }), 2, 'claude');
-      
+
       const text = (response.content[0] as any)?.text || "";
-      
+
       // Clean up only greetings and informal addresses, KEEP markdown formatting
       const cleanedText = text
         .replace(/^(Ahoj|Čau|Dobrý den|Dobrý den|Pilote|Studente|Příteli|Kámo|Příteli)[,\s]*/gi, '')
         .replace(/^(Ahoj|Čau|Dobrý den|Dobrý den|Pilote|Studente|Příteli|Kámo|Příteli)[^\n]*\n/gi, '')
         .trim();
-      
+
       return cleanedText || "Podrobné vysvětlení se nepodařilo vygenerovat.";
     }
-    
+
     return "Podrobné vysvětlení se nepodařilo vygenerovat.";
-    
+
   } catch (error) {
     console.error("Error generating detailed human explanation:", error);
     throw error;
@@ -1064,35 +1064,35 @@ export async function translateQuestion(question: Question, apiKey?: string, mod
         contents: [{ role: 'user', parts: [{ text: prompt }] }],
         config: { responseMimeType: "application/json" }
       }), 2, 'gemini');
-      
+
       const text = response.text || "{}";
-      
+
       try {
         return JSON.parse(text);
       } catch (parseError) {
         console.error('Gemini JSON parse error:', parseError, 'Raw text:', text);
         throw new Error('Gemini returned invalid JSON format');
       }
-      
+
     } else if (provider === 'claude') {
       const claude = getClaudeInstance(apiKey);
       console.log(`[Claude] Translating question with model: ${model}`);
       const response = await callWithRetry(() => claude.messages.create({
         model: model,
         max_tokens: 2000,
-        messages: [{ 
-          role: 'user', 
+        messages: [{
+          role: 'user',
           content: prompt + "\n\nIMPORTANT: Return ONLY valid JSON object, no other text."
         }]
       }), 2, 'claude');
-      
+
       const content = response.content[0];
       const text = content && 'text' in content ? content.text : "{}";
-      
+
       // Extract JSON from Claude response (it might include extra text)
       const jsonMatch = text.match(/\{[\s\S]*\}/);
       const jsonString = jsonMatch ? jsonMatch[0] : text;
-      
+
       try {
         return JSON.parse(jsonString);
       } catch (parseError) {
@@ -1100,24 +1100,24 @@ export async function translateQuestion(question: Question, apiKey?: string, mod
         throw new Error('Claude returned invalid JSON format');
       }
     }
-    
+
     return {};
-    
+
   } catch (error) {
     console.error("Error translating question:", error);
     throw error;
   }
 }
 
-export async function verifyApiKey(apiKey: string, provider: AIProvider = 'gemini'): Promise<{success: boolean, error?: string, quotaExceeded?: boolean}> {
+export async function verifyApiKey(apiKey: string, provider: AIProvider = 'gemini'): Promise<{ success: boolean, error?: string, quotaExceeded?: boolean }> {
   try {
     if (provider === 'gemini') {
       const ai = getAiInstance(apiKey);
-      
+
       // Attempt discovery across common model aliases to find one that is both found (not 404) and has quota (not 429)
       const modelsToTry = ["gemini-flash-latest", "gemini-2.5-flash"];
       let lastError: any = null;
-      
+
       for (const modelName of modelsToTry) {
         try {
           console.log(`[Gemini] Verifying key with model: ${modelName}`);
@@ -1130,17 +1130,17 @@ export async function verifyApiKey(apiKey: string, provider: AIProvider = 'gemin
         } catch (err: any) {
           lastError = err;
           const msg = err?.message?.toLowerCase() || "";
-          
+
           // If we hit a quota error (429), we stop here because it means the key is valid but quota is the issue
           if (msg.includes('429') || msg.includes('resource_exhausted') || msg.includes('quota')) {
             return { success: false, error: `Kvóta vyčerpána pro model ${modelName} (váš free-tier limit je pro tento model pravděpodobně nulový).`, quotaExceeded: true };
           }
-          
+
           // If we hit an invalid key error (403/invalid), we stop immediately - no point trying other models
           if (msg.includes('api key not valid') || msg.includes('invalid api key') || msg.includes('403')) {
             return { success: false, error: 'Neplatný API klíč.' };
           }
-          
+
           // If it's a 404, we continue to the next model in the list
           if (msg.includes('404') || msg.includes('not found')) {
             console.log(`Model ${modelName} nebyl nalezen, zkouším další...`);
@@ -1148,14 +1148,14 @@ export async function verifyApiKey(apiKey: string, provider: AIProvider = 'gemin
           }
         }
       }
-      
+
       // If we exhausted all models and still have a 404 on the last one
       if (lastError?.message?.toLowerCase().includes('404')) {
         return { success: false, error: 'Model nebyl nalezen pro vaši verzi API. Zkuste prosím model gemini-flash-latest v nastavení.' };
       }
-      
+
       return { success: false, error: lastError?.message || 'Neznámá chyba při ověřování.' };
-      
+
     } else if (provider === 'claude') {
       const claude = getClaudeInstance(apiKey);
       console.log(`[Claude] Verifying key with model: claude-haiku-4-5-20251001`);
@@ -1167,7 +1167,7 @@ export async function verifyApiKey(apiKey: string, provider: AIProvider = 'gemin
       console.log(`[Claude] Verification successful.`);
       return { success: true };
     }
-    
+
     return { success: false, error: 'Nepodporovaný poskytovatel' };
   } catch (error: any) {
     console.error("Key verification error (catch-all):", error);
@@ -1196,7 +1196,7 @@ export async function importMockLOsToDB(): Promise<{ success: boolean; imported:
 
     // Import to DynamoDB
     const result = await dynamoDBService.batchImportLOs(loItems);
-    
+
     if (result.success && result.data) {
       return {
         success: true,
@@ -1233,8 +1233,8 @@ export async function generateMissingLearningObjectives(
   signal?: AbortSignal,
   useAircademy: boolean = true,
   additionalDocuments: string[] = []
-): Promise<{success: boolean, los: EasaLO[], error?: string}> {
-  
+): Promise<{ success: boolean, los: EasaLO[], error?: string }> {
+
   if (!apiKey) {
     return { success: false, los: [], error: 'API klíč je vyžadován pro generování LOs' };
   }
@@ -1244,14 +1244,14 @@ export async function generateMissingLearningObjectives(
     if (useAircademy) {
       await cacheAircademyPDF();
     }
-    
+
     // Get subject name for context
     const subjectNames: Record<number, string> = {
-      1: 'Air Law', 
-      2: 'Human Performance', 
-      3: 'Meteorology', 
+      1: 'Air Law',
+      2: 'Human Performance',
+      3: 'Meteorology',
       4: 'Communications',
-      5: 'Principles of Flight', 
+      5: 'Principles of Flight',
       6: 'Operational Procedures',
       7: 'Flight Performance & Planning',
       8: 'Aircraft General Knowledge',
@@ -1265,19 +1265,19 @@ export async function generateMissingLearningObjectives(
 
     // Create enhanced prompt with conditional references
     let prompt = '';
-    
+
     if (provider === 'claude') {
       // Claude: Send only missing LOs (more efficient)
       const totalExpected = SYLLABUS_SCOPE[subjectId] || 100;
       const missingIds = findMissingLOIds(subjectId, existingLOs, totalExpected);
-      
+
       if (missingIds.length === 0) {
         return { success: false, los: [], error: 'Všechny LOs pro tento předmět již existují.' };
       }
-      
+
       // Take only first 10 missing IDs to avoid too large prompts
       const missingLOs = missingIds.slice(0, 10);
-      
+
       prompt = `
 Generate content for ${missingLOs.length} missing Learning Objectives for ${subjectName} (${licenseType} license).
 
@@ -1302,7 +1302,7 @@ Return JSON array:
   {"id": "XXX.XX.XX.XX", "text": "Learning objective content", "context": "Detailed explanation${useAircademy ? ' with Aircademy insights' : ''}", "level": 1, "subject_id": ${subjectId}, "applies_to": ["PPL(A)"]}
 ]
 `;
-      
+
     } else {
       // Gemini: Keep original logic for now
       prompt = `
@@ -1340,16 +1340,16 @@ Return JSON array:
     }
 
     let response: string;
-    
+
     if (!apiKey) {
       // Return empty results without API key (no mock LOs)
-      return { 
-        success: false, 
-        los: [], 
-        error: 'API klíč je vyžadován pro generování LOs' 
+      return {
+        success: false,
+        los: [],
+        error: 'API klíč je vyžadován pro generování LOs'
       };
     }
-    
+
     if (provider === 'gemini') {
       const ai = getAiInstance(apiKey);
       const result = await callWithRetry(() => ai.models.generateContent({
@@ -1359,15 +1359,15 @@ Return JSON array:
           responseMimeType: "application/json"
         }
       }), 2, 'gemini', signal);
-      
+
       const text = result.text;
       if (!text) {
         return { success: false, los: [], error: 'Empty response from AI' };
       }
-      
+
       try {
         const missingLOs = JSON.parse(extractJSON(text)) as any[];
-        
+
         // Validate and format LOs
         const validLOs = missingLOs.map(lo => ({
           id: lo.id || generateLOId(subjectId, existingLOs.length + 1),
@@ -1382,7 +1382,7 @@ Return JSON array:
           success: true,
           los: validLOs
         };
-        
+
       } catch (parseError) {
         console.error("❌ JSON parse error (LO Generator). Response length:", text.length, "Last 100 chars:", text.slice(-100));
         return { success: false, los: [], error: `Invalid JSON response: ${parseError instanceof Error ? parseError.message : 'Unknown error'}` };
@@ -1394,17 +1394,17 @@ Return JSON array:
         max_tokens: estimatedTokens,
         messages: [{ role: 'user', content: prompt }]
       }), 2, 'claude', signal);
-      
+
       const text = (claudeResponse.content[0] as any)?.text || "";
       if (!text) {
         return { success: false, los: [], error: 'Empty response from Claude' };
       }
-      
+
       console.log('🔍 Claude LO Generator Response:', text.slice(0, 200));
-      
+
       try {
         const missingLOs = JSON.parse(extractJSON(text)) as any[];
-        
+
         // Validate and format LOs
         const validLOs = missingLOs.map(lo => ({
           id: lo.id || generateLOId(subjectId, existingLOs.length + 1),
@@ -1419,7 +1419,7 @@ Return JSON array:
           success: true,
           los: validLOs
         };
-        
+
       } catch (parseError) {
         console.error("❌ JSON parse error (Claude LO Generator). Response length:", text.length, "Stop reason:", claudeResponse.stop_reason, "Last 100 chars:", text.slice(-100));
         if (claudeResponse.stop_reason === 'max_tokens') {
@@ -1428,7 +1428,7 @@ Return JSON array:
         return { success: false, los: [], error: `Invalid JSON response: ${parseError instanceof Error ? parseError.message : 'Unknown error'}` };
       }
     }
-    
+
     return { success: false, los: [], error: 'Unsupported AI provider' };
 
   } catch (error) {
@@ -1454,7 +1454,7 @@ function generateLOId(subjectId: number, index: number): string {
     8: '021', // Aircraft General (shared with Air Law)
     9: '061'  // Navigation
   };
-  
+
   const prefix = subjectPrefixes[subjectId] || `${String(subjectId).padStart(3, '0')}`;
   return `${prefix}.${String(index).padStart(2, '0')}.01.01`;
 }

@@ -5892,78 +5892,98 @@ V nastavení lze změnit defaultni model.`);
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/60 backdrop-blur-md z-[300] flex items-center justify-center p-4"
+                className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[300] flex items-end sm:items-center justify-center"
                 onClick={() => setExpandedSyllabusQuestion(null)}
               >
                 <motion.div
                   layoutId={expandedSyllabusQuestion._sourceLayoutId}
-                  className="glass-panel rounded-3xl p-8 max-w-xl w-full border-2 border-indigo-500/30 shadow-2xl relative overflow-hidden"
+                  initial={{ y: 40, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 40, opacity: 0 }}
+                  transition={{ type: 'spring', damping: 28, stiffness: 320 }}
+                  className="glass-panel w-full sm:rounded-3xl rounded-t-3xl border border-indigo-500/20 shadow-2xl flex flex-col"
+                  style={{ maxWidth: '375px', maxHeight: '667px', minHeight: '40vh' }}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <div className="flex items-center justify-between mb-8">
-                    <div className="flex items-center gap-3 text-indigo-600 dark:text-indigo-400">
-                      <div className="p-2.5 rounded-xl bg-indigo-500/10">
-                        <GraduationCap size={24} />
+                  {/* Drag handle (mobile feel) */}
+                  <div className="flex justify-center pt-3 pb-1 sm:hidden flex-shrink-0">
+                    <div className="w-10 h-1 rounded-full bg-slate-300/40" />
+                  </div>
+
+                  {/* Sticky header */}
+                  <div className="flex items-center justify-between px-4 pt-3 pb-3 border-b border-[var(--line)]/30 flex-shrink-0">
+                    <div className="flex items-center gap-2">
+                      <div className="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center flex-shrink-0">
+                        <GraduationCap size={14} className="text-white" />
                       </div>
-                      <h2 className="text-xl font-bold uppercase tracking-widest">Detail otázky</h2>
+                      <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">Detail otázky</span>
                     </div>
                     <button
                       onClick={() => setExpandedSyllabusQuestion(null)}
-                      className="p-2 rounded-full bg-slate-500/10 text-slate-500 hover:bg-slate-500/20 transition-colors"
+                      className="w-8 h-8 flex items-center justify-center rounded-full bg-slate-500/10 text-slate-500 hover:bg-slate-500/20 transition-colors flex-shrink-0"
                     >
-                      <X size={20} />
+                      <X size={16} />
                     </button>
                   </div>
 
-                  <div className="space-y-8">
-                    <div className="p-6 bg-slate-500/5 border border-slate-500/10 rounded-2xl">
-                      <p className="text-xl font-bold leading-relaxed text-slate-800 dark:text-slate-100 italic">
-                        "{expandedSyllabusQuestion.text}"
+                  {/* Scrollable body */}
+                  <div className="overflow-y-auto flex-1 px-4 py-4 space-y-4">
+
+                    {/* Question text */}
+                    <div className="p-4 bg-indigo-500/5 border border-indigo-500/15 rounded-2xl">
+                      <p className="text-[11px] uppercase tracking-widest font-bold text-indigo-400 mb-2">Otázka</p>
+                      <p className="text-[15px] font-semibold leading-relaxed text-slate-800 dark:text-slate-100">
+                        {expandedSyllabusQuestion.text}
                       </p>
                     </div>
 
-                    <div className="space-y-3">
-                      <p className="text-[10px] uppercase tracking-widest font-bold opacity-40 ml-1">Možnosti odpovědi</p>
+                    {/* Answers */}
+                    <div className="space-y-2">
+                      <p className="text-[10px] uppercase tracking-widest font-bold opacity-35 px-1">Možnosti odpovědi</p>
                       {(expandedSyllabusQuestion.answers || expandedSyllabusQuestion.options)?.map((a: string, ai: number) => {
                         const isCorrect = ai === (expandedSyllabusQuestion.correct_answer ?? expandedSyllabusQuestion.correctAnswer);
                         return (
                           <div
                             key={ai}
-                            className={`p-5 rounded-2xl border transition-all ${isCorrect
-                                ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-700 dark:text-emerald-400 ring-1 ring-emerald-500/20'
-                                : 'bg-slate-500/5 border-slate-500/10 opacity-60'
+                            className={`flex items-start gap-3 p-3 rounded-xl border transition-all ${isCorrect
+                                ? 'bg-emerald-500/10 border-emerald-500/30 ring-1 ring-emerald-500/20'
+                                : 'bg-slate-500/5 border-slate-200/20 dark:border-slate-700/30 opacity-55'
                               }`}
                           >
-                            <div className="flex items-start gap-4">
-                              <span className={`w-6 h-6 rounded-lg flex items-center justify-center text-xs font-bold leading-none shrink-0 ${isCorrect ? 'bg-emerald-500 text-white' : 'bg-slate-200 dark:bg-slate-700 opacity-60'}`}>
-                                {String.fromCharCode(65 + ai)}
-                              </span>
-                              <p className="text-base font-medium pt-0.5">{a}</p>
-                              {isCorrect && (
-                                <div className="ml-auto p-1 rounded-full bg-emerald-500 text-white">
-                                  <CheckCircle2 size={14} />
-                                </div>
-                              )}
-                            </div>
+                            {/* Letter badge */}
+                            <span className={`w-6 h-6 rounded-md flex items-center justify-center text-[11px] font-bold leading-none shrink-0 mt-0.5 ${isCorrect ? 'bg-emerald-500 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-500'}`}>
+                              {String.fromCharCode(65 + ai)}
+                            </span>
+                            <p className={`text-[13px] leading-snug font-medium flex-1 ${isCorrect ? 'text-emerald-700 dark:text-emerald-400' : ''}`}>{a}</p>
+                            {isCorrect && (
+                              <CheckCircle2 size={15} className="text-emerald-500 shrink-0 mt-0.5" />
+                            )}
                           </div>
                         );
                       })}
                     </div>
 
+                    {/* AI explanation */}
                     {expandedSyllabusQuestion.explanation && (
-                      <div className="p-5 bg-amber-500/10 border border-amber-500/30 rounded-2xl space-y-2">
-                        <p className="text-[10px] uppercase tracking-widest font-bold text-amber-600 flex items-center gap-2">
-                          <Bot size={14} /> Vysvětlení AI
+                      <div className="p-3 bg-amber-500/10 border border-amber-500/25 rounded-xl space-y-1.5">
+                        <p className="text-[10px] uppercase tracking-widest font-bold text-amber-600 flex items-center gap-1.5">
+                          <Bot size={12} /> Vysvětlení AI
                         </p>
-                        <p className="text-sm leading-relaxed opacity-90 text-amber-900 dark:text-amber-100">
+                        <p className="text-[12px] leading-relaxed text-amber-900 dark:text-amber-200 opacity-90">
                           {expandedSyllabusQuestion.explanation}
                         </p>
                       </div>
                     )}
 
+                    {/* Spacer so button doesn't overlap last item */}
+                    <div className="h-1" />
+                  </div>
+
+                  {/* Sticky footer button */}
+                  <div className="px-4 py-3 border-t border-[var(--line)]/20 flex-shrink-0">
                     <button
                       onClick={() => setExpandedSyllabusQuestion(null)}
-                      className="w-full py-4 rounded-2xl bg-indigo-600 text-white font-bold uppercase tracking-widest hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/20 active:scale-[0.99]"
+                      className="w-full py-3 rounded-xl bg-indigo-600 text-white text-[12px] font-bold uppercase tracking-widest hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/20 active:scale-[0.99]"
                     >
                       Rozumím
                     </button>

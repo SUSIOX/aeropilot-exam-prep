@@ -818,7 +818,15 @@ function processBatchResponse(data: any): {loId: string, questions: Partial<Ques
     }));
 }
 
-export async function getDetailedExplanation(question: Question, lo: EasaLO | undefined, apiKey?: string, model: string = "gemini-flash-latest", provider: AIProvider = 'gemini', signal?: AbortSignal): Promise<{explanation: string, objective?: string}> {
+export async function getDetailedExplanation(
+  question: Question, 
+  lo: EasaLO | undefined, 
+  apiKey?: string, 
+  model: string = "gemini-flash-latest", 
+  provider: AIProvider = 'gemini', 
+  signal?: AbortSignal,
+  displayCorrectOption?: string
+): Promise<{explanation: string, objective?: string}> {
   console.log('getDetailedExplanation called with:', { provider, model, hasKey: !!apiKey });
   
   const isImport = question.source === 'user' || !question.lo_id;
@@ -829,12 +837,12 @@ export async function getDetailedExplanation(question: Question, lo: EasaLO | un
     Your task: Explain ONLY why the correct answer is technically correct.
 
     Question: ${question.text}
-    Correct Answer: ${question.correct_option}
+    Correct Answer Label: ${displayCorrectOption || question.correct_option}
     Correct Answer Text: ${question[`option_${question.correct_option.toLowerCase()}`]}
     LO: ${lo ? `${lo.id} - ${lo.text}` : "Neurčeno"}
 
     RULES:
-    1. Explain ONLY why answer "${question.correct_option}" is correct. Never mention other options. Don't repeat the question.
+    1. Explain ONLY why answer "${displayCorrectOption || question.correct_option}" is correct. Never mention other options. Don't repeat the question.
     2. Base explanation on sources in this strict priority order:
        1st — EASA Learning Objectives Syllabus (primary source)
        2nd — EASA CS regulations (CS-23, CS-25, CS-ETSO, etc.)
@@ -928,19 +936,27 @@ function parseExplanation(text: string): {explanation: string, objective?: strin
   };
 }
 
-export async function getDetailedHumanExplanation(question: Question, lo: EasaLO | undefined, apiKey?: string, model: string = "gemini-flash-latest", provider: AIProvider = 'gemini', signal?: AbortSignal): Promise<string> {
+export async function getDetailedHumanExplanation(
+  question: Question, 
+  lo: EasaLO | undefined, 
+  apiKey?: string, 
+  model: string = "gemini-flash-latest", 
+  provider: AIProvider = 'gemini', 
+  signal?: AbortSignal,
+  displayCorrectOption?: string
+): Promise<string> {
   console.log('getDetailedHumanExplanation called with:', { provider, model, hasKey: !!apiKey });
   
   const prompt = `
     Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.
     
     Otázka: ${question.text}
-    Správná odpověď: ${question.correct_option}
+    Označení správné odpovědi: ${displayCorrectOption || question.correct_option}
     Text správné odpovědi: ${question[`option_${question.correct_option.toLowerCase()}`]}
     LO: ${lo ? `${lo.id} - ${lo.text}` : "Neurčeno"}
     
     DŮLEŽITÉ INSTRUKCE:
-    1. MUSÍŠ vysvětlit PROČ je odpověď "${question.correct_option}" ("${question[`option_${question.correct_option.toLowerCase()}`]}") správná podle leteckých předpisů
+    1. MUSÍŠ vysvětlit PROČ je odpověď "${displayCorrectOption || question.correct_option}" ("${question[`option_${question.correct_option.toLowerCase()}`]}") správná podle leteckých předpisů
     2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL (Úřad civilního letectví), atd.)
     3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách
     4. NEZMIŇUJ alternativní akce nebo intuitivní reakce
@@ -955,7 +971,7 @@ export async function getDetailedHumanExplanation(question: Question, lo: EasaLO
     4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.
     5. Struktura:
        - **Krátký úvod** (co to je)
-       - **Proč je odpověď ${question.correct_option} správná** (technické vysvětlení, neopakuj odpověď)
+       - **Proč je odpověď ${displayCorrectOption || question.correct_option} správná** (technické vysvětlení, neopakuj odpověď)
        - **Praktické použití** v letadle
        - **Paměťový tip**
     5. Použij krátké věty a odstavce
@@ -965,7 +981,7 @@ export async function getDetailedHumanExplanation(question: Question, lo: EasaLO
     Vysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.
     ZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.
     POUŽÍVEJ MARKDOWN PRO LEPSÍ FORMÁTOVÁNÍ.
-    MUSÍŠ ODŮVODNIT PROČ JE ODPOVĚĎ "${question.correct_option}" SPRÁVNÁ.
+    MUSÍŠ ODŮVODNIT PROČ JE ODPOVĚĎ "${displayCorrectOption || question.correct_option}" SPRÁVNÁ.
   `;
 
   try {

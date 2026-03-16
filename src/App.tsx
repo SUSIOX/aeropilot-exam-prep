@@ -238,7 +238,8 @@ export default function App() {
   // Shuffle answers state
   const [shuffledQuestion, setShuffledQuestion] = useState<ShuffledQuestion | null>(null);
 
-  // Reshuffle when question changes or shuffle setting changes
+  // Reshuffle only when question ID changes or shuffle setting changes (not on questions array metadata updates)
+  const currentQuestionId = questions[currentQuestionIndex]?.id;
   useEffect(() => {
     if (questions.length > 0 && currentQuestionIndex >= 0 && currentQuestionIndex < questions.length) {
       const currentQuestion = questions[currentQuestionIndex];
@@ -248,7 +249,7 @@ export default function App() {
         setShuffledQuestion(null);
       }
     }
-  }, [currentQuestionIndex, questions, drillSettings.shuffleAnswers]);
+  }, [currentQuestionIndex, currentQuestionId, drillSettings.shuffleAnswers]);
   const [questionsPerLO, setQuestionsPerLO] = useState<number>(2);
   const [coveredLOs, setCoveredLOs] = useState<Set<string>>(new Set());
   const [globalCoveredLOs, setGlobalCoveredLOs] = useState<Set<string>>(new Set());
@@ -1644,7 +1645,11 @@ V nastavení lze změnit defaultni model.`);
 
       const lo = allLOs.find(l => l.id === q.lo_id);
 
-      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : claudeApiKey, aiModel, aiProvider);
+      const displayCorrectOption = (drillSettings.shuffleAnswers && shuffledQuestion && view === 'drill')
+        ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
+        : undefined;
+
+      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : claudeApiKey, aiModel, aiProvider, undefined, displayCorrectOption);
 
 
       // Save objective if detected
@@ -1759,13 +1764,18 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
       const lo = allLOs.find(l => l.id === q.lo_id);
       const controller = AICancellationManager.createController('regenerate');
 
+      const displayCorrectOption = (drillSettings.shuffleAnswers && shuffledQuestion && view === 'drill')
+        ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
+        : undefined;
+
       const explanation = await getDetailedExplanation(
         q,
         lo,
         aiProvider === 'gemini' ? userApiKey : claudeApiKey,
         aiModel,
         aiProvider,
-        controller.signal
+        controller.signal,
+        displayCorrectOption
       );
 
       setAiExplanation(explanation.explanation);
@@ -1851,15 +1861,28 @@ V nastavení lze změnit defaultni model.`);
         return;
       }
 
-      const detailedExplanationResult = await getDetailedHumanExplanation(q, lo, currentApiKey, aiModel, aiProvider);
+      const displayCorrectOption = (drillSettings.shuffleAnswers && shuffledQuestion && view === 'drill')
+        ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
+        : undefined;
+
+      const detailedExplanationResult = await getDetailedHumanExplanation(q, lo, currentApiKey, aiModel, aiProvider, undefined, displayCorrectOption);
 
       setDetailedExplanation(detailedExplanationResult);
 
-      // Save detailed explanation to localStorage
+      // Save detailed explanation to DynamoDB + localStorage
       try {
-        // For static deployment, save detailed explanation to localStorage
-        const explanations = JSON.parse(localStorage.getItem('ai_explanations') || '{}');
         const explanationKey = `${q.subject_id}_${q.id}`;
+        // Save to DynamoDB
+        dynamoDBService.saveExplanationWithObjective(
+          explanationKey,
+          q.ai_explanation || aiExplanation || '',
+          detailedExplanationResult,
+          null,
+          aiProvider as 'gemini' | 'claude',
+          aiModel
+        ).catch(() => {});
+        // Save to localStorage
+        const explanations = JSON.parse(localStorage.getItem('ai_explanations') || '{}');
         explanations[explanationKey] = {
           questionId: q.id,
           explanation: q.ai_explanation || aiExplanation || '',
@@ -1869,15 +1892,11 @@ V nastavení lze změnit defaultni model.`);
           createdAt: new Date().toISOString()
         };
         localStorage.setItem('ai_explanations', JSON.stringify(explanations));
-        // Update local state
         setQuestions(prev => prev.map(question =>
-          question.id === q.id ? {
-            ...question,
-            ai_detailed_explanation: detailedExplanationResult
-          } : question
+          question.id === q.id ? { ...question, ai_detailed_explanation: detailedExplanationResult } : question
         ));
       } catch (error) {
-        // Failed to save detailed explanation
+        // Silent fail
       }
     } catch (error: any) {
       const msg = getAIErrorMessage(error); if (msg) alert(msg);
@@ -3879,6 +3898,9 @@ V nastavení lze změnit defaultni model.`);
                               if (isCorrect) bgClass = "bg-emerald-500/20 border-emerald-500 text-emerald-700 dark:text-emerald-400";
                               else if (isSelected) bgClass = "bg-rose-500/20 border-rose-500 text-rose-700 dark:text-rose-400";
                               else bgClass = "opacity-40 border-[var(--line)]";
+                            } else if (!answered && showExplanation && isCorrect) {
+                              // Explanation shown without answering — highlight only correct, no wrong feedback
+                              bgClass = "bg-emerald-500/20 border-emerald-500 text-emerald-700 dark:text-emerald-400";
                             } else if (isSelected) {
                               bgClass = "bg-[var(--ink)] text-[var(--bg)] border-[var(--ink)]";
                             }
@@ -3905,7 +3927,7 @@ V nastavení lze změnit defaultni model.`);
                                     />
                                   )}
                                 </div>
-                                {answered && drillSettings.immediateFeedback && isCorrect && <CheckCircle2 size={20} className="text-emerald-500" />}
+                                {(answered && drillSettings.immediateFeedback && isCorrect || !answered && showExplanation && isCorrect) && <CheckCircle2 size={20} className="text-emerald-500" />}
                                 {answered && drillSettings.immediateFeedback && isSelected && !isCorrect && <XCircle size={20} className="text-rose-500" />}
                               </button>
                             );
@@ -3977,7 +3999,15 @@ V nastavení lze změnit defaultni model.`);
                                         </optgroup>
                                       </select>
                                       <span className="text-xs text-orange-600 dark:text-orange-400 opacity-60">
-                                        Změnit model
+                                        <button
+                                          onClick={handleRegenerateExplanation}
+                                          disabled={isRegeneratingExplanation || isGeneratingDetailedExplanation}
+                                          className="flex items-center gap-1.5 hover:opacity-80 transition-opacity"
+                                          title="Vygenerovat nové vysvětlení"
+                                        >
+                                          {isRegeneratingExplanation ? <RotateCcw size={12} className="animate-spin" /> : <RefreshCw size={12} />}
+                                          <span className="text-[10px] font-bold uppercase tracking-widest">Regenerovat</span>
+                                        </button>
                                       </span>
                                     </div>
                                   )}
@@ -4119,19 +4149,6 @@ V nastavení lze změnit defaultni model.`);
                                             {isGeneratingDetailedExplanation ? <RotateCcw size={14} className="animate-spin" /> : <BookOpen size={14} />}
                                           </div>
                                           <span className="text-[10px] font-bold uppercase tracking-widest">Podrobněji (Lidské vysvětlení)</span>
-                                        </button>
-
-                                        {/* Regenerate Button */}
-                                        <button
-                                          onClick={handleRegenerateExplanation}
-                                          disabled={isRegeneratingExplanation || isGeneratingDetailedExplanation}
-                                          className="flex items-center gap-2 text-orange-600 dark:text-orange-400 hover:opacity-80 transition-opacity"
-                                          title="Vygenerovat nové vysvětlení"
-                                        >
-                                          <div className="w-8 h-8 rounded-full bg-orange-600/10 flex items-center justify-center">
-                                            {isRegeneratingExplanation ? <RotateCcw size={14} className="animate-spin" /> : <RefreshCw size={14} />}
-                                          </div>
-                                          <span className="text-[10px] font-bold uppercase tracking-widest">Regenerovat</span>
                                         </button>
                                       </div>
                                     )}

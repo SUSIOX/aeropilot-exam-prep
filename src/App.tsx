@@ -2239,7 +2239,7 @@ V nastavení lze změnit defaultni model.`);
     }
     let effectiveApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined);
 
-    if (!effectiveApiKey) {
+    if (!effectiveApiKey && !(aiProvider === 'deepseek' && getProxyParams().idToken)) {
       const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
       const key = prompt(`⚠️ Pro použití AI je nutný API klíč
 Vložte Gemini, Claude nebo DeepSeek API klíč (aktuálně vybráno: ${providerName}).

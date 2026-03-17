@@ -80,7 +80,7 @@ import { dynamoDBService } from './services/dynamoService';
 import { initializeSecureCredentials, initializeAuthenticatedCredentials, initializeGuestCredentials } from './services/secureCredentials';
 import { cognitoAuthService, UserRole } from './services/cognitoAuthService';
 import { AccessDenied } from './components/AccessDenied';
-import { ModelButton } from './components/ModelButton';
+import { ModelButton, ProviderIcon } from './components/ModelButton';
 
 const SUBJECT_DEFS = [
   { id: 1, name: "Air Law", description: "Právní předpisy v oblasti letectví" },
@@ -376,6 +376,9 @@ export default function App() {
     return null;
   });
   const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
+
+  // Guard against duplicate syncUserData calls
+  const isSyncingRef = useRef(false);
 
   // Engine instance (we use it for logic, but keep state in React for reactivity)
   const [examAnswers, setExamAnswers] = useState<Record<number, string>>({});
@@ -970,6 +973,8 @@ export default function App() {
    * Hydrates localStorage and application state.
    */
   const syncUserData = async () => {
+    if (isSyncingRef.current) return;
+    isSyncingRef.current = true;
     try {
       if (isGuestMode) {
         const guestStats = loadGuestStats();
@@ -1114,6 +1119,8 @@ export default function App() {
       }
     } catch (err) {
       console.error('❌ syncUserData failed:', err);
+    } finally {
+      isSyncingRef.current = false;
     }
   };
 
@@ -1578,7 +1585,7 @@ export default function App() {
     if (!q) return;
 
     const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
-    if (!currentApiKey) {
+    if (!currentApiKey && !(aiProvider === 'deepseek' && getProxyParams().idToken)) {
       const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
       const key = prompt(`⚠️ Pro použití AI je nutný API klíč
 Vložte ${providerName} API klíč.
@@ -1605,7 +1612,7 @@ V nastavení lze změnit defaultni model.`);
     setIsGeneratingAiExplanation(true);
     try {
       // For guest mode, show login prompt for advanced AI features
-      if (isGuestMode && !userApiKey && !claudeApiKey) {
+      if (isGuestMode && !userApiKey && !claudeApiKey && !deepseekApiKey) {
         showAuthPrompt('ai');
         setIsGeneratingAiExplanation(false);
         return;
@@ -1751,14 +1758,14 @@ V nastavení lze změnit defaultni model.`);
     setIsRegeneratingExplanation(true);
     try {
       // For guest mode, show login prompt for advanced AI features
-      if (isGuestMode && !userApiKey && !claudeApiKey) {
+      if (isGuestMode && !userApiKey && !claudeApiKey && !deepseekApiKey) {
         showAuthPrompt('ai');
         setIsRegeneratingExplanation(false);
         return;
       }
 
       const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
-      if (!currentApiKey) {
+      if (!currentApiKey && !(aiProvider === 'deepseek' && getProxyParams().idToken)) {
         const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
         const key = prompt(`⚠️ Pro použití AI je nutný API klíč
 Vložte ${providerName} API klíč.
@@ -1835,7 +1842,7 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
     if (!q) return;
 
     const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
-    if (!currentApiKey) {
+    if (!currentApiKey && !(aiProvider === 'deepseek' && getProxyParams().idToken)) {
       const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
       const key = prompt(`⚠️ Pro použití AI je nutný API klíč
 Vložte ${providerName} API klíč.
@@ -2013,7 +2020,7 @@ V nastavení lze změnit defaultni model.`);
       // Get API key based on active provider
       let effectiveApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
 
-      if (!effectiveApiKey) {
+      if (!effectiveApiKey && !(aiProvider === 'deepseek' && getProxyParams().idToken)) {
         alert('API klíč nenalezen. Zadejte ho prosím v nastavení.');
         setIsGeneratingLOs(false);
         return;
@@ -2037,7 +2044,9 @@ V nastavení lze změnit defaultni model.`);
         aiProvider,
         undefined, // signal
         useAircademySyllabus,
-        additionalDocumentLinks
+        additionalDocumentLinks,
+        getProxyParams().proxyUrl,
+        getProxyParams().idToken
       );
 
       if (result.success) {
@@ -4099,6 +4108,10 @@ V nastavení lze změnit defaultni model.`);
                                       <div className="flex items-center gap-2 text-indigo-400">
                                         <Terminal size={14} />
                                         <span className="text-[10px] font-bold uppercase tracking-widest">AI_ENGINE_OUTPUT_LOG</span>
+                                        <span className="flex items-center gap-1 opacity-70 ml-2">
+                                          <ProviderIcon provider={aiProvider} size={11} />
+                                          <span className="text-[9px] font-bold" style={{ color: aiProvider === 'gemini' ? '#4285F4' : aiProvider === 'claude' ? '#cc785c' : '#4D6BFE' }}>{aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek'}</span>
+                                        </span>
                                       </div>
                                       <div
                                         className="text-xs leading-relaxed opacity-90 max-w-none border-l border-indigo-500/30 pl-4 prose prose-sm prose-invert"

@@ -115,7 +115,7 @@ async function callProxy(proxyUrl: string, idToken: string, model: string, userM
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${idToken}` },
     body: JSON.stringify(body),
   });
-  if (res.status === 401) throw new Error('API_KEY_INVALID');
+  if (res.status === 401 || res.status === 403) throw new Error('API_KEY_INVALID');
   if (!res.ok) throw new Error(`Proxy error: ${res.status}`);
   const data = await res.json();
   return data.choices?.[0]?.message?.content || '';
@@ -1360,10 +1360,12 @@ export async function generateMissingLearningObjectives(
   provider: AIProvider = 'gemini',
   signal?: AbortSignal,
   useAircademy: boolean = true,
-  additionalDocuments: string[] = []
+  additionalDocuments: string[] = [],
+  proxyUrl?: string,
+  idToken?: string
 ): Promise<{ success: boolean, los: EasaLO[], error?: string }> {
 
-  if (!apiKey) {
+  if (!apiKey && !(provider === 'deepseek' && proxyUrl && idToken)) {
     return { success: false, los: [], error: 'API klíč je vyžadován pro generování LOs' };
   }
 
@@ -1556,7 +1558,9 @@ Return JSON array:
         return { success: false, los: [], error: `Invalid JSON response: ${parseError instanceof Error ? parseError.message : 'Unknown error'}` };
       }
     } else if (provider === 'deepseek') {
-      const text = await callWithRetry(() => callDeepSeek(apiKey!, model, prompt, estimatedTokens, true), 2, 'deepseek', signal);
+      const text = proxyUrl && idToken && !apiKey
+        ? await callWithRetry(() => callProxy(proxyUrl, idToken, model, prompt, estimatedTokens, true), 2, 'deepseek', signal)
+        : await callWithRetry(() => callDeepSeek(apiKey!, model, prompt, estimatedTokens, true), 2, 'deepseek', signal);
       if (!text) return { success: false, los: [], error: 'Empty response from DeepSeek' };
       try {
         const missingLOs = JSON.parse(extractJSON(text)) as any[];

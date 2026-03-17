@@ -277,56 +277,41 @@ export class DynamoDBService {
         attempts
       };
 
-      // This method shouldn't be used directly like this after consolidation, 
-      // but if called, map it to the user's progress sub-object.
-      const command = new DocUpdateCommand({
-        TableName: getTableName('USERS'),
-        Key: { userId },
-        UpdateExpression: 'SET progress.#qid = :prog, updatedAt = :now',
-        ExpressionAttributeNames: {
-          '#qid': questionId
-        },
-        ExpressionAttributeValues: {
-          ':prog': {
-            isCorrect,
-            answerTimestamp: new Date().toISOString(),
-            attempts
-          },
-          ':now': new Date().toISOString()
-        }
-      });
+      const now = new Date().toISOString();
+      const prog = { isCorrect, answerTimestamp: now, attempts };
 
-      let result;
+      // DynamoDB nepovoluje SET progress = if_not_exists(...) a progress.#qid = ... v jednom výrazu
+      // Proto: nejdřív inicializuj progress map pokud neexistuje, pak nastav konkrétní klíč
       try {
-        result = await this.docClient.send(command);
-      } catch (error: any) {
-        // If the item doesn't exist OR the progress map doesn't exist yet
-        if (
-          error.name === 'ConditionalCheckFailedException' || 
-          (error.name === 'ValidationException' && (error.message.includes('document path') || error.message.includes('nested')))
-        ) {
-          // Ensure the item exists AND has a progress map
+        await this.docClient.send(new DocUpdateCommand({
+          TableName: getTableName('USERS'),
+          Key: { userId },
+          UpdateExpression: 'SET progress.#qid = :prog, updatedAt = :now',
+          ExpressionAttributeNames: { '#qid': questionId },
+          ExpressionAttributeValues: { ':prog': prog, ':now': now }
+        }));
+      } catch (e: any) {
+        if (e.name === 'ValidationException' && e.message.includes('document path')) {
+          // progress map neexistuje — inicializuj ho a zkus znovu
           await this.docClient.send(new DocUpdateCommand({
             TableName: getTableName('USERS'),
             Key: { userId },
-            UpdateExpression: 'SET progress = if_not_exists(progress, :emptyMap), updatedAt = if_not_exists(updatedAt, :now)',
-            ExpressionAttributeValues: { 
-              ':emptyMap': {},
-              ':now': new Date().toISOString()
-            }
+            UpdateExpression: 'SET progress = if_not_exists(progress, :emptyMap)',
+            ExpressionAttributeValues: { ':emptyMap': {} }
           }));
-          // Retry the original update
-          console.log(`🔄 Retrying saveUserProgress after initializing user item for ${userId}`);
-          result = await this.docClient.send(command);
+          await this.docClient.send(new DocUpdateCommand({
+            TableName: getTableName('USERS'),
+            Key: { userId },
+            UpdateExpression: 'SET progress.#qid = :prog, updatedAt = :now',
+            ExpressionAttributeNames: { '#qid': questionId },
+            ExpressionAttributeValues: { ':prog': prog, ':now': now }
+          }));
         } else {
-          throw error;
+          throw e;
         }
       }
 
-      return {
-        success: true,
-        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
-      };
+      return { success: true };
 
     } catch (error) {
       return {

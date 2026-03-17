@@ -21,6 +21,11 @@ interface ModelButtonProps {
   onClick: () => void
 }
 
+export function ProviderIcon({ provider, size = 11 }: { provider: AIProvider; size?: number }) {
+  const { Icon, color } = MODELS[provider]
+  return <Icon size={size} color={color} />
+}
+
 export function ModelButton({ provider, active, onClick }: ModelButtonProps) {
   const { label, Icon, color, bg, border } = MODELS[provider]
   return (

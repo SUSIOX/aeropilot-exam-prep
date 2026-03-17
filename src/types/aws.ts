@@ -8,7 +8,7 @@ export interface ExplanationItem extends DynamoDBItem {
   model: string;
   explanation: string;
   detailedExplanation?: string;
-  provider: 'gemini' | 'claude';
+  provider: 'gemini' | 'claude' | 'deepseek';
   usageCount: number;
   createdAt: string;
   lastUsed: string;
@@ -48,7 +48,8 @@ export interface UserSettingsItem extends DynamoDBItem {
     shuffleAnswers: boolean;
     userApiKey: string;
     claudeApiKey: string;
-    aiProvider: 'gemini' | 'claude';
+    deepseekApiKey: string;
+    aiProvider: 'gemini' | 'claude' | 'deepseek';
     aiModel: string;
   };
   updatedAt: string;

@@ -5,7 +5,7 @@ import { LOItem } from "../types/aws";
 import { dynamoDBService } from "./dynamoService";
 import { cacheAircademyPDF, generateAircademyPrompt } from './aircademyService';
 
-export type AIProvider = 'gemini' | 'claude';
+export type AIProvider = 'gemini' | 'claude' | 'deepseek';
 
 // LO Cache for performance
 const loCache = new Map<string, EasaLO[]>();
@@ -18,7 +18,7 @@ const loItemToEasaLO = (item: LOItem | any): EasaLO => ({
   knowledgeContent: item.knowledgeContent || item.context,
   level: item.level,
   context: item.context,
-  subject_id: item.subject_id || item.subjectId,
+  subject_id: item.subject_id || item.subjectId || undefined,
   applies_to: item.applies_to || item.appliesTo
 });
 
@@ -101,6 +101,55 @@ const getClaudeInstance = (apiKey?: string) => {
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
+// Proxy call — uses Lambda AI proxy (no client-side API key needed)
+async function callProxy(proxyUrl: string, idToken: string, model: string, userMessage: string, maxTokens = 2000, jsonMode = false): Promise<string> {
+  const body: any = {
+    model: model.includes('/') ? model : `deepseek/${model}`,
+    messages: [{ role: 'user', content: userMessage }],
+    max_tokens: maxTokens,
+  };
+  if (jsonMode) body.response_format = { type: 'json_object' };
+
+  const res = await fetch(proxyUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${idToken}` },
+    body: JSON.stringify(body),
+  });
+  if (res.status === 401) throw new Error('API_KEY_INVALID');
+  if (!res.ok) throw new Error(`Proxy error: ${res.status}`);
+  const data = await res.json();
+  return data.choices?.[0]?.message?.content || '';
+}
+
+// DeepSeek uses OpenAI-compatible REST API — supports both api.deepseek.com and OpenRouter
+async function callDeepSeek(apiKey: string, model: string, userMessage: string, maxTokens = 2000, jsonMode = false): Promise<string> {
+  const isOpenRouter = apiKey.startsWith('sk-or-');
+  const isReasoner = model === 'deepseek-reasoner' || model === 'deepseek/deepseek-r1';
+  const baseUrl = isOpenRouter ? 'https://openrouter.ai/api/v1' : 'https://api.deepseek.com';
+  const resolvedModel = isOpenRouter && !model.includes('/') ? `deepseek/${model}` : model;
+
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${apiKey}`,
+    ...(isOpenRouter && { 'HTTP-Referer': 'https://susiox.github.io/aeropilot-exam-prep/', 'X-Title': 'Aeropilot Exam Prep' }),
+  };
+  const body: any = {
+    model: resolvedModel,
+    messages: [{ role: 'user', content: userMessage }],
+    max_tokens: maxTokens,
+  };
+  // deepseek-reasoner nepodporuje JSON mode
+  if (jsonMode && !isReasoner) body.response_format = { type: 'json_object' };
+
+  const res = await fetch(`${baseUrl}/chat/completions`, { method: 'POST', headers, body: JSON.stringify(body) });
+  if (res.status === 401) throw new Error('API_KEY_INVALID');
+  if (res.status === 402) throw new Error('DEEPSEEK_INSUFFICIENT_BALANCE');
+  if (res.status === 429) throw new Error('DEEPSEEK_RATE_LIMIT');
+  if (!res.ok) throw new Error(`DeepSeek API error: ${res.status}`);
+  const data = await res.json();
+  return data.choices?.[0]?.message?.content || '';
+}
+
 async function callWithRetry<T>(fn: () => Promise<T>, retries = 2, provider: AIProvider = 'gemini', signal?: AbortSignal): Promise<T> {
   try {
     return await fn();
@@ -137,6 +186,17 @@ async function callWithRetry<T>(fn: () => Promise<T>, retries = 2, provider: AIP
       if (isInvalidKey) {
         throw new Error('API_KEY_INVALID');
       }
+    } else if (provider === 'deepseek') {
+      const isRateLimit = errorMsg.includes('deepseek_rate_limit') || errorMsg.includes('rate limit') || errorMsg.includes('429');
+      const isInvalidKey = errorMsg.includes('api_key_invalid') || errorMsg.includes('401');
+      const isNoBalance = errorMsg.includes('deepseek_insufficient_balance') || errorMsg.includes('402');
+      if (isRateLimit && retries > 0) {
+        console.log(`DeepSeek rate limit hit, retrying in 3s... (${retries} left)`);
+        await sleep(3000);
+        return callWithRetry(fn, retries - 1, provider, signal);
+      }
+      if (isInvalidKey) throw new Error('API_KEY_INVALID');
+      if (isNoBalance) throw new Error('DEEPSEEK_INSUFFICIENT_BALANCE');
     }
 
     throw error;
@@ -172,8 +232,8 @@ export const getDynamicSyllabusScope = (los: EasaLO[], subjectId?: number): Reco
 
   // Calculate actual LO count per subject
   const subjectCounts = los.reduce((acc, lo) => {
-    const subject = lo.subject_id || 0;
-    acc[subject] = (acc[subject] || 0) + 1;
+    if (!lo.subject_id) return acc; // skip LOs without valid subject_id
+    acc[lo.subject_id] = (acc[lo.subject_id] || 0) + 1;
     return acc;
   }, {} as Record<number, number>);
 
@@ -241,7 +301,8 @@ export function buildSyllabusTree(los: EasaLO[]): SyllabusSubjectNode[] {
   const subjectMap = new Map<number, Map<string, Map<string, SyllabusLONode[]>>>();
 
   for (const lo of los) {
-    const sid = lo.subject_id ?? 0;
+    if (!lo.subject_id) continue; // skip LOs without valid subject_id
+    const sid = lo.subject_id;
     const parts = lo.id.split('.');
     const topicCode = parts.slice(0, 2).join('.');
     const subtopicCode = parts.slice(0, 3).join('.');
@@ -544,7 +605,9 @@ export async function generateBatchQuestions(
   model: string = "gemini-flash-latest",
   provider: AIProvider = 'gemini',
   license: 'PPL' | 'SPL' = 'PPL',
-  signal?: AbortSignal
+  signal?: AbortSignal,
+  proxyUrl?: string,
+  idToken?: string
 ): Promise<{ loId: string, questions: Partial<Question>[] }[]> {
 
   const pplExamples = `
@@ -791,6 +854,19 @@ export async function generateBatchQuestions(
         }
         throw new Error(`AI vrátila neplatný JSON (${text.length} znaků). Zkuste menší dávku nebo méně otázek na téma.`);
       }
+    } else if (provider === 'deepseek') {
+      const estimatedTokens = Math.max(4000, los.length * questionsPerLO * 500 + 500);
+      const text = proxyUrl && idToken && !apiKey
+        ? await callProxy(proxyUrl, idToken, model, prompt, estimatedTokens, true)
+        : await callDeepSeek(apiKey!, model, prompt, estimatedTokens, true);
+      if (!text) return [];
+      try {
+        const data = JSON.parse(extractJSON(text));
+        return processBatchResponse(data);
+      } catch (parseError) {
+        console.error('❌ JSON parse error (DeepSeek). Length:', text.length);
+        throw new Error(`AI vrátila neplatný JSON (${text.length} znaků). Zkuste menší dávku.`);
+      }
     }
 
     return [];
@@ -825,7 +901,9 @@ export async function getDetailedExplanation(
   model: string = "gemini-flash-latest",
   provider: AIProvider = 'gemini',
   signal?: AbortSignal,
-  displayCorrectOption?: string
+  displayCorrectOption?: string,
+  proxyUrl?: string,
+  idToken?: string
 ): Promise<{ explanation: string, objective?: string }> {
   console.log('getDetailedExplanation called with:', { provider, model, hasKey: !!apiKey });
 
@@ -895,9 +973,16 @@ export async function getDetailedExplanation(
       const text = (response.content[0] as any)?.text || "";
       console.log('Claude text:', text);
       return parseExplanation(text);
+
+    } else if (provider === 'deepseek') {
+      console.log('Using DeepSeek provider');
+      const text = proxyUrl && idToken && !apiKey
+        ? await callProxy(proxyUrl, idToken, model, prompt, 1000)
+        : await callDeepSeek(apiKey!, model, prompt, 1000);
+      return parseExplanation(text || 'Vysvětlení se nepodařilo vygenerovat.');
     }
 
-    return { explanation: "Vysvětlení se nepodařilo vygenerovat." };
+    return { explanation: 'Vysvětlení se nepodařilo vygenerovat.' };
 
   } catch (error) {
     console.error("Error generating detailed explanation:", error);
@@ -943,7 +1028,9 @@ export async function getDetailedHumanExplanation(
   model: string = "gemini-flash-latest",
   provider: AIProvider = 'gemini',
   signal?: AbortSignal,
-  displayCorrectOption?: string
+  displayCorrectOption?: string,
+  proxyUrl?: string,
+  idToken?: string
 ): Promise<string> {
   console.log('getDetailedHumanExplanation called with:', { provider, model, hasKey: !!apiKey });
 
@@ -1021,9 +1108,19 @@ export async function getDetailedHumanExplanation(
         .trim();
 
       return cleanedText || "Podrobné vysvětlení se nepodařilo vygenerovat.";
+
+    } else if (provider === 'deepseek') {
+      console.log('Using DeepSeek provider for detailed explanation');
+      const text = proxyUrl && idToken && !apiKey
+        ? await callProxy(proxyUrl, idToken, model, prompt, 1500)
+        : await callDeepSeek(apiKey!, model, prompt, 1500);
+      const cleanedText = text
+        .replace(/^(Ahoj|Čau|Dobrý den|Pilote|Studente|Příteli|Kámo)[,\s]*/gi, '')
+        .trim();
+      return cleanedText || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
     }
 
-    return "Podrobné vysvětlení se nepodařilo vygenerovat.";
+    return 'Podrobné vysvětlení se nepodařilo vygenerovat.';
 
   } catch (error) {
     console.error("Error generating detailed human explanation:", error);
@@ -1031,7 +1128,7 @@ export async function getDetailedHumanExplanation(
   }
 }
 
-export async function translateQuestion(question: Question, apiKey?: string, model: string = "gemini-flash-latest", provider: AIProvider = 'gemini', signal?: AbortSignal): Promise<Partial<Question>> {
+export async function translateQuestion(question: Question, apiKey?: string, model: string = "gemini-flash-latest", provider: AIProvider = 'gemini', signal?: AbortSignal, proxyUrl?: string, idToken?: string): Promise<Partial<Question>> {
   const prompt = `
     You are a technical EASA Translation Engine.
     Translate the following aviation question and its options into Czech.
@@ -1098,6 +1195,20 @@ export async function translateQuestion(question: Question, apiKey?: string, mod
       } catch (parseError) {
         console.error('Claude JSON parse error:', parseError, 'Raw text:', text);
         throw new Error('Claude returned invalid JSON format');
+      }
+
+    } else if (provider === 'deepseek') {
+      console.log(`[DeepSeek] Translating question with model: ${model}`);
+      const fullPrompt = prompt + '\n\nIMPORTANT: Return ONLY valid JSON object, no other text.';
+      const text = proxyUrl && idToken && !apiKey
+        ? await callProxy(proxyUrl, idToken, model, fullPrompt, 2000, true)
+        : await callDeepSeek(apiKey!, model, fullPrompt, 2000, true);
+      try {
+        const jsonMatch = text.match(/\{[\s\S]*\}/);
+        return JSON.parse(jsonMatch ? jsonMatch[0] : text);
+      } catch (parseError) {
+        console.error('DeepSeek JSON parse error:', parseError, 'Raw text:', text);
+        throw new Error('DeepSeek returned invalid JSON format');
       }
     }
 
@@ -1166,6 +1277,23 @@ export async function verifyApiKey(apiKey: string, provider: AIProvider = 'gemin
       });
       console.log(`[Claude] Verification successful.`);
       return { success: true };
+    } else if (provider === 'deepseek') {
+      try {
+        const isOpenRouter = apiKey.startsWith('sk-or-');
+        const verifyUrl = isOpenRouter ? 'https://openrouter.ai/api/v1/models' : 'https://api.deepseek.com/models';
+        console.log(`[DeepSeek] Verifying key via ${isOpenRouter ? 'OpenRouter' : 'DeepSeek'} /models endpoint`);
+        const res = await fetch(verifyUrl, {
+          headers: { 'Authorization': `Bearer ${apiKey}`, 'Accept': 'application/json' }
+        });
+        if (res.status === 401) return { success: false, error: `Neplatný API klíč ${isOpenRouter ? 'OpenRouter' : 'DeepSeek'}.` };
+        if (res.status === 402) return { success: false, error: 'DeepSeek účet nemá dostatečný kredit. Dobijte zůstatek na platform.deepseek.com.', quotaExceeded: true };
+        if (res.status === 429) return { success: false, error: 'DeepSeek kvóta vyčerpána nebo příliš mnoho požadavků.', quotaExceeded: true };
+        if (!res.ok) return { success: false, error: `API error: ${res.status}` };
+        console.log(`[DeepSeek${isOpenRouter ? '/OpenRouter' : ''}] Verification successful.`);
+        return { success: true };
+      } catch (err: any) {
+        throw err;
+      }
     }
 
     return { success: false, error: 'Nepodporovaný poskytovatel' };
@@ -1425,6 +1553,24 @@ Return JSON array:
         if (claudeResponse.stop_reason === 'max_tokens') {
           return { success: false, los: [], error: `Claude response truncated (max_tokens: ${estimatedTokens}). Try smaller batch.` };
         }
+        return { success: false, los: [], error: `Invalid JSON response: ${parseError instanceof Error ? parseError.message : 'Unknown error'}` };
+      }
+    } else if (provider === 'deepseek') {
+      const text = await callWithRetry(() => callDeepSeek(apiKey!, model, prompt, estimatedTokens, true), 2, 'deepseek', signal);
+      if (!text) return { success: false, los: [], error: 'Empty response from DeepSeek' };
+      try {
+        const missingLOs = JSON.parse(extractJSON(text)) as any[];
+        const validLOs = missingLOs.map(lo => ({
+          id: lo.id || generateLOId(subjectId, existingLOs.length + 1),
+          text: lo.text,
+          context: lo.context || lo.text,
+          level: (typeof lo.level === 'number' ? lo.level : lo.level === 'Recall' ? 1 : lo.level === 'State' ? 2 : lo.level === 'Explain' ? 3 : 1) as 1 | 2 | 3,
+          subject_id: subjectId,
+          applies_to: Array.isArray(lo.applies_to) ? lo.applies_to : [lo.applies_to || 'PPL(A)']
+        }));
+        return { success: true, los: validLOs };
+      } catch (parseError) {
+        console.error('❌ JSON parse error (DeepSeek LO Generator). Length:', text.length);
         return { success: false, los: [], error: `Invalid JSON response: ${parseError instanceof Error ? parseError.message : 'Unknown error'}` };
       }
     }

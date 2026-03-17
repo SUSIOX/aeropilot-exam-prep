@@ -80,6 +80,7 @@ import { dynamoDBService } from './services/dynamoService';
 import { initializeSecureCredentials, initializeAuthenticatedCredentials, initializeGuestCredentials } from './services/secureCredentials';
 import { cognitoAuthService, UserRole } from './services/cognitoAuthService';
 import { AccessDenied } from './components/AccessDenied';
+import { ModelButton } from './components/ModelButton';
 
 const SUBJECT_DEFS = [
   { id: 1, name: "Air Law", description: "Právní předpisy v oblasti letectví" },
@@ -308,6 +309,14 @@ export default function App() {
   const [isImportSectionOpen, setIsImportSectionOpen] = useState(false);
   const [userApiKey, setUserApiKey] = useState('');
   const [claudeApiKey, setClaudeApiKey] = useState('');
+  const [deepseekApiKey, setDeepseekApiKey] = useState('');
+
+  // AI Proxy — used when user has no own DeepSeek key
+  const AI_PROXY_URL = import.meta.env.VITE_AI_PROXY_URL as string | undefined;
+  const getProxyParams = () => ({
+    proxyUrl: AI_PROXY_URL,
+    idToken: cognitoAuthService.getTokens()?.id_token,
+  });
   const [aiProvider, setAiProvider] = useState<AIProvider>(() => {
     const saved = localStorage.getItem('aiProvider');
     return (saved === 'claude' ? 'claude' : 'gemini');
@@ -379,8 +388,10 @@ export default function App() {
     aiModel,
     userApiKey,
     claudeApiKey,
+    deepseekApiKey,
     setUserApiKey,
     setClaudeApiKey,
+    setDeepseekApiKey,
     setAiProvider,
     setQuestions
   );
@@ -412,7 +423,10 @@ export default function App() {
     if (msg.includes('429') || msg.includes('RESOURCE_EXHAUSTED') || msg.includes('quota')) {
       return 'Překročen limit API požadavků. Zkuste to za chvíli.';
     }
-    if (msg.includes('401') || msg.includes('403') || msg.includes('API key')) {
+    if (msg.includes('DEEPSEEK_INSUFFICIENT_BALANCE') || msg.includes('402')) {
+      return 'DeepSeek účet nemá dostatečný kredit. Dobijte zůstatek na platform.deepseek.com.';
+    }
+    if (msg.includes('401') || msg.includes('403') || msg.includes('API key') || msg.includes('API_KEY_INVALID')) {
       return 'Neplatný API klíč.';
     }
     if (msg.includes('cancelled') || msg.includes('cancel')) {
@@ -589,7 +603,9 @@ export default function App() {
 
   // Load guest stats
   const loadGuestStats = () => {
-    const guestStats = JSON.parse(localStorage.getItem(`${user?.id || 'guest'}:guest_stats`) || '{}');
+    const uid = user?.id || 'guest';
+    const guestStats = JSON.parse(localStorage.getItem(`${uid}:guest_stats`) || '{}');
+    const userStats = JSON.parse(localStorage.getItem(`${uid}:user_stats`) || '{}');
     if (guestStats.totalAnswers > 0) {
       return {
         totalAnswers: guestStats.totalAnswers,
@@ -597,7 +613,7 @@ export default function App() {
         overallSuccess: guestStats.successRate,
         practicedQuestions: guestStats.totalAnswers,
         totalQuestions: guestStats.totalAnswers,
-        subjectStats: []
+        subjectStats: userStats.subjectStats || {}
       };
     }
     return null;
@@ -616,24 +632,25 @@ export default function App() {
     const uid = user?.id || 'guest';
     const savedGemini = localStorage.getItem(`${uid}:userApiKey`);
     const savedClaude = localStorage.getItem(`${uid}:claudeApiKey`);
+    const savedDeepseek = localStorage.getItem(`${uid}:deepseekApiKey`);
     setUserApiKey(savedGemini || '');
     setClaudeApiKey(savedClaude || '');
+    setDeepseekApiKey(savedDeepseek || '');
     setKeyStatus('idle');
   }, [user]);
 
   useEffect(() => {
+    const uid = user?.id || 'guest';
     if (userApiKey) {
-      const uid = user?.id || 'guest';
       localStorage.setItem(`${uid}:userApiKey`, userApiKey);
     }
-  }, [userApiKey, user]);
-
-  useEffect(() => {
     if (claudeApiKey) {
-      const uid = user?.id || 'guest';
       localStorage.setItem(`${uid}:claudeApiKey`, claudeApiKey);
     }
-  }, [claudeApiKey, user]);
+    if (deepseekApiKey) {
+      localStorage.setItem(`${uid}:deepseekApiKey`, deepseekApiKey);
+    }
+  }, [userApiKey, claudeApiKey, deepseekApiKey, user]);
 
   useEffect(() => {
     localStorage.setItem('aiProvider', aiProvider);
@@ -679,6 +696,8 @@ export default function App() {
       setAiModel('gemini-flash-latest');
     } else if (aiProvider === 'claude' && !aiModel.startsWith('claude')) {
       setAiModel('claude-sonnet-4-6');
+    } else if (aiProvider === 'deepseek' && !aiModel.startsWith('deepseek')) {
+      setAiModel('deepseek-chat');
     }
   }, [aiProvider, aiModel]);
 
@@ -689,7 +708,8 @@ export default function App() {
       // Validate that saved model is still supported
       const supportedModels = [
         'gemini-flash-latest', 'gemini-2.5-flash', 'gemini-3.1-flash-lite-preview', 'gemini-2.5-pro', 'gemini-3.1-pro-preview',
-        'claude-sonnet-4-6', 'claude-haiku-4-5-20251001', 'claude-opus-4-6'
+        'claude-sonnet-4-6', 'claude-haiku-4-5-20251001', 'claude-opus-4-6',
+        'deepseek-chat', 'deepseek-reasoner'
       ];
 
       if (!supportedModels.includes(savedModel)) {
@@ -702,6 +722,8 @@ export default function App() {
         setAiProvider('claude');
       } else if (savedModel.startsWith('gemini') && aiProvider !== 'gemini') {
         setAiProvider('gemini');
+      } else if (savedModel.startsWith('deepseek') && aiProvider !== 'deepseek') {
+        setAiProvider('deepseek');
       }
     }
   }, []); // Run only on mount
@@ -721,7 +743,7 @@ export default function App() {
   }, []);
 
   const handleVerifyKey = async () => {
-    const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
+    const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
     if (!currentApiKey) return;
     setIsVerifyingKey(true);
     setKeyStatus('idle');
@@ -730,7 +752,8 @@ export default function App() {
 
       if (result.success) {
         setKeyStatus('valid');
-        alert(`✅ API klíč pro ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} je platný a byl uložen.`);
+        const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
+        alert(`✅ API klíč pro ${providerName} je platný a byl uložen.`);
       } else {
         setKeyStatus('invalid');
         alert(`❌ ${result.error || 'Vložený API klíč není platný.'}`);
@@ -747,18 +770,19 @@ export default function App() {
     localStorage.setItem('drillSettings', JSON.stringify(drillSettings));
 
     // Sync to DynamoDB for authenticated users (not guests)
-    if (!isGuestMode && user?.id && (userApiKey || claudeApiKey)) {
+    if (!isGuestMode && user?.id && (userApiKey || claudeApiKey || deepseekApiKey)) {
       dynamoDBService.saveUserSettings(String(user.id), {
         ...drillSettings,
         userApiKey,
         claudeApiKey,
+        deepseekApiKey,
         aiProvider,
         aiModel
       }).catch(() => {
         // Silent fail - localStorage is primary storage
       });
     }
-  }, [drillSettings, user?.id, userApiKey, claudeApiKey, aiProvider, aiModel]);
+  }, [drillSettings, user?.id, userApiKey, claudeApiKey, deepseekApiKey, aiProvider, aiModel]);
 
   // Load user settings from DynamoDB on login
   useEffect(() => {
@@ -776,6 +800,7 @@ export default function App() {
             // Restore API keys and AI settings from DB
             if (result.settings.userApiKey) setUserApiKey(result.settings.userApiKey);
             if (result.settings.claudeApiKey) setClaudeApiKey(result.settings.claudeApiKey);
+            if (result.settings.deepseekApiKey) setDeepseekApiKey(result.settings.deepseekApiKey);
             if (result.settings.aiProvider) setAiProvider(result.settings.aiProvider);
             if (result.settings.aiModel) setAiModel(result.settings.aiModel);
           }
@@ -1552,34 +1577,25 @@ export default function App() {
     const q = questions[currentQuestionIndex];
     if (!q) return;
 
-    const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
+    const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
     if (!currentApiKey) {
+      const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
       const key = prompt(`⚠️ Pro použití AI je nutný API klíč
-Vložte Gemini nebo Claude API klíč (aktuálně vybráno: ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'}).
+Vložte ${providerName} API klíč.
 
 💡 Klíč se automaticky rozpozná.
 V nastavení lze změnit defaultni model.`);
       if (key) {
-        // Inteligentní detekce typu klíče
         if (key.startsWith('AIza')) {
-          // Gemini klíč
-          setUserApiKey(key);
-          if (aiProvider !== 'gemini') {
-            setAiProvider('gemini');
-          }
+          setUserApiKey(key); if (aiProvider !== 'gemini') setAiProvider('gemini');
         } else if (key.startsWith('sk-ant-')) {
-          // Claude klíč
-          setClaudeApiKey(key);
-          if (aiProvider !== 'claude') {
-            setAiProvider('claude');
-          }
+          setClaudeApiKey(key); if (aiProvider !== 'claude') setAiProvider('claude');
+        } else if (key.startsWith('sk-')) {
+          setDeepseekApiKey(key); if (aiProvider !== 'deepseek') setAiProvider('deepseek');
         } else {
-          // Neznámý formát - uložit podle aktuálního provideru
-          if (aiProvider === 'gemini') {
-            setUserApiKey(key);
-          } else {
-            setClaudeApiKey(key);
-          }
+          if (aiProvider === 'gemini') setUserApiKey(key);
+          else if (aiProvider === 'claude') setClaudeApiKey(key);
+          else setDeepseekApiKey(key);
         }
       } else {
         return;
@@ -1649,7 +1665,7 @@ V nastavení lze změnit defaultni model.`);
         ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
         : undefined;
 
-      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : claudeApiKey, aiModel, aiProvider, undefined, displayCorrectOption);
+      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey, aiModel, aiProvider, undefined, displayCorrectOption, getProxyParams().proxyUrl, getProxyParams().idToken);
 
 
       // Save objective if detected
@@ -1741,17 +1757,17 @@ V nastavení lze změnit defaultni model.`);
         return;
       }
 
-      const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
+      const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
       if (!currentApiKey) {
+        const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
         const key = prompt(`⚠️ Pro použití AI je nutný API klíč
-Vložte Gemini nebo Claude API klíč (aktuálně vybráno: ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'}).
+Vložte ${providerName} API klíč.
 Klíč bude uložen pouze ve vašem prohlížeči.`);
         if (key) {
-          if (aiProvider === 'gemini') {
-            setUserApiKey(key);
-          } else {
-            setClaudeApiKey(key);
-          }
+          if (key.startsWith('AIza')) { setUserApiKey(key); if (aiProvider !== 'gemini') setAiProvider('gemini'); }
+          else if (key.startsWith('sk-ant-')) { setClaudeApiKey(key); if (aiProvider !== 'claude') setAiProvider('claude'); }
+          else if (key.startsWith('sk-')) { setDeepseekApiKey(key); if (aiProvider !== 'deepseek') setAiProvider('deepseek'); }
+          else { if (aiProvider === 'gemini') setUserApiKey(key); else if (aiProvider === 'claude') setClaudeApiKey(key); else setDeepseekApiKey(key); }
         } else {
           setIsRegeneratingExplanation(false);
           return;
@@ -1771,11 +1787,13 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
       const explanation = await getDetailedExplanation(
         q,
         lo,
-        aiProvider === 'gemini' ? userApiKey : claudeApiKey,
+        aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey,
         aiModel,
         aiProvider,
         controller.signal,
-        displayCorrectOption
+        displayCorrectOption,
+        getProxyParams().proxyUrl,
+        getProxyParams().idToken
       );
 
       setAiExplanation(explanation.explanation);
@@ -1816,34 +1834,25 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
     const q = questions[currentQuestionIndex];
     if (!q) return;
 
-    const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
+    const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
     if (!currentApiKey) {
+      const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
       const key = prompt(`⚠️ Pro použití AI je nutný API klíč
-Vložte Gemini nebo Claude API klíč (aktuálně vybráno: ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'}).
+Vložte ${providerName} API klíč.
 
 💡 Klíč se automaticky rozpozná.
 V nastavení lze změnit defaultni model.`);
       if (key) {
-        // Inteligentní detekce typu klíče
         if (key.startsWith('AIza')) {
-          // Gemini klíč
-          setUserApiKey(key);
-          if (aiProvider !== 'gemini') {
-            setAiProvider('gemini');
-          }
+          setUserApiKey(key); if (aiProvider !== 'gemini') setAiProvider('gemini');
         } else if (key.startsWith('sk-ant-')) {
-          // Claude klíč
-          setClaudeApiKey(key);
-          if (aiProvider !== 'claude') {
-            setAiProvider('claude');
-          }
+          setClaudeApiKey(key); if (aiProvider !== 'claude') setAiProvider('claude');
+        } else if (key.startsWith('sk-')) {
+          setDeepseekApiKey(key); if (aiProvider !== 'deepseek') setAiProvider('deepseek');
         } else {
-          // Neznámý formát - uložit podle aktuálního provideru
-          if (aiProvider === 'gemini') {
-            setUserApiKey(key);
-          } else {
-            setClaudeApiKey(key);
-          }
+          if (aiProvider === 'gemini') setUserApiKey(key);
+          else if (aiProvider === 'claude') setClaudeApiKey(key);
+          else setDeepseekApiKey(key);
         }
       } else {
         return;
@@ -1865,7 +1874,7 @@ V nastavení lze změnit defaultni model.`);
         ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
         : undefined;
 
-      const detailedExplanationResult = await getDetailedHumanExplanation(q, lo, currentApiKey, aiModel, aiProvider, undefined, displayCorrectOption);
+      const detailedExplanationResult = await getDetailedHumanExplanation(q, lo, currentApiKey, aiModel, aiProvider, undefined, displayCorrectOption, getProxyParams().proxyUrl, getProxyParams().idToken);
 
       setDetailedExplanation(detailedExplanationResult);
 
@@ -2001,55 +2010,11 @@ V nastavení lze změnit defaultni model.`);
       // Get existing LOs for the subject
       const existingLOs = allLOs.filter(lo => lo.subject_id === importSubjectId);
 
-      // Get API key (same logic as other generators - direct localStorage read)
-      const uid = user?.id || 'guest';
-      let effectiveApiKey = localStorage.getItem(`${uid}:userApiKey`) || localStorage.getItem(`${uid}:claudeApiKey`) || userApiKey || claudeApiKey;
+      // Get API key based on active provider
+      let effectiveApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
 
-      // Check if user is logged in and has API keys in DB
-      if (userMode === 'logged-in' && user) {
-        // For logged-in users, API keys should be in DB/state
-        if (!effectiveApiKey) {
-          // Try to load from DB if not in state
-          try {
-            const userSettingsResult = await dynamoDBService.getUserSettings(user.id);
-            if (userSettingsResult.success && userSettingsResult.settings) {
-              const settings = userSettingsResult.settings;
-              const dbApiKey = settings.userApiKey || settings.claudeApiKey;
-              if (dbApiKey) {
-                effectiveApiKey = dbApiKey;
-                // Update state with DB key
-                if (settings.userApiKey) setUserApiKey(settings.userApiKey);
-                if (settings.claudeApiKey) setClaudeApiKey(settings.claudeApiKey);
-              }
-            }
-          } catch (err) {
-            console.error('Failed to load API keys from DB:', err);
-          }
-        }
-      }
-
-      // Only prompt for API key if user is guest or still no key found
-      if (!effectiveApiKey && userMode === 'guest') {
-        const key = prompt(`Pro generování Learning Objectives je vyžadován API klíč. Chcete jej vložit nyní?`);
-        if (key) {
-          if (aiProvider === 'gemini') {
-            setUserApiKey(key);
-            effectiveApiKey = key;
-          } else {
-            setClaudeApiKey(key);
-            effectiveApiKey = key;
-          }
-        } else {
-          // Stop generation if no API key provided (LOs require API key)
-          alert('Generování LOs vyžaduje API klíč. Zadejte ho prosím v nastavení.');
-          setIsGeneratingLOs(false);
-          return;
-        }
-      }
-
-      // If still no API key for logged-in user, show error (shouldn't happen with proper DB sync)
-      if (!effectiveApiKey && userMode === 'logged-in') {
-        alert('API klíč nenalezen v databázi. Přihlaste se znovu nebo kontaktujte administrátora.');
+      if (!effectiveApiKey) {
+        alert('API klíč nenalezen. Zadejte ho prosím v nastavení.');
         setIsGeneratingLOs(false);
         return;
       }
@@ -2118,6 +2083,11 @@ V nastavení lze změnit defaultni model.`);
       let failCount = 0;
 
       for (const lo of uniqueNewLOs) {
+        if (!lo.subject_id) {
+          console.warn('Skipping LO without subject_id:', lo.id);
+          failCount++;
+          continue;
+        }
         try {
           const result = await dynamoDBService.saveLO({
             losid: lo.id,
@@ -2252,11 +2222,12 @@ V nastavení lze změnit defaultni model.`);
       alert('Tato funkce je jen pro ověřené uživatele');
       return;
     }
-    let effectiveApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
+    let effectiveApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
 
     if (!effectiveApiKey) {
+      const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
       const key = prompt(`⚠️ Pro použití AI je nutný API klíč
-Vložte Gemini nebo Claude API klíč (aktuálně vybráno: ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'}).
+Vložte Gemini, Claude nebo DeepSeek API klíč (aktuálně vybráno: ${providerName}).
 
 💡 Klíč se automaticky rozpozná.
 V nastavení lze změnit defaultni model.`);
@@ -2276,12 +2247,21 @@ V nastavení lze změnit defaultni model.`);
             setAiProvider('claude');
           }
           effectiveApiKey = key;
+        } else if (key.startsWith('sk-')) {
+          // DeepSeek klíč
+          setDeepseekApiKey(key);
+          if (aiProvider !== 'deepseek') {
+            setAiProvider('deepseek');
+          }
+          effectiveApiKey = key;
         } else {
           // Neznámý formát - uložit podle aktuálního provideru
           if (aiProvider === 'gemini') {
             setUserApiKey(key);
-          } else {
+          } else if (aiProvider === 'claude') {
             setClaudeApiKey(key);
+          } else {
+            setDeepseekApiKey(key);
           }
         }
       } else {
@@ -2349,7 +2329,7 @@ V nastavení lze změnit defaultni model.`);
 
       for (let i = 0; i < targets.length; i += CHUNK_SIZE) {
         const chunk = targets.slice(i, i + CHUNK_SIZE);
-        const chunkResults = await generateBatchQuestions(chunk, questionsPerLO, language.generateLanguage, effectiveApiKey, aiModel, aiProvider, selectedLicense);
+        const chunkResults = await generateBatchQuestions(chunk, questionsPerLO, language.generateLanguage, effectiveApiKey, aiModel, aiProvider, selectedLicense, undefined, getProxyParams().proxyUrl, getProxyParams().idToken);
         allResults.push(...chunkResults);
         setBatchResults([...allResults]); // Update UI incrementally
       }
@@ -2438,19 +2418,15 @@ V nastavení lze změnit defaultni model.`);
 
       // Delete progress from DynamoDB for authenticated users
       if (!isGuestMode && user?.id) {
-        await dynamoDBService.deleteAllUserProgress(String(user.id));
+        const result = await dynamoDBService.deleteAllUserProgress(String(user.id));
+        if (!result.success) {
+          alert('Nepodařilo se smazat postup v databázi: ' + result.error);
+          return;
+        }
       }
 
-      setStats({
-        totalAnswers: 0,
-        correctAnswers: 0,
-        overallSuccess: 0.75,
-        userQuestions: 0,
-        aiQuestions: 1000,
-        practicedQuestions: 0,
-        totalQuestions: 1000,
-        subjectStats: {}
-      });
+      // Reload fresh data from DB (correct question counts etc.)
+      await syncUserData();
 
       alert('Váš postup byl úspěšně smazán.');
     } catch (err) {
@@ -3457,27 +3433,10 @@ V nastavení lze změnit defaultni model.`);
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <label className="col-header">AI Provider</label>
-                          <div className="grid grid-cols-2 gap-2">
-                            <button
-                              onClick={() => setAiProvider('gemini')}
-                              className={`p-3 rounded-xl border text-[10px] font-bold transition-all flex items-center justify-center gap-2 ${aiProvider === 'gemini'
-                                  ? 'border-blue-600 bg-blue-600/5 text-blue-600'
-                                  : 'border-[var(--line)] opacity-40 hover:opacity-60'
-                                }`}
-                            >
-                              <div className="w-4 h-4 bg-blue-600 rounded-full" />
-                              Gemini
-                            </button>
-                            <button
-                              onClick={() => setAiProvider('claude')}
-                              className={`p-3 rounded-xl border text-[10px] font-bold transition-all flex items-center justify-center gap-2 ${aiProvider === 'claude'
-                                  ? 'border-orange-600 bg-orange-600/5 text-orange-600'
-                                  : 'border-[var(--line)] opacity-40 hover:opacity-60'
-                                }`}
-                            >
-                              <div className="w-4 h-4 bg-orange-600 rounded-full" />
-                              Claude
-                            </button>
+                          <div className="flex gap-2 flex-wrap">
+                            {(['gemini', 'claude', 'deepseek'] as const).map(p => (
+                              <ModelButton key={p} provider={p} active={aiProvider === p} onClick={() => setAiProvider(p)} />
+                            ))}
                           </div>
                         </div>
 
@@ -3490,16 +3449,20 @@ V nastavení lze změnit defaultni model.`);
                           >
                             {aiProvider === 'gemini' ? (
                               <>
-                                <option value="gemini-2.5-flash">Gemini 2.5 Flash (Doporučeno)</option>
-                                <option value="gemini-3.1-flash-lite-preview">Gemini 3.1 Flash-Lite (Nejrychlejší)</option>
-                                <option value="gemini-2.5-pro">Gemini 2.5 Pro (Pokročilý)</option>
-                                <option value="gemini-3.1-pro-preview">Gemini 3.1 Pro (Nejsilnější)</option>
+                                <option value="gemini-2.0-flash-exp">Gemini 2.0 Flash (Doporučeno)</option>
+                                <option value="gemini-1.5-flash">Gemini 1.5 Flash (Nejrychlejší)</option>
+                                <option value="gemini-1.5-pro">Gemini 1.5 Pro (Pokročilý)</option>
+                              </>
+                            ) : aiProvider === 'claude' ? (
+                              <>
+                                <option value="claude-3-5-sonnet-20240620">Claude 3.5 Sonnet (Nejlepší)</option>
+                                <option value="claude-3-haiku-20240307">Claude 3 Haiku (Nejrychlejší)</option>
+                                <option value="claude-3-opus-20240229">Claude 3 Opus (Nejsilnější)</option>
                               </>
                             ) : (
                               <>
-                                <option value="claude-sonnet-4-6">Claude 4.6 Sonnet (Nejlepší)</option>
-                                <option value="claude-haiku-4-5-20251001">Claude 4.5 Haiku (Nejrychlejší)</option>
-                                <option value="claude-opus-4-6">Claude 4.6 Opus (Nejsilnější)</option>
+                                <option value="deepseek-chat">DeepSeek V3 (Doporučeno)</option>
+                                <option value="deepseek-reasoner">DeepSeek R1 (Reasoning)</option>
                               </>
                             )}
                           </select>
@@ -3508,22 +3471,24 @@ V nastavení lze změnit defaultni model.`);
 
                       <div className="space-y-2">
                         <label className="col-header">
-                          {aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API Klíč
+                          {aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek'} API Klíč
                         </label>
                         <div className="flex gap-2">
                           <div className="relative flex-1">
                             <input
                               type="password"
-                              value={aiProvider === 'gemini' ? userApiKey : claudeApiKey}
+                              value={aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey}
                               onChange={(e) => {
                                 if (aiProvider === 'gemini') {
                                   setUserApiKey(e.target.value);
-                                } else {
+                                } else if (aiProvider === 'claude') {
                                   setClaudeApiKey(e.target.value);
+                                } else {
+                                  setDeepseekApiKey(e.target.value);
                                 }
                                 setKeyStatus('idle');
                               }}
-                              placeholder={`Vložte váš ${aiProvider === 'gemini' ? 'Gemini' : 'Claude'} API klíč...`}
+                              placeholder={`Vložte váš ${aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek'} API klíč...`}
                               className={`w-full p-3 bg-transparent border rounded-xl focus:outline-none focus:border-[var(--ink)] pr-10 ${keyStatus === 'valid' ? 'border-emerald-500/50' : keyStatus === 'invalid' ? 'border-red-500/50' : 'border-[var(--line)]'
                                 }`}
                             />
@@ -3533,7 +3498,7 @@ V nastavení lze změnit defaultni model.`);
                           </div>
                           <button
                             onClick={handleVerifyKey}
-                            disabled={isVerifyingKey || !(aiProvider === 'gemini' ? userApiKey : claudeApiKey)}
+                            disabled={isVerifyingKey || !(aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey)}
                             className="px-6 bg-[var(--ink)] text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform disabled:opacity-50"
                           >
                             {isVerifyingKey ? <RotateCcw size={14} className="animate-spin" /> : 'Ověřit'}
@@ -3543,7 +3508,9 @@ V nastavení lze změnit defaultni model.`);
                           Klíč je uložen pouze lokálně ve vašem prohlížeči.
                           {aiProvider === 'gemini'
                             ? ' Získejte klíč zdarma na ai.google.dev.'
-                            : ' Získejte klíč na console.anthropic.com.'}
+                            : aiProvider === 'claude'
+                              ? ' Získejte klíč na console.anthropic.com.'
+                              : ' Získejte klíč na platform.deepseek.com.'}
                         </p>
                       </div>
                     </div>
@@ -3729,7 +3696,7 @@ V nastavení lze změnit defaultni model.`);
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.05 }}
-                  className="max-w-3xl mx-auto space-y-8"
+                  className="max-w-3xl mx-auto space-y-4 md:space-y-8"
                 >
                   {questions.length === 0 ? (
                     <div className="text-center py-20 space-y-6 glass-panel rounded-3xl border border-[var(--line)]">
@@ -3751,12 +3718,12 @@ V nastavení lze změnit defaultni model.`);
                     </div>
                   ) : (
                     <>
-                      <div className="flex justify-between items-center">
-                        <button onClick={() => setView('dashboard')} className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-50 hover:opacity-100">
-                          <ArrowLeft size={14} /> Zpět na přehled
+                      <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0">
+                        <button onClick={() => setView('dashboard')} className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-50 hover:opacity-100 mr-auto sm:mr-0">
+                          <ArrowLeft size={12} /> Zpět
                         </button>
-                        <div className="text-center flex flex-col items-center">
-                          <p className="col-header">{selectedSubject.name}</p>
+                        <div className="text-center flex flex-col items-center order-first sm:order-none">
+                          <p className="text-[10px] font-bold uppercase tracking-widest opacity-40 mb-1">{selectedSubject.name}</p>
                           <div className="flex items-center gap-4">
                             <button
                               disabled={currentQuestionIndex === 0}
@@ -3847,7 +3814,7 @@ V nastavení lze změnit defaultni model.`);
                         </div>
                       </div>
 
-                      <div className="p-8 border border-[var(--line)] rounded-3xl space-y-8">
+                      <div className="p-4 md:p-8 border border-[var(--line)] rounded-3xl space-y-6 md:space-y-8 bg-[var(--bg)]/50">
                         {questions[currentQuestionIndex].image && (
                           <div className="w-full max-h-64 overflow-hidden rounded-xl border border-[var(--line)] flex items-center justify-center bg-white/5">
                             <img
@@ -3859,10 +3826,10 @@ V nastavení lze změnit defaultni model.`);
                             />
                           </div>
                         )}
-                        <h3 className="text-xl font-medium leading-relaxed flex items-start gap-3">
+                        <h3 className="text-lg md:text-xl font-medium leading-relaxed flex items-start gap-2 md:gap-3">
                           {questions[currentQuestionIndex].is_ai === 1 && (
                             <div className="mt-1 flex-shrink-0" title="AI Generovaná otázka">
-                              <Bot size={20} className="text-indigo-600 animate-pulse" />
+                              <Bot size={18} className="text-indigo-600 animate-pulse" />
                             </div>
                           )}
                           <TranslatedText
@@ -3908,9 +3875,9 @@ V nastavení lze změnit defaultni model.`);
                                 key={opt}
                                 disabled={!!answered && drillSettings.immediateFeedback}
                                 onClick={() => handleAnswer(opt)}
-                                className={`p-4 rounded-xl border text-left transition-all flex items-center gap-4 ${bgClass}`}
+                                className={`p-3 md:p-4 rounded-xl border text-left transition-all flex items-center gap-3 md:gap-4 ${bgClass} text-sm md:text-base`}
                               >
-                                <span className="w-8 h-8 flex items-center justify-center rounded-lg border border-current font-mono text-xs">
+                                <span className="w-6 h-6 md:w-8 md:h-8 flex-shrink-0 flex items-center justify-center rounded-lg border border-current font-mono text-[10px] md:text-xs">
                                   {opt}
                                 </span>
                                 <div className="flex-1">
@@ -3972,11 +3939,13 @@ V nastavení lze změnit defaultni model.`);
                                             setAiProvider('claude');
                                           } else if (selectedModel.startsWith('gemini') && aiProvider !== 'gemini') {
                                             setAiProvider('gemini');
+                                          } else if (selectedModel.startsWith('deepseek') && aiProvider !== 'deepseek') {
+                                            setAiProvider('deepseek');
                                           }
                                           setAiModel(selectedModel);
                                           // Save to localStorage for persistence
                                           localStorage.setItem('aiModel', selectedModel);
-                                          localStorage.setItem('aiProvider', selectedModel.startsWith('claude') ? 'claude' : 'gemini');
+                                          localStorage.setItem('aiProvider', selectedModel.startsWith('claude') ? 'claude' : selectedModel.startsWith('deepseek') ? 'deepseek' : 'gemini');
                                           // Immediately regenerate with new model
                                           setAiExplanation(null);
                                           setDetailedExplanation(null);
@@ -3986,14 +3955,18 @@ V nastavení lze změnit defaultni model.`);
                                         disabled={isGeneratingAiExplanation}
                                       >
                                         <optgroup label="Google Gemini">
-                                          <option value="gemini-2.5-flash">Gemini 2.5 Flash (Doporučeno)</option>
-                                          <option value="gemini-3.1-flash-lite-preview">Gemini 3.1 Flash-Lite (Rychlý)</option>
-                                          <option value="gemini-2.5-pro">Gemini 2.5 Pro (Silný)</option>
+                                          <option value="gemini-2.0-flash-exp">Gemini 2.0 Flash (Doporučeno)</option>
+                                          <option value="gemini-1.5-flash">Gemini 1.5 Flash (Nejrychlejší)</option>
+                                          <option value="gemini-1.5-pro">Gemini 1.5 Pro (Pokročilý)</option>
                                         </optgroup>
                                         <optgroup label="Anthropic Claude">
-                                          <option value="claude-sonnet-4-6">Claude 4.6 Sonnet (Nejlepší)</option>
-                                          <option value="claude-haiku-4-5-20251001">Claude 4.5 Haiku (Rychlý)</option>
-                                          <option value="claude-opus-4-6">Claude 4.6 Opus (Silný)</option>
+                                          <option value="claude-3-5-sonnet-20240620">Claude 3.5 Sonnet (Nejlepší)</option>
+                                          <option value="claude-3-haiku-20240307">Claude 3 Haiku (Nejrychlejší)</option>
+                                          <option value="claude-3-opus-20240229">Claude 3 Opus (Nejsilnější)</option>
+                                        </optgroup>
+                                        <optgroup label="DeepSeek">
+                                          <option value="deepseek-chat">DeepSeek V3 (Doporučeno)</option>
+                                          <option value="deepseek-reasoner">DeepSeek R1 (Reasoning)</option>
                                         </optgroup>
                                       </select>
                                       <span className="text-xs text-orange-600 dark:text-orange-400 opacity-60">
@@ -4021,10 +3994,10 @@ V nastavení lze změnit defaultni model.`);
                             </div>
 
                             {showExplanation && drillSettings.showExplanationOnDemand && (
-                              <div className="space-y-6 animate-in fade-in slide-in-from-top-2 duration-300">
+                              <div className="space-y-4 md:space-y-6 animate-in fade-in slide-in-from-top-2 duration-300">
                                 {/* Learning Objective Section */}
                                 <div
-                                  className="p-4 bg-indigo-500/5 border border-indigo-500/20 rounded-2xl space-y-2 cursor-pointer transition-all duration-300 hover:bg-indigo-500/10"
+                                  className="p-3 md:p-4 bg-indigo-500/5 border border-indigo-500/20 rounded-2xl space-y-2 cursor-pointer transition-all duration-300 hover:bg-indigo-500/10"
                                   onClick={() => {
                                     const lo = allLOs.find(l => l.id === questions[currentQuestionIndex].lo_id);
                                     setExpandedLOContent({
@@ -4084,7 +4057,7 @@ V nastavení lze změnit defaultni model.`);
                                     question={questions[currentQuestionIndex]}
                                     field="explanation"
                                     language={language}
-                                    className="text-base opacity-80 leading-relaxed font-medium"
+                                    className="text-sm md:text-base opacity-80 leading-relaxed font-medium"
                                     as="p"
                                   />
                                 </div>
@@ -4198,7 +4171,7 @@ V nastavení lze změnit defaultni model.`);
 
                       {/* Progress Banner */}
                       {selectedSubject && (
-                        <div className="p-3 border border-[var(--line)] rounded-xl bg-gradient-to-r from-gray-500/5 to-blue-500/5">
+                        <div className="p-2 md:p-3 border border-[var(--line)] rounded-xl bg-gradient-to-r from-gray-500/5 to-blue-500/5 mt-auto">
                           <div className="flex flex-col">
                             <p className="text-xs font-bold">Progres v {selectedSubject.name}</p>
                             <div className="flex items-center gap-3">

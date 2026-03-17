@@ -13,8 +13,10 @@ export function useLanguage(
   aiModel: string,
   userApiKey: string,
   claudeApiKey: string,
+  deepseekApiKey: string,
   setUserApiKey: (key: string) => void,
   setClaudeApiKey: (key: string) => void,
+  setDeepseekApiKey: (key: string) => void,
   setAiProvider: (provider: AIProvider) => void,
   setQuestions: (updater: (prev: Question[]) => Question[]) => void
 ): LanguageContextType {
@@ -37,25 +39,20 @@ export function useLanguage(
     const q = currentQuestion;
     if (!q || !isEnglishQuestion(q)) return;
 
-    const currentApiKey = aiProvider === 'gemini' ? userApiKey : claudeApiKey;
+    const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
     if (!currentApiKey) {
-      const key = prompt(TRANSLATION_PROMPT_API_KEY(aiProvider === 'gemini' ? 'Gemini' : 'Claude'));
+      const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
+      const key = prompt(TRANSLATION_PROMPT_API_KEY(providerName));
       if (key) {
-        // Inteligentní detekce typu klíče
         if (key.startsWith('AIza')) {
-          // Gemini klíč
           setUserApiKey(key);
-          if (aiProvider !== 'gemini') {
-            setAiProvider('gemini');
-            console.log('🔄 Automaticky přepnuto na Gemini provider');
-          }
+          if (aiProvider !== 'gemini') { setAiProvider('gemini'); }
         } else if (key.startsWith('sk-ant-')) {
-          // Claude klíč
           setClaudeApiKey(key);
-          if (aiProvider !== 'claude') {
-            setAiProvider('claude');
-            console.log('🔄 Automaticky přepnuto na Claude provider');
-          }
+          if (aiProvider !== 'claude') { setAiProvider('claude'); }
+        } else if (key.startsWith('sk-')) {
+          setDeepseekApiKey(key);
+          if (aiProvider !== 'deepseek') { setAiProvider('deepseek'); }
         }
       } else {
         return;
@@ -66,7 +63,7 @@ export function useLanguage(
     try {
       const translation = await translateQuestion(
         q, 
-        aiProvider === 'gemini' ? userApiKey : claudeApiKey, 
+        aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey, 
         aiModel, 
         aiProvider
       );
@@ -77,9 +74,11 @@ export function useLanguage(
     } catch (error: any) {
       console.error('Translation failed:', error);
       if (error.message === 'API_KEY_MISSING') {
-        alert(TRANSLATION_ERROR_MESSAGES.API_KEY_MISSING(aiProvider === 'gemini' ? 'Gemini' : 'Claude'));
+        const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
+        alert(TRANSLATION_ERROR_MESSAGES.API_KEY_MISSING(providerName));
       } else if (error.message?.includes('quota') || error.message?.includes('limit')) {
-        alert(TRANSLATION_ERROR_MESSAGES.QUOTA_EXCEEDED(aiProvider === 'gemini' ? 'Gemini' : 'Claude'));
+        const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
+        alert(TRANSLATION_ERROR_MESSAGES.QUOTA_EXCEEDED(providerName));
       } else {
         alert(TRANSLATION_ERROR_MESSAGES.TRANSLATION_FAILED);
       }
@@ -92,8 +91,10 @@ export function useLanguage(
     aiModel, 
     userApiKey, 
     claudeApiKey, 
+    deepseekApiKey,
     setUserApiKey, 
-    setClaudeApiKey, 
+    setClaudeApiKey,
+    setDeepseekApiKey,
     setAiProvider,
     setQuestions
   ]);

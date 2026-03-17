@@ -99,6 +99,63 @@ const getClaudeInstance = (apiKey?: string) => {
   });
 };
 
+// Helper for streaming from AI proxy (OpenRouter via Lambda)
+async function streamFromProxy(
+  proxyUrl: string,
+  idToken: string,
+  model: string,
+  prompt: string,
+  maxTokens: number,
+  onChunk: (chunk: string) => void,
+  signal?: AbortSignal
+): Promise<string> {
+  const resolvedModel = model.includes('/') ? model : (
+    model.startsWith('gemini') ? `google/${model}` :
+    model.startsWith('claude') ? `anthropic/${model}` :
+    `deepseek/${model}`
+  );
+
+  const res = await fetch(`${proxyUrl}?stream=1`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${idToken}` },
+    body: JSON.stringify({
+      model: resolvedModel,
+      messages: [{ role: 'user', content: prompt }],
+      max_tokens: maxTokens,
+      stream: true
+    }),
+    signal,
+  });
+
+  if (!res.ok || !res.body) throw new Error(`Proxy error: ${res.status}`);
+  
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let full = '';
+  let buffer = '';
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split('\n');
+    buffer = lines.pop()!; // keep incomplete last line
+    for (const line of lines) {
+      if (!line.startsWith('data: ')) continue;
+      const data = line.slice(6).trim();
+      if (data === '[DONE]') break;
+      try {
+        const delta = JSON.parse(data).choices?.[0]?.delta?.content;
+        if (delta) {
+          full += delta;
+          onChunk(full);
+        }
+      } catch { /* skip malformed */ }
+    }
+  }
+  return full;
+}
+
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 // Proxy call — uses Lambda AI proxy (no client-side API key needed)
@@ -908,7 +965,7 @@ export async function generateBatchQuestions(
       }
     } else if (provider === 'deepseek') {
       const estimatedTokens = Math.max(4000, los.length * questionsPerLO * 500 + 500);
-      const text = proxyUrl && idToken && !apiKey
+      const text = proxyUrl && idToken && (!apiKey || apiKey === '')
         ? await callProxy(proxyUrl, idToken, model, prompt, estimatedTokens, true)
         : await callDeepSeek(apiKey!, model, prompt, estimatedTokens, true);
       if (!text) return [];
@@ -957,7 +1014,8 @@ export async function getDetailedExplanation(
   proxyUrl?: string,
   idToken?: string,
   geminiKey?: string,
-  claudeKey?: string
+  claudeKey?: string,
+  onChunk?: (chunk: string) => void
 ): Promise<{ explanation: string, objective?: string }> {
 
   const isImport = question.source === 'user' || !question.lo_id;
@@ -1005,7 +1063,15 @@ export async function getDetailedExplanation(
   const claudeModel = model.startsWith('claude') ? model : 'claude-haiku-4-5-20251001';
 
   const callGemini = (key?: string) => async () => {
-    const ai = getAiInstance(key);
+    if (proxyUrl && idToken && (!key || key === '')) {
+      if (onChunk) {
+        const text = await streamFromProxy(proxyUrl, idToken, geminiModel, prompt, 1000, t => onChunk(parseExplanation(t).explanation), signal);
+        return parseExplanation(text);
+      }
+      const text = await callProxy(proxyUrl, idToken, geminiModel, prompt, 1000);
+      return parseExplanation(text);
+    }
+    const ai = getAiInstance(key!);
     const response = await callWithRetry(() => ai.models.generateContent({
       model: geminiModel,
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
@@ -1013,7 +1079,15 @@ export async function getDetailedExplanation(
     return parseExplanation(response.text || 'Vysvětlení se nepodařilo vygenerovat.');
   };
   const callClaude = (key?: string) => async () => {
-    const claude = getClaudeInstance(key);
+    if (proxyUrl && idToken && (!key || key === '')) {
+      if (onChunk) {
+        const text = await streamFromProxy(proxyUrl, idToken, claudeModel, prompt, 1000, t => onChunk(parseExplanation(t).explanation), signal);
+        return parseExplanation(text);
+      }
+      const text = await callProxy(proxyUrl, idToken, claudeModel, prompt, 1000);
+      return parseExplanation(text);
+    }
+    const claude = getClaudeInstance(key!);
     const response = await callWithRetry(() => claude.messages.create({
       model: claudeModel,
       max_tokens: 1000,
@@ -1022,9 +1096,16 @@ export async function getDetailedExplanation(
     return parseExplanation((response.content[0] as any)?.text || '');
   };
   const callDeepSeekFn = (key?: string) => async () => {
-    const text = proxyUrl && idToken && !key
-      ? await callProxy(proxyUrl, idToken, model.startsWith('deepseek') ? model : 'deepseek-chat', prompt, 1000)
-      : await callDeepSeek(key!, model.startsWith('deepseek') ? model : 'deepseek-chat', prompt, 1000);
+    if (proxyUrl && idToken && (!key || key === '')) {
+      const dsModel = model.startsWith('deepseek') ? model : 'deepseek-chat';
+      if (onChunk) {
+        const text = await streamFromProxy(proxyUrl, idToken, dsModel, prompt, 1000, t => onChunk(parseExplanation(t).explanation), signal);
+        return parseExplanation(text);
+      }
+      const text = await callProxy(proxyUrl, idToken, dsModel, prompt, 1000);
+      return parseExplanation(text);
+    }
+    const text = await callDeepSeek(key!, model.startsWith('deepseek') ? model : 'deepseek-chat', prompt, 1000);
     return parseExplanation(text || 'Vysvětlení se nepodařilo vygenerovat.');
   };
 
@@ -1094,7 +1175,8 @@ export async function getDetailedHumanExplanation(
   proxyUrl?: string,
   idToken?: string,
   geminiKey?: string,
-  claudeKey?: string
+  claudeKey?: string,
+  onChunk?: (chunk: string) => void
 ): Promise<string> {
 
   const prompt = `
@@ -1144,7 +1226,15 @@ export async function getDetailedHumanExplanation(
   const claudeModelH = model.startsWith('claude') ? model : 'claude-haiku-4-5-20251001';
 
   const callGeminiH = (key?: string) => async () => {
-    const ai = getAiInstance(key);
+    if (proxyUrl && idToken && (!key || key === '')) {
+      if (onChunk) {
+        const text = await streamFromProxy(proxyUrl, idToken, geminiModelH, prompt, 1500, onChunk, signal);
+        return clean(text) || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
+      }
+      const text = await callProxy(proxyUrl, idToken, geminiModelH, prompt, 1500);
+      return clean(text) || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
+    }
+    const ai = getAiInstance(key!);
     const response = await callWithRetry(() => ai.models.generateContent({
       model: geminiModelH,
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
@@ -1152,7 +1242,15 @@ export async function getDetailedHumanExplanation(
     return clean(response.text || '') || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
   };
   const callClaudeH = (key?: string) => async () => {
-    const claude = getClaudeInstance(key);
+    if (proxyUrl && idToken && (!key || key === '')) {
+      if (onChunk) {
+        const text = await streamFromProxy(proxyUrl, idToken, claudeModelH, prompt, 1500, onChunk, signal);
+        return clean(text) || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
+      }
+      const text = await callProxy(proxyUrl, idToken, claudeModelH, prompt, 1500);
+      return clean(text) || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
+    }
+    const claude = getClaudeInstance(key!);
     const response = await callWithRetry(() => claude.messages.create({
       model: claudeModelH,
       max_tokens: 1500,
@@ -1161,7 +1259,16 @@ export async function getDetailedHumanExplanation(
     return clean((response.content[0] as any)?.text || '') || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
   };
   const callDeepSeekH = (key?: string) => async () => {
-    const text = proxyUrl && idToken && !key
+    if (proxyUrl && idToken && (!key || key === '')) {
+      const dsModel = model.startsWith('deepseek') ? model : 'deepseek-chat';
+      if (onChunk) {
+        const text = await streamFromProxy(proxyUrl, idToken, dsModel, prompt, 1500, onChunk, signal);
+        return clean(text) || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
+      }
+      const text = await callProxy(proxyUrl, idToken, dsModel, prompt, 1500);
+      return clean(text) || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
+    }
+    const text = proxyUrl && idToken && (!key || key === '')
       ? await callProxy(proxyUrl, idToken, model.startsWith('deepseek') ? model : 'deepseek-chat', prompt, 1500)
       : await callDeepSeek(key!, model.startsWith('deepseek') ? model : 'deepseek-chat', prompt, 1500);
     return clean(text) || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
@@ -1263,7 +1370,7 @@ export async function translateQuestion(question: Question, apiKey?: string, mod
     } else if (provider === 'deepseek') {
       console.log(`[DeepSeek] Translating question with model: ${model}`);
       const fullPrompt = prompt + '\n\nIMPORTANT: Return ONLY valid JSON object, no other text.';
-      const text = proxyUrl && idToken && !apiKey
+      const text = proxyUrl && idToken && (!apiKey || apiKey === '')
         ? await callProxy(proxyUrl, idToken, model, fullPrompt, 2000, true)
         : await callDeepSeek(apiKey!, model, fullPrompt, 2000, true);
       try {
@@ -1621,7 +1728,7 @@ Return JSON array:
         return { success: false, los: [], error: `Invalid JSON response: ${parseError instanceof Error ? parseError.message : 'Unknown error'}` };
       }
     } else if (provider === 'deepseek') {
-      const text = proxyUrl && idToken && !apiKey
+      const text = proxyUrl && idToken && (!apiKey || apiKey === '')
         ? await callWithRetry(() => callProxy(proxyUrl, idToken, model, prompt, estimatedTokens, true), 2, 'deepseek', signal)
         : await callWithRetry(() => callDeepSeek(apiKey!, model, prompt, estimatedTokens, true), 2, 'deepseek', signal);
       if (!text) return { success: false, los: [], error: 'Empty response from DeepSeek' };

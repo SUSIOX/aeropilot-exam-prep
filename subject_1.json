@@ -189,19 +189,19 @@
     "id": 32,
     "question": "Minimální letová dohlednost v 5000 ft MSL ve vzdušném prostoru třídy B pro let VFR je:",
     "answers": ["5000 m", "8000 m", "3000 m", "1500 m"],
-    "correct": 0
+    "correct": 1
   },
   {
     "id": 33,
     "question": "Jaká je minimální letová dohlednost ve vzdušném prostoru třídy C pro letadla letící za VFR v 5000 ft MSL?",
     "answers": ["5000 m", "8000 m", "3000 m", "1500 m"],
-    "correct": 0
+    "correct": 1
   },
   {
     "id": 34,
     "question": "Minimální letová dohlednost ve vzdušném prostoru třídy E pro letadlo letící za VFR ve FL 75 je:",
     "answers": ["5000 m", "8000 m", "3000 m", "1500 m"],
-    "correct": 0
+    "correct": 1
   },
   {
     "id": 35,
@@ -225,7 +225,7 @@
     "id": 38,
     "question": "Jaká je minimální dohlednost za letu ve vzdušném prostoru třídy C pod FL 100 pro let za VFR?",
     "answers": ["8 km", "5 km", "1.5 km", "10 km"],
-    "correct": 1
+    "correct": 0
   },
   {
     "id": 39,

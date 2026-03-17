@@ -18,7 +18,9 @@ export function useLanguage(
   setClaudeApiKey: (key: string) => void,
   setDeepseekApiKey: (key: string) => void,
   setAiProvider: (provider: AIProvider) => void,
-  setQuestions: (updater: (prev: Question[]) => Question[]) => void
+  setQuestions: (updater: (prev: Question[]) => Question[]) => void,
+  proxyUrl?: string,
+  idToken?: string
 ): LanguageContextType {
   
   // View mode state
@@ -39,8 +41,8 @@ export function useLanguage(
     const q = currentQuestion;
     if (!q || !isEnglishQuestion(q)) return;
 
-    const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
-    if (!currentApiKey) {
+    const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined);
+    if (!currentApiKey && !(aiProvider === 'deepseek' && idToken)) {
       const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
       const key = prompt(TRANSLATION_PROMPT_API_KEY(providerName));
       if (key) {
@@ -62,10 +64,13 @@ export function useLanguage(
     setIsTranslating(true);
     try {
       const translation = await translateQuestion(
-        q, 
-        aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey, 
-        aiModel, 
-        aiProvider
+        q,
+        currentApiKey,
+        aiModel,
+        aiProvider,
+        undefined,
+        proxyUrl,
+        idToken
       );
       setQuestions(prev => prev.map(item => 
         item.id === q.id ? { ...item, ...translation } : item

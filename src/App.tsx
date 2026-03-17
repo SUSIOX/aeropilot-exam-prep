@@ -315,17 +315,17 @@ export default function App() {
   const AI_PROXY_URL = import.meta.env.VITE_AI_PROXY_URL as string | undefined;
   const getProxyParams = () => ({
     proxyUrl: AI_PROXY_URL,
-    idToken: cognitoAuthService.getTokens()?.id_token,
+    idToken: cognitoAuthService.getTokens()?.access_token,
   });
   const getProxyIdToken = async (): Promise<string | undefined> => {
     if (!cognitoAuthService.isTokenValid()) {
       await cognitoAuthService.refreshAccessToken();
     }
-    return cognitoAuthService.getTokens()?.id_token;
+    return cognitoAuthService.getTokens()?.access_token;
   };
   const [aiProvider, setAiProvider] = useState<AIProvider>(() => {
     const saved = localStorage.getItem('aiProvider');
-    return (saved === 'claude' ? 'claude' : 'gemini');
+    return (saved === 'claude' ? 'claude' : saved === 'deepseek' ? 'deepseek' : 'gemini');
   });
   const [aiModel, setAiModel] = useState(() => {
     const saved = localStorage.getItem('aiModel');
@@ -402,7 +402,9 @@ export default function App() {
     setClaudeApiKey,
     setDeepseekApiKey,
     setAiProvider,
-    setQuestions
+    setQuestions,
+    AI_PROXY_URL,
+    cognitoAuthService.getTokens()?.access_token
   );
 
   useEffect(() => {
@@ -1686,7 +1688,7 @@ V nastavení lze změnit defaultni model.`);
         ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
         : undefined;
 
-      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined), aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken(), userApiKey, claudeApiKey);
+      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined), aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken(), userApiKey, claudeApiKey, (chunk) => setAiExplanation(chunk));
 
 
       // Save objective if detected
@@ -1816,7 +1818,8 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
         AI_PROXY_URL,
         await getProxyIdToken(),
         userApiKey,
-        claudeApiKey
+        claudeApiKey,
+        (chunk) => setAiExplanation(chunk)
       );
 
       setAiExplanation(explanation.explanation);
@@ -1897,7 +1900,13 @@ V nastavení lze změnit defaultni model.`);
         ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
         : undefined;
 
-      const detailedExplanationResult = await getDetailedHumanExplanation(q, lo, aiProvider === 'deepseek' ? deepseekApiKey || undefined : currentApiKey, aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken(), userApiKey, claudeApiKey);
+      const detailedExplanationResult = await getDetailedHumanExplanation(
+        q, lo,
+        currentApiKey,
+        aiModel, aiProvider, undefined, displayCorrectOption,
+        AI_PROXY_URL, await getProxyIdToken(), userApiKey, claudeApiKey,
+        (chunk: string) => setDetailedExplanation(chunk)
+      );
 
       setDetailedExplanation(detailedExplanationResult);
 
@@ -3130,6 +3139,7 @@ V nastavení lze změnit defaultni model.`);
                       </p>
                       <p className="text-[8px] sm:text-[10px] md:text-sm opacity-50">
                         {stats ? `otázek • uživatel/EASA` : 'otázek'}
+                        <span className="ml-2 opacity-80">({allLOs.length} LOs)</span>
                       </p>
                     </div>
                     <div className="p-1 sm:p-2 md:p-6 border border-[var(--line)] rounded sm:rounded-lg md:rounded-2xl space-y-0 sm:space-y-0.5 md:space-y-2">
@@ -3224,11 +3234,11 @@ V nastavení lze změnit defaultni model.`);
                       <div className="flex items-center py-3 px-4 border-b border-[var(--line)] opacity-40 uppercase text-[10px] sm:text-xs tracking-widest font-bold cursor-default">
                         <div className="hidden sm:flex justify-center w-8 flex-shrink-0"></div>
                         <div className="flex items-center flex-1">Předmět</div>
-                        <div className="flex justify-end gap-4 sm:gap-8">
-                          <div className="flex justify-center">OTÁZKY</div>
-                          <div className="flex justify-center">Úspěšnost</div>
+                        <div className="flex justify-end items-center gap-4 sm:gap-8">
+                          <div className="w-24 sm:w-32 text-center text-[9px] sm:text-[10px]">UŽIV./EASA</div>
+                          <div className="w-16 sm:w-20 text-right">Úspěšnost</div>
                         </div>
-                        <div className="hidden sm:flex justify-end w-8 flex-shrink-0">Akce</div>
+                        <div className="hidden sm:flex justify-end w-8 flex-shrink-0"></div>
                       </div>
 
                       {subjects.map((s) => (
@@ -3246,15 +3256,15 @@ V nastavení lze změnit defaultni model.`);
                             <span className="hidden sm:inline text-xs opacity-50 ml-2 truncate group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">{s.name}</span>
                           </div>
 
-                          <div className="flex justify-end gap-4">
-                            <div className="font-mono text-xs flex justify-center">
+                          <div className="flex justify-end items-center gap-4 sm:gap-8">
+                            <div className="w-24 sm:w-32 font-mono text-xs flex justify-center">
                               {(s.ai_count || 0) > 0 ? (
                                 <span className="opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">{s.user_count || 0}/{s.ai_count}</span>
                               ) : (
                                 <span className="opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">{s.question_count || 0}</span>
                               )}
                             </div>
-                            <div className="font-mono text-sm flex justify-center min-w-[3rem] group-hover:text-gray-900 dark:group-hover:text-gray-100">{Math.round(s.success_rate * 100)}%</div>
+                            <div className="w-16 sm:w-20 font-mono text-sm flex justify-end group-hover:text-gray-900 dark:group-hover:text-gray-100">{Math.round(s.success_rate * 100)}%</div>
                           </div>
 
                           <div className="hidden sm:flex justify-end w-8 flex-shrink-0">
@@ -3907,7 +3917,12 @@ V nastavení lze změnit defaultni model.`);
                                 </span>
                                 <div className="flex-1">
                                   {drillSettings.shuffleAnswers && shuffledQuestion ? (
-                                    <span>{answerText}</span>
+                                    <TranslatedOption
+                                      question={questions[currentQuestionIndex]}
+                                      option={(['A','B','C','D'][shuffledQuestion.shuffleMap[index]] as 'A'|'B'|'C'|'D')}
+                                      language={language}
+                                      className="flex-1"
+                                    />
                                   ) : (
                                     <TranslatedOption
                                       question={questions[currentQuestionIndex]}
@@ -4087,8 +4102,8 @@ V nastavení lze změnit defaultni model.`);
                                   />
                                 </div>
 
-                                {/* AI Loading State */}
-                                {isGeneratingAiExplanation && (
+                                {/* AI Loading State — skeleton jen dokud nepřišel první chunk */}
+                                {isGeneratingAiExplanation && !aiExplanation && (
                                   <div className="space-y-4">
                                     <div className="p-6 bg-slate-900/50 border border-slate-800/50 rounded-xl space-y-4 relative overflow-hidden">
                                       <div className="absolute top-0 right-0 p-4 opacity-5">
@@ -4114,8 +4129,8 @@ V nastavení lze změnit defaultni model.`);
                                   </div>
                                 )}
 
-                                {/* AI Detailed Note */}
-                                {aiExplanation && !isGeneratingAiExplanation && (
+                                {/* AI Detailed Note — zobrazuje se i během streamingu */}
+                                {aiExplanation && (
                                   <div className="space-y-4">
                                     <div className="p-6 bg-slate-900 text-slate-300 border border-slate-800 rounded-xl space-y-4 relative overflow-hidden font-mono">
                                       <div className="absolute top-0 right-0 p-4 opacity-5">
@@ -4132,7 +4147,7 @@ V nastavení lze změnit defaultni model.`);
                                       <div
                                         className="text-xs leading-relaxed opacity-90 max-w-none border-l border-indigo-500/30 pl-4 prose prose-sm prose-invert"
                                         dangerouslySetInnerHTML={{
-                                          __html: sanitizeHtml(markdownToHtml(aiExplanation))
+                                          __html: sanitizeHtml(markdownToHtml(aiExplanation)) + (isGeneratingAiExplanation ? '<span class="inline-block animate-pulse ml-0.5">▌</span>' : '')
                                         }}
                                       />
                                     </div>
@@ -4154,7 +4169,7 @@ V nastavení lze změnit defaultni model.`);
                                     )}
 
                                     {/* Detailed Explanation Loading State */}
-                                    {isGeneratingDetailedExplanation && (
+                                    {isGeneratingDetailedExplanation && !detailedExplanation && (
                                       <div className="p-6 bg-emerald-900/5 border border-emerald-600/10 rounded-xl space-y-4">
                                         <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
                                           <BookOpen size={14} />
@@ -4176,7 +4191,7 @@ V nastavení lze změnit defaultni model.`);
                                     )}
 
                                     {/* Detailed Explanation Display */}
-                                    {detailedExplanation && !isGeneratingDetailedExplanation && (
+                                    {detailedExplanation && (
                                       <div className="p-6 bg-emerald-900/10 border border-emerald-600/20 rounded-xl space-y-4">
                                         <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
                                           <BookOpen size={14} />
@@ -4185,7 +4200,7 @@ V nastavení lze změnit defaultni model.`);
                                         <div
                                           className="text-sm leading-relaxed opacity-90 prose prose-sm max-w-none"
                                           dangerouslySetInnerHTML={{
-                                            __html: sanitizeHtml(markdownToHtml(detailedExplanation))
+                                            __html: sanitizeHtml(markdownToHtml(detailedExplanation)) + (isGeneratingDetailedExplanation ? '<span class="inline-block animate-pulse ml-0.5">▌</span>' : '')
                                           }}
                                         />
                                       </div>
@@ -4384,7 +4399,12 @@ V nastavení lze změnit defaultni model.`);
                                   </span>
                                   <div className="flex-1">
                                     {drillSettings.shuffleAnswers && shuffledQuestion && view === 'drill' ? (
-                                      <span>{answerText}</span>
+                                      <TranslatedOption
+                                        question={questions[currentQuestionIndex]}
+                                        option={(['A','B','C','D'][shuffledQuestion.shuffleMap[index]] as 'A'|'B'|'C'|'D')}
+                                        language={language}
+                                        className="flex-1"
+                                      />
                                     ) : (
                                       <TranslatedOption
                                         question={questions[currentQuestionIndex]}

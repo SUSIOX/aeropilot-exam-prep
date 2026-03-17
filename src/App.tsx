@@ -317,6 +317,12 @@ export default function App() {
     proxyUrl: AI_PROXY_URL,
     idToken: cognitoAuthService.getTokens()?.id_token,
   });
+  const getProxyIdToken = async (): Promise<string | undefined> => {
+    if (!cognitoAuthService.isTokenValid()) {
+      await cognitoAuthService.refreshAccessToken();
+    }
+    return cognitoAuthService.getTokens()?.id_token;
+  };
   const [aiProvider, setAiProvider] = useState<AIProvider>(() => {
     const saved = localStorage.getItem('aiProvider');
     return (saved === 'claude' ? 'claude' : 'gemini');
@@ -1672,7 +1678,7 @@ V nastavení lze změnit defaultni model.`);
         ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
         : undefined;
 
-      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey, aiModel, aiProvider, undefined, displayCorrectOption, getProxyParams().proxyUrl, getProxyParams().idToken);
+      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey, aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken());
 
 
       // Save objective if detected
@@ -1799,8 +1805,8 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
         aiProvider,
         controller.signal,
         displayCorrectOption,
-        getProxyParams().proxyUrl,
-        getProxyParams().idToken
+        AI_PROXY_URL,
+        await getProxyIdToken()
       );
 
       setAiExplanation(explanation.explanation);
@@ -1881,7 +1887,7 @@ V nastavení lze změnit defaultni model.`);
         ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
         : undefined;
 
-      const detailedExplanationResult = await getDetailedHumanExplanation(q, lo, currentApiKey, aiModel, aiProvider, undefined, displayCorrectOption, getProxyParams().proxyUrl, getProxyParams().idToken);
+      const detailedExplanationResult = await getDetailedHumanExplanation(q, lo, currentApiKey, aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken());
 
       setDetailedExplanation(detailedExplanationResult);
 
@@ -2045,8 +2051,8 @@ V nastavení lze změnit defaultni model.`);
         undefined, // signal
         useAircademySyllabus,
         additionalDocumentLinks,
-        getProxyParams().proxyUrl,
-        getProxyParams().idToken
+        AI_PROXY_URL,
+        await getProxyIdToken()
       );
 
       if (result.success) {
@@ -2338,7 +2344,7 @@ V nastavení lze změnit defaultni model.`);
 
       for (let i = 0; i < targets.length; i += CHUNK_SIZE) {
         const chunk = targets.slice(i, i + CHUNK_SIZE);
-        const chunkResults = await generateBatchQuestions(chunk, questionsPerLO, language.generateLanguage, effectiveApiKey, aiModel, aiProvider, selectedLicense, undefined, getProxyParams().proxyUrl, getProxyParams().idToken);
+        const chunkResults = await generateBatchQuestions(chunk, questionsPerLO, language.generateLanguage, effectiveApiKey, aiModel, aiProvider, selectedLicense, undefined, AI_PROXY_URL, await getProxyIdToken());
         allResults.push(...chunkResults);
         setBatchResults([...allResults]); // Update UI incrementally
       }

@@ -150,6 +150,58 @@ async function callDeepSeek(apiKey: string, model: string, userMessage: string, 
   return data.choices?.[0]?.message?.content || '';
 }
 
+// Fallback: try providers in order until one succeeds
+// Order: primary → deepseek proxy → gemini → claude
+export async function callWithFallback<T>(
+  primaryProvider: AIProvider,
+  primaryFn: () => Promise<T>,
+  fallbackFns: { provider: AIProvider; fn: () => Promise<T> }[],
+  signal?: AbortSignal
+): Promise<T> {
+  const isFatal = (err: any) => {
+    const msg = (err?.message || '').toLowerCase();
+    // Only fallback on key/quota/balance errors, not on cancellation or parse errors
+    return (
+      msg.includes('api_key_invalid') ||
+      msg.includes('api key not valid') ||
+      msg.includes('invalid api key') ||
+      msg.includes('api_key_missing') ||
+      msg.includes('deepseek_insufficient_balance') ||
+      msg.includes('credit balance is too low') ||
+      msg.includes('quota') ||
+      msg.includes('resource_exhausted') ||
+      msg.includes('429') ||
+      msg.includes('401') ||
+      msg.includes('402') ||
+      msg.includes('403')
+    );
+  };
+
+  try {
+    return await primaryFn();
+  } catch (primaryErr: any) {
+    if (signal?.aborted) throw primaryErr;
+    if (!isFatal(primaryErr)) throw primaryErr;
+
+    console.warn(`[Fallback] ${primaryProvider} failed (${primaryErr?.message}), trying fallbacks...`);
+
+    let lastErr = primaryErr;
+    for (const { provider, fn } of fallbackFns) {
+      if (signal?.aborted) throw lastErr;
+      try {
+        console.log(`[Fallback] Trying ${provider}...`);
+        const result = await fn();
+        console.log(`[Fallback] ${provider} succeeded.`);
+        return result;
+      } catch (err: any) {
+        console.warn(`[Fallback] ${provider} also failed: ${err?.message}`);
+        lastErr = err;
+      }
+    }
+    throw lastErr;
+  }
+}
+
 async function callWithRetry<T>(fn: () => Promise<T>, retries = 2, provider: AIProvider = 'gemini', signal?: AbortSignal): Promise<T> {
   try {
     return await fn();
@@ -176,6 +228,7 @@ async function callWithRetry<T>(fn: () => Promise<T>, retries = 2, provider: AIP
     } else if (provider === 'claude') {
       const isRateLimit = errorMsg.includes('rate_limit') || errorMsg.includes('too many requests') || errorMsg.includes('429');
       const isInvalidKey = errorMsg.includes('authentication') || errorMsg.includes('invalid api key') || errorMsg.includes('unauthorized');
+      const isNoBalance = errorMsg.includes('credit balance is too low');
 
       if (isRateLimit && retries > 0) {
         console.log(`Claude rate limit hit, retrying in 2s... (${retries} left)`);
@@ -183,9 +236,8 @@ async function callWithRetry<T>(fn: () => Promise<T>, retries = 2, provider: AIP
         return callWithRetry(fn, retries - 1, provider, signal);
       }
 
-      if (isInvalidKey) {
-        throw new Error('API_KEY_INVALID');
-      }
+      if (isInvalidKey) throw new Error('API_KEY_INVALID');
+      if (isNoBalance) throw new Error('CLAUDE_INSUFFICIENT_BALANCE');
     } else if (provider === 'deepseek') {
       const isRateLimit = errorMsg.includes('deepseek_rate_limit') || errorMsg.includes('rate limit') || errorMsg.includes('429');
       const isInvalidKey = errorMsg.includes('api_key_invalid') || errorMsg.includes('401');
@@ -903,9 +955,10 @@ export async function getDetailedExplanation(
   signal?: AbortSignal,
   displayCorrectOption?: string,
   proxyUrl?: string,
-  idToken?: string
+  idToken?: string,
+  geminiKey?: string,
+  claudeKey?: string
 ): Promise<{ explanation: string, objective?: string }> {
-  console.log('getDetailedExplanation called with:', { provider, model, hasKey: !!apiKey });
 
   const isImport = question.source === 'user' || !question.lo_id;
 
@@ -920,16 +973,16 @@ export async function getDetailedExplanation(
     LO: ${lo ? `${lo.id} - ${lo.text}` : "Neurčeno"}
 
     RULES:
-    1. Explain ONLY why answer "${displayCorrectOption || question.correct_option}" is correct. Never mention other options. Don't repeat the question.
-    2. Base explanation on sources in this strict priority order:
+    1. Base explanation on sources in this strict priority order:
        1st — EASA Learning Objectives Syllabus (primary source)
        2nd — EASA CS regulations (CS-23, CS-25, CS-ETSO, etc.)
        3rd — ÚCL / CAA Czech national documents
        4th — ICAO documents (Annexes, DOCs)
        5th — Physics / engineering principles (only if no regulatory source applies)
-    3. Cite the source used (e.g., "Dle EASA LO 061.01.02.03:", "Dle CS-25.143:", "Dle ICAO Annex 2:").
-    4. Maximum 3 sentences. Be precise and technical — no hedging words ("probably", "likely", "might").
-    5. Respond in Czech language.
+    2. Cite the source used (e.g., "Dle EASA LO 061.01.02.03:", "Dle CS-25.143:", "Dle ICAO Annex 2:").
+    3. Maximum 3 sentences. Be precise and technical — no hedging words ("probably", "likely", "might").
+    4. Respond in Czech language.
+    5. CRITICAL: Explain ONLY the technical context. DO NOT confirm which answer is correct (NEVER start with "Odpověď B je správná" or similar). The user already knows it is correct. Start directly with the technical reasoning.
     6. For all physical formulas or math, use standard LaTeX notation enclosed in $ for inline (e.g., $v^2$) and $$ for block equations. Do NOT use HTML tags for formatting formulas.
 
     ${isImport
@@ -948,44 +1001,53 @@ export async function getDetailedExplanation(
     031.02.01.04: Dle CS-25.143: Letoun musí být ovladatelný při všech fázích letu bez nadměrného úsilí pilota. Tato podmínka zahrnuje i asymetrický tah při výpadku motoru.
   `;
 
+  const geminiModel = model.startsWith('gemini') ? model : 'gemini-flash-latest';
+  const claudeModel = model.startsWith('claude') ? model : 'claude-haiku-4-5-20251001';
+
+  const callGemini = (key?: string) => async () => {
+    const ai = getAiInstance(key);
+    const response = await callWithRetry(() => ai.models.generateContent({
+      model: geminiModel,
+      contents: [{ role: 'user', parts: [{ text: prompt }] }],
+    }), 2, 'gemini', signal);
+    return parseExplanation(response.text || 'Vysvětlení se nepodařilo vygenerovat.');
+  };
+  const callClaude = (key?: string) => async () => {
+    const claude = getClaudeInstance(key);
+    const response = await callWithRetry(() => claude.messages.create({
+      model: claudeModel,
+      max_tokens: 1000,
+      messages: [{ role: 'user', content: prompt }]
+    }), 2, 'claude', signal);
+    return parseExplanation((response.content[0] as any)?.text || '');
+  };
+  const callDeepSeekFn = (key?: string) => async () => {
+    const text = proxyUrl && idToken && !key
+      ? await callProxy(proxyUrl, idToken, model.startsWith('deepseek') ? model : 'deepseek-chat', prompt, 1000)
+      : await callDeepSeek(key!, model.startsWith('deepseek') ? model : 'deepseek-chat', prompt, 1000);
+    return parseExplanation(text || 'Vysvětlení se nepodařilo vygenerovat.');
+  };
+
+  const buildFallbacks = (primary: AIProvider) => {
+    const all: { provider: AIProvider; fn: () => Promise<{ explanation: string; objective?: string }> }[] = [];
+    const dsKey = apiKey?.startsWith('sk-') && !apiKey.startsWith('sk-ant-') ? apiKey : undefined;
+    if (primary !== 'deepseek' && (proxyUrl && idToken || dsKey)) all.push({ provider: 'deepseek', fn: callDeepSeekFn(dsKey) });
+    if (primary !== 'gemini' && geminiKey) all.push({ provider: 'gemini', fn: callGemini(geminiKey) });
+    if (primary !== 'claude' && claudeKey) all.push({ provider: 'claude', fn: callClaude(claudeKey) });
+    return all;
+  };
+
   try {
     if (provider === 'gemini') {
-      console.log('Using Gemini provider');
-      const ai = getAiInstance(apiKey);
-      const response = await callWithRetry(() => ai.models.generateContent({
-        model: model,
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      }), 2, 'gemini', signal);
-
-      const text = response.text || "Vysvětlení se nepodařilo vygenerovat.";
-      return parseExplanation(text);
-
+      return await callWithFallback('gemini', callGemini(apiKey), buildFallbacks('gemini'), signal);
     } else if (provider === 'claude') {
-      console.log('Using Claude provider with model:', model);
-      const claude = getClaudeInstance(apiKey);
-      const response = await callWithRetry(() => claude.messages.create({
-        model: model,
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }]
-      }), 2, 'claude');
-
-      console.log('Claude response:', response);
-      const text = (response.content[0] as any)?.text || "";
-      console.log('Claude text:', text);
-      return parseExplanation(text);
-
+      return await callWithFallback('claude', callClaude(apiKey), buildFallbacks('claude'), signal);
     } else if (provider === 'deepseek') {
-      console.log('Using DeepSeek provider');
-      const text = proxyUrl && idToken && !apiKey
-        ? await callProxy(proxyUrl, idToken, model, prompt, 1000)
-        : await callDeepSeek(apiKey!, model, prompt, 1000);
-      return parseExplanation(text || 'Vysvětlení se nepodařilo vygenerovat.');
+      return await callWithFallback('deepseek', callDeepSeekFn(apiKey), buildFallbacks('deepseek'), signal);
     }
-
     return { explanation: 'Vysvětlení se nepodařilo vygenerovat.' };
-
   } catch (error) {
-    console.error("Error generating detailed explanation:", error);
+    console.error('Error generating detailed explanation:', error);
     throw error;
   }
 }
@@ -1030,9 +1092,10 @@ export async function getDetailedHumanExplanation(
   signal?: AbortSignal,
   displayCorrectOption?: string,
   proxyUrl?: string,
-  idToken?: string
+  idToken?: string,
+  geminiKey?: string,
+  claudeKey?: string
 ): Promise<string> {
-  console.log('getDetailedHumanExplanation called with:', { provider, model, hasKey: !!apiKey });
 
   const prompt = `
     Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.
@@ -1043,13 +1106,14 @@ export async function getDetailedHumanExplanation(
     LO: ${lo ? `${lo.id} - ${lo.text}` : "Neurčeno"}
     
     DŮLEŽITÉ INSTRUKCE:
-    1. MUSÍŠ vysvětlit PROČ je odpověď "${displayCorrectOption || question.correct_option}" ("${question[`option_${question.correct_option.toLowerCase()}`]}") správná podle leteckých předpisů
+    1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.
     2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL (Úřad civilního letectví), atd.)
     3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách
-    4. NEZMIŇUJ alternativní akce nebo intuitivní reakce
-    5. ZAMĚŘ SE POUZE na technické odůvodnění dané správné odpovědi
+    4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.
+    5. ZAMĚŘ SE POUZE na technické odůvodnění.
     6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. "Podle EASA CS-23.1309...")
-    7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů
+    7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.
+    8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď "${displayCorrectOption || question.correct_option}" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu "Odpověď B je správná protože..." ani "Proč je odpověď B správná?". Začni ROVNOU technickým vysvětlením problému.
     
     Pravidla:
     1. Jazyk: Česky
@@ -1057,8 +1121,8 @@ export async function getDetailedHumanExplanation(
     3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky
     4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.
     5. Struktura:
-       - **Krátký úvod** (co to je)
-       - **Proč je odpověď ${displayCorrectOption || question.correct_option} správná** (technické vysvětlení, neopakuj odpověď)
+       - **Krátký úvod** (o jaký koncept se jedná)
+       - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)
        - **Praktické použití** v letadle
        - **Paměťový tip**
     5. Použij krátké věty a odstavce
@@ -1067,63 +1131,62 @@ export async function getDetailedHumanExplanation(
     
     Vysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.
     ZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.
-    POUŽÍVEJ MARKDOWN PRO LEPSÍ FORMÁTOVÁNÍ.
-    MUSÍŠ ODŮVODNIT PROČ JE ODPOVĚĎ "${displayCorrectOption || question.correct_option}" SPRÁVNÁ.
+    POUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.
+    NEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI ("${displayCorrectOption || question.correct_option}").
   `;
+
+  const clean = (t: string) => t
+    .replace(/^(Ahoj|Čau|Dobrý den|Pilote|Studente|Příteli|Kámo)[,\s]*/gi, '')
+    .replace(/^(Ahoj|Čau|Dobrý den|Pilote|Studente|Příteli|Kámo)[^\n]*\n/gi, '')
+    .trim();
+
+  const geminiModelH = model.startsWith('gemini') ? model : 'gemini-flash-latest';
+  const claudeModelH = model.startsWith('claude') ? model : 'claude-haiku-4-5-20251001';
+
+  const callGeminiH = (key?: string) => async () => {
+    const ai = getAiInstance(key);
+    const response = await callWithRetry(() => ai.models.generateContent({
+      model: geminiModelH,
+      contents: [{ role: 'user', parts: [{ text: prompt }] }],
+    }), 2, 'gemini', signal);
+    return clean(response.text || '') || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
+  };
+  const callClaudeH = (key?: string) => async () => {
+    const claude = getClaudeInstance(key);
+    const response = await callWithRetry(() => claude.messages.create({
+      model: claudeModelH,
+      max_tokens: 1500,
+      messages: [{ role: 'user', content: prompt }]
+    }), 2, 'claude', signal);
+    return clean((response.content[0] as any)?.text || '') || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
+  };
+  const callDeepSeekH = (key?: string) => async () => {
+    const text = proxyUrl && idToken && !key
+      ? await callProxy(proxyUrl, idToken, model.startsWith('deepseek') ? model : 'deepseek-chat', prompt, 1500)
+      : await callDeepSeek(key!, model.startsWith('deepseek') ? model : 'deepseek-chat', prompt, 1500);
+    return clean(text) || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
+  };
+
+  const buildFallbacksH = (primary: AIProvider) => {
+    const all: { provider: AIProvider; fn: () => Promise<string> }[] = [];
+    const dsKey = apiKey?.startsWith('sk-') && !apiKey.startsWith('sk-ant-') ? apiKey : undefined;
+    if (primary !== 'deepseek' && (proxyUrl && idToken || dsKey)) all.push({ provider: 'deepseek', fn: callDeepSeekH(dsKey) });
+    if (primary !== 'gemini' && geminiKey) all.push({ provider: 'gemini', fn: callGeminiH(geminiKey) });
+    if (primary !== 'claude' && claudeKey) all.push({ provider: 'claude', fn: callClaudeH(claudeKey) });
+    return all;
+  };
 
   try {
     if (provider === 'gemini') {
-      console.log('Using Gemini provider for detailed explanation');
-      const ai = getAiInstance(apiKey);
-      const response = await callWithRetry(() => ai.models.generateContent({
-        model: model,
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      }), 2, 'gemini', signal);
-
-      const text = response.text || "Podrobné vysvětlení se nepodařilo vygenerovat.";
-
-      // Clean up only greetings and informal addresses, KEEP markdown formatting
-      const cleanedText = text
-        .replace(/^(Ahoj|Čau|Dobrý den|Dobrý den|Pilote|Studente|Příteli|Kámo|Příteli)[,\s]*/gi, '')
-        .replace(/^(Ahoj|Čau|Dobrý den|Dobrý den|Pilote|Studente|Příteli|Kámo|Příteli)[^\n]*\n/gi, '')
-        .trim();
-
-      return cleanedText;
-
+      return await callWithFallback('gemini', callGeminiH(apiKey), buildFallbacksH('gemini'), signal);
     } else if (provider === 'claude') {
-      console.log('Using Claude provider for detailed explanation');
-      const claude = getClaudeInstance(apiKey);
-      const response = await callWithRetry(() => claude.messages.create({
-        model: model,
-        max_tokens: 1500,
-        messages: [{ role: 'user', content: prompt }]
-      }), 2, 'claude');
-
-      const text = (response.content[0] as any)?.text || "";
-
-      // Clean up only greetings and informal addresses, KEEP markdown formatting
-      const cleanedText = text
-        .replace(/^(Ahoj|Čau|Dobrý den|Dobrý den|Pilote|Studente|Příteli|Kámo|Příteli)[,\s]*/gi, '')
-        .replace(/^(Ahoj|Čau|Dobrý den|Dobrý den|Pilote|Studente|Příteli|Kámo|Příteli)[^\n]*\n/gi, '')
-        .trim();
-
-      return cleanedText || "Podrobné vysvětlení se nepodařilo vygenerovat.";
-
+      return await callWithFallback('claude', callClaudeH(apiKey), buildFallbacksH('claude'), signal);
     } else if (provider === 'deepseek') {
-      console.log('Using DeepSeek provider for detailed explanation');
-      const text = proxyUrl && idToken && !apiKey
-        ? await callProxy(proxyUrl, idToken, model, prompt, 1500)
-        : await callDeepSeek(apiKey!, model, prompt, 1500);
-      const cleanedText = text
-        .replace(/^(Ahoj|Čau|Dobrý den|Pilote|Studente|Příteli|Kámo)[,\s]*/gi, '')
-        .trim();
-      return cleanedText || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
+      return await callWithFallback('deepseek', callDeepSeekH(apiKey), buildFallbacksH('deepseek'), signal);
     }
-
     return 'Podrobné vysvětlení se nepodařilo vygenerovat.';
-
   } catch (error) {
-    console.error("Error generating detailed human explanation:", error);
+    console.error('Error generating detailed human explanation:', error);
     throw error;
   }
 }

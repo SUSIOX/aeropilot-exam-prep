@@ -652,12 +652,20 @@ export default function App() {
     const uid = user?.id || 'guest';
     if (userApiKey) {
       localStorage.setItem(`${uid}:userApiKey`, userApiKey);
+    } else {
+      localStorage.removeItem(`${uid}:userApiKey`);
     }
     if (claudeApiKey) {
       localStorage.setItem(`${uid}:claudeApiKey`, claudeApiKey);
+    } else {
+      localStorage.removeItem(`${uid}:claudeApiKey`);
     }
+    // DeepSeek klíč se do localStorage neukládá — přichází z AWS profilu nebo ho uživatel zadá ručně
+    // Pokud ho uživatel smaže z pole, smažeme i localStorage
     if (deepseekApiKey) {
       localStorage.setItem(`${uid}:deepseekApiKey`, deepseekApiKey);
+    } else {
+      localStorage.removeItem(`${uid}:deepseekApiKey`);
     }
   }, [userApiKey, claudeApiKey, deepseekApiKey, user]);
 
@@ -779,12 +787,12 @@ export default function App() {
     localStorage.setItem('drillSettings', JSON.stringify(drillSettings));
 
     // Sync to DynamoDB for authenticated users (not guests)
-    if (!isGuestMode && user?.id && (userApiKey || claudeApiKey || deepseekApiKey)) {
+    // DeepSeek klíč se do settings neukládá — spravuje se přes AWS profil
+    if (!isGuestMode && user?.id) {
       dynamoDBService.saveUserSettings(String(user.id), {
         ...drillSettings,
         userApiKey,
         claudeApiKey,
-        deepseekApiKey,
         aiProvider,
         aiModel
       }).catch(() => {
@@ -807,9 +815,9 @@ export default function App() {
             }));
 
             // Restore API keys and AI settings from DB
+            // DeepSeek klíč se nenačítá ze settings — přichází z AWS profilu (samostatný atribut)
             if (result.settings.userApiKey) setUserApiKey(result.settings.userApiKey);
             if (result.settings.claudeApiKey) setClaudeApiKey(result.settings.claudeApiKey);
-            if (result.settings.deepseekApiKey) setDeepseekApiKey(result.settings.deepseekApiKey);
             if (result.settings.aiProvider) setAiProvider(result.settings.aiProvider);
             if (result.settings.aiModel) setAiModel(result.settings.aiModel);
           }
@@ -1678,7 +1686,7 @@ V nastavení lze změnit defaultni model.`);
         ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
         : undefined;
 
-      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined), aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken());
+      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined), aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken(), userApiKey, claudeApiKey);
 
 
       // Save objective if detected
@@ -1806,7 +1814,9 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
         controller.signal,
         displayCorrectOption,
         AI_PROXY_URL,
-        await getProxyIdToken()
+        await getProxyIdToken(),
+        userApiKey,
+        claudeApiKey
       );
 
       setAiExplanation(explanation.explanation);
@@ -1887,7 +1897,7 @@ V nastavení lze změnit defaultni model.`);
         ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
         : undefined;
 
-      const detailedExplanationResult = await getDetailedHumanExplanation(q, lo, aiProvider === 'deepseek' ? deepseekApiKey || undefined : currentApiKey, aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken());
+      const detailedExplanationResult = await getDetailedHumanExplanation(q, lo, aiProvider === 'deepseek' ? deepseekApiKey || undefined : currentApiKey, aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken(), userApiKey, claudeApiKey);
 
       setDetailedExplanation(detailedExplanationResult);
 

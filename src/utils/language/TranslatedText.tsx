@@ -1,6 +1,12 @@
 import React from 'react';
 import { Question } from '../../types';
 import { LanguageContextType } from './types';
+import { markdownToHtml, sanitizeHtml } from '../markdown';
+
+function renderMath(text: string) {
+  if (!text || (!text.includes('$') && !text.includes('**') && !text.includes('*'))) return null;
+  return sanitizeHtml(markdownToHtml(text));
+}
 
 interface TranslatedTextProps {
   question: Question;
@@ -19,26 +25,15 @@ export function TranslatedText({
 }: TranslatedTextProps) {
   
   const displayText = language.getDisplayText(question, field);
-  
-  if (Component === 'span') {
-    return <span className={className}>{displayText}</span>;
-  } else if (Component === 'p') {
-    return <p className={className}>{displayText}</p>;
-  } else if (Component === 'div') {
-    return <div className={className}>{displayText}</div>;
-  } else if (Component === 'h1') {
-    return <h1 className={className}>{displayText}</h1>;
-  } else if (Component === 'h2') {
-    return <h2 className={className}>{displayText}</h2>;
-  } else if (Component === 'h3') {
-    return <h3 className={className}>{displayText}</h3>;
-  } else if (Component === 'h4') {
-    return <h4 className={className}>{displayText}</h4>;
-  } else if (Component === 'h5') {
-    return <h5 className={className}>{displayText}</h5>;
-  } else {
-    return <h6 className={className}>{displayText}</h6>;
+  const html = renderMath(displayText);
+
+  if (html) {
+    const Tag = Component as any;
+    return <Tag className={className} dangerouslySetInnerHTML={{ __html: html }} />;
   }
+
+  const Tag = Component as any;
+  return <Tag className={className}>{displayText}</Tag>;
 }
 
 interface TranslatedOptionProps {
@@ -64,11 +59,9 @@ export function TranslatedOption({
     displayText = (question[optionKey] as string) || (question[optionCzKey] as string) || '';
   }
   
-  return (
-    <span className={className}>
-      {displayText}
-    </span>
-  );
+  const html = renderMath(displayText);
+  if (html) return <span className={className} dangerouslySetInnerHTML={{ __html: html }} />;
+  return <span className={className}>{displayText}</span>;
 }
 
 // Helper function - should be moved to utils.ts but keeping here for now

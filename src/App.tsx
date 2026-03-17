@@ -5815,12 +5815,13 @@ V nastavení lze změnit defaultni model.`);
                                 <div className="space-y-3">
                                   <div className="p-3 bg-indigo-500/5 border border-indigo-500/20 rounded-xl space-y-2">
                                     <p className="text-[9px] uppercase tracking-widest opacity-40 font-bold">Vygenerovaná otázka — preview</p>
-                                    <p className="text-xs font-medium leading-snug">{syllabusGeneratedQuestion.question.text}</p>
+                                    <div className="text-xs font-medium leading-snug" dangerouslySetInnerHTML={{ __html: sanitizeHtml(markdownToHtml(syllabusGeneratedQuestion.question.text || '')) }} />
                                     <div className="space-y-1 pt-1">
                                       {(['option_a','option_b','option_c','option_d'] as const).map((opt, i) => (
-                                        <p key={opt} className={`text-[10px] pl-2 ${syllabusGeneratedQuestion.question.correct_option === String.fromCharCode(65+i) ? 'text-emerald-600 font-bold' : 'opacity-50'}`}>
-                                          {String.fromCharCode(65+i)}. {syllabusGeneratedQuestion.question[opt]}
-                                        </p>
+                                        <div key={opt} className={`text-[10px] pl-2 ${syllabusGeneratedQuestion.question.correct_option === String.fromCharCode(65+i) ? 'text-emerald-600 font-bold' : 'opacity-50'}`}>
+                                          <span>{String.fromCharCode(65+i)}. </span>
+                                          <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(markdownToHtml(String(syllabusGeneratedQuestion.question[opt] || ''))) }} />
+                                        </div>
                                       ))}
                                     </div>
                                   </div>

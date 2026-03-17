@@ -160,22 +160,52 @@ const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 // Proxy call — uses Lambda AI proxy (no client-side API key needed)
 async function callProxy(proxyUrl: string, idToken: string, model: string, userMessage: string, maxTokens = 2000, jsonMode = false): Promise<string> {
+  const resolvedModel = model.includes('/') ? model : (
+    model.startsWith('gemini') ? `google/${model}` :
+    model.startsWith('claude') ? `anthropic/${model}` :
+    `deepseek/${model}`
+  );
   const body: any = {
-    model: model.includes('/') ? model : `deepseek/${model}`,
+    model: resolvedModel,
     messages: [{ role: 'user', content: userMessage }],
     max_tokens: maxTokens,
+    stream: true,
   };
   if (jsonMode) body.response_format = { type: 'json_object' };
 
-  const res = await fetch(proxyUrl, {
+  const res = await fetch(`${proxyUrl}?stream=1`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${idToken}` },
     body: JSON.stringify(body),
   });
   if (res.status === 401 || res.status === 403) throw new Error('API_KEY_INVALID');
-  if (!res.ok) throw new Error(`Proxy error: ${res.status}`);
-  const data = await res.json();
-  return data.choices?.[0]?.message?.content || '';
+  if (!res.ok) {
+    const errText = await res.text().catch(() => '');
+    throw new Error(`Proxy error: ${res.status}${errText ? ` - ${errText}` : ''}`);
+  }
+
+  // Read SSE stream and accumulate full response
+  const reader = res.body!.getReader();
+  const decoder = new TextDecoder();
+  let full = '';
+  let buffer = '';
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split('\n');
+    buffer = lines.pop()!;
+    for (const line of lines) {
+      if (!line.startsWith('data: ')) continue;
+      const data = line.slice(6).trim();
+      if (data === '[DONE]') break;
+      try {
+        const delta = JSON.parse(data).choices?.[0]?.delta?.content;
+        if (delta) full += delta;
+      } catch { /* skip malformed */ }
+    }
+  }
+  return full;
 }
 
 // DeepSeek uses OpenAI-compatible REST API — supports both api.deepseek.com and OpenRouter

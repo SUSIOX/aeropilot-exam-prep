@@ -281,6 +281,8 @@ export default function App() {
   const [syllabusLicenseFilter, setSyllabusLicenseFilter] = useState<'ALL' | 'PPL' | 'SPL'>('ALL');
   const [syllabusSearch, setSyllabusSearch] = useState('');
   const [expandedSyllabusQuestion, setExpandedSyllabusQuestion] = useState<any | null>(null);
+  const [syllabusGeneratingLO, setSyllabusGeneratingLO] = useState<string | null>(null);
+  const [syllabusGeneratedQuestion, setSyllabusGeneratedQuestion] = useState<{ loId: string; question: Partial<Question> } | null>(null);
 
   useEffect(() => {
     if (!syllabusSelectedLO) { setSyllabusLOQuestions([]); return; }
@@ -2216,6 +2218,59 @@ V nastavení lze změnit defaultni model.`);
     setShowExplanation(false);
     language.resetTranslation(); // Reset translation when opening from syllabus
     setView('drill');
+  };
+
+  const handleGenerateQuestionForLO = async (loId: string) => {
+    const lo = allLOs.find(l => l.id === loId);
+    if (!lo) return;
+    let effectiveApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined);
+    if (!effectiveApiKey && !(aiProvider === 'deepseek' && getProxyParams().idToken)) {
+      alert('Pro generování otázek je nutný API klíč. Nastavte ho v Nastavení.');
+      return;
+    }
+    setSyllabusGeneratingLO(loId);
+    setSyllabusGeneratedQuestion(null);
+    try {
+      const results = await generateBatchQuestions(
+        [lo], 1, language.generateLanguage, effectiveApiKey, aiModel, aiProvider,
+        selectedLicense, undefined, AI_PROXY_URL, await getProxyIdToken()
+      );
+      const q = results?.[0]?.questions?.[0];
+      if (q) setSyllabusGeneratedQuestion({ loId, question: q });
+    } catch (e: any) {
+      const msg = getAIErrorMessage(e); if (msg) alert(msg);
+    } finally {
+      setSyllabusGeneratingLO(null);
+    }
+  };
+
+  const handleSaveSyllabusQuestion = async () => {
+    if (!syllabusGeneratedQuestion || userRole !== 'admin') return;
+    const { loId, question } = syllabusGeneratedQuestion;
+    const lo = allLOs.find(l => l.id === loId);
+    const subjectId = lo?.subject_id;
+    if (!subjectId) return;
+    const q = {
+      id: Date.now() + Math.random(),
+      question: question.text || '',
+      answers: [question.option_a || '', question.option_b || '', question.option_c || '', question.option_d || ''],
+      correct: ['A','B','C','D'].indexOf(question.correct_option || 'A'),
+      explanation: question.explanation || '',
+      lo_id: loId,
+      source: 'ai',
+    };
+    try {
+      const result = await dynamoDBService.saveQuestion(subjectId, q);
+      if (result.success) {
+        setSyllabusGeneratedQuestion(null);
+        setSyllabusSelectedLO(loId);
+        await syncUserData();
+      } else {
+        alert('Uložení selhalo: ' + result.error);
+      }
+    } catch (e: any) {
+      alert('Chyba při ukládání: ' + e.message);
+    }
   };
 
   const handlePreviewQuestionForLO = async (loId: string) => {
@@ -5590,35 +5645,53 @@ V nastavení lze změnit defaultni model.`);
                                                     const isFocused = focusedLOId === lo.id;
                                                     const isSelected = syllabusSelectedLO === lo.id;
                                                     const isCovered = coveredLOs.has(lo.id);
-                                                    const qCount = questions.filter(q => q.lo_id === lo.id).length;
+                                                    const qCount = isSelected ? syllabusLOQuestions.length : (isCovered ? 1 : 0);
+                                                    const isGenerating = syllabusGeneratingLO === lo.id;
 
                                                     return (
                                                       <div
                                                         key={lo.id}
-                                                        className={`px-10 py-2.5 flex items-start justify-between gap-3 cursor-pointer transition-colors border-t border-[var(--line)]/20 ${isSelected ? 'bg-indigo-600/10 border-l-2 border-l-indigo-600' : isFocused ? 'bg-amber-500/10 border-l-2 border-l-amber-500' : 'hover:bg-[var(--line)]/20'}`}
-                                                        onClick={() => { setSyllabusSelectedLO(lo.id); setFocusedLOId(null); }}
+                                                        className={`px-10 py-2 flex items-center justify-between gap-3 cursor-pointer transition-colors border-t border-[var(--line)]/20 ${isSelected ? 'bg-indigo-600/10 border-l-2 border-l-indigo-600' : isFocused ? 'bg-amber-500/10 border-l-2 border-l-amber-500' : 'hover:bg-[var(--line)]/20'}`}
+                                                        onClick={() => { setSyllabusSelectedLO(lo.id); setFocusedLOId(null); setSyllabusGeneratedQuestion(null); }}
                                                       >
-                                                        <div className="flex items-start gap-2 flex-1 min-w-0">
-                                                          {/* License dot */}
+                                                        <div className="flex items-center gap-2 flex-1 min-w-0">
                                                           <span
-                                                            className={`mt-1 flex-shrink-0 w-2 h-2 rounded-full ${licenseType === 'BOTH' ? 'bg-gray-400' : licenseType === 'PPL' ? 'bg-indigo-500' : 'bg-emerald-500'}`}
+                                                            className={`flex-shrink-0 w-2 h-2 rounded-full ${licenseType === 'BOTH' ? 'bg-gray-400' : licenseType === 'PPL' ? 'bg-indigo-500' : 'bg-emerald-500'}`}
                                                             title={licenseType === 'BOTH' ? 'PPL + SPL' : licenseType}
                                                           />
                                                           <div className="min-w-0">
-                                                            <p className="text-[9px] font-mono opacity-50">{lo.id}</p>
+                                                            <p className="text-[9px] font-mono opacity-40">{lo.id}</p>
                                                             <p className="text-[10px] leading-snug font-medium">{lo.text}</p>
                                                           </div>
                                                         </div>
-                                                        <div className="flex items-center gap-1.5 flex-shrink-0">
-                                                          {isCovered && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" title="Pokryto otázkami" />}
-                                                          {qCount > 0 && <span className="text-[8px] font-mono opacity-40">{qCount}q</span>}
-                                                          <motion.button
-                                                            layoutId={`syllabus-tree-lo-${lo.id}`}
-                                                            onClick={(e) => { e.stopPropagation(); handlePreviewQuestionForLO(lo.id); }}
-                                                            className="px-1.5 py-0.5 rounded border border-[var(--line)] text-[8px] font-bold uppercase tracking-widest hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all"
-                                                          >
-                                                            ▶
-                                                          </motion.button>
+                                                        <div className="flex items-center gap-2 flex-shrink-0">
+                                                          {isCovered ? (
+                                                            <span title={`${qCount} otázek`} className="flex items-center gap-1 text-emerald-500">
+                                                              <CheckCircle2 size={13} />
+                                                              {qCount > 1 && <span className="text-[8px] font-mono">{qCount}</span>}
+                                                            </span>
+                                                          ) : (
+                                                            <span className="w-3 h-3 rounded-full border border-[var(--line)] opacity-40" title="Bez otázky" />
+                                                          )}
+                                                          {!isCovered && userRole === 'admin' && (
+                                                            <button
+                                                              onClick={(e) => { e.stopPropagation(); handleGenerateQuestionForLO(lo.id); }}
+                                                              disabled={!!syllabusGeneratingLO}
+                                                              className="flex items-center gap-1 px-1.5 py-0.5 rounded border border-indigo-500/40 text-indigo-500 text-[8px] font-bold uppercase tracking-widest hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all disabled:opacity-40"
+                                                              title="Generovat otázku"
+                                                            >
+                                                              {isGenerating ? <RotateCcw size={9} className="animate-spin" /> : <Sparkles size={9} />}
+                                                            </button>
+                                                          )}
+                                                          {isCovered && (
+                                                            <motion.button
+                                                              layoutId={`syllabus-tree-lo-${lo.id}`}
+                                                              onClick={(e) => { e.stopPropagation(); handlePreviewQuestionForLO(lo.id); }}
+                                                              className="px-1.5 py-0.5 rounded border border-[var(--line)] text-[8px] font-bold uppercase tracking-widest hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all"
+                                                            >
+                                                              ▶
+                                                            </motion.button>
+                                                          )}
                                                         </div>
                                                       </div>
                                                     );
@@ -5737,9 +5810,49 @@ V nastavení lze změnit defaultni model.`);
                               Generovat otázky (AI)
                             </button>
                             */
-                            <div className="w-full py-2.5 border border-dashed border-indigo-300 text-indigo-400 rounded-xl text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 opacity-60">
-                              <Sparkles size={12} />
-                              Generovat otázky (brzy)
+                            <div className="space-y-3">
+                              {syllabusGeneratedQuestion?.loId === syllabusSelectedLO ? (
+                                <div className="space-y-3">
+                                  <div className="p-3 bg-indigo-500/5 border border-indigo-500/20 rounded-xl space-y-2">
+                                    <p className="text-[9px] uppercase tracking-widest opacity-40 font-bold">Vygenerovaná otázka — preview</p>
+                                    <p className="text-xs font-medium leading-snug">{syllabusGeneratedQuestion.question.text}</p>
+                                    <div className="space-y-1 pt-1">
+                                      {(['option_a','option_b','option_c','option_d'] as const).map((opt, i) => (
+                                        <p key={opt} className={`text-[10px] pl-2 ${syllabusGeneratedQuestion.question.correct_option === String.fromCharCode(65+i) ? 'text-emerald-600 font-bold' : 'opacity-50'}`}>
+                                          {String.fromCharCode(65+i)}. {syllabusGeneratedQuestion.question[opt]}
+                                        </p>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  {userRole === 'admin' && (
+                                    <div className="flex gap-2">
+                                      <button
+                                        onClick={handleSaveSyllabusQuestion}
+                                        className="flex-1 py-2 bg-emerald-600 text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-emerald-700 transition-colors flex items-center justify-center gap-1"
+                                      >
+                                        <CheckCircle2 size={11} /> Uložit
+                                      </button>
+                                      <button
+                                        onClick={() => handleGenerateQuestionForLO(syllabusSelectedLO!)}
+                                        disabled={!!syllabusGeneratingLO}
+                                        className="flex-1 py-2 border border-[var(--line)] rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-[var(--line)] transition-colors flex items-center justify-center gap-1 disabled:opacity-40"
+                                      >
+                                        <RefreshCw size={11} /> Znovu
+                                      </button>
+                                    </div>
+                                  )}
+                                </div>
+                              ) : (
+                                <button
+                                  onClick={() => handleGenerateQuestionForLO(syllabusSelectedLO!)}
+                                  disabled={!!syllabusGeneratingLO}
+                                  className="w-full py-2.5 border border-indigo-500/40 text-indigo-500 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-colors flex items-center justify-center gap-2 disabled:opacity-40"
+                                >
+                                  {syllabusGeneratingLO === syllabusSelectedLO
+                                    ? <><RotateCcw size={12} className="animate-spin" /> Generuji...</>
+                                    : <><Sparkles size={12} /> Generovat otázku (AI)</>}
+                                </button>
+                              )}
                             </div>
                           )}
                         </div>

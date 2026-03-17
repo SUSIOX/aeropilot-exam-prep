@@ -752,7 +752,7 @@ export default function App() {
   }, []);
 
   const handleVerifyKey = async () => {
-    const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
+    const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined);
     if (!currentApiKey) return;
     setIsVerifyingKey(true);
     setKeyStatus('idle');
@@ -1590,7 +1590,7 @@ export default function App() {
     const q = questions[currentQuestionIndex];
     if (!q) return;
 
-    const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
+    const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined);
     if (!currentApiKey && !(aiProvider === 'deepseek' && getProxyParams().idToken)) {
       const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
       const key = prompt(`⚠️ Pro použití AI je nutný API klíč
@@ -1678,7 +1678,7 @@ V nastavení lze změnit defaultni model.`);
         ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
         : undefined;
 
-      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey, aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken());
+      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined), aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken());
 
 
       // Save objective if detected
@@ -1770,7 +1770,7 @@ V nastavení lze změnit defaultni model.`);
         return;
       }
 
-      const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
+      const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined);
       if (!currentApiKey && !(aiProvider === 'deepseek' && getProxyParams().idToken)) {
         const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
         const key = prompt(`⚠️ Pro použití AI je nutný API klíč
@@ -1800,7 +1800,7 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
       const explanation = await getDetailedExplanation(
         q,
         lo,
-        aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey,
+        aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined),
         aiModel,
         aiProvider,
         controller.signal,
@@ -1847,7 +1847,7 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
     const q = questions[currentQuestionIndex];
     if (!q) return;
 
-    const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
+    const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined);
     if (!currentApiKey && !(aiProvider === 'deepseek' && getProxyParams().idToken)) {
       const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
       const key = prompt(`⚠️ Pro použití AI je nutný API klíč
@@ -1887,7 +1887,7 @@ V nastavení lze změnit defaultni model.`);
         ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
         : undefined;
 
-      const detailedExplanationResult = await getDetailedHumanExplanation(q, lo, currentApiKey, aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken());
+      const detailedExplanationResult = await getDetailedHumanExplanation(q, lo, aiProvider === 'deepseek' ? deepseekApiKey || undefined : currentApiKey, aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken());
 
       setDetailedExplanation(detailedExplanationResult);
 
@@ -2024,7 +2024,7 @@ V nastavení lze změnit defaultni model.`);
       const existingLOs = allLOs.filter(lo => lo.subject_id === importSubjectId);
 
       // Get API key based on active provider
-      let effectiveApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
+      let effectiveApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined);
 
       if (!effectiveApiKey && !(aiProvider === 'deepseek' && getProxyParams().idToken)) {
         alert('API klíč nenalezen. Zadejte ho prosím v nastavení.');
@@ -2237,7 +2237,7 @@ V nastavení lze změnit defaultni model.`);
       alert('Tato funkce je jen pro ověřené uživatele');
       return;
     }
-    let effectiveApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey;
+    let effectiveApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined);
 
     if (!effectiveApiKey) {
       const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
@@ -3492,7 +3492,7 @@ V nastavení lze změnit defaultni model.`);
                           <div className="relative flex-1">
                             <input
                               type="password"
-                              value={aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey}
+                              value={aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined)}
                               onChange={(e) => {
                                 if (aiProvider === 'gemini') {
                                   setUserApiKey(e.target.value);
@@ -3513,7 +3513,7 @@ V nastavení lze změnit defaultni model.`);
                           </div>
                           <button
                             onClick={handleVerifyKey}
-                            disabled={isVerifyingKey || !(aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : deepseekApiKey)}
+                            disabled={isVerifyingKey || !(aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined))}
                             className="px-6 bg-[var(--ink)] text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform disabled:opacity-50"
                           >
                             {isVerifyingKey ? <RotateCcw size={14} className="animate-spin" /> : 'Ověřit'}

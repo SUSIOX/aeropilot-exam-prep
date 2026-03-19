@@ -1180,12 +1180,8 @@ export default function App() {
         return drillSettings.sourceFilters.includes('user');
       });
 
-      if (drillSettings.sorting === 'random') {
-        processedQuestions = LearningEngine.shuffle(processedQuestions);
-        console.log(`🎲 startDrill: Shuffled ${processedQuestions.length} questions. First question ID: ${processedQuestions[0]?.id}`);
-      } else {
-        console.log(`📋 startDrill: Using ${drillSettings.sorting} order. First question ID: ${processedQuestions[0]?.id}`);
-      }
+      // Apply sorting to questions
+      processedQuestions = applySorting(processedQuestions, drillSettings.sorting);
 
       if (processedQuestions.length === 0) {
         alert('Pro tento předmět a vybrané filtry nebyly nalezeny žádné otázky.');
@@ -1203,6 +1199,46 @@ export default function App() {
     } catch (err) {
       alert('Nepodařilo se načíst otázky.');
     }
+  };
+
+  // Helper function to apply sorting to questions
+  const applySorting = (questions: Question[], sorting: string): Question[] => {
+    let sorted = [...questions];
+    if (sorting === 'random') {
+      sorted = LearningEngine.shuffle(sorted);
+      console.log(`🎲 applySorting: Shuffled ${sorted.length} questions. First question ID: ${sorted[0]?.id}`);
+    } else if (sorting === 'hardest_first') {
+      sorted = sorted.sort((a, b) => {
+        const diffA = a.difficulty ?? 0;
+        const diffB = b.difficulty ?? 0;
+        if (diffB !== diffA) return diffB - diffA;
+        return a.id - b.id;
+      });
+      console.log(`🔥 applySorting: Sorted by difficulty. First question ID: ${sorted[0]?.id}, difficulty: ${sorted[0]?.difficulty}`);
+    } else if (sorting === 'least_practiced') {
+      sorted = sorted.sort((a, b) => {
+        if (!a.last_practiced && !b.last_practiced) return a.id - b.id;
+        if (!a.last_practiced) return -1;
+        if (!b.last_practiced) return 1;
+        return new Date(a.last_practiced).getTime() - new Date(b.last_practiced).getTime();
+      });
+      console.log(`📚 applySorting: Sorted by least practiced. First question ID: ${sorted[0]?.id}, last_practiced: ${sorted[0]?.last_practiced}`);
+    } else {
+      // default - sort by ID
+      sorted = sorted.sort((a, b) => a.id - b.id);
+      console.log(`📋 applySorting: Using default order. First question ID: ${sorted[0]?.id}`);
+    }
+    return sorted;
+  };
+
+  // Function to reshuffle current questions during drill
+  const reshuffleQuestions = () => {
+    const shuffled: Question[] = LearningEngine.shuffle(questions);
+    setQuestions(shuffled);
+    setCurrentQuestionIndex(0);
+    setAnswered(null);
+    setShowExplanation(false);
+    console.log(`🎲 Reshuffled questions. New first question ID: ${shuffled[0]?.id}`);
   };
 
   const startMix = async () => {
@@ -1239,13 +1275,13 @@ export default function App() {
         return;
       }
 
-      // Shuffle
-      const shuffled = LearningEngine.shuffle(filtered);
+      // Apply sorting based on drillSettings
+      let sortedQuestions = applySorting(filtered, drillSettings.sorting);
 
       // Store original questions for dynamic filtering
       setOriginalQuestions(allQuestions);
-      setSelectedSubject(prev => prev ? { ...prev, question_count: shuffled.length } : prev);
-      setQuestions(shuffled);
+      setSelectedSubject(prev => prev ? { ...prev, question_count: sortedQuestions.length } : prev);
+      setQuestions(sortedQuestions);
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
@@ -1291,8 +1327,11 @@ export default function App() {
         return;
       }
 
-      setSelectedSubject({ id: -1, name: 'Procvičit chyby', question_count: errorQuestions.length, success_rate: 0 });
-      setQuestions(errorQuestions);
+      // Apply sorting based on drillSettings
+      let sortedQuestions = applySorting(errorQuestions, drillSettings.sorting);
+
+      setSelectedSubject({ id: -1, name: 'Procvičit chyby', question_count: sortedQuestions.length, success_rate: 0 });
+      setQuestions(sortedQuestions);
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
@@ -1338,8 +1377,11 @@ export default function App() {
         return;
       }
 
-      setSelectedSubject({ id: -2, name: 'Označené otázky', question_count: flaggedQuestions.length, success_rate: 0 });
-      setQuestions(flaggedQuestions);
+      // Apply sorting based on drillSettings
+      let sortedQuestions = applySorting(flaggedQuestions, drillSettings.sorting);
+
+      setSelectedSubject({ id: -2, name: 'Označené otázky', question_count: sortedQuestions.length, success_rate: 0 });
+      setQuestions(sortedQuestions);
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
@@ -2207,11 +2249,34 @@ V nastavení lze změnit defaultni model.`);
 
   const startDrillForLO = (loId: string) => {
     setSyllabusOpen(false);
-    const loQuestions = questions.filter(q => q.lo_id === loId);
+    let loQuestions = questions.filter(q => q.lo_id === loId);
     if (loQuestions.length === 0) {
       alert(`Žádné otázky pro téma ${loId}. Nejprve vygenerujte otázky v AI modulu.`);
       return;
     }
+
+    // Apply sorting based on drillSettings
+    if (drillSettings.sorting === 'random') {
+      loQuestions = LearningEngine.shuffle(loQuestions);
+    } else if (drillSettings.sorting === 'hardest_first') {
+      loQuestions = [...loQuestions].sort((a, b) => {
+        const diffA = a.difficulty ?? 0;
+        const diffB = b.difficulty ?? 0;
+        if (diffB !== diffA) return diffB - diffA;
+        return a.id - b.id;
+      });
+    } else if (drillSettings.sorting === 'least_practiced') {
+      loQuestions = [...loQuestions].sort((a, b) => {
+        if (!a.last_practiced && !b.last_practiced) return a.id - b.id;
+        if (!a.last_practiced) return -1;
+        if (!b.last_practiced) return 1;
+        return new Date(a.last_practiced).getTime() - new Date(b.last_practiced).getTime();
+      });
+    } else {
+      // default - sort by ID
+      loQuestions = [...loQuestions].sort((a, b) => a.id - b.id);
+    }
+
     setQuestions(loQuestions);
     setCurrentQuestionIndex(0);
     setAnswered(null);
@@ -3432,7 +3497,14 @@ V nastavení lze změnit defaultni model.`);
                           <label className="col-header">Řazení otázek</label>
                           <select
                             value={drillSettings.sorting}
-                            onChange={(e) => setDrillSettings(prev => ({ ...prev, sorting: e.target.value as any }))}
+                            onChange={(e) => {
+                              const newSorting = e.target.value as any;
+                              setDrillSettings(prev => {
+                                const newSettings = { ...prev, sorting: newSorting };
+                                localStorage.setItem('drillSettings', JSON.stringify(newSettings));
+                                return newSettings;
+                              });
+                            }}
                             className="w-full p-3 bg-transparent border border-[var(--line)] rounded-xl focus:outline-none focus:border-[var(--ink)]"
                           >
                             <option value="default">Výchozí (ID)</option>
@@ -3808,13 +3880,15 @@ V nastavení lze změnit defaultni model.`);
                     </div>
                   ) : (
                     <>
-                      <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0">
-                        <button onClick={() => setView('dashboard')} className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-50 hover:opacity-100 mr-auto sm:mr-0">
+                      <div className="flex flex-row justify-between items-center gap-2 w-full overflow-hidden">
+                        <button onClick={() => setView('dashboard')} className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-50 hover:opacity-100 shrink-0">
                           <ArrowLeft size={12} /> Zpět
                         </button>
-                        <div className="text-center flex flex-col items-center order-first sm:order-none">
+                        <div className="text-center flex flex-col items-center min-w-0 shrink">
                           <p className="text-[10px] font-bold uppercase tracking-widest opacity-40 mb-1">{selectedSubject.name}</p>
-                          <div className="flex items-center gap-4">
+                          <div className="flex items-center gap-2">
+                          {/* Navigace vlevo */}
+                          <div className="flex items-center gap-2">
                             <button
                               disabled={currentQuestionIndex === 0}
                               onClick={() => setCurrentQuestionIndex(prev => prev - 1)}
@@ -3836,30 +3910,33 @@ V nastavení lze změnit defaultni model.`);
                             >
                               <ChevronRight size={16} />
                             </button>
-                            <div className="flex items-center gap-3 ml-2">
-                              {[
-                                { id: 'user', icon: User, label: 'Uživatel' },
-                                { id: 'ai', icon: Bot, label: 'AI Generováno' }
-                              ].map(src => {
-                                const isActive = drillSettings.sourceFilters.includes(src.id as any);
-                                return (
-                                  <button
-                                    key={src.id}
-                                    onClick={() => toggleSourceFilter(src.id as any)}
-                                    title={src.id === 'user' ? 'Zobrazit jen otázky importované uživatelem' : 'Zobrazit jen otázky které sestavila AI na základě LearningObjectives'}
-                                    className={`transition-all duration-300 flex items-center gap-1 relative ${isActive
-                                        ? 'text-indigo-600 opacity-100'
-                                        : 'text-[var(--ink)] opacity-40 hover:opacity-60'
-                                      }`}
-                                  >
-                                    <src.icon size={16} strokeWidth={isActive ? 2.5 : 2} />
-                                  </button>
-                                );
-                              })}
-                            </div>
+                          </div>
+                          {/* Filtry vpravo */}
+                          <div className="flex items-center gap-2 ml-auto">
+                            {[
+                              { id: 'user', icon: User, label: 'Uživatel' },
+                              { id: 'ai', icon: Bot, label: 'AI Generováno' }
+                            ].map(src => {
+                              const isActive = drillSettings.sourceFilters.includes(src.id as any);
+                              return (
+                                <button
+                                  key={src.id}
+                                  onClick={() => toggleSourceFilter(src.id as any)}
+                                  title={src.id === 'user' ? 'Zobrazit jen otázky importované uživatelem' : 'Zobrazit jen otázky které sestavila AI na základě LearningObjectives'}
+                                  className={`transition-all duration-300 flex items-center gap-1 relative ${isActive
+                                      ? 'text-indigo-600 opacity-100'
+                                      : 'text-[var(--ink)] opacity-40 hover:opacity-60'
+                                    }`}
+                                >
+                                  <src.icon size={16} strokeWidth={isActive ? 2.5 : 2} />
+                                </button>
+                              );
+                            })}
                           </div>
                         </div>
-                        <div className="flex items-center gap-2">
+                        {/* Filtry samostatně pod navigací - ODSTRANIT */}
+                      </div>
+                        <div className="flex items-center gap-2 shrink-0">
                           {questions[currentQuestionIndex].approved && (
                             <div
                               className="flex items-center justify-center bg-green-500 text-white p-1.5 rounded-full shadow-lg shadow-green-500/20"
@@ -5022,7 +5099,7 @@ V nastavení lze změnit defaultni model.`);
                               </p>
                             </div>
 
-                            <div className="grid grid-cols-3 gap-4">
+                            <div className="flex justify-between gap-4">
                               <div className="space-y-1">
                                 <p className="text-[10px] opacity-50">Learning Objectives</p>
                                 <p className="text-lg font-bold">{allLOs.filter(lo => lo.subject_id === importSubjectId).length}</p>

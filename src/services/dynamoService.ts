@@ -379,6 +379,118 @@ export class DynamoDBService {
     }
   }
 
+  // Save API keys to user settings
+  async saveApiKeys(
+    userId: string,
+    apiKeys: {
+      userApiKey?: string;
+      claudeApiKey?: string;
+      deepseekApiKey?: string;
+      aiProvider?: string;
+      aiModel?: string;
+    }
+  ): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      // First get existing settings to merge with API keys
+      const existingSettings = await this.getUserSettings(userId);
+      const mergedSettings = {
+        ...(existingSettings.success ? existingSettings.settings : {}),
+        ...apiKeys,
+        updatedAt: new Date().toISOString()
+      };
+
+      // Update user record with merged settings
+      const command = new DocUpdateCommand({
+        TableName: getTableName('USERS'),
+        Key: { userId },
+        UpdateExpression: 'SET settings = :settings, updatedAt = :updatedAt',
+        ExpressionAttributeValues: {
+          ':settings': mergedSettings,
+          ':updatedAt': new Date().toISOString()
+        },
+        ConditionExpression: 'attribute_exists(userId)'
+      });
+
+      const result = await this.docClient!.send(command);
+
+      return {
+        success: true,
+        consumedCapacity: result.ConsumedCapacity?.CapacityUnits
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'saveApiKeys').message
+      };
+    }
+  }
+
+  // Test proxy connection for DeepSeek
+  async testProxyConnection(proxyUrl: string, idToken: string): Promise<{ success: boolean, error?: string }> {
+    try {
+      // Test with official DeepSeek model names (no prefix)
+      const modelsToTry = [
+        'deepseek-chat',
+        'deepseek-reasoner'
+      ];
+
+      for (const model of modelsToTry) {
+        try {
+          const testResponse = await fetch(`${proxyUrl}`, {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json', 
+              'Authorization': `Bearer ${idToken}` 
+            },
+            body: JSON.stringify({
+              model: model,
+              messages: [{ role: 'user', content: 'test' }],
+              max_tokens: 1,
+              stream: false
+            })
+          });
+
+          if (testResponse.status === 401) {
+            return { success: false, error: 'Neplatný přístupový token - uživatel není přihlášen' };
+          }
+          
+          if (testResponse.status === 400) {
+            const errorText = await testResponse.text();
+            if (errorText.includes('Invalid JWT') || errorText.includes('JWT')) {
+              return { success: false, error: 'Neplatný JWT token - vyžaduje se přihlášení přes Cognito' };
+            }
+            if (errorText.includes('Model Not Exist')) {
+              console.log(`Model ${model} neexistuje, zkouším další...`);
+              continue;
+            }
+            return { success: false, error: `Chyba požadavku: ${errorText.substring(0, 100)}` };
+          }
+          
+          if (!testResponse.ok) {
+            console.log(`Model ${model} selhal s HTTP ${testResponse.status}, zkouším další...`);
+            continue;
+          }
+
+          // Model funguje!
+          console.log(`✅ Model ${model} funguje!`);
+          return { success: true };
+
+        } catch (modelError) {
+          console.log(`Chyba u modelu ${model}:`, modelError);
+          continue;
+        }
+      }
+
+      return { success: false, error: 'Žádný z podporovaných modelů (deepseek-chat, deepseek-reasoner) nefunguje' };
+
+    } catch (error: any) {
+      return { success: false, error: error?.message || 'Chyba připojení k proxy' };
+    }
+  }
+
   async getUserSettings(userId: string): Promise<{success: boolean, settings?: any, error?: string}> {
     try {
       await this.ensureInitialized();
@@ -411,6 +523,7 @@ export class DynamoDBService {
     }
   }
 
+  
   // Question Flags Operations
 
   async toggleQuestionFlag(userId: string, questionId: string, isFlagged: boolean, flagReason?: string): Promise<DynamoDBResponse> {
@@ -524,6 +637,24 @@ export class DynamoDBService {
     }
   }
 
+  async deleteAllQuestionFlags(userId: string): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+      await this.docClient.send(new DocUpdateCommand({
+        TableName: getTableName('USERS'),
+        Key: { userId },
+        UpdateExpression: 'SET flags = :empty, updatedAt = :now',
+        ExpressionAttributeValues: {
+          ':empty': {},
+          ':now': new Date().toISOString()
+        }
+      }));
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: this.handleError(error, 'deleteAllQuestionFlags').message };
+    }
+  }
+
   // Cache Statistics
 
   async getCacheStats(): Promise<DynamoDBResponse<CacheStats>> {
@@ -589,35 +720,43 @@ export class DynamoDBService {
     try {
       await this.ensureInitialized();
 
-      const command = new DocScanCommand({
-        TableName: getTableName('QUESTIONS')
-      });
-
-      const result = await this.docClient.send(command);
       const total: Record<number, number> = {};
       const user: Record<number, number> = {};
       const ai: Record<number, number> = {};
+      let lastEvaluatedKey: Record<string, any> | undefined = undefined;
+      let totalItems = 0;
 
-      if (!result.Items || result.Items.length === 0) {
-        console.log('📡 getAllQuestionCounts: No questions found in DynamoDB');
-        return { success: true, data: { total, user, ai } };
-      }
+      do {
+        const command = new DocScanCommand({
+          TableName: getTableName('QUESTIONS'),
+          ExclusiveStartKey: lastEvaluatedKey,
+          // Only select the fields we need to save bandwidth
+          ProjectionExpression: 'subjectId, #src, is_ai',
+          ExpressionAttributeNames: { '#src': 'source' }
+        });
 
-      for (const item of result.Items) {
-        // Ensure subjectId is treated as number
-        const sid = Number(item.subjectId);
-        if (isNaN(sid)) continue;
+        const result = await this.docClient.send(command);
+        lastEvaluatedKey = result.LastEvaluatedKey;
 
-        const src = item.source as string || 'user';
-        total[sid] = (total[sid] || 0) + 1;
-        if (src === 'ai') {
-          ai[sid] = (ai[sid] || 0) + 1;
-        } else {
-          user[sid] = (user[sid] || 0) + 1;
+        if (result.Items) {
+          totalItems += result.Items.length;
+          for (const item of result.Items) {
+            const sid = Number(item.subjectId);
+            if (isNaN(sid)) continue;
+
+            const isAi = item.source === 'ai' || Number(item.is_ai) === 1;
+            
+            total[sid] = (total[sid] || 0) + 1;
+            if (isAi) {
+              ai[sid] = (ai[sid] || 0) + 1;
+            } else {
+              user[sid] = (user[sid] || 0) + 1;
+            }
+          }
         }
-      }
+      } while (lastEvaluatedKey);
 
-      console.log(`📡 getAllQuestionCounts: Success, counted ${result.Items.length} questions across ${Object.keys(total).length} subjects`);
+      console.log(`📡 getAllQuestionCounts: Success, counted ${totalItems} questions across ${Object.keys(total).length} subjects`);
       return { success: true, data: { total, user, ai } };
 
     } catch (error) {
@@ -631,15 +770,25 @@ export class DynamoDBService {
   async getQuestionsBySubject(subjectId: number): Promise<DynamoDBResponse<any[]>> {
     try {
       await this.ensureInitialized();
+      let allItems: any[] = [];
+      let lastEvaluatedKey: any = undefined;
 
-      const command = new DocScanCommand({
-        TableName: getTableName('QUESTIONS'),
-        FilterExpression: 'subjectId = :sid',
-        ExpressionAttributeValues: { ':sid': subjectId }
-      });
+      do {
+        const command = new DocScanCommand({
+          TableName: getTableName('QUESTIONS'),
+          FilterExpression: 'subjectId = :sid',
+          ExpressionAttributeValues: { ':sid': subjectId },
+          ExclusiveStartKey: lastEvaluatedKey
+        });
 
-      const result = await this.docClient.send(command);
-      return { success: true, data: result.Items as any[] || [] };
+        const result = await this.docClient.send(command);
+        if (result.Items) {
+          allItems.push(...result.Items);
+        }
+        lastEvaluatedKey = result.LastEvaluatedKey;
+      } while (lastEvaluatedKey);
+
+      return { success: true, data: allItems };
     } catch (error) {
       return { success: false, error: this.handleError(error, 'getQuestionsBySubject').message };
     }
@@ -648,12 +797,23 @@ export class DynamoDBService {
   async getQuestionsByLO(loId: string): Promise<DynamoDBResponse<any[]>> {
     try {
       await this.ensureInitialized();
-      const result = await this.docClient.send(new DocScanCommand({
-        TableName: getTableName('QUESTIONS'),
-        FilterExpression: 'loId = :loId',
-        ExpressionAttributeValues: { ':loId': loId },
-      }));
-      return { success: true, data: result.Items as any[] || [] };
+      let allItems: any[] = [];
+      let lastEvaluatedKey: any = undefined;
+
+      do {
+        const result = await this.docClient.send(new DocScanCommand({
+          TableName: getTableName('QUESTIONS'),
+          FilterExpression: 'loId = :loId',
+          ExpressionAttributeValues: { ':loId': loId },
+          ExclusiveStartKey: lastEvaluatedKey
+        }));
+        if (result.Items) {
+          allItems.push(...result.Items);
+        }
+        lastEvaluatedKey = result.LastEvaluatedKey;
+      } while (lastEvaluatedKey);
+
+      return { success: true, data: allItems };
     } catch (error) {
       return { success: false, error: this.handleError(error, 'getQuestionsByLO').message };
     }
@@ -662,23 +822,25 @@ export class DynamoDBService {
   async getAllQuestions(): Promise<DynamoDBResponse<any[]>> {
     try {
       await this.ensureInitialized();
+      let allItems: any[] = [];
+      let lastEvaluatedKey: any = undefined;
 
-      const command = new DocScanCommand({
-        TableName: getTableName('QUESTIONS')
-      });
+      do {
+        const command = new DocScanCommand({
+          TableName: getTableName('QUESTIONS'),
+          ExclusiveStartKey: lastEvaluatedKey
+        });
 
-      const result = await this.docClient.send(command);
+        const result = await this.docClient.send(command);
+        if (result.Items) {
+          allItems.push(...result.Items);
+        }
+        lastEvaluatedKey = result.LastEvaluatedKey;
+      } while (lastEvaluatedKey);
 
-      return {
-        success: true,
-        data: result.Items as any[] || []
-      };
-
+      return { success: true, data: allItems };
     } catch (error) {
-      return {
-        success: false,
-        error: this.handleError(error, 'getAllQuestions').message
-      };
+      return { success: false, error: this.handleError(error, 'getAllQuestions').message };
     }
   }
 

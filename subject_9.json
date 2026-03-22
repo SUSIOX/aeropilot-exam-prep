@@ -1,182 +1,1804 @@
 [
   {
     "id": 1,
-    "question": "Zeměpisná šířka se měří od:",
-    "answers": ["rovníku směrem k pólům (0° až 90°)", "nultého poledníku", "pólů k rovníku", "východu na západ"],
-    "correct": 0
+    "question": "Osa rotace Země prochází:",
+    "answers": [
+      "zeměpisným severním pólem a zeměpisným jižním pólem",
+      "magnetickým severním pólem a zeměpisným jižním pólem",
+      "zeměpisným severním pólem a magnetickým jižním pólem",
+      "magnetickým severním pólem a magnetickým jižním pólem"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 2,
-    "question": "Zeměpisná délka se měří od:",
-    "answers": ["nultého poledníku (Greenwich) směrem na východ a západ (0° až 180°)", "rovníku", "severního pólu", "datové hranice"],
-    "correct": 0
+    "question": "Který výrok o polární ose Země je pravdivý?",
+    "answers": [
+      "polární osa Země prochází magnetickým jižním pólem a magnetickým severním pólem a je kolmá na rovinu rovníku",
+      "polární osa Země prochází zeměpisným jižním pólem a zeměpisným severním pólem a je kolmá na rovinu rovníku",
+      "polární osa Země prochází magnetickým severním pólem a magnetickým jižním pólem a s rovinou rovníku svírá úhel 66.5°",
+      "polární osa Země prochází zeměpisným severním pólem a zeměpisným jižním pólem a s rovinou rovníku svírá úhel 23.5°"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 3,
-    "question": "Jedna úhlová minuta na hlavním poledníku odpovídá vzdálenosti:",
-    "answers": ["1 námořní míle (1 NM = 1852 m)", "1 kilometr", "10 kilometrů", "100 metrů"],
-    "correct": 0
+    "question": "Jaký geometrický útvar nejlépe pro navigační systémy popisuje přibližně tvar Země?",
+    "answers": [
+      "ideální koule",
+      "koule eliptického tvaru",
+      "elipsoid",
+      "plochá rovina"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 4,
-    "question": "Magnetická deklinace (variace) je úhel mezi:",
-    "answers": ["zeměpisným a magnetickým severem", "magnetickým severem a osou letadla", "kurzem a tratí", "vrtulí a trupem"],
-    "correct": 0
+    "question": "Který výrok o loxodromě je pravdivý?",
+    "answers": [
+      "loxodroma je velká kružnice protínající rovník pod úhlem 45°",
+      "loxodroma protíná všechny poledníky pod stejným úhlem",
+      "loxodroma je nejkratší spojnice mezi dvěma body na povrchu Země",
+      "středem kružnice proložené loxodromou je střed Země"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 5,
-    "question": "Magnetická inklinace je:",
-    "answers": ["úhel, který svírá magnetická siločára s horizontální rovinou", "rozdíl mezi severem a jihem", "chyba kompasu při zatáčce", "odchylka způsobená kovy v letadle"],
-    "correct": 0
+    "question": "Nejkratší spojnice dvou bodů na Zemi je částí:",
+    "answers": [
+      "malé kružnice",
+      "velké kružnice",
+      "loxodromy",
+      "rovnoběžky"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 6,
-    "question": "Deviace kompasu je způsobena:",
-    "answers": ["magnetickými poli v letadle (kovové části, elektroinstalace)", "vzdáleností od pólu", "rychlostí letu", "výškou letu"],
-    "correct": 0
+    "question": "Obvod Země na rovníku je přibližně: (viz obrázek NAV-002)",
+    "answers": [
+      "40000 NM.",
+      "10800 km.",
+      "21600 NM.",
+      "12800 km."
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 7,
-    "question": "Kurz (Heading) je úhel mezi:",
-    "answers": ["severem a podélnou osou letadla", "severem a skutečnou tratí letu", "rovníkem a poledníkem", "vrtulí a křídlem"],
-    "correct": 0
+    "question": "Jaký je rozdíl zeměpisné šířky mezi body A (12°53'30''N) a B (07°34'30''S)?",
+    "answers": [
+      "20,28°",
+      "05°19'00''",
+      "05,19°",
+      "20°28'00''"
+    ],
+    "correct": 3,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 8,
-    "question": "Trať (Track) je:",
-    "answers": ["skutečná dráha letadla vůči zemskému povrchu", "směr, kterým míří nos letadla", "vzdálenost mezi letišti", "výška letu"],
-    "correct": 0
+    "question": "Kde se nacházejí polární kruhy?",
+    "answers": [
+      "20.5° jižně od pólů",
+      "23.5° severně a jižně od rovníku",
+      "na zeměpisné šířce 20.5°S a 20.5°N",
+      "23.5° severně a jižně od pólů"
+    ],
+    "correct": 3,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 9,
-    "question": "Snos (Drift) je způsoben:",
-    "answers": ["bočním větrem", "chybou kompasu", "vysokou rychlostí", "hmotností letadla"],
-    "correct": 0
+    "question": "Jaká je vzdálenost mezi rovnoběžkami 48°N a 49°N podél poledníku?",
+    "answers": [
+      "1 NM",
+      "60 NM",
+      "111 NM",
+      "10 NM"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 10,
-    "question": "Při letu s bočním větrem zleva musí pilot pro udržení tratě:",
-    "answers": ["nasadit kurz vlevo proti větru (úhel opravy o snos)", "nasadit kurz vpravo", "letět rychleji", "vysunout klapky"],
-    "correct": 0
+    "question": "Jaká vzdálenost odpovídá rozdílu jednoho stupně zeměpisné šířky podél kteréhokoliv poledníku?",
+    "answers": [
+      "60 NM",
+      "1 NM",
+      "60 km",
+      "30 NM"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 11,
-    "question": "Rychlost vůči zemi (Ground Speed - GS) je:",
-    "answers": ["rychlost letadla vůči zemskému povrchu (ovlivněná větrem)", "rychlost ukazovaná na rychloměru", "rychlost zvuku", "rychlost stoupání"],
-    "correct": 0
+    "question": "Bod A leží přesně na rovnoběžce 47°50'27''N. Jaký bod je přesně 240 NM severně od A?",
+    "answers": [
+      "51°50'27'N'",
+      "49°50'27''N",
+      "43°50'27''N",
+      "53°50'27''N"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 12,
-    "question": "Při letu s větrem v zádech (Tailwind) je GS:",
-    "answers": ["vyšší než pravá vzdušná rychlost (TAS)", "nižší než TAS", "rovna TAS", "nulová"],
-    "correct": 0
+    "question": "Jaká je vzdálenost podél rovníku mezi poledníky 150°E a 151°E ?",
+    "answers": [
+      "1 NM",
+      "60 km",
+      "60 NM",
+      "111 NM"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 13,
-    "question": "Pravá vzdušná rychlost (TAS) se s rostoucí výškou (při konstantní IAS):",
-    "answers": ["zvyšuje", "snižuje", "nemění", "klesá na nulu"],
-    "correct": 0
+    "question": "Jaká je vzdálenost po ortodromě mezi body A a B na rovníku, je-li rozdíl mezi příslušnými poledníky přesně jeden stupeň zeměpisné délky?",
+    "answers": [
+      "60 NM",
+      "120 NM",
+      "216 NM",
+      "400 NM"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 14,
-    "question": "Mapa ICAO 1:500 000 – vzdálenost 2 cm na mapě odpovídá ve skutečnosti:",
-    "answers": ["10 km", "5 km", "50 km", "1 km"],
-    "correct": 0
+    "question": "Předpokládejte dva libovolné body A a B na stejné rovnoběžce, ale ne na rovníku. Bod A se nachází na 10°E a bod B na 20°E. Vzdálenost po loxodromě mezi A a B je vždy:",
+    "answers": [
+      "menší než 600 NM",
+      "větší než 600 NM",
+      "menší než 300 NM",
+      "větší než 300 NM"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 15,
-    "question": "Loxodroma je čára na zemském povrchu, která:",
-    "answers": ["protíná všechny poledníky pod stejným úhlem", "je nejkratší spojnicí dvou bodů", "je rovnoběžná s rovníkem", "prochází póly"],
-    "correct": 0
+    "question": "Jak dlouho trvá, než se Slunce posune o 20° zeměpisné délky?",
+    "answers": [
+      "1:00 h",
+      "0:40 h",
+      "1:20 h",
+      "0:20 h"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 16,
-    "question": "Ortodroma (Velká kružnice) je:",
-    "answers": ["nejkratší spojnice dvou bodů na kulové ploše", "čára se stálým kurzem", "rovnoběžka", "poledník"],
-    "correct": 0
+    "question": "Jak dlouho trvá, než se Slunce posune o 10° zeměpisné délky?",
+    "answers": [
+      "0:40 h",
+      "1:00 h",
+      "0:04 h",
+      "0:30 h"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 17,
-    "question": "VFR navigace 'Srovnávací orientace' spočívá v:",
-    "answers": ["porovnávání terénu pod letadlem s mapou", "používání pouze GPS", "sledování přístrojů", "komunikaci s věží"],
-    "correct": 0
+    "question": "Jak dlouho trvá, než se Slunce posune o 10° zeměpisné délky?",
+    "answers": [
+      "0.66 h",
+      "1 h",
+      "0.33 h",
+      "0.4 h"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 18,
-    "question": "VOR (VHF Omnidirectional Range) je navigační systém, který poskytuje:",
-    "answers": ["směr (radiál) od stanice k letadlu", "vzdálenost od stanice", "výšku letadla", "rychlost letadla"],
-    "correct": 0
+    "question": "Pro Středoevropský letní čas (CEST) platí UTC+2. Jaký čas UTC odpovídá 1600 CEST?",
+    "answers": [
+      "1500 UTC",
+      "1600 UTC",
+      "1700 UTC",
+      "1400 UTC"
+    ],
+    "correct": 3,
+    "image": "CEST.jpg",
+    "explanation": ""
   },
   {
     "id": 19,
-    "question": "DME (Distance Measuring Equipment) poskytuje informaci o:",
-    "answers": ["šikmé vzdálenosti letadla od pozemní stanice", "kurzu letadla", "nadmořské výšce", "teplotě vzduchu"],
-    "correct": 0
+    "question": "UTC je:",
+    "answers": [
+      "místní čas ve střední Evropě",
+      "koordinovaný světový čas používaný v letectví",
+      "pásmový čas",
+      "místní střední čas v určitém bodu na Zemi"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 20,
-    "question": "GPS (Global Positioning System) využívá k určení polohy:",
-    "answers": ["signály ze sítě satelitů", "pozemní radiomajáky", "hvězdy", "magnetické pole země"],
-    "correct": 0
+    "question": "Pro středoevropský čas (CET) platí: CET = UTC+1. Jaký UTC odpovídá 1700 CET?",
+    "answers": [
+      "1500 UTC",
+      "1800 UTC",
+      "1600 UTC",
+      "1700 UTC"
+    ],
+    "correct": 2,
+    "image": "CET.jpg",
+    "explanation": ""
   },
   {
     "id": 21,
-    "question": "Převodní tabulka: 10 NM (námořních mil) je přibližně:",
-    "answers": ["18,5 km", "10 km", "16 km", "20 km"],
-    "correct": 0
+    "question": "Vídeň (LOWW) se nachází na 016° 34'E, Salzburg (LOWS) na 013° 00'E. Jejich zeměpisnou šířku lze považovat za stejnou. Jaký je rozdíl mezi časy východu a západu slunce vyjádřený v UTC mezi Vídní a Salzburkem?",
+    "answers": [
+      "ve Vídni je východ a západ slunce asi o 14 minut dříve než v Salzburku",
+      "ve Vídni je východ a západ slunce asi o 4 minuty později než v Salzburku",
+      "ve Vídni je východ slunce o 14 minut dříve a západ o 14 minut později než v Salzburku",
+      "ve Vídni je východ slunce o 4 minuty později a západ o 4 minuty dříve než v Salzburku"
+    ],
+    "correct": 0,
+    "image": "LOWW.jpg",
+    "explanation": ""
   },
   {
     "id": 22,
-    "question": "Převodní tabulka: 1000 ft (stop) je přibližně:",
-    "answers": ["300 m", "100 m", "500 m", "1000 m"],
-    "correct": 0
+    "question": "Pojem \"občanský soumrak\" je definován jako:",
+    "answers": [
+      "doba po západu slunce, během které je střed slunečního disku 6° nebo méně pod zeměpisným horizontem",
+      "doba po západu slunce, během které je střed slunečního disku 6° nebo méně pod viditelným horizontem",
+      "doba po západu slunce, během které je střed slunečního disku 12° nebo méně pod zeměpisným horizontem",
+      "doba po západu slunce, během které je střed slunečního disku 12° nebo méně pod viditelným horizontem"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 23,
-    "question": "Izogona je čára na mapě spojující místa se stejnou:",
-    "answers": ["magnetickou deklinací (variací)", "nadmořskou výškou", "teplotou", "rychlostí větru"],
-    "correct": 0
+    "question": "Je dáno: Oprava snosu větru: -012°, zeměpisný kurz: 125°, magnetická trať: 139°, deviace: 002°E. Stanovte zeměpisnou trať a magnetický a kompasový kurz.",
+    "answers": [
+      "zeměpisná trať: 137°. Magnetický kurz: 139°. Kompasový kurz: 125°.",
+      "zeměpisná trať: 137°. Magnetický kurz: 127°. Kompasový kurz: 125°.",
+      "zeměpisná trať: 113°. Magnetický kurz: 127°. Kompasový kurz: 129°.",
+      "zeměpisná trať: 113°. Magnetický kurz: 139°. Kompasový kurz: 129°."
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 24,
-    "question": "Agona je čára, kde je magnetická deklinace rovna:",
-    "answers": ["0°", "180°", "90°", "45°"],
-    "correct": 0
+    "question": "Je dáno: Zeměpisná trať: 179°, oprava snosu větru: -12°, deklinace: 004° E, deviace: +002°. Stanovte magnetický kurz a magnetickou trať.",
+    "answers": [
+      "magnetický kurz: 163°. Magnetická trať: 175°.",
+      "magnetický kurz: 163°. Magnetická trať: 161°.",
+      "magnetický kurz: 167°. Magnetická trať: 175°.",
+      "magnetický kurz: 167°. Magnetická trať: 161°."
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 25,
-    "question": "Při výpočtu času letu (ETE) použijeme vzorec:",
-    "answers": ["čas = vzdálenost / rychlost (vůči zemi)", "čas = rychlost / vzdálenost", "čas = vzdálenost * rychlost", "čas = výška / rychlost"],
-    "correct": 0
+    "question": "Úhel mezi zeměpisnou tratí a zeměpisným kurzem se nazývá:",
+    "answers": [
+      "deviace",
+      "snos větru",
+      "inklinace",
+      "deklinace"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 26,
-    "question": "Který sever používáme při kreslení tratě na mapu ICAO?",
-    "answers": ["zeměpisný (skutečný) sever", "magnetický sever", "kompasový sever", "mřížkový sever"],
-    "correct": 0
+    "question": "Úhel mezi magnetickou a zeměpisnou tratí se nazývá:",
+    "answers": [
+      "deviace",
+      "inklinace",
+      "snos větru",
+      "deklinace"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 27,
-    "question": "Lambertova kuželová projekce se v letectví často používá, protože:",
-    "answers": ["ortodroma se na ní jeví téměř jako přímka", "je nejjednodušší na kreslení", "nezobrazuje poledníky", "je vhodná pouze pro póly"],
-    "correct": 0
+    "question": "Pojem \"magnetická trať\" je definován jako:",
+    "answers": [
+      "úhel mezi magnetickým severem a tratí",
+      "úhel mezi zeměpisným severem a tratí",
+      "směr od libovolného bodu na Zemi k magnetickému severnímu pólu",
+      "směr od libovolného bodu na Zemi k zeměpisnému severnímu pólu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 28,
-    "question": "Chyba kompasu při zrychlení (Acceleration error) se projevuje nejvíce při kurzech:",
-    "answers": ["východním a západním", "severním a jižním", "všech kurzech stejně", "neprojevuje se"],
-    "correct": 0
+    "question": "Pojem \"zeměpisná trať\" (TC) je definován jako:",
+    "answers": [
+      "úhel mezi zeměpisným severem a tratí",
+      "úhel mezi magnetickým severem a tratí",
+      "směr od libovolného bodu na Zemi k magnetickému severnímu pólu",
+      "směr od libovolného bodu na Zemi k zeměpisnému severnímu pólu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 29,
-    "question": "Chyba kompasu při zatáčce (Turning error) se projevuje nejvíce při kurzech:",
-    "answers": ["severním a jižním", "východním a západním", "při stoupání", "při klesání"],
-    "correct": 0
+    "question": "Je dáno: Zeměpisná trať: 183°, oprava snosu větru: +011°, magnetický kurz: 198°, kompasový kurz: 200°. Stanovte zeměpisný kurz a deklinaci.",
+    "answers": [
+      "zeměpisný kurz: 194°. deklinace: 004° E",
+      "zeměpisný kurz: 172°. deklinace: 004° E",
+      "zeměpisný kurz: 194°. deklinace: 004° W",
+      "zeměpisný kurz 172°. deklinace: 004° W"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 30,
-    "question": "V navigačním trojúhelníku rychlostí jsou vektory:",
-    "answers": ["vzdušná rychlost, rychlost větru a rychlost vůči zemi", "výška, čas a vzdálenost", "tah, odpor a vztlak", "kurz, variace a deviace"],
-    "correct": 0
+    "question": "Je dáno: Zeměpisná trať: 183°, oprava snosu větru: +011°, magnetický kurz: 198°, kompasový kurz: 200°. Stanovte zeměpisný kurz a deviaci.",
+    "answers": [
+      "zeměpisný kurz: 194°. deviace: +002°.",
+      "zeměpisný kurz: 172°. deviace: -002°.",
+      "zeměpisný kurz: 194°. deviace: -002°.",
+      "zeměpisný kurz: 172°. deviace: +002°."
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 31,
+    "question": "Je dáno: Zeměpisná trať: 183°, oprava snosu větru: +011°, magnetický kurz: 198°, kompasový kurz: 200°. Stanovte deklinaci a deviaci.",
+    "answers": [
+      "deklinace: 004° E. deviace: -002°.",
+      "deklinace: 004° E. deviace: +002°.",
+      "deklinace: 004° W. deviace: -002°.",
+      "deklinace: 004° W. deviace: +002°."
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 32,
+    "question": "Kde má inklinace nejmenší hodnotu?",
+    "answers": [
+      "na zeměpisném rovníku",
+      "na magnetickém rovníku",
+      "na magnetických pólech",
+      "na zeměpisných pólech"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 33,
+    "question": "Úhel mezi kompasovým severem a magnetickým severem se nazývá:",
+    "answers": [
+      "deviace",
+      "oprava snosu větru",
+      "deklinace",
+      "inklinace"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 34,
+    "question": "Který směr odpovídá kompasovému severu (CN)?",
+    "answers": [
+      "severu, který ukazuje kompas s přímým čtením vlivem magnetického pole Země a letadla",
+      "úhlu mezi kurzem letadla a magnetickým severem",
+      "nejsevernější části ukazatele magnetického kompasu v letadle",
+      "směru od libovolného bodu na Zemi k zeměpisnému severnímu pólu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 35,
+    "question": "Pojem \"izogóna\" je definován jako spojnice dvou bodů na mapě, které mají stejnou hodnotu:",
+    "answers": [
+      "deklinace",
+      "deviace",
+      "inklinace",
+      "kurzu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 36,
+    "question": "Pojem \"agóna\" je definován jako spojnice dvou bodů na mapě nebo na Zemi, které:",
+    "answers": [
+      "mají deklinaci 0°",
+      "mají deviaci 0°",
+      "mají inklinaci 0°",
+      "mají kurz 0°"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 37,
+    "question": "Jaké oficiální základní jednotky a jejich zkratky se používají v letecké navigaci pro měření vodorovných vzdáleností?",
+    "answers": [
+      "námořní míle (NM), kilometry (km)",
+      "statutární míle (SM), námořní míle (NM)",
+      "yardy (yd), metry (m)",
+      "stopy (ft), palce (in)"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 38,
+    "question": "1000 ft rovná se:",
+    "answers": [
+      "300 m",
+      "30 m",
+      "3000 m",
+      "30 km"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 39,
+    "question": "5500 m rovná se:",
+    "answers": [
+      "7500 ft",
+      "10000 ft",
+      "18000 ft",
+      "30000 ft"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 40,
+    "question": "Která z položek na přiloženém seznamu úkonů se vztahuje ke kompasu s přímým čtením? Viz příloha (NAV-004)",
+    "answers": [
+      "gyro (gyroskopické) a turning Instruments (přístroje indikující zatáčku)",
+      "pouze turning instruments (přístroje indikující zatáčku)",
+      "gyro (gyroskopické) a circuit breaker (jistič)",
+      "turning Instruments (přístroje indikující zatáčku) a circuit breaker (jistič)"
+    ],
+    "correct": 0,
+    "image": "NAV-004.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 41,
+    "question": "Co může být důvodem pro změnu magnetického směru vzletové a přistávací dráhy na letišti (např. z RWY 06 na RWY 07)?",
+    "answers": [
+      "změnila se deklinace na místě dráhy",
+      "změnila se deviace na místě dráhy",
+      "změnil se zeměpisný směr dráhy",
+      "změnila se trajektorie přiblížení na dráhu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 42,
+    "question": "Elektronická zařízení na palubě letadla ovlivňují indikaci:",
+    "answers": [
+      "umělého horizontu",
+      "zatáčkoměru",
+      "kompasu s přímým čtením",
+      "rychloměru"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 43,
+    "question": "Jaké jsou vlastnosti mapy s Mercatorovým zobrazením?",
+    "answers": [
+      "měřítko se zvětšuje se zeměpisnou šířkou, velké kružnice jsou zobrazeny jako křivky, loxodromy",
+      "jsou zobrazeny jako přímky",
+      "měřítko se zvětšuje se zeměpisnou šířkou, velké kružnice jsou zobrazeny jako přímky,",
+      "loxodromy jsou zobrazeny jako křivky",
+      "měřítko je konstantní, velké kružnice jsou zobrazeny jako křivky, loxodromy jsou zobrazeny jako",
+      "přímky",
+      "měřítko je konstantní, velké kružnice jsou zobrazeny jako přímky, loxodromy jsou zobrazeny",
+      "jako křivky"
+    ],
+    "correct": -1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 44,
+    "question": "Jak jsou zobrazeny loxodromy a ortodromy na mapě s přímým Mercatorovým zobrazením?",
+    "answers": [
+      "loxodromy – přímky, ortodromy – křivky",
+      "loxodromy – křivky, ortodromy – přímky",
+      "loxodromy – křivky, ortodromy – křivky",
+      "loxodromy – přímky, ortodromy – přímky"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 45,
+    "question": "Jaké jsou vlastnosti mapy s Lambertovým konformním zobrazením?",
+    "answers": [
+      "mapa je konformní a měřítko je přibližně stejné",
+      "mapa je konformní a projekce nezkresluje velikost ploch",
+      "ortodromy jsou zobrazeny jako přímky a projekce nezkresluje velikost ploch",
+      "loxodromy jsou přímky a mapa je konformní"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 46,
+    "question": "Které čáry má pilot použít pro stanovení polohy letadla?",
+    "answers": [
+      "zeměpisné směrníky (QTE)",
+      "magnetické směrníky (QDR)",
+      "relativní směrníky (RB)",
+      "magnetické kurzy (MH)"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 47,
+    "question": "Jaký je radiál od VOR Brünkendorf (BKD) (53°02′N, 011°33′E) směrem do Pritzwalk (EDBU) (53°11'N, 12°11'E)? Viz příloha (NAV-031)",
+    "answers": [
+      "068°",
+      "248°",
+      "024°",
+      "204°"
+    ],
+    "correct": 0,
+    "image": "BKD.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 48,
+    "question": "Vzdálenost mezi dvěma letišti je 220 NM. Na letecké navigační mapě mezi nimi pilot naměřil vzdálenost 40.7 cm. Měřítko mapy je:",
+    "answers": [
+      "1 : 1000000",
+      "1 : 500000",
+      "1 : 2000000",
+      "1 : 250000"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 49,
+    "question": "Jaká je poloha letadla při křížovém zaměření, je-li dáno následující: VOR Hamburg (HAM) (53°41′N, 010°12′E): Radiál 119°, VOR Brünkendorf (BKD) (53°02′N, 011°33′E): Radiál 320° Viz obr. (NAV-031)",
+    "answers": [
+      "53°20'N, 11°10'E",
+      "54°40'N, 12°50'E",
+      "52°20'N, 10°10'E",
+      "52°10'N, 10°20'E"
+    ],
+    "correct": 0,
+    "image": "HAM.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 50,
+    "question": "Jaká je vzdálenost od VOR Brünkendorf (BKD) (53°02′N, 011°33′E) do Pritzwalk (EDBU) (53°11'N, 12°11'E)? Viz příloha (NAV-031)",
+    "answers": [
+      "24 NM",
+      "24 km",
+      "42 NM",
+      "42 km"
+    ],
+    "correct": 0,
+    "image": "BKD.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 51,
+    "question": "Vzdálenost 7.5 cm na letecké mapě představuje skutečnou vzdálenost 60.745 NM. Jaké je měřítko mapy?",
+    "answers": [
+      "1 : 1500000",
+      "1 : 1 000000",
+      "1 : 500000",
+      "1 : 150000"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 52,
+    "question": "Pro krátký let z A do B získal pilot z letecké mapy následující informace: Zeměpisná trať 245°, deklinace: 7° W. Jaká je magnetická trať?",
+    "answers": [
+      "252°",
+      "238°",
+      "245°",
+      "007°"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 53,
+    "question": "Letadlo letí v 8000 ft AMSL indikovanou rychlostí (IAS) 150 kt. Pravá vzdušná rychlost (TAS) je:",
+    "answers": [
+      "174 kt",
+      "142 kt",
+      "150 kt",
+      "208 kt"
+    ],
+    "correct": 0,
+    "image": "IAS.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 54,
+    "question": "Je dáno: Zeměpisná trať z A do B: 250°. vzdálenost: 210 NM. Pravá vzdušná rychlost: 130 kt. Čelní složka větru: 15 kt. Očekávaný čas odletu (ETD): 0915 UTC. Očekávaný čas příletu (ETA) je:",
+    "answers": [
+      "1105 UTC",
+      "1115 UTC",
+      "1052 UTC",
+      "1005 UTC"
+    ],
+    "correct": 0,
+    "image": "ETD.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 55,
+    "question": "Je dáno: Zeměpisná trať z A do B: 283°. vzdálenost: 75 NM. Pravá vzdušná rychlost: 105 kt. Čelní složka větru: 12 kt. Očekávaný čas odletu (ETD): 1242 UTC. Očekávaný čas příletu (ETA) je:",
+    "answers": [
+      "1320 UTC",
+      "1330 UTC",
+      "1356 UTC",
+      "1430 UTC"
+    ],
+    "correct": 1,
+    "image": "ETD.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 56,
+    "question": "Je dáno: Zeměpisná trať z A do B: 352°. vzdálenost: 100 NM. Traťová rychlost (GS): 107 kt. Očekávaný čas odletu (ETD): 0933 UTC. Očekávaný čas příletu (ETA) je:",
+    "answers": [
+      "1045 UTC",
+      "1146 UTC",
+      "1029 UTC",
+      "1129 UTC"
+    ],
+    "correct": 2,
+    "image": "ETD.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 57,
+    "question": "Letadlo uletí 100 km za 56 minut. Traťová rychlost (GS) je:",
+    "answers": [
+      "58 km/h",
+      "93 kt",
+      "107 km/h",
+      "198 kt"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 58,
+    "question": "Letadlo uletí 110 NM za 01:25 hod. Traťová rychlost (GS) je:",
+    "answers": [
+      "78 kt",
+      "86 kt",
+      "160 km/h",
+      "120 km/h"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 59,
+    "question": "Jaká je doba letu traťovou rychlostí 134 kt na vzdálenost 236 NM?",
+    "answers": [
+      "0:34 h",
+      "1:34 h",
+      "1:46 h",
+      "0:46 h"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 60,
+    "question": "Letadlo letí pravou vzdušnou rychlostí (TAS) 120 kt se zadní složkou větru 35 kt. Za jak dlouho uletí vzdálenost 185 NM?",
+    "answers": [
+      "1 h 12 min",
+      "1 h 32 min",
+      "2 h 11 min",
+      "0 h 50 min"
+    ],
+    "correct": 0,
+    "image": "TAS.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 61,
+    "question": "Letadlo letí pravou vzdušnou rychlostí (TAS) 180 kt. Čelní složka větru je 25 kt. Doba letu: 2 hodiny a 25 minut. Uletěná vzdálenost je:",
+    "answers": [
+      "375 NM",
+      "693 NM",
+      "202 NM",
+      "435 NM"
+    ],
+    "correct": 0,
+    "image": "TAS.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 62,
+    "question": "Ja dáno: Kalibrovaná rychlost (CAS): 155 kt. Letová hladina (FL) 80. teplota vnějšího vzduchu (OAT): +15° C. Pravá vzdušná rychlost (TAS) je:",
+    "answers": [
+      "134 kts",
+      "155 kts",
+      "170 kts",
+      "180 kts"
+    ],
+    "correct": 3,
+    "image": "CAS.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 63,
+    "question": "Jaká je zeměpisná trať (TC) z Uelzen (EDVU) (52°59′N, 10°28′E) do Neustadt (EDAN) (53°22'N, 011°37'E)? Viz příloha (NAV-031)",
+    "answers": [
+      "061°",
+      "241°",
+      "055°",
+      "235°"
+    ],
+    "correct": 0,
+    "image": "EDVU.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 64,
+    "question": "Letadlo letí ve FL 75, kde je teplota vnějšího vzduchu (OAT) -9°C. Výškoměr nastavený na QNH indikuje výšku letu 6500 ft. Jaká je skutečná výška letu?",
+    "answers": [
+      "6250 ft",
+      "6500 ft",
+      "6750 ft",
+      "7000 ft"
+    ],
+    "correct": 0,
+    "image": "OAT.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 65,
+    "question": "Jaká je vzdálenost z Neustadt (EDAN) (53°22'N, 011°37'E) do Uelzen (EDVU) (52°59′N, 10°28′E)? Viz příloha (NAV-031)",
+    "answers": [
+      "46 NM",
+      "46 km",
+      "78 NM",
+      "78 km"
+    ],
+    "correct": 0,
+    "image": "EDAN.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 66,
+    "question": "Letadlo letí v tlakové výšce 7000 ft při teplotě vnějšího vzduchu (OAT) +11°C. Výškoměr nastavený na QNH indikuje 6500 ft. Skutečná nadmořská výška je:",
+    "answers": [
+      "6250 ft",
+      "6500 ft",
+      "6750 ft",
+      "7000 ft"
+    ],
+    "correct": 2,
+    "image": "OAT.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 67,
+    "question": "Letadlo letí v tlakové výšce 7000 ft při teplotě vnějšího vzduchu (OAT) +21°C. Výškoměr nastavený na QNH indikuje 6500 ft. Jaká je skutečná nadmořská výška?",
+    "answers": [
+      "6250 ft",
+      "6500 ft",
+      "6750 ft",
+      "7000 ft"
+    ],
+    "correct": 3,
+    "image": "OAT.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 68,
+    "question": "Je dáno: Zeměpisná trať: 255°. Pravá vzdušná rychlost: 100 kt. vítr: 200°/10 kt. Jaký je zeměpisný kurz?",
+    "answers": [
+      "245°",
+      "250°",
+      "265°",
+      "275°"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 69,
+    "question": "Je dáno: Zeměpisná trať: 165°. Pravá vzdušná rychlost: 90 kt. vítr: 130°/20 kt. vzdálenost: 153 NM. Zeměpisný kurz je:",
+    "answers": [
+      "152°",
+      "165°",
+      "126°",
+      "158°"
+    ],
+    "correct": 3,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 70,
+    "question": "Je dáno: Traťová rychlost (GS): 160 kt. Zeměpisná trať (TC): 177°. vítr (W/WS): 140°/20 kt. Zeměpisný kurz (TH) je:",
+    "answers": [
+      "173°",
+      "180°",
+      "184°",
+      "169°"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 71,
+    "question": "Letadlo letí po zeměpisné trati (TC) 220° konstantní pravou vzdušnou rychlostí 220 kt. Vítr je 270°/50 kt. Traťová rychlost je:",
+    "answers": [
+      "185 kt",
+      "255 kt",
+      "170 kt",
+      "135 kt"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 72,
+    "question": "Letadlo letí po zeměpisné trati (TC) 040° konstantní pravou vzdušnou rychlostí (TAS) 180 kt. Vítr je 350°/30 kt. Traťová rychlost (GS) je:",
+    "answers": [
+      "159 kt",
+      "168 kt",
+      "172 kt",
+      "155 kt"
+    ],
+    "correct": 0,
+    "image": "TAS.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 73,
+    "question": "Letadlo letí po zeměpisné trati (TC) 040° konstantní pravou vzdušnou rychlostí (TAS) 180 kt. Vítr je 350°/30 kt. Oprava snosu větru (WCA) je:",
+    "answers": [
+      "- 7°",
+      "- 9°",
+      "+ 5°",
+      "+ 11°"
+    ],
+    "correct": 0,
+    "image": "TAS.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 74,
+    "question": "Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt. vzdálenost:",
+    "answers": [],
+    "correct": -1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 100,
+    "question": "NM. Traťová rychlost (GS) je:",
+    "answers": [
+      "120 kt",
+      "125 kt",
+      "117 kt",
+      "131 kt"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 75,
+    "question": "Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt. vzdálenost:",
+    "answers": [],
+    "correct": -1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 100,
+    "question": "NM. Doba letu je:",
+    "answers": [
+      "62 min",
+      "48 min",
+      "37 min",
+      "84 min"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 76,
+    "question": "Letadlo letí po zeměpisné trati (TC) 040° konstantní pravou vzdušnou rychlostí (TAS) 180 kt. Vítr je 350°/30 kt. Oprava snosu větru (WCA) je:",
+    "answers": [
+      "7° doleva",
+      "7° doprava",
+      "3° doleva",
+      "3° doprava"
+    ],
+    "correct": 0,
+    "image": "TAS.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 77,
+    "question": "Je dáno: Zeměpisná trať: 120°. Pravá vzdušná rychlost: 120 kt. vítr: 150°/12 kt. Oprava snosu větru (WCA) je:",
+    "answers": [
+      "6° doprava",
+      "3° doleva",
+      "3° doprava",
+      "6° doleva"
+    ],
+    "correct": 1,
+    "image": "WCA.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 78,
+    "question": "Vzdálenost z A do B je 120 NM. Ve vzdálenosti 55 NM z A se letadlo nachází 7 NM vpravo od tratě. Jakou opravu kurzu musí pilot provést, aby doletěl přímo do B?",
+    "answers": [
+      "14° doleva",
+      "6° doleva",
+      "8° doleva",
+      "15° doleva"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 79,
+    "question": "Letadlo letí kurzem 090°. Má uletět vzdálenost 90 NM. Po 45 NM je 4.5 NM severně od plánované tratě. Jaká je oprava kurzu, aby letadlo doletělo přímo do cíle?",
+    "answers": [
+      "6° doprava",
+      "9° doprava",
+      "18° doprava",
+      "12° doprava"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 80,
+    "question": "Co znamená pravidlo 1:60?",
+    "answers": [
+      "odchylka od tratě 1 NM při snosu 1° po uletění 60 NM",
+      "odchylka od tratě 10 NM při snosu 1° po uletění 60 NM",
+      "odchylka od tratě 60 NM při snosu 1° po uletění 1 NM",
+      "odchylka od tratě 6 NM při snosu 1° po uletění 10 NM"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 81,
+    "question": "Letadlo letí z A do B na vzdálenost 220 NM. Plánovaná traťová rychlost (GS) je 120 kt. Odlet z A je ve 1200 UTC. Po uletění 70 NM z A je letadlo o 5 minut před plánovaným časem. Jaký je opravený očekávaný čas příletu do B, poletí-li stále stejnou skutečnou traťovou rychlostí?",
+    "answers": [
+      "1335 UTC",
+      "1340 UTC",
+      "1345 UTC",
+      "1330 UTC"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 82,
+    "question": "Letadlo klesá za bezvětří z 9000 ft do 1500 ft. Rychlost klesání (ROD) je 1200 ft/min. Za jak dlouho bude ve výšce 1500 ft?",
+    "answers": [
+      "6 min",
+      "12 min",
+      "8 min",
+      "15 min"
+    ],
+    "correct": 0,
+    "image": "ROD.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 83,
+    "question": "Letadlo za bezvětří klesá ze 7500 ft do 1200 ft pravou vzdušnou rychlostí (TAS) 105 kt. Rychlost klesání (ROD) je 800 ft/min. Jaká je doba klesání?",
+    "answers": [
+      "6 min",
+      "12 min",
+      "8 min",
+      "15 min"
+    ],
+    "correct": 0,
+    "image": "TAS.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 84,
+    "question": "Jakou hodnotou je třeba doplnit plán letu (označená pole)? Viz obr. (NAV-014)",
+    "answers": [
+      "zeměpisný kurz (TH): 185°. Magnetický kurz (MH): 184°. Magnetická trať (MC): 178°",
+      "zeměpisný kurz (TH): 173°. Magnetický kurz (MH): 174°. Magnetická trať (MC): 178°",
+      "zeměpisný kurz (TH): 185°. Magnetický kurz (MH): 185°. Magnetická trať (MC): 180°",
+      "zeměpisný kurz (TH): 173°. Magnetický kurz (MH): 184°. Magnetická trať (MC): 178°"
+    ],
+    "correct": 0,
+    "image": "NAV-014.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 85,
+    "question": "Z jaké radionavigační pomůcky lze přijímat signál anténou v příloze? Viz příloha (NAV-017)",
+    "answers": [
+      "NDB",
+      "VOR",
+      "DME",
+      "VDF"
+    ],
+    "correct": 0,
+    "image": "NAV-017.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 86,
+    "question": "Přibližná rychlost šíření elektromagnetických vln je:",
+    "answers": [
+      "300000 m/s",
+      "300000 km/s",
+      "300000 NM/s",
+      "300000 ft/s"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 87,
+    "question": "Dlouhé (LF) a střední (MF) radiové vlny (např. NDB) se šíří jako:",
+    "answers": [
+      "přímá vlna",
+      "prostorová vlna (kvazi-optická)",
+      "povrchová vlna",
+      "povrchová a prostorová vlna"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 88,
+    "question": "Rádiové vlny v pásmu VKV (např. VOR) se šíří jako:",
+    "answers": [
+      "přímá vlna",
+      "prostorová vlna (kvazi-optická)",
+      "povrchová vlna",
+      "prostorová a povrchová vlna"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 89,
+    "question": "Kvazi-optické vlny se šíří:",
+    "answers": [
+      "podél povrchu Země",
+      "prostorem přímo od vysílače k přijímači",
+      "prostorem a jsou ovlivněny (např. odraženy) ionosférou",
+      "podél povrchu Země, ale jsou absorbovány mořem"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 90,
+    "question": "Pomocí zaměřovače VHF (VDF) lze zjistit:",
+    "answers": [
+      "šikmou vzdálenost",
+      "rychlost přiblížení",
+      "magnetický směrník",
+      "zeměpisnou trať"
+    ],
+    "correct": 0,
+    "image": "VDF.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 91,
+    "question": "Jaké zařízení na palubě letadla je třeba pro využití zaměřovače VHF (VDF)?",
+    "answers": [
+      "přijímač VDF",
+      "rádio VHF",
+      "nejméně 2 antény VHF",
+      "ukazatel relativního směrníku (RBI)"
+    ],
+    "correct": 1,
+    "image": "VDF.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 92,
+    "question": "Je dáno: QDM: 138° deklinace: 10° E QUJ je:",
+    "answers": [
+      "328°",
+      "318°",
+      "168°",
+      "148°"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 93,
+    "question": "Je dáno: QTE: 229° deklinace: 10° W. QDM je:",
+    "answers": [
+      "049°",
+      "239°",
+      "059°",
+      "039°"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 94,
+    "question": "Je dáno: QDR: 022° deklinace: 10° E. QTE je:",
+    "answers": [
+      "032°",
+      "212°",
+      "202°",
+      "052°"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 95,
+    "question": "Je dáno: QDM: 248° deklinace: 10° W. QTE je:",
+    "answers": [
+      "058°",
+      "238°",
+      "078°",
+      "258°"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 96,
+    "question": "Je dáno: QDR: 067° deklinace: 5° E. QDM je:",
+    "answers": [
+      "072°",
+      "252°",
+      "247°",
+      "257°"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 97,
+    "question": "Je dáno: QDR: 152° deklinace: 5° W deviace: 5° E. QUJ je:",
+    "answers": [
+      "147°",
+      "332°",
+      "327°",
+      "317°"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 98,
+    "question": "Je dáno: QTE: 203° deklinace: 10° E. QDR je:",
+    "answers": [
+      "023°",
+      "193°",
+      "013°",
+      "213°"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 99,
+    "question": "Je dáno: QTE: 248° deklinace: 10° W. QDR je:",
+    "answers": [
+      "068°",
+      "078°",
+      "238°",
+      "258°"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 100,
+    "question": "Je dáno: QDM: 134° deklinace: 5° W. QTE je:",
+    "answers": [
+      "129°",
+      "314°",
+      "309°",
+      "299°"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 101,
+    "question": "Pilot od zaměřovače VDF obdržel QDR 225°. Kde se nachází letadlo vzhledem k pozemní stanici?",
+    "answers": [
+      "severozápadně",
+      "severovýchodně",
+      "jihovýchodně",
+      "jihozápadně"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 102,
+    "question": "Kód QDR znamená:",
+    "answers": [
+      "zeměpisný směrník od letadla ke stanici",
+      "zeměpisný směrník od stanice k letadlu",
+      "magnetický směrník od letadla ke stanici",
+      "magnetický směrník od stanice k letadlu"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 103,
+    "question": "Kód QTE znamená:",
+    "answers": [
+      "zeměpisný směrník od letadla ke stanici",
+      "zeměpisný směrník od stanice k letadlu",
+      "magnetický směrník od letadla ke stanici",
+      "magnetický směrník od stanice k letadlu"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 104,
+    "question": "Pilot obdržel od zaměřovače VDF QDR 135°. Kde se nachází letadlo vzhledem k zaměřovači?",
+    "answers": [
+      "severozápadně",
+      "severovýchodně",
+      "jihovýchodně",
+      "jihozápadně"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 105,
+    "question": "Pilot obdržel od zaměřovače VDF QDR 315°. Kde se nachází letadlo vzhledem k zaměřovači?",
+    "answers": [
+      "severozápadně",
+      "severovýchodně",
+      "jihovýchodně",
+      "jihozápadně"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 106,
+    "question": "Dosah VDF závisí na:",
+    "answers": [
+      "nadmořské výšce letadla",
+      "rychlosti letadla",
+      "stavu ionosféry",
+      "dosahu vln šířených podél zemského povrchu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 107,
+    "question": "Jaké je třeba vybavení na palubě letadla pro příjem signálu z nesměrového majáku (NDB)?",
+    "answers": [
+      "indikátor odchylky od tratě (CDI)",
+      "radiokompas (ADF)",
+      "odpovídač sekundárního radaru (SSR)",
+      "indikátor horizontální situace (HSI)"
+    ],
+    "correct": 0,
+    "image": "NDB.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 108,
+    "question": "V jakém vlnovém pásmu vysílá nesměrový maják (NDB)?",
+    "answers": [
+      "krátké vlny (HF)",
+      "velmi krátké vlny (VHF)",
+      "dlouhé (LF) a střední (MF) vlny",
+      "velmi dlouhé (VLF) a dlouhé (LF) vlny"
+    ],
+    "correct": 2,
+    "image": "NDB.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 109,
+    "question": "Pilot chce přiletět k NDB na QDM 090°. Letadlo letí přibližně 5 minut magnetickým kurzem (MH) 095° a indikace relativního směrníku je 355°. Po 6 minutách je indikace relativního směrníku 358°. Který výrok je pravdivý?",
+    "answers": [
+      "zvětšila se boční složka větru, je třeba zvětšit hodnotu magnetického kurzu",
+      "zmenšila se boční složka větru, je třeba zvětšit hodnotu magnetického kurzu",
+      "zvětšila se boční složka větru, je třeba zmenšit hodnotu magnetického kurzu",
+      "zmenšila se složka bočního větru, je třeba zmenšit hodnotu magnetického kurzu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 110,
+    "question": "Pilot chce letět přímo k majáku. Je bezvětří. Měl by držet QDM: Viz. Obr. (NAV-019)",
+    "answers": [
+      "200°",
+      "230°",
+      "080°",
+      "260°"
+    ],
+    "correct": 0,
+    "image": "NAV-019.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 111,
+    "question": "Jaký je rozdíl mezi zařízením lokátor a majákem NDB?",
+    "answers": [
+      "lokátor má menší dosah než maják NDB",
+      "lokátor má větší dosah než maják NDB",
+      "lokátor vysílá přesněji",
+      "lokátor vysílá pouze na základě impulzu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 112,
+    "question": "Dosah majáku NDB, který vysílá v pásmu středních vln, je největší:",
+    "answers": [
+      "ve dne",
+      "v poledne",
+      "v noci",
+      "před půlnocí"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 113,
+    "question": "Pobřežní efekt je největší při šíření rádiových vln směrem:",
+    "answers": [
+      "pod ostrým úhlem k pobřeží, letadlo je pod 6000 ft",
+      "kolmo na pobřeží, letadlo je pod 6000 ft",
+      "pod ostrým úhlem k pobřeží, letadlo je nad 6000 ft",
+      "kolmo k pobřeží, letadlo je nad 6000 ft"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 114,
+    "question": "Občasná ztráta signálu (fading) v pásmu dlouhých nebo středních vln nastává zejména:",
+    "answers": [
+      "ve dne",
+      "v poledne",
+      "pozdě odpoledne",
+      "v noci"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 115,
+    "question": "Průběh elektromagnetické oscilace může být popsán jako:",
+    "answers": [
+      "frekvenční úhel",
+      "amplitudový úhel",
+      "fázový úhel",
+      "vlnový úhel"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 116,
+    "question": "Když se vysílač a přijímač blíží k sobě:",
+    "answers": [
+      "vnímaná frekvence se zvětšuje",
+      "vnímaná frekvence se rovná vysílané frekvenci",
+      "vnímaná frekvence se zmenšuje",
+      "frekvence se mění, ale vlnová délka zůstává stejná"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 117,
+    "question": "Když se vysílač a přijímač pohybují od sebe:",
+    "answers": [
+      "vnímaná frekvence se zvětšuje",
+      "vnímaná frekvence se rovná vysílané frekvenci",
+      "vnímaná frekvence se zmenšuje",
+      "frekvence se mění, ale vlnová délka zůstává stejná"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 118,
+    "question": "Radiály VOR jsou definovány na principu:",
+    "answers": [
+      "porovnání fáze 2 signálů",
+      "porovnání amplitudy 2 signálů",
+      "porovnání frekvence 2 signálů",
+      "porovnání pulzů 2 signálů"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 119,
+    "question": "Který Q-kód odpovídá radiálu VOR?",
+    "answers": [
+      "QDM",
+      "QDR",
+      "QTE",
+      "QUJ"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 120,
+    "question": "Plná výchylka ukazatele odchylky od tratě (CDI) znamená, že letadlo se nachází:",
+    "answers": [
+      "10° od zvolené tratě",
+      "2° od zvolené tratě",
+      "10 NM od zvolené tratě",
+      "2 NM od zvolené tratě"
+    ],
+    "correct": 0,
+    "image": "CDI.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 121,
+    "question": "Kde se nachází letadlo vzhledem ke stanici VOR? Viz příloha (NAV-022)",
+    "answers": [
+      "severovýchodně",
+      "jihovýchodně",
+      "jihozápadně",
+      "severozápadně"
+    ],
+    "correct": 0,
+    "image": "NAV-022.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 122,
+    "question": "Letadlo je na radiálu: Viz příloha (NAV-024)",
+    "answers": [
+      "234°",
+      "246°",
+      "060°",
+      "066°"
+    ],
+    "correct": 0,
+    "image": "NAV-024.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 123,
+    "question": "Na dosah stanice VOR má vliv:",
+    "answers": [
+      "interference denního světla",
+      "nadmořská výška vysílače a přijímače",
+      "vícesměrové šíření pozemní vlny",
+      "odrazy vln od ionosféry"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 124,
+    "question": "Měřič vzdálenosti (DME) měří vzdálenost na principu:",
+    "answers": [
+      "porovnání fází",
+      "měření laserem",
+      "Dopplerova efektu",
+      "měření času"
+    ],
+    "correct": 2,
+    "image": "DME.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 125,
+    "question": "Údaj vzdálenosti z DME je:",
+    "answers": [
+      "vzdálenost na zemi",
+      "šikmá vzdálenost",
+      "vzdálenost ve vzduchu",
+      "radiální vzdálenost"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 126,
+    "question": "Rozdíl mezi indikovanou šikmou vzdáleností z DME a horizontální vzdáleností od stanice DME se zvětšuje při:",
+    "answers": [
+      "příletu k DME",
+      "odletu od DME",
+      "kroužení kolem DME",
+      "klesání"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 127,
+    "question": "S využitím pozemního primárního radaru lze stanovit směr od antény k letadlu:",
+    "answers": [
+      "orientací antény",
+      "měřením času",
+      "intervalem páru pulzů",
+      "posunem frekvence přijímaného pulzu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 128,
+    "question": "Jakou okamžitou informaci lze získat z pozemního radaru?",
+    "answers": [
+      "pravou vzdušnou rychlost letadla (TAS) a vzdálenost",
+      "vzdálenost a směr",
+      "pravou vzdušnou rychlost (TAS) a kurz",
+      "rychlost a pravou vzdušnou rychlost (TAS)"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 129,
+    "question": "Palubní vybavení pro sekundární přehledový radar (SSR) se nazývá:",
+    "answers": [
+      "traťový indikátor",
+      "odpovídač",
+      "dotazovač",
+      "dekodér"
+    ],
+    "correct": 1,
+    "image": "SSR.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 130,
+    "question": "Jaký je rozdíl mezi primárním a sekundárním radarem?",
+    "answers": [
+      "pulzy primárního radaru mají proměnnou amplitudovou modulaci, pulzy sekundárního radaru mají statickou pulzní modulaci",
+      "pulzy primárního radaru mají proměnnou pulzní modulaci, pulzy sekundárního radaru mají statickou amplitudovou modulaci",
+      "pulzy primárního radaru odráží povrch letadla, na pulzy sekundárního radaru odpovídá odpovídač",
+      "primární radar zobrazuje cíle na obrazovce, sekundární radar na stripu řídícího letového",
+      "provozu"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 131,
+    "question": "Kód odpovídače sekundárního radaru pro únos je:",
+    "answers": [
+      "7000",
+      "7500",
+      "7600",
+      "7700"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 132,
+    "question": "Kód odpovídače sekundárního radaru pro ztrátu spojení je:",
+    "answers": [
+      "7000",
+      "7500",
+      "7600",
+      "7700"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 133,
+    "question": "Jakou výšku vysílá odpovídač sekundárního radaru v módu C?",
+    "answers": [
+      "nadmořskou výšku",
+      "výšku nad zemí",
+      "tlakovou výšku",
+      "rádiovou výšku"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 134,
+    "question": "Příjem signálu od kolika satelitů je nezbytný pro přesné a ověřené stanovení polohy ve třírozměrném prostoru?",
+    "answers": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 135,
+    "question": "Při použití GPS pro let k dalšímu traťovému bodu je indikována odchylka od tratě vertikálním břevnem a tečkami vlevo a vpravo od středu ukazatele. Který výrok o takovém přístroji je pravdivý?",
+    "answers": [
+      "odchylka břevna od středu znázorňuje odchylku od tratě jako absolutní vzdálenost v NM. Velikost odchylky odpovídající plné výchylce břevna závisí na režimu práce GPS",
+      "výchylka břevna od středu odpovídá úhlové odchylce od tratě ve stupních. Velikost odchylky odpovídající plné výchylce břevna závisí na režimu práce GPS",
+      "výchylka břevna od středu odpovídá odchylce od tratě v absolutní vzdálenosti v NM. Plná výchylka břevna odpovídá odchylce + - 10 NM",
+      "výchylka břevna od středu odpovídá úhlové odchylce od tratě ve stupních. Plné výchylce břevna odpovídá odchylka + - 10°"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 136,
+    "question": "Co znamená pojem \"srovnávací navigace\"?",
+    "answers": [
+      "navigace podle orientačních bodů na zemi při letu za vidu",
+      "orientace podle nebeských objektů při letu za vidu",
+      "orientace podle navigačních přístrojů při letu za vidu",
+      "orientace podle GPS při letu za vidu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 137,
+    "question": "Jaké pozemní objekty se mají používat přednostně při srovnávající navigaci?",
+    "answers": [
+      "řeky, železnice, dálnice",
+      "vedlejší silnice a údolí",
+      "elektrická vedení",
+      "hranice"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   }
 ]

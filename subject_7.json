@@ -1,122 +1,1345 @@
 [
   {
     "id": 1,
-    "question": "Vliv zvýšení hmotnosti letadla na délku vzletu:",
-    "answers": ["prodlužuje délku vzletu", "zkracuje délku vzletu", "nemá vliv", "zkracuje pouze rozjezd"],
-    "correct": 0
+    "question": "Byl podán letový plán pro odlet z neřízeného letiště. Kdy má být odvysílán skutečný čas vzletu službám letového provozu?",
+    "answers": [
+      "okamžitě po vzletu",
+      "je-li odchylka od doby čekávaného zahájení letu větší než 15 minut",
+      "na vyžádání služeb řízení letového provozu",
+      "když je potvrzeno přistání"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 2,
-    "question": "Vliv vysoké teploty vzduchu na výkon motoru a délku vzletu:",
-    "answers": ["snižuje výkon a prodlužuje vzlet", "zvyšuje výkon a zkracuje vzlet", "zvyšuje pouze výkon", "nemá vliv"],
-    "correct": 0
+    "question": "Za letu s podaným letovým plánem je provedeno přistání na jiném letišti než cílovém dle podaného letového plánu. S kým se musí pilot okamžitě spojit?",
+    "answers": [
+      "letová informační služba (FIS)",
+      "místní oddělení policie",
+      "letový manažer letiště ve službě",
+      "místní letecký úřad"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 3,
-    "question": "Tlaková výška (Pressure Altitude) je výška:",
-    "answers": ["nad standardní hladinou 1013.25 hPa", "nad terénem", "nad mořem (MSL)", "naměřená radarem"],
-    "correct": 0
+    "question": "Překročení maximální povolené hmotnosti letadla:",
+    "answers": [
+      "je možné výjimečně, aby se zabránilo zpožděním",
+      "je možné pouze, není-li omezení překročeno o více než 10 %",
+      "je možné kompenzovat zásahy pilota do řízení",
+      "není povoleno a je zvlášť nebezpečné"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 4,
-    "question": "Hustotní výška (Density Altitude) se zvyšuje s:",
-    "answers": ["rostoucí teplotou a klesajícím tlakem", "klesající teplotou", "rostoucím tlakem", "klesající vlhkostí"],
-    "correct": 0
+    "question": "Těžiště se musí nacházet:",
+    "answers": [
+      "před jeho přední mezí",
+      "za jeho zadní mezí",
+      "mezi jeho přední a zadní mezí",
+      "vpravo od jeho příčné meze"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 5,
-    "question": "Zadní poloha těžiště (mimo povolený rozsah) způsobuje:",
-    "answers": ["nestabilitu a obtížné vybírání pádu", "zvýšenou stabilitu", "snadnější ovládání", "zkrácení délky vzletu"],
-    "correct": 0
+    "question": "Zadní poloha těžiště má za následek:",
+    "answers": [
+      "zmenšení stability",
+      "zmenšení doletu",
+      "zvýšenou spotřebu paliva",
+      "zvýšenou pádovou rychlost"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 6,
-    "question": "Přední poloha těžiště (mimo povolený rozsah) může způsobit:",
-    "answers": ["problémy s rotací při vzletu a podrovnáním při přistání", "přepadávání letadla na ocas", "zvýšení cestovní rychlosti", "snížení pádové rychlosti"],
-    "correct": 0
+    "question": "Letadlo musí být naloženo a provozováno tak, aby těžiště bylo ve schválených mezích během všech fází letu, aby:",
+    "answers": [
+      "byla zajištěna jeho stabilita a řiditelnost",
+      "se letadlo nepřevážilo na ocas, když je nakládáno",
+      "nedošlo k přetažení letadla",
+      "letadlo při sestupu nepřekročilo maximální povolenou rychlost"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 7,
-    "question": "Užitečné zatížení (Useful Load) je:",
-    "answers": ["rozdíl mezi maximální vzletovou hmotností a prázdnou hmotností", "pouze hmotnost cestujících", "hmotnost paliva", "hmotnost zavazadel"],
-    "correct": 0
+    "question": "Důsledkem přední polohy těžiště je: 1. zvýšená stabilita 2. zvýšená spotřeba paliva 3. vyšší pádová rychlost 4. zvětšený dolet",
+    "answers": [
+      "1, 2",
+      "2, 4",
+      "1, 2, 3",
+      "2, 3, 4"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 8,
-    "question": "Při plánování paliva musí být započítána rezerva pro:",
-    "answers": ["možné zdržení, protivítr a dolet na náhradní letiště", "pouze pro cestu do cíle", "jen pro pojíždění", "není vyžadována"],
-    "correct": 0
+    "question": "Základní prázdná hmotnost letadla zahrnuje: hmotnost letadla plus standardní položky jako nevyčerpatelný zbytek paliva a dalších kapalin,",
+    "answers": [
+      "olej v motoru a pomocných agregátech, hasicí přístroje, pyrotechnika, nouzové kyslíkové vybavení, doplňkové elektronické vybavení celkovou hmotnost letadla připraveného pro určitý druh provozu kromě nevyužitelného zbytku",
+      "paliva a provozního zatížení. Tato hmotnost zahrnuje takové položky jako posádku a její zavazadla",
+      "celkovou hmotnost letadla připraveného pro určitý druh provozu včetně požadovaného paliva a",
+      "posádky, ale bez provozního zatížení",
+      "celkovou hmotnost letadla připraveného pro určitý druh provozu včetně posádky, navigačních",
+      "přístrojů a krytu motorů"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 9,
-    "question": "Vliv větru do zad (Tailwind) na délku vzletu:",
-    "answers": ["výrazně prodlužuje délku vzletu", "zkracuje délku vzletu", "nemá vliv", "zvyšuje stoupavost"],
-    "correct": 0
+    "question": "Prázdná hmotnost a odpovídající poloha těžiště letadla jsou původně stanoveny:",
+    "answers": [
+      "vážením",
+      "výpočtem",
+      "pomocí dat dodaných výrobcem letadla",
+      "pouze pro jedno letadlo daného typu, protože všechna letadla stejného typu mají stejnou",
+      "hmotnost a polohu těžiště"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 10,
-    "question": "Optimální rychlost pro nejlepší úhel stoupání (Vx) se používá pro:",
-    "answers": ["překonání překážek po vzletu", "co nejrychlejší dosažení výšky", "úsporu paliva", "chlazení motoru"],
-    "correct": 0
+    "question": "Hustota paliva AVGAS 100LL při teplotě 15 °C je:",
+    "answers": [
+      "0.72 kg/l",
+      "0.82 kg/l",
+      "0.68 kg/l",
+      "1.0 kg/l"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 11,
-    "question": "Optimální rychlost pro nejlepší stoupavost (Vy) se používá pro:",
-    "answers": ["dosažení určité výšky v co nejkratším čase", "překonání překážek", "maximální dolet", "maximální výdrž ve vzduchu"],
-    "correct": 0
+    "question": "Jaký je převodní poměr kilogramů (kg) na libry (lb)?",
+    "answers": [
+      "kg x 2.205 = lb",
+      "kg x 0.454 = lb",
+      "kg / 2.205 = lb",
+      "kg x 2 = lb"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 12,
-    "question": "Vliv vysunutých klapek na délku vzletu:",
-    "answers": ["zkracují rozjezd, ale snižují stoupavost", "prodlužují rozjezd", "zvyšují pádovou rychlost", "nemají vliv"],
-    "correct": 0
+    "question": "Zavazadla a náklad musí být řádně uloženy a upevněny, protože posun nákladu by mohl způsobit:",
+    "answers": [
+      "poškození konstrukce, stabilní úhel náběhu, stabilní rychlost",
+      "vypočitatelnou změnu polohy těžiště, je-li pohyb těžiště menší než o 10 %",
+      "plynulé změny podélného sklonu, které mohou být vyrovnány pilotovými zásahy do řízení",
+      "neřiditelné změny podélného sklonu, poškození konstrukce, riziko zranění"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 13,
-    "question": "Bod návratu (Point of No Return) je:",
-    "answers": ["poslední bod, ze kterého se lze vrátit s bezpečnou rezervou paliva", "polovina trasy", "bod, kde se mění kmitočet", "bod, kde začíná klesání"],
-    "correct": 0
+    "question": "Náklad musí být řádně upevněn:",
+    "answers": [
+      "aby bylo možné načerpat dodatečné palivo",
+      "aby se zabránilo pohybům těžiště",
+      "aby se zabránilo překročení povoleného násobku při podrovnání při přistání",
+      "aby bylo možné provádět ostré zatáčky"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 14,
-    "question": "Při výpočtu spotřeby paliva je nejdůležitější znát:",
-    "answers": ["hodinovou spotřebu motoru v daném režimu a předpokládaný čas letu", "pouze objem nádrží", "hmotnost letadla", "venkovní teplotu"],
-    "correct": 0
+    "question": "Celková hmotnost letounu působí vertikálně v:",
+    "answers": [
+      "středu tlaku",
+      "těžišti",
+      "stagnačním bodu",
+      "neutrálním bodu"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 15,
-    "question": "Vliv vlhkosti trávy na délku rozjezdu:",
-    "answers": ["mokrá tráva prodlužuje rozjezd", "mokrá tráva zkracuje rozjezd", "nemá vliv", "zkracuje pouze dojezd"],
-    "correct": 0
+    "question": "Pojem těžiště je definován jako:",
+    "answers": [
+      "nejtěžší bod na letounu",
+      "bod, ve kterém působí celková hmotnost letounu",
+      "jiný název neutrálního bodu",
+      "poloviční vzdálenost mezi neutrálním bodem a počátkem"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 16,
-    "question": "Sklon dráhy (Slope) směrem nahoru:",
-    "answers": ["prodlužuje délku rozjezdu", "zkracuje délku rozjezdu", "nemá vliv na rozjezd", "zvyšuje rychlost vzletu"],
-    "correct": 0
+    "question": "Těžiště je definováno jako:",
+    "answers": [
+      "bod, ve kterém působí celková tíha",
+      "bod na podélné ose letadla, od kterého se měří vzdálenosti těžišť všech hmotností",
+      "výslednice násobku hmotnosti a ramena",
+      "vzdálenost od počátku k polohám různých hmotností"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 17,
-    "question": "Vliv námrazy na profilu křídla na výkon letadla:",
-    "answers": ["zvyšuje odpor, snižuje vztlak a zvyšuje pádovou rychlost", "zvyšuje vztlak", "snižuje odpor", "nemá vliv"],
-    "correct": 0
+    "question": "Za letu bez zrychlení:",
+    "answers": [
+      "tah rovná se odporu a vztlak rovná se tíze",
+      "tah rovná se vztlaku a odpor rovná se tíze",
+      "odpor rovná se vztlaku a tah rovná se tíze",
+      "tah rovná se součtu odporu a tíhy"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 18,
-    "question": "Při plánování letu VFR je minimální rezerva paliva pro denní let obvykle:",
-    "answers": ["30 minut letu při cestovní rychlosti", "10 minut", "60 minut", "není stanovena"],
-    "correct": 0
+    "question": "Termín počátek při výpočtech hmotnosti a vyvážení znamená:",
+    "answers": [
+      "bod na podélné ose letounu, od kterého se měří vzdálenosti těžišť všech hmotností",
+      "bod na příčné ose letounu, od kterého se měří vzdálenosti těžišť všech hmotností",
+      "bod na vertikální ose letounu, od kterého se měří vzdálenosti všech těžišť hmotností",
+      "vzdálenost od počáteční roviny k těžišti letadla"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 19,
-    "question": "Který graf v příručce letadla slouží k určení délky dráhy pro přistání?",
-    "answers": ["Landing Distance", "Take-off Performance", "Cruise Power Settings", "Weight and Balance"],
-    "correct": 0
+    "question": "Termín moment při výpočtech hmotnosti a vyvážení znamená:",
+    "answers": [
+      "součin hmotnosti a ramena",
+      "součet hmotnosti a ramena",
+      "rozdíl hmotnosti a ramena",
+      "kvocient hmotnosti a ramena"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 20,
-    "question": "Vliv větru do zad na délku přistání (dojezd):",
-    "answers": ["výrazně prodlužuje dojezd", "zkracuje dojezd", "nemá vliv", "zlepšuje brzdění"],
-    "correct": 0
+    "question": "Termín rameno při výpočtech hmotnosti a centráže znamená:",
+    "answers": [
+      "vzdálenost od počátku k těžišti dané hmotnosti",
+      "bod na podélné ose letounu, od kterého se měří vzdálenosti těžišť všech hmotností",
+      "bod, ve kterém působí tíha",
+      "vzdálenost hmotnosti od těžiště"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 21,
+    "question": "Vzdálenost od těžiště k počátku se nazývá:",
+    "answers": [
+      "rameno",
+      "páka",
+      "krut",
+      "rozpětí"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 22,
+    "question": "Rameno je horizontální vzdálenost mezi:",
+    "answers": [
+      "přední a zadní mezí těžiště",
+      "těžištěm hmotnosti a zadní mezí těžiště",
+      "těžištěm hmotnosti a počátkem",
+      "přední mezí těžiště a počátkem"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 23,
+    "question": "Potřebné údaje pro výpočet hmotnosti a vyvážení včetně hmotností a ramen lze nalézt:",
+    "answers": [
+      "v kapitole hmotnost a vyvážení letové příručky příslušného letadla",
+      "v kapitole výkonnost letové příručky příslušného letadla",
+      "v osvědčení letové způsobilosti letadla",
+      "v dokumentaci o ročních prohlídkách letadla"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 24,
+    "question": "Co je třeba udělat při přípravě vážení letadla?",
+    "answers": [
+      "vypustit všechny náplně olejů z motoru",
+      "vypustit všechno vyčerpatelné palivo",
+      "odnést baterie",
+      "odstranit obslužné vybavení"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 25,
+    "question": "Která kapitola letové příručky popisuje základní prázdnou hmotnost letadla?",
+    "answers": [
+      "výkonnost",
+      "normální postupy",
+      "omezení",
+      "hmotnost a vyvážení"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 26,
+    "question": "Poloha těžiště je: Viz obr. (PFP-052e)",
+    "answers": [
+      "137.5 in",
+      "145.7 in",
+      "142 in",
+      "147.5 in"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 27,
+    "question": "Jakou hmotnost má 102 litrů paliva Avgas 100LL?",
+    "answers": [
+      "142 kg",
+      "142 lbs",
+      "74 kg",
+      "74 lbs"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 28,
+    "question": "Vypočítaná vzletová hmotnost: 2300 lbs, vypočítaná poloha těžiště: CG = 95.75 in, spotřebované palivo: 170 lbs na rameni: 87.00 in. Jaká je poloha těžiště po přistání?",
+    "answers": [
+      "96.45 in",
+      "96.57 in",
+      "97.39 in",
+      "94.11 in"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 29,
+    "question": "Je dáno: vypočítaná vzletová hmotnost: 746 kg vypočítaná poloha těžiště (CG): 37.1 cm spotřebované palivo: 30.5 l na rameni: 45 cm. Jaká je poloha těžiště (CG) po přistání?",
+    "answers": [
+      "36.9 cm",
+      "37.5 cm",
+      "37.2 cm",
+      "36.3 cm"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 30,
+    "question": "Vypočítaná vzletová hmotnost: 1082 kg, vypočítaná poloha těžiště (CG): 0.254 m, spotřebované palivo: 55 l na rameni: 0.40 m. Jaká je poloha těžiště po přistání?",
+    "answers": [
+      "24.6 cm",
+      "24.8 cm",
+      "25.2 cm",
+      "25.4 cm"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 31,
+    "question": "Poloha těžiště (včetně paliva) je: Viz obr. (PFP-053e)",
+    "answers": [
+      "37.1 cm",
+      "37.3 cm",
+      "0.401 m",
+      "0.403 m"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 32,
+    "question": "Při předletové přípravě pilot vypočítal vzletovou hmotnost 750 kg a celkový moment 625 mmkg. Jaká je poloha těžiště (CG)? Viz obr. (PFP-003)",
+    "answers": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct": 0,
+    "image": "PFP-003.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 33,
+    "question": "Při předletové přípravě pilot vypočítal vzletovou hmotnost 725 kg a celkový moment 650 mmkg. Jaká je poloha těžiště (CG)? Viz obr. (PFP-004)",
+    "answers": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct": 2,
+    "image": "PFP-004.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 34,
+    "question": "Při předletové přípravě pilot vypočítal vzletovou hmotnost 775 kg a celkový moment 700 mmkg. Jaká je poloha těžiště (CG)? Viz obr. (PFP-005)",
+    "answers": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct": 3,
+    "image": "PFP-005.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 36,
+    "question": "Jak konfigurace letadla ovlivní jeho výkonnost při vzletu, jsou-li ostatní parametry stejné? Viz obr. (PFP-007)",
+    "answers": [
+      "letadlo A má větší vysunutí klapek než letadlo B",
+      "letadlo B má větší vysunutí klapek než letadlo A",
+      "letadlo A má větší tlak v pneumatikách než letadlo B",
+      "letadlo B má větší tlak v pneumatikách než letadlo A"
+    ],
+    "correct": 0,
+    "image": "PFP-007.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 37,
+    "question": "Jaký vliv má nastavení vztlakových klapek na výkonnost letadla při vzletu?",
+    "answers": [
+      "větší výchylka klapek zkracuje rozjezd po zemi, snižuje rychlost odpoutání, ale zhoršuje",
+      "výkonnost při stoupání",
+      "větší výchylka klapek zkracuje rozjezd po zemi, snižuje rychlost odpoutání a zvyšuje výkonnost",
+      "při stoupání",
+      "větší výchylka klapek zkracuje rozjezd po zemi, zvyšuje rychlost odpoutání a výkonnost při",
+      "stoupání",
+      "větší výchylka klapek prodlužuje rozjezd po zemi, zvyšuje rychlost odpoutání a výkonnost při",
+      "stoupání"
+    ],
+    "correct": -1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 38,
+    "question": "Jaký vliv na výkonnost při vzletu má vítr?",
+    "answers": [
+      "vítr do zad snižuje relativní rychlost na profilu, a tak se délka vzletu zvětší",
+      "čelní vítr zvyšuje relativní rychlost na profilu, a tak se délka vzletu zvětší",
+      "čelní vítr zvětšuje odpor letadla, a tak zvětšuje délku vzletu",
+      "vítr do zad pomáhá letadlu překonat odpor při zahájení rozjezdu, a tak zmenšuje délku vzletu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 39,
+    "question": "Přízemní vítr na letišti může být kvůli tření slabší než výškový. Co může pilot očekávat, když po vzletu s mírným větrem do zad stoupá?",
+    "answers": [
+      "pokles rychlosti a stoupavosti kvůli zesílení větru do zad",
+      "nárůst rychlosti a stoupavosti kvůli zesílení větru do zad",
+      "pokles rychlosti a stoupavosti kvůli zeslábnutí větru do zad",
+      "nárůst rychlosti a stoupavosti kvůli zeslabení větru do zad"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 40,
+    "question": "Co zkracuje délku přistání?",
+    "answers": [
+      "silný čelní vítr",
+      "velká hustotní výška",
+      "velká tlaková výška",
+      "intenzivní déšť"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 41,
+    "question": "Pokud pro to letadlo není schváleno a odpovídajícím způsobem vybaveno:",
+    "answers": [
+      "let do známých podmínek námrazy je zakázán a vstoupí-li do takových podmínek neúmyslně,",
+      "má je neprodleně opustit",
+      "let ve známých podmínkách námrazy je povolen pouze po dobu, během které nenastane pokles",
+      "jeho výkonnosti",
+      "let do oblastí srážek je zakázán",
+      "let do známých podmínek námrazy je zakázán a vstoupí-li do takových podmínek letadlo",
+      "neúmyslně, lze v nich pokračovat, dokud existují podmínky pro let za vidu"
+    ],
+    "correct": 4,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 42,
+    "question": "Rychlost vX znamená:",
+    "answers": [
+      "daná výška je dosažena na minimální vzdálenosti",
+      "daná výška je dosažena za minimální čas",
+      "daná výška je dosažena s minimální spotřebou paliva",
+      "maximální nadmořská výška dosažená s výkonem 10 %"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 43,
+    "question": "Úhel sestupu je definován jako:",
+    "answers": [
+      "úhel mezi horizontální rovinou a trajektorií letu, vyjádřeno ve stupních (°)",
+      "poměr mezi změnou výšky nad zemí a uletěnou horizontální vzdáleností za stejný čas, vyjádřeno",
+      "v procentech (%)",
+      "úhel mezi horizontální rovinou a trajektorií letu, vyjádřeno v procentech (%)",
+      "poměr mezi změnou výšky nad zemí a uletěnou horizontální vzdáleností za stejný čas, vyjádřeno",
+      "ve stupních (°)"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 44,
+    "question": "Pojem ustálený let je definován jako:",
+    "answers": [
+      "nezrychlený let, kdy čtyři síly, tah - odpor a vztlak - tíha jsou v rovnováze",
+      "stoupání nebo klesání konstantní vertikální rychlostí v klidném ovzduší",
+      "let v klidném vzduchu bez turbulence a s dokonale vyváženým letadlem",
+      "let s konstantním nastavením výkonu beze změny kurzu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 45,
+    "question": "Rychlost vY je definována jako:",
+    "answers": [
+      "rychlost pro největší úhel stoupání",
+      "rychlost pro největší vertikální rychlost stoupání",
+      "nejlepší rychlost stoupání",
+      "nejlepší vzdálenost stoupání"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 46,
+    "question": "Rychlost vFE je definována jako:",
+    "answers": [
+      "maximální rychlost s vysunutými klapkami",
+      "pádová nebo minimální ustálená rychlost s vysunutými klapkami",
+      "maximální rychlost s vysunutým podvozkem",
+      "pádová nebo minimální ustálená rychlost se zasunutými klapkami"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 47,
+    "question": "Rychlost vS0 je definována jako:",
+    "answers": [
+      "pádová nebo minimální ustálená rychlost v určité konfiguraci",
+      "pádová nebo minimální ustálená rychlost v přistávací konfiguraci",
+      "maximální rychlost s vysunutým podvozkem",
+      "nepřekročitelná maximální rychlost"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 48,
+    "question": "Jakou rychlost znamená začátek zeleného oblouku (2) na rychloměru? Viz obr. (PFP-008)",
+    "answers": [
+      "vS0: pádová rychlost v přistávací konfiguraci",
+      "vS1: pádová rychlost se zasunutými klapkami",
+      "vFE: maximální rychlost s vysunutými klapkami",
+      "vNO: maximální rychlost pro normální provoz"
+    ],
+    "correct": 1,
+    "image": "PFP-008.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 49,
+    "question": "Jakou rychlost znamená konec zeleného oblouku (4) na rychloměru? Viz obr. (PFP-008)",
+    "answers": [
+      "vNE: nepřekročitelná maximální rychlost",
+      "vS1: pádová rychlost se zasunutými klapkami",
+      "vFE: maximální rychlost s vysunutými klapkami",
+      "vNO: maximální rychlost pro normální provoz"
+    ],
+    "correct": 3,
+    "image": "PFP-008.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 50,
+    "question": "Jakou rychlost znamená červená značka na konci žlutého oblouku (5) na rychloměru? Viz obr. (PFP-008)",
+    "answers": [
+      "vNE: nepřekročitelná maximální rychlost",
+      "vS1: pádová rychlost se zasunutými klapkami",
+      "vFE: maximální rychlost s vysunutými klapkami",
+      "vNO: maximální rychlost pro normální provoz"
+    ],
+    "correct": 0,
+    "image": "PFP-008.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 51,
+    "question": "Jakou rychlostí je třeba letět pro optimalizaci stoupavosti (tj. dosáhnout požadované výšky za minimální čas)?",
+    "answers": [
+      "Vx, rychlost pro největší úhel stoupání",
+      "Vy, rychlost pro největší vertikální rychlost stoupání",
+      "Vy, rychlost pro největší úhel stoupání",
+      "Vx, rychlost pro největší vertikální rychlost stoupání"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 52,
+    "question": "Jaká je čelní / zdaní složka větru pro vzlet z dráhy 22 a vítr 250°/10 kt?",
+    "answers": [
+      "5 kt čelní",
+      "5 kt do zad",
+      "9 kt čelní",
+      "9 kt do zad"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 53,
+    "question": "Je dáno: Teplota vnějšího vzduchu: -20 °C tlaková výška: 5000 ft hmotnost letounu: 750 kg čelní složka větru: 10 kt. Jaká je délka vzletu? Viz obr. (PFP-009)",
+    "answers": [
+      "410 m",
+      "310 m",
+      "450 m",
+      "380 m"
+    ],
+    "correct": 2,
+    "image": "PFP-009.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 54,
+    "question": "Pilot má provést vzlet z dráhy 36, vítr je 240°, 12 kts. Jaké jsou složky větru působící na letadlo při vzletu a přistání?",
+    "answers": [
+      "boční vítr zleva 10.4 kt, vítr do zad 6 kt",
+      "boční vítr zleva 6 kt, vítr do zad 10.4 kt",
+      "boční vítr zprava 10.4 kt, vítr do zad 6 kt",
+      "boční vítr zprava 6 kt, čelní vítr 10.4 kt"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 55,
+    "question": "Jaká je délka vzletu při vzletové hmotnosti: 750 kg, podmínkách standardní atmosféry (ISA) nadmořské výšce letiště 4000 ft s větrem do zad 5 kt? Viz obr. (PFP-009)",
+    "answers": [
+      "900 m",
+      "480 m",
+      "630 m",
+      "320 m"
+    ],
+    "correct": 0,
+    "image": "ISA.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 56,
+    "question": "Jaká je délka vzletu při vzletové hmotnosti 705 kg, OAT 20 °C, QNH 1013 hPa a nadmořské výšce letiště 3500 ft s větrem do zad 5 kt? Viz obr. (PFP-009)",
+    "answers": [
+      "820 m",
+      "790 m",
+      "720 m",
+      "880 m"
+    ],
+    "correct": 3,
+    "image": "PFP-009.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 57,
+    "question": "Vzlet z dráhy 36, vítr 240°/12kts. Jaké jsou složky větru při vzletu a přistání?",
+    "answers": [
+      "boční vítr zleva 10.4 kt, vítr do zad 6 kt",
+      "boční vítr zleva 6 kt, vítr do zad 10.4 kt",
+      "boční vítr zprava 10.4 kt, vítr do zad 6 kt",
+      "boční vítr zprava 6 kt, čelní vítr 10.4 kt"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 58,
+    "question": "Je dáno: Tlaková výška 2000 ft, teplota 31 °C, otáčky 2400, Jaká je spotřeba paliva (FF)? Viz obr. (PFP-012)",
+    "answers": [
+      "22.8 l/h",
+      "21.7 l/h",
+      "19.1 l/h",
+      "19.5 l/h"
+    ],
+    "correct": 3,
+    "image": "PFP-012.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 59,
+    "question": "Je dáno: Teplota vnějšího vzduchu: -20°C tlaková výška 10.000 ft. Jaká je rychlost stoupání? Viz obr. (PFP-011)",
+    "answers": [
+      "200 ft/min",
+      "350 ft/min",
+      "390 ft/min",
+      "450 ft/min"
+    ],
+    "correct": 2,
+    "image": "PFP-011.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 60,
+    "question": "Jaký je dolet za následujících podmínek? Teplota vnějšího vzduchu: 6 °C tlaková výška: 6000 ft výkon: 65 %. Viz obr. (PFP-013)",
+    "answers": [
+      "503 NM",
+      "457 NM",
+      "482 NM",
+      "444 NM"
+    ],
+    "correct": 2,
+    "image": "PFP-013.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 61,
+    "question": "Jaký je dolet za následujících podmínek? Teplota vnějšího vzduchu: 22 °C tlaková výška: 2000 ft výkon. 55 %. Viz obr. (PFP-013)",
+    "answers": [
+      "450 NM",
+      "500 NM",
+      "480 NM",
+      "550 NM"
+    ],
+    "correct": 1,
+    "image": "PFP-013.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 62,
+    "question": "Je dáno: Teplota vnějšího vzduchu: 10 °C tlaková výška: 6000 ft výkon: 65 %. Jaká je pravá vzdušná rychlost (TAS)? Viz obr. (PFP-014)",
+    "answers": [
+      "88 kt",
+      "96 kt",
+      "100 kt",
+      "92 kt"
+    ],
+    "correct": 0,
+    "image": "TAS.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 63,
+    "question": "Je dáno: Teplota vnějšího vzduchu: -2 °C tlaková výška: 8000 ft výkon: 75 %. Jaká je pravá vzdušná rychlost (TAS)? Viz obr. (PFP-014)",
+    "answers": [
+      "100 kt",
+      "104 kt",
+      "110 kt",
+      "95 kt"
+    ],
+    "correct": 1,
+    "image": "TAS.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 64,
+    "question": "Jakou maximální stoupavost může dosáhnout letadlo v 9000 ft tlakové výšky při teplotě vnějšího vzduchu 12 °C? Viz obr. (PFP-011)",
+    "answers": [
+      "200 ft/min",
+      "300 ft/min",
+      "350 ft/min",
+      "250 ft/min"
+    ],
+    "correct": 0,
+    "image": "PFP-011.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 65,
+    "question": "Jaká je maximální stoupavost letadla v tlakové výšce 6500 ft při teplotě vnějšího vzduchu",
+    "answers": [],
+    "correct": -1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 0,
+    "question": "°C? Viz obr. (PFP-011)",
+    "answers": [
+      "520 ft / min",
+      "480 ft / min",
+      "400 ft / min",
+      "800 ft / min"
+    ],
+    "correct": 1,
+    "image": "PFP-011.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 66,
+    "question": "Jaká je pravá vzdušná rychlost (TAS) (kt) a spotřeba paliva (l/h) při traťovém letu s výkonem",
+    "answers": [],
+    "correct": -1,
+    "image": "TAS.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 60,
+    "question": "% ve FL 60 za následujících podmínek? Teplota: ISA - 20 °C QNH: 980 hPa. Viz obr. (PFP- 012)",
+    "answers": [
+      "95 kt. 19.6 l/h",
+      "95,75 kt. 19.8 l/h",
+      "96 kt. 19.1 l/h",
+      "110 kt. 25.1 l/h"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 67,
+    "question": "Jaká je pravá vzdušná rychlost (TAS) (kt) a spotřeba paliva při letu se 70 % výkonu v letové hladině 60 za následujících podmínek? Teplota: ISA - 20 °C QNH: 980 hPa. Viz obr. (PFP-012)",
+    "answers": [
+      "95 kt. 19.6 l/h",
+      "100 kt. 19.3 l/h",
+      "105 kt. 21.5 l/h",
+      "110 kt. 23.9 l/h"
+    ],
+    "correct": 2,
+    "image": "TAS.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 68,
+    "question": "Jaká je spotřeba paliva a pravá vzdušná rychlost při letu se 60 % výkonu v letové hladině 85 a při teplotě vnějšího vzduchu -25 °C? Viz obr. (PFP-014)",
+    "answers": [
+      "spotřeba paliva: 20 l. TAS: 89 kt",
+      "spotřeba paliva: 18.5 l. TAS: 85 kt",
+      "spotřeba paliva: 17 l. TAS: 81 kt",
+      "spotřeba paliva: 17.5 l. TAS: 83 kt"
+    ],
+    "correct": 1,
+    "image": "PFP-014.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 69,
+    "question": "Jakou rychlostí je třeba stoupat do letové hladiny (FL) 75 po odletu z letiště s tlakovou výškou 3000 ft při vzletové hmotnosti 3000 lbs? OAT na letišti: 25 °C OAT ve FL 75: 0° C. Viz obr. (PFP- 023)",
+    "answers": [
+      "90 kt",
+      "100 kt",
+      "110 kt",
+      "120 kt"
+    ],
+    "correct": 2,
+    "image": null
+  },
+  {
+    "id": 70,
+    "question": "Jaká je spotřeba paliva pro nastoupání z FL 65 do FL 95 za následujících podmínek? Hmotnost letadla: 3000 lb. OAT ve FL 65: -5° C OAT ve FL 95: -15° C. Viz obr. (PFP-023)",
+    "answers": [
+      "2 GAL",
+      "1 GAL",
+      "3 GAL",
+      "6 GAL"
+    ],
+    "correct": 0,
+    "image": "PFP-023.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 71,
+    "question": "Jaká je uletěná vzdálenost pro nastoupání z FL 65 do FL 95 za následujících podmínek: Hmotnost letadla: 3000 lb. OAT ve FL 65: -5 °C OAT ve FL 95: -15° C. Viz obr. (PFP-023)",
+    "answers": [
+      "10 NM",
+      "6 NM",
+      "16 NM",
+      "3 NM"
+    ],
+    "correct": 1,
+    "image": "PFP-023.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 72,
+    "question": "Jaká je uletěná vzdálenost pro nastoupání do letové hladiny (FL) 75 po odletu z letiště s tlakovou výškou 3000 ft při vzletové hmotnosti 3000 lbs? OAT na letišti: 25 °C OAT ve FL 75: 0° C. Viz obr. (PFP-023)",
+    "answers": [
+      "10 NM",
+      "6 NM",
+      "7 NM",
+      "4 NM"
+    ],
+    "correct": 2,
+    "image": "PFP-023.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 73,
+    "question": "Pojem maximální hodnota nadmořské výšky terénu (maximum elevation figure – MEF) je definován jako:",
+    "answers": [
+      "nejvyšší nadmořská výška terénu v oblasti pokrývající 30 minut zeměpisné šířky a délky plus",
+      "bezpečnostní rezerva, zaokrouhleno na nejbližších vyšších 100 ft",
+      "nejvyšší nadmořská výška terénu pokrývající oblast 30 minut zeměpisné šířky a délky plus",
+      "bezpečnostní rezerva 1000 ft (305 m), zaokrouhleno na nejbližších vyšších 100 ft",
+      "největší nadmořská výška terénu v oblasti pokrývající 30 minut zeměpisné šířky a délky",
+      "největší nadmořská výška terénu pokrývající oblast 1 stupně zeměpisné šířky a délky plus",
+      "bezpečnostní rezerva zaokrouhlená na nejbližších nižších 100 ft"
+    ],
+    "correct": 4,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 74,
+    "question": "Jaký je účel čar protínajících trať letu při srovnávací navigaci?",
+    "answers": [
+      "pro vizualizaci omezení doletu od letiště odletu",
+      "slouží jako snadno rozpoznatelná pomůcka při možné ztrátě orientace",
+      "za letu označují další použitelné letiště na trati",
+      "pomáhají pokračovat v letu, klesne-li dohlednost pod minima pro let podle pravidel letu za",
+      "viditelnosti"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 75,
+    "question": "Polokruhové pravidlo pro lety VFR je založeno na:",
+    "answers": [
+      "magnetické trati (MC)",
+      "zeměpisném kurzu (TH)",
+      "magnetickém kurzu (MH)",
+      "zeměpisné trati (TC)"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 76,
+    "question": "Jaká je nejnižší možná letová hladina za VFR po zeměpisné trati 181° při deklinaci 3° na východ?",
+    "answers": [
+      "FL 055",
+      "FL 050",
+      "FL 065",
+      "FL 060"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 77,
+    "question": "Horní hranice LO R 16 je: Viz obr. (PFP-056)",
+    "answers": [
+      "FL 150",
+      "1,500 m MSL",
+      "1,500 ft MSL",
+      "1,500 ft GND"
+    ],
+    "correct": 0,
+    "image": "PFP-056.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 78,
+    "question": "Horní hranice LO R 4 je: Viz obr. (PFP-030)",
+    "answers": [
+      "4,500 ft MSL",
+      "4,500 ft AGL",
+      "1,500 ft MSL",
+      "1,500 ft AGL"
+    ],
+    "correct": 0,
+    "image": "PFP-030.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 79,
+    "question": "Kolik paliva pro pojíždění musí být spotřebováno před vzletem, aby se snížila hmotnost letadla na maximální vzletovou hmotnost? Maximální hmotnost při zahájení letu: 1150 kg, skutečná hmotnost při zahájení letu: 1148 kg, maximální vzletová hmotnost: 1145 kg.",
+    "answers": [
+      "4 litry",
+      "3 litry",
+      "5 litrů",
+      "2 litry"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 80,
+    "question": "Jsou-li dány následující údaje, jaké je množství traťového paliva? Palivo pro pojíždění: 5 litrů, palivo pro vzlet a stoupání: 12 litrů, palivo pro let po trati: 25 litrů, palivo pro klesání, přiblížení a přistání: 7 litrů, palivo pro pojíždění a zajetí na místo stání: 3 litry, palivo pro let na náhradní letiště: 13 litrů, konečná záloha paliva: 10 litrů.",
+    "answers": [
+      "44 litrů",
+      "75 litrů",
+      "52 litrů",
+      "49 litrů"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 81,
+    "question": "Podle letecké mapy má letiště Friesach/Hirt (LOKH) travnatou vzletovou a přistávací dráhu dlouhou 707 m. Dráha v provozu je 17 při větru 180 10kt. Požadovaná délka přistání pro Vaše letadlo je za současných podmínek 550 m. Vezmete-li v úvahu uvedený NOTAM, je bezpečné plánovat LOKH jako náhradní letiště? Viz obr. (PFP-026)",
+    "answers": [
+      "ne",
+      "ano",
+      "možná",
+      "nevím"
+    ],
+    "correct": 0,
+    "image": "LOKH.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 82,
+    "question": "Do jaké výšky jsou zakázány přelety podle uvedené zprávy NOTAM? Viz obr. (PFP-024)",
+    "answers": [
+      "nadmořská výška 9500 ft MSL",
+      "FL 95",
+      "nadmořská výška 9500 m MSL",
+      "výška 9500 ft nad zemí"
+    ],
+    "correct": 0,
+    "image": "PFP-024.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 83,
+    "question": "EOBT (předpokládaný čas zahájení letu) se uvádí do letového plánu jako:",
+    "answers": [
+      "středoevropský čas (CET)",
+      "místní střední čas (LMT)",
+      "koordinovaný světový čas (UTC)",
+      "standardní čas (ST)"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 84,
+    "question": "Podle plánu letu o jaký druh letu se jedná? Viz obr. (PFP-051a)",
+    "answers": [
+      "let v noci podle pravidel letu za vidu",
+      "let podle pravidel letu podle přístrojů",
+      "okruhy podle pravidel letu za vidu",
+      "přeshraniční let"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 85,
+    "question": "Rychlost uvedená v letovém plánu je: Viz obr. (PFP-051)",
+    "answers": [
+      "100 m/h",
+      "100 km/h",
+      "100 kt",
+      "1000 kt"
+    ],
+    "correct": 0,
+    "image": "PFP-051.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 86,
+    "question": "Co je třeba provést při mezinárodním letu?",
+    "answers": [
+      "schválit výjimku",
+      "vysílat zprávy o nebezpečí",
+      "podat letový plán",
+      "podávat pravidelně hlášení o poloze"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 87,
+    "question": "Komu může být za letu podán letový plán?",
+    "answers": [
+      "letové informační službě (FIS)",
+      "letecké informační službě (AIS)",
+      "službě pátrání a záchrany (SAR)",
+      "provozovateli dalšího letiště na trati"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 88,
+    "question": "Jaký je rozdíl mezi pravou vzdušnou rychlostí v silném větru do zad a v klidném vzduchu?",
+    "answers": [
+      "pro maximální dolet jsou stejné",
+      "pro maximální výdrž je v silném větru do zad mírně vyšší",
+      "pro maximální výdrž je v silném větru do zad výrazně nižší",
+      "pro maximální dolet je v silném větru do zad mírně nižší"
+    ],
+    "correct": 3,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 89,
+    "question": "Jak se chová pravá vzdušná rychlost při letu konstantní indikovanou rychlostí ve stoupání?",
+    "answers": [
+      "roste",
+      "klesá",
+      "nad 5000 ft zůstává konstantní",
+      "pod 5000 ft zůstává konstantní"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 90,
+    "question": "Je dáno: Palivo při vzletu = 200 lbs, palivo pro let na náhradní letiště = 40 lbs, konečná záloha paliva = 30 lbs. Po 25 minutách letu je zbývající palivo 120 lbs. Pokud se spotřeba paliva nezmění, zbývající doba letu na cílové letiště by neměla překročit:",
+    "answers": [
+      "15.6 min",
+      "37.5 min",
+      "59.4 min",
+      "20.0 min"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 91,
+    "question": "Pro let VFR je dáno: Palivo při vzletu je 180 kg včetně záložního paliva, které je 30 % z paliva při vzletu. Po uletění poloviny vzdálenosti je zbývající palivo 100 kg. Podmínky při dokončení letu se nezmění. Stanovte zbytek paliva po přistání na cílovém letišti:",
+    "answers": [
+      "20 kg",
+      "40 kg",
+      "10 kg",
+      "80 kg"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 92,
+    "question": "Při letu VFR je na kontrolním bodu zbývající využitelné palivo 80 USG. Záloha paliva je 20 USG. Zbývající doba letu dle letového plánu je 2h 20min. Jaká je největší přijatelná spotřeba paliva (FF) pro zbytek letu?",
+    "answers": [
+      "FF = 25.7 USG/hod",
+      "FF = 34.3 USG/hod",
+      "FF = 42.9 USG/hod",
+      "FF = 8.6 USG/hod"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 93,
+    "question": "(Pro tuto otázku použijte přílohu nebo CAP697 SEP1 obr. 2.2 tabulka 2.2.3). Je plánován let z EDWF (Leer Papenburg) do EDWH (Oldenburg Hatten) za následujících podmínek: Výška letu po trati = FL 75, teplota = ISA, traťová hmotnost = 3400 lbs, nastavení výkonu = 23.0 in. HG @ 2300 RPM. Stanovte pravou vzdušnou rychlost (TAS) a spotřebu paliva (FF):",
+    "answers": [
+      "TAS = 160 kt FF = 11.9 GPH",
+      "TAS = 145 kt FF = 71.1 GPH",
+      "TAS = 160 kt FF = 12.3 GPH",
+      "TAS = 145 kt FF = 11.9 GPH"
+    ],
+    "correct": 0,
+    "image": "TAS.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 94,
+    "question": "(Pro tuto otázku použijte přílohu nebo CAP697 SEP1 obr. 2.2 tabulka 2.2.3) Při plánování letu z EDWH (Oldenburg Hatten) do EDWF (Leer Papenburg) je dáno: Letová hladina = FL 65, teplota = ISA+20, hmotnost = 3400 lbs, nastavení výkonu = 23.0 in. HG @ 2300 RPM. Jaká bude indikovaná rychlost (IAS) a spotřeba paliva?",
+    "answers": [
+      "IAS = 142 kt FF = 11.5 galonů za hodinu",
+      "IAS = 145 kt FF = 11.0 galonů za hodinu",
+      "IAS = 158kt FF = 11.0 galonů za hodinu",
+      "IAS = 150 kt FF = 12.0 galonů za hodinu"
+    ],
+    "correct": 0,
+    "image": "IAS.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 95,
+    "question": "(Pro tuto otázku použijte přílohu nebo CAP697 SEP1 obr. 2.2 tabulka 2.2.3) Pro plánování letu je dáno: Doba letu \"nad - nad\" = 2h 43min, tlaková výška = 6.500 ft, teplota = ISA-20, nastavení výkonu = 2300 RPM, palivo pro pojíždění = 2 USG, dodatečný čas na stoupání = 7 min, dodatečný čas na přiblížení a přistání = 10 min. Záložní palivo má být 30% traťového paliva. Stanovte minimální množství paliva při zahájení letu.",
+    "answers": [
+      "50.4 USG",
+      "39.2 USG",
+      "47.3 USG",
+      "43.8 USG"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 96,
+    "question": "(Pro tuto otázku použijte přílohu nebo CAP697 SEP1 obr. 2.2 tabulka 2.2.3) Pro pláno vání letu je dáno: Doba letu \"nad - nad\" = 2h 42min, tlaková výška = 7.500 ft, teplota = ISA, nastavení výkonu = 2300 RPM, palivo pro pojíždění = 2 USG, dodatečný čas na stoupání = 8 min, dodatečný čas na přiblížení a přistání = 10 min. Záloha paliva má být 30 % traťového paliva. Stanovte minimální množství paliva při zahájení letu.",
+    "answers": [
+      "48.4 USG",
+      "37.7 USG",
+      "51.8 USG",
+      "46.4 USG"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 97,
+    "question": "Pro let je dáno: Traťové palivo = 70 US galonů, palivo pro mimořádné okolnosti = 5 % traťového paliva, palivo pro let na náhradní letiště a konečná záloha paliva = 20 US galonů, využitelné palivo při vzletu = 95 US galonů. Po uletění poloviny vzdálenosti bylo spotřebováno",
+    "answers": [],
+    "correct": -1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 40,
+    "question": "US galonů. Předpokládejte, že se spotřeba paliva nezmění. Který výrok je pravdivý?",
+    "answers": [
+      "zbývající palivo nestačí pro přistání na cílovém letišti se zbývajícím palivem pro let na náhradní",
+      "letiště a s konečnou zálohou paliva",
+      "po přistání zbyde 15.0 US galonů paliva plus palivo pro let na náhradní letiště a konečná záloha",
+      "paliva",
+      "po přistání zbyde 5.0 US galonů plus palivo pro let na náhradní letiště a konečná záloha paliva",
+      "po přistání zbyde celkem 40.0 US galonů paliva"
+    ],
+    "correct": 4,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 98,
+    "question": "Pro let je dáno: Traťové palivo = 70 US galonů, palivo pro mimořádné okolnosti = 5 % traťového paliva, palivo pro let na náhradní letiště a konečná zásoba paliva = 20 US galonů. Využitelné palivo při vzletu = 90 US galonů. Po uletění poloviny vzdálenosti bylo spotřebováno 30 US galonů. Předpokládejte, že spotřeba paliva zůstane nezměněna. Který výrok je pravdivý?",
+    "answers": [
+      "po přistání bude zbytek paliva 10.0 US galonů plus palivo pro let na náhradní letiště a konečná",
+      "záloha paliva",
+      "zbývající palivo nestačí pro přistání na cílovém letišti se zbytkem paliva pro let na náhradní",
+      "letiště a konečnou zálohou paliva",
+      "po přistání zbyde 30.0 US galonů plus palivo pro let na náhradní letiště a konečná záloha paliva",
+      "po přistání zbyde celkem 10.0 US galonů paliva"
+    ],
+    "correct": -1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 99,
+    "question": "(Pro tuto otázku použijte přílohu PFP-061) Jaký symbol dle ICAO označuje skupinu neosvětlených překážek?",
+    "answers": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 100,
+    "question": "(Pro tuto otázku použijte přílohu PFP-062) Jaký symbol dle ICAO označuje civilní letiště (ne mezinárodní) se zpevněnou vzletovou a přistávací drahou?",
+    "answers": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 101,
+    "question": "(Pro tuto otázku použijte přílohu PFP-063) Jaký symbol dle ICAO označuje nadmořskou výšku bodu?",
+    "answers": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   }
 ]

@@ -1,152 +1,787 @@
 [
   {
     "id": 1,
-    "question": "Předletová příprava zahrnuje:",
-    "answers": ["kontrolu počasí, NOTAMů, paliva a hmotnosti", "pouze kontrolu oleje", "nahlédnutí do mapy", "nic, pokud letím na známé letiště"],
-    "correct": 0
+    "question": "Doba letu je definována jako:",
+    "answers": [
+      "celková doba od okamžiku, kdy se letoun pohne, dokud se po skončení letu nezastaví",
+      "doba od zahájení vzletu do dosednutí při přistání",
+      "celková doba od prvního vzletu do posledního přistání v souvislosti s jedním nebo více po sobě následujícími lety",
+      "doba od spuštění motoru za účelem vzletu do opuštění letadla po vypnutí motoru"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 2,
-    "question": "Bezpečnostní pásy musí být zapnuty:",
-    "answers": ["vždy při vzletu, přistání a v turbulenci", "pouze při vzletu", "jen když to řekne kapitán", "není to povinné"],
-    "correct": 0
+    "question": "Co je třeba vzít v úvahu při plánování letu nad vodou, když při nouzovém přistání nelze doletět na zem?",
+    "answers": [
+      "pro všechny cestující musí být k dispozici plovací vesty nebo záchranné čluny",
+      "během celého letu musí být spojení s nejbližším stanovištěm služby řízení letů",
+      "letový plán musí obsahovat přesné traťové body",
+      "během celého letu musí být odpovídač sekundárního radaru nastaven na kód 7600"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 3,
-    "question": "V případě požáru motoru při spouštění na zemi by měl pilot:",
-    "answers": ["pokračovat v protáčení motoru startérem pro nasátí plamenů do motoru", "okamžitě vyskočit", "volat hasiče a čekat", "přidat plyn na maximum"],
-    "correct": 0
+    "question": "Který z následujících jevů má vliv na hluk vnímaný osobou na zemi? 1) nastavení výkonu motoru 2) otáčky vrtule 3) poloha podvozku 4) poloha vztlakových klapek 5) trať letu 6) výška letu nad zemí 7) pravidla letu",
+    "answers": [
+      "1, 2, 3, 4, 5, 6",
+      "1, 5, 6",
+      "1, 5, 6, 7",
+      "3, 4, 5, 6, 7"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 4,
-    "question": "Nouzová frekvence pro rádiové volání je:",
-    "answers": ["121.500 MHz", "123.450 MHz", "118.100 MHz", "131.000 MHz"],
-    "correct": 0
+    "question": "Jak může pilot motorového letadla snížit na minimum hluk vydávaný při sestupu a přiblížení?",
+    "answers": [
+      "vysoké přiblížení s nastavením minimálního výkonu, pozdější sestup, pozdější konfigurace, dodržení stanovených příletových tratí",
+      "nízké přiblížení s nastavením minimálního výkonu, pozdější konfigurace, strmé přiblížení, dodržení stanovených příletových tratí",
+      "normální přiblížení s nastavením normálního výkonu, konfigurace před zahájením klesání, nejkratší možná příletová trať",
+      "klesání a přiblížení v přistávací konfiguraci, dodržení úhlu sestupu 3°, přímé přiblížení kdykoliv je to možné"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 5,
-    "question": "Signál MAYDAY se používá v případě:",
-    "answers": ["bezprostředního ohrožení života nebo letadla (tíseň)", "naléhavé situace týkající se bezpečnosti (pilnost)", "žádosti o informaci", "pozdravu řídícímu"],
-    "correct": 0
+    "question": "Kdy je třeba se vyhýbat zatáčkám v malých výškách nad vesnicemi s ohledem na protihlukové postupy?",
+    "answers": [
+      "při klesání",
+      "při horizontálním letu",
+      "při stoupání",
+      "při přiblížení"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 6,
-    "question": "Signál PAN PAN se používá v případě:",
-    "answers": ["naléhavé situace týkající se bezpečnosti (pilnost)", "bezprostředního ohrožení (tíseň)", "změny letového plánu", "poruchy rádia"],
-    "correct": 0
+    "question": "Jak mají být prováděny odlety v blízkosti vesnic?",
+    "answers": [
+      "nízko a rychle mezi vesnicemi",
+      "pomalu s nízkými otáčkami vrtule",
+      "vesnice mají být oblétány a přelétány v dostatečné výšce",
+      "stoupání a změny směru mají být prováděny co nejpomaleji"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 7,
-    "question": "Při setkání s turbulencí v úplavu za velkým letadlem by měl pilot:",
-    "answers": ["zůstat nad trajektorií velkého letadla a přistát za jeho bodem dotyku", "letět pod ním", "zrychlit na maximum", "vysunout klapky"],
-    "correct": 0
+    "question": "U kterého druhu motoru lze předpokládat požár karburátoru?",
+    "answers": [
+      "pístový motor",
+      "elektromotor",
+      "turbínový motor",
+      "turbovrtulový motor"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 8,
-    "question": "Střih větru (Wind shear) je nebezpečný zejména:",
-    "answers": ["při vzletu a přistání v malé výšce", "v cestovní hladině", "při pojíždění", "při stání na ploše"],
-    "correct": 0
+    "question": "Proč je nebezpečné pumpovat plynovou pákou při spouštění motoru ve studeném počasí?",
+    "answers": [
+      "může to způsobit požár karburátoru",
+      "může dojít k tvorbě námrazy v karburátoru",
+      "rozředí se tím olej",
+      "může dojít ke spuštění motoru s nedostatečným výkonem"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 9,
-    "question": "Při nouzovém přistání do terénu je nejdůležitější:",
-    "answers": ["zachovat řiditelnost letadla až do dotyku se zemí", "zachránit letadlo před poškozením", "přistát co nejrychleji", "vypnout rádio"],
-    "correct": 0
+    "question": "Jaké nebezpečí existuje při spouštění motoru?",
+    "answers": [
+      "jiskření",
+      "požár kabeláže",
+      "požár karburátoru",
+      "výfuk dýmu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 10,
-    "question": "Při přistání na vodu (Ditching) by měly být dveře:",
-    "answers": ["odjištěny nebo otevřeny před dotykem pro snadnější evakuaci", "pevně zamčeny", "vysazeny z pantů", "ponechány v normálním stavu"],
-    "correct": 0
+    "question": "Může být znovu spuštěn motor, na kterém byl před tím požár?",
+    "answers": [
+      "ne, nebezpečí nového vznícení požáru by bylo příliš vysoké",
+      "ano, pokud letadlo letí v bezpečné výšce",
+      "ano, ale pouze na zemi pro účely pojíždění",
+      "ano, ale pouze došlo-li během spouštění motoru k požáru karburátoru"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 11,
-    "question": "Minimální výška pro let nad hustě zastavěným místem (městem) je:",
-    "answers": ["300 m (1000 ft) nad nejvyšší překážkou v okruhu 600 m", "150 m (500 ft) nad zemí", "vždy 1000 m", "není stanovena"],
-    "correct": 0
+    "question": "Jaký plyn je při požáru motoru nejnebezpečnější?",
+    "answers": [
+      "kyslík",
+      "dusík",
+      "kysličník uhelnatý",
+      "kysličník uhličitý"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 12,
-    "question": "Při setkání dvou letadel na kolizním kurzu v přibližně stejné výšce:",
-    "answers": ["obě letadla se vyhnou vpravo", "obě letadla se vyhnou vlevo", "rychlejší letadlo stoupá", "pomalejší letadlo klesá"],
-    "correct": 0
+    "question": "Při požáru motoru vnikne do pilotní kabiny dým. Co je třeba okamžitě učinit?",
+    "answers": [
+      "vypnout topení a ventilaci",
+      "vypnout hlavní vypínač a zapalování",
+      "vypnout avioniku a osvětlení kabiny",
+      "vypnout ohřev Pitotovy trubice a čelního skla"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 13,
-    "question": "Které letadlo má přednost v letu?",
-    "answers": ["letadlo v nouzi", "letadlo letící zprava", "letadlo s motorem", "letadlo na finále"],
-    "correct": 0
+    "question": "Co má být první akcí při požáru kabeláže za letu?",
+    "answers": [
+      "vypnout hlavní vypínač",
+      "uzavřít palivový ventil",
+      "otevřít okna",
+      "otevřít větrání kabiny"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 14,
-    "question": "Při pojíždění po letišti má přednost:",
-    "answers": ["letadlo přistávající nebo vzlétající", "letadlo pojíždějící zprava", "větší letadlo", "letadlo s běžícím motorem"],
-    "correct": 0
+    "question": "Jaká hasící látka je nejméně vhodná pro hašení požáru letadla?",
+    "answers": [
+      "pěna",
+      "prášek",
+      "voda",
+      "halon"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 15,
-    "question": "Vizuální signál ze země 'červená světlice' znamená:",
-    "answers": ["nepřistávejte, letiště je uzavřeno", "pokračujte v kroužení", "přistaňte okamžitě", "vykliďte dráhu"],
-    "correct": 0
+    "question": "Za letu se za přístrojovou deskou objeví trocha dýmu. Lze předpokládat požár elektrického systému. Co má udělat pilot s ohledem na letovou příručku?",
+    "answers": [
+      "vypnout hlavní vypínač",
+      "vypnout topení",
+      "vypnout motor",
+      "použít hasící přístroj"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 16,
-    "question": "Blikající zelené světlo z věže letadlu za letu znamená:",
-    "answers": ["vraťte se k přistání", "pokračujte v letu", "přistání povoleno", "dejte přednost jinému letadlu"],
-    "correct": 0
+    "question": "Za letu se za přístrojovou deskou objeví trocha dýmu. Lze předpokládat požár motoru. Co má pilot udělat s ohledem na letovou příručku?",
+    "answers": [
+      "vypnout hlavní vypínač",
+      "vypnout topení",
+      "vypnout motor",
+      "použít hasící přístroj"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 17,
-    "question": "Stálé červené světlo z věže letadlu za letu znamená:",
-    "answers": ["dejte přednost jinému letadlu a pokračujte v kroužení", "přistaňte okamžitě", "letiště je nebezpečné, nepřistávejte", "vraťte se na letiště odletu"],
-    "correct": 0
+    "question": "Střih větru je:",
+    "answers": [
+      "pomalý nárůst rychlosti větru ve výškách nad 13000 ft",
+      "sestupný vítr za pohořím",
+      "změna vertikální nebo horizontální složky a směru větru",
+      "změna rychlosti větru o více než 15 kt"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 18,
-    "question": "Bílé blikající světlo z věže letadlu na zemi znamená:",
-    "answers": ["vraťte se na výchozí místo na letišti", "vykliďte dráhu", "pojíždění povoleno", "vzlet povolen"],
-    "correct": 0
+    "question": "Jaký meteorologický jev typicky souvisí se střihem větru?",
+    "answers": [
+      "bouřky",
+      "teplá fronta",
+      "mlha",
+      "stabilní oblasti vysokého tlaku vzduchu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 19,
-    "question": "Při letu v noci musí být letadlo vybaveno:",
-    "answers": ["polohovými a antikolizními světly", "pouze přistávacím světlometem", "vnitřním osvětlením kabiny", "není vyžadováno speciální osvětlení"],
-    "correct": 0
+    "question": "Kdy lze očekávat střih větru?",
+    "answers": [
+      "při průletu teplou frontou",
+      "při inverzi",
+      "ze bezvětří ve studeném počasí",
+      "za letních dnů za bezvětří"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 20,
-    "question": "Kyslíkové masky pro posádku jsou povinné při letu nad výškou:",
-    "answers": ["10 000 ft po dobu delší než 30 minut", "vždy nad 5 000 ft", "pouze nad 15 000 ft", "v nehermetizovaných letadlech nejsou povinné"],
-    "correct": 0
+    "question": "Při přiblížení je zaznamenán střih větru se snížením čelní složky větru. Jak se změní trajektorie letu a indikovaná rychlost (IAS), neprovede-li pilot žádné korekce?",
+    "answers": [
+      "trajektorie se sníží, IAS klesne",
+      "trajektorie se zvýší, IAS klesne",
+      "trajektorie se sníží, IAS vzroste",
+      "trajektorie se zvýší, IAS vzroste"
+    ],
+    "correct": 0,
+    "image": "IAS.jpg",
+    "explanation": ""
   },
   {
     "id": 21,
-    "question": "Při zjištění námrazy na křídlech za letu by měl pilot:",
-    "answers": ["opustit oblast námrazy změnou výšky nebo kurzu", "zvýšit rychlost na maximum", "vysunout klapky", "vypnout motor"],
-    "correct": 0
+    "question": "Při přiblížení je zaznamenán střih větru s nárůstem čelní složky větru. Jak se změní trajektorie letu a indikovaná rychlost (IAS), neprojde-li pilot žádné korekce?",
+    "answers": [
+      "trajektorie se sníží, IAS klesne",
+      "trajektorie se zvýší, IAS klesne",
+      "trajektorie se sníží, IAS vzroste",
+      "trajektorie se zvýší, IAS vzroste"
+    ],
+    "correct": 1,
+    "image": "IAS.jpg",
+    "explanation": ""
   },
   {
     "id": 22,
-    "question": "Při vysazení motoru po vzletu v malé výšce je nejbezpečnější:",
-    "answers": ["přistát přímo před sebe nebo mírně vlevo/vpravo", "pokusit se o zatáčku o 180 stupňů zpět na dráhu", "stoupat co nejdéle", "vyskočit s padákem"],
-    "correct": 0
+    "question": "Při přiblížení je zaznamenán střih větru s poklesem zadní složky větru. Jak se změní trajektorie letu a indikovaná rychlost (IAS), neprovede-li pilot žádné korekce?",
+    "answers": [
+      "trajektorie se sníží, IAS klesne",
+      "trajektorie se zvýší, IAS vzroste",
+      "trajektorie se sníží, IAS vzroste",
+      "trajektorie se zvýší, IAS klesne"
+    ],
+    "correct": 1,
+    "image": "IAS.jpg",
+    "explanation": ""
   },
   {
     "id": 23,
-    "question": "Plnění paliva do letadla s cestujícími na palubě:",
-    "answers": ["je zakázáno, pokud není zajištěn dozor a únikové cesty", "je vždy povoleno", "je povoleno pouze u velkých dopravních letadel", "je povoleno jen s vypnutými motory"],
-    "correct": 0
+    "question": "Po vzletu nastal střih větru se snížením čelní složky větru. Výsledkem je:",
+    "answers": [
+      "letadlo letí nad očekávanou trajektorií stoupání",
+      "pravá vzdušná rychlost (TAS) vzroste",
+      "letadlo letí pod očekávanou trajektorií stoupání",
+      "traťová rychlost (GS) klesne"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 24,
-    "question": "Při pojíždění za silného větru by mělo být řízení (křidélka/výškovka):",
-    "answers": ["nastaveno tak, aby vítr letadlo nenadzvedl", "v neutrální poloze", "plně přitaženo", "plně potlačeno"],
-    "correct": 0
+    "question": "Jak lze za letu rozpoznat střih větru?",
+    "answers": [
+      "náhlé změny polohy letadla, rychlosti letu a stoupavosti",
+      "náhlé změny kurzu, rychlosti zatáčení, otáček motoru a teploty oleje",
+      "nečekaný nástup kouřma související s vysokými straty, které následují oblohu bez oblačnosti a s bezvětřím",
+      "náhlé změny tlaku oleje, teploty oleje, otáček motoru a nadmořské výšky"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 25,
-    "question": "Který dokument definuje nouzové postupy pro konkrétní typ letadla?",
-    "answers": ["Letová příručka (AFM/POH)", "AIP", "Letecký zákon", "Servisní manuál"],
-    "correct": 0
+    "question": "Jaký jev lze očekávat v bodu 2 mikroburstu? Viz příloha (OPR-001)",
+    "answers": [
+      "pokles stoupavosti",
+      "nárůst rychlosti letu",
+      "zmenšení úhlu klesání",
+      "stejný úhel klesání"
+    ],
+    "correct": 0,
+    "image": "OPR-001.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 26,
+    "question": "Jaký jev lze očekávat v bodu 3 mikroburstu? Viz příloha (OPR-001)",
+    "answers": [
+      "pokles rychlosti letu",
+      "nárůst rychlosti letu",
+      "pokles stoupavosti",
+      "konstantní rychlost klesání"
+    ],
+    "correct": 0,
+    "image": "OPR-001.jpg",
+    "explanation": ""
+  },
+  {
+    "id": 27,
+    "question": "Jak se lze vyhnout vlétnutí do střihu větru?",
+    "answers": [
+      "neprovádět vzlet a přistání při intenzivních přeháňkách nebo bouřkách",
+      "vyhnout se oblastem srážek, zejména v zimě, volit malé výšky letu",
+      "vyhnout se termicky aktivním oblastem, zejména v létě, nebo létat pod těmito oblastmi",
+      "neprovádět vzlety a přistání v horském terénu a je-li to možné, létat v rovinatých oblastech"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 28,
+    "question": "Co má pilot provést, když nastal střih větru? 1. snížit rychlost letu 2. zasunout podvozek a klapky 3. zachovat stávající konfiguraci 4. nastavit výkon motoru",
+    "answers": [
+      "1 a 2",
+      "3 a 4",
+      "1 a 3",
+      "2 a 4"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 29,
+    "question": "Po vzletu v počáteční fázi stoupání dojde k nečekaně silnému nárůstu rychlosti letu. Co může následovat, vlétlo-li letadlo do mikroburstu?",
+    "answers": [
+      "pokles stoupavosti a rychlosti letu",
+      "nárůst stoupavosti a rychlosti letu",
+      "nárůst stoupavosti a pokles rychlosti letu",
+      "pokles stoupavosti a nárůst rychlosti letu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 30,
+    "question": "Letadlo ihned po vzletu vlétne nečekaně do mikroburstu. Jak se lze vyhnout nechtěnému klesání?",
+    "answers": [
+      "nastavit maximální výkon, zachovat stávající konfiguraci, udržet optimální rychlost pro",
+      "maximální stoupavost",
+      "nastavit maximální výkon, zasunout klapky a podvozek, zvětšit podélný sklon až do dosažení",
+      "optimální stoupací rychlosti",
+      "nastavit maximální výkon, zachovat stávající konfiguraci, zvýšit rychlost, aby letadlo opustilo co",
+      "nejdříve oblast mikroburstu",
+      "nastavit maximální výkon, zasunout podvozek a klapky, zvýšit rychlost, levou nebo pravou",
+      "zatáčkou uniknout z oblasti mikroburstu"
+    ],
+    "correct": -1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 31,
+    "question": "Turbulence v úplavu při vzletu vznikne, jakmile letoun:",
+    "answers": [
+      "začne zrychlovat",
+      "dosáhne výšky 15 ft",
+      "nadzdvihne příďové kolo",
+      "odpoutá od země hlavní podvozek"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 32,
+    "question": "Turbulence v úplavu je způsobena:",
+    "answers": [
+      "vyrovnáváním tlaku na koncích křídel",
+      "výfukovými plyny turbínového motoru",
+      "střihem větru na koncích křídel",
+      "turbulencí na závětrné straně pohoří"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 33,
+    "question": "Turbulence v úplavu je zvláště intenzivní:",
+    "answers": [
+      "při letu nízkými rychlostmi",
+      "při letu vysokými rychlostmi",
+      "při letu ve velkých výškách",
+      "při letu v malých výškách"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 34,
+    "question": "Turbulence v úplavu je zvláště intenzivní:",
+    "answers": [
+      "při velké hmotnosti letadla",
+      "při malé hmotnosti letadla",
+      "při letu s velkým výkonem motoru",
+      "při letu s malým výkonem motoru"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 35,
+    "question": "Intenzita turbulence v úplavu závisí na:",
+    "answers": [
+      "teplotě",
+      "úhlu nastavení listů vrtule",
+      "hmotnosti letadla",
+      "nadmořské výšce letu"
+    ],
+    "correct": 2,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 36,
+    "question": "Dvě letadla stejného typu, stejných hmotností a ve stejné konfiguraci letí rozdílnými rychlostmi. Které z nich vyvolá intenzivnější turbulenci v úplavu?",
+    "answers": [
+      "letadlo letící pomaleji",
+      "letadlo letící rychleji",
+      "letadlo letící ve větší nadmořské výšce",
+      "letadlo letící v menší nadmořské výšce"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 37,
+    "question": "Dvě letadla stejného typu, stejných hmotností a ve stejné konfiguraci letí rozdílnými rychlostmi a v rozdílných nadmořských výškách. Které z nich vyvolá intenzivnější turbulenci v úplavu?",
+    "answers": [
+      "letadlo letící pomaleji",
+      "letadlo letící rychleji",
+      "letadlo letící ve větší nadmořské výšce",
+      "letadlo letící v menší nadmořské výšce"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 38,
+    "question": "Jaké existuje nebezpečí při vzletu za odlétajícím těžkým letounem za mírného bočního větru?",
+    "answers": [
+      "turbulence v úplavu na vzletové dráze nebo v její blízkosti",
+      "turbulence v úplavu je rozptýlena a odkloněna",
+      "turbulence v úplavu rotuje rychleji a výše",
+      "turbulence v úplavu se otáčí napříč vzletovou dráhou"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 39,
+    "question": "Lehké letadlo má přistát za dopravním letadlem náležícím do kategorie turbulence v úplavu \"střední\" nebo \"těžké\" na dlouhou přistávací dráhu. Jek se může vyhnout turbulenci v úplavu od dopravního letadla?",
+    "answers": [
+      "strmým přiblížením a dotykem se zemí až za bodem dotyku příďového podvozku dopravního letadla",
+      "nízkým přiblížením a velmi krátkým přistáním. Lehké letadlo by mělo být schopné zastavit před bodem dotyku dopravního letadla",
+      "nízkým přiblížením a dlouhým přistáním s dotykem se zemí za bodem dotyku příďového podvozku dopravního letadla",
+      "strmým přiblížením a velmi krátkým přistáním. Lehké letadlo by mělo být schopné zastavit před bodem dotyku se zemí dopravního letadla"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 40,
+    "question": "Na co je třeba dávat pozor při pojíždění za dopravním letadlem?",
+    "answers": [
+      "vyhnout se proudu plynů za jeho motory, dodržet minimální vzdálenost 200 m",
+      "vyhnout se proudu plynů za jeho motory, dodržet minimální vzdálenost 600 m",
+      "vyhnout se turbulenci v úplavu, dodržet minimální vzdálenost 300 m",
+      "vyhnout se turbulenci v úplavu, dodržet minimální vzdálenost 700 m"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 41,
+    "question": "Technický problém vyžaduje provést nouzové přistání mimo letiště. Co je třeba učinit s ohledem na letovou příručku?",
+    "answers": [
+      "zvolit vhodnou plochu pro přistání, naplánovat přiblížení, provést příslušné nouzové úkony, vyhlásit stav nouze, zahájit přiblížení ve vhodnou dobu a soustředit se na něj",
+      "vyhlásit stav nouze, provést příslušné nouzové úkony, doletět co nejblíže k letišti, aby záchranné složky byly v blízkosti",
+      "informovat služby řízení letového provozu a vyžádat technickou pomoc, v letové příručce vyhledat odkaz na danou situaci a provést nouzové přistání",
+      "snížit rychlost a letadlo uvést do konfigurace pro přistání, aby pilot získal čas, vyhlásit stav nouze, provést příslušné nouzové úkony a nouzové přistání"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 42,
+    "question": "Jaká metoda je vhodná pro přiblížení na nepřipravené přistání do terénu?",
+    "answers": [
+      "strmé přiblížení pro zachování nízké hladiny hluku",
+      "prohlídka terénu pro stanovení trajektorie přiblížení a přistání",
+      "nízké přímé přiblížení, aby byl zajištěn vizuální kontakt se zemí",
+      "rychlé přiblížení, kontrola výkonu, přistání s co nejkratším dojezdem"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 43,
+    "question": "Jaká plocha je vhodná pro přistání mimo letiště?",
+    "answers": [
+      "zorané pole",
+      "plocha pro sport na vesnici",
+      "sklizené obilné pole",
+      "paseka s vysokou suchou trávou"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 44,
+    "question": "Nouzové přistání je:",
+    "answers": [
+      "provedeno jako reakce na okolnosti nutící letadlo přistát",
+      "provedeno při pokusu zachovat bezpečnost letadla a osob na palubě",
+      "provedeno bez výkonu motorů",
+      "provedeno se zasunutými klapkami"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 45,
+    "question": "Přistání provedené za okolností nutících letadlo k přistání je:",
+    "answers": [
+      "nouzové přistání",
+      "bezpečnostní přistání",
+      "urgentní přistání",
+      "přistání mimo letiště"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 46,
+    "question": "Bezpečnostní přistání je:",
+    "answers": [
+      "provedeno jako reakce na okolnosti nutící letadlo přistát",
+      "provedeno jako pokus zachovat bezpečnost letu",
+      "provedeno při vysazení pohonné jednotky letadla",
+      "provedeno se zasunutými klapkami"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 47,
+    "question": "Která z následujících ploch je nejvhodnější pro přistání mimo letiště?",
+    "answers": [
+      "lehce hnědé pole s málo vzrostlými plodinami",
+      "louka bez zvířat",
+      "pole se vrostlou vlnící se úrodou",
+      "jezero s klidnou hladinou"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 48,
+    "question": "Jak se má pilot připravit na let VFR na dlouhou vzdálenost nad vodou, je-li nepravděpodobné, že při vysazení motoru lze dosáhnout pobřeží?",
+    "answers": [
+      "mít k dispozici plovací vesty nebo záchranné čluny pro všechny osoby na palubě",
+      "podat letový plán obsahující přesné traťové body",
+      "být připraven letět s odpovídačem sekundárního radaru",
+      "udržovat nepřetržité spojení se službami řízení letového provozu"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 49,
+    "question": "Co má obsahovat instruktáž pro cestující v případě neodkladného nouzového přistání?",
+    "answers": [
+      "druh nebezpečí, úmysl, bezpečnostní poloha, evakuační cesty, činnost po přistání",
+      "jak pracuje palubní radiostanice, kód nouzového majáku polohy, telefonní číslo na příslušné",
+      "stanoviště pátrání a záchrany",
+      "jak číst seznam nouzových úkonů, jak vypnout motor, telefonní číslo na domácí letiště",
+      "krevní skupiny osob na palubě, umístění soupravy pro první pomoc"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 50,
+    "question": "Brzdy a kola jsou po bezpečnostním přistání velmi horké. Jak se k nim má pilot přibližovat?",
+    "answers": [
+      "zleva nebo zprava",
+      "zepředu nebo zezadu",
+      "pod úhlem 45°",
+      "zepředu a zleva nebo zprava"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 51,
+    "question": "Co může nastat při přehřátí brzd?",
+    "answers": [
+      "zasažené pneumatiky se mohou roztrhnout podélně",
+      "zasažené pneumatiky se mohou roztrhnout příčně nebo ve směru rotace",
+      "zasažené brzdy je třeba chladit halonem",
+      "je třeba odstranit kryty kol, aby se zlepšilo chlazení"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 52,
+    "question": "V případě nouzového přistání na vodu se mají záchranné vesty nafukovat:",
+    "answers": [
+      "před opuštěním letadla",
+      "při opuštění letadla",
+      "po opuštění letadla",
+      "po opuštění letadla v bezpečné vzdálenosti asi 10 m"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 53,
+    "question": "Jaký je účinek mokré trávy na délku vzletu a přistání?",
+    "answers": [
+      "zkrácení délky vzletu a prodloužení délky přistání",
+      "prodloužení délky vzletu a prodloužení délky přistání",
+      "prodloužení délky vzletu a zkrácení délky přistání",
+      "zkrácení délky vzletu a zkrácení délky přistání"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 54,
+    "question": "Kdy je vzletová a přistávací dráha považována za znečistěnou?",
+    "answers": [
+      "je-li více než 25 % povrchu pokryto vodou, rozbředlým sněhem, sněhem nebo ledem silnějším než 3 mm",
+      "je-li více než 50 % povrchu požadované délky a šířky dráhy pokryto vodou, rozbředlým sněhem nebo ledem více než 3 mm hlubokým",
+      "je-li více než 75 % požadované délky a šířky dráhy pokryto znečištěním jako sníh, zmrazky, led, písek",
+      "je-li více než 50 % požadované délky a šířky dráhy pokryto znečištěním jako sníh, zmrazky, led, písek"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 55,
+    "question": "Jaké musí být minimální pokrytí dráhy ledem nebo sněhem, aby byla znečištěnou?",
+    "answers": [
+      "75 %",
+      "50 %",
+      "10 %",
+      "0,25"
+    ],
+    "correct": 1,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 56,
+    "question": "Mokrý sníh na dráze může způsobit:",
+    "answers": [
+      "zvětšenou délku rozjezdu při vzletu",
+      "snížený odpor při rozjezdu během vzletu",
+      "nárůst vztlaku",
+      "pokles vztlaku"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 57,
+    "question": "Jaké nebezpečí pro letadla představuje stojatá voda na dráze?",
+    "answers": [
+      "zvýšený odpor při rozjezdu během vzletu",
+      "snížený odpor při rozjezdu během vzletu",
+      "zvýšení vztlaku",
+      "snížení vztlaku"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 58,
+    "question": "Jaké nebezpečí pro přistávající letadlo představuje intenzivní dešťová přeháňka?",
+    "answers": [
+      "posun označení prokluzu pneumatiky",
+      "delší brzdná vzdálenost kvůli akvaplaninku",
+      "zmenšená brzdná vzdálenost kvůli akvaplaninku",
+      "obtížné podrovnání kvůli odrazu světla"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 59,
+    "question": "Jak se chovat při očekáváném akvaplaninku po přistání?",
+    "answers": [
+      "otáčejí-li se všechna kola, brzděte mírně a směr udržujte kormidly",
+      "intenzivně brzděte, abyste snížili rychlost letadla pod kritickou rychlost akvaplaninku, a pak pokračujte normálně v přistávání",
+      "přidejte výkon a pro brzdění využijte klapky a spoilery",
+      "vybočte letadlo výchylkou křidélek a opačnou výchylkou směrovky, abyste využil trup letadla k aerodynamickému brzdění"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 60,
+    "question": "Jak má být provedeno přistání na znečištěnou dráhu, je-li nevyhnutelné?",
+    "answers": [
+      "přiblížení s minimální možnou boční složkou větru, maximální nastavení klapek, pevný dotyk na minimální rychlosti, brzdit opatrně",
+      "přiblížení na minimální možné boční složce větru, minimální nastavení klapek, měkký dotyk na minimální rychlosti, nebrzdit",
+      "přiblížení na minimální možné boční složce větru, minimální nastavení klapek, měkký dotyk s pozitivním podélným sklonem a minimální rychlostí, nebrzdit",
+      "přiblížení na minimální možné boční složce větru, minimální nastavení klapek, dotyk s negativním podélným sklonem a na minimální rychlosti, brzdit opatrně"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
   }
 ]

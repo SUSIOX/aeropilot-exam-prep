@@ -1,1900 +1,1147 @@
 [
   {
     "id": 1,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Zajištění účelného využívání rádiových kmitočtů a správu rádiového spektra vykonává",
+    "question": "Kdy má pilot vysílat naslepo?",
     "answers": [
-      "Český telekomunikační úřad",
-      "Ministerstvo dopravy",
-      "Úřad pro civilní letectví",
-      "Ministerstvo průmyslu a obchodu"
+      "je-li třeba vysílat důležité provozní nebo technické informace současně více stanicím",
+      "nelze-li navázat rádiové spojení s příslušnou leteckou stanicí a není jistota, že stanice vysílání přijala",
+      "umožňuje-li provozní situace na letišti vysílání informací, které nemusí být pozemními stanicemi",
+      "potvrzovány",
+      "vletěl-li pilot neúmyslně do oblačnosti nebo mlhy a chce vyžádat od pozemní stanice navigační pomoc"
     ],
-    "correct": 0,
-    "explanation": "Správu rádiového spektra a účelné využívání rádiových kmitočtů vykonává Český telekomunikační úřad (ČTÚ)."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 2,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Radiokomunikační službou je komunikační činnost, která spočívá v přenosu, vysílání nebo příjmu signálů prostřednictvím",
+    "question": "Přeladění z řídící frekvence (s výjimkou situace, kdy letadlo přijelo na parkovací místo):",
     "answers": [
-      "rádiových vln",
-      "optických kabelů",
-      "satelitů",
-      "metalických vedení"
+      "musí být schváleno",
+      "musí být ohlášeno",
+      "nemusí být povinně hlášeno",
+      "musí být schváleno dvakrát"
     ],
     "correct": 0,
-    "explanation": "Radiokomunikační služba je definována jako komunikační činnost prostřednictvím rádiových vln."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 3,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Individuální oprávnění k využívání rádiových kmitočtů uděluje",
+    "question": "Jaká zkratka se používá pro pojem \"na úrovni\"?",
     "answers": [
-      "Český telekomunikační úřad",
-      "Ministerstvo dopravy",
-      "Úřad pro civilní letectví",
-      "ICAO"
+      "ABE",
+      "ABB",
+      "ABM",
+      "ABA"
     ],
-    "correct": 0,
-    "explanation": "Individuální oprávnění k využívání rádiových kmitočtů uděluje Český telekomunikační úřad."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 4,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Držitel individuálního oprávnění k využívání rádiových kmitočtů je povinen platit za využívání rádiových kmitočtů",
+    "question": "Jaká zkratka se používá pro pojem \"pravidla pro let za viditelnosti\"?",
     "answers": [
-      "poplatek dle nařízení vlády o poplatcích",
-      "roční licenční poplatek stanovený ICAO",
-      "poplatek dle ceníku ČTÚ schváleného Parlamentem",
-      "žádný poplatek, využívání je bezplatné"
+      "VFR",
+      "VRU",
+      "VMC",
+      "VFS"
     ],
     "correct": 0,
-    "explanation": "Držitel oprávnění platí poplatek dle nařízení vlády o poplatcích za využívání rádiových kmitočtů."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 5,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Rádiovým spektrem se rozumí elektromagnetické vlny o kmitočtu (frekvenci)",
+    "question": "Jaká zkratka se používá pro pojem \"překážka\"?",
     "answers": [
-      "nižším než 3000 GHz",
-      "nižším než 300 GHz",
-      "vyšším než 3 MHz",
-      "v rozsahu 3 kHz až 300 GHz"
+      "OBS",
+      "OBST",
+      "OST",
+      "OBTC"
     ],
-    "correct": 0,
-    "explanation": "Rádiové spektrum tvoří elektromagnetické vlny o kmitočtu nižším než 3000 GHz."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 6,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Rádiové kmitočty z pásma 160 MHz spadají do pásma označovaného jako",
+    "question": "Co znamená zkratka FIS?",
     "answers": [
-      "VHF",
-      "UHF",
-      "HF",
-      "SHF"
+      "blikající informační systém",
+      "blikající informační služba",
+      "letový informační systém",
+      "letová informační služba"
     ],
-    "correct": 0,
-    "explanation": "Pásmo 160 MHz patří do VHF (Very High Frequency), které zahrnuje 30–300 MHz."
+    "correct": 3,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 7,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Státní kontrolu elektronických komunikací vykonává",
+    "question": "Co znamená zkratka FIR?",
     "answers": [
-      "Český telekomunikační úřad",
-      "Ministerstvo vnitra",
-      "Bezpečnostní informační služba",
-      "Úřad pro civilní letectví"
+      "letová informační oblast",
+      "přijímač letové integrity",
+      "informační radar toku provozu",
+      "požadovaná informace toku"
     ],
     "correct": 0,
-    "explanation": "Státní kontrolu elektronických komunikací vykonává Český telekomunikační úřad."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 8,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Fyzická osoba vykonávající obsluhu vysílacího rádiového zařízení bez platného průkazu odborné způsobilosti se dopustila",
+    "question": "Co znamená zkratka H24?",
     "answers": [
-      "přestupku",
-      "trestného činu",
-      "správního deliktu",
-      "porušení pracovní kázně"
+      "od západu do východu slunce",
+      "od východu do západu slunce",
+      "služba 24 hodin denně",
+      "nestanovený otevírací čas"
     ],
-    "correct": 0,
-    "explanation": "Obsluha vysílacího rádiového zařízení bez platného průkazu je přestupkem."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 9,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Za obsluhu vysílacího rádiového zařízení bez platného průkazu odborné způsobilosti lze uložit fyzické osobě pokutu do výše",
+    "question": "Co znamená zkratka HX?",
     "answers": [
-      "100 000 Kč",
-      "50 000 Kč",
-      "500 000 Kč",
-      "10 000 Kč"
+      "od západu do východu slunce",
+      "od východu do západu slunce",
+      "služba 24 hodin denně",
+      "nestanovený otevírací čas"
     ],
-    "correct": 0,
-    "explanation": "Za obsluhu bez platného průkazu lze fyzické osobě uložit pokutu do výše 100 000 Kč."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 10,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "V mezinárodní volací značce České republiky tvoří první dvě písmena (prefix) vždy dvojice písmen",
+    "question": "Jak má být nastaven výškoměr, aby na zemi ukazoval nulu?",
     "answers": [
-      "OK nebo OL",
-      "CZ nebo CR",
-      "OK nebo CZ",
-      "OL nebo OB"
+      "na QFE",
+      "na QNH",
+      "na QNE",
+      "na QTE"
     ],
     "correct": 0,
-    "explanation": "Český prefix v mezinárodních volacích značkách je OK nebo OL."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 11,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Mezinárodní volací značka letadlové stanice u letounů zapsaných v leteckém rejstříku ČR je",
+    "question": "Co ukazuje výškoměr nastavený na QNH?",
     "answers": [
-      "OK a další tři písmena",
-      "CZ a další tři písmena",
-      "OK a další čtyři číslice",
-      "OL a další dvě písmena"
+      "výšku nad tlakovou hladinou 1013.25 hPa",
+      "výšku nad tlakovou hladinou referenčního letiště",
+      "výšku nad tlakovou hladinou střední hladiny moře",
+      "výšku nad tlakovou hladinou bodu s nejvyšší nadmořskou výškou v okruhu 10 km"
     ],
-    "correct": 0,
-    "explanation": "Volací značka letadla registrovaného v ČR je OK následovaný třemi písmeny (např. OK-ABC)."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 12,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Falešné volací značky a falešné signály",
+    "question": "Co ukazuje výškoměr nastavený na QFE?",
     "answers": [
-      "se nesmí používat",
-      "lze použít při cvičném provozu",
-      "lze použít se souhlasem ČTÚ",
-      "jsou povoleny pouze na nestřežených kmitočtech"
+      "výšku nad tlakovou hladinou 1013.25 hPa",
+      "výšku nad tlakovou hladinou referenčního bodu letiště",
+      "výšku nad tlakovou hladinou střední hladiny moře",
+      "výšku nad tlakovou hladinou bodu s nejvyšší nadmořskou výškou v okruhu 10 km"
     ],
-    "correct": 0,
-    "explanation": "Falešné volací značky a falešné signály je přísně zakázáno používat."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 13,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Pohyblivá stanice letecké pohyblivé služby je",
+    "question": "Co znamená zkratka QDR?",
     "answers": [
-      "letadlová stanice",
-      "letecká stanice",
-      "pozemní mobilní stanice",
-      "přenosná pozemní stanice"
+      "magnetický směrník ke stanici",
+      "magnetický směrník od stanice",
+      "zeměpisný směrník ke stanici",
+      "zeměpisný směrník od stanice"
     ],
-    "correct": 0,
-    "explanation": "Pohyblivou stanicí letecké pohyblivé služby je letadlová stanice (stanice na palubě letadla)."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 14,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Pevná služba je",
+    "question": "Co znamená zkratka QUJ?",
     "answers": [
-      "radiokomunikační služba mezi stanovenými pevnými body",
-      "služba zajišťující pevné rádiové spojení na palubě letadla",
-      "služba pro komunikaci mezi letadly a pevnou zemí",
-      "záložní radiokomunikační služba"
+      "magnetický směrník ke stanici",
+      "magnetický směrník od stanice",
+      "zeměpisný směrník ke stanici",
+      "zeměpisný směrník od stanice"
     ],
-    "correct": 0,
-    "explanation": "Pevná služba je radiokomunikační služba provozovaná mezi stanovenými pevnými body."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 15,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Nejvyšší prioritu a absolutní přednost má zpráva",
+    "question": "Co znamená zkratka QTE?",
     "answers": [
-      "tísňová",
-      "pilnostní",
-      "meteorologická",
-      "pro zajištění bezpečnosti letů"
+      "magnetický směrník ke stanici",
+      "magnetický směrník od stanice",
+      "zeměpisný směrník ke stanici",
+      "zeměpisný směrník od stanice"
     ],
-    "correct": 0,
-    "explanation": "Tísňové zprávy (MAYDAY) mají absolutní přednost před všemi ostatními druhy spojení."
+    "correct": 3,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 16,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Pořadí zpráv dle důležitosti je následující",
+    "question": "Jaký Q kód se používá pro magnetický směrník od stanice?",
     "answers": [
-      "tísňové, pilnostní, o rádiovém zaměřování, pro zajištění bezpečnosti letů, meteorologické, o pravidelnosti letů",
-      "pilnostní, tísňové, meteorologické, o bezpečnosti letů, o pravidelnosti letů",
-      "tísňové, meteorologické, pilnostní, o bezpečnosti letů, o pravidelnosti letů",
-      "tísňové, pilnostní, meteorologické, o bezpečnosti letů, o pravidelnosti letů"
+      "QDM",
+      "QDR",
+      "QUJ",
+      "QTE"
     ],
-    "correct": 0,
-    "explanation": "Správné pořadí: tísňové → pilnostní → o rádiovém zaměřování → pro zajištění bezpečnosti letů → meteorologické → o pravidelnosti letů."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 17,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Tísňové volání a tísňová zpráva se vysílají jen na rozkaz",
+    "question": "Jaký Q kód se používá pro zeměpisný směrník od stanice?",
     "answers": [
-      "velitele nebo osoby odpovědné za loď nebo letadlo",
-      "dispečera řízení letového provozu",
-      "jakéhokoliv člena posádky",
-      "majitele letadla"
+      "QDM",
+      "QDR",
+      "QUJ",
+      "QTE"
     ],
-    "correct": 0,
-    "explanation": "Tísňové volání smí být vysíláno pouze na rozkaz velitele nebo osoby odpovědné za letadlo či loď."
+    "correct": 3,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 18,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Mezinárodní tísňový kmitočet v radiotelefonii v letecké pohyblivé službě je",
+    "question": "Jaký Q kód se používá pro zeměpisný směrník ke stanici?",
     "answers": [
-      "121,5 MHz",
-      "123,45 MHz",
-      "118,1 MHz",
-      "406 MHz"
+      "QDM",
+      "QDR",
+      "QUJ",
+      "QTE"
     ],
-    "correct": 0,
-    "explanation": "Mezinárodní tísňový kmitočet v letecké pohyblivé službě je 121,5 MHz."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 19,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Služba u letadlové nebo lodní stanice podléhá nejvyšší pravomoci",
+    "question": "Která z uvedených radiotelefonních zpráv má vyšší prioritu než zpráva o bezpečnosti letu?",
     "answers": [
-      "velitele nebo osoby, která je odpovědná za letadlo nebo loď",
-      "řídícího letového provozu",
-      "rádiového operátora",
-      "majitele letadla nebo lodi"
+      "zpráva o rádiovém zaměřování",
+      "hlášení polohy letadla",
+      "meteorologická zpráva",
+      "zpráva o pravidelnosti letu"
     ],
     "correct": 0,
-    "explanation": "Služba u letadlové stanice podléhá nejvyšší pravomoci velitele nebo osoby odpovědné za letadlo."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 20,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Doba platnosti průkazů radiotelefonistů pro leteckou a námořní pohyblivou službu je stanovena na",
+    "question": "Jaký je správný název pro zprávu potřebnou pro řízení letového provozu?",
     "answers": [
-      "10 let při prvním vydání průkazu",
-      "5 let při prvním vydání průkazu",
-      "3 roky při prvním vydání průkazu",
-      "dobu neurčitou"
+      "zpráva o rádiovém zaměřování",
+      "zpráva o pravidelnosti letu",
+      "meteorologická zpráva",
+      "zpráva pro zajištění bezpečnosti letu"
     ],
     "correct": 0,
-    "explanation": "Průkaz radiotelefonisty se při prvním vydání vydává na dobu 10 let."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 21,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "O prodloužení doby platnosti průkazu odborné způsobilosti se žádá",
+    "question": "Tísňové zprávy jsou zprávy:",
     "answers": [
-      "písemně, minimálně jeden měsíc před koncem platnosti průkazu",
-      "elektronicky, kdykoliv před koncem platnosti průkazu",
-      "osobně, nejpozději v den uplynutí platnosti",
-      "písemně, nejpozději tři měsíce před koncem platnosti"
+      "týkající se letadla a cestujících, kteří čelí závažné a bezprostřední hrozbě vyžadující okamžitou pomoc",
+      "týkající se bezpečnosti letadla, plavidla nebo vozidla nebo osoby v dohledu",
+      "od provozovatele letadla, které mají být neprodleně odeslány letadlu za letu",
+      "týkající se provozu nebo údržby zařízení důležitých pro bezpečnost a pravidelnost letového provozu"
     ],
     "correct": 0,
-    "explanation": "O prodloužení platnosti průkazu se žádá písemně minimálně jeden měsíc před koncem platnosti."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 22,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Při žádosti o prodloužení platnosti průkazu je třeba také",
+    "question": "Pilnostní zprávy jsou zprávy:",
     "answers": [
-      "uhradit příslušný správní poplatek a doložit praxi v obsluze rádiových stanic",
-      "složit znovu celou zkoušku odborné způsobilosti",
-      "předložit lékařské potvrzení o zdravotní způsobilosti",
-      "uhradit pouze správní poplatek, praxe se nedokládá"
+      "týkající se letadla a jeho cestujících, kteří čelí vážné a bezprostřední hrozbě a vyžadující okamžitou pomoc",
+      "týkající se bezpečnosti letadla, plavidla, vozidla nebo osoby v dohledu",
+      "vyslané pilotem nebo provozovatelem letadla mající bezprostřední význam pro letadlo za letu",
+      "týkající se provozu nebo údržby zařízení nezbytných pro bezpečnost nebo pravidelnost provozu letadel"
     ],
-    "correct": 0,
-    "explanation": "K prodloužení platnosti je nutné uhradit správní poplatek a doložit praxi v obsluze rádiových stanic."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 23,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "V případě, že doba platnosti průkazu již uplynula, může držitel průkazu žádat o nový průkaz",
+    "question": "Zprávy o pravidelnosti letů jsou zprávy:",
     "answers": [
-      "v období do jednoho roku ode dne pozbytí platnosti průkazu",
-      "kdykoliv po uplynutí platnosti",
-      "pouze do 30 dnů od uplynutí platnosti",
-      "nový průkaz nelze získat, je nutné složit novou zkoušku"
+      "týkající se letadla a jeho cestujících, kteří čelí vážné a bezprostřední hrozbě vyžadující okamžitou pomoc",
+      "týkající se bezpečnosti letadla, plavidla, vozidla nebo osoby v dohledu",
+      "vyslané provozovatelem letadla nebo letadlem mající bezprostřední význam pro letadlo za letu",
+      "týkající se provozu nebo údržby zařízení důležitých pro bezpečnost nebo pravidelnost provozu letadel"
     ],
     "correct": 0,
-    "explanation": "Po uplynutí platnosti průkazu lze žádat o nový průkaz do jednoho roku od pozbytí platnosti."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 24,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Doba platnosti průkazů radiotelefonistů námořní a letecké pohyblivé služby se na základě žádosti držitele prodlužuje o",
+    "question": "Která z následujících zpráv má největší přednost?",
     "answers": [
-      "5 let",
-      "10 let",
-      "3 roky",
-      "2 roky"
+      "žádám QDM",
+      "točte doleva",
+      "QNH 1013",
+      "vítr 300 stupňů, 5 uzlů"
     ],
     "correct": 0,
-    "explanation": "Platnost průkazu se prodlužuje vždy o 5 let."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 25,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "První znak nebo první dva znaky mezinárodní volací značky označují",
+    "question": "Jak se správně vysílá volací značka HB-YKM?",
     "answers": [
-      "státní příslušnost stanice",
-      "typ stanice",
-      "kmitočtové pásmo stanice",
-      "druh radiokomunikační služby"
+      "Home Bravo Yuliett Kilo Mike",
+      "Home Bravo Yankee Kilo Mikro",
+      "Hotel Bravo Yankee Kilo Mike",
+      "Hotel Bravo Yuliett Kilo Mikro"
     ],
     "correct": 0,
-    "explanation": "První jeden nebo dva znaky volací značky označují státní příslušnost (prefix státu) stanice."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 26,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Stejná volací značka",
+    "question": "Jak se správně vysílá volací značka OE-JVK?",
     "answers": [
-      "nemůže být přidělena dvěma nebo více provozovatelům stanic",
-      "může být přidělena v různých kmitočtových pásmech různým provozovatelům",
-      "může být sdílena dvěma provozovateli, pokud nevysílají současně",
-      "může být přidělena více provozovatelům v různých státech"
+      "Omega Echo Juliett Victor Kilogramm",
+      "Oscar Echo Juliett Victor Kilo",
+      "Oscar Echo Jankee Victor Kilogramm",
+      "Omega Echo Jankee Victor Kilo"
     ],
-    "correct": 0,
-    "explanation": "Každá volací značka musí být jedinečná a nemůže být přidělena dvěma nebo více provozovatelům."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 27,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Inspekční orgány zemí, které provedou kontrolu vybavení radiové stanice",
+    "question": "Výška 4500 ft se vysílá jako:",
     "answers": [
-      "mohou vyžadovat předložení průkazu operátora",
-      "nesmí kontrolovat průkazy operátorů",
-      "mohou průkaz operátora odebrat",
-      "jsou povinny průkaz operátora zkontrolovat"
+      "čtyři tisíce pět set",
+      "čtyři pět nula nula",
+      "čtyři pět tisíc",
+      "čtyři tisíce pět nula nula"
     ],
     "correct": 0,
-    "explanation": "Inspekční orgány jsou oprávněny při kontrole vyžadovat předložení průkazu operátora."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 28,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Mezinárodní telekomunikační unie (ITU) je",
+    "question": "Kurz 285 se právně vysílá jako:",
     "answers": [
-      "specializovanou organizací Organizace spojených národů pro oblast telekomunikací",
-      "evropskou organizací pro správu rádiového spektra",
-      "nevládní organizací pro rozvoj rádiových technologií",
-      "součástí ICAO pro letecké telekomunikace"
+      "dvě stě osum pět",
+      "dva osum pět",
+      "dva sto osum pět",
+      "dvě stě osumdesát pět"
     ],
-    "correct": 0,
-    "explanation": "ITU (International Telecommunication Union) je specializovanou agenturou OSN pro telekomunikace."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 29,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Mezinárodní organizací CEPT se rozumí",
+    "question": "Frekvence 119.500 MHz se správně vysílá jako:",
     "answers": [
-      "Evropská konference poštovních a telekomunikačních správ",
-      "Evropský výbor pro leteckou elektroniku",
-      "Mezinárodní výbor pro rádiová pravidla",
-      "Konference pro evropské přenosové technologie"
+      "jedna jedna devět tisíc čárka pět nula",
+      "jedna jedna devět čárka pět nula nula",
+      "jedna jedna devět čárka pět nula",
+      "jedna jedna devět čárka pět"
     ],
-    "correct": 0,
-    "explanation": "CEPT je Evropská konference poštovních a telekomunikačních správ (Conférence Européenne des Postes et Télécommunications)."
+    "correct": 3,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 30,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Q-kódem se rozumí",
+    "question": "Informace o směru \"12 hodin\" se správně vysílá jako:",
     "answers": [
-      "kódová skupina tří písmen začínající vždy písmenem Q, která má určitý konkrétní, mezinárodně dohodnutý význam",
-      "šifrovaný kód pro vojenské radiové spojení",
-      "čtyřpísmenný identifikátor letiště",
-      "kód pro kvalitu rádiového signálu"
+      "dvanáct hodin",
+      "jedna dva hodin",
+      "jedna dva",
+      "jedna dva sto"
     ],
     "correct": 0,
-    "explanation": "Q-kód je skupina tří písmen začínající Q s mezinárodně dohodnutým významem (např. QNH, QFE, QDM)."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 31,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Volací značky se přidělují tak, aby nemohly být zaměněny",
+    "question": "Časy se vysílají jako:",
     "answers": [
-      "s tísňovými, pilnostními a bezpečnostními signály nebo s kódovými zkratkami Q-kódu",
-      "s meteorologickými zkratkami METAR",
-      "s názvy letišť a jejich ICAO kódy",
-      "s kmitočty používanými pro danou trať"
+      "místní čas",
+      "UTC",
+      "standardní čas",
+      "pásmový čas"
     ],
-    "correct": 0,
-    "explanation": "Volací značky nesmí být zaměnitelné s tísňovými/pilnostními signály ani s Q-kódy."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 32,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Volací značkou je",
+    "question": "Je-li možná záměna, čas 1620 se vysílá jako:",
     "answers": [
-      "každé poznávací označení stanice přidělené podle Radiokomunikačního řádu, které umožňuje zjištění její totožnosti během vysílání",
-      "registrační číslo radiostanice přidělené výrobcem",
-      "kmitočtový kanál přidělený stanici",
-      "šifrovaný identifikátor používaný pouze při tísňovém provozu"
+      "šestnáct dvacet",
+      "jeden tisíc šest set dva nula",
+      "jedna šest dva nula",
+      "dva nula"
     ],
-    "correct": 0,
-    "explanation": "Volací značka je jedinečné označení stanice přidělené dle Radiokomunikačního řádu pro identifikaci při vysílání."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 33,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Telekomunikační tajemství se týká",
+    "question": "Jaký je význam slova \"rozumím\"?",
     "answers": [
-      "všech osob, které znají obsah rádiových zpráv nebo se dověděly o jejich existenci či o zprávě, která byla doručena prostřednictvím radiokomunikační služby",
-      "pouze zaměstnanců telekomunikačních firem",
-      "pouze osob se speciálním bezpečnostním prověřením",
-      "pouze operátorů státních radiokomunikačních stanic"
+      "rozumím Vaší zprávě a budu podle ní postupovat",
+      "přijal jsem vše z Vašeho posledního vysílání",
+      "v tomto vysílání byla učiněna chyba, správné znění je",
+      "povolení pro požadovaný úkon je uděleno"
     ],
-    "correct": 0,
-    "explanation": "Telekomunikační tajemství se vztahuje na všechny osoby, které se dozvěděly obsah nebo existenci radiokomunikačních zpráv."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 34,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Každý, kdo se dozví informace o skutečnostech, které jsou předmětem telekomunikačního tajemství",
+    "question": "Jaký je význam slova \"oprava\"?",
     "answers": [
-      "je povinen zachovávat o nich mlčenlivost",
-      "je povinen je nahlásit ČTÚ",
-      "je oprávněn je sdělit nadřízenému",
-      "může je použít pro výkon své profese"
+      "rozumím Vaší zprávě a budu podle ní postupovat",
+      "přijal jsem vše z Vašeho posledního vysílání",
+      "v tomto vysílání byla učiněna chyba, správné znění je",
+      "povolení pro požadovaný úkon je uděleno"
     ],
-    "correct": 0,
-    "explanation": "Povinností každého, kdo se dozví obsah chráněný telekomunikačním tajemstvím, je zachovávat o něm mlčenlivost."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 35,
-    "kategorie": "a) radiokomunikační předpisy",
-    "question": "Předmětem telekomunikačního tajemství je zejména",
+    "question": "Jaký je význam fráze \"schváleno\"?",
     "answers": [
-      "obsah zpráv přepravovaných nebo jinak zprostředkovaných telekomunikačními zařízeními a sítěmi s výjimkou zpráv určených veřejnosti",
-      "technická dokumentace telekomunikačních zařízení",
-      "obchodní tajemství telekomunikačních operátorů",
-      "veškeré zprávy šířené radiokomunikačními prostředky včetně zpráv určených veřejnosti"
+      "rozumím Vaší zprávě a budu podle ní postupovat",
+      "přijal jsem vše z Vašeho posledního vysílání",
+      "v tomto vysílání byla učiněna chyba, správně znění je",
+      "povolení pro požadovaný úkon je uděleno"
     ],
-    "correct": 0,
-    "explanation": "Předmětem telekomunikačního tajemství je obsah zpráv přepravovaných telekomunikačními sítěmi, s výjimkou zpráv určených veřejnosti."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 36,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Letecká pohyblivá služba je",
+    "question": "Jakou frázi použije pilot, chce-li zkontrolovat čitelnost svého vysílání?",
     "answers": [
-      "pohyblivá služba mezi leteckými stanicemi a letadlovými stanicemi nebo mezi letadlovými stanicemi navzájem",
-      "služba pro komunikaci mezi letišti navzájem",
-      "pohyblivá radiokomunikační služba pro vojenská letadla",
-      "služba pro přenos navigačních dat do letadel"
+      "jaké je spojení",
+      "jak slyšíte",
+      "slyšíte mě dokonale srozumitelně",
+      "žádám slyšitelnost"
     ],
     "correct": 0,
-    "explanation": "Letecká pohyblivá služba je radiokomunikační služba mezi leteckými stanicemi (pozemními) a letadlovými stanicemi nebo mezi letadly navzájem."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 37,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Letecká pevná služba (AFS dle L10) je",
+    "question": "Jakou frázi použije pilot, chce-li proletět řízeným prostorem?",
     "answers": [
-      "telekomunikační služba mezi stanovenými pevnými body",
-      "radiokomunikační služba pro záchranné práce na letištích",
-      "radionavigační služba pro pevné letové trasy",
-      "služba pro pevné přidělení kmitočtů letadlům"
+      "chci",
+      "požaduji",
+      "žádám",
+      "chtěl bych"
     ],
     "correct": 0,
-    "explanation": "Letecká pevná služba (AFS) je telekomunikační služba provozovaná mezi stanovenými pevnými body (např. mezi ŘLP a meteorologickými středisky)."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 38,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Letecká rozhlasová služba (dle L10) je",
+    "question": "Jakou frázi použije pilot, má-li na zprávu odpovědět souhlasně?",
     "answers": [
-      "služba určená k vysílání informací týkajících se leteckého provozu",
-      "komerční rozhlasová služba v pásmech letecké pohyblivé služby",
-      "služba pro přenos hudby a zpráv na paluby letadel",
-      "záložní komunikační služba pro letecký provoz"
+      "rozumím",
+      "potvrzuji",
+      "souhlasím",
+      "ano"
     ],
-    "correct": 0,
-    "explanation": "Letecká rozhlasová služba slouží k vysílání informací týkajících se leteckého provozu (např. ATIS, VOLMET)."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 39,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Pozemní stanice letecké pohyblivé služby je",
+    "question": "Jakou frázi použije pilot, má-li na zprávu odpovědět záporně?",
     "answers": [
-      "letecká stanice",
-      "letadlová stanice",
-      "pohyblivá pozemní stanice",
-      "pevná stanice"
+      "konec",
+      "nikoliv",
+      "ne",
+      "negativ"
     ],
     "correct": 0,
-    "explanation": "Pozemní stanicí letecké pohyblivé služby je letecká stanice (stanice na zemi komunikující s letadly)."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 40,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Vysílání pokusných signálů nesmí trvat déle než",
+    "question": "Jakou frázi použije pilot, chce-li věži oznámit, že je připraven ke vzletu?",
     "answers": [
-      "10 vteřin",
-      "30 vteřin",
-      "60 vteřin",
-      "5 vteřin"
+      "připraven ke spouštění",
+      "připraven k odletu",
+      "připraven",
+      "žádám vzlet"
     ],
-    "correct": 0,
-    "explanation": "Zkušební vysílání (pokusné signály) nesmí trvat déle než 10 sekund."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 41,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Při zkušebním vysílání dokonalá čitelnost je uváděna stupněm",
+    "question": "Jakou frázi použije pilot, chce-li věž informovat, že provádí průlet?",
     "answers": [
-      "5 (Dokonale čitelné)",
-      "1 (Nečitelné)",
-      "4 (Čitelné)",
-      "3 (Čitelné s obtížemi)"
+      "bez přistání",
+      "přiblížení zrušeno",
+      "tahám",
+      "provádím průlet"
     ],
     "correct": 0,
-    "explanation": "Stupnice čitelnosti je 1–5, přičemž stupeň 5 označuje dokonale čitelný signál."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 42,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Zkušební vysílání musí obsahovat",
+    "question": "Jaký je volací znak stanoviště letištního řízení?",
     "answers": [
-      "volací značku volané stanice, volací značku letadla, slova ZKOUŠKA RÁDIA, používaný kmitočet",
-      "pouze volací značku letadla a slova ZKOUŠKA RÁDIA",
-      "volací značku letadla, jméno pilota a používaný kmitočet",
-      "volací značku volané stanice a čas zahájení zkoušky"
+      "věž",
+      "letiště",
+      "zem",
+      "oblast"
     ],
     "correct": 0,
-    "explanation": "Zkušební vysílání musí obsahovat: volací značku volané stanice, volací značku letadla, slova ZKOUŠKA RÁDIA a používaný kmitočet."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 43,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Rychlost hovoru při radiotelefonním spojení nemá převyšovat",
+    "question": "Jaký je volací znak stanoviště řízení pohybů na zemi?",
     "answers": [
-      "100 slov za minutu",
-      "60 slov za minutu",
-      "150 slov za minutu",
-      "200 slov za minutu"
+      "věž",
+      "ground",
+      "zem",
+      "oblast"
     ],
-    "correct": 0,
-    "explanation": "Doporučená maximální rychlost hovoru v radiotelefonním spojení je 100 slov za minutu."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 44,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Radiotelefonní spojení letadlo – země by se mělo provádět",
+    "question": "Jaký je volací znak stanoviště letové informační služby?",
     "answers": [
-      "všeobecně v jazyce, ve kterém komunikuje pozemní stanice",
-      "vždy v angličtině jako mezinárodním jazyce letectví",
-      "vždy v jazyce státu, ve kterém letadlo operuje",
-      "v jazyce dle volby velitele letadla"
+      "info",
+      "poradní",
+      "letová informace",
+      "informace"
     ],
     "correct": 0,
-    "explanation": "Spojení letadlo–země se provádí všeobecně v jazyce, ve kterém komunikuje pozemní (letecká) stanice."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 45,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Zprávy musí být vysílány",
+    "question": "Jak lze správně zkrátit volací znak D-EAZF?",
     "answers": [
-      "v otevřené řeči a ve schválených frázích",
-      "výhradně v angličtině",
-      "pouze v dohodnutém kódu",
-      "v šifrované podobě pro bezpečnost"
+      "DZF",
+      "DEA",
+      "AZF",
+      "DEF"
     ],
     "correct": 0,
-    "explanation": "Zprávy musí být vysílány v otevřené řeči a ve schválených standardních frázích (frazeologii)."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 46,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Při vysílání",
+    "question": "Kdy může pilot zkrátit volací znak svého letadla?",
     "answers": [
-      "zachováváme stále stejnou výši hlasu ve všech fázích hovoru",
-      "zvyšujeme hlas při vysílání číslic",
-      "snižujeme hlas při vysílání volací značky",
-      "přizpůsobujeme hlas hlasitosti provozu na kmitočtu"
+      "v řízeném vzdušném prostoru",
+      "poté, co pozemní stanice použila zkrácenou značku",
+      "je-li na okruhu malý provoz",
+      "po přeletu prvního hlásného bodu"
     ],
-    "correct": 0,
-    "explanation": "Při vysílání je nutno zachovávat stále stejnou výši hlasu ve všech fázích hovoru."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 47,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Pořadí zpráv dopravovaných leteckou pohyblivou službou je",
+    "question": "Jaký volací znak letadla se použije při navazování spojení?",
     "answers": [
-      "tísňové, pilnostní, o rádiovém zaměřování, pro zajištění bezpečnosti letů, meteorologické, o pravidelnosti letů",
-      "pilnostní, tísňové, o bezpečnosti letů, meteorologické, o pravidelnosti letů",
-      "tísňové, meteorologické, pilnostní, o zaměřování, o pravidelnosti letů",
-      "o bezpečnosti letů, tísňové, pilnostní, meteorologické"
+      "pouze poslední dvě písmena anebo číslice",
+      "pouze první dvě písmena anebo číslice",
+      "všechna písmena anebo číslice",
+      "pouze první tři písmena anebo číslice"
     ],
     "correct": 0,
-    "explanation": "Pořadí priority zpráv v letecké pohyblivé službě: tísňové → pilnostní → o rádiovém zaměřování → pro zajištění bezpečnosti letů → meteorologické → o pravidelnosti letů."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 48,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "MAYDAY je radiotelefonní signál",
+    "question": "Jak se správně navazuje rádiové spojení mezi OK-ABC a Tuřany věž?",
     "answers": [
-      "tísňové zprávy",
-      "pilnostní zprávy",
-      "zprávy o bezpečnosti",
-      "žádosti o navigační pomoc"
+      "věž od OK-ABC",
+      "Tuřany věž, přepínám",
+      "OK-ABC volá Tuřany věž",
+      "Tuřany věž OK-ABC"
     ],
-    "correct": 0,
-    "explanation": "MAYDAY je mezinárodní tísňový signál (z francouzského m'aidez = pomozte mi), vysílaný třikrát."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 49,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "PAN PAN je radiotelefonní signál",
+    "question": "Jak se správně potvrdí pokyn \"volejte Tuřany věž na 121.275\"?",
     "answers": [
-      "pilnostní zprávy",
-      "tísňové zprávy",
-      "zprávy o bezpečnosti",
-      "meteorologické zprávy"
+      "volejte věž na 121.275",
+      "121.275",
+      "volejte věž",
+      "volejte 121.275"
     ],
-    "correct": 0,
-    "explanation": "PAN PAN je signál pilnostní zprávy (stav pilnosti), kdy je ohrožena bezpečnost letadla nebo osob, ale situace zatím nevyžaduje okamžitou pomoc."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 50,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Tísňová korespondence",
+    "question": "Co znamená srozumitelnost 1?",
     "answers": [
-      "má přednost před všemi ostatními druhy spojení",
-      "má přednost pouze před meteorologickými zprávami",
-      "nemá přednost před pilnostním provozem",
-      "má přednost pouze v případě, že letecká stanice ji uzná za nutnou"
+      "vysílání je nesrozumitelné",
+      "vysílání je chvílemi srozumitelné",
+      "vysílání je srozumitelné, ale s obtížemi",
+      "vysílání je dokonale srozumitelné"
     ],
     "correct": 0,
-    "explanation": "Tísňová korespondence (MAYDAY) má absolutní přednost před všemi ostatními druhy rádiového spojení."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 51,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Pilnostní zpráva",
+    "question": "Co znamená srozumitelnost 2?",
     "answers": [
-      "má přednost před všemi ostatními druhy spojení vyjma tísňového provozu",
-      "má přednost před všemi ostatními druhy spojení včetně tísňového provozu",
-      "nemá přednost ani před meteorologickými zprávami",
-      "má přednost pouze před pravidelnými zprávami o letu"
+      "vysílání je nesrozumitelné",
+      "vysílání je chvílemi srozumitelné",
+      "vysílání je srozumitelné, ale s obtížemi",
+      "vysílání je dokonale srozumitelné"
     ],
-    "correct": 0,
-    "explanation": "Pilnostní zpráva (PAN PAN) má přednost před vším kromě tísňového provozu (MAYDAY)."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 52,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Tísňový a pilnostní provoz musí být zahájen na kmitočtu",
+    "question": "Co znamená srozumitelnost 3?",
     "answers": [
-      "který je v dané chvíli používán",
-      "vždy na 121,5 MHz",
-      "přiděleném pro danou trať",
-      "určeném leteckou stanicí"
+      "vysílání je nesrozumitelné",
+      "vysílání je chvílemi srozumitelné",
+      "vysílání je srozumitelné, ale s obtížemi",
+      "vysílání je dokonale srozumitelné"
     ],
-    "correct": 0,
-    "explanation": "Tísňový a pilnostní provoz se zahajuje na kmitočtu, který je v dané chvíli používán (tzn. na aktuálním pracovním kmitočtu)."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 53,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Po volání letecké stanice, na které tato stanice neodpoví, je letadlová stanice povinna",
+    "question": "Co znamená srozumitelnost 5?",
     "answers": [
-      "vyčkat nejméně 10 sekund, než provede další volání",
-      "okamžitě přejít na záložní kmitočet",
-      "opakovat volání každé 3 sekundy",
-      "přejít na tísňový kmitočet 121,5 MHz"
+      "vysílání je nesrozumitelné",
+      "vysílání je chvílemi srozumitelné",
+      "vysílání je srozumitelné, ale s obtížemi",
+      "vysílání je dokonale srozumitelné"
     ],
-    "correct": 0,
-    "explanation": "Pokud letecká stanice neodpoví, musí letadlová stanice vyčkat nejméně 10 sekund před dalším voláním."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 54,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Jména, zkratky a slova, jejichž výslovnost může vyvolat pochybnost, se v radiotelefonním provozu musí",
+    "question": "Která informace od pozemní stanice nevyžaduje opakování zprávy?",
     "answers": [
-      "hláskovat",
-      "vynechat",
-      "nahradit synonymem",
-      "vyslovit pomalu dvakrát za sebou"
+      "dráha v používání",
+      "kód odpovídače sekundárního radaru",
+      "vítr",
+      "výška"
     ],
-    "correct": 0,
-    "explanation": "Nejasná nebo snadno zaměnitelná slova se hláskují pomocí hláskovací abecedy (ICAO/národní)."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 55,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Letadlová stanice udržuje rádiové spojení s řídící stanicí",
+    "question": "Která informace od pozemní stanice nevyžaduje opakování zprávy?",
     "answers": [
-      "vždy, je-li to možné",
-      "pouze při vzletu a přistání",
-      "pouze v řízeném vzdušném prostoru",
-      "pouze na vyžádání letecké stanice"
+      "nastavení výškoměru",
+      "kurz",
+      "informace o provozu",
+      "pokyny pro pojíždění"
     ],
-    "correct": 0,
-    "explanation": "Letadlová stanice musí udržovat rádiové spojení s příslušnou řídící stanicí vždy, je-li to možné."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 56,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Letadlová stanice potvrzuje příjem důležitých zpráv řízení letového provozu nebo jejich částí",
+    "question": "Jak se má správně potvrdit pokyn \"DZF po odpoutání stoupejte přímo do 2500 stop, potom točte doprava na kurz 220, vítr 090 stupňů, 5 uzlů, dráha 12, vzlet povolen\"?",
     "answers": [
-      "jejich opakováním a připojením vlastní volací značky",
-      "slovem ROZUMÍM",
-      "slovem SCHVÁLENO",
-      "pouze kývnutím hlavy nebo mávnutím křídly"
+      "DZF po odpoutání stoupat přímo na 2500 stop, potom točit doprava 220, 090 stupňů, 5 uzlů, vzlet povolen",
+      "DZF po odpoutání přímo 2500 stop, potom točit doprava na kurz 220, 09 stupňů, 5 uzlů",
+      "DZF po odpoutání stoupat přímo 2500 stop, potom točit doprava kurz 220, dráha 12, vzlet povolen",
+      "DZF po odpoutání stoupat přímo 2500 stop, rozumím, provedu, kurz 220, 090 stupňů, 5 uzlů, vzlet",
+      "povolen"
     ],
-    "correct": 0,
-    "explanation": "Důležité zprávy ŘLP se potvrzují opakováním (read-back) a připojením vlastní volací značky."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 57,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Za letu musí letadlová stanice",
+    "question": "Jak se má správně potvrdit pokyn \"příští hlášení PAH\"?",
     "answers": [
-      "udržovat stálou poslechovou hlídku",
-      "vysílat každých 10 minut polohu letadla",
-      "udržovat spojení pouze v řízeném prostoru",
-      "poslouchat pouze na tísňovém kmitočtu 121,5 MHz"
+      "rozumím",
+      "ohlásím PAH",
+      "pozitiv",
+      "provedu"
     ],
-    "correct": 0,
-    "explanation": "Letadlová stanice musí za letu nepřetržitě udržovat poslechovou hlídku na přiděleném kmitočtu."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 58,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Letadlo přechází z jednoho rádiového kmitočtu na druhý",
+    "question": "Jak se má správně potvrdit pokyn \"squawk 4321, volejte Bremen radar na 131.325\"?",
     "answers": [
-      "z příkazu letecké stanice v souladu s dohodnutými postupy",
-      "dle vlastního uvážení pilota",
-      "automaticky na základě polohy letadla",
-      "pouze po souhlasu nadřízeného pilota"
+      "squawk 4321, 131.325",
+      "rozumím",
+      "squawk 4321, provedu",
+      "provedu"
     ],
     "correct": 0,
-    "explanation": "Přechod na jiný kmitočet se provádí na příkaz letecké stanice nebo v souladu s dohodnutými postupy."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 59,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Jestliže letadlová stanice není schopna navázat spojení s leteckou stanicí na určeném a jiném kmitočtu pro danou trať",
+    "question": "Jak se správně potvrdí informace \"nyní vstupujete do vzdušného prostoru Delta\"?",
     "answers": [
-      "pokusí se navázat spojení s jiným letadlem nebo jinými leteckými stanicemi",
-      "přejde na tísňový kmitočet 121,5 MHz",
-      "pokračuje v letu bez rádiového spojení",
-      "okamžitě se vrátí na letiště odletu"
+      "vstupuji",
+      "rozumím",
+      "vzdušný prostor Delta",
+      "provedu"
     ],
-    "correct": 0,
-    "explanation": "Není-li možné navázat spojení s příslušnou stanicí, letadlo se pokusí spojit s jiným letadlem nebo jinou leteckou stanicí."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 60,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Letadlo za letu",
+    "question": "Jaké pokrytí oblačností znamená zkratka FEW ve zprávě METAR?",
     "answers": [
-      "nesmí měnit svou volací značku",
-      "může změnit volací značku se souhlasem pilota",
-      "může změnit volací značku na příkaz letecké stanice",
-      "může používat zkrácenou i plnou volací značku střídavě"
+      "1 až 2 osminy",
+      "3 až 4 osminy",
+      "5 až 7 osmin",
+      "8 osmin"
     ],
     "correct": 0,
-    "explanation": "Volací značka letadla musí být za letu neměnná."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 61,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Poznávací značka civilního letadla je složena",
+    "question": "Jaké pokrytí oblačností znamená zkratka SCT ve zprávě METAR?",
     "answers": [
-      "ze značky státní příslušnosti a rejstříkové značky",
-      "z kódu výrobce a výrobního čísla",
-      "z kódu letiště registrace a pořadového čísla",
-      "z kódu ICAO státu a čtyřmístného čísla"
+      "1 až 2 osminy",
+      "3 až 4 osminy",
+      "5 až 7 osmin",
+      "8 osmin"
     ],
-    "correct": 0,
-    "explanation": "Poznávací (registrační) značka civilního letadla se skládá ze značky státní příslušnosti (prefix) a rejstříkové značky."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 62,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Volací značku letadla lze tvořit",
+    "question": "Jaké pokrytí oblačností znamená zkratka BKN ve zprávě METAR?",
     "answers": [
-      "radiotelefonním označením provozovatele letadla za kterým následuje označení (číslo) letu v souladu s předpisem ICAO",
-      "pouze registrační značkou letadla",
-      "kombinací ICAO kódu letiště a čísla letu",
-      "zkratkou dopravce a náhodně přiděleným číslem"
+      "1 až 2 osminy",
+      "3 až 4 osminy",
+      "5 až 7 osmin",
+      "8 osmin"
     ],
-    "correct": 0,
-    "explanation": "Volací značka letadla může být tvořena radiotelefonním označením dopravce (např. CSA) následovaným číslem letu."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 63,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Volací značka letecké stanice je tvořena",
+    "question": "Jak se správně vysílá informace \"dohlednost 12 km\"?",
     "answers": [
-      "zeměpisným názvem její polohy a službou, která je k dispozici",
-      "čtyřmístným kódem ICAO letiště",
-      "kmitočtem stanice a názvem letiště",
-      "kódem státu a názvem letiště"
+      "dvanáct kilometrů",
+      "jedna - dva kilometry",
+      "jedna - nula kilometrů nebo více",
+      "jedna - nula kilometrů"
     ],
-    "correct": 0,
-    "explanation": "Volací značka letecké stanice se skládá ze zeměpisného názvu (např. Praha) a druhu poskytované služby (např. APPROACH, TOWER, INFO)."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 64,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Ve volací značce letecké stanice přibližovacího stanoviště může být název",
+    "question": "Kdy se dohlednost vysílá v metrech?",
     "answers": [
-      "APPROACH",
-      "TOWER",
-      "CONTROL",
-      "RADAR"
+      "do 5 km",
+      "větší než 5 km",
+      "do 10 km",
+      "větší než 10 km"
     ],
     "correct": 0,
-    "explanation": "Přibližovací stanoviště (APP) používá ve volací značce označení APPROACH (např. Praha Approach)."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 65,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Ve volací značce letecké stanice pro neřízená letiště je název",
+    "question": "Kdy se dohlednost vysílá v kilometrech?",
     "answers": [
-      "INFO nebo RADIO",
-      "TOWER nebo CONTROL",
-      "APPROACH nebo RADAR",
-      "GROUND nebo CLEARANCE"
+      "do 5 km",
+      "větší než 5 km",
+      "do 10 km",
+      "větší než 10 km"
     ],
     "correct": 0,
-    "explanation": "Na neřízených letištích se ve volací značce používá INFO (AFIS) nebo RADIO."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 66,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Zkrácenou volací značku použije letadlová stanice",
+    "question": "Jaké informace se vysílají na frekvenci VOLMET?",
     "answers": [
-      "pouze v případě, že byla tímto způsobem oslovena leteckou stanicí",
-      "vždy po prvním úspěšném navázání spojení",
-      "kdykoli uzná pilot za vhodné",
-      "pouze v neřízeném vzdušném prostoru"
+      "NOTAMy",
+      "aktuální informace",
+      "navigační informace",
+      "meteorologické informace"
     ],
     "correct": 0,
-    "explanation": "Zkrácená volací značka se smí používat pouze tehdy, byla-li letadlová stanice tímto způsobem oslovena pozemní stanicí."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 67,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Správné zkrácení volací značky OKABC je",
+    "question": "Jaké navigační zařízení lze využít pro vysílání zpráv ATIS?",
     "answers": [
-      "OBC",
-      "OAB",
-      "ABC",
-      "OKABC (nelze zkrátit)"
+      "DME",
+      "NDB",
+      "GPS",
+      "VOR"
     ],
-    "correct": 0,
-    "explanation": "Zkrácená volací značka se tvoří z prvního znaku státního prefixu a posledních dvou znaků registrace: O + BC = OBC."
+    "correct": 3,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 68,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Fráze „vysílám naslepo\" se použije",
+    "question": "Jak lze při navigačním letu získat meteorologické informace o letištích?",
     "answers": [
-      "při neúspěšném navázání spojení",
-      "při cvičném vysílání bez příjemce",
-      "při vysílání meteorologických zpráv",
-      "při provozu na tísňovém kmitočtu"
+      "VOLMET",
+      "GAMET",
+      "METAR",
+      "AIRMET"
     ],
     "correct": 0,
-    "explanation": "Fráze „vysílám naslepo\" se používá, když stanice vysílá, ačkoli se jí nepodařilo navázat obousměrné rádiové spojení."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 69,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Jestliže letadlová stanice není schopna navázat spojení s leteckou stanicí na určeném kmitočtu",
+    "question": "Jaký kód odpovídače sekundárního radaru znamená ztrátu spojení?",
     "answers": [
-      "pokusí se o navázání spojení na jiném kmitočtu pro danou trať",
-      "přejde okamžitě na 121,5 MHz",
-      "vyhlásí stav pilnosti",
-      "kontaktuje sousední letadlo"
+      "7000",
+      "7500",
+      "7600",
+      "7700"
     ],
-    "correct": 0,
-    "explanation": "Při neúspěchu na určeném kmitočtu se letadlová stanice pokusí o spojení na jiném kmitočtu pro danou trať."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 70,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Všechna čísla se vyslovují",
+    "question": "Jaká je správná fráze na začátku vysílání naslepo?",
     "answers": [
-      "jednotlivě, s výjimkou čísel souvisejících s výškou nad hladinou moře, s výškou oblačnosti, dohlednosti a dráhové dohlednosti",
-      "vždy jednotlivě bez výjimky",
-      "jako celá čísla (tisíce, stovky)",
-      "vždy ve skupinách po dvou číslicích"
+      "slepý",
+      "vysílám na slepo",
+      "nemám příjem",
+      "naslouchám"
     ],
-    "correct": 0,
-    "explanation": "Čísla se vyslovují číslici po číslici, s výjimkou výšek nad MSL, výšky oblačnosti, dohlednosti a RVR."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 71,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Rádiové spojení může být ukončeno",
+    "question": "Na jaké frekvenci je třeba vysílat na slepo?",
     "answers": [
-      "na pokyn letecké stanice",
-      "kdykoliv dle uvážení pilota",
-      "pouze po přistání letadla",
-      "automaticky po uplynutí stanoveného času"
+      "na stávající frekvenci",
+      "na příslušné frekvenci FIS",
+      "na frekvenci věže",
+      "na frekvenci radaru pro nižší vzdušný prostor"
     ],
     "correct": 0,
-    "explanation": "Rádiové spojení smí být ukončeno pouze na pokyn letecké (pozemní) stanice."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 72,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "V radiotelefonním provozu v pásmech VKV se kmitočet 119,000 MHz vyjadřuje",
+    "question": "Kolikrát se má vysílat na slepo?",
     "answers": [
-      "JEDNA JEDNA DEVĚT ČÁRKA NULA",
-      "STO DEVATENÁCT",
-      "JEDNA DEVĚT NULA NULA",
-      "JEDNA JEDNA DEVĚT"
+      "dvakrát",
+      "jednou",
+      "třikrát",
+      "čtyřikrát"
     ],
     "correct": 0,
-    "explanation": "Kmitočet 119,000 MHz se vyjadřuje jako JEDNA JEDNA DEVĚT ČÁRKA NULA."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 73,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "V radiotelefonním provozu v pásmech VKV se kmitočet 121,500 MHz vyjadřuje",
+    "question": "V jaké situaci je třeba nastavit odpovídač sekundárního radaru na 7600?",
     "answers": [
-      "JEDNA DVA JEDNA ČÁRKA PĚT",
-      "STO DVACET JEDNA ČÁRKA PĚT",
-      "JEDNA DVA JEDNA PĚT NULA NULA",
-      "JEDNA DVA JEDNA ČÁRKA PĚT NULA NULA"
+      "ztráta spojení",
+      "nouze",
+      "únos",
+      "vlétnutí do oblačnosti"
     ],
     "correct": 0,
-    "explanation": "Kmitočet 121,500 MHz (tísňový kmitočet) se vyjadřuje jako JEDNA DVA JEDNA ČÁRKA PĚT."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 74,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "V radiotelefonním provozu v pásmech VKV se kmitočet 121,050 MHz vyjadřuje",
+    "question": "Jaký je správný postup při ztrátě spojení ve vzdušném prostoru třídy D?",
     "answers": [
-      "JEDNA DVA JEDNA ČÁRKA NULA PĚT NULA",
-      "JEDNA DVA JEDNA ČÁRKA PĚT NULA",
-      "JEDNA DVA JEDNA ČÁRKA NULA PĚT",
-      "STO DVACET JEDNA ČÁRKA NULA PĚT NULA"
+      "je třeba pokračovat v letu podle posledního povolení a podle pravidel VFR nebo tento prostor co nejkratší",
+      "cestou opustit",
+      "je třeba pokračovat v letu nad 5000 ft a podle pravidel VFR nebo tento prostor co nejkratší cestou opustit",
+      "je třeba pokračovat v letu nad 5000 ft a podle pravidel VFR nebo tento prostor opustit po standardních",
+      "tratích",
+      "je třeba pokračovat v letu podle posledního povolení a podle pravidel VFR nebo tento prostor opustit po",
+      "standardních tratích"
     ],
-    "correct": 0,
-    "explanation": "Kmitočet 121,050 MHz se vyjadřuje jako JEDNA DVA JEDNA ČÁRKA NULA PĚT NULA."
+    "correct": -1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 75,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "V radiotelefonním provozu v pásmech VKV se vysílací kanál vyjadřuje",
+    "question": "Za jakých podmínek lze vstoupit do vzdušného prostoru třídy D při ztrátě spojení?",
     "answers": [
-      "čtyřmi nebo šesti číslicemi",
-      "vždy šesti číslicemi",
-      "vždy čtyřmi číslicemi",
-      "třemi až šesti číslicemi"
+      "před ztrátou spojení to bylo schváleno",
+      "je to cílové letiště",
+      "na letištním okruhu jsou i jiná letadla",
+      "je to letiště odletu"
     ],
     "correct": 0,
-    "explanation": "Vysílací kanál se vyjadřuje čtyřmi nebo šesti číslicemi v závislosti na rozteči kanálů (25 kHz nebo 8,33 kHz)."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 76,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "V radiotelefonním provozu v pásmech VKV se kmitočet 118,055 MHz vyjadřuje",
+    "question": "Jakou frázi je třeba opakovat třikrát před vysíláním pilnostní zprávy?",
     "answers": [
-      "JEDNA JEDNA OSUM ČÁRKA NULA PĚT PĚT",
-      "JEDNA JEDNA OSUM ČÁRKA PĚT PĚT",
-      "STO OSMNÁCT ČÁRKA NULA PĚT PĚT",
-      "JEDNA JEDNA OSUM ČÁRKA NULA PĚT"
+      "mayday",
+      "pan pan",
+      "pilnost",
+      "pomoc"
     ],
-    "correct": 0,
-    "explanation": "Kmitočet 118,055 MHz se vyjadřuje jako JEDNA JEDNA OSUM ČÁRKA NULA PĚT PĚT."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 77,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Hláskovací abeceda – která odpovídá písmenům A, E, I?",
+    "question": "Pilnostní zprávy jsou definovány jako:",
     "answers": [
-      "Adam/Alpha, Emil/Echo, Ivan/India",
-      "Alpha, Echo, India (pouze mezinárodní)",
-      "Adam, Emil, Ivan (pouze národní)",
-      "Alfa, Echo, Indigo"
+      "zprávy týkající se náhradních dílů potřebných pro pokračování v letu, které musí být objednány předem",
+      "zprávy týkající se letadla a jeho cestujících, které čelí vážné a bezprostřední hrozbě a vyžaduje okamžitou",
+      "pomoc",
+      "zprávy týkající se bezpečnosti letadla, plavidla, vozidla nebo osoby v dohledu",
+      "zprávy týkající se personálu na odbavovací ploše znamenajícího bezprostřední nebezpečí pro přistávající",
+      "letadla"
     ],
-    "correct": 0,
-    "explanation": "A = Adam/Alpha, E = Emil/Echo, I = Ivan/India (národní/mezinárodní hláskovací abeceda)."
+    "correct": 3,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 78,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Hláskovací abeceda – která odpovídá písmenům B, F, J?",
+    "question": "Tísňové zprávy obsahují:",
     "answers": [
-      "Božena/Bravo, František/Foxtrot, Josef/Juliett",
-      "Bravo, Foxtrot, Juliett (pouze mezinárodní)",
-      "Božena, František, Josef (pouze národní)",
-      "Berta, Foxtrot, Juliet"
+      "informace týkající se naléhavé potřeby náhradních dílů potřebných pro pokračování v letu, které musí být",
+      "objednány předem",
+      "informace týkající se letadla a jeho cestujících, které čelí vážné a bezprostřední hrozbě a vyžaduje",
+      "okamžitou pomoc",
+      "informace týkající se bezpečnosti letadla, plavidla, vozidla nebo osoby v dohledu",
+      "informace týkající se personálu na odbavovací ploše znamenajícího bezprostřední nebezpečí pro",
+      "přistávající letadla"
     ],
-    "correct": 0,
-    "explanation": "B = Božena/Bravo, F = František/Foxtrot, J = Josef/Juliett."
+    "correct": -1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 79,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Hláskovací abeceda – která odpovídá písmenům C, G, K?",
+    "question": "Jaká je správná frekvence pro úvodní tísňovou zprávu?",
     "answers": [
-      "Cyril/Charlie, Gustav/Golf, Karel/Kilo",
-      "Charlie, Golf, Kilo (pouze mezinárodní)",
-      "Cyril, Gustav, Karel (pouze národní)",
-      "Čenda, Golf, Kilo"
+      "nouzová frekvence",
+      "stávající frekvence",
+      "frekvence letové informační služby",
+      "frekvence radaru"
     ],
     "correct": 0,
-    "explanation": "C = Cyril/Charlie, G = Gustav/Golf, K = Karel/Kilo."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 80,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Hláskovací abeceda – která odpovídá písmenům D, H, L?",
+    "question": "Jaký druh informace má být obsažen v pilnostní zprávě?",
     "answers": [
-      "David/Delta, Helena/Hotel, Ludvík/Lima",
-      "Delta, Hotel, Lima (pouze mezinárodní)",
-      "David, Helena, Ludvík (pouze národní)",
-      "Delta, Honza, Lima"
+      "zamýšlená trať, důležité informace pro podporu, úmysl pilota, letiště odletu, cílové letiště, kurz a",
+      "nadmořská výška",
+      "povaha problému nebo pozorování, důležité informace pro podporu, letiště odletu, informace o poloze,",
+      "kurz a nadmořská výška",
+      "zamýšlená trať, informace důležité pro podporu, úmysl pilota, informace o poloze, letiště odletu, kurz a",
+      "nadmořská výška",
+      "povaha problému nebo pozorování, důležité informace pro podporu, úmysl pilota, informace o poloze,",
+      "kurz a nadmořská výška"
     ],
-    "correct": 0,
-    "explanation": "D = David/Delta, H = Helena/Hotel, L = Ludvík/Lima."
+    "correct": -1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 81,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Hláskovací abeceda – která odpovídá písmenům M, Q, U?",
+    "question": "Správný kód odpovídače sekundárního radaru pro případy nouze je:",
     "answers": [
-      "Marie/Mike, Quido/Quebec, Urban/Uniform",
-      "Mike, Quebec, Uniform (pouze mezinárodní)",
-      "Maria, Quido, Urban (pouze národní)",
-      "Mike, Quebec, Uran"
+      "7000",
+      "7500",
+      "7600",
+      "7700"
     ],
-    "correct": 0,
-    "explanation": "M = Marie/Mike, Q = Quido/Quebec, U = Urban/Uniform."
+    "correct": 3,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 82,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Hláskovací abeceda – která odpovídá písmenům N, R, V?",
+    "question": "Která z následujících frekvencí je určena pro hlasové spojení VKV?",
     "answers": [
-      "Norbert/November, Rudolf/Romeo, Václav/Victor",
-      "November, Romeo, Victor (pouze mezinárodní)",
-      "Norbert, Rudolf, Václav (pouze národní)",
-      "November, Romeo, Viera"
+      "118.75 MHz",
+      "118.75 kHz",
+      "327.25 MHz",
+      "327.25 kHz"
     ],
     "correct": 0,
-    "explanation": "N = Norbert/November, R = Rudolf/Romeo, V = Václav/Victor."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 83,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Hláskovací abeceda – která odpovídá písmenům O, S, W?",
+    "question": "Která z následujících frekvencí je určena pro hlasovou komunikaci VKV?",
     "answers": [
-      "Otakar/Oscar, Svatopluk/Sierra, dvojité V/Whisky",
-      "Oscar, Sierra, Whisky (pouze mezinárodní)",
-      "Otakar, Svatopluk, Willy (pouze národní)",
-      "Oscar, Sierra, Wiktor"
+      "108.80 MHz",
+      "120.50 MHz",
+      "115.15 MHz",
+      "117.30 kHz"
     ],
-    "correct": 0,
-    "explanation": "O = Otakar/Oscar, S = Svatopluk/Sierra, W = dvojité V/Whisky."
+    "correct": 1,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 84,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Hláskovací abeceda – která odpovídá písmenům P, T, X?",
+    "question": "Jaké je správné označení vlnového pásma od 118.000 do 136.975 MHz používaného pro hlasovou komunikaci?",
     "answers": [
-      "Petr/Papa, Tomáš/Tango, Xaver/X-ray",
-      "Papa, Tango, X-ray (pouze mezinárodní)",
-      "Petr, Tomáš, Xaver (pouze národní)",
-      "Papa, Tango, Xantipa"
+      "LF (dlouhé vlny)",
+      "MF (střední vlny)",
+      "VHF (velmi krátké vlny)",
+      "HF (krátké vlny)"
     ],
-    "correct": 0,
-    "explanation": "P = Petr/Papa, T = Tomáš/Tango, X = Xaver/X-ray."
+    "correct": 2,
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 85,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Hláskovací abeceda – která odpovídá písmenům Y, Z?",
+    "question": "Který z následujících faktorů má vliv na příjem vysílání VKV?",
     "answers": [
-      "Ypsilon/Yankee, Zuzana/Zulu",
-      "Yankee, Zulu (pouze mezinárodní)",
-      "Ypsilon, Zuzana (pouze národní)",
-      "Yankee, Zebra"
+      "nadmořská výška",
+      "výška ionosféry",
+      "svítání / soumrak",
+      "pobřežní efekt"
     ],
     "correct": 0,
-    "explanation": "Y = Ypsilon/Yankee, Z = Zuzana/Zulu."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 86,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Správný Q-kód pro „tlak indikující nadmořskou výšku, přepočtený na střední hladinu moře\" je",
+    "question": "Jaká je přibližně rychlost šíření elektromagnetických vln?",
     "answers": [
-      "QNH",
-      "QFE",
-      "QDM",
-      "QTE"
+      "300 000 m/s",
+      "123 000 m/s",
+      "300 000 km/s",
+      "123 000 km/s"
     ],
     "correct": 0,
-    "explanation": "QNH je atmosférický tlak přepočtený na střední hladinu moře (nastavení výškoměru pro zobrazení nadmořské výšky)."
+    "image": null,
+    "explanation": ""
   },
   {
     "id": 87,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Správný Q-kód pro „magnetický kurs pro směr k zaměřovači\" je",
+    "question": "Zpráva ATIS je platná po dobu:",
     "answers": [
-      "QDM",
-      "QNH",
-      "QDL",
-      "QTE"
+      "10 minut",
+      "30 minut",
+      "45 minut",
+      "60 minut"
     ],
     "correct": 0,
-    "explanation": "QDM je magnetický kurs, který má letadlo letět pro přiblížení k zaměřovači (pozemní stanici)."
-  },
-  {
-    "id": 88,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Správný Q-kód pro „žádost o zaměření\" je",
-    "answers": [
-      "QDL",
-      "QDM",
-      "QNH",
-      "QTE"
-    ],
-    "correct": 0,
-    "explanation": "QDL označuje žádost o sérii zaměření a příslušné kursy pro přilétnutí k zaměřovači."
-  },
-  {
-    "id": 89,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Správná zkratka pro „vzletová a přistávací dráha\" je",
-    "answers": [
-      "RWY",
-      "TWY",
-      "APR",
-      "VPD"
-    ],
-    "correct": 0,
-    "explanation": "RWY je mezinárodní zkratka pro runway (vzletová a přistávací dráha)."
-  },
-  {
-    "id": 90,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Správná zkratka pro „automatická informační služba koncové řízené oblasti\" je",
-    "answers": [
-      "ATIS",
-      "AFIS",
-      "ATCC",
-      "AWOS"
-    ],
-    "correct": 0,
-    "explanation": "ATIS (Automatic Terminal Information Service) je automatická informační služba vysílající opakovaně informace o podmínkách na letišti."
-  },
-  {
-    "id": 91,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Správná zkratka pro „letová informační oblast\" je",
-    "answers": [
-      "FIR",
-      "TMA",
-      "CTR",
-      "FIA"
-    ],
-    "correct": 0,
-    "explanation": "FIR (Flight Information Region) je letová informační oblast, v níž je poskytována letová informační služba a pohotovostní služba."
-  },
-  {
-    "id": 92,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Správná zkratka pro „kmitočet\" je",
-    "answers": [
-      "FREQ",
-      "FRQ",
-      "KMT",
-      "FRE"
-    ],
-    "correct": 0,
-    "explanation": "FREQ je standardní zkratka pro frequency (kmitočet/frekvence)."
-  },
-  {
-    "id": 93,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Kód QFE se vztahuje k",
-    "answers": [
-      "tlaku vzduchu vztaženému k nadmořské výšce letiště",
-      "tlaku vzduchu přepočtenému na střední hladinu moře",
-      "standardnímu atmosférickému tlaku 1013,25 hPa",
-      "tlaku vzduchu ve výšce letu"
-    ],
-    "correct": 0,
-    "explanation": "QFE je atmosférický tlak na úrovni letiště (referenční bod). Při nastavení QFE ukazuje výškoměr výšku nad letištěm."
-  },
-  {
-    "id": 94,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "V případě, že letadlo stojí na ploše letiště a hodnota tlaku je nastavena na QFE, bude výškoměr ukazovat",
-    "answers": [
-      "nulu",
-      "nadmořskou výšku letiště",
-      "1013,25 hPa",
-      "výšku nad terénem okolní krajiny"
-    ],
-    "correct": 0,
-    "explanation": "Při nastavení QFE ukazuje výškoměr na zemi na letišti nulu, protože QFE je tlak přímo na letišti."
-  },
-  {
-    "id": 95,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Odchylky od spisovné češtiny při vysílání čísel jsou",
-    "answers": [
-      "u číslic: 2, 4, 7, 8",
-      "u číslic: 1, 3, 5, 9",
-      "u číslic: 0, 6, 8, 9",
-      "žádné odchylky nejsou povoleny"
-    ],
-    "correct": 0,
-    "explanation": "V letecké radiotelefonii se používají odchylky od spis. češtiny u číslic: 2 (DVA), 4 (ČTYŘI→standardně), 7 (SEDM→standardně), 8 (OSM→OSUM)."
-  },
-  {
-    "id": 96,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Nastavení výškoměru na hodnotu 1000 hPa se vysílá takto",
-    "answers": [
-      "jeden tisíc",
-      "JEDNA NULA NULA NULA",
-      "QNH JEDNA TISÍC",
-      "tisíc hektopaskalů"
-    ],
-    "correct": 0,
-    "explanation": "Hodnota 1000 hPa se vysílá jako „jeden tisíc\" (výjimka z pravidla jednotlivých číslic)."
-  },
-  {
-    "id": 97,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Nastavení výškoměru na hodnotu 1009 hPa se vysílá takto",
-    "answers": [
-      "QNH JEDNA NULA NULA DEVĚT",
-      "QNH jeden tisíc devět",
-      "JEDNA NULA NULA DEVĚT",
-      "QNH tisíc devět"
-    ],
-    "correct": 0,
-    "explanation": "Hodnota QNH 1009 hPa se vysílá jako QNH JEDNA NULA NULA DEVĚT (číslice po číslici)."
-  },
-  {
-    "id": 98,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Letová hladina FL 300 se vysílá takto",
-    "answers": [
-      "letová hladina TŘI STA",
-      "FL TŘI NULA NULA",
-      "letová hladina TŘI NULA NULA",
-      "FL TŘI STO"
-    ],
-    "correct": 0,
-    "explanation": "FL 300 se vysílá jako „letová hladina TŘI STA\" (třísetová výjimka pro výšky)."
-  },
-  {
-    "id": 99,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Letová hladina FL 180 se vysílá takto",
-    "answers": [
-      "letová hladina JEDEN OSUM NULA",
-      "FL STO OSMDESÁT",
-      "letová hladina JEDNA OSM NULA",
-      "letová hladina JEDEN OSM NULA"
-    ],
-    "correct": 0,
-    "explanation": "FL 180 se vysílá jako „letová hladina JEDEN OSUM NULA\" (číslice po číslici, 8 = OSUM)."
-  },
-  {
-    "id": 100,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Potvrzení příjmu leteckou stanicí musí obsahovat",
-    "answers": [
-      "volací značku letadla za kterou následuje, je-li to nutné, volací značka letecké stanice",
-      "pouze volací značku letecké stanice",
-      "čas přijetí zprávy a volací značku letadla",
-      "potvrzovací slovo SCHVÁLENO a volací značku letadla"
-    ],
-    "correct": 0,
-    "explanation": "Potvrzení příjmu leteckou stanicí obsahuje volací značku letadla a je-li to nutné, také vlastní volací značku."
-  },
-  {
-    "id": 101,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Volací znak INFORMATION je přiřazen",
-    "answers": [
-      "letištím poskytujícím službu AFIS a letovým informačním střediskům (např. FIC Praha)",
-      "pouze letovým informačním střediskům",
-      "pouze letištím s řízeným provozem",
-      "stanicím poskytujícím meteorologické informace"
-    ],
-    "correct": 0,
-    "explanation": "Volací znak INFORMATION používají jak letiště s AFIS, tak letová informační střediska (FIC)."
-  },
-  {
-    "id": 102,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Fráze „čekejte\" znamená",
-    "answers": [
-      "čekejte, zavolám Vás",
-      "přerušte vysílání",
-      "opakujte zprávu",
-      "spojení bude přerušeno"
-    ],
-    "correct": 0,
-    "explanation": "Fráze ČEKEJTE (STANDBY) znamená: počkejte, já vás zavolám."
-  },
-  {
-    "id": 103,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Fráze „konec\" znamená",
-    "answers": [
-      "rozhovor je ukončen a neočekává se odpověď",
-      "konec tísňového provozu",
-      "prosím o odpověď",
-      "ukončuji vysílání na tomto kmitočtu"
-    ],
-    "correct": 0,
-    "explanation": "Fráze KONEC (OUT) signalizuje, že rozhovor skončil a nevyžaduje odpověď."
-  },
-  {
-    "id": 104,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Fráze „provedu\" znamená",
-    "answers": [
-      "rozumím Vaší zprávě a budu podle ní postupovat",
-      "opakuji Vaši zprávu pro potvrzení",
-      "žádám o povolení k provedení manévru",
-      "provádím požadovanou akci okamžitě"
-    ],
-    "correct": 0,
-    "explanation": "PROVEDU (WILCO – Will Comply) znamená: zprávu jsem přijal a pochopil, budu ji vykonávat."
-  },
-  {
-    "id": 105,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Fráze „potvrďte\" znamená",
-    "answers": [
-      "potvrďte mi, že jste zprávu přijal a rozuměl jí",
-      "opakujte zprávu",
-      "souhlasím s Vaší zprávou",
-      "žádám o potvrzení povolení"
-    ],
-    "correct": 0,
-    "explanation": "POTVRĎTE (CONFIRM) žádá druhou stanici o potvrzení přijetí a porozumění zprávě."
-  },
-  {
-    "id": 106,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Fráze „příjem\" znamená",
-    "answers": [
-      "moje vysílání skončilo, očekávám Vaši odpověď",
-      "rozhovor je ukončen a neočekává se odpověď",
-      "přijal jsem zprávu",
-      "přecházím na příjem"
-    ],
-    "correct": 0,
-    "explanation": "PŘÍJEM (OVER) oznamuje konec vlastního vysílání a vyzývá druhou stranu k odpovědi."
-  },
-  {
-    "id": 107,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Fráze „rozumím\" znamená",
-    "answers": [
-      "přijal jsem vše z Vašeho posledního vysílání",
-      "souhlasím s Vaší zprávou",
-      "opakujte prosím zprávu",
-      "vyčkám na další instrukce"
-    ],
-    "correct": 0,
-    "explanation": "ROZUMÍM (ROGER) potvrzuje přijetí posledního vysílání v celém rozsahu."
-  },
-  {
-    "id": 108,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Fráze „schváleno\" znamená",
-    "answers": [
-      "povolení pro požadovaný úkon je schváleno",
-      "zpráva byla přijata a zaznamenána",
-      "souhlasím s Vaší zprávou",
-      "potvrďte přijetí tohoto povolení"
-    ],
-    "correct": 0,
-    "explanation": "SCHVÁLENO (APPROVED) znamená, že povolení pro požadovaný úkon bylo uděleno."
-  },
-  {
-    "id": 109,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Fráze „negativ\" znamená",
-    "answers": [
-      "povolení není potvrzeno – to není správné – ne",
-      "ztráta spojení",
-      "opakujte zprávu",
-      "žádost zamítnuta z bezpečnostních důvodů"
-    ],
-    "correct": 0,
-    "explanation": "NEGATIV (NEGATIVE) vyjadřuje zamítnutí nebo popření – ne, není správné, nesouhlasím."
-  },
-  {
-    "id": 110,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Fráze „opakujte\" znamená",
-    "answers": [
-      "opakujte vše nebo následující část Vašeho posledního vysílání",
-      "opakuji Vaši zprávu pro kontrolu",
-      "zopakujte manévr",
-      "opakujte volání na jiném kmitočtu"
-    ],
-    "correct": 0,
-    "explanation": "OPAKUJTE (SAY AGAIN) žádá o zopakování celé nebo části předchozí zprávy."
-  },
-  {
-    "id": 111,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Fráze „správně\" znamená",
-    "answers": [
-      "to je správné",
-      "provedu dle instrukce",
-      "pokračujte dle plánu",
-      "opakování bylo správné"
-    ],
-    "correct": 0,
-    "explanation": "SPRÁVNĚ (CORRECT) potvrzuje, že informace nebo opakování je správné."
-  },
-  {
-    "id": 112,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Fráze „vzlet schválen\"",
-    "answers": [
-      "není přípustná",
-      "je standardní frází pro povolení k vzletu",
-      "se používá pouze pro vojenská letadla",
-      "nahrazuje frázi CLEARED FOR TAKEOFF"
-    ],
-    "correct": 0,
-    "explanation": "Fráze VZLET SCHVÁLEN není přípustná – správně se používá CLEARED FOR TAKEOFF / POVOLENÍ K VZLETU."
-  },
-  {
-    "id": 113,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Simplexní provoz je způsob provozu rádiové stanice, který",
-    "answers": [
-      "využívá jeden nebo dva kmitočty a umožňuje přenos zpráv střídavě v obou směrech, přičemž během vysílání zpráv není možný současný příjem",
-      "umožňuje současný přenos zpráv oběma směry",
-      "využívá výhradně jeden kmitočet pro vysílání i příjem",
-      "je určen pouze pro jednosměrnou komunikaci"
-    ],
-    "correct": 0,
-    "explanation": "Simplexní provoz umožňuje komunikaci střídavě oběma směry na jednom (nebo dvou) kmitočtu, ale ne současně – při vysílání nelze přijímat."
-  },
-  {
-    "id": 114,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Duplexní provoz je způsob provozu rádiové stanice, který",
-    "answers": [
-      "umožňuje současný přenos zpráv oběma směry a vyžaduje současné využívání dvou kmitočtů (kanálů)",
-      "umožňuje přenos zpráv střídavě v obou směrech na jednom kmitočtu",
-      "využívá jeden kmitočet pro obousměrnou komunikaci",
-      "je určen pouze pro datové přenosy"
-    ],
-    "correct": 0,
-    "explanation": "Duplexní provoz umožňuje simultánní komunikaci oběma směry, přičemž jsou používány dva různé kmitočty pro vysílání a příjem."
-  },
-  {
-    "id": 115,
-    "kategorie": "b) radiokomunikační provoz",
-    "question": "Při frázi MEZERA MEZERA pro dvě letadlové stanice, pořadí pro odpovědi volaných stanic je následující",
-    "answers": [
-      "odpovídá druhá oslovená stanice",
-      "odpovídá první oslovená stanice",
-      "odpovídají obě stanice současně",
-      "odpovídá stanice s lepším signálem"
-    ],
-    "correct": 0,
-    "explanation": "Při hromadném volání (BREAK BREAK / MEZERA MEZERA) odpovídá druhá oslovená stanice jako první."
-  },
-  {
-    "id": 116,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Paralelně řazené akumulátory",
-    "answers": [
-      "umožňují dodávat větší proud",
-      "zvyšují celkové napětí",
-      "snižují celkovou kapacitu",
-      "zvyšují vnitřní odpor"
-    ],
-    "correct": 0,
-    "explanation": "Paralelním zapojením akumulátorů se sčítají jejich kapacity a tím je možné dodávat větší proud, napětí zůstává stejné."
-  },
-  {
-    "id": 117,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Sériově řazené akumulátory",
-    "answers": [
-      "se zapojují pro zvýšení dodávaného napětí",
-      "se zapojují pro zvýšení kapacity",
-      "se zapojují pro zvýšení dodávaného proudu",
-      "se zapojují pro snížení vnitřního odporu"
-    ],
-    "correct": 0,
-    "explanation": "Sériovým zapojením akumulátorů se sčítají jejich napětí, kapacita zůstává stejná."
-  },
-  {
-    "id": 118,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Jmenovité napětí článku olověného akumulátoru je",
-    "answers": [
-      "2 V",
-      "1,2 V",
-      "1,5 V",
-      "3,7 V"
-    ],
-    "correct": 0,
-    "explanation": "Jeden článek olověného akumulátoru (používaného například v autobateriích) má jmenovité napětí 2 V."
-  },
-  {
-    "id": 119,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Jmenovité napětí článku alkalického akumulátoru je",
-    "answers": [
-      "1,2 V",
-      "2 V",
-      "1,5 V",
-      "3,6 V"
-    ],
-    "correct": 0,
-    "explanation": "Článek alkalického (Ni-MH nebo Ni-Cd) akumulátoru má jmenovité napětí 1,2 V."
-  },
-  {
-    "id": 120,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Jmenovité napětí suchého galvanického článku je",
-    "answers": [
-      "1,5 V",
-      "1,2 V",
-      "2 V",
-      "9 V"
-    ],
-    "correct": 0,
-    "explanation": "Standardní suchý galvanický článek (tužková baterie AA, AAA atd.) má jmenovité napětí 1,5 V."
-  },
-  {
-    "id": 121,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Suché galvanické články",
-    "answers": [
-      "nelze dobíjet",
-      "lze dobíjet speciální nabíječkou",
-      "lze dobíjet pomalým nabíjením",
-      "lze dobíjet pouze jednou"
-    ],
-    "correct": 0,
-    "explanation": "Suché galvanické články (primární články) nelze dobíjet – jsou na jedno použití. Dobíjení hrozí výbuchem nebo únikem elektrolytu."
-  },
-  {
-    "id": 122,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Antény dělíme podle směru vysílání nebo příjmu na",
-    "answers": [
-      "směrové a všesměrové",
-      "vertikální a horizontální",
-      "vysílací a přijímací",
-      "aktivní a pasivní"
-    ],
-    "correct": 0,
-    "explanation": "Základní dělení antén dle směrovosti je na směrové (vyzařují převážně jedním směrem) a všesměrové (vyzařují rovnoměrně všemi směry)."
-  },
-  {
-    "id": 123,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Všesměrová anténa má vyzařovací charakteristiku",
-    "answers": [
-      "kruhovou",
-      "osmičkovou",
-      "eliptickou",
-      "bodovou"
-    ],
-    "correct": 0,
-    "explanation": "Všesměrová anténa vyzařuje rovnoměrně do všech stran – vyzařovací charakteristika v horizontální rovině je kruh."
-  },
-  {
-    "id": 124,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Všesměrová anténa musí přijímat nebo vysílat stejně všemi směry",
-    "answers": [
-      "v horizontální rovině",
-      "ve vertikální rovině",
-      "v obou rovinách současně",
-      "ve sférickém prostoru"
-    ],
-    "correct": 0,
-    "explanation": "Všesměrovost antény se vztahuje k horizontální rovině – anténa vyzařuje stejně do všech horizontálních směrů."
-  },
-  {
-    "id": 125,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Půlvlnný dipól",
-    "answers": [
-      "může být směrová i všesměrová anténa, záleží na jeho orientaci k zemskému povrchu",
-      "je vždy všesměrová anténa",
-      "je vždy směrová anténa",
-      "je vždy horizontálně polarizovaná anténa"
-    ],
-    "correct": 0,
-    "explanation": "Půlvlnný dipól může být všesměrový (vertikální orientace) nebo směrový (horizontální orientace – osmičková charakteristika)."
-  },
-  {
-    "id": 126,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Půlvlnný dipól umístěný rovnoběžně se zemským povrchem",
-    "answers": [
-      "má v horizontální rovině osmičkovou vyzařovací charakteristiku",
-      "má kruhovou vyzařovací charakteristiku",
-      "má bodovou vyzařovací charakteristiku",
-      "má sférickou vyzařovací charakteristiku"
-    ],
-    "correct": 0,
-    "explanation": "Horizontálně orientovaný dipól vyzařuje do dvou hlavních laloků kolmo na svou osu – výsledkem je osmičková charakteristika."
-  },
-  {
-    "id": 127,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Vztah mezi délkou vlny (λ) a kmitočtem (f), když c je rychlost světla, je",
-    "answers": [
-      "f = c / λ",
-      "f = λ / c",
-      "f = c × λ",
-      "λ = c × f"
-    ],
-    "correct": 0,
-    "explanation": "Základní vztah elektromagnetického vlnění: f = c / λ, neboli λ = c / f, kde c ≈ 300 000 km/s."
-  },
-  {
-    "id": 128,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Který typ modulace mění kmitočet vysokofrekvenčního signálu v závislosti na přiváděném modulačním napětí?",
-    "answers": [
-      "kmitočtová modulace",
-      "amplitudová modulace",
-      "fázová modulace",
-      "pulzní modulace"
-    ],
-    "correct": 0,
-    "explanation": "FM (kmitočtová modulace) mění kmitočet nosné vlny v závislosti na modulačním signálu."
-  },
-  {
-    "id": 129,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Ampérmetr a voltmetr se při měření zařazují",
-    "answers": [
-      "ampérmetr do série se spotřebičem, voltmetr paralelně ke spotřebiči",
-      "ampérmetr paralelně ke spotřebiči, voltmetr do série",
-      "oba do série se spotřebičem",
-      "oba paralelně ke spotřebiči"
-    ],
-    "correct": 0,
-    "explanation": "Ampérmetr musí být zapojen do série (protéká jím celý měřený proud), voltmetr paralelně (měří napětí mezi dvěma uzly)."
-  },
-  {
-    "id": 130,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "V suchém, bezprašném prostředí považujeme při dotyku živých částí zařízení za bezpečná napětí",
-    "answers": [
-      "stejnosměrné do 60 V a střídavé do 25 V",
-      "stejnosměrné do 50 V a střídavé do 50 V",
-      "stejnosměrné do 25 V a střídavé do 25 V",
-      "stejnosměrné do 120 V a střídavé do 60 V"
-    ],
-    "correct": 0,
-    "explanation": "V suchém bezprašném prostředí jsou za bezpečná považována napětí do 60 V DC a do 25 V AC."
-  },
-  {
-    "id": 131,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Při úrazu elektrickým proudem",
-    "answers": [
-      "vyprostíme postiženého z dosahu el. proudu, zavoláme záchrannou službu, provedeme záklon hlavy a dojde-li k selhání základních životních funkcí zahájíme resuscitaci",
-      "okamžitě zahájíme resuscitaci bez dalších kroků",
-      "postiženého přikryjeme a čekáme na záchrannou službu",
-      "okamžitě podáme postiženému vodu"
-    ],
-    "correct": 0,
-    "explanation": "Správný postup: 1) přerušit kontakt s el. proudem, 2) zavolat záchrannou službu, 3) záklon hlavy, 4) při selhání životních funkcí zahájit KPR."
-  },
-  {
-    "id": 132,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Funkce „SQUELCH\" VKV radiostanice je určena",
-    "answers": [
-      "k potlačení slabších rušivých signálů včetně vlastního šumu přijímače",
-      "k zesilování slabých signálů",
-      "k filtrování nežádoucích kmitočtů",
-      "k automatickému přepínání kmitočtů"
-    ],
-    "correct": 0,
-    "explanation": "SQUELCH (šumová závěra) potlačuje šum přijímače a slabé rušivé signály – přijímač je „tichý\", dokud nepřijde dostatečně silný signál."
-  },
-  {
-    "id": 133,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Údaj elektrické napětí 2 V lze také zapsat",
-    "answers": [
-      "2000 mV",
-      "0,002 kV",
-      "2000 μV",
-      "20 dV"
-    ],
-    "correct": 0,
-    "explanation": "2 V = 2000 mV (1 V = 1000 mV)."
-  },
-  {
-    "id": 134,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Kmitočet 406 MHz lze také zapsat",
-    "answers": [
-      "0,406 GHz",
-      "406 000 kHz",
-      "4,06 × 10⁸ Hz",
-      "40,6 MHz × 10"
-    ],
-    "correct": 0,
-    "explanation": "406 MHz = 0,406 GHz (1 GHz = 1000 MHz)."
-  },
-  {
-    "id": 135,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Délka rádiové vlny v pásmu 160 MHz (VHF) je",
-    "answers": [
-      "cca. 2 m",
-      "cca. 20 m",
-      "cca. 0,2 m",
-      "cca. 200 m"
-    ],
-    "correct": 0,
-    "explanation": "λ = c / f = 300 000 000 / 160 000 000 ≈ 1,875 m ≈ 2 m."
-  },
-  {
-    "id": 136,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Vztah mezi napětím (U), proudem (I) a odporem (R) je",
-    "answers": [
-      "U = R × I",
-      "U = I / R",
-      "U = R / I",
-      "R = U × I"
-    ],
-    "correct": 0,
-    "explanation": "Ohmův zákon: U = R × I (napětí = odpor × proud)."
-  },
-  {
-    "id": 137,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Vztah mezi výkonem (příkonem) (P), napětím (U) a proudem (I) je",
-    "answers": [
-      "P = U × I",
-      "P = U / I",
-      "P = I / U",
-      "P = U + I"
-    ],
-    "correct": 0,
-    "explanation": "Elektrický výkon P = U × I (výkon = napětí × proud)."
-  },
-  {
-    "id": 138,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Radiostanice odebírající z baterie 12 V proud 500 mA má příkon",
-    "answers": [
-      "6 W",
-      "0,6 W",
-      "60 W",
-      "24 W"
-    ],
-    "correct": 0,
-    "explanation": "P = U × I = 12 V × 0,5 A = 6 W."
-  },
-  {
-    "id": 139,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Tři dobré vodiče elektřiny jsou",
-    "answers": [
-      "měď, zlato, stříbro",
-      "hliník, železo, ocel",
-      "grafit, olovo, nikl",
-      "wolfram, chrom, mangan"
-    ],
-    "correct": 0,
-    "explanation": "Nejlepšími vodiči elektřiny jsou stříbro, měď a zlato (v tomto pořadí dle měrné vodivosti)."
-  },
-  {
-    "id": 140,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Čtyři dobré izolanty jsou",
-    "answers": [
-      "sklo, vzduch, plast, porcelán",
-      "guma, voda, papír, dřevo",
-      "křemík, germanium, uhlík, grafit",
-      "olej, líh, aceton, benzín"
-    ],
-    "correct": 0,
-    "explanation": "Typické dobré izolanty jsou sklo, vzduch (suchý), plastické hmoty a porcelán."
-  },
-  {
-    "id": 141,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Ke zdroji 10 V jsou připojeny dva odpory 10 Ω zapojené do série. Odebíraný příkon činí",
-    "answers": [
-      "5 W",
-      "10 W",
-      "20 W",
-      "1 W"
-    ],
-    "correct": 0,
-    "explanation": "Celkový odpor = 10 + 10 = 20 Ω. I = U/R = 10/20 = 0,5 A. P = U × I = 10 × 0,5 = 5 W."
-  },
-  {
-    "id": 142,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Radiotechnická součástka je identifikována jako kondenzátor, pokud se její hodnota měří v",
-    "answers": [
-      "pF",
-      "Ω",
-      "H",
-      "V"
-    ],
-    "correct": 0,
-    "explanation": "Kapacita kondenzátoru se měří ve faradech (F) nebo pikofaradech (pF), nanofaradech (nF), mikrofaradech (μF)."
-  },
-  {
-    "id": 143,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Výstupním výkonem stanice se rozumí",
-    "answers": [
-      "výkon koncového stupně vysílače dodávaný do napaječe anténního systému",
-      "celkový příkon radiostanice ze zdroje napájení",
-      "výkon vyzářený anténou do volného prostoru",
-      "výkon záložního zdroje napájení stanice"
-    ],
-    "correct": 0,
-    "explanation": "Výstupní výkon je výkon dodávaný z výstupního stupně vysílače do přenosové linky (napaječe) anténního systému."
-  },
-  {
-    "id": 144,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Je možné vysílat bez antény?",
-    "answers": [
-      "ne, hrozí poškození radiostanice",
-      "ano, ale pouze na krátkou vzdálenost",
-      "ano, pokud je výstupní výkon nízký",
-      "ano, pokud je připojen odpor místo antény"
-    ],
-    "correct": 0,
-    "explanation": "Vysílání bez antény nebo náhradní zátěže způsobí odraz výkonu zpět do vysílače a může ho nenávratně poškodit."
-  },
-  {
-    "id": 145,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "Co NENÍ možné dělat, když máme stisknuté tlačítko pro vysílání (PTT)?",
-    "answers": [
-      "přijímat jiné vysílání",
-      "vysílat hlas",
-      "měnit hlasitost",
-      "sledovat indikátor úrovně signálu"
-    ],
-    "correct": 0,
-    "explanation": "Při stisknutém PTT je přijímač přepnut na vysílání – není možné zároveň přijímat jiné signály."
-  },
-  {
-    "id": 146,
-    "kategorie": "c) elektrotechnika a radiotechnika",
-    "question": "V jakém kmitočtovém pásmu pracuje letadlová VHF radiostanice?",
-    "answers": [
-      "118–137 MHz",
-      "108–118 MHz",
-      "137–150 MHz",
-      "88–108 MHz"
-    ],
-    "correct": 0,
-    "explanation": "Letecká VHF komunikace probíhá v pásmu 118–137 MHz (pod 108 MHz je navigační pásmo VOR/ILS)."
+    "image": null,
+    "explanation": ""
   }
 ]

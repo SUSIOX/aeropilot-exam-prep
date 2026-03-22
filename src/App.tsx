@@ -36,11 +36,30 @@ import {
   Sun,
   Moon,
   Menu,
-  Trash2
+  Trash2,
+  Filter
 } from 'lucide-react';
 import { Subject, Question, Stats, ViewMode, DrillSettings } from './types';
 import { LearningEngine } from './lib/LearningEngine';
-import { mockLOs, getAllLOs, generateBatchQuestions, getDetailedExplanation, getDetailedHumanExplanation, EasaLO, SYLLABUS_SCOPE, SUBJECT_NAMES, buildSyllabusTree, verifyApiKey, AIProvider, generateMissingLearningObjectives, getDynamicSyllabusScope, getSubjectAnalysis } from './services/aiService';
+import { 
+  generateBatchQuestions, 
+  getDetailedExplanation, 
+  getDetailedHumanExplanation, 
+  translateQuestion, 
+  verifyApiKey, 
+  checkDeepSeekBalance, 
+  checkDeepSeekBalanceProxy, 
+  EasaLO, 
+  mockLOs, 
+  getAllLOs,
+  SYLLABUS_SCOPE,
+  SUBJECT_NAMES,
+  buildSyllabusTree,
+  getDynamicSyllabusScope,
+  generateMissingLearningObjectives,
+  getSubjectAnalysis
+} from './services/aiService';
+import type { AIProvider } from './services/aiService';
 import { checkSubjectDuplicates, checkAllDuplicates, findDuplicatesInQuestions } from './utils/duplicateChecker';
 import { DynamoDBStatus } from './components/DynamoDBStatus';
 import { AdminDashboard } from './components/AdminDashboard';
@@ -212,6 +231,10 @@ export default function App() {
         } else {
           parsed.sourceFilters = ['user', 'ai'];
         }
+        // Ensure excludeAnswered is set, default to false if not present
+        if (parsed.excludeAnswered === undefined) {
+          parsed.excludeAnswered = false;
+        }
         return parsed;
       } catch (e) {
         // Failed to parse drillSettings
@@ -222,7 +245,8 @@ export default function App() {
       immediateFeedback: true,
       showExplanationOnDemand: true,
       sourceFilters: ['user', 'ai'],
-      shuffleAnswers: false
+      shuffleAnswers: false,
+      excludeAnswered: false
     };
   });
 
@@ -280,6 +304,82 @@ export default function App() {
   const [syllabusExpandedSubtopics, setSyllabusExpandedSubtopics] = useState<Set<string>>(new Set());
   const [syllabusLicenseFilter, setSyllabusLicenseFilter] = useState<'ALL' | 'PPL' | 'SPL'>('ALL');
   const [syllabusSearch, setSyllabusSearch] = useState('');
+  
+  // Memoized list of LOs that match current syllabus filters (search + license)
+  const activeSyllabusLOs = React.useMemo(() => {
+    const term = syllabusSearch.toLowerCase();
+    return allLOs.filter(lo => {
+      // 1. Search term match
+      if (term) {
+        const matches = (lo.id || '').toLowerCase().includes(term) ||
+          (lo.text || '').toLowerCase().includes(term) ||
+          (lo.knowledgeContent || '').toLowerCase().includes(term) ||
+          (lo.context || '').toLowerCase().includes(term);
+        if (!matches) return false;
+      }
+      // 2. License filter match (matches logic in Syllabus view)
+      if (syllabusLicenseFilter === 'ALL') return true;
+      return (lo.applies_to || ['PPL', 'SPL']).includes(syllabusLicenseFilter);
+    });
+  }, [allLOs, syllabusSearch, syllabusLicenseFilter]);
+
+  const [isNavigatingSyllabus, setIsNavigatingSyllabus] = useState(false);
+
+  const handleNavigateSyllabus = async (direction: 'next' | 'prev') => {
+    if (!expandedSyllabusQuestion || isNavigatingSyllabus) return;
+
+    const qIndex = syllabusLOQuestions.findIndex(q => (q.questionId || q.id) === (expandedSyllabusQuestion.questionId || expandedSyllabusQuestion.id));
+    
+    // CASE 1: Still in same LO
+    if (direction === 'next' && qIndex < syllabusLOQuestions.length - 1) {
+      setExpandedSyllabusQuestion(syllabusLOQuestions[qIndex + 1]);
+      return;
+    }
+    if (direction === 'prev' && qIndex > 0) {
+      setExpandedSyllabusQuestion(syllabusLOQuestions[qIndex - 1]);
+      return;
+    }
+
+    // CASE 2: Jump to another LO
+    const currentLoId = expandedSyllabusQuestion.loId;
+    const loIdx = activeSyllabusLOs.findIndex(l => l.id === currentLoId);
+    
+    if (loIdx === -1) return; // Should not happen
+
+    setIsNavigatingSyllabus(true);
+    try {
+      let nextStep = direction === 'next' ? 1 : -1;
+      let targetLoIdx = loIdx + nextStep;
+
+      // Scan through LOs until we find one with questions
+      while (targetLoIdx >= 0 && targetLoIdx < activeSyllabusLOs.length) {
+        const nextLo = activeSyllabusLOs[targetLoIdx];
+        const resp = await dynamoDBService.getQuestionsByLO(nextLo.id);
+        
+        if (resp.success && resp.data && resp.data.length > 0) {
+          // Found matching questions!
+          const q = direction === 'next' ? resp.data[0] : resp.data[resp.data.length - 1];
+          const mapped = {
+            ...q,
+            id: q.questionId || q.id,
+            text: q.question || q.text,
+            answers: q.answers || q.options || [],
+            correct_answer: q.correct !== undefined ? q.correct : (q.correct_answer ?? q.correctAnswer),
+            _sourceLayoutId: `syllabus-q-${q.questionId || q.id}`
+          };
+          setSyllabusSelectedLO(nextLo.id);
+          setExpandedSyllabusQuestion(mapped);
+          setIsNavigatingSyllabus(false);
+          return;
+        }
+        targetLoIdx += nextStep;
+      }
+    } catch (e) {
+      console.error('Error in LO jump:', e);
+    }
+    setIsNavigatingSyllabus(false);
+  };
+   
   const [expandedSyllabusQuestion, setExpandedSyllabusQuestion] = useState<any | null>(null);
   const [syllabusGeneratingLO, setSyllabusGeneratingLO] = useState<string | null>(null);
   const [syllabusGeneratedQuestion, setSyllabusGeneratedQuestion] = useState<{ loId: string; question: Partial<Question> } | null>(null);
@@ -301,6 +401,29 @@ export default function App() {
       })
       .finally(() => setSyllabusLOQuestionsLoading(false));
   }, [syllabusSelectedLO]);
+  
+  // Keyboard navigation for Expanded Syllabus Question Modal
+  useEffect(() => {
+    if (!expandedSyllabusQuestion) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        const qIndex = syllabusLOQuestions.findIndex(q => (q.questionId || q.id) === (expandedSyllabusQuestion.questionId || expandedSyllabusQuestion.id));
+        if (qIndex === -1) return;
+
+        if (e.key === 'ArrowLeft' && qIndex > 0) {
+          setExpandedSyllabusQuestion(syllabusLOQuestions[qIndex - 1]);
+        } else if (e.key === 'ArrowRight' && qIndex < syllabusLOQuestions.length - 1) {
+          setExpandedSyllabusQuestion(syllabusLOQuestions[qIndex + 1]);
+        }
+      } else if (e.key === 'Escape') {
+        setExpandedSyllabusQuestion(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [expandedSyllabusQuestion, syllabusLOQuestions]);
 
   // Import states
   const [importSubjectId, setImportSubjectId] = useState<number | null>(null);
@@ -314,7 +437,7 @@ export default function App() {
   const [deepseekApiKey, setDeepseekApiKey] = useState('');
 
   // AI Proxy — used when user has no own DeepSeek key
-  const AI_PROXY_URL = import.meta.env.VITE_AI_PROXY_URL as string | undefined;
+  const AI_PROXY_URL = (import.meta as any).env?.VITE_AI_PROXY_URL as string | undefined;
   const getProxyParams = () => ({
     proxyUrl: AI_PROXY_URL,
     idToken: cognitoAuthService.getTokens()?.access_token,
@@ -642,36 +765,19 @@ export default function App() {
   }, [darkMode]);
 
   useEffect(() => {
+    // Load API keys from localStorage as backup only (DynamoDB is primary storage)
     const uid = user?.id || 'guest';
     const savedGemini = localStorage.getItem(`${uid}:userApiKey`);
     const savedClaude = localStorage.getItem(`${uid}:claudeApiKey`);
     const savedDeepseek = localStorage.getItem(`${uid}:deepseekApiKey`);
-    setUserApiKey(savedGemini || '');
-    setClaudeApiKey(savedClaude || '');
-    setDeepseekApiKey(savedDeepseek || '');
+    
+    // Only use localStorage if DynamoDB hasn't loaded keys yet (fallback)
+    if (!userApiKey && savedGemini) setUserApiKey(savedGemini);
+    if (!claudeApiKey && savedClaude) setClaudeApiKey(savedClaude);
+    if (!deepseekApiKey && savedDeepseek) setDeepseekApiKey(savedDeepseek);
+    
     setKeyStatus('idle');
   }, [user]);
-
-  useEffect(() => {
-    const uid = user?.id || 'guest';
-    if (userApiKey) {
-      localStorage.setItem(`${uid}:userApiKey`, userApiKey);
-    } else {
-      localStorage.removeItem(`${uid}:userApiKey`);
-    }
-    if (claudeApiKey) {
-      localStorage.setItem(`${uid}:claudeApiKey`, claudeApiKey);
-    } else {
-      localStorage.removeItem(`${uid}:claudeApiKey`);
-    }
-    // DeepSeek klíč se do localStorage neukládá — přichází z AWS profilu nebo ho uživatel zadá ručně
-    // Pokud ho uživatel smaže z pole, smažeme i localStorage
-    if (deepseekApiKey) {
-      localStorage.setItem(`${uid}:deepseekApiKey`, deepseekApiKey);
-    } else {
-      localStorage.removeItem(`${uid}:deepseekApiKey`);
-    }
-  }, [userApiKey, claudeApiKey, deepseekApiKey, user]);
 
   useEffect(() => {
     localStorage.setItem('aiProvider', aiProvider);
@@ -764,7 +870,77 @@ export default function App() {
   }, []);
 
   const handleVerifyKey = async () => {
-    const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined);
+    // For DeepSeek with proxy, we don't need a key
+    if (aiProvider === 'deepseek' && !deepseekApiKey && getProxyParams().idToken) {
+      setIsVerifyingKey(true);
+      setKeyStatus('idle');
+      try {
+        // Test proxy connection
+        const proxyParams = getProxyParams();
+        const testResult = await dynamoDBService.testProxyConnection(proxyParams.proxyUrl!, proxyParams.idToken!);
+        
+        if (testResult.success) {
+          setKeyStatus('valid');
+          
+          // Check proxy balance
+          try {
+            const balanceResult = await checkDeepSeekBalanceProxy(proxyParams.proxyUrl!, proxyParams.idToken!);
+            if (balanceResult.success) {
+              alert(`✅ Proxy připojení je funkční.\n💰 Zůstatek proxy klíče: ${balanceResult.balance}\n(Používá se testovací klíč)`);
+            } else {
+              alert(`✅ Proxy připojení je funkční.\n⚠️ Nepodařilo se zjistit zůstatek: ${balanceResult.error}\n(Používá se testovací klíč)`);
+            }
+          } catch (balanceError: any) {
+            console.warn('Balance check failed:', balanceError);
+            alert('✅ Proxy připojení je funkční. Používá se testovací klíč.');
+          }
+        } else {
+          setKeyStatus('invalid');
+          alert(`❌ Proxy připojení selhalo: ${testResult.error}`);
+        }
+      } catch (error: any) {
+        setKeyStatus('invalid');
+        alert('Chyba při ověřování proxy připojení. Zkuste to prosím později.');
+      } finally {
+        setIsVerifyingKey(false);
+      }
+      return;
+    }
+
+    // For DeepSeek with own key, check balance
+    if (aiProvider === 'deepseek' && deepseekApiKey) {
+      setIsVerifyingKey(true);
+      setKeyStatus('idle');
+      try {
+        // First check balance
+        const balanceResult = await checkDeepSeekBalance(deepseekApiKey);
+        
+        if (balanceResult.success) {
+          // Then verify the key works
+          const verifyResult = await verifyApiKey(deepseekApiKey, 'deepseek');
+          
+          if (verifyResult.success) {
+            setKeyStatus('valid');
+            alert(`✅ DeepSeek API klíč je platný.\n💰 Zůstatek: ${balanceResult.balance}\nKlíč byl uložen.`);
+          } else {
+            setKeyStatus('invalid');
+            alert(`❌ API klíč není platný: ${verifyResult.error}`);
+          }
+        } else {
+          setKeyStatus('invalid');
+          alert(`❌ Chyba při kontrole zůstatku: ${balanceResult.error}`);
+        }
+      } catch (error: any) {
+        setKeyStatus('invalid');
+        alert('Chyba při ověřování DeepSeek API klíče. Zkuste to prosím později.');
+      } finally {
+        setIsVerifyingKey(false);
+      }
+      return;
+    }
+
+    // Original logic for Gemini and Claude - keep unchanged
+    const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : undefined;
     if (!currentApiKey) return;
     setIsVerifyingKey(true);
     setKeyStatus('idle');
@@ -773,7 +949,7 @@ export default function App() {
 
       if (result.success) {
         setKeyStatus('valid');
-        const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
+        const providerName = aiProvider === 'gemini' ? 'Gemini' : 'Claude';
         alert(`✅ API klíč pro ${providerName} je platný a byl uložen.`);
       } else {
         setKeyStatus('invalid');
@@ -790,21 +966,22 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('drillSettings', JSON.stringify(drillSettings));
 
-    // Sync to DynamoDB for authenticated users (not guests)
-    // DeepSeek klíč se do settings neukládá — spravuje se přes AWS profil
+    // Sync API keys and settings to DynamoDB for authenticated users (not guests)
     if (!isGuestMode && user?.id) {
-      dynamoDBService.saveUserSettings(String(user.id), {
-        ...drillSettings,
+      dynamoDBService.saveApiKeys(String(user.id), {
         userApiKey,
         claudeApiKey,
+        deepseekApiKey,
         aiProvider,
-        aiModel
+        aiModel,
+        ...drillSettings
       }).catch(() => {
-        // Silent fail - localStorage is primary storage
+        // Silent fail - localStorage is backup storage
       });
     }
   }, [drillSettings, user?.id, userApiKey, claudeApiKey, deepseekApiKey, aiProvider, aiModel]);
 
+  
   // Load user settings from DynamoDB on login
   useEffect(() => {
     if (!isGuestMode && user?.id && isCredentialsReady) {
@@ -819,9 +996,9 @@ export default function App() {
             }));
 
             // Restore API keys and AI settings from DB
-            // DeepSeek klíč se nenačítá ze settings — přichází z AWS profilu (samostatný atribut)
             if (result.settings.userApiKey) setUserApiKey(result.settings.userApiKey);
             if (result.settings.claudeApiKey) setClaudeApiKey(result.settings.claudeApiKey);
+            if (result.settings.deepseekApiKey) setDeepseekApiKey(result.settings.deepseekApiKey);
             if (result.settings.aiProvider) setAiProvider(result.settings.aiProvider);
             if (result.settings.aiModel) setAiModel(result.settings.aiModel);
           }
@@ -831,15 +1008,81 @@ export default function App() {
         });
     }
   }, [user?.id, isCredentialsReady]);
+  
+  // Fetch cloud data on login
+  useEffect(() => {
+    if (!isGuestMode && user?.id && isCredentialsReady) {
+      console.log('🔄 Fetching user data from cloud...');
+      const userId = String(user.id);
+      
+      // 1. Fetch Flags
+      dynamoDBService.getQuestionFlags(userId).then(response => {
+        if (response.success && response.data?.flags) {
+          console.log(`✅ Loaded ${Object.keys(response.data.flags).length} flags from cloud`);
+          const existingFlags = JSON.parse(localStorage.getItem('question_flags') || '{}');
+          const mergedFlags = { ...existingFlags, ...response.data.flags };
+          localStorage.setItem('question_flags', JSON.stringify(mergedFlags));
+        }
+      }).catch(() => {});
+      
+      // 2. Sync Progress (Optional, already handled on startDrill but good for heatmap)
+      dynamoDBService.getUserSettings(userId).then(response => {
+        if (response.success && response.settings?.progress) {
+          const answersKey = userKey('answers');
+          const existingAnswers = JSON.parse(localStorage.getItem(answersKey) || '{}');
+          const mergedAnswers = { ...existingAnswers, ...response.settings.progress };
+          localStorage.setItem(answersKey, JSON.stringify(mergedAnswers));
+          console.log(`✅ Synced progress heatmap (${Object.keys(response.settings.progress).length} entries)`);
+        }
+      }).catch(() => {});
+    }
+  }, [user?.id, isGuestMode, isCredentialsReady]);
 
   // Re-filter questions when source filters change in drill mode
   useEffect(() => {
-    if (view === 'drill' && originalQuestions.length > 0 && selectedSubject) {
+    // Only re-filter during standard subject drill (id > 0)
+    // Modes like 'Review Errors' (id: -1) and 'Flagged' (id: -2) manage their own filtering
+    if (view === 'drill' && originalQuestions.length > 0 && selectedSubject && selectedSubject.id !== 0) {
       // Re-apply filters to ORIGINAL questions, not already filtered ones
+      const answers = JSON.parse(localStorage.getItem(userKey('answers')) || '{}');
+      const flags = JSON.parse(localStorage.getItem('question_flags') || '{}');
       const filtered = originalQuestions.filter(q => {
         const isAi = Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa';
-        if (isAi) return drillSettings.sourceFilters.includes('ai');
-        return drillSettings.sourceFilters.includes('user');
+        const sourceMatch = isAi ? drillSettings.sourceFilters.includes('ai') : drillSettings.sourceFilters.includes('user');
+        if (!sourceMatch) return false;
+        
+        if (selectedSubject.id === -1) {
+          // Error review filtering
+          const answer = answers[String(q.id)];
+          const isError = answer && !answer.isCorrect;
+          if (!isError) return false;
+        } else if (selectedSubject.id === -2) {
+          // Flagged review filtering - with legacy bridge
+          const compositeId = String(q.id);
+          const rawId = compositeId.includes('_') ? compositeId.split('_')[1] : compositeId;
+          const flag = flags[compositeId] || flags[rawId] || flags[String(rawId)];
+          
+          let isFlagged = false;
+          if (typeof flag === 'object' && flag !== null) isFlagged = !!flag.isFlagged;
+          else isFlagged = !!flag;
+          
+          if (!isFlagged) return false;
+        } else if (drillSettings.excludeAnswered) {
+          // Standard subject filtering
+          const answer = answers[String(q.id)];
+          if (answer && answer.isCorrect) return false;
+        }
+        
+        return true;
+      });
+
+      // Apply flag status to the resulting questions so UI reflects correctly
+      const mapped = filtered.map(q => {
+        const compositeId = String(q.id);
+        const rawId = compositeId.includes('_') ? compositeId.split('_')[1] : compositeId;
+        const flag = flags[compositeId] || flags[rawId] || flags[String(rawId)];
+        const isF = (typeof flag === 'object' && flag !== null) ? !!flag.isFlagged : !!flag;
+        return { ...q, is_flagged: isF };
       });
 
       if (filtered.length === 0) {
@@ -849,13 +1092,13 @@ export default function App() {
         return;
       }
 
-      // Update questions with filtered results
-      setQuestions(filtered);
+      // Update questions with filtered and mapped results
+      setQuestions(mapped);
       setCurrentQuestionIndex(0); // Reset to first question
       setAnswered(null); // Clear answer
       setShowExplanation(false); // Hide explanation
     }
-  }, [drillSettings.sourceFilters, view, originalQuestions.length, selectedSubject]);
+  }, [drillSettings.sourceFilters, drillSettings.excludeAnswered, view, originalQuestions.length, selectedSubject]);
 
   // Static data loading for GitHub Pages deployment
   const loadStaticSubjects = async () => {
@@ -894,37 +1137,41 @@ export default function App() {
       // Try DynamoDB first
       const result = await dynamoDBService.getQuestionsBySubject(subjectId);
       if (result.success && result.data && result.data.length > 0) {
-        const questions: Question[] = result.data.map((q: any) => ({
-          id: q.originalId || q.questionId,
-          subject_id: q.subjectId,
-          text: q.question,
-          text_cz: q.question_cz || undefined,
-          option_a: q.answers[0],
-          option_a_cz: q.answers_cz?.[0] || undefined,
-          option_b: q.answers[1],
-          option_b_cz: q.answers_cz?.[1] || undefined,
-          option_c: q.answers[2],
-          option_c_cz: q.answers_cz?.[2] || undefined,
-          option_d: q.answers[3],
-          option_d_cz: q.answers_cz?.[3] || undefined,
-          correct_option: q.correctOption || ['A', 'B', 'C', 'D'][q.correct] || 'A',
-          explanation: q.explanation || '',
-          explanation_cz: q.explanation_cz || undefined,
-          lo_id: q.loId || q.lo_id || undefined,
-          is_ai: q.source === 'ai' ? 1 : 0,
-          source: q.source || 'user',
-          difficulty: q.difficulty || 1,
-          image: null,
-          correct_count: null,
-          incorrect_count: null,
-          is_flagged: false,
-          last_practiced: null,
-          created_at: q.createdAt || new Date().toISOString(),
-          updated_at: q.createdAt || new Date().toISOString(),
-          approved: q.approved || false,
-          approvedBy: q.approvedBy || undefined,
-          approvedAt: q.approvedAt || undefined
-        }));
+        const questions: Question[] = result.data.map((q: any) => {
+          const rawId = q.originalId || q.questionId;
+          const isNumericId = !isNaN(Number(rawId)) && !String(rawId).startsWith('ai_');
+          return {
+            id: isNumericId ? `${subjectId}_${rawId}` : String(rawId),
+            subject_id: subjectId,
+            text: q.question,
+            text_cz: q.question_cz || undefined,
+            option_a: q.answers[0],
+            option_a_cz: q.answers_cz?.[0] || undefined,
+            option_b: q.answers[1],
+            option_b_cz: q.answers_cz?.[1] || undefined,
+            option_c: q.answers[2],
+            option_c_cz: q.answers_cz?.[2] || undefined,
+            option_d: q.answers[3],
+            option_d_cz: q.answers_cz?.[3] || undefined,
+            correct_option: q.correctOption || ['A', 'B', 'C', 'D'][q.correct] || 'A',
+            explanation: q.explanation || '',
+            explanation_cz: q.explanation_cz || undefined,
+            lo_id: q.loId || q.lo_id || undefined,
+            is_ai: (q.source === 'ai' || Number(q.is_ai) === 1) ? 1 : 0,
+            source: q.source || 'user',
+            difficulty: q.difficulty || 1,
+            image: q.image || null,
+            correct_count: null,
+            incorrect_count: null,
+            is_flagged: false,
+            last_practiced: null,
+            created_at: q.createdAt || new Date().toISOString(),
+            updated_at: q.createdAt || new Date().toISOString(),
+            approved: q.approved || false,
+            approvedBy: q.approvedBy || undefined,
+            approvedAt: q.approvedAt || undefined
+          };
+        });
         return questions;
       }
     } catch (err) {
@@ -937,7 +1184,7 @@ export default function App() {
       if (!response.ok) throw new Error('Failed to load questions');
       const jsonQuestions = await response.json();
       const questions: Question[] = jsonQuestions.map((q: any) => ({
-        id: q.id,
+        id: typeof q.id === 'number' ? `${subjectId}_${q.id}` : String(q.id),
         subject_id: subjectId,
         text: q.question,
         text_cz: q.question_cz || undefined,
@@ -1174,10 +1421,17 @@ export default function App() {
       // Use static questions loading for GitHub Pages deployment
       const data: Question[] = await loadStaticQuestions(subject.id);
 
+      const answers = JSON.parse(localStorage.getItem(userKey('answers')) || '{}');
       let processedQuestions = data.filter(q => {
         const isAi = Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa';
-        if (isAi) return drillSettings.sourceFilters.includes('ai');
-        return drillSettings.sourceFilters.includes('user');
+        const sourceMatch = isAi ? drillSettings.sourceFilters.includes('ai') : drillSettings.sourceFilters.includes('user');
+        if (!sourceMatch) return false;
+        
+        if (drillSettings.excludeAnswered) {
+          const answer = answers[String(q.questionId || q.id)];
+          return !answer || !answer.isCorrect;
+        }
+        return true;
       });
 
       // Apply sorting to questions
@@ -1212,21 +1466,47 @@ export default function App() {
         const diffA = a.difficulty ?? 0;
         const diffB = b.difficulty ?? 0;
         if (diffB !== diffA) return diffB - diffA;
-        return a.id - b.id;
+        return String(a.id).localeCompare(String(b.id));
       });
       console.log(`🔥 applySorting: Sorted by difficulty. First question ID: ${sorted[0]?.id}, difficulty: ${sorted[0]?.difficulty}`);
     } else if (sorting === 'least_practiced') {
       sorted = sorted.sort((a, b) => {
-        if (!a.last_practiced && !b.last_practiced) return a.id - b.id;
+        if (!a.last_practiced && !b.last_practiced) return String(a.id).localeCompare(String(b.id));
         if (!a.last_practiced) return -1;
         if (!b.last_practiced) return 1;
         return new Date(a.last_practiced).getTime() - new Date(b.last_practiced).getTime();
       });
       console.log(`📚 applySorting: Sorted by least practiced. First question ID: ${sorted[0]?.id}, last_practiced: ${sorted[0]?.last_practiced}`);
     } else {
-      // default - sort by ID
-      sorted = sorted.sort((a, b) => a.id - b.id);
-      console.log(`📋 applySorting: Using default order. First question ID: ${sorted[0]?.id}`);
+      // default - Robust sort by ID (handling 9_1, 9_10, subjectX_qY etc. numerically)
+      sorted = sorted.sort((a, b) => {
+        const getParts = (id: any) => String(id).split('_').map(p => {
+          // If part looks like a number or 'q' followed by number, extract number
+          const n = parseInt(p.startsWith('q') ? p.substring(1) : p);
+          return isNaN(n) ? p : n;
+        });
+        
+        const partsA = getParts(a.id);
+        const partsB = getParts(b.id);
+        
+        // Hierarchical comparison
+        for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
+          const valA = partsA[i];
+          const valB = partsB[i];
+          
+          if (valA === undefined) return -1;
+          if (valB === undefined) return 1;
+          
+          if (valA !== valB) {
+            // Numeric comparison if both are numbers
+            if (typeof valA === 'number' && typeof valB === 'number') return valA - valB;
+            // String comparison otherwise
+            return String(valA).localeCompare(String(valB));
+          }
+        }
+        return 0;
+      });
+      console.log(`📋 applySorting: Using robust ID order. First question ID: ${sorted[0]?.id}`);
     }
     return sorted;
   };
@@ -1292,6 +1572,15 @@ export default function App() {
     }
   };
 
+  const loadAllQuestionsAcrossSubjects = async (): Promise<Question[]> => {
+    let all: Question[] = [];
+    for (const subject of subjects) {
+      const qs = await loadStaticQuestions(subject.id);
+      all.push(...qs);
+    }
+    return all;
+  };
+
   const startErrors = async () => {
     if (isGuestMode) {
       showAuthPrompt('errors');
@@ -1299,12 +1588,11 @@ export default function App() {
     }
 
     try {
-      // Get incorrectly answered question IDs from user-specific answers
       const allAnswers = JSON.parse(localStorage.getItem(`${user?.id || 'guest'}:answers`) || '{}');
       const incorrectIds = new Set(
         Object.entries(allAnswers)
           .filter(([_, a]: [string, any]) => !a.isCorrect)
-          .map(([id]) => Number(id))
+          .map(([id]) => String(id))
       );
 
       if (incorrectIds.size === 0) {
@@ -1312,32 +1600,32 @@ export default function App() {
         return;
       }
 
-      // Load all questions from DynamoDB across all subjects
-      let allQuestions: Question[] = [];
-      for (const subject of subjects) {
-        const qs = await loadStaticQuestions(subject.id);
-        allQuestions.push(...qs);
-      }
-
-      // Filter to only incorrectly answered questions
-      const errorQuestions = allQuestions.filter(q => incorrectIds.has(Number(q.id)));
+      const allQuestions = await loadAllQuestionsAcrossSubjects();
+      const errorQuestions = allQuestions.filter(q => {
+        const isAi = Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa';
+        const sourceMatch = isAi ? drillSettings.sourceFilters.includes('ai') : drillSettings.sourceFilters.includes('user');
+        if (!sourceMatch) return false;
+        
+        const compositeId = String(q.id);
+        const answer = allAnswers[compositeId];
+        return answer && !answer.isCorrect;
+      });
 
       if (errorQuestions.length === 0) {
-        alert('Nemáte žádné chyby k procvičení.');
+        alert('Nemáte žádné chyby k procvičení (v rámci vybraných filtrů).');
         return;
       }
 
-      // Apply sorting based on drillSettings
+      setOriginalQuestions(allQuestions);
       let sortedQuestions = applySorting(errorQuestions, drillSettings.sorting);
-
       setSelectedSubject({ id: -1, name: 'Procvičit chyby', question_count: sortedQuestions.length, success_rate: 0 });
       setQuestions(sortedQuestions);
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
-      language.resetTranslation(); // Reset translation when starting errors practice
+      language.resetTranslation();
       setView('drill');
-    } catch (err) {
+    } catch (error) {
       alert('Nepodařilo se načíst chyby.');
     }
   };
@@ -1349,37 +1637,32 @@ export default function App() {
     }
 
     try {
-      // Get flagged question IDs from localStorage
       const flags = JSON.parse(localStorage.getItem('question_flags') || '{}');
-      const flaggedIds = new Set(
-        Object.entries(flags)
-          .filter(([_, isFlagged]: [string, boolean]) => isFlagged)
-          .map(([id]) => Number(id))
-      );
+      const allQuestions = await loadAllQuestionsAcrossSubjects();
+      const flaggedQuestions = allQuestions
+        .filter(q => {
+          const isAi = Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa';
+          const sourceMatch = isAi ? drillSettings.sourceFilters.includes('ai') : drillSettings.sourceFilters.includes('user');
+          if (!sourceMatch) return false;
 
-      if (flaggedIds.size === 0) {
-        alert('Nemáte žádné označené otázky k procvičení.');
-        return;
-      }
-
-      // Load all questions from DynamoDB across all subjects
-      let allQuestions: Question[] = [];
-      for (const subject of subjects) {
-        const qs = await loadStaticQuestions(subject.id);
-        allQuestions.push(...qs);
-      }
-
-      // Filter to only flagged questions
-      const flaggedQuestions = allQuestions.filter(q => flaggedIds.has(Number(q.id)));
+          const compositeId = String(q.id);
+          const rawId = compositeId.includes('_') ? compositeId.split('_')[1] : compositeId;
+          
+          // Legacy support: match by compositeId (preferred) or old raw numeric ID
+          const flag = flags[compositeId] || flags[rawId] || flags[String(rawId)];
+          
+          if (typeof flag === 'object' && flag !== null) return !!flag.isFlagged;
+          return !!flag;
+        })
+        .map(q => ({ ...q, is_flagged: true }));
 
       if (flaggedQuestions.length === 0) {
-        alert('Nemáte žádné označené otázky k procvičení.');
+        alert('Nemáte žádné označené otázky k procvičení (v rámci vybraných filtrů).');
         return;
       }
 
-      // Apply sorting based on drillSettings
+      setOriginalQuestions(allQuestions);
       let sortedQuestions = applySorting(flaggedQuestions, drillSettings.sorting);
-
       setSelectedSubject({ id: -2, name: 'Označené otázky', question_count: sortedQuestions.length, success_rate: 0 });
       setQuestions(sortedQuestions);
       setCurrentQuestionIndex(0);
@@ -1681,23 +1964,31 @@ V nastavení lze změnit defaultni model.`);
       // Check DynamoDB cache first
       try {
         const cacheKey = `${q.subject_id}_${q.id}`;
+        console.log(`[Cache] Checking DynamoDB for key: ${cacheKey}, model: ${aiModel}, provider: ${aiProvider}`);
         const cached = await dynamoDBService.getCachedExplanation(cacheKey, aiModel);
+        console.log(`[Cache] DynamoDB result:`, cached);
         if (cached.success && cached.data?.explanation) {
+          console.log(`[Cache] Found in DynamoDB, using cached explanation`);
           setAiExplanation(cached.data.explanation);
           setDetailedExplanation(cached.data.detailedExplanation || null);
           setShowExplanation(true);
           setIsGeneratingAiExplanation(false);
           return;
         }
-      } catch (error) { }
+      } catch (error) { 
+        console.error('[Cache] DynamoDB error:', error);
+      }
 
       // Check localStorage as fallback
       const localStorageKey = `ai_explanation_${q.subject_id}_${q.id}_${aiProvider}_${aiModel}`;
+      console.log(`[Cache] Checking localStorage for key: ${localStorageKey}`);
       const localStorageData = localStorage.getItem(localStorageKey);
       if (localStorageData) {
         try {
           const parsed = JSON.parse(localStorageData);
+          console.log(`[Cache] localStorage data:`, parsed);
           if (parsed.explanation) {
+            console.log(`[Cache] Found in localStorage, using cached explanation`);
             setAiExplanation(parsed.explanation);
             setDetailedExplanation(parsed.detailedExplanation || null);
             setShowExplanation(true);
@@ -1714,17 +2005,25 @@ V nastavení lze změnit defaultni model.`);
             ).catch(() => { });
             return;
           }
-        } catch (error) { }
+        } catch (error) { 
+          console.error('[Cache] localStorage parse error:', error);
+        }
       }
 
       // Check question data cache
+      console.log(`[Cache] Checking question data cache. q.ai_explanation: ${q.ai_explanation ? 'exists' : 'null'}, q.ai_explanation_provider: ${q.ai_explanation_provider}`);
       if (q.ai_explanation && q.ai_explanation_provider === aiProvider) {
+        console.log(`[Cache] Found in question data cache, provider matches`);
         setAiExplanation(q.ai_explanation);
         setDetailedExplanation(q.ai_detailed_explanation || null);
         setShowExplanation(true);
         setIsGeneratingAiExplanation(false);
         return;
+      } else if (q.ai_explanation) {
+        console.log(`[Cache] Found explanation but provider mismatch. Stored: ${q.ai_explanation_provider}, Current: ${aiProvider}`);
       }
+
+      console.log(`[Cache] No cached explanation found, calling AI API for provider: ${aiProvider}`);
 
       const lo = allLOs.find(l => l.id === q.lo_id);
 
@@ -1732,7 +2031,7 @@ V nastavení lze změnit defaultni model.`);
         ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
         : undefined;
 
-      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined), aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken(), userApiKey, claudeApiKey, (chunk) => setAiExplanation(chunk));
+      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined), aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken(), userApiKey, claudeApiKey, (chunk) => setAiExplanation(prev => prev + chunk));
 
 
       // Save objective if detected
@@ -1863,7 +2162,7 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
         await getProxyIdToken(),
         userApiKey,
         claudeApiKey,
-        (chunk) => setAiExplanation(chunk)
+        (chunk) => setAiExplanation(prev => prev + chunk)
       );
 
       setAiExplanation(explanation.explanation);
@@ -1901,11 +2200,22 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
   };
 
   const handleFetchDetailedExplanation = async () => {
+    console.log('[Detailed] Starting detailed explanation fetch...');
     const q = questions[currentQuestionIndex];
-    if (!q) return;
+    if (!q) {
+      console.log('[Detailed] No question found');
+      return;
+    }
+
+    console.log('[Detailed] Question:', q.id);
+    console.log('[Detailed] Provider:', aiProvider);
 
     const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined);
+    console.log('[Detailed] API Key exists:', !!currentApiKey);
+    console.log('[Detailed] Proxy params available:', !!(aiProvider === 'deepseek' && getProxyParams().idToken));
+
     if (!currentApiKey && !(aiProvider === 'deepseek' && getProxyParams().idToken)) {
+      console.log('[Detailed] No API key available, prompting...');
       const providerName = aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek';
       const key = prompt(`⚠️ Pro použití AI je nutný API klíč
 Vložte ${providerName} API klíč.
@@ -1925,38 +2235,60 @@ V nastavení lze změnit defaultni model.`);
           else setDeepseekApiKey(key);
         }
       } else {
+        console.log('[Detailed] User cancelled API key prompt');
         return;
       }
     }
 
     setIsGeneratingDetailedExplanation(true);
     try {
+      console.log('[Detailed] Starting AI call...');
 
       const lo = allLOs.find(l => l.id === q.lo_id);
+      console.log('[Detailed] LO found:', !!lo);
 
       // Check if we already have detailed explanation in database
       if (q.ai_detailed_explanation) {
+        console.log('[Detailed] Found cached detailed explanation');
         setDetailedExplanation(q.ai_detailed_explanation);
         return;
       }
 
+      console.log('[Detailed] No cached explanation, calling AI...');
       const displayCorrectOption = (drillSettings.shuffleAnswers && shuffledQuestion && view === 'drill')
         ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
         : undefined;
 
-      const detailedExplanationResult = await getDetailedHumanExplanation(
-        q, lo,
-        currentApiKey,
-        aiModel, aiProvider, undefined, displayCorrectOption,
-        AI_PROXY_URL, await getProxyIdToken(), userApiKey, claudeApiKey,
-        (chunk: string) => setDetailedExplanation(chunk)
-      );
-
-      setDetailedExplanation(detailedExplanationResult);
+      console.log('[Detailed] Calling getDetailedHumanExplanation...');
+      let detailedExplanationResult: string;
+      try {
+        const proxyToken = await getProxyIdToken();
+        console.log('[Detailed] Proxy token obtained:', !!proxyToken);
+        
+        detailedExplanationResult = await getDetailedHumanExplanation(
+          q, lo,
+          currentApiKey,
+          aiModel, aiProvider, undefined, displayCorrectOption,
+          AI_PROXY_URL, proxyToken, userApiKey, claudeApiKey,
+          (chunk: string) => {
+            setDetailedExplanation(prev => prev + chunk);
+          }
+        );
+        
+        console.log('[Detailed] AI call completed, result length:', detailedExplanationResult?.length);
+        setDetailedExplanation(detailedExplanationResult);
+      } catch (error) {
+        console.error('[Detailed] Error in getDetailedHumanExplanation:', error);
+        throw error;
+      }
 
       // Save detailed explanation to DynamoDB + localStorage
       try {
+        console.log('[Detailed] Starting save to DB...');
         const explanationKey = `${q.subject_id}_${q.id}`;
+        console.log('[Detailed] Explanation key:', explanationKey);
+        console.log('[Detailed] Result to save:', detailedExplanationResult?.substring(0, 100) + '...');
+        
         // Save to DynamoDB
         dynamoDBService.saveExplanationWithObjective(
           explanationKey,
@@ -1965,7 +2297,12 @@ V nastavení lze změnit defaultni model.`);
           null,
           aiProvider as 'gemini' | 'claude',
           aiModel
-        ).catch(() => {});
+        ).then(() => {
+          console.log('[Detailed] ✅ Saved to DynamoDB');
+        }).catch((err) => {
+          console.error('[Detailed] ❌ DynamoDB save failed:', err);
+        });
+        
         // Save to localStorage
         const explanations = JSON.parse(localStorage.getItem('ai_explanations') || '{}');
         explanations[explanationKey] = {
@@ -1977,11 +2314,14 @@ V nastavení lze změnit defaultni model.`);
           createdAt: new Date().toISOString()
         };
         localStorage.setItem('ai_explanations', JSON.stringify(explanations));
+        console.log('[Detailed] ✅ Saved to localStorage');
+        
         setQuestions(prev => prev.map(question =>
           question.id === q.id ? { ...question, ai_detailed_explanation: detailedExplanationResult } : question
         ));
+        console.log('[Detailed] ✅ Updated local state');
       } catch (error) {
-        // Silent fail
+        console.error('[Detailed] ❌ Save failed:', error);
       }
     } catch (error: any) {
       const msg = getAIErrorMessage(error); if (msg) alert(msg);
@@ -1999,11 +2339,28 @@ V nastavení lze změnit defaultni model.`);
     setExamResults({ score: results.score, total: results.total });
   };
 
-  const toggleFlag = async (questionId: number, currentFlag: boolean) => {
+  const handleResetFlags = async () => {
+    if (!window.confirm('Opravdu chcete smazat všechny vlaječky? Tuto akci nelze vrátit.')) return;
+
+    try {
+      localStorage.removeItem('question_flags');
+      if (!isGuestMode && user?.id) {
+        await dynamoDBService.deleteAllQuestionFlags(String(user.id));
+      }
+      alert('Vlaječky byly úspěšně smazány.');
+    } catch (error) {
+      alert('Chyba při mazání vlaječek.');
+    }
+  };
+
+  const toggleFlag = async (questionId: string | number, currentFlag: boolean) => {
     const newFlag = !currentFlag;
+    const now = new Date().toISOString();
+    const flagData = { isFlagged: newFlag, flaggedAt: now };
+
     try {
       const flags = JSON.parse(localStorage.getItem('question_flags') || '{}');
-      flags[questionId] = newFlag;
+      flags[questionId] = flagData;
       localStorage.setItem('question_flags', JSON.stringify(flags));
       // Sync to DynamoDB only if not guest
       if (!isGuestMode && user && user.id) {
@@ -2012,7 +2369,26 @@ V nastavení lze změnit defaultni model.`);
     } catch (error) {
       // Silent fail
     }
-    setQuestions(prev => prev.map(q => q.id === questionId ? { ...q, is_flagged: newFlag } : q));
+    // Update locally
+    setQuestions(prev => {
+      // In Flagged mode, if unflagging, remove the question from the list
+      if (selectedSubject?.id === -2 && !newFlag) {
+        return prev.filter(q => q.id !== questionId);
+      }
+      return prev.map(q => q.id === questionId ? { ...q, is_flagged: newFlag } : q);
+    });
+
+    // Handle index adjustment if the current question was removed
+    if (selectedSubject?.id === -2 && !newFlag) {
+      // If we removed more questions than are left, or if index was at the end
+      setCurrentQuestionIndex(prev => {
+        const remainingCount = questions.length - 1;
+        if (remainingCount === 0) return 0; // Will show empty state
+        return Math.min(prev, remainingCount - 1);
+      });
+      setAnswered(null);
+      setShowExplanation(false);
+    }
   };
 
   useEffect(() => {
@@ -2029,7 +2405,7 @@ V nastavení lze změnit defaultni model.`);
       const subjectIds = Object.keys(getDynamicSyllabusScope(allLOs)).map(Number);
       const allQuestions = await Promise.all(subjectIds.map(id => loadStaticQuestions(id)));
       const global = new Set<string>(
-        allQuestions.flat().map(q => q.lo_id).filter(Boolean) as string[]
+        allQuestions.flat().map(q => q.loId || q.lo_id).filter(Boolean) as string[]
       );
       setGlobalCoveredLOs(global);
     } catch {
@@ -2041,12 +2417,12 @@ V nastavení lze změnit defaultni model.`);
     try {
       // Load questions from DynamoDB for the specific subject
       const data = await loadStaticQuestions(subjectId);
-      const covered = new Set(data.map(q => q.lo_id).filter(Boolean).map(id => id?.trim()) as string[]);
+      const covered = new Set(data.map(q => q.loId || q.lo_id).filter(Boolean).map(id => id?.trim()) as string[]);
       setCoveredLOs(covered);
 
       // Calculate actual covered LOs like AI generator
       const allSubjectLOs = allLOs.filter(lo => lo.subject_id === subjectId);
-      const losWithQuestions = new Set(data.map(q => q.lo_id).filter(Boolean));
+      const losWithQuestions = new Set(data.map(q => q.loId || q.lo_id).filter(Boolean));
 
       const uniqueLosWithQuestions = new Set();
       allSubjectLOs.forEach(lo => {
@@ -2941,6 +3317,14 @@ V nastavení lze změnit defaultni model.`);
                 </button>
 
                 {/* Fixed controls (hidden on mobile, visible on tablet+) */}
+                {(view === 'drill' || view === 'exam') && questions[currentQuestionIndex]?.approved && (
+                  <div 
+                    className="flex items-center justify-center bg-green-500 text-white w-9 h-9 rounded-full shadow-lg shadow-green-500/20 flex-shrink-0" 
+                    title="Otázka schválena auditorem"
+                  >
+                    <ShieldCheck size={18} strokeWidth={3} />
+                  </div>
+                )}
                 <button
                   onClick={() => setDarkMode(!darkMode)}
                   className="hidden md:flex w-10 h-10 items-center justify-center rounded-full hover:bg-[var(--ink)] hover:text-[var(--ink-text)] transition-colors flex-shrink-0"
@@ -3258,7 +3642,7 @@ V nastavení lze změnit defaultni model.`);
                         })()}
                       </p>
                       <p className="text-[8px] sm:text-[10px] md:text-sm opacity-50">
-                        {stats ? `otázek • uživatel/EASA` : 'otázek'}
+                        {stats ? `otázek • UCL/EASA` : 'otázek'}
                         <span className="ml-2 opacity-80">({allLOs.length} LOs)</span>
                       </p>
                     </div>
@@ -3447,14 +3831,20 @@ V nastavení lze změnit defaultni model.`);
                           <div className="font-mono text-sm flex justify-center opacity-60">
                             {isGuestMode ? '-' : (() => {
                               const flags = JSON.parse(localStorage.getItem('question_flags') || '{}');
-                              const flaggedCount = Object.values(flags).filter(Boolean).length;
+                              const flaggedCount = Object.values(flags).filter((f: any) => {
+                                if (typeof f === 'object' && f !== null) return !!f.isFlagged;
+                                return !!f;
+                              }).length;
                               return flaggedCount > 0 ? `${flaggedCount} ks` : '0 ks';
                             })()}
                           </div>
                           <div className="font-mono text-sm flex justify-center min-w-[3rem]">
                             {isGuestMode ? '0%' : (() => {
                               const flags = JSON.parse(localStorage.getItem('question_flags') || '{}');
-                              const flaggedCount = Object.values(flags).filter(Boolean).length;
+                              const flaggedCount = Object.values(flags).filter((f: any) => {
+                                if (typeof f === 'object' && f !== null) return !!f.isFlagged;
+                                return !!f;
+                              }).length;
                               return flaggedCount > 0 ? `${flaggedCount}` : '0';
                             })()}
                           </div>
@@ -3519,13 +3909,27 @@ V nastavení lze změnit defaultni model.`);
                           <div className="flex gap-3">
                             {[
                               { id: 'user', icon: User, label: 'Uživatel', title: 'Zobrazit jen otázky importované uživatelem' },
-                              { id: 'ai', icon: Bot, label: 'AI / EASA', title: 'Zobrazit jen otázky které sestavila AI na základě LearningObjectives' }
+                              { id: 'ai', icon: Bot, label: 'AI / EASA', title: 'Zobrazit jen otázky které sestavila AI na základě LearningObjectives' },
+                              { id: 'spacer', icon: () => <div className="w-10" />, label: '', title: '' },
+                              { id: 'excludeAnswered', icon: CheckCircle2, label: 'Vynechat', title: 'Nezobrazovat otázky, které jste již správně zodpověděli' }
                             ].map((src) => {
-                              const isActive = drillSettings.sourceFilters.includes(src.id as any);
+                              if (src.id === 'spacer') return <div key="spacer" className="w-4 md:w-8" />;
+                              
+                              let isActive: boolean;
+                              let onClick: () => void;
+
+                              if (src.id === 'excludeAnswered') {
+                                isActive = drillSettings.excludeAnswered;
+                                onClick = () => setDrillSettings(prev => ({ ...prev, excludeAnswered: !prev.excludeAnswered }));
+                              } else {
+                                isActive = drillSettings.sourceFilters.includes(src.id as any);
+                                onClick = () => toggleSourceFilter(src.id as any);
+                              }
+
                               return (
                                 <button
                                   key={src.id}
-                                  onClick={() => toggleSourceFilter(src.id as any)}
+                                  onClick={onClick}
                                   title={src.title}
                                   className={`flex-1 flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all ${isActive
                                       ? 'border-indigo-600 bg-indigo-600/5 text-indigo-600 scale-105 shadow-sm'
@@ -3543,9 +3947,14 @@ V nastavení lze změnit defaultni model.`);
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="flex items-center justify-between p-4 border border-[var(--line)] rounded-2xl">
-                          <div>
-                            <p className="text-sm font-bold">Vyhodnocení odpovědi</p>
-                            <p className="text-[10px] opacity-50">Zobrazit správnou odpověď ihned po kliknutí</p>
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-600">
+                              <CheckCircle2 size={20} />
+                            </div>
+                            <div>
+                              <p className="text-sm font-bold">Vyhodnocení</p>
+                              <p className="text-[10px] opacity-50">Správná odpověď ihned</p>
+                            </div>
                           </div>
                           <button
                             onClick={() => setDrillSettings(prev => ({ ...prev, immediateFeedback: !prev.immediateFeedback }))}
@@ -3556,9 +3965,14 @@ V nastavení lze změnit defaultni model.`);
                         </div>
 
                         <div className="flex items-center justify-between p-4 border border-[var(--line)] rounded-2xl">
-                          <div>
-                            <p className="text-sm font-bold">Vysvětlení na vyžádání</p>
-                            <p className="text-[10px] opacity-50">Možnost zobrazit vysvětlení u každé otázky</p>
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-600">
+                              <HelpCircle size={20} />
+                            </div>
+                            <div>
+                              <p className="text-sm font-bold">Vysvětlení</p>
+                              <p className="text-[10px] opacity-50">Možnost UI vysvětlivek</p>
+                            </div>
                           </div>
                           <button
                             onClick={() => setDrillSettings(prev => ({ ...prev, showExplanationOnDemand: !prev.showExplanationOnDemand }))}
@@ -3569,9 +3983,14 @@ V nastavení lze změnit defaultni model.`);
                         </div>
 
                         <div className="flex items-center justify-between p-4 border border-[var(--line)] rounded-2xl">
-                          <div>
-                            <p className="text-sm font-bold">Míchat odpovědi</p>
-                            <p className="text-[10px] opacity-50">Náhodné pořadí odpovědí pro lepší učení</p>
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-600">
+                              <RotateCcw size={20} />
+                            </div>
+                            <div>
+                              <p className="text-sm font-bold">Míchat</p>
+                              <p className="text-[10px] opacity-50">Pořadí odpovědí</p>
+                            </div>
                           </div>
                           <button
                             onClick={() => setDrillSettings(prev => ({ ...prev, shuffleAnswers: !prev.shuffleAnswers }))}
@@ -3597,7 +4016,7 @@ V nastavení lze změnit defaultni model.`);
                           <label className="col-header">AI Provider</label>
                           <div className="flex gap-2 flex-wrap">
                             {(['gemini', 'claude', 'deepseek'] as const).map(p => (
-                              <ModelButton key={p} provider={p} active={aiProvider === p} onClick={() => setAiProvider(p)} />
+                              (ModelButton as any)({ key: p, provider: p, active: aiProvider === p, onClick: () => setAiProvider(p) })
                             ))}
                           </div>
                         </div>
@@ -3650,31 +4069,43 @@ V nastavení lze změnit defaultni model.`);
                                 }
                                 setKeyStatus('idle');
                               }}
-                              placeholder={`Vložte váš ${aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek'} API klíč...`}
+                              placeholder={
+                                aiProvider === 'deepseek' && !deepseekApiKey && getProxyParams().idToken 
+                                  ? 'Používá se testovací klíč (proxy)'
+                                  : `Vložte váš ${aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek'} API klíč...`
+                              }
                               className={`w-full p-3 bg-transparent border rounded-xl focus:outline-none focus:border-[var(--ink)] pr-10 ${keyStatus === 'valid' ? 'border-emerald-500/50' : keyStatus === 'invalid' ? 'border-red-500/50' : 'border-[var(--line)]'
                                 }`}
                             />
                             {keyStatus === 'valid' && <CheckCircle2 size={16} className="absolute right-3 top-3.5 text-emerald-500" />}
                             {keyStatus === 'invalid' && <XCircle size={16} className="absolute right-3 top-3.5 text-red-500" />}
-                            {keyStatus === 'idle' && <HelpCircle size={16} className="absolute right-3 top-3.5 opacity-30 cursor-help" title="Klíč bude uložen pouze ve vašem prohlížeči." />}
+                            {keyStatus === 'idle' && <HelpCircle size={16} className="absolute right-3 top-3.5 opacity-30 cursor-help" title={
+  aiProvider === 'deepseek' && !deepseekApiKey && getProxyParams().idToken 
+    ? 'Ověří proxy připojení k Lambda funkci' 
+    : 'Ověří platnost API klíče'
+} />}
                           </div>
                           <button
                             onClick={handleVerifyKey}
-                            disabled={isVerifyingKey || !(aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined))}
+                            disabled={isVerifyingKey || !(aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || getProxyParams().idToken))}
                             className="px-6 bg-[var(--ink)] text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform disabled:opacity-50"
                           >
                             {isVerifyingKey ? <RotateCcw size={14} className="animate-spin" /> : 'Ověřit'}
                           </button>
                         </div>
                         <p className="text-[10px] opacity-40">
-                          Klíč je uložen pouze lokálně ve vašem prohlížeči.
+                          {aiProvider === 'deepseek' && !deepseekApiKey && getProxyParams().idToken
+                            ? 'Používá se sdílený klíč přes Lambda proxy. Ověřte připojení.'
+                            : 'Klíč je uložen pouze lokálně ve vašem prohlížeči.'
+                          }
                           {aiProvider === 'gemini'
                             ? ' Získejte klíč zdarma na ai.google.dev.'
                             : aiProvider === 'claude'
                               ? ' Získejte klíč na console.anthropic.com.'
                               : ' Získejte klíč na platform.deepseek.com.'}
                         </p>
-                      </div>
+                        
+                                              </div>
                     </div>
                   </section>
 
@@ -3696,6 +4127,61 @@ V nastavení lze změnit defaultni model.`);
                         <ChevronRight size={20} className="text-indigo-500 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </button>
+                  </section>
+                  
+                  {/* 4. Správa dat */}
+                  <section className="space-y-6 pt-6 border-t border-[var(--line)]">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-2xl bg-red-500/10 flex items-center justify-center text-red-600 shadow-sm shadow-red-500/10">
+                        <Trash2 size={22} />
+                      </div>
+                      <h3 className="section-header">Správa dat & Resetování</h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <button
+                        onClick={handleResetFlags}
+                        className="flex items-center justify-between p-4 border border-red-500/20 hover:bg-red-500/[0.03] active:bg-red-500/10 rounded-2xl transition-all group relative overflow-hidden active:scale-95"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500">
+                            <Flag size={18} />
+                          </div>
+                          <div className="text-left">
+                            <p className="text-sm font-bold text-red-600">Smazat vlaječky</p>
+                            <p className="text-[10px] text-red-500/60 font-medium">Odstraní všechna označení</p>
+                          </div>
+                        </div>
+                        <ChevronRight size={16} className="text-red-500 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1" />
+                        <div className="absolute inset-0 bg-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          if (window.confirm('Opravdu chcete smazat historii všech pokusů? Tuto akci nelze vrátit.')) {
+                            localStorage.removeItem(userKey('answers'));
+                            if (!isGuestMode && user?.id) {
+                              dynamoDBService.deleteAllUserProgress(String(user.id)).catch(() => {});
+                            }
+                            alert('Historie pokusů byla vymazána.');
+                            window.location.reload(); // Refresh to update success rates on dashboard
+                          }
+                        }}
+                        className="flex items-center justify-between p-4 border border-red-500/20 hover:bg-red-500/[0.03] active:bg-red-500/10 rounded-2xl transition-all group relative overflow-hidden active:scale-95"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400">
+                            <RotateCcw size={18} />
+                          </div>
+                          <div className="text-left">
+                            <p className="text-sm font-bold text-red-600">Restartovat historii</p>
+                            <p className="text-[10px] text-red-500/60 font-medium">Smaže úspěšnost u všech otázek</p>
+                          </div>
+                        </div>
+                        <ChevronRight size={16} className="text-red-500 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1" />
+                        <div className="absolute inset-0 bg-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                      </button>
+                    </div>
                   </section>
 
                   {/* 4. Vlastní import (JSON) */}
@@ -3885,6 +4371,11 @@ V nastavení lze změnit defaultni model.`);
                           <ArrowLeft size={12} /> Zpět
                         </button>
                         <div className="text-center flex flex-col items-center min-w-0 shrink">
+                          {selectedSubject.id < 0 && (
+                            <span className="text-[8px] sm:text-[9px] px-2 py-0.5 bg-orange-500/10 text-orange-500 rounded-full border border-orange-500/20 mb-1 font-bold uppercase tracking-widest leading-none">
+                              {subjects.find(s => s.id === questions[currentQuestionIndex]?.subject_id)?.name || 'Obecné'}
+                            </span>
+                          )}
                           <p className="text-[10px] font-bold uppercase tracking-widest opacity-40 mb-1">{selectedSubject.name}</p>
                           <div className="flex items-center gap-2">
                           {/* Navigace vlevo */}
@@ -3915,14 +4406,28 @@ V nastavení lze změnit defaultni model.`);
                           <div className="flex items-center gap-2 ml-auto">
                             {[
                               { id: 'user', icon: User, label: 'Uživatel' },
-                              { id: 'ai', icon: Bot, label: 'AI Generováno' }
+                              { id: 'ai', icon: Bot, label: 'AI Generováno' },
+                              { id: 'spacer', icon: () => <div className="w-4" />, label: '' },
+                              { id: 'excludeAnswered', icon: CheckCircle2, label: 'Vynechat probrané' }
                             ].map(src => {
-                              const isActive = drillSettings.sourceFilters.includes(src.id as any);
+                              if (src.id === 'spacer') return <div key="spacer" className="w-2" />;
+                              
+                              let isActive: boolean;
+                              let onClick: () => void;
+
+                              if (src.id === 'excludeAnswered') {
+                                isActive = drillSettings.excludeAnswered;
+                                onClick = () => setDrillSettings(prev => ({ ...prev, excludeAnswered: !prev.excludeAnswered }));
+                              } else {
+                                isActive = drillSettings.sourceFilters.includes(src.id as any);
+                                onClick = () => toggleSourceFilter(src.id as any);
+                              }
+                              
                               return (
                                 <button
                                   key={src.id}
-                                  onClick={() => toggleSourceFilter(src.id as any)}
-                                  title={src.id === 'user' ? 'Zobrazit jen otázky importované uživatelem' : 'Zobrazit jen otázky které sestavila AI na základě LearningObjectives'}
+                                  onClick={onClick}
+                                  title={src.label}
                                   className={`transition-all duration-300 flex items-center gap-1 relative ${isActive
                                       ? 'text-indigo-600 opacity-100'
                                       : 'text-[var(--ink)] opacity-40 hover:opacity-60'
@@ -3937,14 +4442,6 @@ V nastavení lze změnit defaultni model.`);
                         {/* Filtry samostatně pod navigací - ODSTRANIT */}
                       </div>
                         <div className="flex items-center gap-2 shrink-0">
-                          {questions[currentQuestionIndex].approved && (
-                            <div
-                              className="flex items-center justify-center bg-green-500 text-white p-1.5 rounded-full shadow-lg shadow-green-500/20"
-                              title="Schváleno auditorem"
-                            >
-                              <ShieldCheck size={16} strokeWidth={3} />
-                            </div>
-                          )}
                           {(userRole === 'admin' || userRole === 'auditor') && (
                             <>
                               <button
@@ -3985,7 +4482,7 @@ V nastavení lze změnit defaultni model.`);
                         {questions[currentQuestionIndex].image && (
                           <div className="w-full max-h-64 overflow-hidden rounded-xl border border-[var(--line)] flex items-center justify-center bg-white/5">
                             <img
-                              src={`/images/${questions[currentQuestionIndex].image}`}
+                              src={`https://aeropilotexam.s3.eu-central-1.amazonaws.com/questions/${questions[currentQuestionIndex].image}`}
                               alt="Question illustration"
                               className="max-w-full max-h-full object-contain"
                               referrerPolicy="no-referrer"
@@ -3994,11 +4491,24 @@ V nastavení lze změnit defaultni model.`);
                           </div>
                         )}
                         <h3 className="text-lg md:text-xl font-medium leading-relaxed flex items-start gap-2 md:gap-3">
-                          {questions[currentQuestionIndex].is_ai === 1 && (
-                            <div className="mt-1 flex-shrink-0" title="AI Generovaná otázka">
-                              <Bot size={18} className="text-indigo-600 animate-pulse" />
-                            </div>
-                          )}
+                          {(() => {
+                            const q = questions[currentQuestionIndex];
+                            const answers = JSON.parse(localStorage.getItem(userKey('answers')) || '{}');
+                            const isAlreadyCorrect = answers[String(q.questionId || q.id)]?.isCorrect;
+                            
+                            return (
+                              <div className="mt-1 flex-shrink-0 flex gap-2 rotate-0 items-center">
+                                {q.is_ai === 1 || q.source === 'ai' ? (
+                                  <Bot size={18} className="text-indigo-600 opacity-60" title="AI Generovaná" />
+                                ) : (
+                                  <User size={18} className="text-blue-600 opacity-60" title="Uživatelská" />
+                                )}
+                                {isAlreadyCorrect && (
+                                  <CheckCircle2 size={16} className="text-green-500" title="Již zodpovězeno správně" />
+                                )}
+                              </div>
+                            );
+                          })()}
                           <TranslatedText
                             question={questions[currentQuestionIndex]}
                             field="text"
@@ -4171,11 +4681,15 @@ V nastavení lze změnit defaultni model.`);
                                 <div
                                   className="p-3 md:p-4 bg-indigo-500/5 border border-indigo-500/20 rounded-2xl space-y-2 cursor-pointer transition-all duration-300 hover:bg-indigo-500/10"
                                   onClick={() => {
-                                    const lo = allLOs.find(l => l.id === questions[currentQuestionIndex].lo_id);
+                                    const q = questions[currentQuestionIndex];
+                                    const lo = allLOs.find(l => l.id === (q.loId || q.lo_id));
                                     setExpandedLOContent({
-                                      id: aiDetectedObjective || questions[currentQuestionIndex].lo_id || 'Importovaná otázka',
+                                      id: aiDetectedObjective || q.loId || q.lo_id || 'Importovaná otázka',
                                       text: lo?.text || 'Obecné znalosti letectví.',
-                                      type: aiDetectedObjective ? 'AI detekovaný' : 'Oficiální EASA',
+                                      type: aiDetectedObjective 
+                                        ? 'AI detekovaný' 
+                                        : (q.source === 'ai' ? 'Generovaná AI' 
+                                          : (q.source === 'user' ? 'Uživatelská' : 'Oficiální EASA')),
                                       level: lo?.level
                                     });
                                     setIsExpandedLO(true);
@@ -4207,7 +4721,7 @@ V nastavení lze změnit defaultni model.`);
                                   </div>
                                   <div className="flex flex-col gap-3">
                                     <span className={`px-2 py-0.5 rounded text-[10px] font-bold mt-0.5 ${!questions[currentQuestionIndex].lo_id ? 'bg-orange-500/20 text-orange-600 border border-orange-500/30' : 'bg-indigo-600 text-white'}`}>
-                                      {aiDetectedObjective || questions[currentQuestionIndex].lo_id || 'Importovaná otázka'}
+                                      {aiDetectedObjective || questions[currentQuestionIndex].loId || questions[currentQuestionIndex].lo_id || 'Importovaná otázka'}
                                     </span>
                                     <div className="flex-1">
                                       <p className="text-xs font-medium opacity-80">
@@ -4465,7 +4979,7 @@ V nastavení lze změnit defaultni model.`);
                           {questions[currentQuestionIndex].image && (
                             <div className="w-full max-h-64 overflow-hidden rounded-xl border border-[var(--line)] flex items-center justify-center bg-white/5">
                               <img
-                                src={`/images/${questions[currentQuestionIndex].image}`}
+                                src={`https://aeropilotexam.s3.eu-central-1.amazonaws.com/questions/${questions[currentQuestionIndex].image}`}
                                 alt="Question illustration"
                                 className="max-w-full max-h-full object-contain"
                                 referrerPolicy="no-referrer"
@@ -5854,9 +6368,18 @@ V nastavení lze změnit defaultni model.`);
                                       className="group p-3 bg-indigo-500/5 hover:bg-indigo-500/10 rounded-xl border border-indigo-500/10 hover:border-indigo-500/30 space-y-2 cursor-pointer transition-all active:scale-[0.98] relative"
                                     >
                                       <div className="flex items-start justify-between gap-3">
-                                        <p className="text-xs leading-snug font-medium text-slate-700 dark:text-slate-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
-                                          {q.text}
-                                        </p>
+                                        <div className="flex gap-2 min-w-0">
+                                          {(() => {
+                                            const answers = JSON.parse(localStorage.getItem(userKey('answers')) || '{}');
+                                            if (answers[String(q.questionId || q.id)]) {
+                                              return <CheckCircle2 size={16} className="shrink-0 mt-0.5 text-gray-400 dark:text-gray-500" title="Již zodpovězeno" />;
+                                            }
+                                            return null;
+                                          })()}
+                                          <p className="text-xs leading-snug font-medium text-slate-700 dark:text-slate-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 truncate-3-lines">
+                                            {q.text}
+                                          </p>
+                                        </div>
                                         <Maximize2 size={12} className="shrink-0 mt-0.5 opacity-0 group-hover:opacity-40 transition-opacity text-indigo-600" />
                                       </div>
                                       
@@ -6071,8 +6594,8 @@ V nastavení lze změnit defaultni model.`);
                     </div>
 
                     {/* LO Text */}
-                    <div className="p-6 bg-indigo-500/5 border border-indigo-500/20 rounded-2xl">
-                      <p className="text-base leading-relaxed opacity-90 whitespace-pre-wrap font-mono">
+                    <div className="p-6 bg-indigo-500/10 border border-indigo-500/30 rounded-2xl shadow-inner shadow-indigo-500/10">
+                      <p className="text-base leading-relaxed text-white whitespace-pre-wrap font-mono font-medium">
                         {expandedLOContent.text}
                       </p>
                     </div>
@@ -6127,20 +6650,75 @@ V nastavení lze změnit defaultni model.`);
                   </div>
 
                   {/* Sticky header */}
-                  <div className="flex items-center justify-between px-4 pt-3 pb-3 border-b border-[var(--line)]/30 flex-shrink-0">
-                    <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center flex-shrink-0">
-                        <GraduationCap size={14} className="text-white" />
+                  {(() => {
+                    const qIndex = expandedSyllabusQuestion ? syllabusLOQuestions.findIndex(q => (q.questionId || q.id) === (expandedSyllabusQuestion.questionId || expandedSyllabusQuestion.id)) : -1;
+                    
+                    const currentLoId = expandedSyllabusQuestion?.loId;
+                    const loIdx = activeSyllabusLOs.findIndex(l => l.id === currentLoId);
+                    
+                    const canGoPrev = qIndex > 0 || (loIdx > 0 && loIdx !== -1);
+                    const canGoNext = (qIndex !== -1 && qIndex < syllabusLOQuestions.length - 1) || (loIdx !== -1 && loIdx < activeSyllabusLOs.length - 1);
+
+                    return (
+                      <div className="flex items-center justify-between px-4 pt-4 pb-3 border-b border-[var(--line)]/30 flex-shrink-0">
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-indigo-500/20">
+                            <GraduationCap size={16} className="text-white" />
+                          </div>
+                          <div className="flex flex-col">
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">Detail otázky</span>
+                              <span className="text-[10px] font-mono opacity-30 mt-0.5">{currentLoId}</span>
+                            </div>
+                            {qIndex !== -1 && (
+                              <span className="text-[9px] font-bold opacity-40 uppercase tracking-tighter">
+                                {qIndex + 1} <span className="opacity-50 mx-0.5">/</span> {syllabusLOQuestions.length}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Navigation buttons */}
+                        <div className="flex items-center gap-1.5 ml-auto mr-1.5 focus-within:z-10">
+                          <button
+                            disabled={!canGoPrev || isNavigatingSyllabus}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleNavigateSyllabus('prev');
+                            }}
+                            className={`w-9 h-9 flex items-center justify-center rounded-xl transition-all ${canGoPrev 
+                                ? 'bg-indigo-500/10 text-indigo-600 hover:bg-indigo-600 hover:text-white active:scale-90' 
+                                : 'opacity-20 cursor-not-allowed bg-slate-500/5 text-slate-400'
+                              }`}
+                            title="Předchozí"
+                          >
+                            {isNavigatingSyllabus ? <RefreshCw size={16} className="animate-spin opacity-50" /> : <ChevronLeft size={18} />}
+                          </button>
+                          <button
+                            disabled={!canGoNext || isNavigatingSyllabus}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleNavigateSyllabus('next');
+                            }}
+                            className={`w-9 h-9 flex items-center justify-center rounded-xl transition-all ${canGoNext 
+                                ? 'bg-indigo-500/10 text-indigo-600 hover:bg-indigo-600 hover:text-white active:scale-90' 
+                                : 'opacity-20 cursor-not-allowed bg-slate-500/5 text-slate-400'
+                              }`}
+                            title="Další"
+                          >
+                            {isNavigatingSyllabus ? <RefreshCw size={16} className="animate-spin opacity-50" /> : <ChevronRight size={18} />}
+                          </button>
+                        </div>
+
+                        <button
+                          onClick={() => setExpandedSyllabusQuestion(null)}
+                          className="w-9 h-9 flex items-center justify-center rounded-xl bg-slate-500/10 text-slate-500 hover:bg-red-500/10 hover:text-red-500 transition-all flex-shrink-0 active:scale-90"
+                        >
+                          <X size={18} />
+                        </button>
                       </div>
-                      <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">Detail otázky</span>
-                    </div>
-                    <button
-                      onClick={() => setExpandedSyllabusQuestion(null)}
-                      className="w-8 h-8 flex items-center justify-center rounded-full bg-slate-500/10 text-slate-500 hover:bg-slate-500/20 transition-colors flex-shrink-0"
-                    >
-                      <X size={16} />
-                    </button>
-                  </div>
+                    );
+                  })()}
 
                   {/* Scrollable body */}
                   <div className="overflow-y-auto flex-1 px-4 py-4 space-y-4">

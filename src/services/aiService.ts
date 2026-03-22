@@ -104,15 +104,16 @@ async function streamFromProxy(
   proxyUrl: string,
   idToken: string,
   model: string,
-  prompt: string,
-  maxTokens: number,
-  onChunk: (chunk: string) => void,
+  userMessage: string,
+  maxTokens = 2000,
+  onChunk?: (chunk: string) => void,
   signal?: AbortSignal
 ): Promise<string> {
+  // Use official DeepSeek model names (no prefix for DeepSeek)
   const resolvedModel = model.includes('/') ? model : (
     model.startsWith('gemini') ? `google/${model}` :
     model.startsWith('claude') ? `anthropic/${model}` :
-    `deepseek/${model}`
+    model  // DeepSeek models use official names without prefix
   );
 
   const res = await fetch(`${proxyUrl}?stream=1`, {
@@ -120,19 +121,55 @@ async function streamFromProxy(
     headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${idToken}` },
     body: JSON.stringify({
       model: resolvedModel,
-      messages: [{ role: 'user', content: prompt }],
+      messages: [{ role: 'user', content: userMessage }],
       max_tokens: maxTokens,
       stream: true
     }),
     signal,
   });
 
-  if (!res.ok || !res.body) throw new Error(`Proxy error: ${res.status}`);
+  if (!res.ok || !res.body) {
+    const errText = res.text ? await res.text() : '';
+    console.error('[StreamFromProxy] Error:', res.status, errText);
+    throw new Error(`Proxy error: ${res.status}${errText ? ` - ${errText}` : ''}`);
+  }
+  
+  // Check if response is actually streaming
+  const contentType = res.headers.get('content-type') || '';
+  const isStreaming = contentType.includes('text/event-stream');
+  
+  if (!isStreaming) {
+    // Handle non-streaming response
+    const responseText = await res.text();
+    console.log('[StreamFromProxy] Non-streaming response:', responseText);
+    
+    try {
+      const parsed = JSON.parse(responseText);
+      const content = parsed.choices?.[0]?.message?.content || parsed.content || responseText;
+      
+      // Log usage information if available
+      if (parsed.usage) {
+        console.log('[StreamFromProxy] Token usage:', {
+          prompt_tokens: parsed.usage.prompt_tokens,
+          completion_tokens: parsed.usage.completion_tokens,
+          total_tokens: parsed.usage.total_tokens
+        });
+      }
+      
+      if (onChunk) onChunk(content);
+      return content;
+    } catch (e) {
+      console.log('[StreamFromProxy] Using raw text as response');
+      if (onChunk) onChunk(responseText);
+      return responseText;
+    }
+  }
   
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
   let full = '';
   let buffer = '';
+  let sentenceBuffer = '';
 
   while (true) {
     const { done, value } = await reader.read();
@@ -145,14 +182,49 @@ async function streamFromProxy(
       const data = line.slice(6).trim();
       if (data === '[DONE]') break;
       try {
-        const delta = JSON.parse(data).choices?.[0]?.delta?.content;
+        const parsed = JSON.parse(data);
+        const delta = parsed.choices?.[0]?.delta?.content || parsed.choices?.[0]?.message?.content;
         if (delta) {
-          full += delta;
-          onChunk(full);
+          // Skip null, undefined, and empty deltas (DeepSeek API issue)
+          // Also skip deltas that start with "null" or "undefined"
+          if (delta === 'null' || delta === 'undefined' || delta.trim() === '' || 
+              delta.startsWith('null') || delta.startsWith('undefined')) {
+            continue;
+          }
+          
+          // Additional safety: clean up null from beginning of delta
+          let cleanDelta = delta;
+          if (cleanDelta.startsWith('null')) {
+            cleanDelta = cleanDelta.replace(/^null/, '');
+            if (!cleanDelta) continue; // Skip if nothing left after cleaning
+          }
+          
+          full += cleanDelta;
+          sentenceBuffer += cleanDelta;
+          
+          // Check if word ends (space, punctuation)
+          if (sentenceBuffer.match(/[\s.!?]+$/)) {
+            const trimmedWord = sentenceBuffer.trim();
+            if (trimmedWord) {
+              if (onChunk) onChunk(trimmedWord);
+            }
+            sentenceBuffer = '';
+          }
         }
-      } catch { /* skip malformed */ }
+      } catch (e) {
+        console.warn('[StreamFromProxy] Failed to parse chunk:', data);
+      }
     }
   }
+  
+  // Send any remaining text
+  if (sentenceBuffer.trim()) {
+    const remainingText = sentenceBuffer.trim();
+    if (remainingText) {
+      if (onChunk) onChunk(remainingText);
+    }
+  }
+  
   return full;
 }
 
@@ -160,10 +232,11 @@ const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 // Proxy call — uses Lambda AI proxy (no client-side API key needed)
 async function callProxy(proxyUrl: string, idToken: string, model: string, userMessage: string, maxTokens = 2000, jsonMode = false): Promise<string> {
+  // Use official DeepSeek model names (no prefix for DeepSeek)
   const resolvedModel = model.includes('/') ? model : (
     model.startsWith('gemini') ? `google/${model}` :
     model.startsWith('claude') ? `anthropic/${model}` :
-    `deepseek/${model}`
+    model  // DeepSeek models use official names without prefix
   );
   const body: any = {
     model: resolvedModel,
@@ -181,31 +254,66 @@ async function callProxy(proxyUrl: string, idToken: string, model: string, userM
   if (res.status === 401 || res.status === 403) throw new Error('API_KEY_INVALID');
   if (!res.ok) {
     const errText = await res.text().catch(() => '');
+    console.error('[Proxy] HTTP Error:', res.status, errText);
     throw new Error(`Proxy error: ${res.status}${errText ? ` - ${errText}` : ''}`);
   }
 
-  // Read SSE stream and accumulate full response
-  const reader = res.body!.getReader();
-  const decoder = new TextDecoder();
-  let full = '';
-  let buffer = '';
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    buffer += decoder.decode(value, { stream: true });
-    const lines = buffer.split('\n');
-    buffer = lines.pop()!;
-    for (const line of lines) {
-      if (!line.startsWith('data: ')) continue;
-      const data = line.slice(6).trim();
-      if (data === '[DONE]') break;
-      try {
-        const delta = JSON.parse(data).choices?.[0]?.delta?.content;
-        if (delta) full += delta;
-      } catch { /* skip malformed */ }
+  // Check if response is streaming or not
+  const contentType = res.headers.get('content-type') || '';
+  const isStreaming = contentType.includes('text/event-stream') || contentType.includes('text/plain');
+
+  if (isStreaming) {
+    // Handle streaming response
+    const reader = res.body!.getReader();
+    const decoder = new TextDecoder();
+    let full = '';
+    let buffer = '';
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop()!;
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        const data = line.slice(6).trim();
+        if (data === '[DONE]') break;
+        try {
+          const parsed = JSON.parse(data);
+          const delta = parsed.choices?.[0]?.delta?.content || parsed.choices?.[0]?.message?.content;
+          if (delta) full += delta;
+        } catch (e) {
+          console.warn('[Proxy] Failed to parse chunk:', data);
+        }
+      }
+    }
+    console.log('[Proxy] Full streaming response:', full);
+    return full;
+  } else {
+    // Handle non-streaming response
+    const responseText = await res.text();
+    console.log('[Proxy] Non-streaming response:', responseText);
+    
+    try {
+      const parsed = JSON.parse(responseText);
+      const content = parsed.choices?.[0]?.message?.content || parsed.content || responseText;
+      
+      // Log usage information if available
+      if (parsed.usage) {
+        console.log('[Proxy] Token usage:', {
+          prompt_tokens: parsed.usage.prompt_tokens,
+          completion_tokens: parsed.usage.completion_tokens,
+          total_tokens: parsed.usage.total_tokens
+        });
+      }
+      
+      console.log('[Proxy] Extracted content:', content);
+      return content;
+    } catch (e) {
+      console.log('[Proxy] Using raw text as response');
+      return responseText;
     }
   }
-  return full;
 }
 
 // DeepSeek uses OpenAI-compatible REST API — supports both api.deepseek.com and OpenRouter
@@ -234,7 +342,116 @@ async function callDeepSeek(apiKey: string, model: string, userMessage: string, 
   if (res.status === 429) throw new Error('DEEPSEEK_RATE_LIMIT');
   if (!res.ok) throw new Error(`DeepSeek API error: ${res.status}`);
   const data = await res.json();
+  
+  // Log usage information if available
+  if (data.usage) {
+    console.log('[DeepSeek] Token usage:', {
+      prompt_tokens: data.usage.prompt_tokens,
+      completion_tokens: data.usage.completion_tokens,
+      total_tokens: data.usage.total_tokens
+    });
+  }
+  
   return data.choices?.[0]?.message?.content || '';
+}
+
+// Check DeepSeek account balance (direct API call)
+export async function checkDeepSeekBalance(apiKey: string): Promise<{ success: boolean, balance?: string, details?: any, error?: string }> {
+  try {
+    const res = await fetch('https://api.deepseek.com/user/balance', {
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      if (res.status === 401 || errorData.error?.type === 'authentication_error') {
+        return { success: false, error: 'Neplatný API klíč' };
+      }
+      return { success: false, error: `Chyba: ${res.status} - ${errorData.error?.message || 'Neznámá chyba'}` };
+    }
+
+    const data = await res.json();
+    
+    // Handle DeepSeek's response format
+    if (data.error) {
+      return { success: false, error: data.error.message || 'Neznámá chyba' };
+    }
+    
+    if (data.is_available && data.balance_infos && data.balance_infos.length > 0) {
+      const balance = data.balance_infos[0];
+      const totalBalance = parseFloat(balance.total_balance || '0');
+      const currency = balance.currency || 'USD';
+      
+      return { 
+        success: true, 
+        balance: `${totalBalance.toFixed(2)} ${currency}`,
+        details: {
+          total: totalBalance,
+          granted: parseFloat(balance.granted_balance || '0'),
+          topped_up: parseFloat(balance.topped_up_balance || '0'),
+          currency
+        }
+      };
+    } else {
+      return { success: false, error: 'Nedostupný zůstatek' };
+    }
+  } catch (error: any) {
+    console.error('[DeepSeek] Balance check error:', error);
+    return { success: false, error: error?.message || 'Chyba při kontrole zůstatku' };
+  }
+}
+
+// Check DeepSeek account balance via proxy
+export async function checkDeepSeekBalanceProxy(proxyUrl: string, idToken: string): Promise<{ success: boolean, balance?: string, details?: any, error?: string }> {
+  try {
+    const res = await fetch(`${proxyUrl}/balance`, {
+      method: 'GET',
+      headers: { 
+        'Content-Type': 'application/json', 
+        'Authorization': `Bearer ${idToken}` 
+      }
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      if (res.status === 401) {
+        return { success: false, error: 'Neplatný přístupový token - uživatel není přihlášen' };
+      }
+      return { success: false, error: `Chyba: ${res.status} - ${errorData.error?.message || 'Neznámá chyba'}` };
+    }
+
+    const data = await res.json();
+    
+    // Handle DeepSeek's response format
+    if (data.error) {
+      return { success: false, error: data.error.message || 'Neznámá chyba' };
+    }
+    
+    if (data.is_available && data.balance_infos && data.balance_infos.length > 0) {
+      const balance = data.balance_infos[0];
+      const totalBalance = parseFloat(balance.total_balance || '0');
+      const currency = balance.currency || 'USD';
+      
+      return { 
+        success: true, 
+        balance: `${totalBalance.toFixed(2)} ${currency}`,
+        details: {
+          total: totalBalance,
+          granted: parseFloat(balance.granted_balance || '0'),
+          topped_up: parseFloat(balance.topped_up_balance || '0'),
+          currency
+        }
+      };
+    } else {
+      return { success: false, error: 'Nedostupný zůstatek' };
+    }
+  } catch (error: any) {
+    console.error('[DeepSeek Proxy] Balance check error:', error);
+    return { success: false, error: error?.message || 'Chyba při kontrole zůstatku přes proxy' };
+  }
 }
 
 // Fallback: try providers in order until one succeeds
@@ -995,9 +1212,15 @@ export async function generateBatchQuestions(
       }
     } else if (provider === 'deepseek') {
       const estimatedTokens = Math.max(4000, los.length * questionsPerLO * 500 + 500);
-      const text = proxyUrl && idToken && (!apiKey || apiKey === '')
-        ? await callProxy(proxyUrl, idToken, model, prompt, estimatedTokens, true)
-        : await callDeepSeek(apiKey!, model, prompt, estimatedTokens, true);
+      let text: string;
+      if (proxyUrl && idToken && (!apiKey || apiKey === '')) {
+        text = await callProxy(proxyUrl, idToken, model, prompt, estimatedTokens, true);
+      } else if (apiKey && apiKey !== '') {
+        text = await callDeepSeek(apiKey, model, prompt, estimatedTokens, true);
+      } else {
+        console.warn('[DeepSeek] No API key or proxy available, cannot generate questions');
+        return [];
+      }
       if (!text) return [];
       try {
         const data = JSON.parse(extractJSON(text));
@@ -1074,9 +1297,7 @@ export async function getDetailedExplanation(
     6. For all physical formulas or math, use standard LaTeX notation enclosed in $ for inline (e.g., $v^2$) and $$ for block equations. Do NOT use HTML tags for formatting formulas.
 
     ${isImport
-      ? `6. No LO ID is provided. Analyze the question content and identify the most likely EASA LO.
-         Start with: "Pravděpodobně se jedná o objective [XXX.XX.XX.XX] - [Name]:"
-         Then provide the technical explanation with source citation.`
+      ? `6. No LO ID is provided. Analyze the question content and provide the technical explanation with source citation.`
       : `6. Use the provided LO ID as the bracket prefix.`
     }
 
@@ -1101,7 +1322,12 @@ export async function getDetailedExplanation(
       const text = await callProxy(proxyUrl, idToken, geminiModel, prompt, 1000);
       return parseExplanation(text);
     }
-    const ai = getAiInstance(key!);
+    // Guard: ensure we have a valid API key before calling Gemini
+    if (!key || key === '') {
+      console.warn('[Gemini] No API key available, returning fallback explanation');
+      return { explanation: 'Vysvětlení se nepodařilo vygenerovat - chybí API klíč.' };
+    }
+    const ai = getAiInstance(key);
     const response = await callWithRetry(() => ai.models.generateContent({
       model: geminiModel,
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
@@ -1117,7 +1343,12 @@ export async function getDetailedExplanation(
       const text = await callProxy(proxyUrl, idToken, claudeModel, prompt, 1000);
       return parseExplanation(text);
     }
-    const claude = getClaudeInstance(key!);
+    // Guard: ensure we have a valid API key before calling Claude
+    if (!key || key === '') {
+      console.warn('[Claude] No API key available, returning fallback explanation');
+      return { explanation: 'Vysvětlení se nepodařilo vygenerovat - chybí API klíč.' };
+    }
+    const claude = getClaudeInstance(key);
     const response = await callWithRetry(() => claude.messages.create({
       model: claudeModel,
       max_tokens: 1000,
@@ -1135,7 +1366,12 @@ export async function getDetailedExplanation(
       const text = await callProxy(proxyUrl, idToken, dsModel, prompt, 1000);
       return parseExplanation(text);
     }
-    const text = await callDeepSeek(key!, model.startsWith('deepseek') ? model : 'deepseek-chat', prompt, 1000);
+    // Guard: ensure we have a valid API key before calling DeepSeek
+    if (!key || key === '') {
+      console.warn('[DeepSeek] No API key available, returning fallback explanation');
+      return { explanation: 'Vysvětlení se nepodařilo vygenerovat - chybí API klíč.' };
+    }
+    const text = await callDeepSeek(key, model.startsWith('deepseek') ? model : 'deepseek-chat', prompt, 1000);
     return parseExplanation(text || 'Vysvětlení se nepodařilo vygenerovat.');
   };
 
@@ -1164,10 +1400,15 @@ export async function getDetailedExplanation(
 }
 
 function parseExplanation(text: string): { explanation: string, objective?: string } {
+  // Handle undefined/null input
+  if (!text || typeof text !== 'string') {
+    return { explanation: 'Vysvětlení se nepodařilo vygenerovat.' };
+  }
+
   // Clean up markdown formatting
   const cleanText = text.replace(/\*\*/g, '').replace(/\*/g, '');
 
-  // Check if text starts with objective identification
+  /* User request: Disable objective identification prefix in results
   const objectiveMatch = cleanText.match(/^Pravděpodobně se jedná o objective\s+([^-]+)-\s*([^.]+)\.\s*(.+)/);
 
   if (objectiveMatch) {
@@ -1179,6 +1420,7 @@ function parseExplanation(text: string): { explanation: string, objective?: stri
       explanation
     };
   }
+  */
 
   // For existing LOs, extract LO ID from the response
   const loMatch = cleanText.match(/^([0-9]{3}\.[0-9]{2}\.[0-9]{2}\.[0-9]{2}):\s*(.+)/);
@@ -1247,10 +1489,13 @@ export async function getDetailedHumanExplanation(
     NEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI ("${displayCorrectOption || question.correct_option}").
   `;
 
-  const clean = (t: string) => t
+  const clean = (t: string) => {
+  if (!t || typeof t !== 'string') return '';
+  return t
     .replace(/^(Ahoj|Čau|Dobrý den|Pilote|Studente|Příteli|Kámo)[,\s]*/gi, '')
     .replace(/^(Ahoj|Čau|Dobrý den|Pilote|Studente|Příteli|Kámo)[^\n]*\n/gi, '')
     .trim();
+};
 
   const geminiModelH = model.startsWith('gemini') ? model : 'gemini-flash-latest';
   const claudeModelH = model.startsWith('claude') ? model : 'claude-haiku-4-5-20251001';
@@ -1298,9 +1543,12 @@ export async function getDetailedHumanExplanation(
       const text = await callProxy(proxyUrl, idToken, dsModel, prompt, 1500);
       return clean(text) || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
     }
-    const text = proxyUrl && idToken && (!key || key === '')
-      ? await callProxy(proxyUrl, idToken, model.startsWith('deepseek') ? model : 'deepseek-chat', prompt, 1500)
-      : await callDeepSeek(key!, model.startsWith('deepseek') ? model : 'deepseek-chat', prompt, 1500);
+    // Guard: ensure we have a valid API key
+    if (!key || key === '') {
+      console.warn('[DeepSeek] No API key available, returning fallback');
+      return 'Podrobné vysvětlení se nepodařilo vygenerovat - chybí API klíč.';
+    }
+    const text = await callDeepSeek(key, model.startsWith('deepseek') ? model : 'deepseek-chat', prompt, 1500);
     return clean(text) || 'Podrobné vysvětlení se nepodařilo vygenerovat.';
   };
 
@@ -1400,9 +1648,15 @@ export async function translateQuestion(question: Question, apiKey?: string, mod
     } else if (provider === 'deepseek') {
       console.log(`[DeepSeek] Translating question with model: ${model}`);
       const fullPrompt = prompt + '\n\nIMPORTANT: Return ONLY valid JSON object, no other text.';
-      const text = proxyUrl && idToken && (!apiKey || apiKey === '')
-        ? await callProxy(proxyUrl, idToken, model, fullPrompt, 2000, true)
-        : await callDeepSeek(apiKey!, model, fullPrompt, 2000, true);
+      let text: string;
+      if (proxyUrl && idToken && (!apiKey || apiKey === '')) {
+        text = await callProxy(proxyUrl, idToken, model, fullPrompt, 2000, true);
+      } else if (apiKey && apiKey !== '') {
+        text = await callDeepSeek(apiKey, model, fullPrompt, 2000, true);
+      } else {
+        console.warn('[DeepSeek] No API key or proxy available for translation');
+        return {};
+      }
       try {
         const jsonMatch = text.match(/\{[\s\S]*\}/);
         return JSON.parse(jsonMatch ? jsonMatch[0] : text);
@@ -1758,9 +2012,15 @@ Return JSON array:
         return { success: false, los: [], error: `Invalid JSON response: ${parseError instanceof Error ? parseError.message : 'Unknown error'}` };
       }
     } else if (provider === 'deepseek') {
-      const text = proxyUrl && idToken && (!apiKey || apiKey === '')
-        ? await callWithRetry(() => callProxy(proxyUrl, idToken, model, prompt, estimatedTokens, true), 2, 'deepseek', signal)
-        : await callWithRetry(() => callDeepSeek(apiKey!, model, prompt, estimatedTokens, true), 2, 'deepseek', signal);
+      let text: string;
+      if (proxyUrl && idToken && (!apiKey || apiKey === '')) {
+        text = await callWithRetry(() => callProxy(proxyUrl, idToken, model, prompt, estimatedTokens, true), 2, 'deepseek', signal);
+      } else if (apiKey && apiKey !== '') {
+        text = await callWithRetry(() => callDeepSeek(apiKey, model, prompt, estimatedTokens, true), 2, 'deepseek', signal);
+      } else {
+        console.warn('[DeepSeek] No API key or proxy available for LO generation');
+        return { success: false, los: [], error: 'No API key or proxy available' };
+      }
       if (!text) return { success: false, los: [], error: 'Empty response from DeepSeek' };
       try {
         const missingLOs = JSON.parse(extractJSON(text)) as any[];

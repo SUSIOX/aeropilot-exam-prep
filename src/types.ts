@@ -9,7 +9,8 @@ export interface Subject {
 }
 
 export interface Question {
-  id: number;
+  id: number | string;
+  questionId?: string;
   subject_id: number;
   text: string;
   text_cz?: string;
@@ -67,4 +68,5 @@ export interface DrillSettings {
   showExplanationOnDemand: boolean;
   sourceFilters: ('user' | 'ai')[];
   shuffleAnswers: boolean;
+  excludeAnswered: boolean;
 }

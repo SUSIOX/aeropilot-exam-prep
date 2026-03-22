@@ -49,7 +49,9 @@ export class SecureCredentialsManager {
       }
     });
 
-    this.docClient = DynamoDBDocumentClient.from(this.dynamoClient);
+    this.docClient = DynamoDBDocumentClient.from(this.dynamoClient, {
+      marshallOptions: { removeUndefinedValues: true }
+    });
   }
 
   // Initialize with unauthenticated (guest) credentials
@@ -71,7 +73,9 @@ export class SecureCredentialsManager {
         credentials
       });
 
-      this.docClient = DynamoDBDocumentClient.from(this.dynamoClient);
+      this.docClient = DynamoDBDocumentClient.from(this.dynamoClient, {
+        marshallOptions: { removeUndefinedValues: true }
+      });
       console.log('✅ Guest credentials initialized via Cognito Identity Pool');
     } catch (error) {
       console.warn('❌ Failed to initialize guest credentials via Identity Pool:', error);

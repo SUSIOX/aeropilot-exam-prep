@@ -87,7 +87,18 @@ export function getDisplayText(
   }
   
   // Default to English with Czech fallback
-  return (question[enField] as string) || (question[czField] as string) || '';
+  let text = (question[enField] as string) || (question[czField] as string) || '';
+
+  // User request: Remove "Viz obr." and similar patterns if image is present
+  if (field === 'text' && question.image && text) {
+    // Matches "Viz obr.", "viz obr.", optionally followed by "(PFP-009)" etc.
+    const pattern = /[Vv]iz\s+obr\.?(\s+\([^)]+\))?/g;
+    text = text.replace(pattern, '').trim();
+    // Clean up double spaces or periods left behind
+    text = text.replace(/\s{2,}/g, ' ').replace(/\.{2,}/g, '.');
+  }
+
+  return text;
 }
 
 /**

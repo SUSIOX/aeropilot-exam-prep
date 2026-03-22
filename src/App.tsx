@@ -37,7 +37,8 @@ import {
   Moon,
   Menu,
   Trash2,
-  Filter
+  Filter,
+  Brain
 } from 'lucide-react';
 import { Subject, Question, Stats, ViewMode, DrillSettings } from './types';
 import { LearningEngine } from './lib/LearningEngine';
@@ -92,6 +93,8 @@ const checkAnswer = (shuffledQuestion: ShuffledQuestion, userAnswerIndex: number
 import { CognitoAuth } from './components/CognitoAuth';
 import { useLanguage, LanguageButton, TranslatedText, TranslatedOption } from './utils/language';
 import { markdownToHtml, sanitizeHtml } from './utils/markdown';
+import { shuffle, hashArray } from './utils/shuffle';
+import { computeWeights } from './utils/shuffle.weights';
 import { AICancellationManager, useAICancellation } from './utils/aiCancellation';
 import { LandingPage } from './components/LandingPage';
 import { dynamoCache } from './services/dynamoCache';
@@ -201,6 +204,7 @@ export default function App() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [answered, setAnswered] = useState<string | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
+  const [showQuestionId, setShowQuestionId] = useState(false);
   const [aiExplanation, setAiExplanation] = useState<string | null>(null);
   const [aiDetectedObjective, setAiDetectedObjective] = useState<string | null>(null);
   const [detailedExplanation, setDetailedExplanation] = useState<string | null>(null);
@@ -247,7 +251,16 @@ export default function App() {
       showExplanationOnDemand: true,
       sourceFilters: ['user', 'ai'],
       shuffleAnswers: false,
-      excludeAnswered: false
+      excludeAnswered: false,
+      weightedLearning: {
+        enabled: false,
+        halflife_days: 7,
+        w_performance: 0.50,
+        w_decay: 0.30,
+        w_difficulty: 0.20
+      },
+      shuffleHistory: [],
+      shuffleHistorySize: 10
     };
   });
 
@@ -1098,6 +1111,11 @@ export default function App() {
       setCurrentQuestionIndex(0); // Reset to first question
       setAnswered(null); // Clear answer
       setShowExplanation(false); // Hide explanation
+      
+      // Update shuffle history if using weighted learning
+      if (drillSettings.sorting === 'weighted_learning') {
+        updateShuffleHistory(mapped);
+      }
     }
   }, [drillSettings.sourceFilters, drillSettings.excludeAnswered, view, originalQuestions.length, selectedSubject]);
 
@@ -1449,6 +1467,11 @@ export default function App() {
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
+      
+      // Update shuffle history if using weighted learning
+      if (drillSettings.sorting === 'weighted_learning') {
+        updateShuffleHistory(processedQuestions);
+      }
       language.resetTranslation(); // Reset translation when starting new drill
       setView('drill');
     } catch (err) {
@@ -1460,7 +1483,7 @@ export default function App() {
   const applySorting = (questions: Question[], sorting: string): Question[] => {
     let sorted = [...questions];
     if (sorting === 'random') {
-      sorted = LearningEngine.shuffle(sorted);
+      sorted = shuffle(sorted);
       console.log(`🎲 applySorting: Shuffled ${sorted.length} questions. First question ID: ${sorted[0]?.id}`);
     } else if (sorting === 'hardest_first') {
       sorted = sorted.sort((a, b) => {
@@ -1478,6 +1501,21 @@ export default function App() {
         return new Date(a.last_practiced).getTime() - new Date(b.last_practiced).getTime();
       });
       console.log(`📚 applySorting: Sorted by least practiced. First question ID: ${sorted[0]?.id}, last_practiced: ${sorted[0]?.last_practiced}`);
+    } else if (sorting === 'weighted_learning') {
+      // Use weighted shuffle for learning algorithm
+      if (drillSettings.weightedLearning?.enabled) {
+        const weights = computeWeights(sorted, drillSettings.weightedLearning);
+        sorted = shuffle(sorted, { 
+          weights, 
+          seed: user?.id || Date.now(),
+          history: drillSettings.shuffleHistory 
+        });
+        console.log(`🧠 applySorting: Weighted learning shuffle applied. First question ID: ${sorted[0]?.id}, weight: ${weights[sorted.findIndex(q => q.id === sorted[0]?.id)]?.toFixed(3)}`);
+      } else {
+        // Fallback to random if weighted learning not enabled
+        sorted = shuffle(sorted);
+        console.log(`⚠️ applySorting: Weighted learning not enabled, falling back to random shuffle`);
+      }
     } else {
       // default - Robust sort by ID (handling 9_1, 9_10, subjectX_qY etc. numerically)
       sorted = sorted.sort((a, b) => {
@@ -1512,19 +1550,52 @@ export default function App() {
     return sorted;
   };
 
+  // Function to update shuffle history
+  const updateShuffleHistory = (shuffledQuestions: Question[]) => {
+    if (drillSettings.sorting === 'weighted_learning' && drillSettings.weightedLearning?.enabled) {
+      const newHash = hashArray(shuffledQuestions.map(q => q.id));
+      const currentHistory = drillSettings.shuffleHistory || [];
+      const maxSize = drillSettings.shuffleHistorySize || 10;
+      
+      // Add new hash to history and maintain size limit
+      const updatedHistory = [newHash, ...currentHistory].slice(0, maxSize);
+      
+      setDrillSettings(prev => ({
+        ...prev,
+        shuffleHistory: updatedHistory
+      }));
+    }
+  };
+
   // Function to reshuffle current questions during drill
   const reshuffleQuestions = () => {
-    const shuffled: Question[] = LearningEngine.shuffle(questions);
+    let shuffled: Question[];
+    
+    if (drillSettings.sorting === 'weighted_learning' && drillSettings.weightedLearning?.enabled) {
+      const weights = computeWeights(questions, drillSettings.weightedLearning);
+      shuffled = shuffle(questions, { 
+        weights, 
+        seed: user?.id || Date.now(),
+        history: drillSettings.shuffleHistory 
+      });
+      console.log(`🧠 Reshuffled with weighted learning. First question ID: ${shuffled[0]?.id}`);
+    } else {
+      shuffled = shuffle(questions);
+      console.log(`🎲 Reshuffled questions. New first question ID: ${shuffled[0]?.id}`);
+    }
+    
     setQuestions(shuffled);
     setCurrentQuestionIndex(0);
     setAnswered(null);
     setShowExplanation(false);
-    console.log(`🎲 Reshuffled questions. New first question ID: ${shuffled[0]?.id}`);
+    
+    // Update shuffle history
+    updateShuffleHistory(shuffled);
   };
 
   const startMix = async () => {
     try {
-      setSelectedSubject({ id: 0, name: 'MIX - Náhodné otázky', question_count: 0, success_rate: 0 });
+      setSelectedSubject({ id: 0, name: 'Mix', question_count: 0, success_rate: 0 });
 
       // Load from all subjects via DynamoDB
       let allQuestions: Question[] = [];
@@ -1566,6 +1637,11 @@ export default function App() {
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
+      
+      // Update shuffle history if using weighted learning
+      if (drillSettings.sorting === 'weighted_learning') {
+        updateShuffleHistory(sortedQuestions);
+      }
       language.resetTranslation(); // Reset translation when starting MIX
       setView('drill');
     } catch (err) {
@@ -1624,6 +1700,11 @@ export default function App() {
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
+      
+      // Update shuffle history if using weighted learning
+      if (drillSettings.sorting === 'weighted_learning') {
+        updateShuffleHistory(sortedQuestions);
+      }
       language.resetTranslation();
       setView('drill');
     } catch (error) {
@@ -1669,6 +1750,11 @@ export default function App() {
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
+      
+      // Update shuffle history if using weighted learning
+      if (drillSettings.sorting === 'weighted_learning') {
+        updateShuffleHistory(sortedQuestions);
+      }
       setView('drill');
     } catch (error) {
       alert('Nepodařilo se načíst označené otázky.');
@@ -1887,7 +1973,7 @@ export default function App() {
 
         if (categoryQuestions.length >= count) {
           // Shuffle and take required number
-          const shuffled = [...categoryQuestions].sort(() => Math.random() - 0.5);
+          const shuffled = shuffle(categoryQuestions);
           examSet.push(...shuffled.slice(0, count));
         } else {
           // Not enough questions, take all available
@@ -2833,7 +2919,7 @@ V nastavení lze změnit defaultni model.`);
 
     // Apply sorting based on drillSettings
     if (drillSettings.sorting === 'random') {
-      loQuestions = LearningEngine.shuffle(loQuestions);
+      loQuestions = shuffle(loQuestions);
     } else if (drillSettings.sorting === 'hardest_first') {
       loQuestions = [...loQuestions].sort((a, b) => {
         const diffA = a.difficulty ?? 0;
@@ -2857,6 +2943,11 @@ V nastavení lze změnit defaultni model.`);
     setCurrentQuestionIndex(0);
     setAnswered(null);
     setShowExplanation(false);
+    
+    // Update shuffle history if using weighted learning
+    if (drillSettings.sorting === 'weighted_learning') {
+      updateShuffleHistory(loQuestions);
+    }
     language.resetTranslation(); // Reset translation when opening from syllabus
     setView('drill');
   };
@@ -4101,6 +4192,7 @@ V nastavení lze změnit defaultni model.`);
                             <option value="random">Náhodné</option>
                             <option value="hardest_first">Nejtěžší nejdříve</option>
                             <option value="least_practiced">Nejméně procvičované</option>
+                            <option value="weighted_learning">Učící algoritmus 🧠</option>
                           </select>
                         </div>
 
@@ -4203,7 +4295,77 @@ V nastavení lze změnit defaultni model.`);
                     </div>
                   </section>
 
-                  {/* 2. AI Konfigurace (Klíče) */}
+                  {/* 2. Učící Algoritmus */}
+                  <section className="space-y-6">
+                    <div className="flex items-center gap-2 px-2">
+                      <Brain size={20} className="opacity-50" />
+                      <h3 className="font-bold uppercase tracking-widest text-sm">Učící Algoritmus</h3>
+                    </div>
+
+                    <div className="p-8 border border-[var(--line)] rounded-3xl space-y-6 bg-white/5">
+                      <div className="flex items-center justify-between p-4 border border-[var(--line)] rounded-2xl">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-600">
+                            <Brain size={20} />
+                          </div>
+                          <div>
+                            <p className="text-sm font-bold">Adaptivní učení</p>
+                            <p className="text-[10px] opacity-50">Prioritizuje obtížné a dlouho nepraktikované otázky</p>
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => setDrillSettings(prev => ({
+                            ...prev,
+                            weightedLearning: {
+                              ...prev.weightedLearning!,
+                              enabled: !prev.weightedLearning?.enabled
+                            }
+                          }))}
+                          className={`w-12 h-6 rounded-full transition-colors relative ${drillSettings.weightedLearning?.enabled ? 'bg-[var(--ink)]' : 'bg-[var(--line)]'}`}
+                        >
+                          <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${drillSettings.weightedLearning?.enabled ? 'left-7' : 'left-1'}`} />
+                        </button>
+                      </div>
+
+                      {drillSettings.weightedLearning?.enabled && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-[var(--line)]">
+                          <div className="space-y-2">
+                            <label className="text-xs font-bold opacity-50">Polovrní doba zapomnění (dny)</label>
+                            <input
+                              type="number"
+                              min="1"
+                              max="30"
+                              value={drillSettings.weightedLearning.halflife_days}
+                              onChange={(e) => setDrillSettings(prev => ({
+                                ...prev,
+                                weightedLearning: {
+                                  ...prev.weightedLearning!,
+                                  halflife_days: parseInt(e.target.value) || 7
+                                }
+                              }))}
+                              className="w-full p-2 bg-transparent border border-[var(--line)] rounded-lg text-sm"
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <label className="text-xs font-bold opacity-50">Velikost historie míchání</label>
+                            <input
+                              type="number"
+                              min="1"
+                              max="50"
+                              value={drillSettings.shuffleHistorySize || 10}
+                              onChange={(e) => setDrillSettings(prev => ({
+                                ...prev,
+                                shuffleHistorySize: parseInt(e.target.value) || 10
+                              }))}
+                              className="w-full p-2 bg-transparent border border-[var(--line)] rounded-lg text-sm"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </section>
+
+                  {/* 3. AI Konfigurace (Klíče) */}
                   <section className="space-y-6">
                     <div className="flex items-center gap-2 px-2">
                       <Cpu size={20} className="opacity-50" />
@@ -4576,7 +4738,12 @@ V nastavení lze změnit defaultni model.`);
                               {subjects.find(s => s.id === questions[currentQuestionIndex]?.subject_id)?.name || 'Obecné'}
                             </span>
                           )}
-                          <p className="text-[10px] font-bold uppercase tracking-widest opacity-40 mb-1">{selectedSubject.name}</p>
+                          <p className="text-[10px] font-bold uppercase tracking-widest opacity-40 mb-1">
+                            {selectedSubject.id === 0 
+                              ? `Mix- ${subjects.find(s => s.id === questions[currentQuestionIndex]?.subject_id)?.name || 'Neznámá kategorie'}`
+                              : selectedSubject.name
+                            }
+                          </p>
                           <div className="flex items-center gap-2">
                           {/* Navigace vlevo */}
                           <div className="flex items-center gap-2">
@@ -4690,31 +4857,59 @@ V nastavení lze změnit defaultni model.`);
                             />
                           </div>
                         )}
-                        <h3 className="text-lg md:text-xl font-medium leading-relaxed flex items-start gap-2 md:gap-3">
-                          {(() => {
-                            const q = questions[currentQuestionIndex];
-                            const answers = JSON.parse(localStorage.getItem(userKey('answers')) || '{}');
-                            const isAlreadyCorrect = answers[String(q.questionId || q.id)]?.isCorrect;
-                            
-                            return (
-                              <div className="mt-1 flex-shrink-0 flex gap-2 rotate-0 items-center">
-                                {q.is_ai === 1 || q.source === 'ai' ? (
-                                  <Bot size={18} className="text-indigo-600 opacity-60" title="AI Generovaná" />
-                                ) : (
-                                  <User size={18} className="text-blue-600 opacity-60" title="Uživatelská" />
-                                )}
-                                {isAlreadyCorrect && (
-                                  <CheckCircle2 size={16} className="text-green-500" title="Již zodpovězeno správně" />
-                                )}
+                        <h3 className="text-lg md:text-xl font-medium leading-relaxed flex flex-col gap-2 md:gap-3">
+                          <div className="flex items-start gap-2 md:gap-3">
+                            {(() => {
+                              const q = questions[currentQuestionIndex];
+                              const answers = JSON.parse(localStorage.getItem(userKey('answers')) || '{}');
+                              const isAlreadyCorrect = answers[String(q.questionId || q.id)]?.isCorrect;
+                              
+                              return (
+                                <div className="mt-1 flex-shrink-0 flex gap-2 rotate-0 items-center">
+                                  <div 
+                                    onClick={() => setShowQuestionId(!showQuestionId)}
+                                    className="cursor-pointer hover:opacity-80 transition-opacity"
+                                    title="Klikněte pro zobrazení ID otázky"
+                                  >
+                                    {q.is_ai === 1 || q.source === 'ai' ? (
+                                      <Bot size={18} className="text-indigo-600 opacity-60" title="AI Generovaná" />
+                                    ) : (
+                                      <User size={18} className="text-blue-600 opacity-60" title="Uživatelská" />
+                                    )}
+                                  </div>
+                                  {isAlreadyCorrect && (
+                                    <CheckCircle2 size={16} className="text-green-500" title="Již zodpovězeno správně" />
+                                  )}
+                                </div>
+                              );
+                            })()}
+                            {showQuestionId && (
+                              <div className="text-[10px] opacity-60">
+                                <span 
+                                  className="font-mono cursor-pointer hover:opacity-80 underline underline-offset-2"
+                                  onClick={() => {
+                                    const q = questions[currentQuestionIndex];
+                                    if (q.lo_id) {
+                                      openSyllabusAtLO(q.lo_id);
+                                    } else {
+                                      alert('Otázka nemá přiřazeno žádné LO (Learning Objective)');
+                                    }
+                                  }}
+                                  title="Klikněte pro otevření v osnovách"
+                                >
+                                  ID: {questions[currentQuestionIndex].questionId || questions[currentQuestionIndex].id}
+                                </span>
                               </div>
-                            );
-                          })()}
-                          <TranslatedText
-                            question={questions[currentQuestionIndex]}
-                            field="text"
-                            language={language}
-                            className="flex-1"
-                          />
+                            )}
+                          </div>
+                          <div className="flex-1">
+                            <TranslatedText
+                              question={questions[currentQuestionIndex]}
+                              field="text"
+                              language={language}
+                              className=""
+                            />
+                          </div>
                         </h3>
 
                         <div className="grid gap-3">
@@ -4781,14 +4976,14 @@ V nastavení lze změnit defaultni model.`);
                           })}
                         </div>
 
-                        {(answered || !drillSettings.immediateFeedback) && (
+                        {(answered || !drillSettings.immediateFeedback || selectedSubject.id === -2) && (
                           <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             className="pt-6 border-t border-[var(--line)] space-y-4"
                           >
                             <div className="flex justify-between items-center">
-                              {drillSettings.showExplanationOnDemand && (
+                              {(drillSettings.showExplanationOnDemand || selectedSubject.id === -2) && (
                                 <div className="flex items-center gap-2">
                                   <button
                                     onClick={() => {

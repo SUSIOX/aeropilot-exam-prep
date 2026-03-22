@@ -1,4 +1,5 @@
 import { Question } from '../types';
+import { shuffle } from '../utils/shuffle';
 
 export interface SessionResults {
   score: number;
@@ -135,15 +136,11 @@ export class LearningEngine {
   }
 
   /**
-   * Static helper to shuffle an array (Fisher-Yates).
+   * Static helper to shuffle an array.
+   * @deprecated Use the centralized shuffle utility from '../utils/shuffle'
    */
   static shuffle<T>(array: T[]): T[] {
-    const newArray = [...array];
-    for (let i = newArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-    }
-    return newArray;
+    return shuffle(array);
   }
 
   /**
@@ -155,7 +152,7 @@ export class LearningEngine {
     const originalCorrectIndex = ['A', 'B', 'C', 'D'].indexOf(question.correct_option);
     
     // Generate shuffle map: [2, 0, 3, 1] means display A shows original answer[2], etc.
-    const shuffleMap = this.shuffle([0, 1, 2, 3]);
+    const shuffleMap = shuffle([0, 1, 2, 3]);
     
     // Create shuffled answers using shuffle map
     const shuffledAnswers = shuffleMap.map(index => answers[index]);
@@ -174,6 +171,6 @@ export class LearningEngine {
    * Static helper to generate an exam set from a pool of questions.
    */
   static generateExamSet(pool: Question[], limit: number = 20): Question[] {
-    return this.shuffle(pool).slice(0, limit);
+    return shuffle(pool).slice(0, limit);
   }
 }

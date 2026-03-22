@@ -63,10 +63,19 @@ export interface Stats {
 export type ViewMode = 'dashboard' | 'drill' | 'exam' | 'stats' | 'settings' | 'ai';
 
 export interface DrillSettings {
-  sorting: 'default' | 'random' | 'hardest_first' | 'least_practiced';
+  sorting: 'default' | 'random' | 'hardest_first' | 'least_practiced' | 'weighted_learning';
   immediateFeedback: boolean;
   showExplanationOnDemand: boolean;
   sourceFilters: ('user' | 'ai')[];
   shuffleAnswers: boolean;
   excludeAnswered: boolean;
+  weightedLearning?: {
+    enabled: boolean;
+    halflife_days: number;
+    w_performance: number;
+    w_decay: number;
+    w_difficulty: number;
+  };
+  shuffleHistory?: string[];
+  shuffleHistorySize?: number;
 }

@@ -1,0 +1,4097 @@
+[
+  {
+    "loId": "61.1",
+    "subjectId": 9,
+    "text": "General",
+    "knowledgeContent": "General navigation principles include understanding basic aeronautical charts, navigation aids, and the importance of pre-flight planning. A PPL(A) student must be aware of the regulatory framework governing navigation, including ICAO standards and EASA requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.1.1",
+    "subjectId": 9,
+    "text": "Operation of aircraft: ICAO Annex 6, General requirements",
+    "knowledgeContent": "ICAO Annex 6 outlines general requirements for aircraft operation, including flight crew responsibilities, documentation, and operational procedures. The student must understand these standards to ensure compliance with international aviation regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.1.1.1",
+    "subjectId": 9,
+    "text": "Definitions",
+    "knowledgeContent": "Definitions in ICAO Annex 6 provide standardized terminology for aviation operations. The student must be familiar with key terms to interpret regulations and procedures correctly.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.1.1.1.1Define",
+    "subjectId": 9,
+    "text": "'flight time (aeroplanes)'",
+    "knowledgeContent": "'Flight time (aeroplanes)' is defined as the total time from the moment an aircraft first moves under its own power for the purpose of flight until it comes to rest at the end of the flight. This includes taxiing time before takeoff and after landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.1.1.2",
+    "subjectId": 9,
+    "text": "Applicability",
+    "knowledgeContent": "Applicability of ICAO Annex 6 specifies which aircraft and operations are subject to its provisions. The student must know how these regulations apply to their flights, including exemptions or special cases.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.1.1.2.1Describe",
+    "subjectId": 9,
+    "text": "the pilot's legal obligation to plan and prepare a flight",
+    "knowledgeContent": "The pilot's legal obligation to plan and prepare a flight includes ensuring the aircraft is airworthy, the route is safe, and all necessary documentation is onboard. This involves checking weather, NOTAMs, and fuel requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2",
+    "subjectId": 9,
+    "text": "Special operational procedures and hazards (general aspects)",
+    "knowledgeContent": "Special operational procedures and hazards cover unique scenarios like emergency landings, adverse weather, and airport-specific rules. The student must recognize these hazards and apply appropriate procedures to mitigate risks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.1",
+    "subjectId": 9,
+    "text": "Ground operations",
+    "knowledgeContent": "Ground operations include all activities from pre-flight checks to post-flight procedures. The student must understand the importance of systematic checks and adherence to safety protocols.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.1.1",
+    "subjectId": 9,
+    "text": "Preflight",
+    "knowledgeContent": "Preflight procedures ensure the aircraft is safe for flight. The student must perform checks systematically, using checklists to avoid omissions that could compromise safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.1.1.1Explain",
+    "subjectId": 9,
+    "text": "the use of checklists during pre-flight check",
+    "knowledgeContent": "Checklists during pre-flight checks ensure all critical items are inspected in a standardized sequence. This reduces human error and ensures compliance with the Aircraft Flight Manual (AFM) or Pilot's Operating Handbook (POH).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.1.1.2Describe",
+    "subjectId": 9,
+    "text": "the use of entering amounts of refilled oil and fuel into the aircraft logbookx",
+    "knowledgeContent": "Entering amounts of refilled oil and fuel into the aircraft logbook is a legal requirement to maintain accurate records of aircraft maintenance and usage. This helps track consumption and ensures compliance with regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.1.1.4Explain",
+    "subjectId": 9,
+    "text": "the importance of using AFM/POH procedures.",
+    "knowledgeContent": "Using AFM/POH procedures ensures the aircraft is operated within its designed limitations. These manuals provide critical data on performance, weight and balance, and emergency procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.1.1.5Explain",
+    "subjectId": 9,
+    "text": "possible hazards from rigging / weights the pilot did NOT untie before flightx",
+    "knowledgeContent": "Hazards from rigging or weights left untied before flight can cause instability or damage during takeoff or flight. The pilot must ensure all cargo and equipment are properly secured.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.1.2",
+    "subjectId": 9,
+    "text": "Refuelling",
+    "knowledgeContent": "Refuelling procedures must be followed to prevent accidents, including fire hazards and contamination. The student must verify fuel type and quantity, and ensure safe handling practices.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.1.2.1State",
+    "subjectId": 9,
+    "text": "that the indications on a fuel gauge of an airplane are often erroneous",
+    "knowledgeContent": "Fuel gauges in airplanes are often unreliable due to mechanical or electrical issues. The pilot must cross-check fuel quantity by visual inspection or dipstick measurement.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.1.2.4State",
+    "subjectId": 9,
+    "text": "that refuelling shall not be commenced with passengers on board",
+    "knowledgeContent": "Refuelling shall not be commenced with passengers on board to minimize risks in case of fuel spills or fire. Passengers must disembark before refuelling begins.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.1.2.5Determine",
+    "subjectId": 9,
+    "text": "the allowed grades of fuel when given an AFM/POH",
+    "knowledgeContent": "The allowed grades of fuel are specified in the AFM/POH. The student must identify the correct fuel type (e.g., AVGAS 100LL or Jet A) to avoid engine damage or performance issues.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.1.3",
+    "subjectId": 9,
+    "text": "Taxiing",
+    "knowledgeContent": "Taxiing requires careful control of the aircraft, especially in congested areas. The student must understand the use of brakes, rudder, and engine power to maneuver safely.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.1.3.1Explain",
+    "subjectId": 9,
+    "text": "the possible problems with regard to use of the carburator heat during taxix",
+    "knowledgeContent": "Using carburetor heat during taxi can prevent carburetor icing in certain weather conditions. However, excessive use may reduce engine performance and increase wear.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.1.4",
+    "subjectId": 9,
+    "text": "Postflight",
+    "knowledgeContent": "Postflight procedures include securing the aircraft and documenting flight details. The student must record flight time, maintenance issues, and fuel/oil consumption in the logbook.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.1.4.1Explain",
+    "subjectId": 9,
+    "text": "the reason and the procedure to record every flight in the aircraft logbookx",
+    "knowledgeContent": "Recording every flight in the aircraft logbook is a legal requirement to maintain operational history and compliance. It also aids in maintenance scheduling and accident investigations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.2",
+    "subjectId": 9,
+    "text": "Flight operations",
+    "knowledgeContent": "Flight operations encompass all phases from takeoff to landing. The student must understand standard procedures, emergency protocols, and performance calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.2.1",
+    "subjectId": 9,
+    "text": "Takeoff and landing",
+    "knowledgeContent": "Takeoff and landing are critical phases requiring precise control and adherence to speeds and configurations. The student must know the correct procedures for normal and crosswind conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.2.1.3Define",
+    "subjectId": 9,
+    "text": "and explain the speeds Vr, Vx and Vy",
+    "knowledgeContent": "Vr (rotation speed) is the speed at which the pilot raises the nose for takeoff. Vx (best angle of climb speed) provides the steepest climb, while Vy (best rate of climb speed) provides the fastest altitude gain.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.2.2",
+    "subjectId": 9,
+    "text": "Traffic pattern",
+    "knowledgeContent": "The traffic pattern is a standardized path for aircraft approaching and departing an airport. The student must know the pattern's legs (upwind, crosswind, downwind, base, final) and the standard left-hand pattern unless otherwise specified.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.2.2.1Explain",
+    "subjectId": 9,
+    "text": "the term 'traffic pattern' and the standard pattern direction",
+    "knowledgeContent": "A traffic pattern is a rectangular course flown around an airport's runway to ensure orderly flow of air traffic. The standard pattern direction is left-hand (counter-clockwise) unless right-hand patterns are published.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.2.3",
+    "subjectId": 9,
+    "text": "Go around",
+    "knowledgeContent": "A go-around is a procedure to abort a landing and climb to a safe altitude. The student must recognize situations like unstable approaches, runway obstructions, or ATC instructions that necessitate a go-around.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.2.3.1Describe",
+    "subjectId": 9,
+    "text": "situations in which a go-around should be executed",
+    "knowledgeContent": "A go-around should be executed if the aircraft is not properly aligned, the runway is occupied, or the approach is unstable. It is a safety measure to avoid accidents and ensure a safe landing attempt.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.3",
+    "subjectId": 9,
+    "text": "Noise abatement",
+    "knowledgeContent": "Noise abatement procedures aim to minimize aircraft noise impact on communities. The student must follow recommended climb profiles, throttle settings, and flight paths to reduce noise.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.3.1",
+    "subjectId": 9,
+    "text": "Noise abatement procedures",
+    "knowledgeContent": "Noise abatement procedures include reduced power climbs, avoiding overflight of sensitive areas, and adhering to published noise-sensitive departure routes. Compliance demonstrates environmental responsibility.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:36:57.674Z",
+    "updatedAt": "2026-03-17T20:36:57.674Z"
+  },
+  {
+    "loId": "61.2.3.1.1Explain",
+    "subjectId": 9,
+    "text": "why flying directly above settlements / town should be avoided",
+    "knowledgeContent": "Flying directly above settlements or towns should be avoided to minimize noise pollution, reduce the risk of accidents affecting populated areas, and comply with local regulations and airspace restrictions. Additionally, it helps avoid potential conflicts with controlled airspace or other traffic.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.3.2",
+    "subjectId": 9,
+    "text": "Influence of the flight procedure (departure, cruise and approach)",
+    "knowledgeContent": "The flight procedure (departure, cruise, and approach) influences navigation, fuel efficiency, and safety. Departure procedures ensure obstacle clearance, cruise procedures optimize route planning, and approach procedures ensure safe landing. Each phase requires adherence to specific altitudes, speeds, and waypoints.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.3.2.2Identify",
+    "subjectId": 9,
+    "text": "zones of 'noise abatement / protection' from an airport chart",
+    "knowledgeContent": "Zones of noise abatement or protection are designated areas on airport charts where specific flight procedures are implemented to minimize noise impact on surrounding communities. These zones often require reduced power settings, specific climb gradients, or routing adjustments.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.4",
+    "subjectId": 9,
+    "text": "Runway excursion and incursion awareness",
+    "knowledgeContent": "Runway excursion and incursion awareness involves understanding the risks of unintended departures from the runway surface (excursion) or unauthorized entry onto the runway (incursion). Pilots must recognize surface markings, signals, and procedures to mitigate these risks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.4.1",
+    "subjectId": 9,
+    "text": "Runway excursion awareness (meaning of surface markings and signals)",
+    "knowledgeContent": "Runway excursion awareness includes understanding surface markings such as runway thresholds, centerlines, and edge markings, as well as signals like stop bars and lighting systems. These help pilots maintain proper alignment and avoid unintended departures from the runway.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.4.2",
+    "subjectId": 9,
+    "text": "Runway incursion awareness (meaning of surface markings and signals)",
+    "knowledgeContent": "Runway incursion awareness involves recognizing surface markings such as holding positions, taxiway centerlines, and runway guard lights, as well as understanding ATC instructions to prevent unauthorized entry onto the runway.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.4.2.2Identify",
+    "subjectId": 9,
+    "text": "the marking 'runway incursion hotspot' from an airport chart.",
+    "knowledgeContent": "The marking 'runway incursion hotspot' on an airport chart indicates areas with a history of incursions due to complex taxiway layouts or high traffic density. Pilots must exercise extra caution in these areas.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.5",
+    "subjectId": 9,
+    "text": "Fire or smoke",
+    "knowledgeContent": "Fire or smoke emergencies require immediate action to ensure safety. Pilots must identify the source of the fire, use appropriate extinguishing agents, and follow emergency procedures to mitigate risks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.5.1",
+    "subjectId": 9,
+    "text": "Carburettor fire",
+    "knowledgeContent": "A carburettor fire occurs when flammable vapors ignite in the carburetor. Pilots must shut off the fuel supply, activate the fire extinguisher, and perform an emergency landing if necessary.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.5.1.1Explain",
+    "subjectId": 9,
+    "text": "what a 'carburetor fire' is and how to handle such a situation",
+    "knowledgeContent": "A carburetor fire is caused by the ignition of fuel vapors in the carburetor. To handle this, pilots must immediately turn off the fuel supply, activate the fire extinguisher, and prepare for an emergency landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.5.2",
+    "subjectId": 9,
+    "text": "Engine fire",
+    "knowledgeContent": "An engine fire requires immediate action, including shutting off the fuel supply, activating the fire extinguisher, and preparing for an emergency landing. Pilots must also communicate with ATC and follow emergency checklists.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.5.2.3Describe",
+    "subjectId": 9,
+    "text": "how to detect high carbon monoxide concentration inside the cockpitx",
+    "knowledgeContent": "High carbon monoxide concentration in the cockpit can be detected using CO detectors or symptoms like headaches and dizziness. Pilots must increase ventilation, use oxygen masks, and land as soon as possible.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.5.3.1List",
+    "subjectId": 9,
+    "text": "different extinguishing agents and suitable fire for use of the extinguishersx",
+    "knowledgeContent": "Different extinguishing agents include water, foam, dry chemical, and CO2. Each agent is suitable for specific fire types: water for Class A fires, foam for Class B, dry chemical for Class B and C, and CO2 for electrical fires.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.5.3.2Describe",
+    "subjectId": 9,
+    "text": "the use of fire extinguishers inside the cockpit can explain negative effectsx",
+    "knowledgeContent": "Fire extinguishers in the cockpit should be used to suppress small fires, but pilots must be aware of potential negative effects like reduced visibility or oxygen depletion. Proper training is essential for effective use.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.6",
+    "subjectId": 9,
+    "text": "Windshear and microburst",
+    "knowledgeContent": "Windshear and microbursts are hazardous weather phenomena that can cause sudden changes in wind speed and direction. Pilots must recognize their effects and take appropriate actions to maintain control of the aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.6.1",
+    "subjectId": 9,
+    "text": "Effects and recognition during departure and approach",
+    "knowledgeContent": "Windshear and microbursts can cause significant changes in airspeed and altitude during departure and approach. Pilots must recognize these phenomena through visual cues, weather reports, and onboard systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.6.1.1Define",
+    "subjectId": 9,
+    "text": "'wind shear' (horizontal or vertical)",
+    "knowledgeContent": "Windshear is a sudden change in wind speed or direction, either horizontally or vertically. It can occur at any altitude and poses a significant risk during takeoff and landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.6.1.2Describe",
+    "subjectId": 9,
+    "text": "typical meteorological situations in which 'wind shear' may occur",
+    "knowledgeContent": "Windshear typically occurs in meteorological situations such as thunderstorms, frontal systems, or temperature inversions. These conditions create rapid changes in wind patterns that can affect aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.6.2",
+    "subjectId": 9,
+    "text": "Actions to avoid and actions taken during encounter",
+    "knowledgeContent": "Actions to avoid windshear include monitoring weather reports, avoiding thunderstorms, and using onboard detection systems. During an encounter, pilots should apply full power, maintain a safe airspeed, and follow escape procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.6.2.2Describe",
+    "subjectId": 9,
+    "text": "procedures to avoid wind shear during approach and landing",
+    "knowledgeContent": "Procedures to avoid windshear during approach and landing include maintaining a higher approach speed, using windshear detection systems, and being prepared to execute a go-around if necessary.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.7.1",
+    "subjectId": 9,
+    "text": "Cause",
+    "knowledgeContent": "Wake turbulence is caused by the vortices generated by an aircraft's wings. It poses a hazard to following aircraft, especially during takeoff and landing, and can cause loss of control if encountered.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.7.1.1Describe",
+    "subjectId": 9,
+    "text": "the origin and hazards resulting from 'wake turbulences'",
+    "knowledgeContent": "Wake turbulence originates from the vortices created by an aircraft's wings, particularly during high-lift conditions. These vortices can persist for several minutes and pose a hazard to following aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.7.1.2State",
+    "subjectId": 9,
+    "text": "that significant wake turbulences exist from rotation to nose-wheel touchdownx",
+    "knowledgeContent": "Significant wake turbulence exists from the moment an aircraft rotates during takeoff until it touches down with the nose wheel. Pilots must maintain safe separation to avoid encountering these vortices.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.7.2",
+    "subjectId": 9,
+    "text": "List of relevant parameters",
+    "knowledgeContent": "Wake turbulence categories include 'light', 'medium', 'heavy', and 'super heavy'. These categories are based on the aircraft's maximum takeoff weight and influence the required separation distances.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.7.2.1List",
+    "subjectId": 9,
+    "text": "the wake turbulence categories 'light', 'medium' and 'heavy' ('super heavy')x",
+    "knowledgeContent": "Wake turbulence categories are 'light', 'medium', 'heavy', and 'super heavy'. These categories determine the minimum separation distances required to avoid hazardous wake encounters.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.7.2.3State",
+    "subjectId": 9,
+    "text": "the most critical situation for wake turbulence as 'heavy and slow'",
+    "knowledgeContent": "The most critical situation for wake turbulence is when a 'heavy' or 'super heavy' aircraft is flying 'slow', as this generates stronger vortices that pose a greater hazard to following aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.7.3",
+    "subjectId": 9,
+    "text": "Actions taken when crossing traffic, during take-off and landing",
+    "knowledgeContent": "Actions to avoid wake turbulence include maintaining safe separation distances, avoiding flight paths directly behind larger aircraft, and being prepared to adjust altitude or heading if necessary.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.8",
+    "subjectId": 9,
+    "text": "Engine failure at take off",
+    "knowledgeContent": "Engine failure at takeoff is a critical emergency that requires immediate action. Pilots must maintain control of the aircraft, follow emergency procedures, and decide whether to continue the takeoff or abort.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.8.1",
+    "subjectId": 9,
+    "text": "General",
+    "knowledgeContent": "General procedures for engine failure at takeoff include maintaining proper airspeed, identifying the cause of the failure, and deciding whether to continue the takeoff or abort based on runway remaining and obstacles.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.8.1.2Explain",
+    "subjectId": 9,
+    "text": "the importance to observe air speed",
+    "knowledgeContent": "Observing airspeed during engine failure at takeoff is crucial to maintain control of the aircraft. Proper airspeed ensures sufficient lift and allows the pilot to execute a safe landing or abort the takeoff.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:38:05.697Z",
+    "updatedAt": "2026-03-17T20:38:05.697Z"
+  },
+  {
+    "loId": "61.2.8.1.4Explain",
+    "subjectId": 9,
+    "text": "how a steep turn back leads to an excessive loss of altitude",
+    "knowledgeContent": "A steep turn back leads to excessive loss of altitude due to increased drag and reduced lift. The aircraft's angle of attack increases, causing a higher sink rate, and the bank angle reduces the vertical component of lift, further contributing to altitude loss.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.9",
+    "subjectId": 9,
+    "text": "Emergency and precautionary landings",
+    "knowledgeContent": "Emergency landings are unplanned landings due to immediate threats, while precautionary landings are planned due to potential risks. Both require thorough preparation, including selecting a suitable landing site and ensuring passenger safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.9.1",
+    "subjectId": 9,
+    "text": "Definition",
+    "knowledgeContent": "An emergency landing is an immediate landing due to an in-flight emergency, while a precautionary landing is a planned landing to avoid a potential emergency. Both aim to ensure the safety of the aircraft and its occupants.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.9.1.2List",
+    "subjectId": 9,
+    "text": "examples in which cases to do an emergency landing",
+    "knowledgeContent": "Examples of cases requiring an emergency landing include engine failure, fuel exhaustion, severe weather, or medical emergencies. These situations necessitate immediate action to ensure safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.9.1.4State",
+    "subjectId": 9,
+    "text": "in which cases life wests for every passenger have to carried on board",
+    "knowledgeContent": "Life vests must be carried on board when flying over water beyond gliding distance from shore or when required by the operator's procedures. This ensures passenger safety in case of a water landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.9.2",
+    "subjectId": 9,
+    "text": "Cause (of emergency and precautionary landings)",
+    "knowledgeContent": "Causes of emergency landings include mechanical failures, fuel issues, or medical emergencies. Precautionary landings may be caused by deteriorating weather, navigation uncertainties, or passenger discomfort.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.9.2.2Describe",
+    "subjectId": 9,
+    "text": "situations that might lead to a precautionary landing (e.g. passenger sickness)x",
+    "knowledgeContent": "Situations leading to a precautionary landing include passenger sickness, deteriorating weather conditions, or uncertainty about the aircraft's position. These require careful assessment and decision-making.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.9.3",
+    "subjectId": 9,
+    "text": "Landing preparation",
+    "knowledgeContent": "Landing preparation involves selecting a suitable site, assessing wind and terrain, and configuring the aircraft for landing. This includes reducing speed, extending flaps, and ensuring communication with ATC if possible.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.9.4",
+    "subjectId": 9,
+    "text": "Passenger information",
+    "knowledgeContent": "Passenger information includes briefing them on the situation, ensuring seatbelts are fastened, and explaining emergency procedures. Clear communication helps reduce panic and ensures cooperation during the landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.9.5",
+    "subjectId": 9,
+    "text": "Evacuation",
+    "knowledgeContent": "Evacuation procedures involve ensuring all passengers exit the aircraft quickly and safely. This includes identifying exits, avoiding obstacles, and moving to a safe distance from the aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.9.6",
+    "subjectId": 9,
+    "text": "Action after landing",
+    "knowledgeContent": "Actions after landing include securing the aircraft, assessing injuries, and contacting authorities. It is crucial to ensure the safety of all occupants and prevent further hazards.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.9.6.1Describe",
+    "subjectId": 9,
+    "text": "and identify ground-air distress signals",
+    "knowledgeContent": "Ground-air distress signals include waving arms, using flares, or creating visible symbols on the ground. These signals help rescuers locate the aircraft and its occupants.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.10",
+    "subjectId": 9,
+    "text": "Contaminated runways",
+    "knowledgeContent": "Contaminated runways have reduced friction due to water, snow, ice, or other substances. This affects aircraft performance, requiring adjustments in landing and takeoff procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.10.1Kinds",
+    "subjectId": 9,
+    "text": "of contamination",
+    "knowledgeContent": "Types of runway contamination include standing water, slush, snow, ice, and rubber deposits. Each type affects aircraft handling and braking differently.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.10.1.1Explain",
+    "subjectId": 9,
+    "text": "the term 'contaminated runway'",
+    "knowledgeContent": "A contaminated runway is one where more than 25% of its surface is covered by water, snow, slush, or ice, reducing friction and affecting aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.10.1.2List",
+    "subjectId": 9,
+    "text": "and describe different types of contamination",
+    "knowledgeContent": "Different types of contamination include water, slush, snow, ice, and rubber deposits. Each type impacts runway friction and aircraft handling differently.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.10.2Estimated",
+    "subjectId": 9,
+    "text": "surface friction and friction coefficient",
+    "knowledgeContent": "Surface friction is estimated using the friction coefficient, which indicates the runway's slipperiness. A lower coefficient means reduced braking effectiveness and longer stopping distances.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.10.2.1Describe",
+    "subjectId": 9,
+    "text": "the term 'friction coefficient'",
+    "knowledgeContent": "The friction coefficient is a measure of the runway's slipperiness, ranging from 0 (no friction) to 1 (maximum friction). It affects aircraft braking and landing performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.11",
+    "subjectId": 9,
+    "text": "Operation influence by meteorological conditions",
+    "knowledgeContent": "Meteorological conditions such as visibility, cloud cover, and wind affect flight operations. Maintaining Visual Meteorological Conditions (VMC) is essential for safe navigation and landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.11.1Maintaining",
+    "subjectId": 9,
+    "text": "VMC",
+    "knowledgeContent": "Maintaining VMC requires ensuring visibility and cloud clearance meet regulatory minima. This allows the pilot to navigate visually and avoid obstacles safely.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.12",
+    "subjectId": 9,
+    "text": "Ballistic Recovery Systems (BRS)",
+    "knowledgeContent": "Ballistic Recovery Systems (BRS) are emergency parachutes designed to safely lower an aircraft to the ground in case of catastrophic failure. They are typically used in light aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.12.1.1Describe",
+    "subjectId": 9,
+    "text": "the purpose and function of a BRS",
+    "knowledgeContent": "The purpose of a BRS is to deploy a parachute that slows the aircraft's descent, allowing for a controlled landing in emergencies. It provides an additional safety measure for pilots and passengers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.12.1.2Describe",
+    "subjectId": 9,
+    "text": "situations that may lead to the use of the BRS system",
+    "knowledgeContent": "Situations that may lead to the use of a BRS include structural failure, loss of control, or engine failure at altitudes where a safe landing is impossible.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.12.2.1List",
+    "subjectId": 9,
+    "text": "the major components of a BRS system",
+    "knowledgeContent": "Major components of a BRS include the parachute, deployment mechanism, and activation handle. These components work together to ensure the system functions correctly in emergencies.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.12.2.2Explain",
+    "subjectId": 9,
+    "text": "the purpose and operation of the slider",
+    "knowledgeContent": "The slider in a BRS controls the parachute's deployment speed, preventing sudden deceleration that could damage the aircraft or injure occupants. It ensures a smooth and controlled descent.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.12.2.3List",
+    "subjectId": 9,
+    "text": "the safety features of a BRS",
+    "knowledgeContent": "Safety features of a BRS include redundant activation mechanisms, automatic deployment at low altitudes, and robust construction to withstand extreme conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.12.3Operation",
+    "subjectId": 9,
+    "text": "and Limitations",
+    "knowledgeContent": "Operating a BRS involves activating the system via a handle or switch, ensuring the parachute deploys correctly. Limitations include altitude and speed restrictions for safe deployment.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.12.3.2Describe",
+    "subjectId": 9,
+    "text": "how to activate a BRS",
+    "knowledgeContent": "To activate a BRS, the pilot pulls the activation handle or presses the deployment switch, initiating the parachute's deployment. This must be done within the system's operational limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.12.3.3State",
+    "subjectId": 9,
+    "text": "the actions for using a BRS at an altitude below 500 ft AGL",
+    "knowledgeContent": "At altitudes below 500 ft AGL, the BRS may not have sufficient time to fully deploy, making it less effective. Immediate action to stabilize the aircraft is crucial.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.12.3.4State",
+    "subjectId": 9,
+    "text": "the actions for using a BRS between 500 ft and 2000 ft AGL",
+    "knowledgeContent": "Between 500 ft and 2000 ft AGL, the BRS can be activated to ensure a controlled descent. The pilot must assess the situation and deploy the system promptly.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:39:05.636Z",
+    "updatedAt": "2026-03-17T20:39:05.636Z"
+  },
+  {
+    "loId": "61.2.12.3.5State",
+    "subjectId": 9,
+    "text": "the actions for using a BRS at an altitude above 2000 ft AGL",
+    "knowledgeContent": "The student must know that deploying a Ballistic Recovery System (BRS) above 2000 ft AGL requires assessing the situation, ensuring sufficient altitude for full parachute deployment, and following the manufacturer's procedures for activation. They must also understand the importance of maintaining aircraft control until deployment to avoid entanglement.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "61.2.12.3.6Describe",
+    "subjectId": 9,
+    "text": "the limitations in function of altitude and speed for using a BRS",
+    "knowledgeContent": "The student must describe that a BRS has operational limitations based on altitude (typically a minimum deployment height, e.g., 200-400 ft AGL) and airspeed (maximum deployment speed, e.g., below VNE). Exceeding these limits may result in system failure or structural damage.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "61.2.12.4.1Describe",
+    "subjectId": 9,
+    "text": "the passenger briefing with regard to the BRS",
+    "knowledgeContent": "The student must describe the BRS passenger briefing, which includes explaining the purpose of the system, how it is activated, brace positions, and post-landing procedures. Passengers must be informed not to interfere with the handle and to follow pilot instructions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "61.3.2.3.1Describe",
+    "subjectId": 9,
+    "text": "constraints associated with helicopter operation in mountain environment-",
+    "knowledgeContent": "The student must describe constraints of helicopter mountain operations, including reduced performance due to high density altitude, unpredictable wind patterns (e.g., rotor downdrafts), and limited landing zones. They must also understand the importance of pre-flight planning for terrain and weather.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "61.3.3.2.1Describe",
+    "subjectId": 9,
+    "text": "the basic actions when encountering fire in the cabin, cockpit or engine-",
+    "knowledgeContent": "The student must describe the basic actions for cabin/cockpit fire: identify the source, cut off electrical power if safe, use a fire extinguisher (PASS technique), and land as soon as possible. For engine fires, they must know to shut off fuel and electrical supply, activate fire extinguishers if available, and execute an emergency landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1",
+    "subjectId": 9,
+    "text": "Basics of navigation",
+    "knowledgeContent": "The student must understand the fundamentals of navigation, including the use of charts, dead reckoning, and radio aids. They must also be aware of the importance of magnetic variation, wind correction, and fuel planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.1",
+    "subjectId": 9,
+    "text": "The solar system",
+    "knowledgeContent": "The student must know the basic structure of the solar system, including the sun, planets, and Earth's position. This knowledge is foundational for understanding celestial navigation and seasonal variations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.1.1",
+    "subjectId": 9,
+    "text": "Seasonal and apparent movements of the sun",
+    "knowledgeContent": "The student must explain how the Earth's tilt and orbit cause seasonal changes and the apparent movement of the sun (e.g., solstices, equinoxes). This affects daylight duration and solar altitude, relevant for flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.2",
+    "subjectId": 9,
+    "text": "The earth",
+    "knowledgeContent": "The student must understand the Earth's shape (oblate spheroid), its coordinate system (latitude/longitude), and how these are used for navigation. They must also know the significance of the WGS-84 datum.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.2.1",
+    "subjectId": 9,
+    "text": "Position",
+    "knowledgeContent": "The student must know that position is defined by latitude (N/S of equator) and longitude (E/W of Prime Meridian), measured in degrees, minutes, and seconds. These coordinates are referenced to the WGS-84 ellipsoid for accuracy.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.2.1.1",
+    "subjectId": 9,
+    "text": "State that a position in latitude and longitude is referred to a WGS-84 ellipsoid",
+    "knowledgeContent": "The student must state that WGS-84 is the global standard ellipsoid for aviation navigation, ensuring consistency in GPS and chart data. Positions in latitude/longitude are always referenced to this model.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.2.1.3",
+    "subjectId": 9,
+    "text": "Explain the use of degrees, minutes and seconds (DMS) for position reference",
+    "knowledgeContent": "The student must explain how degrees (°), minutes ('), and seconds (\") are used to precisely define a location. For example, 1° = 60', 1' = 60\", and decimal minutes are often used in aviation (e.g., 48°30.5'N).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.2.2",
+    "subjectId": 9,
+    "text": "Great circle, small circle and rhumb line",
+    "knowledgeContent": "The student must understand the definitions of great circles (shortest path between two points on a sphere), small circles (parallels of latitude except the equator), and rhumb lines (constant bearing paths).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.2.2.2",
+    "subjectId": 9,
+    "text": "Explain the significance of a great circle in navigation",
+    "knowledgeContent": "The student must explain that great circles are the shortest distance between two points on Earth, used for long-range navigation (e.g., flight routes). Charts like the Lambert Conformal project great circles as straight lines.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.2.2.5",
+    "subjectId": 9,
+    "text": "Define the term 'rhumb line' and 'small circle'",
+    "knowledgeContent": "The student must define a rhumb line as a path of constant bearing (e.g., loxodrome) and a small circle as any circle on Earth's surface not dividing it into equal halves (e.g., lines of latitude except the equator).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.2.3",
+    "subjectId": 9,
+    "text": "Latitude and difference of latitude",
+    "knowledgeContent": "The student must understand latitude as angular distance from the equator (0° to 90° N/S) and calculate the difference by subtracting latitudes (e.g., 50°N to 30°N = 20° difference).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.2.3.2",
+    "subjectId": 9,
+    "text": "Calculate the difference in latitude between any two given positions",
+    "knowledgeContent": "The student must calculate the difference in latitude between two points by subtracting their values (e.g., 45°30'N and 30°15'N yields 15°15' difference). If crossing hemispheres, add the latitudes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.2.4",
+    "subjectId": 9,
+    "text": "Longitude and difference of longitude",
+    "knowledgeContent": "The student must understand longitude as angular distance from the Prime Meridian (0° to 180° E/W) and calculate the difference by subtracting longitudes (adjusting for hemisphere crossing).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.2.4.2",
+    "subjectId": 9,
+    "text": "Calculate the difference in longitude between any two given positions",
+    "knowledgeContent": "The student must calculate the difference in longitude between two points (e.g., 10°E and 20°W yields 30° difference). If both are in the same hemisphere, subtract; if opposite, add.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.2.5",
+    "subjectId": 9,
+    "text": "Use of latitude and longitude co-ordinates to locate any specific position",
+    "knowledgeContent": "The student must use latitude/longitude coordinates to locate positions on a chart, understanding that latitude is read first (e.g., 51°30'N 000°08'W is London Heathrow). Precision is critical for navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.3",
+    "subjectId": 9,
+    "text": "Time and time conversions",
+    "knowledgeContent": "The student must understand time systems used in aviation, including Local Mean Time (LMT), Coordinated Universal Time (UTC), and daylight saving adjustments. This is essential for flight planning and logkeeping.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.3.1",
+    "subjectId": 9,
+    "text": "Apparent time",
+    "knowledgeContent": "The student must know apparent (solar) time is based on the sun's position but varies due to Earth's elliptical orbit. It is not used in aviation but explains timekeeping history.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.3.2",
+    "subjectId": 9,
+    "text": "LMT",
+    "knowledgeContent": "The student must understand Local Mean Time (LMT) is based on the mean sun's position, averaging solar time variations. It is tied to longitude (15° = 1 hour) but rarely used in modern aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.3.3",
+    "subjectId": 9,
+    "text": "UTC",
+    "knowledgeContent": "The student must know UTC (Coordinated Universal Time) is the global standard for aviation, replacing GMT. It is unaffected by time zones or daylight saving, ensuring consistency in operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.3.3.3",
+    "subjectId": 9,
+    "text": "State that in aviation, all times in documentation are UTC",
+    "knowledgeContent": "The student must state that all aviation documentation (e.g., flight plans, NOTAMs, logs) uses UTC to avoid confusion across time zones. Local times are converted to UTC for standardization.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.3.4",
+    "subjectId": 9,
+    "text": "Standard times",
+    "knowledgeContent": "The student must understand standard time zones (15° longitude intervals) and how they offset from UTC (e.g., UTC+1 for Central Europe). Time zone boundaries may follow political borders.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.3.4.3",
+    "subjectId": 9,
+    "text": "Explain the concept of 'daylight saving time (DST)'",
+    "knowledgeContent": "The student must explain daylight saving time (DST) as a seasonal clock adjustment (typically +1 hour) to extend evening daylight. Aviation operations remain on UTC to avoid confusion.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.3.5",
+    "subjectId": 9,
+    "text": "Dateline",
+    "knowledgeContent": "The student must know the International Date Line (180° longitude) marks where the date changes. Crossing westward advances the date; eastward subtracts a day. Aviation schedules account for this.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.3.6",
+    "subjectId": 9,
+    "text": "Definition of sunrise, sunset and civil twilight",
+    "knowledgeContent": "The student must define sunrise/sunset as when the sun's upper limb crosses the horizon, and civil twilight as the period when the sun is 0-6° below the horizon (enough light for daytime operations).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.4",
+    "subjectId": 9,
+    "text": "Directions",
+    "knowledgeContent": "The student must understand true, magnetic, and compass directions, including variations (declination) and deviations. This is critical for interpreting charts and navigating with a magnetic compass.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:40:06.713Z",
+    "updatedAt": "2026-03-17T20:40:06.713Z"
+  },
+  {
+    "loId": "91.1.4.1",
+    "subjectId": 9,
+    "text": "True north, magnetic north and compass north",
+    "knowledgeContent": "True north (TN) is the direction towards the geographic North Pole, magnetic north (MN) is the direction towards the magnetic North Pole, and compass north (CN) is the direction indicated by the aircraft compass. A PPL student must understand the differences between these references and their corresponding headings (TH, MH, CH).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.1.4.1.1",
+    "subjectId": 9,
+    "text": "Define 'true north' (TN)  and corresponding directions (TH, TC)",
+    "knowledgeContent": "True north (TN) is the direction along the Earth's surface towards the geographic North Pole. True heading (TH) is the aircraft's direction relative to TN, and true course (TC) is the intended path over the ground relative to TN.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.1.4.1.3",
+    "subjectId": 9,
+    "text": "Define 'magnetic north' (MN) and corresponding directions (MH, MC)",
+    "knowledgeContent": "Magnetic north (MN) is the direction towards the Earth's magnetic North Pole, influenced by the planet's magnetic field. Magnetic heading (MH) is the aircraft's direction relative to MN, and magnetic course (MC) is the intended path over the ground relative to MN.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.1.4.1.4",
+    "subjectId": 9,
+    "text": "Define 'variation (VAR)' as the angle between TN and MN",
+    "knowledgeContent": "Variation (VAR) is the angular difference between true north (TN) and magnetic north (MN), measured in degrees east or west. It is caused by the misalignment of the geographic and magnetic poles and must be accounted for in navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.1.4.1.5",
+    "subjectId": 9,
+    "text": "Describe the change of variation with time and position",
+    "knowledgeContent": "Variation changes over time due to shifts in the Earth's magnetic field and varies with geographic location. It is indicated on aeronautical charts with isogonic lines and must be updated using current data.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.1.4.1.7",
+    "subjectId": 9,
+    "text": "Calculate magnetic values (M) from true values (T) and vice versa using VAR",
+    "knowledgeContent": "To convert true values (T) to magnetic values (M), apply variation (VAR): M = T ± VAR (east variation subtracts, west adds). For magnetic to true: T = M ± VAR (east variation adds, west subtracts).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.1.4.1.8",
+    "subjectId": 9,
+    "text": "Define 'compass north' (CN)  and corresponding directions (CH)",
+    "knowledgeContent": "Compass north (CN) is the direction indicated by the aircraft's magnetic compass, affected by local magnetic disturbances. Compass heading (CH) is the aircraft's direction relative to CN.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.1.4.1.9",
+    "subjectId": 9,
+    "text": "Define 'deviation (DEV)' as the angle between MN and CN",
+    "knowledgeContent": "Deviation (DEV) is the angular difference between magnetic north (MN) and compass north (CN), caused by aircraft magnetic interference. It is measured in degrees east or west and varies with heading.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.1.4.1.11Calculate",
+    "subjectId": 9,
+    "text": "compass values (C) from magnetic values (M) and vice versa using DEVx",
+    "knowledgeContent": "To convert magnetic values (M) to compass values (C), apply deviation (DEV): C = M ± DEV (east deviation subtracts, west adds). For compass to magnetic: M = C ± DEV (east deviation adds, west subtracts).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.1.4.1.12Explain",
+    "subjectId": 9,
+    "text": "the usage of deviation tables",
+    "knowledgeContent": "Deviation tables list compass errors for specific headings, allowing pilots to correct compass readings. They are derived during compass swings and are essential for accurate navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.1.4.2",
+    "subjectId": 9,
+    "text": "Magnetic poles, isogonals, relationship between true (T) and magnetic (M)",
+    "knowledgeContent": "Magnetic poles are locations where the Earth's magnetic field is vertical. Isogonals are lines of equal variation. The relationship between true (T) and magnetic (M) directions is defined by variation (VAR).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.1.5",
+    "subjectId": 9,
+    "text": "Distance",
+    "knowledgeContent": "Distance in aviation is measured in nautical miles (NM), kilometres (km), feet (ft), and metres (m). A PPL student must understand conversions and applications of these units for navigation and altitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.1.5.2",
+    "subjectId": 9,
+    "text": "Conversion from one unit to another",
+    "knowledgeContent": "Conversions between distance units (NM to km) and altitude units (ft to m) are essential for flight planning and chart interpretation. Standard conversion factors must be memorized (1 NM = 1.852 km, 1 ft = 0.3048 m).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.1.5.2.1",
+    "subjectId": 9,
+    "text": "Convert between units of distance: nautical mile (NM), kilometre (km)",
+    "knowledgeContent": "1 nautical mile (NM) equals 1.852 kilometres (km). To convert NM to km, multiply by 1.852; to convert km to NM, divide by 1.852.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.1.5.2.2",
+    "subjectId": 9,
+    "text": "Convert between units of height or altitude: feet (ft), metres (m)",
+    "knowledgeContent": "1 foot (ft) equals 0.3048 metres (m). To convert ft to m, multiply by 0.3048; to convert m to ft, divide by 0.3048.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.1.5.3.2",
+    "subjectId": 9,
+    "text": "Calculate distances along any meridian with latitudes given between to positionsx",
+    "knowledgeContent": "The distance along a meridian between two latitudes is calculated as the difference in latitude (in degrees) multiplied by 60 NM per degree. For example, 3° latitude difference equals 180 NM.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.2",
+    "subjectId": 9,
+    "text": "Charts",
+    "knowledgeContent": "Aeronautical charts are maps designed for navigation, featuring projections like Direct Mercator and Lambert conformal conic. A PPL student must understand their properties, scales, and applications.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.2.1",
+    "subjectId": 9,
+    "text": "General properties of miscellaneous types of projections",
+    "knowledgeContent": "Chart projections (e.g., Direct Mercator, Lambert conformal conic) distort Earth's surface to fit a flat map. Each has unique properties affecting scale, great circles, and rhumb lines.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.2.1.1",
+    "subjectId": 9,
+    "text": "General properties: scale",
+    "knowledgeContent": "Scale is the ratio of a distance on the chart to the corresponding distance on Earth. It ensures accurate measurement of distances and is critical for flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.2.1.1.1",
+    "subjectId": 9,
+    "text": "Describe the term 'scale' as ratio of chart distance to (real) earth distance",
+    "knowledgeContent": "Scale is expressed as a ratio (e.g., 1:500,000), where 1 unit on the chart equals 500,000 units on Earth. Larger scale charts show more detail over smaller areas.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.2.1.2",
+    "subjectId": 9,
+    "text": "Direct Mercator",
+    "knowledgeContent": "Direct Mercator projection represents meridians as parallel lines, exaggerating distances at high latitudes. It preserves angles, making rhumb lines appear straight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.2.1.3",
+    "subjectId": 9,
+    "text": "Lambert conformal conic",
+    "knowledgeContent": "Lambert conformal conic projection uses cones to reduce distortion, preserving shapes and angles. It is commonly used for enroute charts due to its accuracy over mid-latitudes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.2.1.3.3",
+    "subjectId": 9,
+    "text": "State that Lambert conformal chart are usually used for aviation enroute chart",
+    "knowledgeContent": "Lambert conformal charts are standard for aviation enroute charts because they approximate great circles as straight lines and minimize distortion over large areas.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.2.2",
+    "subjectId": 9,
+    "text": "The representation of meridians, parallels, great circles and rhumb lines",
+    "knowledgeContent": "Meridians (longitude lines) and parallels (latitude lines) are depicted differently on projections. Great circles (shortest paths) and rhumb lines (constant bearing) appear as straight or curved lines depending on the chart.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.2.2.1",
+    "subjectId": 9,
+    "text": "Direct Mercator",
+    "knowledgeContent": "On Direct Mercator charts, meridians are parallel, and parallels are unequally spaced. Rhumb lines appear as straight lines, while great circles are curved (except meridians and the equator).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.2.2.1.4",
+    "subjectId": 9,
+    "text": "State that a straight line on a direct Mercator chart represents the rhumb line",
+    "knowledgeContent": "A straight line on a Direct Mercator chart represents a rhumb line (constant bearing). Great circles (except meridians) curve towards the poles.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.2.2.2",
+    "subjectId": 9,
+    "text": "Lambert conformal conic",
+    "knowledgeContent": "On Lambert conformal charts, meridians and parallels are curved. Great circles appear as straight lines, while rhumb lines (except meridians) are slightly curved.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.2.2.2.3",
+    "subjectId": 9,
+    "text": "Describe the appearance of great circles and rhumb lines on a Lambert chart",
+    "knowledgeContent": "Great circles on Lambert charts appear as straight lines, making them ideal for plotting routes. Rhumb lines (except meridians) curve slightly.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.2.2.2.4",
+    "subjectId": 9,
+    "text": "State that a straight line on a Lambert chart represents the great circle",
+    "knowledgeContent": "A straight line on a Lambert chart represents a great circle (shortest path between two points). This property simplifies long-distance navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.2.3",
+    "subjectId": 9,
+    "text": "The use of current aeronautical charts",
+    "knowledgeContent": "Current aeronautical charts must be used for navigation, as they include updated airspace, navigation aids, and obstacles. Pilots must verify chart currency and corrections before flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:00.534Z",
+    "updatedAt": "2026-03-17T20:41:00.534Z"
+  },
+  {
+    "loId": "91.2.3.1",
+    "subjectId": 9,
+    "text": "Plotting positions",
+    "knowledgeContent": "The student must know how to plot a position on a chart using latitude and longitude coordinates or visual references. This includes understanding the use of meridians and parallels, as well as plotting fixes from bearings or distances.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.2.3.2",
+    "subjectId": 9,
+    "text": "Methods of indicating scale and relief (ICAO topographical chart)",
+    "knowledgeContent": "The student must understand how scale is represented on ICAO charts (e.g., 1:500,000) and how relief is depicted using contour lines, spot heights, and layer tinting. They should also recognize the importance of scale for measuring distances accurately.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.2.3.3",
+    "subjectId": 9,
+    "text": "Conventional signs",
+    "knowledgeContent": "The student must memorize and correctly interpret conventional signs and symbols on aeronautical charts, including airspace boundaries, navigation aids, obstacles, and terrain features, as per ICAO standards.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.2.3.4",
+    "subjectId": 9,
+    "text": "Measuring tracks and distances",
+    "knowledgeContent": "The student must be able to measure tracks (true or magnetic) and distances between points on a chart using a protractor and ruler. This includes accounting for chart scale and applying corrections for magnetic variation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.2.3.4.3",
+    "subjectId": 9,
+    "text": "Extract courses magnetic (M) and true (T) from chart samples",
+    "knowledgeContent": "The student must extract true (T) and magnetic (M) courses from chart samples, applying magnetic variation (found in the chart margin) to convert between them. They must also understand the relationship between true north, magnetic north, and grid north.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.2.3.4.4",
+    "subjectId": 9,
+    "text": "Extract distances from chart samples",
+    "knowledgeContent": "The student must accurately measure distances on a chart using the scale provided, accounting for curvature if necessary over long distances. They should also understand the difference between nautical miles (NM) and statute miles (SM).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.2.3.5",
+    "subjectId": 9,
+    "text": "Plotting bearings and distances",
+    "knowledgeContent": "The student must plot bearings (QDM, QDR, QTE, QUJ) and distances on a chart to determine position or create navigation routes. This includes using VOR radials, NDB bearings, or visual fixes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.2.3.5.2",
+    "subjectId": 9,
+    "text": "With appropriate values given, convert between QTE/QUJ and QDM/QDR",
+    "knowledgeContent": "The student must convert between QTE (true bearing from station) and QUJ (true bearing to station), as well as QDM (magnetic bearing to station) and QDR (magnetic bearing from station), using given values and understanding the 180° difference between reciprocal bearings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3",
+    "subjectId": 9,
+    "text": "DR navigation",
+    "knowledgeContent": "The student must understand the principles of Dead Reckoning (DR) navigation, including calculating position based on heading, speed, time, and wind effects, and updating the DR position at regular intervals.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.1",
+    "subjectId": 9,
+    "text": "Basis of DR",
+    "knowledgeContent": "The student must grasp the foundational concepts of DR navigation, including track, heading, airspeed, groundspeed, and wind correction, to predict aircraft position over time.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.1.1",
+    "subjectId": 9,
+    "text": "Track and Heading (compass, magnetic and true)",
+    "knowledgeContent": "The student must differentiate between compass, magnetic, and true headings, applying deviations and variations to convert between them. They must also understand the relationship between track (path over ground) and heading (direction the nose points).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.1.1.1",
+    "subjectId": 9,
+    "text": "Explain and apply the concepts of drift and WCA",
+    "knowledgeContent": "The student must explain how wind causes drift (crosswind component) and Wind Correction Angle (WCA), and apply these concepts to adjust heading to maintain the desired track.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.1.1.3",
+    "subjectId": 9,
+    "text": "Calculate TKE with appropriate data of WCA and drift",
+    "knowledgeContent": "The student must calculate Track Error (TKE) using WCA and drift, understanding how these values indicate off-track distance and the required correction to regain the planned track.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.1.2",
+    "subjectId": 9,
+    "text": "Air speed (IAS, CAS and TAS)",
+    "knowledgeContent": "The student must distinguish between Indicated Airspeed (IAS), Calibrated Airspeed (CAS), and True Airspeed (TAS), and apply altitude and temperature corrections to convert between them.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.1.3",
+    "subjectId": 9,
+    "text": "Groundspeed and revisions",
+    "knowledgeContent": "The student must understand how groundspeed (GS) is derived from TAS and wind components, and how to revise calculations during flight due to changing wind conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.1.3.1",
+    "subjectId": 9,
+    "text": "Explain the relationship between TAS and GS",
+    "knowledgeContent": "The student must explain that GS is TAS adjusted for wind (headwind/tailwind component), and that GS determines the actual speed over the ground, affecting time and fuel calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.1.3.2",
+    "subjectId": 9,
+    "text": "Apply HWC and TWC to determine GS from TAS and vice versa",
+    "knowledgeContent": "The student must apply Headwind Component (HWC) and Tailwind Component (TWC) to TAS to determine GS, or vice versa, using wind triangles or navigational computer calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.1.4",
+    "subjectId": 9,
+    "text": "ETA",
+    "knowledgeContent": "The student must calculate Estimated Time of Arrival (ETA) using groundspeed and remaining distance, adjusting for wind changes or route modifications during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.1.5",
+    "subjectId": 9,
+    "text": "Climb and Descent",
+    "knowledgeContent": "The student must account for climb and descent in DR navigation, adjusting TAS and GS calculations based on rate of climb/descent and altitude changes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.1.6",
+    "subjectId": 9,
+    "text": "DR position fix",
+    "knowledgeContent": "The student must determine a DR position fix by projecting the aircraft's position from a known point using heading, groundspeed, and time elapsed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.1.6.2",
+    "subjectId": 9,
+    "text": "Describe situations when DR reckoning may be used",
+    "knowledgeContent": "The student must describe when DR reckoning is appropriate, such as in areas with limited navigation aids, during oceanic crossings, or as a backup to other navigation methods.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.2",
+    "subjectId": 9,
+    "text": "Use of the navigational computer",
+    "knowledgeContent": "The student must be proficient in using the navigational computer (whiz wheel) to solve problems related to speed, time, distance, fuel, and wind corrections.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.2.1",
+    "subjectId": 9,
+    "text": "Speed",
+    "knowledgeContent": "The student must use the navigational computer to calculate TAS, GS, and wind components, applying corrections for altitude and temperature.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.2.2",
+    "subjectId": 9,
+    "text": "Time",
+    "knowledgeContent": "The student must calculate time en route or time to a waypoint using groundspeed and distance, converting between hours, minutes, and seconds as needed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.2.3",
+    "subjectId": 9,
+    "text": "Distance",
+    "knowledgeContent": "The student must determine distance between points using groundspeed and time, or vice versa, using the navigational computer's logarithmic scales.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.2.4",
+    "subjectId": 9,
+    "text": "Fuel consumption",
+    "knowledgeContent": "The student must calculate fuel consumption rates, total fuel required, or endurance based on fuel flow and time/distance, adjusting for reserve requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.2.5",
+    "subjectId": 9,
+    "text": "Conversions",
+    "knowledgeContent": "The student must perform unit conversions (e.g., NM to SM, liters to gallons, feet to meters) using the navigational computer or conversion formulas.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.2.6",
+    "subjectId": 9,
+    "text": "Air speed",
+    "knowledgeContent": "The student must convert between IAS, CAS, and TAS using the navigational computer, applying pressure altitude and temperature corrections.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.2.7",
+    "subjectId": 9,
+    "text": "True altitude",
+    "knowledgeContent": "The student must calculate true altitude from indicated altitude using the navigational computer, applying corrections for non-standard temperature and pressure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.3",
+    "subjectId": 9,
+    "text": "The triangle of velocities",
+    "knowledgeContent": "The student must understand and apply the triangle of velocities, using heading, TAS, wind direction, and wind speed to determine track and groundspeed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:41:43.802Z",
+    "updatedAt": "2026-03-17T20:41:43.802Z"
+  },
+  {
+    "loId": "91.3.3.1",
+    "subjectId": 9,
+    "text": "Construction",
+    "knowledgeContent": "The student must understand the fundamental principles of vector construction in navigation, including the relationship between air, wind, and ground vectors, and how they form the basis for calculating aircraft movement over the ground.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.3.3.1.1",
+    "subjectId": 9,
+    "text": "Explain the terms 'air vector', 'wind vector' and 'ground vector'",
+    "knowledgeContent": "The student must define 'air vector' as the aircraft's velocity relative to the air, 'wind vector' as the velocity of the wind relative to the ground, and 'ground vector' as the resultant velocity of the aircraft relative to the ground.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.3.3.1.2",
+    "subjectId": 9,
+    "text": "Explain the construction of the 'triangle of velocities (TOV)'",
+    "knowledgeContent": "The student must explain how the triangle of velocities (TOV) is constructed by combining the air vector, wind vector, and ground vector to determine the aircraft's track and ground speed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.3.3.1.3",
+    "subjectId": 9,
+    "text": "State what parameters have to be given to construct a complete TOV",
+    "knowledgeContent": "The student must state that to construct a complete TOV, the required parameters are true airspeed, wind speed, wind direction, and aircraft heading.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.3.3.2",
+    "subjectId": 9,
+    "text": "WCA, heading and ground speed",
+    "knowledgeContent": "The student must understand how to calculate wind correction angle (WCA), determine the aircraft's heading, and compute ground speed using the triangle of velocities.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.3.3.3",
+    "subjectId": 9,
+    "text": "Wind velocity",
+    "knowledgeContent": "The student must be able to interpret wind velocity in terms of speed and direction, and understand its impact on aircraft navigation and performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.3.3.4",
+    "subjectId": 9,
+    "text": "GS, track and drift angle",
+    "knowledgeContent": "The student must explain how ground speed (GS), track, and drift angle are interrelated and how they are derived from the triangle of velocities.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.4",
+    "subjectId": 9,
+    "text": "In-flight navigation",
+    "knowledgeContent": "The student must understand the principles and techniques of in-flight navigation, including the use of visual observations, instruments, and navigation aids.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.4.1",
+    "subjectId": 9,
+    "text": "Use of visual observations and application to in-flight navigation",
+    "knowledgeContent": "The student must know how to use visual observations, such as landmarks and checkpoints, to maintain situational awareness and navigate accurately during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.4.1.1",
+    "subjectId": 9,
+    "text": "Concept of terrestrial navigation",
+    "knowledgeContent": "The student must understand the concept of terrestrial navigation, which involves using Earth's surface features for orientation and navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.4.1.1.1",
+    "subjectId": 9,
+    "text": "Explain the term 'terrestrial navigation'",
+    "knowledgeContent": "The student must define 'terrestrial navigation' as the process of navigating using visual references to the Earth's surface, such as landmarks, roads, and bodies of water.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.4.1.1.3",
+    "subjectId": 9,
+    "text": "Describe the term 'visual checkpoint', and give examples",
+    "knowledgeContent": "The student must describe a 'visual checkpoint' as a distinct, identifiable feature used to confirm position along a flight path, such as a town, lake, or intersection.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.4.1.2",
+    "subjectId": 9,
+    "text": "Use of visual features and limitations",
+    "knowledgeContent": "The student must understand the limitations of visual navigation, including reduced visibility, terrain obscuration, and the challenges of identifying features at lower altitudes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.4.1.2.2",
+    "subjectId": 9,
+    "text": "Describe the problems of VFR navigation at lower levels",
+    "knowledgeContent": "The student must describe the challenges of VFR navigation at lower levels, such as reduced visibility, increased terrain hazards, and difficulty in identifying checkpoints.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.4.1.2.4",
+    "subjectId": 9,
+    "text": "Describe the special situation and problems of VFR navigation at night",
+    "knowledgeContent": "The student must explain the unique challenges of VFR navigation at night, including reduced visibility, difficulty in identifying landmarks, and reliance on artificial lighting.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.4.2",
+    "subjectId": 9,
+    "text": "Navigation in cruising flight, use of fixes to revise navigation data",
+    "knowledgeContent": "The student must understand how to use fixes, such as visual landmarks or navigation aids, to revise navigation data during cruising flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.4.2.1",
+    "subjectId": 9,
+    "text": "Off-track corrections",
+    "knowledgeContent": "The student must know how to calculate and apply off-track corrections to return to the intended flight path.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.4.2.1.1",
+    "subjectId": 9,
+    "text": "Define the terms 'track error' (or 'track error angle') and 'closing angle'",
+    "knowledgeContent": "The student must define 'track error' (or 'track error angle') as the angular deviation from the intended track and 'closing angle' as the angle required to return to the intended track.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.4.2.1.2",
+    "subjectId": 9,
+    "text": "Calculate the track error at an off-course fix using the 1:60 rule",
+    "knowledgeContent": "The student must be able to calculate track error using the 1:60 rule, which states that a 1° track error results in a 1 NM deviation after 60 NM of flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.4.2.2",
+    "subjectId": 9,
+    "text": "ETA revisions",
+    "knowledgeContent": "The student must understand how to revise estimated time of arrival (ETA) based on changes in ground speed or track.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "91.4.2.3",
+    "subjectId": 9,
+    "text": "Flight log",
+    "knowledgeContent": "The student must know how to maintain an accurate flight log, recording navigation data such as position, time, and fuel consumption.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "92.1",
+    "subjectId": 9,
+    "text": "Basic radio propagation theory",
+    "knowledgeContent": "The student must understand the basic principles of radio wave propagation, including how electromagnetic waves travel and interact with the environment.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "92.1.1",
+    "subjectId": 9,
+    "text": "Electromagnetic waves and antennas",
+    "knowledgeContent": "The student must understand the characteristics of electromagnetic waves, the role of antennas, and how radio waves are used in aviation communication and navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "92.1.1.1",
+    "subjectId": 9,
+    "text": "Characteristics and definitions",
+    "knowledgeContent": "The student must state that radio waves are a form of electromagnetic waves, characterized by their frequency, wavelength, and propagation properties.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "92.1.1.2",
+    "subjectId": 9,
+    "text": "Frequency bands and modulation",
+    "knowledgeContent": "The student must understand the different frequency bands used in aviation and the principles of modulation, such as amplitude modulation (AM) and frequency modulation (FM).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "92.1.1.3",
+    "subjectId": 9,
+    "text": "Antennas",
+    "knowledgeContent": "The student must understand the function of antennas in transmitting and receiving radio waves, and their placement on aircraft for optimal performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "92.1.1.3.3",
+    "subjectId": 9,
+    "text": "Explain the different positions antennas are placed around an aircraft",
+    "knowledgeContent": "The student must explain that antennas are strategically placed around an aircraft, such as on the fuselage, wings, or tail, to ensure effective communication and navigation signal reception.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "92.1.2",
+    "subjectId": 9,
+    "text": "Wave propagation",
+    "knowledgeContent": "The student must understand how radio waves propagate through different frequency bands and the factors that affect their transmission, such as atmospheric conditions and terrain.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "92.1.2.1",
+    "subjectId": 9,
+    "text": "Propagation with the frequency bands",
+    "knowledgeContent": "The student must explain how radio wave propagation varies with frequency bands, including ground waves, sky waves, and line-of-sight propagation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:42:33.119Z",
+    "updatedAt": "2026-03-17T20:42:33.119Z"
+  },
+  {
+    "loId": "92.1.2.1.4",
+    "subjectId": 9,
+    "text": "State that LF/MF waves can propagate as 'ground wave' and 'sky wave'",
+    "knowledgeContent": "LF/MF radio waves propagate as 'ground waves' along the Earth's surface and as 'sky waves' reflected by the ionosphere, enabling long-range communication and navigation. Ground waves are stable but limited in range, while sky waves can travel much farther but are affected by atmospheric conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.1.2.1.5",
+    "subjectId": 9,
+    "text": "State that VHF waves (and higher frequencies) only propagate as 'direct wave'",
+    "knowledgeContent": "VHF radio waves (and higher frequencies) propagate only as 'direct waves,' traveling in a straight line from transmitter to receiver. This limits their range to line-of-sight, making them unsuitable for long-distance communication or navigation beyond the horizon.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2",
+    "subjectId": 9,
+    "text": "Radio aids",
+    "knowledgeContent": "Radio aids are navigation systems that use radio signals to determine position, direction, or distance. These include ground-based systems like NDB, VOR, and DME, as well as airborne equipment like ADF and RMI.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.1",
+    "subjectId": 9,
+    "text": "Ground DF",
+    "knowledgeContent": "Ground Direction Finding (DF) is a system where a ground station determines the direction of an aircraft based on its VHF radio transmissions. The aircraft transmits a signal, and the ground station calculates the bearing to the aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.1.1",
+    "subjectId": 9,
+    "text": "Principles",
+    "knowledgeContent": "The principles of Ground DF involve using a ground-based receiver to detect the direction of an aircraft's VHF radio signal. The system calculates the bearing to the aircraft based on the signal's angle of arrival.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.1.1.1",
+    "subjectId": 9,
+    "text": "Describe the use of a ground DF",
+    "knowledgeContent": "Ground DF is used to determine the magnetic bearing of an aircraft relative to a ground station. It assists in navigation, especially in emergencies, by providing the aircraft's position relative to the station.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.1.1.2",
+    "subjectId": 9,
+    "text": "State that, besides a VHF radio, no further airborne equipment is required",
+    "knowledgeContent": "Ground DF requires only a standard VHF radio onboard the aircraft; no additional airborne equipment is necessary. The ground station processes the signal to determine the aircraft's bearing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.1.2",
+    "subjectId": 9,
+    "text": "Presentation and interpretation",
+    "knowledgeContent": "Presentation and interpretation in Ground DF involve understanding the bearings provided by the ground station. These bearings are typically given as QDM (magnetic bearing TO the station) or QDR (magnetic bearing FROM the station).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.1.2.1",
+    "subjectId": 9,
+    "text": "Define 'QDM': the magnetic bearing TO the station",
+    "knowledgeContent": "QDM is the magnetic bearing TO the ground station, indicating the direction the aircraft must fly to reach the station. It is calculated by the ground DF system based on the aircraft's position.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.1.2.2",
+    "subjectId": 9,
+    "text": "Define 'QDR': the magnetic bearing FROM the station",
+    "knowledgeContent": "QDR is the magnetic bearing FROM the ground station, indicating the direction of the aircraft relative to the station. It is the reciprocal of QDM and is used for position determination.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.1.3",
+    "subjectId": 9,
+    "text": "Coverage and range",
+    "knowledgeContent": "The coverage and range of Ground DF depend on the VHF radio's line-of-sight propagation. Range is limited by the curvature of the Earth and terrain obstacles, typically extending to about 200 nautical miles.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.1.4",
+    "subjectId": 9,
+    "text": "Errors and accuracy",
+    "knowledgeContent": "Errors and accuracy in Ground DF can result from signal reflections, atmospheric conditions, or misalignment of the ground station's equipment. Synchronous transmissions can cause errors due to signal interference or overlapping bearings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.1.4.1",
+    "subjectId": 9,
+    "text": "Explain why synchronous transmissions will cause errors",
+    "knowledgeContent": "Synchronous transmissions cause errors in Ground DF because overlapping signals from multiple aircraft can interfere with the ground station's ability to accurately determine the bearing of a specific aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.2",
+    "subjectId": 9,
+    "text": "NDB/ADF",
+    "knowledgeContent": "NDB (Non-Directional Beacon) and ADF (Automatic Direction Finder) are navigation systems that use LF/MF radio signals. The NDB transmits a signal, and the ADF onboard the aircraft determines the bearing to the NDB.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.2.1",
+    "subjectId": 9,
+    "text": "Principles",
+    "knowledgeContent": "The principles of NDB/ADF involve using LF/MF radio signals transmitted by the NDB. The ADF onboard the aircraft detects these signals and calculates the bearing to the NDB, aiding in navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.2.1.3",
+    "subjectId": 9,
+    "text": "State that the NDB operates in the LF and MF frequency bands (190-1750 kHz)",
+    "knowledgeContent": "NDBs operate in the LF and MF frequency bands (190-1750 kHz), which allow for ground wave and sky wave propagation. This enables long-range navigation but is susceptible to atmospheric interference.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.2.1.4",
+    "subjectId": 9,
+    "text": "Describe the use of NDBs for navigation",
+    "knowledgeContent": "NDBs are used for navigation by providing a bearing to the beacon. Pilots can use this bearing to determine their position relative to the NDB or to follow a specific track.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.2.1.5",
+    "subjectId": 9,
+    "text": "Describe the procedure to identify a NDB station",
+    "knowledgeContent": "To identify an NDB station, pilots tune the ADF to the NDB's frequency and listen for the Morse code identifier. This ensures the correct beacon is being used for navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.2.2",
+    "subjectId": 9,
+    "text": "Presentation and interpretation",
+    "knowledgeContent": "Presentation and interpretation of NDB/ADF involve reading the bearing to the NDB on the ADF indicator. The bearing is displayed in degrees relative to the aircraft's heading.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.2.3",
+    "subjectId": 9,
+    "text": "Coverage and range",
+    "knowledgeContent": "The coverage and range of an NDB depend on the transmitter's power and frequency. Higher power and lower frequencies enable longer range, but terrain and atmospheric conditions can affect signal strength.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.2.3.1",
+    "subjectId": 9,
+    "text": "State that the power of the transmitter limits the range of a NDB",
+    "knowledgeContent": "The range of an NDB is limited by the transmitter's power. Higher power allows for greater range, but the signal is still affected by terrain, atmospheric conditions, and frequency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.2.3.3",
+    "subjectId": 9,
+    "text": "State that there is no warning indication of NDB failure or loss of signal",
+    "knowledgeContent": "There is no warning indication of NDB failure or loss of signal. Pilots must monitor the ADF and cross-check with other navigation aids to ensure accuracy.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.2.4",
+    "subjectId": 9,
+    "text": "Errors and accuracy",
+    "knowledgeContent": "Errors and accuracy in NDB/ADF navigation can result from signal reflections, atmospheric interference, or misalignment of the ADF equipment. Night effect and coastal refraction are common sources of error.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.3",
+    "subjectId": 9,
+    "text": "VOR",
+    "knowledgeContent": "VOR (VHF Omnidirectional Range) is a navigation system that provides azimuth information relative to magnetic north. It operates in the VHF frequency band and is widely used for en-route and approach navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.3.1",
+    "subjectId": 9,
+    "text": "Principles",
+    "knowledgeContent": "The principles of VOR involve transmitting azimuth information from a ground station. The aircraft's VOR receiver interprets this information to determine the radial, or magnetic bearing, relative to the station.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.3.1.2",
+    "subjectId": 9,
+    "text": "State that radials are referenced to magnetic north (MN)",
+    "knowledgeContent": "VOR radials are referenced to magnetic north, providing accurate azimuth information for navigation. This allows pilots to determine their position relative to the VOR station.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.3.1.3",
+    "subjectId": 9,
+    "text": "State that a VOR operates in the VHF frequency bands (108.0-117.975 MHz)",
+    "knowledgeContent": "VOR operates in the VHF frequency band (108.0-117.975 MHz), which provides reliable line-of-sight navigation. This limits its range but ensures high accuracy within the coverage area.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.3.1.6",
+    "subjectId": 9,
+    "text": "Describe the procedure to identify a VOR",
+    "knowledgeContent": "To identify a VOR station, pilots tune the VOR receiver to the station's frequency and listen for the Morse code identifier. This ensures the correct station is being used for navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.3.2",
+    "subjectId": 9,
+    "text": "Presentation and interpretation",
+    "knowledgeContent": "Presentation and interpretation of VOR involve reading the radial on the VOR indicator or RMI (Radio Magnetic Indicator). The radial indicates the aircraft's position relative to the VOR station.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.3.2.1",
+    "subjectId": 9,
+    "text": "Read off the radial on an RMI",
+    "knowledgeContent": "The radial on an RMI is read as the magnetic bearing FROM the VOR station. This provides the aircraft's position relative to the station, aiding in navigation and course tracking.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:43:29.798Z",
+    "updatedAt": "2026-03-17T20:43:29.798Z"
+  },
+  {
+    "loId": "92.2.3.2.5",
+    "subjectId": 9,
+    "text": "Explain the relation between TO and FROM flag with position of the aircraft",
+    "knowledgeContent": "The TO and FROM flags on a VOR indicator show the aircraft's position relative to the selected radial. A TO flag indicates the aircraft is on a heading towards the VOR station, while a FROM flag indicates the aircraft is on a heading away from the VOR station. The flags are determined by the aircraft's position relative to the selected radial and its heading.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.2.3.3",
+    "subjectId": 9,
+    "text": "Coverage and range",
+    "knowledgeContent": "Coverage refers to the geographical area where a navigation aid, such as a VOR, provides reliable signals. Range is the maximum distance at which the signal can be received, which varies with altitude and terrain. Understanding coverage and range is essential for effective flight planning and navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.2.3.4",
+    "subjectId": 9,
+    "text": "Errors and accuracy",
+    "knowledgeContent": "Errors in navigation systems can arise from signal propagation, equipment limitations, or environmental factors. Accuracy refers to the degree of correctness of the navigation information provided. Pilots must be aware of potential errors and the accuracy of the systems they use to ensure safe navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.2.4",
+    "subjectId": 9,
+    "text": "DME",
+    "knowledgeContent": "DME (Distance Measuring Equipment) is a navigation system that provides the slant range distance between the aircraft and a ground-based DME station. It operates by measuring the time it takes for a radio signal to travel between the aircraft and the station.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.2.4.1",
+    "subjectId": 9,
+    "text": "Principles",
+    "knowledgeContent": "The principle of DME is based on run-time measurement, where the time taken for a radio signal to travel from the aircraft to the ground station and back is measured. This time is then converted into a distance, providing the slant range between the aircraft and the DME station.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.2.4.1.1",
+    "subjectId": 9,
+    "text": "Explain the principle of determining distance via run-time measurement",
+    "knowledgeContent": "DME determines distance by measuring the time it takes for a radio signal to travel from the aircraft to the ground station and back. This run-time measurement is then converted into a distance, providing the slant range between the aircraft and the DME station.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.2.4.2",
+    "subjectId": 9,
+    "text": "Presentation and interpretation",
+    "knowledgeContent": "DME information is typically displayed on the aircraft's navigation instruments, showing the slant range distance to the DME station. Pilots must interpret this information correctly, understanding that it represents the direct line distance, not the horizontal distance over the ground.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.2.4.3",
+    "subjectId": 9,
+    "text": "Coverage and range",
+    "knowledgeContent": "DME coverage depends on the line-of-sight between the aircraft and the ground station, influenced by altitude and terrain. The range of DME typically extends up to 200 nautical miles, but this can vary based on the aircraft's altitude and the station's power.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.2.4.4",
+    "subjectId": 9,
+    "text": "Errors and accuracy",
+    "knowledgeContent": "DME errors can occur due to signal reflection, equipment limitations, or atmospheric conditions. Accuracy is generally high, but pilots must be aware of potential errors and understand the difference between slant range and horizontal distance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.2.4.4.1",
+    "subjectId": 9,
+    "text": "Explain the difference between 'horzontal distance' and 'slant range'",
+    "knowledgeContent": "Horizontal distance is the actual ground distance between the aircraft and the DME station, while slant range is the direct line distance, which includes the vertical component. At higher altitudes, the slant range can be significantly greater than the horizontal distance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.2.4.4.2",
+    "subjectId": 9,
+    "text": "Explain why the GS read-out from a DME can be less than the actual GS",
+    "knowledgeContent": "The GS (Ground Speed) read-out from a DME can be less than the actual GS because it is derived from the rate of change of slant range, which includes the vertical component. This can result in an underestimation of the actual ground speed, especially during climbs or descents.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3",
+    "subjectId": 9,
+    "text": "RADAR",
+    "knowledgeContent": "RADAR (Radio Detection and Ranging) is a system that uses radio waves to detect objects and determine their distance and bearing. It is widely used in aviation for air traffic control and surveillance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3.1",
+    "subjectId": 9,
+    "text": "Ground radar",
+    "knowledgeContent": "Ground radar systems are used by air traffic control to monitor aircraft positions and movements. These systems provide essential information for managing air traffic and ensuring safe separation between aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3.1.1",
+    "subjectId": 9,
+    "text": "Principles",
+    "knowledgeContent": "Primary radar systems operate by transmitting radio pulses and receiving echoes reflected from objects, such as aircraft. The time delay between transmission and reception is used to calculate the distance to the object, while the direction of the antenna determines the bearing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3.1.1.1",
+    "subjectId": 9,
+    "text": "Describe the pulse technique and echo principle used by primary radar systems",
+    "knowledgeContent": "Primary radar uses the pulse technique, where short bursts of radio waves are transmitted and the echoes are received. The echo principle involves measuring the time delay between transmission and reception to determine the distance to the target, and the direction of the antenna to determine the bearing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3.1.2",
+    "subjectId": 9,
+    "text": "Presentation and interpretation",
+    "knowledgeContent": "Primary radar displays provide information on the bearing and distance of targets, such as aircraft. This information is used by air traffic controllers to monitor and manage air traffic, ensuring safe separation between aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3.1.2.1",
+    "subjectId": 9,
+    "text": "State that primary radar only provides bearing and distance of targets",
+    "knowledgeContent": "Primary radar systems only provide bearing and distance information of targets. They do not provide altitude or identification information, which is why secondary radar systems are often used in conjunction with primary radar.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3.1.3",
+    "subjectId": 9,
+    "text": "Coverage and range",
+    "knowledgeContent": "The coverage and range of ground radar systems depend on the power of the radar transmitter, the sensitivity of the receiver, and the altitude of the aircraft. Radar coverage typically extends up to several hundred nautical miles, but this can vary based on environmental conditions and terrain.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3.1.4",
+    "subjectId": 9,
+    "text": "Errors and accuracy",
+    "knowledgeContent": "Errors in ground radar systems can arise from signal reflection, equipment limitations, or atmospheric conditions. Accuracy is generally high, but pilots and controllers must be aware of potential errors and limitations of the radar system.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3.2",
+    "subjectId": 9,
+    "text": "Secondary surveillance radar and transponder",
+    "knowledgeContent": "Secondary surveillance radar (SSR) works in conjunction with aircraft transponders to provide additional information, such as altitude and identification. This enhances the capabilities of primary radar systems and improves air traffic management.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3.2.1",
+    "subjectId": 9,
+    "text": "Principles",
+    "knowledgeContent": "Secondary surveillance radar operates by interrogating aircraft transponders, which respond with encoded information. This information includes the aircraft's altitude, identification code, and other data, which is then displayed on the radar screen.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3.2.2",
+    "subjectId": 9,
+    "text": "Presentation and interpretation",
+    "knowledgeContent": "SSR displays provide detailed information on aircraft, including their altitude, identification code, and position. This information is used by air traffic controllers to manage air traffic more effectively and ensure safe separation between aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3.2.2.2",
+    "subjectId": 9,
+    "text": "State that an aircraft can be identified by a unique code",
+    "knowledgeContent": "Each aircraft can be identified by a unique transponder code, which is assigned by air traffic control. This code allows controllers to distinguish between different aircraft and manage air traffic more effectively.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3.2.3",
+    "subjectId": 9,
+    "text": "Modes and codes",
+    "knowledgeContent": "Transponders operate in different modes, such as Mode A, Mode C, and Mode S, each providing different types of information. Mode A provides identification, Mode C provides altitude, and Mode S provides additional data, including aircraft identification and position.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3.2.3.1",
+    "subjectId": 9,
+    "text": "State what information is provided by a transponder in modes A, C and S",
+    "knowledgeContent": "In Mode A, the transponder provides a 4-digit identification code. In Mode C, it provides altitude information derived from the aircraft's altimeter. In Mode S, it provides additional data, including a unique aircraft identifier and position information.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3.2.3.2",
+    "subjectId": 9,
+    "text": "State there are 4096 different transponder codes, using only numerals 0 - 7",
+    "knowledgeContent": "There are 4096 different transponder codes available, each consisting of four digits using only numerals 0 through 7. These codes are used by air traffic control to uniquely identify aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.3.2.3.3",
+    "subjectId": 9,
+    "text": "Describe the use of the IDENT button",
+    "knowledgeContent": "The IDENT button on the transponder is used to temporarily highlight the aircraft's position on the radar screen. This helps air traffic controllers quickly identify the aircraft, especially in busy airspace.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.4",
+    "subjectId": 9,
+    "text": "GLOBAL NAVIGATION SATELLITE SYSTEMS (GNSSs)",
+    "knowledgeContent": "Global Navigation Satellite Systems (GNSS) provide accurate positioning and navigation information using signals from satellites. Systems like GPS, GLONASS, and Galileo are widely used in aviation for navigation and flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.4.1",
+    "subjectId": 9,
+    "text": "GPS, GLONASS OR GALILEO",
+    "knowledgeContent": "GPS (Global Positioning System), GLONASS (Global Navigation Satellite System), and Galileo are GNSS systems that provide global coverage for navigation. Each system operates using a constellation of satellites that transmit signals to receivers on the ground or in aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.4.1.1",
+    "subjectId": 9,
+    "text": "Principles",
+    "knowledgeContent": "GNSS systems operate by transmitting signals from satellites to receivers, which calculate the position based on the time delay of the signals. The receiver uses signals from multiple satellites to determine its precise location, velocity, and time.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:31.407Z",
+    "updatedAt": "2026-03-17T20:44:31.407Z"
+  },
+  {
+    "loId": "92.4.1.2",
+    "subjectId": 9,
+    "text": "Operation",
+    "knowledgeContent": "The student must understand the basic operation of GNSS (Global Navigation Satellite System), including how satellites transmit signals, how the receiver calculates position, and the role of augmentation systems (e.g., SBAS). They should also know how to select waypoints, activate flight plans, and interpret basic GNSS display modes (e.g., moving map, CDI).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:46.026Z",
+    "updatedAt": "2026-03-17T20:44:46.026Z"
+  },
+  {
+    "loId": "92.4.1.3",
+    "subjectId": 9,
+    "text": "Presentation and interpretation",
+    "knowledgeContent": "The student must be able to interpret GNSS data presentations, including latitude/longitude coordinates, track angle, ground speed, and estimated time en route. They should understand the difference between desired track (DTK) and actual track (TRK), as well as how to read and follow a CDI (Course Deviation Indicator) or HSI (Horizontal Situation Indicator) display.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:46.026Z",
+    "updatedAt": "2026-03-17T20:44:46.026Z"
+  },
+  {
+    "loId": "92.4.1.4",
+    "subjectId": 9,
+    "text": "Errors and factors affecting accuracy",
+    "knowledgeContent": "The student must recognize factors affecting GNSS accuracy, such as satellite geometry (HDOP/VDOP), signal obstructions, ionospheric delays, and receiver errors. They should understand the concept of integrity (RAIM/FDE) and how loss of signal or insufficient satellites can degrade navigation performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:46.026Z",
+    "updatedAt": "2026-03-17T20:44:46.026Z"
+  },
+  {
+    "loId": "92.4.1.4.3",
+    "subjectId": 9,
+    "text": "Explain how RAIM information can be obtain before the flight (e.g. via NOTAM)",
+    "knowledgeContent": "The student must know how to check RAIM (Receiver Autonomous Integrity Monitoring) availability before flight using NOTAMs, FAA or EASA GNSS prediction tools, or manufacturer-specific software. They should understand that RAIM outages can occur due to planned satellite maintenance or poor geometry and how to plan alternates if RAIM is unavailable.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:44:46.026Z",
+    "updatedAt": "2026-03-17T20:44:46.026Z"
+  }
+]

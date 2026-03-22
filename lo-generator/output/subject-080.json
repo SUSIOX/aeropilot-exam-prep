@@ -1,0 +1,902 @@
+[
+  {
+    "loId": "080.01.01.01",
+    "subjectId": 8,
+    "text": "Atmosphere composition",
+    "knowledgeContent": "Understand the composition of the atmosphere, including the percentages of nitrogen, oxygen, and other gases. Know how atmospheric pressure and density vary with altitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.01.01.02",
+    "subjectId": 8,
+    "text": "International Standard Atmosphere (ISA)",
+    "knowledgeContent": "Define ISA conditions and understand how temperature, pressure, and density change with altitude in the ISA model. Know the ISA sea level values for temperature, pressure, and density.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.01.01.03",
+    "subjectId": 8,
+    "text": "Pressure, density, and temperature relationships",
+    "knowledgeContent": "Explain how pressure, density, and temperature are interrelated in the atmosphere. Understand how these properties affect aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.01.02.01",
+    "subjectId": 8,
+    "text": "Airflow around a body",
+    "knowledgeContent": "Describe the airflow around a body, including the concepts of laminar and turbulent flow. Understand how airflow separation occurs and its effects.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.01.02.02",
+    "subjectId": 8,
+    "text": "Boundary layer",
+    "knowledgeContent": "Define the boundary layer and explain its characteristics. Understand how the boundary layer affects drag and lift.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.01.02.03",
+    "subjectId": 8,
+    "text": "Streamlines and airflow patterns",
+    "knowledgeContent": "Describe streamlines and how they represent airflow patterns. Understand how changes in airflow patterns affect lift and drag.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.02.01.01",
+    "subjectId": 8,
+    "text": "Lift generation",
+    "knowledgeContent": "Explain how lift is generated on an airfoil using Bernoulli's principle and Newton's third law. Understand the factors affecting lift.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.02.01.02",
+    "subjectId": 8,
+    "text": "Angle of attack and lift coefficient",
+    "knowledgeContent": "Define angle of attack and lift coefficient. Understand the relationship between angle of attack and lift, including the critical angle of attack.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.02.01.03",
+    "subjectId": 8,
+    "text": "Stall and stall recovery",
+    "knowledgeContent": "Describe the conditions leading to a stall and the aerodynamic changes during a stall. Know the correct recovery procedure from a stall.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.02.02.01",
+    "subjectId": 8,
+    "text": "Drag types",
+    "knowledgeContent": "Identify and describe the different types of drag: parasite drag (form, friction, interference) and induced drag. Understand how each type affects aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.02.02.02",
+    "subjectId": 8,
+    "text": "Drag and speed relationship",
+    "knowledgeContent": "Explain how drag varies with speed and the concept of total drag curve. Understand the implications for aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.02.02.03",
+    "subjectId": 8,
+    "text": "Reducing drag",
+    "knowledgeContent": "Describe methods to reduce drag, such as streamlining, winglets, and smooth surfaces. Understand how these methods improve efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.03.01.01",
+    "subjectId": 8,
+    "text": "Thrust and power",
+    "knowledgeContent": "Define thrust and power and explain how they are produced in piston and jet engines. Understand the relationship between thrust, power, and aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.03.01.02",
+    "subjectId": 8,
+    "text": "Propeller efficiency",
+    "knowledgeContent": "Describe how propeller efficiency is affected by factors such as blade angle, speed, and altitude. Understand the concept of fixed vs. variable pitch propellers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.03.01.03",
+    "subjectId": 8,
+    "text": "Thrust vs. drag",
+    "knowledgeContent": "Explain the relationship between thrust and drag in steady flight. Understand how changes in thrust affect climb, descent, and level flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.03.02.01",
+    "subjectId": 8,
+    "text": "Weight and balance",
+    "knowledgeContent": "Describe how weight and center of gravity affect aircraft stability and performance. Understand the importance of staying within weight and balance limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.03.02.02",
+    "subjectId": 8,
+    "text": "Load factor",
+    "knowledgeContent": "Define load factor and explain how it varies in different flight maneuvers. Understand the relationship between load factor and stall speed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.03.02.03",
+    "subjectId": 8,
+    "text": "Aircraft stability",
+    "knowledgeContent": "Describe the three types of stability: longitudinal, lateral, and directional. Understand how design features contribute to stability.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.04.01.01",
+    "subjectId": 8,
+    "text": "Glide performance",
+    "knowledgeContent": "Explain the factors affecting glide performance, including best glide speed and glide ratio. Understand how to maximize glide distance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.04.01.02",
+    "subjectId": 8,
+    "text": "Climb performance",
+    "knowledgeContent": "Describe the factors affecting climb performance, including best rate and best angle of climb. Understand how altitude and weight affect climb.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.04.01.03",
+    "subjectId": 8,
+    "text": "Turn performance",
+    "knowledgeContent": "Explain the forces involved in a turn and how bank angle affects turn radius and rate. Understand the relationship between load factor and stall speed in turns.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.04.02.01",
+    "subjectId": 8,
+    "text": "Takeoff performance",
+    "knowledgeContent": "Describe the factors affecting takeoff performance, including runway length, wind, temperature, and aircraft weight. Understand the importance of rotation speed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.04.02.02",
+    "subjectId": 8,
+    "text": "Landing performance",
+    "knowledgeContent": "Explain the factors affecting landing performance, including approach speed, runway length, and wind. Understand the importance of flare and touchdown techniques.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.04.02.03",
+    "subjectId": 8,
+    "text": "Performance charts",
+    "knowledgeContent": "Interpret aircraft performance charts for takeoff, climb, cruise, and landing. Understand how to adjust for non-standard conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.05.01.01",
+    "subjectId": 8,
+    "text": "High-speed flight effects",
+    "knowledgeContent": "Describe the effects of high-speed flight, including compressibility and shock waves. Understand the concept of critical Mach number.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.05.01.02",
+    "subjectId": 8,
+    "text": "Low-speed flight effects",
+    "knowledgeContent": "Explain the challenges of low-speed flight, including increased drag and reduced control effectiveness. Understand the importance of airspeed management.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.05.01.03",
+    "subjectId": 8,
+    "text": "Ground effect",
+    "knowledgeContent": "Define ground effect and explain how it affects lift and drag during takeoff and landing. Understand the implications for aircraft handling.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.05.02.01",
+    "subjectId": 8,
+    "text": "Wind shear",
+    "knowledgeContent": "Describe wind shear and its effects on aircraft performance and control. Understand how to recognize and respond to wind shear conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.05.02.02",
+    "subjectId": 8,
+    "text": "Turbulence",
+    "knowledgeContent": "Explain the causes and types of turbulence, including mechanical, thermal, and wake turbulence. Understand how to mitigate its effects.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.05.02.03",
+    "subjectId": 8,
+    "text": "Icing effects",
+    "knowledgeContent": "Describe how icing affects aircraft performance, including lift, drag, and control surfaces. Understand the importance of anti-icing and de-icing systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.06.01.01",
+    "subjectId": 8,
+    "text": "Primary flight controls",
+    "knowledgeContent": "Identify the primary flight controls (ailerons, elevator, rudder) and explain their functions. Understand how they affect aircraft movement.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.06.01.02",
+    "subjectId": 8,
+    "text": "Secondary flight controls",
+    "knowledgeContent": "Describe secondary flight controls (flaps, slats, trim) and their purposes. Understand how they enhance aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.06.01.03",
+    "subjectId": 8,
+    "text": "Control surface effectiveness",
+    "knowledgeContent": "Explain how control surface effectiveness is affected by speed, airflow, and configuration. Understand the implications for aircraft handling.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.06.02.01",
+    "subjectId": 8,
+    "text": "Adverse yaw",
+    "knowledgeContent": "Define adverse yaw and explain its causes. Understand how to compensate for adverse yaw using rudder and aileron coordination.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.06.02.02",
+    "subjectId": 8,
+    "text": "Spiral instability",
+    "knowledgeContent": "Describe spiral instability and its effects on aircraft control. Understand how to recognize and recover from a spiral dive.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.06.02.03",
+    "subjectId": 8,
+    "text": "Dutch roll",
+    "knowledgeContent": "Explain Dutch roll and its causes. Understand how yaw dampers and pilot inputs can mitigate Dutch roll.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.07.01.01",
+    "subjectId": 8,
+    "text": "Wing design and lift",
+    "knowledgeContent": "Describe how wing design (aspect ratio, sweep, planform) affects lift and drag. Understand the trade-offs in wing design.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.07.01.02",
+    "subjectId": 8,
+    "text": "High-lift devices",
+    "knowledgeContent": "Identify high-lift devices (flaps, slats, slots) and explain how they increase lift. Understand their use in takeoff and landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.07.01.03",
+    "subjectId": 8,
+    "text": "Vortex generators",
+    "knowledgeContent": "Describe the purpose of vortex generators and how they improve airflow over wings and control surfaces. Understand their impact on performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.07.02.01",
+    "subjectId": 8,
+    "text": "Aircraft configurations",
+    "knowledgeContent": "Compare different aircraft configurations (high-wing, low-wing, monoplane, biplane) and their effects on stability and performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.07.02.02",
+    "subjectId": 8,
+    "text": "Tail design",
+    "knowledgeContent": "Explain how tail design (conventional, T-tail, V-tail) affects aircraft stability and control. Understand the advantages and disadvantages of each.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.07.02.03",
+    "subjectId": 8,
+    "text": "Landing gear types",
+    "knowledgeContent": "Describe different landing gear types (tricycle, tailwheel) and their effects on ground handling. Understand the challenges of each configuration.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.08.01.01",
+    "subjectId": 8,
+    "text": "Spin characteristics",
+    "knowledgeContent": "Describe the aerodynamics of a spin, including the roles of yaw and roll. Understand the conditions required for a spin to develop.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.08.01.02",
+    "subjectId": 8,
+    "text": "Spin recovery",
+    "knowledgeContent": "Explain the correct procedure for spin recovery, including rudder, aileron, and elevator inputs. Understand the importance of altitude awareness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.08.01.03",
+    "subjectId": 8,
+    "text": "Spin prevention",
+    "knowledgeContent": "Describe techniques to prevent spins, including proper stall recovery and coordinated flight. Understand the role of aircraft design in spin resistance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.08.02.01",
+    "subjectId": 8,
+    "text": "Maneuvering speed",
+    "knowledgeContent": "Define maneuvering speed (Va) and explain its significance. Understand how weight affects maneuvering speed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.08.02.02",
+    "subjectId": 8,
+    "text": "Aerobatic flight",
+    "knowledgeContent": "Describe the aerodynamic principles involved in aerobatic maneuvers (loops, rolls, spins). Understand the limitations and risks of aerobatic flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.08.02.03",
+    "subjectId": 8,
+    "text": "Structural limits",
+    "knowledgeContent": "Explain the structural limits of an aircraft, including load factors and V-speeds. Understand the consequences of exceeding these limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.09.01.01",
+    "subjectId": 8,
+    "text": "Glider aerodynamics",
+    "knowledgeContent": "Describe the aerodynamic principles specific to gliders, including lift-to-drag ratio and minimum sink rate. Understand how gliders maintain flight without an engine.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.09.01.02",
+    "subjectId": 8,
+    "text": "Thermals and lift sources",
+    "knowledgeContent": "Explain how gliders use thermals, ridge lift, and wave lift to gain altitude. Understand the techniques for locating and exploiting lift sources.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.09.01.03",
+    "subjectId": 8,
+    "text": "Glider performance",
+    "knowledgeContent": "Describe the factors affecting glider performance, including wing loading and polar curves. Understand how to optimize glide performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.09.02.01",
+    "subjectId": 8,
+    "text": "Balloon aerodynamics",
+    "knowledgeContent": "Explain the basic principles of balloon flight, including buoyancy and lift. Understand how temperature and altitude affect balloon performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.09.02.02",
+    "subjectId": 8,
+    "text": "Balloon control",
+    "knowledgeContent": "Describe how balloons are controlled, including the use of burners and vents. Understand the limitations of balloon control in different weather conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.09.02.03",
+    "subjectId": 8,
+    "text": "Balloon stability",
+    "knowledgeContent": "Explain the factors affecting balloon stability, including wind and thermal currents. Understand the challenges of maintaining stable flight in a balloon.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.10.01.01",
+    "subjectId": 8,
+    "text": "Human factors in aerodynamics",
+    "knowledgeContent": "Describe how human factors, such as perception and reaction time, affect aerodynamic control. Understand the importance of training and awareness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.10.01.02",
+    "subjectId": 8,
+    "text": "Spatial disorientation",
+    "knowledgeContent": "Explain how spatial disorientation can occur due to aerodynamic forces. Understand the techniques to prevent and recover from disorientation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.10.01.03",
+    "subjectId": 8,
+    "text": "Pilot-induced oscillations",
+    "knowledgeContent": "Describe pilot-induced oscillations (PIO) and their aerodynamic causes. Understand how to avoid and correct PIO.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.10.02.01",
+    "subjectId": 8,
+    "text": "Aerodynamic noise",
+    "knowledgeContent": "Explain the sources of aerodynamic noise, including airflow over surfaces and propeller/engine noise. Understand how noise affects flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.10.02.02",
+    "subjectId": 8,
+    "text": "Environmental effects",
+    "knowledgeContent": "Describe how aerodynamic principles affect environmental considerations, such as fuel efficiency and emissions. Understand the role of aerodynamics in sustainable aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  },
+  {
+    "loId": "080.10.02.03",
+    "subjectId": 8,
+    "text": "Future aerodynamic developments",
+    "knowledgeContent": "Discuss emerging aerodynamic technologies, such as laminar flow control and blended wing bodies. Understand their potential impact on aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:20:04.041Z",
+    "updatedAt": "2026-03-17T19:20:04.041Z"
+  }
+]

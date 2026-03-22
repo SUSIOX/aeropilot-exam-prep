@@ -1,0 +1,797 @@
+[
+  {
+    "loId": "010.01.01.01",
+    "subjectId": 1,
+    "text": "ICAO and its role",
+    "knowledgeContent": "Understand the purpose and structure of the International Civil Aviation Organization (ICAO). Know its role in standardizing international aviation regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.01.01.02",
+    "subjectId": 1,
+    "text": "EASA and its functions",
+    "knowledgeContent": "Describe the role of the European Union Aviation Safety Agency (EASA) in regulating aviation safety. Know its relationship with national aviation authorities.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.01.01.03",
+    "subjectId": 1,
+    "text": "National Aviation Authorities",
+    "knowledgeContent": "Identify the functions of national aviation authorities (e.g., CAA, DGAC). Understand their role in enforcing aviation regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.01.02.01",
+    "subjectId": 1,
+    "text": "Chicago Convention",
+    "knowledgeContent": "Explain the significance of the Chicago Convention in international aviation law. Know the key principles established by the Convention.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.01.02.02",
+    "subjectId": 1,
+    "text": "Annexes to the Chicago Convention",
+    "knowledgeContent": "List the key ICAO Annexes relevant to general aviation. Understand their applicability to PPL/SPL operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.01.03.01",
+    "subjectId": 1,
+    "text": "EU Aviation Regulations",
+    "knowledgeContent": "Identify the main EU regulations governing general aviation (e.g., Regulation (EU) No 965/2012). Understand their scope and applicability.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.01.03.02",
+    "subjectId": 1,
+    "text": "National Aviation Legislation",
+    "knowledgeContent": "Describe how national aviation laws complement EU regulations. Know where to find relevant national aviation legislation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.02.01.01",
+    "subjectId": 1,
+    "text": "Aircraft Registration",
+    "knowledgeContent": "Explain the requirements for aircraft registration. Know the format and significance of registration markings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.02.01.02",
+    "subjectId": 1,
+    "text": "Certificate of Airworthiness",
+    "knowledgeContent": "Describe the purpose and validity of a Certificate of Airworthiness. Know the conditions under which it remains valid.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.02.01.03",
+    "subjectId": 1,
+    "text": "Noise Certification",
+    "knowledgeContent": "Understand the basic requirements for aircraft noise certification. Know its relevance to general aviation operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.02.02.01",
+    "subjectId": 1,
+    "text": "Pilot Licenses and Ratings",
+    "knowledgeContent": "List the types of pilot licenses and ratings recognized by EASA. Understand the privileges and limitations of a PPL/SPL.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.02.02.02",
+    "subjectId": 1,
+    "text": "Medical Requirements",
+    "knowledgeContent": "Describe the medical requirements for PPL/SPL holders. Know the validity periods of different medical certificates.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.02.02.03",
+    "subjectId": 1,
+    "text": "License Validity and Renewal",
+    "knowledgeContent": "Explain the conditions for maintaining license validity. Understand the process for license renewal.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.02.03.01",
+    "subjectId": 1,
+    "text": "Operational Documentation",
+    "knowledgeContent": "List the required documents to be carried on board an aircraft. Understand their purpose and validity requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.02.03.02",
+    "subjectId": 1,
+    "text": "Aircraft Logbooks",
+    "knowledgeContent": "Describe the types of logbooks required for aircraft maintenance. Know the entries that must be recorded.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.02.04.01",
+    "subjectId": 1,
+    "text": "Airworthiness Directives",
+    "knowledgeContent": "Explain the purpose and applicability of Airworthiness Directives (ADs). Know how to check for applicable ADs.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.02.04.02",
+    "subjectId": 1,
+    "text": "Maintenance Requirements",
+    "knowledgeContent": "Describe the basic maintenance requirements for general aviation aircraft. Understand the role of approved maintenance organizations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.03.01.01",
+    "subjectId": 1,
+    "text": "Rules of the Air",
+    "knowledgeContent": "Explain the general rules of the air as defined by ICAO. Understand their application in different flight conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.03.01.02",
+    "subjectId": 1,
+    "text": "Right-of-Way Rules",
+    "knowledgeContent": "Describe the right-of-way rules for different aircraft categories. Know the exceptions and special cases.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.03.01.03",
+    "subjectId": 1,
+    "text": "Lights and Signals",
+    "knowledgeContent": "Identify the light signals used by ATC and other aircraft. Understand their meaning and required pilot responses.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.03.02.01",
+    "subjectId": 1,
+    "text": "Visual Flight Rules (VFR)",
+    "knowledgeContent": "Explain the basic requirements for VFR flight. Know the visibility and cloud clearance minima for different airspace classes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.03.02.02",
+    "subjectId": 1,
+    "text": "Instrument Flight Rules (IFR)",
+    "knowledgeContent": "Describe the basic requirements for IFR flight. Understand the differences between VFR and IFR operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.03.03.01",
+    "subjectId": 1,
+    "text": "Airspace Classification",
+    "knowledgeContent": "List the ICAO airspace classes and their characteristics. Understand the VFR requirements for each class.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.03.03.02",
+    "subjectId": 1,
+    "text": "Controlled Airspace",
+    "knowledgeContent": "Describe the requirements for operating in controlled airspace. Know the communication and clearance procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.03.03.03",
+    "subjectId": 1,
+    "text": "Special Use Airspace",
+    "knowledgeContent": "Identify different types of special use airspace (e.g., restricted, danger areas). Understand the restrictions and procedures for flying near them.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.03.04.01",
+    "subjectId": 1,
+    "text": "ATZ and CTR",
+    "knowledgeContent": "Explain the purpose of Aerodrome Traffic Zones (ATZ) and Control Zones (CTR). Know the procedures for entering and operating within them.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.03.04.02",
+    "subjectId": 1,
+    "text": "TMA and FIR",
+    "knowledgeContent": "Describe the structure of Terminal Control Areas (TMA) and Flight Information Regions (FIR). Understand their significance for flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.03.05.01",
+    "subjectId": 1,
+    "text": "Flight Plans",
+    "knowledgeContent": "Explain when a flight plan is required for VFR flights. Know the information included in a standard flight plan.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.03.05.02",
+    "subjectId": 1,
+    "text": "ATC Clearances",
+    "knowledgeContent": "Describe the types of ATC clearances and their importance. Understand how to read back and comply with clearances.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.03.06.01",
+    "subjectId": 1,
+    "text": "Radio Communication Procedures",
+    "knowledgeContent": "List the standard radio communication procedures for VFR flights. Know the phraseology for common ATC communications.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.03.06.02",
+    "subjectId": 1,
+    "text": "Emergency Communications",
+    "knowledgeContent": "Describe the radio procedures for emergency situations. Know the meaning of MAYDAY and PAN-PAN calls.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.04.01.01",
+    "subjectId": 1,
+    "text": "Aerodrome Markings",
+    "knowledgeContent": "Identify the standard markings used on aerodromes. Understand their significance for taxiing and runway operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.04.01.02",
+    "subjectId": 1,
+    "text": "Aerodrome Lighting",
+    "knowledgeContent": "Describe the different types of aerodrome lighting systems. Know their colors and meanings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.04.02.01",
+    "subjectId": 1,
+    "text": "Visual Approach Procedures",
+    "knowledgeContent": "Explain the standard procedures for visual approaches. Understand the importance of traffic pattern discipline.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.04.02.02",
+    "subjectId": 1,
+    "text": "Noise Abatement Procedures",
+    "knowledgeContent": "Describe common noise abatement procedures at aerodromes. Know how to apply them during takeoff and landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.04.03.01",
+    "subjectId": 1,
+    "text": "Air Traffic Services",
+    "knowledgeContent": "List the different types of air traffic services (ATS). Understand their roles and responsibilities.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.04.03.02",
+    "subjectId": 1,
+    "text": "Flight Information Services",
+    "knowledgeContent": "Describe the purpose of Flight Information Services (FIS). Know how to obtain and use FIS during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.05.01.01",
+    "subjectId": 1,
+    "text": "Meteorological Information",
+    "knowledgeContent": "Explain the sources of meteorological information for flight planning. Understand the importance of obtaining updated weather data.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.05.01.02",
+    "subjectId": 1,
+    "text": "NOTAMs",
+    "knowledgeContent": "Describe the purpose and content of NOTAMs. Know how to access and interpret them.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.05.02.01",
+    "subjectId": 1,
+    "text": "Flight Restrictions",
+    "knowledgeContent": "Identify common flight restrictions (e.g., temporary flight restrictions). Understand the reasons for their implementation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.05.02.02",
+    "subjectId": 1,
+    "text": "Prohibited Areas",
+    "knowledgeContent": "Explain the concept of prohibited areas and their significance. Know the penalties for violating airspace restrictions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.06.01.01",
+    "subjectId": 1,
+    "text": "Accident Reporting",
+    "knowledgeContent": "Describe the procedures for reporting aviation accidents and incidents. Know the legal obligations of pilots.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.06.01.02",
+    "subjectId": 1,
+    "text": "Mandatory Occurrence Reporting",
+    "knowledgeContent": "Explain the purpose of mandatory occurrence reporting systems. Understand what types of events must be reported.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.06.02.01",
+    "subjectId": 1,
+    "text": "Aviation Security",
+    "knowledgeContent": "Describe basic aviation security measures for general aviation. Know the procedures for handling security threats.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.06.02.02",
+    "subjectId": 1,
+    "text": "Prohibited Items",
+    "knowledgeContent": "List items prohibited on board aircraft. Understand the reasons for these restrictions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.07.01.01",
+    "subjectId": 1,
+    "text": "Environmental Regulations",
+    "knowledgeContent": "Explain the environmental regulations affecting aviation. Know the restrictions on fuel venting and noise emissions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.07.01.02",
+    "subjectId": 1,
+    "text": "Wildlife Hazard Management",
+    "knowledgeContent": "Describe the procedures for wildlife hazard management at aerodromes. Understand the risks posed by bird strikes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.08.01.01",
+    "subjectId": 1,
+    "text": "Liability and Insurance",
+    "knowledgeContent": "Explain the basic principles of aviation liability and insurance. Know the minimum insurance requirements for PPL/SPL operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.08.01.02",
+    "subjectId": 1,
+    "text": "Passenger Rights",
+    "knowledgeContent": "Describe the basic rights of passengers in general aviation. Understand the obligations of pilots towards passengers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.09.01.01",
+    "subjectId": 1,
+    "text": "International Flights",
+    "knowledgeContent": "Explain the requirements for conducting international flights under VFR. Know the documentation needed for cross-border operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.09.01.02",
+    "subjectId": 1,
+    "text": "Customs and Immigration",
+    "knowledgeContent": "Describe the customs and immigration procedures for international flights. Know the designated airports of entry.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.10.01.01",
+    "subjectId": 1,
+    "text": "Human Factors in Air Law",
+    "knowledgeContent": "Explain how human factors influence compliance with air law. Understand the consequences of non-compliance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  },
+  {
+    "loId": "010.10.01.02",
+    "subjectId": 1,
+    "text": "Pilot Responsibilities",
+    "knowledgeContent": "Describe the legal responsibilities of a PPL/SPL holder. Understand the importance of adhering to regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:07:10.309Z",
+    "updatedAt": "2026-03-17T19:07:10.309Z"
+  }
+]

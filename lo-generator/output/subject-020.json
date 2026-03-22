@@ -1,0 +1,1277 @@
+[
+  {
+    "loId": "020.01.01.01",
+    "subjectId": 2,
+    "text": "Identify the main components of an aircraft fuselage.",
+    "knowledgeContent": "The fuselage is the main body of the aircraft, housing the cockpit, passengers, and cargo. It is designed to withstand aerodynamic forces and provide structural integrity.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.01.02",
+    "subjectId": 2,
+    "text": "Describe the function of aircraft wings.",
+    "knowledgeContent": "Wings generate lift to support the aircraft in flight. They also house fuel tanks and provide mounting points for control surfaces.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.01.03",
+    "subjectId": 2,
+    "text": "Explain the role of the empennage in aircraft stability.",
+    "knowledgeContent": "The empennage includes the tail section, which provides stability and control through the horizontal and vertical stabilizers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.01.04",
+    "subjectId": 2,
+    "text": "Identify the types of landing gear configurations.",
+    "knowledgeContent": "Landing gear can be tricycle, tailwheel, or other configurations, designed to support the aircraft during takeoff, landing, and ground operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.01.05",
+    "subjectId": 2,
+    "text": "Explain the materials commonly used in airframe construction.",
+    "knowledgeContent": "Airframes are typically constructed from aluminum alloys, composites, or steel, chosen for their strength, weight, and corrosion resistance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.01.06",
+    "subjectId": 2,
+    "text": "Describe the purpose of wing spars and ribs.",
+    "knowledgeContent": "Wing spars provide structural strength, while ribs maintain the wing’s aerodynamic shape and support the skin.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.02.01",
+    "subjectId": 2,
+    "text": "Describe the primary flight controls and their functions.",
+    "knowledgeContent": "Primary flight controls include the ailerons, elevator, and rudder, which manage roll, pitch, and yaw respectively.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.02.02",
+    "subjectId": 2,
+    "text": "Explain the purpose of secondary flight controls.",
+    "knowledgeContent": "Secondary flight controls, such as flaps and slats, enhance lift and drag characteristics during takeoff and landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.02.03",
+    "subjectId": 2,
+    "text": "Describe the function of trim systems.",
+    "knowledgeContent": "Trim systems reduce pilot workload by maintaining desired aircraft attitude without continuous control input.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.02.04",
+    "subjectId": 2,
+    "text": "Explain the operation of ailerons in roll control.",
+    "knowledgeContent": "Ailerons move differentially to create lift asymmetry, causing the aircraft to roll around its longitudinal axis.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.02.05",
+    "subjectId": 2,
+    "text": "Describe the function of the elevator in pitch control.",
+    "knowledgeContent": "The elevator controls pitch by changing the angle of the horizontal stabilizer, altering the aircraft’s nose-up or nose-down attitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.02.06",
+    "subjectId": 2,
+    "text": "Explain the role of the rudder in yaw control.",
+    "knowledgeContent": "The rudder controls yaw by deflecting airflow, causing the aircraft to rotate around its vertical axis.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.03.01",
+    "subjectId": 2,
+    "text": "Identify the basic components of a hydraulic system.",
+    "knowledgeContent": "Hydraulic systems include pumps, actuators, and fluid lines, used to transmit power for operating flight controls and landing gear.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.03.02",
+    "subjectId": 2,
+    "text": "Explain the principle of hydraulic power transmission.",
+    "knowledgeContent": "Hydraulic systems use incompressible fluid to transmit force, enabling precise control of aircraft components.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.03.03",
+    "subjectId": 2,
+    "text": "Describe the function of hydraulic actuators.",
+    "knowledgeContent": "Hydraulic actuators convert hydraulic pressure into mechanical motion, operating landing gear, flaps, and other systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.03.04",
+    "subjectId": 2,
+    "text": "Explain the importance of hydraulic fluid properties.",
+    "knowledgeContent": "Hydraulic fluid must have low compressibility, high thermal stability, and resistance to corrosion for efficient system operation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.04.01",
+    "subjectId": 2,
+    "text": "Describe the components of a fuel system.",
+    "knowledgeContent": "Fuel systems include tanks, pumps, filters, and lines, ensuring a steady supply of fuel to the engine.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.04.02",
+    "subjectId": 2,
+    "text": "Explain the importance of fuel system management.",
+    "knowledgeContent": "Proper fuel management ensures engine performance, prevents fuel starvation, and maintains aircraft balance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.04.03",
+    "subjectId": 2,
+    "text": "Describe the purpose of fuel filters.",
+    "knowledgeContent": "Fuel filters remove contaminants from the fuel, protecting the engine from damage and ensuring smooth operation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.04.04",
+    "subjectId": 2,
+    "text": "Explain the function of fuel pumps.",
+    "knowledgeContent": "Fuel pumps deliver fuel from the tanks to the engine at the required pressure, ensuring consistent fuel flow.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.05.01",
+    "subjectId": 2,
+    "text": "Identify the main components of an electrical system.",
+    "knowledgeContent": "Electrical systems include batteries, alternators, and wiring, providing power for avionics, lighting, and other systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.05.02",
+    "subjectId": 2,
+    "text": "Describe the function of an aircraft alternator.",
+    "knowledgeContent": "The alternator generates electrical power to recharge the battery and supply the aircraft’s electrical needs during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.05.03",
+    "subjectId": 2,
+    "text": "Describe the purpose of circuit breakers in electrical systems.",
+    "knowledgeContent": "Circuit breakers protect electrical circuits from overloads by interrupting current flow when excessive current is detected.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.05.04",
+    "subjectId": 2,
+    "text": "Explain the role of the battery in an electrical system.",
+    "knowledgeContent": "The battery provides backup power and starts the engine, ensuring electrical continuity during alternator failure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.06.01",
+    "subjectId": 2,
+    "text": "Compare piston and turboprop engine types.",
+    "knowledgeContent": "Piston engines use reciprocating motion, while turboprop engines use a gas turbine to drive a propeller, offering higher efficiency at higher altitudes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.06.02",
+    "subjectId": 2,
+    "text": "Explain the basic operation of a piston engine.",
+    "knowledgeContent": "Piston engines convert fuel combustion into mechanical energy through a series of strokes: intake, compression, power, and exhaust.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.06.03",
+    "subjectId": 2,
+    "text": "Describe the advantages of turboprop engines.",
+    "knowledgeContent": "Turboprop engines offer higher power-to-weight ratios and better fuel efficiency at medium altitudes compared to piston engines.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.06.04",
+    "subjectId": 2,
+    "text": "Explain the basic operation of a turboprop engine.",
+    "knowledgeContent": "Turboprop engines use a gas turbine to drive a propeller, combining jet engine efficiency with propeller thrust.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.07.01",
+    "subjectId": 2,
+    "text": "Describe the function of a carburetor.",
+    "knowledgeContent": "A carburetor mixes air and fuel in the correct ratio for combustion in a piston engine.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.07.02",
+    "subjectId": 2,
+    "text": "Explain the advantages of fuel injection systems.",
+    "knowledgeContent": "Fuel injection systems provide precise fuel delivery, improving efficiency, performance, and reducing the risk of carburetor icing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.07.03",
+    "subjectId": 2,
+    "text": "Describe the process of carburetor icing.",
+    "knowledgeContent": "Carburetor icing occurs when moisture in the air freezes in the carburetor, restricting airflow and reducing engine performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.07.04",
+    "subjectId": 2,
+    "text": "Explain the operation of a fuel injection system.",
+    "knowledgeContent": "Fuel injection systems deliver fuel directly into the engine cylinders or intake manifold, ensuring precise fuel-air mixture control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.08.01",
+    "subjectId": 2,
+    "text": "Identify the components of an ignition system.",
+    "knowledgeContent": "Ignition systems include spark plugs, magnetos, and wiring, providing the spark needed for fuel combustion in piston engines.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.08.02",
+    "subjectId": 2,
+    "text": "Describe the role of magnetos in engine operation.",
+    "knowledgeContent": "Magnetos generate high-voltage electricity independently of the aircraft’s electrical system, ensuring reliable ignition.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.08.03",
+    "subjectId": 2,
+    "text": "Describe the function of spark plugs.",
+    "knowledgeContent": "Spark plugs ignite the fuel-air mixture in the combustion chamber, initiating the power stroke in piston engines.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.08.04",
+    "subjectId": 2,
+    "text": "Explain the importance of ignition timing.",
+    "knowledgeContent": "Proper ignition timing ensures efficient combustion, maximizing engine power and minimizing fuel consumption.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.09.01",
+    "subjectId": 2,
+    "text": "Explain the purpose of lubrication systems.",
+    "knowledgeContent": "Lubrication systems reduce friction, cool engine components, and remove contaminants, ensuring smooth engine operation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.09.02",
+    "subjectId": 2,
+    "text": "Describe the components of a lubrication system.",
+    "knowledgeContent": "Lubrication systems include oil pumps, filters, and reservoirs, circulating oil to engine components.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.09.03",
+    "subjectId": 2,
+    "text": "Describe the purpose of oil filters.",
+    "knowledgeContent": "Oil filters remove contaminants from the engine oil, protecting engine components from wear and damage.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.01.09.04",
+    "subjectId": 2,
+    "text": "Explain the function of oil coolers.",
+    "knowledgeContent": "Oil coolers regulate engine oil temperature, preventing overheating and maintaining optimal lubrication.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.01.01",
+    "subjectId": 2,
+    "text": "Identify the types of propellers used in aircraft.",
+    "knowledgeContent": "Fixed-pitch and variable-pitch propellers are common types. Fixed-pitch propellers have a set blade angle, while variable-pitch propellers allow adjustment for optimal performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.01.02",
+    "subjectId": 2,
+    "text": "Explain the operation of a variable-pitch propeller.",
+    "knowledgeContent": "Variable-pitch propellers adjust blade angle to optimize thrust and efficiency across different flight conditions. This is typically controlled by a governor mechanism.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.02.01",
+    "subjectId": 2,
+    "text": "Describe the components of the pitot-static system.",
+    "knowledgeContent": "The pitot-static system includes the pitot tube, static port, and associated tubing. It measures dynamic and static pressure for airspeed, altitude, and vertical speed calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.02.02",
+    "subjectId": 2,
+    "text": "Explain the function of the altimeter.",
+    "knowledgeContent": "The altimeter measures aircraft altitude by comparing static pressure to a reference pressure, typically set to QNH or QFE.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.02.03",
+    "subjectId": 2,
+    "text": "Describe how the airspeed indicator (ASI) works.",
+    "knowledgeContent": "The ASI measures dynamic pressure from the pitot tube and static pressure from the static port to calculate indicated airspeed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.02.04",
+    "subjectId": 2,
+    "text": "Explain the purpose of the vertical speed indicator (VSI).",
+    "knowledgeContent": "The VSI measures the rate of climb or descent by detecting changes in static pressure over time.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.03.01",
+    "subjectId": 2,
+    "text": "Identify the gyroscopic instruments in an aircraft.",
+    "knowledgeContent": "Common gyroscopic instruments include the attitude indicator (AI), heading indicator (DI), and turn coordinator.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.03.02",
+    "subjectId": 2,
+    "text": "Explain the operation of the attitude indicator (AI).",
+    "knowledgeContent": "The AI uses a gyroscope to provide pitch and roll information relative to the horizon. It relies on rigidity in space and precession principles.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.03.03",
+    "subjectId": 2,
+    "text": "Describe the function of the heading indicator (DI).",
+    "knowledgeContent": "The DI uses a gyroscope to display aircraft heading and must be periodically aligned with the magnetic compass.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.03.04",
+    "subjectId": 2,
+    "text": "Explain the purpose of the turn coordinator.",
+    "knowledgeContent": "The turn coordinator indicates the rate of turn and coordination of a turn using a gyroscope and inclinometer.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.04.01",
+    "subjectId": 2,
+    "text": "Describe the operation of the magnetic compass.",
+    "knowledgeContent": "The magnetic compass aligns with the Earth's magnetic field to indicate magnetic heading. It is subject to errors such as deviation and dip.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.04.02",
+    "subjectId": 2,
+    "text": "Identify common errors of the magnetic compass.",
+    "knowledgeContent": "Errors include magnetic dip, deviation, and acceleration/turning errors. These can lead to inaccuracies in heading indication.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.05.01",
+    "subjectId": 2,
+    "text": "Explain the purpose of the cylinder head temperature (CHT) gauge.",
+    "knowledgeContent": "The CHT gauge monitors the temperature of the engine cylinders to prevent overheating and ensure optimal engine performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.05.02",
+    "subjectId": 2,
+    "text": "Describe the function of the exhaust gas temperature (EGT) gauge.",
+    "knowledgeContent": "The EGT gauge measures the temperature of exhaust gases to monitor combustion efficiency and fuel mixture.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.05.03",
+    "subjectId": 2,
+    "text": "Explain the role of the oil temperature and pressure gauges.",
+    "knowledgeContent": "Oil temperature and pressure gauges monitor engine lubrication system health, ensuring proper oil flow and cooling.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.05.04",
+    "subjectId": 2,
+    "text": "Describe the purpose of the manifold pressure gauge.",
+    "knowledgeContent": "The manifold pressure gauge measures the pressure in the engine intake manifold, indicating engine power output.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.06.01",
+    "subjectId": 2,
+    "text": "Identify the basic components of a VOR system.",
+    "knowledgeContent": "A VOR system includes a ground station, antenna, and onboard receiver. It provides radial navigation information for aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.06.02",
+    "subjectId": 2,
+    "text": "Explain the function of an ADF system.",
+    "knowledgeContent": "The ADF system uses ground-based NDBs to provide bearing information relative to the aircraft's position.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.06.03",
+    "subjectId": 2,
+    "text": "Describe the purpose of a transponder.",
+    "knowledgeContent": "A transponder transmits aircraft identification and altitude information to air traffic control radar systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.07.01",
+    "subjectId": 2,
+    "text": "Explain the purpose of aircraft oxygen systems.",
+    "knowledgeContent": "Oxygen systems provide supplemental oxygen to crew and passengers at high altitudes to prevent hypoxia.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.07.02",
+    "subjectId": 2,
+    "text": "Identify the types of oxygen systems used in aircraft.",
+    "knowledgeContent": "Common types include continuous flow, demand flow, and pressure-demand systems, each suited for different altitudes and needs.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.08.01",
+    "subjectId": 2,
+    "text": "Describe the purpose of ice protection systems.",
+    "knowledgeContent": "Ice protection systems prevent or remove ice accumulation on critical surfaces, ensuring safe flight in icing conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.08.02",
+    "subjectId": 2,
+    "text": "Identify common types of ice protection systems.",
+    "knowledgeContent": "Common systems include pneumatic de-icing boots, thermal heating, and chemical anti-icing fluids.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.08.03",
+    "subjectId": 2,
+    "text": "Explain the function of rain protection systems.",
+    "knowledgeContent": "Rain protection systems, such as windshield wipers and hydrophobic coatings, maintain visibility during precipitation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.09.01",
+    "subjectId": 2,
+    "text": "Describe the purpose of vacuum systems in aircraft.",
+    "knowledgeContent": "Vacuum systems power gyroscopic instruments like the attitude indicator and heading indicator by creating suction.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.09.02",
+    "subjectId": 2,
+    "text": "Identify the components of a vacuum system.",
+    "knowledgeContent": "Components include the vacuum pump, relief valve, filter, and associated tubing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.05.09.03",
+    "subjectId": 2,
+    "text": "Explain the function of pressure systems in aircraft.",
+    "knowledgeContent": "Pressure systems, such as pneumatic systems, provide power for instruments, landing gear, and other critical functions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.01.01",
+    "subjectId": 2,
+    "text": "Explain weight and balance principles",
+    "knowledgeContent": "Understand the importance of weight and balance in aircraft performance and safety. Describe how improper loading affects stability and control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.01.02",
+    "subjectId": 2,
+    "text": "Identify CG limits and their significance",
+    "knowledgeContent": "Recognize the forward and aft CG limits for an aircraft. Explain how exceeding these limits impacts flight characteristics.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.02.01",
+    "subjectId": 2,
+    "text": "Interpret aircraft performance charts",
+    "knowledgeContent": "Use takeoff, landing, and climb performance charts to determine required distances and speeds. Recognize factors affecting performance (e.g., temperature, altitude).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.02.02",
+    "subjectId": 2,
+    "text": "Apply performance calculations for flight planning",
+    "knowledgeContent": "Calculate takeoff and landing distances based on aircraft weight and environmental conditions. Adjust for obstacles and runway conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.03.01",
+    "subjectId": 2,
+    "text": "Describe airworthiness documents (CofA, ARC)",
+    "knowledgeContent": "Explain the purpose of the Certificate of Airworthiness (CofA) and Annual Review of Airworthiness (ARC). Identify who is responsible for maintaining these documents.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.03.02",
+    "subjectId": 2,
+    "text": "Outline maintenance requirements",
+    "knowledgeContent": "List mandatory inspections and maintenance tasks for airworthiness. Recognize the role of certified maintenance personnel.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.04.01",
+    "subjectId": 2,
+    "text": "Define key aircraft limitations (Vne, Vno, Va, Vfe, Vs)",
+    "knowledgeContent": "Describe the meaning and implications of never-exceed speed (Vne), maneuvering speed (Va), and other critical speeds. Explain consequences of exceeding limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.04.02",
+    "subjectId": 2,
+    "text": "Apply limitations in flight operations",
+    "knowledgeContent": "Use speed limitations during different flight phases (e.g., turbulence, flap operations). Recognize placards indicating operational limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.05.01",
+    "subjectId": 2,
+    "text": "Explain stall characteristics",
+    "knowledgeContent": "Describe how stalls occur due to excessive angle of attack. Identify symptoms (buffeting, control loss) and recovery procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.05.02",
+    "subjectId": 2,
+    "text": "Describe spin entry and recovery",
+    "knowledgeContent": "Recognize conditions leading to spins (e.g., uncoordinated stall). Explain standard recovery techniques (reduce AOA, neutralize controls).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.06.01",
+    "subjectId": 2,
+    "text": "Perform ground handling procedures",
+    "knowledgeContent": "Demonstrate safe towing, parking, and securing of aircraft. Use proper techniques to avoid damage (e.g., wingtip clearance).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.06.02",
+    "subjectId": 2,
+    "text": "Identify hazards during ground operations",
+    "knowledgeContent": "Recognize risks such as propeller strikes, ground loops, and jet blast. Apply precautions when operating near other aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.07.01",
+    "subjectId": 2,
+    "text": "Conduct aircraft cleaning and preservation",
+    "knowledgeContent": "Use approved methods and materials for cleaning exterior and interior surfaces. Avoid damage to sensitive components (e.g., pitot tubes).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.07.02",
+    "subjectId": 2,
+    "text": "Apply corrosion prevention techniques",
+    "knowledgeContent": "Identify common corrosion types and areas prone to deterioration. Use protective coatings and storage best practices.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.08.01",
+    "subjectId": 2,
+    "text": "Interpret placards and markings",
+    "knowledgeContent": "Locate and explain mandatory placards (e.g., fuel grades, passenger warnings). Recognize operational markings (e.g., gear limits, flap ranges).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.08.02",
+    "subjectId": 2,
+    "text": "Verify compliance with placard requirements",
+    "knowledgeContent": "Ensure aircraft operations align with placard instructions (e.g., weight limits, emergency procedures). Report discrepancies.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.09.01",
+    "subjectId": 2,
+    "text": "Identify emergency equipment (fire extinguisher, ELT)",
+    "knowledgeContent": "Locate and describe the use of fire extinguishers, emergency locator transmitters (ELTs), and life jackets. Check serviceability during pre-flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  },
+  {
+    "loId": "020.09.09.02",
+    "subjectId": 2,
+    "text": "Demonstrate emergency equipment usage",
+    "knowledgeContent": "Operate ELTs and fire extinguishers in simulated emergencies. Explain life jacket donning procedures for passengers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T20:19:50.349017Z",
+    "updatedAt": "2026-03-17T20:19:50.349017Z"
+  }
+]

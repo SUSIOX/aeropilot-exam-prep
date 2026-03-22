@@ -1,0 +1,1952 @@
+[
+  {
+    "loId": "20.1",
+    "subjectId": 2,
+    "text": "Human factors: basic concepts",
+    "knowledgeContent": "Human factors encompass the interaction between humans and their environment, tools, and systems. A PPL(A) student must understand how human performance limitations, such as fatigue, stress, and decision-making, impact aviation safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.1.1",
+    "subjectId": 2,
+    "text": "Human factors in aviation",
+    "knowledgeContent": "Human factors in aviation focus on how pilots interact with aircraft systems, procedures, and the environment. Students must recognize how factors like workload, communication, and situational awareness affect flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.1.1.1",
+    "subjectId": 2,
+    "text": "Becoming a competent pilot",
+    "knowledgeContent": "Becoming a competent pilot requires continuous learning, practice, and self-assessment. Students must understand the importance of developing technical skills, aeronautical knowledge, and a safety-oriented attitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.1.1.1.1State",
+    "subjectId": 2,
+    "text": "that competence is based on knowledge, skills and attitudes of the individual pilot",
+    "knowledgeContent": "Competence in aviation is built on a foundation of knowledge (theory), skills (practical abilities), and attitudes (safety mindset). A PPL(A) student must integrate these elements to operate safely and effectively.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2",
+    "subjectId": 2,
+    "text": "Basic aviation physiology and health maintenance",
+    "knowledgeContent": "Basic aviation physiology involves understanding how the human body functions and reacts to the aviation environment. Students must learn about physiological stressors like hypoxia, hyperventilation, and G-forces.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1",
+    "subjectId": 2,
+    "text": "Basic aviation physiology",
+    "knowledgeContent": "Basic aviation physiology covers the body's response to altitude, pressure changes, and acceleration. Students must understand how these factors affect respiratory, circulatory, and nervous systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.1",
+    "subjectId": 2,
+    "text": "The atmosphere",
+    "knowledgeContent": "The atmosphere consists of gases essential for human life and flight. Students must know the composition of air and how changes in altitude affect its properties.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.1.2State",
+    "subjectId": 2,
+    "text": "in terms of % the parts of Oxygen, Nitrogen and other gases present in the atmosphere",
+    "knowledgeContent": "The atmosphere is composed of approximately 78% nitrogen, 21% oxygen, and 1% other gases (e.g., argon, carbon dioxide). Students must understand how this composition supports respiration and combustion.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2",
+    "subjectId": 2,
+    "text": "Respiratory and circulatory systems",
+    "knowledgeContent": "The respiratory and circulatory systems are critical for oxygen transport and carbon dioxide removal. Students must understand their structure, function, and how aviation stressors impact them.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.1List",
+    "subjectId": 2,
+    "text": "the main components of the respiratory system and their function",
+    "knowledgeContent": "The main components of the respiratory system include the nose, trachea, bronchi, lungs, and alveoli. Students must understand their roles in gas exchange and oxygen transport.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.2Explain",
+    "subjectId": 2,
+    "text": "the function of haemoglobin in the circulatory system",
+    "knowledgeContent": "Haemoglobin in red blood cells binds to oxygen in the lungs and transports it to tissues. Students must understand its role in maintaining oxygen levels in the body.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.3Explain",
+    "subjectId": 2,
+    "text": "the role of carbon dioxide in the control and regulation of respiration",
+    "knowledgeContent": "Carbon dioxide regulates respiration by stimulating the brain's respiratory center. Students must understand how CO2 levels influence breathing rate and depth.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.6Explain",
+    "subjectId": 2,
+    "text": "which body functions are impaired above the disturbence threshold",
+    "knowledgeContent": "Above the disturbance threshold, body functions like cognition, vision, and coordination are impaired. Students must recognize the effects of hypoxia and other stressors on performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.7Name",
+    "subjectId": 2,
+    "text": "the major components of the circulatory system and describe their function",
+    "knowledgeContent": "The major components of the circulatory system include the heart, arteries, veins, and capillaries. Students must understand their roles in blood circulation and oxygen delivery.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.9List",
+    "subjectId": 2,
+    "text": "possible sources of carbon monoxide in the cockpit",
+    "knowledgeContent": "Possible sources of carbon monoxide in the cockpit include exhaust leaks, faulty heating systems, and engine emissions. Students must identify these hazards to prevent poisoning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.10List",
+    "subjectId": 2,
+    "text": "the sources and symptoms of carbon-monoxide poisoning",
+    "knowledgeContent": "Sources of carbon monoxide poisoning include engine exhaust and faulty heaters. Symptoms include headache, dizziness, nausea, and confusion. Students must recognize these signs promptly.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.11Describe",
+    "subjectId": 2,
+    "text": "immediate countermeasures on suspicion of carbon-monoxide poisoning",
+    "knowledgeContent": "Immediate countermeasures for carbon monoxide poisoning include turning off the source, ventilating the cockpit, and using supplemental oxygen. Students must act quickly to mitigate risks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.13State",
+    "subjectId": 2,
+    "text": "the symptoms of hypoxia",
+    "knowledgeContent": "Symptoms of hypoxia include cyanosis, impaired judgment, euphoria, and loss of consciousness. Students must recognize these signs to take corrective action.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.14Define",
+    "subjectId": 2,
+    "text": "the term 'hyperventilation'",
+    "knowledgeContent": "Hyperventilation is excessive breathing leading to reduced carbon dioxide levels in the blood. Students must understand its causes and effects on the body.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.15List",
+    "subjectId": 2,
+    "text": "the factors that cause hyperventilation",
+    "knowledgeContent": "Factors causing hyperventilation include stress, anxiety, and rapid breathing at high altitudes. Students must identify these triggers to prevent its occurrence.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.16List",
+    "subjectId": 2,
+    "text": "the signs and symptoms of hyperventilation",
+    "knowledgeContent": "Signs and symptoms of hyperventilation include dizziness, tingling, muscle spasms, and shortness of breath. Students must recognize these to restore normal breathing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.18Explain",
+    "subjectId": 2,
+    "text": "the terms 'linear acceleration' and 'angular acceleration'",
+    "knowledgeContent": "Linear acceleration is a change in speed in a straight line, while angular acceleration is a change in rotational speed. Students must understand how these forces affect the body during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.19State",
+    "subjectId": 2,
+    "text": "situations in which linear and angular acceleration can occur",
+    "knowledgeContent": "Linear acceleration occurs during takeoff and landing, while angular acceleration occurs during turns and spins. Students must recognize these situations to manage G-forces effectively.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.20List",
+    "subjectId": 2,
+    "text": "the effects of positive and negative acceleration (G-load)",
+    "knowledgeContent": "Positive G-forces push blood toward the feet, causing tunnel vision, while negative G-forces push blood toward the head, causing redout. Students must understand these effects to maintain control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.21Explain",
+    "subjectId": 2,
+    "text": "the term 'hypertension'",
+    "knowledgeContent": "Hypertension is high blood pressure, which can strain the heart and blood vessels. Students must understand its risks and management to maintain health.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.22List",
+    "subjectId": 2,
+    "text": "the effects that high blood pressure will have on functions of the human body",
+    "knowledgeContent": "High blood pressure can lead to heart disease, stroke, and kidney damage. Students must recognize its effects on the body and take preventive measures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.23Explain",
+    "subjectId": 2,
+    "text": "the major risk factors for coronary disease",
+    "knowledgeContent": "Major risk factors for coronary disease include smoking, high cholesterol, obesity, and lack of exercise. Students must understand these to reduce their risk.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.1.2.24Explain",
+    "subjectId": 2,
+    "text": "the role of physical exercise in reducing chances for developing coronary disease",
+    "knowledgeContent": "Physical exercise strengthens the heart, improves circulation, and reduces the risk of coronary disease. Students must incorporate regular exercise into their lifestyle.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.2",
+    "subjectId": 2,
+    "text": "People and environment",
+    "knowledgeContent": "People and environment examines how pilots interact with their surroundings and physiological systems. Students must understand how external factors like noise, temperature, and altitude affect performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.2.1",
+    "subjectId": 2,
+    "text": "Central, peripheral and autonomic nervous systems",
+    "knowledgeContent": "The central nervous system controls voluntary actions, the peripheral nervous system connects the CNS to limbs, and the autonomic nervous system regulates involuntary functions. Students must understand their roles in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:10:28.821Z",
+    "updatedAt": "2026-03-17T21:10:28.821Z"
+  },
+  {
+    "loId": "20.2.2.1.1Describe",
+    "subjectId": 2,
+    "text": "the role of the autonomic nervous system",
+    "knowledgeContent": "The autonomic nervous system regulates involuntary bodily functions, such as heart rate, digestion, and respiratory rate, ensuring homeostasis during flight. It consists of the sympathetic and parasympathetic systems, which work in opposition to maintain balance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.1.2Describe",
+    "subjectId": 2,
+    "text": "the term 'sensitivity', especially in the context of vision",
+    "knowledgeContent": "Sensitivity in vision refers to the eye's ability to detect light intensity and distinguish details. It is influenced by photoreceptor cells (rods and cones) and can vary based on light conditions and adaptation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.1.3State",
+    "subjectId": 2,
+    "text": "examples of sensory adaptation",
+    "knowledgeContent": "Examples of sensory adaptation include the eye adjusting to darkness (dark adaptation) or brightness (light adaptation), and the ear adapting to continuous noise levels.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.1.4Describe",
+    "subjectId": 2,
+    "text": "the term 'reflex'",
+    "knowledgeContent": "A reflex is an involuntary, rapid response to a stimulus, mediated by the nervous system. Examples include the pupillary reflex to light and the knee-jerk reflex.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.2",
+    "subjectId": 2,
+    "text": "Vision",
+    "knowledgeContent": "Vision is critical for flight safety, enabling pilots to perceive their environment, navigate, and detect hazards. Understanding visual physiology and limitations is essential for effective lookout and spatial awareness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.2.1Name",
+    "subjectId": 2,
+    "text": "and identify the most important parts of the eye",
+    "knowledgeContent": "The most important parts of the eye include the cornea, iris, lens, retina, rods, cones, and optic nerve. Each plays a role in light refraction, focus, and image transmission to the brain.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.2.2Explain",
+    "subjectId": 2,
+    "text": "the functions of the rod and cone cells",
+    "knowledgeContent": "Rod cells are responsible for low-light vision and detecting motion, while cone cells enable color vision and high visual acuity in bright light.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.2.3Define",
+    "subjectId": 2,
+    "text": "'accommodation'",
+    "knowledgeContent": "Accommodation is the eye's ability to adjust its focus by changing the shape of the lens, allowing clear vision at varying distances.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.2.5Explain",
+    "subjectId": 2,
+    "text": "the 'parallax error'",
+    "knowledgeContent": "Parallax error occurs when an object's position appears shifted due to the observer's viewing angle, leading to misinterpretation of distance or alignment.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.2.6Describe",
+    "subjectId": 2,
+    "text": "the effect of UV ray protection of the retina by wearing sunglasses",
+    "knowledgeContent": "Wearing sunglasses protects the retina from harmful UV rays, reducing the risk of cataracts and macular degeneration, and improving visual comfort in bright conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.2.7Explain",
+    "subjectId": 2,
+    "text": "the differences and limitations between seeing with one eye or both eyes",
+    "knowledgeContent": "Binocular vision provides depth perception and a wider field of view, while monocular vision lacks depth cues and can limit spatial awareness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.2.8List",
+    "subjectId": 2,
+    "text": "the possible monocular cues for depth perception",
+    "knowledgeContent": "Monocular cues for depth perception include relative size, texture gradient, linear perspective, motion parallax, and occlusion.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.2.10State",
+    "subjectId": 2,
+    "text": "the time necessary for the eye to adapt to bright light and to the dark",
+    "knowledgeContent": "The eye takes approximately 5-10 minutes to adapt to bright light and 20-30 minutes to adapt fully to darkness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.2.11List",
+    "subjectId": 2,
+    "text": "the factors that may degrade visual acuity and the importance of 'lookout'",
+    "knowledgeContent": "Factors degrading visual acuity include fatigue, glare, hypoxia, and poor lighting. Effective lookout is crucial for detecting hazards and ensuring flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.2.12Decribe",
+    "subjectId": 2,
+    "text": "the nature and effects of colour blindness",
+    "knowledgeContent": "Color blindness is the inability to distinguish certain colors, often due to defective cone cells. It can affect the interpretation of colored signals and instruments.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.3",
+    "subjectId": 2,
+    "text": "Hearing",
+    "knowledgeContent": "Hearing is essential for communication and situational awareness in aviation. Understanding auditory physiology and protection measures is vital for pilot performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.3.1State",
+    "subjectId": 2,
+    "text": "the basic parts and functions of the outer, the middle and the inner ear",
+    "knowledgeContent": "The outer ear collects sound waves, the middle ear amplifies them via the ossicles, and the inner ear converts them into neural signals via the cochlea.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.3.3Explain",
+    "subjectId": 2,
+    "text": "the difference between a standard headset and an active noise reduction headset",
+    "knowledgeContent": "Active noise reduction headsets use electronic systems to cancel out ambient noise, providing clearer communication and reduced hearing fatigue compared to standard headsets.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.3.4Describe",
+    "subjectId": 2,
+    "text": "possible damages caused by continued exposure to loud noise",
+    "knowledgeContent": "Continued exposure to loud noise can cause permanent hearing loss, tinnitus, and reduced auditory sensitivity.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.3.5List",
+    "subjectId": 2,
+    "text": "the main sources of hearing loss in the flying environment",
+    "knowledgeContent": "Main sources of hearing loss in aviation include engine noise, wind noise, and prolonged use of headsets without adequate noise reduction.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.3.6Describe",
+    "subjectId": 2,
+    "text": "the level of noise that will cause 'noise-induced hearing loss' (NIHL)",
+    "knowledgeContent": "Noise-induced hearing loss (NIHL) occurs at sound levels above 85 dB over prolonged periods, damaging the hair cells in the cochlea.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.4",
+    "subjectId": 2,
+    "text": "Equilibrium",
+    "knowledgeContent": "Equilibrium is maintained by the vestibular system, which detects motion and orientation. Understanding its functions and limitations is crucial for preventing spatial disorientation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.4.1List",
+    "subjectId": 2,
+    "text": "the main elements of the vestibular apparatus",
+    "knowledgeContent": "The vestibular apparatus includes the semicircular canals, utricle, and saccule, which detect rotational and linear motion, respectively.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.4.2Describe",
+    "subjectId": 2,
+    "text": "the functions of the vestibular apparatus and possible problems in flight",
+    "knowledgeContent": "The vestibular apparatus helps maintain balance and spatial orientation but can be disrupted by flight maneuvers, leading to illusions or disorientation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.4.3Describe",
+    "subjectId": 2,
+    "text": "the causes and symptoms of 'air sickness'",
+    "knowledgeContent": "Air sickness is caused by conflicting sensory inputs, leading to symptoms like nausea, dizziness, and sweating. It is common during turbulence or unusual flight attitudes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.4.4Describe",
+    "subjectId": 2,
+    "text": "suitable actions to counteract the symptoms of air sickness",
+    "knowledgeContent": "Counteracting air sickness involves focusing on the horizon, minimizing head movements, ensuring adequate ventilation, and avoiding heavy meals before flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.5",
+    "subjectId": 2,
+    "text": "Integration of sensory inputs",
+    "knowledgeContent": "Integration of sensory inputs is essential for accurate perception and decision-making in flight. Misinterpretation of sensory data can lead to illusions or disorientation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.5.4Describe",
+    "subjectId": 2,
+    "text": "the term 'illusion' and give examples",
+    "knowledgeContent": "An illusion is a misinterpretation of sensory information, such as the leans (false sense of bank) or the somatogravic illusion (false sense of pitch).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.2.5.7List",
+    "subjectId": 2,
+    "text": "the measures to prevent or overcome spatial disorientation",
+    "knowledgeContent": "Measures to prevent spatial disorientation include relying on instruments, maintaining situational awareness, and avoiding abrupt maneuvers in poor visibility.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.3",
+    "subjectId": 2,
+    "text": "Health and hygiene",
+    "knowledgeContent": "Health and hygiene are critical for pilot performance, ensuring physical and mental fitness to operate an aircraft safely.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:11:20.471Z",
+    "updatedAt": "2026-03-17T21:11:20.471Z"
+  },
+  {
+    "loId": "20.2.3.1",
+    "subjectId": 2,
+    "text": "Personal hygiene: personal fitness",
+    "knowledgeContent": "A PPL(A) student must understand the importance of personal hygiene and fitness in maintaining health and preventing illness, which can impact flight safety. This includes regular exercise, proper nutrition, and hygiene practices to reduce the risk of infections.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.2",
+    "subjectId": 2,
+    "text": "Body rhythm and sleep",
+    "knowledgeContent": "A PPL(A) student must know the significance of maintaining a regular sleep schedule to align with the body's circadian rhythm, ensuring optimal alertness and performance during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.2.1Name",
+    "subjectId": 2,
+    "text": "some internal body rhythms and their relevance to sleep",
+    "knowledgeContent": "A PPL(A) student must identify internal body rhythms, such as the circadian rhythm, and understand their role in regulating sleep-wake cycles and their impact on pilot performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.2.2Explain",
+    "subjectId": 2,
+    "text": "the function of sleep and describe the effects of insufficient sleep on performance",
+    "knowledgeContent": "A PPL(A) student must explain that sleep is essential for cognitive function, memory consolidation, and physical recovery. They must also describe how insufficient sleep can impair decision-making, reaction times, and overall flight performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.3",
+    "subjectId": 2,
+    "text": "Problem areas for pilots:",
+    "knowledgeContent": "A PPL(A) student must be aware of common physiological issues pilots face, such as pressure changes, gastrointestinal upsets, and dehydration, and understand their impact on flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.3.3Describe",
+    "subjectId": 2,
+    "text": "the measures to prevent or clear problems due to pressure changes during flight",
+    "knowledgeContent": "A PPL(A) student must describe measures like equalizing ear pressure (e.g., Valsalva maneuver), avoiding rapid ascents/descents, and using proper breathing techniques to prevent or alleviate pressure-related issues during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.3.4Describe",
+    "subjectId": 2,
+    "text": "the sources and effects of gastrointestinal upsets that may occur during flight",
+    "knowledgeContent": "A PPL(A) student must describe how gastrointestinal upsets, caused by factors like poor diet, stress, or motion sickness, can impair pilot performance and increase the risk of in-flight discomfort or emergencies.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.3.5List",
+    "subjectId": 2,
+    "text": "precautions to reduce the occurrence of gastrointestinal upsets",
+    "knowledgeContent": "A PPL(A) student must list precautions such as eating light, non-greasy meals, staying hydrated, and avoiding foods that cause gas or discomfort to reduce the risk of gastrointestinal upsets during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.3.6Describe",
+    "subjectId": 2,
+    "text": "the term 'barotrauma'",
+    "knowledgeContent": "A PPL(A) student must define 'barotrauma' as tissue damage caused by pressure differences between the body's air spaces and the external environment, commonly affecting the ears, sinuses, or lungs.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.3.7Explain",
+    "subjectId": 2,
+    "text": "why the effects of otic barotrauma can be worse in the descent",
+    "knowledgeContent": "A PPL(A) student must explain that during descent, the increasing external pressure can cause otic barotrauma if the Eustachian tube fails to equalize pressure, leading to pain, hearing loss, or eardrum damage.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.3.8Describe",
+    "subjectId": 2,
+    "text": "the term 'obesity'",
+    "knowledgeContent": "A PPL(A) student must define 'obesity' as a medical condition characterized by excessive body fat, which can impair physical mobility, increase fatigue, and elevate the risk of health issues affecting flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.3.10State",
+    "subjectId": 2,
+    "text": "the importance of adequate hydration",
+    "knowledgeContent": "A PPL(A) student must state that adequate hydration is crucial for maintaining cognitive function, physical performance, and overall health, especially in the dry cabin environment of an aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.3.11State",
+    "subjectId": 2,
+    "text": "the major constituents of a healthy diet",
+    "knowledgeContent": "A PPL(A) student must state that a healthy diet includes balanced proportions of carbohydrates, proteins, fats, vitamins, and minerals to support energy levels, immune function, and overall well-being.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.4",
+    "subjectId": 2,
+    "text": "Intoxication",
+    "knowledgeContent": "A PPL(A) student must understand the effects of intoxication, including alcohol, smoking, and caffeine, on pilot performance and flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.4.2State",
+    "subjectId": 2,
+    "text": "that smoking reduces the body's tolerance to compensate for higher altitudes",
+    "knowledgeContent": "A PPL(A) student must state that smoking reduces the body's ability to compensate for hypoxia at higher altitudes, increasing the risk of impaired cognitive and physical performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.4.3State",
+    "subjectId": 2,
+    "text": "the ‘unit’ of alcohol and state the approximate elimination rate from the blood",
+    "knowledgeContent": "A PPL(A) student must state that one 'unit' of alcohol is equivalent to 10 ml of pure alcohol and that the body eliminates alcohol at a rate of approximately one unit per hour.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.2.3.4.5Indicate",
+    "subjectId": 2,
+    "text": "other beverages besides coffee containing caffeine",
+    "knowledgeContent": "A PPL(A) student must indicate that beverages like tea, energy drinks, and some sodas contain caffeine, which can affect alertness and sleep patterns.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.3",
+    "subjectId": 2,
+    "text": "Basic aviation psychology",
+    "knowledgeContent": "A PPL(A) student must understand basic principles of aviation psychology, including human information processing, attention, perception, and memory, and their relevance to pilot performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.3.1",
+    "subjectId": 2,
+    "text": "Human information processing",
+    "knowledgeContent": "A PPL(A) student must understand how humans process information, including attention, perception, and memory, and how these processes influence decision-making and performance in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.3.1.1",
+    "subjectId": 2,
+    "text": "Attention and vigilance",
+    "knowledgeContent": "A PPL(A) student must understand the concepts of attention and vigilance, including their roles in maintaining situational awareness and detecting potential hazards during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.3.1.1.1Differentiate",
+    "subjectId": 2,
+    "text": "between 'attention' and 'vigilance'",
+    "knowledgeContent": "A PPL(A) student must differentiate between 'attention' (focus on specific stimuli) and 'vigilance' (sustained attention over time to detect rare or unexpected events).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.3.1.1.2Differentiate",
+    "subjectId": 2,
+    "text": "between 'selective' and 'divided' attention",
+    "knowledgeContent": "A PPL(A) student must differentiate between 'selective attention' (focusing on one task while ignoring distractions) and 'divided attention' (handling multiple tasks simultaneously).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.3.1.1.3List",
+    "subjectId": 2,
+    "text": "the factors that affect a person's level of attention",
+    "knowledgeContent": "A PPL(A) student must list factors affecting attention, such as fatigue, stress, workload, and external distractions, and understand their impact on pilot performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.3.1.1.4Indicate",
+    "subjectId": 2,
+    "text": "the signs of reduced vigilance",
+    "knowledgeContent": "A PPL(A) student must indicate signs of reduced vigilance, such as slower reaction times, missed cues, and decreased situational awareness, which can compromise flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.3.1.2",
+    "subjectId": 2,
+    "text": "Perception",
+    "knowledgeContent": "A PPL(A) student must understand how perception influences the interpretation of sensory information and how perceptual errors can lead to misinterpretations in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.3.1.2.1Describe",
+    "subjectId": 2,
+    "text": "some basic perceptual illusions",
+    "knowledgeContent": "A PPL(A) student must describe common perceptual illusions, such as the autokinetic effect, false horizons, and somatogravic illusions, and their potential impact on flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.3.1.2.3Describe",
+    "subjectId": 2,
+    "text": "the mechanism of perception ('bottom-up'/'top-down' process)",
+    "knowledgeContent": "A PPL(A) student must describe the 'bottom-up' process (sensory input driving perception) and the 'top-down' process (prior knowledge influencing perception) and their roles in interpreting aviation-related information.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.3.1.3",
+    "subjectId": 2,
+    "text": "Memory",
+    "knowledgeContent": "A PPL(A) student must understand the mechanisms of memory, including short-term/working memory and long-term memory, and how they affect information retention and recall in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.3.1.3.3Describe",
+    "subjectId": 2,
+    "text": "how interruption can affect short-term/working memory",
+    "knowledgeContent": "A PPL(A) student must describe how interruptions can disrupt short-term/working memory, leading to forgotten tasks or incomplete information processing, which can compromise flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.3.1.3.4State",
+    "subjectId": 2,
+    "text": "the subdivisions of long-term memory and give examples of their content",
+    "knowledgeContent": "A PPL(A) student must state that long-term memory includes declarative (facts and events) and procedural (skills and habits) memory, and provide examples relevant to aviation tasks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:12:20.782Z",
+    "updatedAt": "2026-03-17T21:12:20.782Z"
+  },
+  {
+    "loId": "20.3.1.3.5Explain",
+    "subjectId": 2,
+    "text": "that skills are kept primarily in the long-term memory",
+    "knowledgeContent": "A PPL(A) student must understand that skills, once learned and practiced, are stored in the long-term memory, which allows for their retrieval and application during flight operations. This storage is crucial for maintaining proficiency and ensuring safe and effective performance in the cockpit.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.2",
+    "subjectId": 2,
+    "text": "Human error and reliability",
+    "knowledgeContent": "A PPL(A) student must recognize that human error is an inherent part of human performance and that reliability in aviation depends on understanding, mitigating, and managing these errors. This includes awareness of how errors can be influenced by various factors such as fatigue, stress, and environmental conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.2.1",
+    "subjectId": 2,
+    "text": "Reliability of human behaviour",
+    "knowledgeContent": "A PPL(A) student must understand that human reliability refers to the consistency and accuracy of human performance in aviation tasks. This reliability can be affected by factors such as training, experience, physical and mental state, and external pressures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.2.1.1Name",
+    "subjectId": 2,
+    "text": "and explain the factors that influence human reliability",
+    "knowledgeContent": "A PPL(A) student must identify and explain factors that influence human reliability, including fatigue, stress, workload, training, and environmental conditions. Understanding these factors helps in developing strategies to mitigate errors and enhance performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.2.1.2Explain",
+    "subjectId": 2,
+    "text": "the effect of 'confirmation bias'",
+    "knowledgeContent": "A PPL(A) student must explain 'confirmation bias,' which is the tendency to favor information that confirms pre-existing beliefs or hypotheses while disregarding contradictory evidence. This bias can lead to errors in judgment and decision-making in the cockpit.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.2.2",
+    "subjectId": 2,
+    "text": "Error generation: social environment (group, organisation)",
+    "knowledgeContent": "A PPL(A) student must understand that errors can be generated within the social environment, including group dynamics and organizational culture. These social factors can influence individual behavior and contribute to the occurrence of errors in aviation operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.2.2.1Explain",
+    "subjectId": 2,
+    "text": "the concept of the 'error chain' ('swiss cheese' model)",
+    "knowledgeContent": "A PPL(A) student must explain the 'error chain' concept, often illustrated by the 'Swiss cheese model,' where multiple layers of defense can fail, allowing errors to propagate and result in an incident or accident. Understanding this model helps in identifying and breaking the chain of errors.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.2.2.2State",
+    "subjectId": 2,
+    "text": "the meaning and consequences of 'latent errors'",
+    "knowledgeContent": "A PPL(A) student must state that 'latent errors' are hidden or dormant errors within a system or process that can contribute to an incident when combined with active errors. These errors often stem from organizational or procedural deficiencies and can have significant consequences if not addressed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.2.2.3Describe",
+    "subjectId": 2,
+    "text": "social (group) effects on error generation",
+    "knowledgeContent": "A PPL(A) student must describe how social or group effects, such as peer pressure, groupthink, or hierarchical structures, can influence error generation in aviation. These effects can lead to poor decision-making and increased risk of errors in the cockpit.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.3",
+    "subjectId": 2,
+    "text": "Decision making",
+    "knowledgeContent": "A PPL(A) student must understand that decision-making in aviation involves evaluating information, assessing risks, and choosing the best course of action. Effective decision-making is critical for flight safety and requires awareness of potential biases and limitations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.3.1.1Explain",
+    "subjectId": 2,
+    "text": "the terms 'deciding' and 'decision-making'",
+    "knowledgeContent": "A PPL(A) student must explain the terms 'deciding' and 'decision-making,' where 'deciding' refers to the act of making a choice, and 'decision-making' encompasses the entire process of gathering information, evaluating options, and selecting an action.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.3.1.2Describe",
+    "subjectId": 2,
+    "text": "the process of decision-making in the cockpit",
+    "knowledgeContent": "A PPL(A) student must describe the decision-making process in the cockpit, which includes identifying the problem, gathering relevant information, evaluating alternatives, making a decision, and reviewing the outcome. This process is essential for safe and effective flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.3.1.3Describe",
+    "subjectId": 2,
+    "text": "the main error sources and limits in an individual's decision-making mechanism",
+    "knowledgeContent": "A PPL(A) student must describe the main error sources and limits in an individual's decision-making mechanism, such as cognitive biases, stress, fatigue, and incomplete information. Understanding these limitations helps in developing strategies to improve decision-making.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.4",
+    "subjectId": 2,
+    "text": "Avoiding and managing errors: cockpit management",
+    "knowledgeContent": "A PPL(A) student must understand that avoiding and managing errors in the cockpit involves effective cockpit management, including communication, workload distribution, and situational awareness. These practices are essential for maintaining flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.4.1",
+    "subjectId": 2,
+    "text": "Safety awareness",
+    "knowledgeContent": "A PPL(A) student must understand that safety awareness involves recognizing potential hazards and taking proactive measures to mitigate risks. This awareness is crucial for preventing incidents and accidents in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.4.1.2Describe",
+    "subjectId": 2,
+    "text": "the term 'situation awareness'",
+    "knowledgeContent": "A PPL(A) student must describe 'situation awareness' as the perception of environmental elements, comprehension of their meaning, and projection of their future status. Maintaining situation awareness is vital for effective decision-making and flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.4.1.3Identify",
+    "subjectId": 2,
+    "text": "factors that influence one's situation awareness both positively and negatively",
+    "knowledgeContent": "A PPL(A) student must identify factors that positively and negatively influence situation awareness, such as workload, distractions, fatigue, and communication. Understanding these factors helps in maintaining a high level of awareness during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.4.1.4Describe",
+    "subjectId": 2,
+    "text": "the importance of situation awareness in the context of flight safety",
+    "knowledgeContent": "A PPL(A) student must describe the importance of situation awareness in flight safety, as it enables pilots to anticipate and respond to potential hazards effectively. Loss of situation awareness can lead to errors and compromised safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.4.2",
+    "subjectId": 2,
+    "text": "Communication: verbal and non-verbal communication",
+    "knowledgeContent": "A PPL(A) student must understand that effective communication, both verbal and non-verbal, is essential for coordinating actions and ensuring safety in the cockpit. Miscommunication can lead to errors and misunderstandings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.4.2.1Define",
+    "subjectId": 2,
+    "text": "the terms 'communication' and 'closed-loop'",
+    "knowledgeContent": "A PPL(A) student must define 'communication' as the exchange of information between individuals and 'closed-loop' communication as a method where the receiver confirms understanding of the message. This ensures clarity and reduces the risk of errors.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.4.2.2State",
+    "subjectId": 2,
+    "text": "the importance and problems of non-verbal communication",
+    "knowledgeContent": "A PPL(A) student must state the importance of non-verbal communication, such as gestures and body language, in conveying information in the cockpit. However, non-verbal communication can also lead to misunderstandings if not interpreted correctly.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.5",
+    "subjectId": 2,
+    "text": "Human behaviour",
+    "knowledgeContent": "A PPL(A) student must understand that human behavior in aviation is influenced by personality, attitudes, and external factors. Recognizing these influences helps in managing behavior and reducing error proneness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.5.1",
+    "subjectId": 2,
+    "text": "Personality and attitudes",
+    "knowledgeContent": "A PPL(A) student must understand that personality and attitudes shape an individual's behavior and decision-making in aviation. These traits can influence how a pilot responds to challenges and risks during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.5.1.1Define",
+    "subjectId": 2,
+    "text": "and distinguish between 'personality', 'attitude' and 'behaviour'",
+    "knowledgeContent": "A PPL(A) student must define and distinguish between 'personality' (an individual's characteristic patterns of thought and behavior), 'attitude' (a settled way of thinking or feeling about something), and 'behavior' (the way a person acts in response to a situation).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.5.1.2Describe",
+    "subjectId": 2,
+    "text": "the factors that determine an individual's behaviour",
+    "knowledgeContent": "A PPL(A) student must describe the factors that determine an individual's behavior, including personality, attitudes, external pressures, and situational context. Understanding these factors helps in predicting and managing behavior in the cockpit.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.5.2",
+    "subjectId": 2,
+    "text": "Identification of hazardous attitudes (error proneness)",
+    "knowledgeContent": "A PPL(A) student must understand that hazardous attitudes, such as impulsivity or overconfidence, can increase error proneness in aviation. Identifying and mitigating these attitudes is essential for maintaining safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.6",
+    "subjectId": 2,
+    "text": "Human overload and underload",
+    "knowledgeContent": "A PPL(A) student must understand that human overload and underload can negatively impact performance in aviation. Managing workload and maintaining an optimal level of engagement are crucial for safe flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.6.1",
+    "subjectId": 2,
+    "text": "Stress",
+    "knowledgeContent": "A PPL(A) student must understand that stress is a natural human reaction to perceived threats or challenges. While stress can enhance performance in moderate levels, excessive stress can impair decision-making and performance in the cockpit.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.6.1.1Explain",
+    "subjectId": 2,
+    "text": "the term 'stress' and why stress is a natural human reaction",
+    "knowledgeContent": "A PPL(A) student must explain that stress is a physiological and psychological response to external pressures or demands. It is a natural reaction that can affect performance positively or negatively depending on its intensity and duration.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.6.1.2Explain",
+    "subjectId": 2,
+    "text": "the relationship between stress and anxiety",
+    "knowledgeContent": "A PPL(A) student must explain the relationship between stress and anxiety, where stress can lead to anxiety if not managed effectively. Anxiety can impair cognitive functions and decision-making, posing a risk to flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:23.334Z",
+    "updatedAt": "2026-03-17T21:13:23.334Z"
+  },
+  {
+    "loId": "20.3.6.1.3Describe",
+    "subjectId": 2,
+    "text": "the relationship between stress and performance",
+    "knowledgeContent": "A PPL(A) student must understand that stress negatively impacts cognitive and motor performance, leading to reduced decision-making accuracy, slower reaction times, and impaired situational awareness. They should also recognize that stress can cause tunnel vision, where focus narrows to the exclusion of critical flight parameters.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:45.973Z",
+    "updatedAt": "2026-03-17T21:13:45.973Z"
+  },
+  {
+    "loId": "20.3.6.1.4List",
+    "subjectId": 2,
+    "text": "human properties that are affectd by stress",
+    "knowledgeContent": "The student must identify human properties affected by stress, including attention (divided or selective), memory (short-term recall), and coordination (fine motor skills). Additionally, stress can impair communication skills and increase error rates in standard operating procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:45.973Z",
+    "updatedAt": "2026-03-17T21:13:45.973Z"
+  },
+  {
+    "loId": "20.3.6.1.5State",
+    "subjectId": 2,
+    "text": "that the stress experienced as a result of particular demands varies among individuals",
+    "knowledgeContent": "The student should acknowledge that stress tolerance varies due to factors like experience, personality, and physiological resilience. For example, a novice pilot may perceive turbulence as highly stressful, whereas an experienced pilot may manage it calmly.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:45.973Z",
+    "updatedAt": "2026-03-17T21:13:45.973Z"
+  },
+  {
+    "loId": "20.3.6.1.7Describe",
+    "subjectId": 2,
+    "text": "the effect of human underload/overload on cockpit performance",
+    "knowledgeContent": "The student must explain how underload (monotony) can lead to complacency and delayed reactions, while overload (e.g., emergency scenarios) can cause task saturation and missed checklist items. Both extremes degrade cockpit performance and require proactive management.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:45.973Z",
+    "updatedAt": "2026-03-17T21:13:45.973Z"
+  },
+  {
+    "loId": "20.3.6.2",
+    "subjectId": 2,
+    "text": "Fatigue and stress management",
+    "knowledgeContent": "The student must understand fatigue and stress management as critical to maintaining aeronautical decision-making (ADM). This includes recognizing fatigue symptoms early and applying mitigation strategies such as rest, hydration, and workload distribution.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:45.973Z",
+    "updatedAt": "2026-03-17T21:13:45.973Z"
+  },
+  {
+    "loId": "20.3.6.2.2Name",
+    "subjectId": 2,
+    "text": "the causes of short-term and chronic fatigue",
+    "knowledgeContent": "Short-term fatigue causes include sleep deprivation, dehydration, and high workload, while chronic fatigue stems from prolonged stress, irregular schedules, or medical conditions. The student should link these to increased risk of human error.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:45.973Z",
+    "updatedAt": "2026-03-17T21:13:45.973Z"
+  },
+  {
+    "loId": "20.3.6.2.3Identify",
+    "subjectId": 2,
+    "text": "the symptoms and describe the effects of fatigue",
+    "knowledgeContent": "The student must recognize fatigue symptoms like yawning, blurred vision, and irritability, and understand their effects: impaired judgment, reduced vigilance, and slower problem-solving. Chronic fatigue may also lead to microsleeps during critical phases.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:45.973Z",
+    "updatedAt": "2026-03-17T21:13:45.973Z"
+  },
+  {
+    "loId": "20.3.6.2.4List",
+    "subjectId": 2,
+    "text": "and describe strategies for coping with stress factors and stress reactions",
+    "knowledgeContent": "Strategies include prioritizing tasks (e.g., aviate-navigate-communicate), using checklists to reduce cognitive load, and practicing controlled breathing during stress. Post-flight, debriefing and physical exercise help mitigate long-term stress reactions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:45.973Z",
+    "updatedAt": "2026-03-17T21:13:45.973Z"
+  },
+  {
+    "loId": "20.3.6.2.5Give",
+    "subjectId": 2,
+    "text": "examples of short-term methods of stress management",
+    "knowledgeContent": "Short-term methods include the 'STOP' technique (Stop, Think, Organize, Proceed), brief physical stretches to improve circulation, and verbalizing actions to maintain focus during high-pressure situations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:45.973Z",
+    "updatedAt": "2026-03-17T21:13:45.973Z"
+  },
+  {
+    "loId": "20.3.6.2.6Give",
+    "subjectId": 2,
+    "text": "examples of long-term methods of coping with stress",
+    "knowledgeContent": "Long-term methods involve regular sleep hygiene, balanced nutrition, and aerobic exercise to enhance stress resilience. Additionally, scenario-based training and mindfulness practices can improve adaptive responses to cockpit stressors.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:13:45.973Z",
+    "updatedAt": "2026-03-17T21:13:45.973Z"
+  }
+]

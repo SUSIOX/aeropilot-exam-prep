@@ -1,0 +1,1022 @@
+[
+  {
+    "loId": "050.01.01.01",
+    "subjectId": 5,
+    "text": "Atmosphere Composition",
+    "knowledgeContent": "Understand the composition of the Earth's atmosphere, including the percentages of nitrogen, oxygen, and other gases.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.01.02",
+    "subjectId": 5,
+    "text": "Atmosphere Layers",
+    "knowledgeContent": "Identify the main layers of the atmosphere (troposphere, stratosphere, mesosphere, thermosphere) and their characteristics.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.01.03",
+    "subjectId": 5,
+    "text": "International Standard Atmosphere (ISA)",
+    "knowledgeContent": "Explain the concept of the International Standard Atmosphere (ISA) and its standard values for temperature, pressure, and density.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.02.01",
+    "subjectId": 5,
+    "text": "Temperature Measurement",
+    "knowledgeContent": "Describe how temperature is measured and the units used (Celsius, Fahrenheit).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.02.02",
+    "subjectId": 5,
+    "text": "Temperature Variations",
+    "knowledgeContent": "Understand how temperature varies with altitude and its impact on aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.02.03",
+    "subjectId": 5,
+    "text": "Temperature Inversions",
+    "knowledgeContent": "Explain the concept of temperature inversions and their effects on weather and flight conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.03.01",
+    "subjectId": 5,
+    "text": "Pressure Measurement",
+    "knowledgeContent": "Describe how atmospheric pressure is measured and the units used (hPa, inHg).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.03.02",
+    "subjectId": 5,
+    "text": "Pressure Altitude",
+    "knowledgeContent": "Understand the concept of pressure altitude and its relationship to atmospheric pressure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.03.03",
+    "subjectId": 5,
+    "text": "QNH and QFE",
+    "knowledgeContent": "Explain the differences between QNH and QFE and their use in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.04.01",
+    "subjectId": 5,
+    "text": "Humidity Measurement",
+    "knowledgeContent": "Describe how humidity is measured and the units used (relative humidity, dew point).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.04.02",
+    "subjectId": 5,
+    "text": "Dew Point and Frost",
+    "knowledgeContent": "Understand the relationship between dew point and frost formation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.04.03",
+    "subjectId": 5,
+    "text": "Humidity Effects on Weather",
+    "knowledgeContent": "Explain how humidity affects weather phenomena such as fog and clouds.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.05.01",
+    "subjectId": 5,
+    "text": "Wind Measurement",
+    "knowledgeContent": "Describe how wind speed and direction are measured and the units used (knots, degrees).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.05.02",
+    "subjectId": 5,
+    "text": "Wind Effects on Flight",
+    "knowledgeContent": "Understand how wind affects aircraft performance and navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.05.03",
+    "subjectId": 5,
+    "text": "Local Wind Patterns",
+    "knowledgeContent": "Explain local wind patterns such as sea breezes and mountain winds.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.06.01",
+    "subjectId": 5,
+    "text": "Cloud Classification",
+    "knowledgeContent": "Identify the main types of clouds (cumulus, stratus, cirrus) and their characteristics.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.06.02",
+    "subjectId": 5,
+    "text": "Cloud Formation",
+    "knowledgeContent": "Understand the processes involved in cloud formation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.06.03",
+    "subjectId": 5,
+    "text": "Cloud Effects on Flight",
+    "knowledgeContent": "Explain how clouds can affect visibility and aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.07.01",
+    "subjectId": 5,
+    "text": "Precipitation Types",
+    "knowledgeContent": "Identify different types of precipitation (rain, snow, sleet, hail) and their formation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.07.02",
+    "subjectId": 5,
+    "text": "Precipitation Effects on Flight",
+    "knowledgeContent": "Understand how precipitation can affect aircraft performance and safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.08.01",
+    "subjectId": 5,
+    "text": "Visibility Measurement",
+    "knowledgeContent": "Describe how visibility is measured and the units used (meters, statute miles).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.08.02",
+    "subjectId": 5,
+    "text": "Reduced Visibility Conditions",
+    "knowledgeContent": "Understand the causes of reduced visibility (fog, haze, smoke) and their impact on flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.09.01",
+    "subjectId": 5,
+    "text": "Air Masses",
+    "knowledgeContent": "Identify the main types of air masses and their characteristics.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.09.02",
+    "subjectId": 5,
+    "text": "Fronts",
+    "knowledgeContent": "Understand the different types of fronts (cold, warm, occluded) and their associated weather.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.09.03",
+    "subjectId": 5,
+    "text": "Frontal Weather Effects",
+    "knowledgeContent": "Explain how frontal systems affect weather and flight conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.10.01",
+    "subjectId": 5,
+    "text": "High and Low Pressure Systems",
+    "knowledgeContent": "Understand the characteristics of high and low pressure systems and their associated weather.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.10.02",
+    "subjectId": 5,
+    "text": "Pressure Gradient Force",
+    "knowledgeContent": "Explain the concept of pressure gradient force and its effect on wind.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.11.01",
+    "subjectId": 5,
+    "text": "Coriolis Force",
+    "knowledgeContent": "Understand the Coriolis force and its effect on wind patterns.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.11.02",
+    "subjectId": 5,
+    "text": "Geostrophic Wind",
+    "knowledgeContent": "Explain the concept of geostrophic wind and its relationship to pressure gradients.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.12.01",
+    "subjectId": 5,
+    "text": "Jet Streams",
+    "knowledgeContent": "Identify the characteristics and locations of jet streams.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.12.02",
+    "subjectId": 5,
+    "text": "Jet Stream Effects on Flight",
+    "knowledgeContent": "Understand how jet streams can affect aircraft performance and fuel efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.13.01",
+    "subjectId": 5,
+    "text": "Thunderstorm Formation",
+    "knowledgeContent": "Explain the conditions required for thunderstorm formation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.13.02",
+    "subjectId": 5,
+    "text": "Thunderstorm Stages",
+    "knowledgeContent": "Understand the three stages of thunderstorm development (cumulus, mature, dissipating).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.13.03",
+    "subjectId": 5,
+    "text": "Thunderstorm Hazards",
+    "knowledgeContent": "Identify the hazards associated with thunderstorms (turbulence, lightning, hail).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.14.01",
+    "subjectId": 5,
+    "text": "Icing Types",
+    "knowledgeContent": "Identify the different types of icing (rime, clear, mixed) and their formation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.14.02",
+    "subjectId": 5,
+    "text": "Icing Effects on Flight",
+    "knowledgeContent": "Understand how icing can affect aircraft performance and safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.15.01",
+    "subjectId": 5,
+    "text": "Turbulence Types",
+    "knowledgeContent": "Identify the different types of turbulence (mechanical, thermal, clear air).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.15.02",
+    "subjectId": 5,
+    "text": "Turbulence Effects on Flight",
+    "knowledgeContent": "Understand how turbulence can affect aircraft performance and passenger comfort.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.16.01",
+    "subjectId": 5,
+    "text": "Mountain Waves",
+    "knowledgeContent": "Explain the formation of mountain waves and their effects on flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.16.02",
+    "subjectId": 5,
+    "text": "Lee Waves",
+    "knowledgeContent": "Understand the characteristics of lee waves and their impact on aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.17.01",
+    "subjectId": 5,
+    "text": "METAR Codes",
+    "knowledgeContent": "Understand how to decode METAR reports and extract relevant weather information.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.17.02",
+    "subjectId": 5,
+    "text": "TAF Codes",
+    "knowledgeContent": "Understand how to decode TAF reports and extract relevant weather forecasts.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.18.01",
+    "subjectId": 5,
+    "text": "Weather Charts",
+    "knowledgeContent": "Understand how to interpret weather charts, including surface and upper-air charts.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.18.02",
+    "subjectId": 5,
+    "text": "Weather Symbols",
+    "knowledgeContent": "Identify common weather symbols used on weather charts.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.19.01",
+    "subjectId": 5,
+    "text": "Weather Briefings",
+    "knowledgeContent": "Understand the importance of obtaining a weather briefing before flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.19.02",
+    "subjectId": 5,
+    "text": "Weather Sources",
+    "knowledgeContent": "Identify reliable sources of weather information for pilots.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.20.01",
+    "subjectId": 5,
+    "text": "Climate Zones",
+    "knowledgeContent": "Identify the main climate zones and their characteristics.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.20.02",
+    "subjectId": 5,
+    "text": "Seasonal Weather Patterns",
+    "knowledgeContent": "Understand how seasonal changes affect weather patterns.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.21.01",
+    "subjectId": 5,
+    "text": "El Niño and La Niña",
+    "knowledgeContent": "Explain the phenomena of El Niño and La Niña and their effects on global weather.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.22.01",
+    "subjectId": 5,
+    "text": "Global Wind Patterns",
+    "knowledgeContent": "Understand the global wind patterns, including trade winds and westerlies.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.23.01",
+    "subjectId": 5,
+    "text": "Microclimates",
+    "knowledgeContent": "Explain the concept of microclimates and their local weather effects.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.24.01",
+    "subjectId": 5,
+    "text": "Weather Hazards",
+    "knowledgeContent": "Identify common weather hazards and their impact on flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.25.01",
+    "subjectId": 5,
+    "text": "Weather Avoidance",
+    "knowledgeContent": "Understand strategies for avoiding adverse weather conditions during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.26.01",
+    "subjectId": 5,
+    "text": "Weather Decision Making",
+    "knowledgeContent": "Understand the importance of weather-related decision making in flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.27.01",
+    "subjectId": 5,
+    "text": "Weather Observations",
+    "knowledgeContent": "Understand the importance of in-flight weather observations and reporting.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.28.01",
+    "subjectId": 5,
+    "text": "Weather Radar",
+    "knowledgeContent": "Understand how weather radar is used to detect precipitation and storms.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.29.01",
+    "subjectId": 5,
+    "text": "Satellite Imagery",
+    "knowledgeContent": "Understand how satellite imagery is used to monitor weather systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.30.01",
+    "subjectId": 5,
+    "text": "Weather Forecasting",
+    "knowledgeContent": "Understand the principles of weather forecasting and its limitations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.31.01",
+    "subjectId": 5,
+    "text": "Weather Models",
+    "knowledgeContent": "Understand the use of numerical weather prediction models in forecasting.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.32.01",
+    "subjectId": 5,
+    "text": "Weather Advisories",
+    "knowledgeContent": "Understand the purpose and content of weather advisories (SIGMET, AIRMET).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.33.01",
+    "subjectId": 5,
+    "text": "Volcanic Ash",
+    "knowledgeContent": "Understand the hazards of volcanic ash to aircraft and how to avoid it.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.34.01",
+    "subjectId": 5,
+    "text": "Dust Storms",
+    "knowledgeContent": "Understand the hazards of dust storms to aircraft and how to avoid them.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.35.01",
+    "subjectId": 5,
+    "text": "Tropical Cyclones",
+    "knowledgeContent": "Understand the formation and hazards of tropical cyclones (hurricanes, typhoons).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.36.01",
+    "subjectId": 5,
+    "text": "Polar Weather",
+    "knowledgeContent": "Understand the unique weather conditions in polar regions and their impact on flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.37.01",
+    "subjectId": 5,
+    "text": "Desert Weather",
+    "knowledgeContent": "Understand the unique weather conditions in desert regions and their impact on flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.38.01",
+    "subjectId": 5,
+    "text": "Maritime Weather",
+    "knowledgeContent": "Understand the unique weather conditions over maritime regions and their impact on flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.39.01",
+    "subjectId": 5,
+    "text": "Weather and Flight Planning",
+    "knowledgeContent": "Understand how to incorporate weather information into flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  },
+  {
+    "loId": "050.01.40.01",
+    "subjectId": 5,
+    "text": "Weather and Navigation",
+    "knowledgeContent": "Understand how weather conditions can affect navigation and route selection.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:49:54.002Z",
+    "updatedAt": "2026-03-17T19:49:54.002Z"
+  }
+]

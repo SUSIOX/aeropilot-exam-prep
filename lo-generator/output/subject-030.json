@@ -1,0 +1,1022 @@
+[
+  {
+    "loId": "030.01.01.01",
+    "subjectId": 3,
+    "text": "Basic principles of flight performance",
+    "knowledgeContent": "Understand the fundamental principles affecting aircraft performance, including lift, drag, thrust, and weight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.01.02",
+    "subjectId": 3,
+    "text": "Factors affecting aircraft performance",
+    "knowledgeContent": "Identify factors such as altitude, temperature, weight, and wind that influence aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.02.01",
+    "subjectId": 3,
+    "text": "Takeoff performance",
+    "knowledgeContent": "Understand the factors affecting takeoff performance, including runway length, aircraft weight, and environmental conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.02.02",
+    "subjectId": 3,
+    "text": "Landing performance",
+    "knowledgeContent": "Understand the factors affecting landing performance, including runway length, aircraft weight, and environmental conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.03.01",
+    "subjectId": 3,
+    "text": "Climb performance",
+    "knowledgeContent": "Understand the principles of climb performance, including rate of climb and climb gradient.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.03.02",
+    "subjectId": 3,
+    "text": "Cruise performance",
+    "knowledgeContent": "Understand the factors affecting cruise performance, including altitude, power settings, and fuel consumption.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.04.01",
+    "subjectId": 3,
+    "text": "Stall speeds",
+    "knowledgeContent": "Understand the concept of stall speeds and how they vary with weight, configuration, and altitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.04.02",
+    "subjectId": 3,
+    "text": "Manoeuvring speeds",
+    "knowledgeContent": "Understand the concept of manoeuvring speeds and their significance in flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.05.01",
+    "subjectId": 3,
+    "text": "Weight and balance",
+    "knowledgeContent": "Understand the importance of weight and balance in aircraft performance and safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.05.02",
+    "subjectId": 3,
+    "text": "Centre of gravity",
+    "knowledgeContent": "Understand the concept of centre of gravity and its impact on aircraft stability and control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.06.01",
+    "subjectId": 3,
+    "text": "Fuel planning",
+    "knowledgeContent": "Understand the principles of fuel planning, including fuel consumption rates and reserve requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.06.02",
+    "subjectId": 3,
+    "text": "Fuel management",
+    "knowledgeContent": "Understand the importance of fuel management during flight to ensure safety and efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.07.01",
+    "subjectId": 3,
+    "text": "Flight planning",
+    "knowledgeContent": "Understand the process of flight planning, including route selection, weather considerations, and fuel requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.07.02",
+    "subjectId": 3,
+    "text": "Navigation planning",
+    "knowledgeContent": "Understand the principles of navigation planning, including chart reading, waypoints, and flight paths.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.08.01",
+    "subjectId": 3,
+    "text": "Weather impact on performance",
+    "knowledgeContent": "Understand how weather conditions such as wind, temperature, and pressure affect aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.08.02",
+    "subjectId": 3,
+    "text": "Weather planning",
+    "knowledgeContent": "Understand the importance of weather planning in ensuring safe and efficient flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.09.01",
+    "subjectId": 3,
+    "text": "Emergency procedures",
+    "knowledgeContent": "Understand the emergency procedures related to flight performance, including engine failure and forced landings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.09.02",
+    "subjectId": 3,
+    "text": "Emergency planning",
+    "knowledgeContent": "Understand the importance of emergency planning in ensuring safety during unexpected situations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.10.01",
+    "subjectId": 3,
+    "text": "Performance charts",
+    "knowledgeContent": "Understand how to interpret and use performance charts for takeoff, landing, climb, and cruise.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.01.10.02",
+    "subjectId": 3,
+    "text": "Performance calculations",
+    "knowledgeContent": "Understand how to perform basic performance calculations using aircraft performance data.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.02.01.01",
+    "subjectId": 3,
+    "text": "Aerodynamic forces",
+    "knowledgeContent": "Understand the four aerodynamic forces: lift, drag, thrust, and weight, and their interactions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.02.01.02",
+    "subjectId": 3,
+    "text": "Lift generation",
+    "knowledgeContent": "Understand the principles of lift generation, including angle of attack and airfoil design.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.02.02.01",
+    "subjectId": 3,
+    "text": "Drag types",
+    "knowledgeContent": "Understand the different types of drag: parasitic, induced, and their impact on aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.02.02.02",
+    "subjectId": 3,
+    "text": "Drag reduction",
+    "knowledgeContent": "Understand methods to reduce drag, including streamlining and proper aircraft configuration.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.02.03.01",
+    "subjectId": 3,
+    "text": "Thrust generation",
+    "knowledgeContent": "Understand the principles of thrust generation in piston and jet engines.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.02.03.02",
+    "subjectId": 3,
+    "text": "Thrust and power",
+    "knowledgeContent": "Understand the relationship between thrust, power, and aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.02.04.01",
+    "subjectId": 3,
+    "text": "Weight impact",
+    "knowledgeContent": "Understand how weight affects aircraft performance, including takeoff, climb, and fuel consumption.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.02.04.02",
+    "subjectId": 3,
+    "text": "Weight distribution",
+    "knowledgeContent": "Understand the importance of proper weight distribution for aircraft stability and control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.03.01.01",
+    "subjectId": 3,
+    "text": "Takeoff distance",
+    "knowledgeContent": "Understand the factors affecting takeoff distance, including runway conditions, aircraft weight, and environmental factors.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.03.01.02",
+    "subjectId": 3,
+    "text": "Takeoff speed",
+    "knowledgeContent": "Understand the concept of takeoff speed and its calculation based on aircraft weight and configuration.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.03.02.01",
+    "subjectId": 3,
+    "text": "Landing distance",
+    "knowledgeContent": "Understand the factors affecting landing distance, including runway conditions, aircraft weight, and environmental factors.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.03.02.02",
+    "subjectId": 3,
+    "text": "Landing speed",
+    "knowledgeContent": "Understand the concept of landing speed and its calculation based on aircraft weight and configuration.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.03.03.01",
+    "subjectId": 3,
+    "text": "Climb rate",
+    "knowledgeContent": "Understand the factors affecting climb rate, including power settings, aircraft weight, and environmental conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.03.03.02",
+    "subjectId": 3,
+    "text": "Climb gradient",
+    "knowledgeContent": "Understand the concept of climb gradient and its importance in obstacle clearance during climb.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.03.04.01",
+    "subjectId": 3,
+    "text": "Cruise speed",
+    "knowledgeContent": "Understand the factors affecting cruise speed, including altitude, power settings, and aircraft configuration.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.03.04.02",
+    "subjectId": 3,
+    "text": "Cruise altitude",
+    "knowledgeContent": "Understand the factors influencing the selection of cruise altitude for optimal performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.03.05.01",
+    "subjectId": 3,
+    "text": "Stall speed factors",
+    "knowledgeContent": "Understand how factors such as weight, configuration, and altitude affect stall speed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.03.05.02",
+    "subjectId": 3,
+    "text": "Stall recovery",
+    "knowledgeContent": "Understand the procedures for stall recovery and the importance of maintaining control during a stall.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.03.06.01",
+    "subjectId": 3,
+    "text": "Manoeuvring speed factors",
+    "knowledgeContent": "Understand how factors such as weight and configuration affect manoeuvring speed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.03.06.02",
+    "subjectId": 3,
+    "text": "Manoeuvring speed safety",
+    "knowledgeContent": "Understand the importance of adhering to manoeuvring speed limits to prevent structural damage.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.04.01.01",
+    "subjectId": 3,
+    "text": "Weight limits",
+    "knowledgeContent": "Understand the maximum takeoff and landing weight limits for an aircraft and their impact on performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.04.01.02",
+    "subjectId": 3,
+    "text": "Weight calculations",
+    "knowledgeContent": "Understand how to calculate aircraft weight and balance using load sheets and performance data.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.04.02.01",
+    "subjectId": 3,
+    "text": "Centre of gravity limits",
+    "knowledgeContent": "Understand the acceptable range for centre of gravity and its impact on aircraft stability.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.04.02.02",
+    "subjectId": 3,
+    "text": "Centre of gravity calculations",
+    "knowledgeContent": "Understand how to calculate the centre of gravity using weight and balance data.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.05.01.01",
+    "subjectId": 3,
+    "text": "Fuel consumption rates",
+    "knowledgeContent": "Understand how to calculate fuel consumption rates based on aircraft performance data.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.05.01.02",
+    "subjectId": 3,
+    "text": "Fuel reserves",
+    "knowledgeContent": "Understand the regulatory requirements for fuel reserves and their importance in flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.05.02.01",
+    "subjectId": 3,
+    "text": "Fuel management techniques",
+    "knowledgeContent": "Understand techniques for managing fuel during flight to ensure safety and efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.05.02.02",
+    "subjectId": 3,
+    "text": "Fuel system operation",
+    "knowledgeContent": "Understand the operation of the aircraft fuel system, including fuel tanks, pumps, and gauges.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.06.01.01",
+    "subjectId": 3,
+    "text": "Flight plan preparation",
+    "knowledgeContent": "Understand the steps involved in preparing a flight plan, including route selection and weather analysis.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.06.01.02",
+    "subjectId": 3,
+    "text": "Flight plan submission",
+    "knowledgeContent": "Understand the process of submitting a flight plan to air traffic control and the information required.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.06.02.01",
+    "subjectId": 3,
+    "text": "Navigation chart reading",
+    "knowledgeContent": "Understand how to read and interpret navigation charts for route planning and navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.06.02.02",
+    "subjectId": 3,
+    "text": "Waypoint selection",
+    "knowledgeContent": "Understand how to select waypoints for navigation and their significance in flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.07.01.01",
+    "subjectId": 3,
+    "text": "Weather impact on takeoff",
+    "knowledgeContent": "Understand how weather conditions such as wind, temperature, and pressure affect takeoff performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.07.01.02",
+    "subjectId": 3,
+    "text": "Weather impact on landing",
+    "knowledgeContent": "Understand how weather conditions such as wind, temperature, and pressure affect landing performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.07.02.01",
+    "subjectId": 3,
+    "text": "Weather briefing",
+    "knowledgeContent": "Understand the importance of obtaining a weather briefing before flight and the information it provides.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.07.02.02",
+    "subjectId": 3,
+    "text": "Weather sources",
+    "knowledgeContent": "Understand the different sources of weather information, including METARs, TAFs, and weather radar.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.08.01.01",
+    "subjectId": 3,
+    "text": "Engine failure procedures",
+    "knowledgeContent": "Understand the procedures to follow in the event of an engine failure during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.08.01.02",
+    "subjectId": 3,
+    "text": "Forced landing procedures",
+    "knowledgeContent": "Understand the procedures for executing a forced landing in the event of an emergency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.08.02.01",
+    "subjectId": 3,
+    "text": "Emergency descent",
+    "knowledgeContent": "Understand the procedures for performing an emergency descent in the event of a cabin depressurization or other emergency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.08.02.02",
+    "subjectId": 3,
+    "text": "Emergency communication",
+    "knowledgeContent": "Understand the procedures for communicating with air traffic control during an emergency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.09.01.01",
+    "subjectId": 3,
+    "text": "Takeoff performance charts",
+    "knowledgeContent": "Understand how to interpret and use takeoff performance charts for planning and execution.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.09.01.02",
+    "subjectId": 3,
+    "text": "Landing performance charts",
+    "knowledgeContent": "Understand how to interpret and use landing performance charts for planning and execution.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.09.02.01",
+    "subjectId": 3,
+    "text": "Climb performance charts",
+    "knowledgeContent": "Understand how to interpret and use climb performance charts for planning and execution.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.09.02.02",
+    "subjectId": 3,
+    "text": "Cruise performance charts",
+    "knowledgeContent": "Understand how to interpret and use cruise performance charts for planning and execution.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.10.01.01",
+    "subjectId": 3,
+    "text": "Performance calculations for takeoff",
+    "knowledgeContent": "Understand how to perform takeoff performance calculations using aircraft performance data.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.10.01.02",
+    "subjectId": 3,
+    "text": "Performance calculations for landing",
+    "knowledgeContent": "Understand how to perform landing performance calculations using aircraft performance data.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.10.02.01",
+    "subjectId": 3,
+    "text": "Performance calculations for climb",
+    "knowledgeContent": "Understand how to perform climb performance calculations using aircraft performance data.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  },
+  {
+    "loId": "030.10.02.02",
+    "subjectId": 3,
+    "text": "Performance calculations for cruise",
+    "knowledgeContent": "Understand how to perform cruise performance calculations using aircraft performance data.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:11:10.847Z",
+    "updatedAt": "2026-03-17T19:11:10.847Z"
+  }
+]

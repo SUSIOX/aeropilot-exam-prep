@@ -213,6 +213,7 @@ export default function App() {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [examResults, setExamResults] = useState<{ score: number; total: number } | null>(null);
   const [timer, setTimer] = useState(0);
+  const [showExamTypeSelection, setShowExamTypeSelection] = useState(false);
 
   // Drill Settings
   const [drillSettings, setDrillSettings] = useState<DrillSettings>(() => {
@@ -1713,6 +1714,205 @@ export default function App() {
     } catch (err) {
       alert('Nepodařilo se spustit simulaci zkoušky.');
     }
+  };
+
+  const startUCLExam = async () => {
+    try {
+      // Load all questions from all subjects dynamically
+      const allQuestions: Question[] = await loadAllQuestionsAcrossSubjects();
+
+      // EASA PPL category distribution - official specification
+      // Based on EASA standards: 12 questions for basic subjects (20-30 min), 16 for complex subjects (35-50 min)
+      const categoryDistribution = {
+        1: 12, // Air Law - 20 min
+        2: 12, // Human Performance - 20 min
+        3: 16, // Meteorology - 35 min (complex subject with calculations)
+        4: 12, // Communications - 25 min
+        5: 12, // Principles of Flight - 25 min
+        6: 12, // Operational Procedures - 25 min
+        7: 16, // Flight Performance and Planning - 35 min (complex subject with calculations)
+        8: 16, // Aircraft General Knowledge - 35 min (complex technical subject)
+        9: 16, // Navigation - 50 min (complex subject with chart calculations)
+      };
+
+      // Filter for UCL test - prefer user questions but include AI if needed
+      const userQuestions = allQuestions.filter(q => 
+        (Number(q.is_ai) !== 1 && q.source !== 'ai' && q.source !== 'easa')
+      );
+      
+      const aiQuestions = allQuestions.filter(q => 
+        Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa'
+      );
+
+      // Build exam set according to ÚCL category distribution
+      const examSet: Question[] = [];
+      const availableQuestions = [...userQuestions, ...aiQuestions];
+
+      // Try to get questions for each category according to distribution
+      for (const [categoryId, count] of Object.entries(categoryDistribution)) {
+        const categoryQuestions = availableQuestions.filter(q => 
+          q.subject_id === parseInt(categoryId)
+        );
+
+        if (categoryQuestions.length >= count) {
+          // We have enough questions for this category
+          const selected = LearningEngine.generateExamSet(categoryQuestions, count);
+          examSet.push(...selected);
+        } else {
+          // Not enough questions, take what we have
+          examSet.push(...categoryQuestions);
+          console.warn(`Nedostatek otázek pro kategorii ${categoryId}: potřebuje ${count}, k dispozici ${categoryQuestions.length}`);
+        }
+      }
+
+      // If we still don't have 120 questions, fill with remaining questions
+      if (examSet.length < 120) {
+        const needed = 120 - examSet.length;
+        const remainingQuestions = availableQuestions.filter(q => 
+          !examSet.includes(q)
+        );
+        examSet.push(...remainingQuestions.slice(0, needed));
+      }
+
+      if (examSet.length < 120) {
+        alert(`Nedostatek otázek pro ÚCL test (nalezeno ${examSet.length}, potřeba 120). Vygenerujte nebo importujte více otázek.`);
+        return;
+      }
+
+      // Shuffle the final exam set
+      const shuffledExamSet = LearningEngine.generateExamSet(examSet, 120);
+
+      setQuestions(shuffledExamSet);
+      setCurrentQuestionIndex(0);
+      setAnswered(null);
+      setExamAnswers({});
+      setExamResults(null);
+      setTimer(14400); // 4 hours = 14400 seconds
+      language.resetTranslation();
+      setView('exam');
+      setShowExamTypeSelection(false);
+    } catch (err) {
+      alert('Nepodařilo se spustit ÚCL test.');
+    }
+  };
+
+  const startEASAExam = async () => {
+    try {
+      const allQuestions: Question[] = [];
+
+      // For static deployment, get questions from localStorage
+      const savedQuestions = localStorage.getItem('questions');
+      if (savedQuestions) {
+        const data = JSON.parse(savedQuestions);
+        allQuestions.push(...data);
+      } else {
+        // Fallback to current questions state
+        allQuestions.push(...questions);
+      }
+
+      // Filter for EASA test - prefer AI questions but include user if needed
+      const aiQuestions = allQuestions.filter(q => 
+        Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa'
+      );
+      
+      const userQuestions = allQuestions.filter(q => 
+        (Number(q.is_ai) !== 1 && q.source !== 'ai' && q.source !== 'easa')
+      );
+
+      // Priority: AI questions first, then user questions to fill gaps
+      let filteredQuestions = [...aiQuestions];
+      if (filteredQuestions.length < 136) {
+        const needed = 136 - filteredQuestions.length;
+        filteredQuestions.push(...userQuestions.slice(0, needed));
+      }
+
+      if (filteredQuestions.length < 136) {
+        alert(`Nedostatek otázek pro EASA test (nalezeno ${filteredQuestions.length}, potřeba 136). Vygenerujte nebo importujte více otázek.`);
+        return;
+      }
+
+      // Use LearningEngine to generate the exam set
+      const examSet = LearningEngine.generateExamSet(filteredQuestions, 136);
+
+      setQuestions(examSet);
+      setCurrentQuestionIndex(0);
+      setAnswered(null);
+      setExamAnswers({});
+      setExamResults(null);
+      setTimer(3300); // 55 minutes = 3300 seconds
+      language.resetTranslation();
+      setView('exam');
+      setShowExamTypeSelection(false);
+    } catch (err) {
+      alert('Nepodařilo se spustit EASA test.');
+    }
+  };
+
+  const startSPLEXam = async () => {
+    try {
+      // Load all questions from all subjects dynamically
+      const allQuestions: Question[] = await loadAllQuestionsAcrossSubjects();
+
+      // SPL (Sailplane Pilot Licence) category distribution - official specification
+      // SPL has fewer subjects than PPL: 6 subjects instead of 9
+      // Based on EASA standards for glider pilots
+      const categoryDistribution = {
+        1: 12, // Air Law - 20 min
+        2: 12, // Human Performance - 20 min
+        3: 16, // Meteorology - 35 min (critical for glider operations)
+        4: 12, // Communications - 25 min
+        5: 12, // Principles of Flight - 25 min (essential for gliders)
+        9: 16, // Navigation - 50 min (critical for cross-country gliding)
+        // SPL excludes: Operational Procedures (6), Flight Performance (7), Aircraft General (8)
+      };
+
+      // Filter for SPL test - prefer user questions but include AI if needed
+      const userQuestions = allQuestions.filter(q => 
+        (Number(q.is_ai) !== 1 && q.source !== 'ai' && q.source !== 'easa')
+      );
+      
+      const aiQuestions = allQuestions.filter(q => 
+        Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa'
+      );
+
+      // Build exam set according to SPL category distribution
+      const examSet: Question[] = [];
+      const availableQuestions = [...userQuestions, ...aiQuestions];
+
+      // Try to get questions for each SPL category according to distribution
+      for (const [categoryId, count] of Object.entries(categoryDistribution)) {
+        const categoryQuestions = availableQuestions.filter(q => 
+          q.subject_id === parseInt(categoryId)
+        );
+
+        if (categoryQuestions.length >= count) {
+          // Shuffle and take required number
+          const shuffled = [...categoryQuestions].sort(() => Math.random() - 0.5);
+          examSet.push(...shuffled.slice(0, count));
+        } else {
+          // Not enough questions, take all available
+          examSet.push(...categoryQuestions);
+          console.warn(`Not enough questions for SPL category ${categoryId}. Available: ${categoryQuestions.length}, Required: ${count}`);
+        }
+      }
+
+      // Shuffle the final exam set
+      const shuffledExamSet = LearningEngine.generateExamSet(examSet, 80); // 80 questions total for SPL
+
+      setQuestions(shuffledExamSet);
+      setCurrentQuestionIndex(0);
+      setView('exam');
+      setExamAnswers({});
+      setExamResults(null);
+      setTimer(2400); // 40 minutes for SPL exam (shorter than PPL)
+      language.resetTranslation(); // Reset translation when starting exam
+    } catch (err) {
+      alert('Nepodařilo se spustit simulaci SPL zkoušky.');
+    }
+  };
+
+  const handleShowExamTypeSelection = () => {
+    setShowExamTypeSelection(true);
   };
 
   const handleAnswer = async (option: string) => {
@@ -3368,7 +3568,7 @@ V nastavení lze změnit defaultni model.`);
 
                   {/* Exam simulation button */}
                   <button
-                    onClick={startExam}
+                    onClick={handleShowExamTypeSelection}
                     className="bg-gray-600 dark:bg-gray-700 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform"
                   >
                     Simulace zkoušky
@@ -3553,7 +3753,7 @@ V nastavení lze změnit defaultni model.`);
 
                       <button
                         onClick={() => {
-                          startExam();
+                          handleShowExamTypeSelection();
                           setIsMobileMenuOpen(false);
                         }}
                         className="w-full bg-gray-600 dark:bg-gray-700 text-white p-3 rounded-lg font-bold uppercase tracking-widest hover:scale-105 transition-transform"
@@ -6774,6 +6974,105 @@ V nastavení lze změnit defaultni model.`);
                   </div>
 
 
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Exam Type Selection Modal */}
+          <AnimatePresence>
+            {showExamTypeSelection && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+                onClick={() => setShowExamTypeSelection(false)}
+              >
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  className="bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6 max-w-md w-full"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-xl font-bold">Výběr typu testu</h2>
+                    <button
+                      onClick={() => setShowExamTypeSelection(false)}
+                      className="p-2 hover:bg-[var(--line)] rounded-lg transition-colors"
+                    >
+                      <X size={20} />
+                    </button>
+                  </div>
+
+                  <div className="space-y-4">
+                    {/* UCL Test Option */}
+                    <div className="border border-[var(--line)] rounded-xl p-4 space-y-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
+                          ÚCL
+                        </div>
+                        <div>
+                          <h3 className="font-bold">ÚCL Test</h3>
+                          <p className="text-sm opacity-60">Oficiální test ÚCL</p>
+                        </div>
+                      </div>
+                      <p className="text-xs opacity-50">
+                        120 otázek • 4 hodiny • Reálné ÚCL podmínky
+                      </p>
+                      <button
+                        onClick={startUCLExam}
+                        className="w-full bg-blue-500 text-white py-2 rounded-lg font-bold hover:bg-blue-600 transition-colors"
+                      >
+                        Spustit ÚCL Test
+                      </button>
+                    </div>
+
+                    {/* EASA Test Option */}
+                    <div className="border border-[var(--line)] rounded-xl p-4 space-y-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-green-500 text-white rounded-lg flex items-center justify-center font-bold">
+                          EASA
+                        </div>
+                        <div>
+                          <h3 className="font-bold">EASA Test</h3>
+                          <p className="text-sm opacity-60">Test dle EASA standardu</p>
+                        </div>
+                      </div>
+                      <p className="text-xs opacity-50">
+                        136 otázek • 55 minut • AI generované otázky
+                      </p>
+                      <button
+                        onClick={startEASAExam}
+                        className="w-full bg-green-500 text-white py-2 rounded-lg font-bold hover:bg-green-600 transition-colors"
+                      >
+                        Spustit EASA Test
+                      </button>
+                    </div>
+
+                    {/* SPL Exam Card */}
+                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg">
+                      <div className="flex items-center mb-2">
+                        <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                          SPL
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-sm">SPL Test</h3>
+                          <p className="text-sm opacity-60">Pro piloty větroňů</p>
+                        </div>
+                      </div>
+                      <p className="text-xs opacity-50">
+                        80 otázek • 40 minut • 6 předmětů
+                      </p>
+                      <button
+                        onClick={startSPLEXam}
+                        className="w-full bg-purple-500 text-white py-2 rounded-lg font-bold hover:bg-purple-600 transition-colors"
+                      >
+                        Spustit SPL Test
+                      </button>
+                    </div>
+                  </div>
                 </motion.div>
               </motion.div>
             )}

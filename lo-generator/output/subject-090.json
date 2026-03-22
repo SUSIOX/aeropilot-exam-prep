@@ -1,0 +1,662 @@
+[
+  {
+    "loId": "090.01.01.01",
+    "subjectId": 9,
+    "text": "Purpose of aviation communication",
+    "knowledgeContent": "Understand the role of communication in aviation safety and efficiency. Recognize the importance of clear, concise, and standardized phraseology.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.01.01.02",
+    "subjectId": 9,
+    "text": "Types of communication (ATC, pilot-pilot, ground)",
+    "knowledgeContent": "Identify different types of aviation communication, including air traffic control (ATC), pilot-to-pilot, and ground communications. Understand the contexts in which each is used.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.01.02.01",
+    "subjectId": 9,
+    "text": "Radio telephony basics",
+    "knowledgeContent": "Explain the principles of radio telephony, including frequency bands, modulation, and line-of-sight propagation. Understand the importance of correct microphone technique.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.01.02.02",
+    "subjectId": 9,
+    "text": "Phonetic alphabet usage",
+    "knowledgeContent": "Demonstrate the correct use of the ICAO phonetic alphabet for letters and numbers. Recognize its importance in avoiding miscommunication.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.01.03.01",
+    "subjectId": 9,
+    "text": "Standard phraseology",
+    "knowledgeContent": "Apply standard phraseology as defined by ICAO and local ATC procedures. Understand deviations for non-standard situations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.01.03.02",
+    "subjectId": 9,
+    "text": "Transmission techniques",
+    "knowledgeContent": "Use correct transmission techniques, including speaking clearly, pausing appropriately, and confirming receipt of instructions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.02.01.01",
+    "subjectId": 9,
+    "text": "ATC services and their functions",
+    "knowledgeContent": "Identify different ATC services (Tower, Approach, Area Control) and their respective responsibilities. Understand when to contact each service.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.02.01.02",
+    "subjectId": 9,
+    "text": "Flight Information Services (FIS)",
+    "knowledgeContent": "Describe the purpose and scope of Flight Information Services (FIS). Know how to request and interpret FIS broadcasts.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.02.02.01",
+    "subjectId": 9,
+    "text": "Radio checks",
+    "knowledgeContent": "Perform a radio check and interpret the responses (e.g., 'Readability 1 to 5'). Know alternative methods if radio communication fails.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.02.02.02",
+    "subjectId": 9,
+    "text": "Emergency frequencies",
+    "knowledgeContent": "Identify the international emergency frequency (121.5 MHz) and other relevant emergency frequencies. Understand when and how to use them.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.02.03.01",
+    "subjectId": 9,
+    "text": "Initial contact procedures",
+    "knowledgeContent": "Execute correct initial contact procedures with ATC, including station identification, aircraft callsign, and position.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.02.03.02",
+    "subjectId": 9,
+    "text": "Readback requirements",
+    "knowledgeContent": "Apply readback procedures for ATC clearances and instructions, particularly for altitude, heading, and runway assignments.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.03.01.01",
+    "subjectId": 9,
+    "text": "Aerodrome ground movements",
+    "knowledgeContent": "Communicate effectively during ground movements, including taxi instructions, holding points, and runway crossings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.03.01.02",
+    "subjectId": 9,
+    "text": "Departure communications",
+    "knowledgeContent": "Follow correct procedures for departure communications, including startup, taxi, and takeoff clearances.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.03.02.01",
+    "subjectId": 9,
+    "text": "Circuit communications",
+    "knowledgeContent": "Communicate accurately while operating in the traffic circuit, including joining, position reports, and landing clearances.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.03.02.02",
+    "subjectId": 9,
+    "text": "Uncontrolled aerodrome procedures",
+    "knowledgeContent": "Use correct communication procedures at uncontrolled aerodromes, including making blind broadcasts and listening out.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.04.01.01",
+    "subjectId": 9,
+    "text": "En-route position reporting",
+    "knowledgeContent": "Provide accurate position reports during en-route flight, including essential elements (position, time, altitude, etc.).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.04.01.02",
+    "subjectId": 9,
+    "text": "Frequency changes en-route",
+    "knowledgeContent": "Execute correct procedures for frequency changes, including when and how to contact the next ATC unit.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.04.02.01",
+    "subjectId": 9,
+    "text": "VFR flight following",
+    "knowledgeContent": "Request and maintain VFR flight following services. Understand the benefits and limitations of this service.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.04.02.02",
+    "subjectId": 9,
+    "text": "Traffic information broadcasts",
+    "knowledgeContent": "Make and interpret traffic information broadcasts (e.g., 'Traffic in sight'). Understand their role in collision avoidance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.05.01.01",
+    "subjectId": 9,
+    "text": "Emergency communication priorities",
+    "knowledgeContent": "Recall the priorities of emergency communications (Aviate, Navigate, Communicate). Understand when to declare an emergency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.05.01.02",
+    "subjectId": 9,
+    "text": "MAYDAY and PAN-PAN calls",
+    "knowledgeContent": "Distinguish between MAYDAY (life-threatening) and PAN-PAN (urgent) situations. Know the correct format for these calls.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.05.02.01",
+    "subjectId": 9,
+    "text": "Radio failure procedures",
+    "knowledgeContent": "Follow prescribed procedures for radio failure, including squawking 7600 and using light signals or alternative methods.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.05.02.02",
+    "subjectId": 9,
+    "text": "Transponder codes",
+    "knowledgeContent": "Identify and use standard transponder codes (e.g., 7000 for VFR, 7600 for radio failure, 7700 for emergency).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.06.01.01",
+    "subjectId": 9,
+    "text": "Airspace classifications and communication",
+    "knowledgeContent": "Understand communication requirements for different airspace classes (A-G). Know when and how to establish contact.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.06.01.02",
+    "subjectId": 9,
+    "text": "Temporary Restricted Areas (TRAs)",
+    "knowledgeContent": "Communicate effectively when operating near or through Temporary Restricted Areas (TRAs). Know how to obtain clearance if required.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.06.02.01",
+    "subjectId": 9,
+    "text": "Cross-border communication",
+    "knowledgeContent": "Follow procedures for cross-border flights, including frequency changes and communication with foreign ATC units.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.06.02.02",
+    "subjectId": 9,
+    "text": "Language proficiency requirements",
+    "knowledgeContent": "Understand ICAO language proficiency requirements for pilots. Know the consequences of not meeting the required level.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.07.01.01",
+    "subjectId": 9,
+    "text": "ATIS/AWOS/ASOS usage",
+    "knowledgeContent": "Obtain and interpret ATIS, AWOS, or ASOS broadcasts. Know how to report receiving the information to ATC.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.07.01.02",
+    "subjectId": 9,
+    "text": "VOLMET and other weather broadcasts",
+    "knowledgeContent": "Identify and use VOLMET and other aviation weather broadcasts. Understand their relevance to flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.07.02.01",
+    "subjectId": 9,
+    "text": "NOTAMs and airspace information",
+    "knowledgeContent": "Request and interpret NOTAMs and other airspace information via communication with ATC or flight service stations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.07.02.02",
+    "subjectId": 9,
+    "text": "PIREPs and airfield conditions",
+    "knowledgeContent": "Provide and interpret Pilot Reports (PIREPs) and airfield condition reports. Understand their importance for flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.08.01.01",
+    "subjectId": 9,
+    "text": "Light signals",
+    "knowledgeContent": "Recognize and respond to light signals from ATC or ground personnel, particularly in case of radio failure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.08.01.02",
+    "subjectId": 9,
+    "text": "Visual ground signals",
+    "knowledgeContent": "Identify and interpret visual ground signals, such as runway markings and marshalling signals.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.08.02.01",
+    "subjectId": 9,
+    "text": "Hand signals for glider operations",
+    "knowledgeContent": "Use and understand hand signals specific to glider operations, including launch and retrieval procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.08.02.02",
+    "subjectId": 9,
+    "text": "Non-radio procedures at glider sites",
+    "knowledgeContent": "Follow non-radio communication procedures at glider sites, including flag signals and other local practices.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.09.01.01",
+    "subjectId": 9,
+    "text": "Miscommunication risks",
+    "knowledgeContent": "Identify common causes of miscommunication in aviation (e.g., accents, similar callsigns). Apply strategies to mitigate these risks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.09.01.02",
+    "subjectId": 9,
+    "text": "Human factors in communication",
+    "knowledgeContent": "Understand how human factors (stress, fatigue, workload) affect communication effectiveness. Apply techniques to improve clarity.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.09.02.01",
+    "subjectId": 9,
+    "text": "Cultural differences in communication",
+    "knowledgeContent": "Recognize how cultural differences may influence communication styles in international aviation. Adapt to ensure mutual understanding.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.09.02.02",
+    "subjectId": 9,
+    "text": "Non-native English communication",
+    "knowledgeContent": "Apply techniques for effective communication when English is not the first language of either party. Use simplified phraseology if needed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.10.01.01",
+    "subjectId": 9,
+    "text": "Radio equipment checks",
+    "knowledgeContent": "Perform pre-flight checks of radio equipment, including functionality testing and frequency selection.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.10.01.02",
+    "subjectId": 9,
+    "text": "Alternative communication methods",
+    "knowledgeContent": "Identify alternative communication methods (e.g., mobile phones, handheld radios) and their limitations in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.10.02.01",
+    "subjectId": 9,
+    "text": "Radio navigation aids communication",
+    "knowledgeContent": "Use communication procedures when interacting with radio navigation aids (e.g., requesting QDM, QNH).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  },
+  {
+    "loId": "090.10.02.02",
+    "subjectId": 9,
+    "text": "Remote communication facilities",
+    "knowledgeContent": "Understand how to communicate with remote ATC facilities or AFIS units, including procedures for out-of-hours operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:21:19.077Z",
+    "updatedAt": "2026-03-17T19:21:19.077Z"
+  }
+]

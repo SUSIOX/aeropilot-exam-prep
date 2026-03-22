@@ -1,0 +1,246 @@
+================================================================================
+SYSTEMATICKY AUDIT REPORT - VSECHNY SUBJECTY (source=user)
+Predmet auditu: EASA PPL znalostni test - vsechny tematicke okruhy
+Projekt: Aeropilot Exam Prep (EASA PPL Knowledge Test)
+Zdroj dat: AWS DynamoDB tabulka aeropilot-questions (source=user)
+Datum auditu: 2025-07-14
+Provedl: Amazon Q (automatizovana analyza)
+================================================================================
+
+ROZSAH AUDITU
+-------------
+Celkem provedenych otazek: 458
+  Subject 1 - Air Law (Letecke predpisy):  97 otazek
+  Subject 2 - Human Performance (Lidska vykonnost):          30 otazek
+  Subject 3 - Meteorology (Meteorologie):                     60 otazek
+  Subject 4 - Communications (Komunikace / Radiotelefonie):  146 otazek
+  Subject 5 - Principles of Flight (Letove zasady):           30 otazek
+  Subject 6 - Flight Performance & Planning (Vykonnost):      25 otazek
+  Subject 7 - Aircraft General Knowledge (Znalost letadla):   20 otazek
+  Subject 8 - Operational Procedures (Provozni postupy):      20 otazek
+  Subject 9 - Navigation (Navigace):                          30 otazek
+
+Pravni zaklad: EASA SERA, Part-FCL, Part-MED, ICAO Annexes 1/2/3/6/11/12/13/14, L10
+
+================================================================================
+SOUHRN NALEZU
+================================================================================
+
+Celkem nalezenych problemu: 7
+  - Opraveno v DynamoDB:    5  (ID 32, 33, 34, 38 z predchoziho auditu + FL180)
+  - Vyzaduje opravu otazky: 2  (ID 37, ID 61 - chybna nebo chybejici spravna odpoved)
+  - Chyba v zadani:         3  (Subject 3 ID 3, 4; Subject 4 406MHz - duplicitni odpovedi)
+
+Subjecty BEZ NALEZENYCH CHYB:
+  Subject 2 - Human Performance (Lidska vykonnost)          (30 otazek) - OK
+  Subject 5 - Principles of Flight (Letove zasady)          (30 otazek) - OK
+  Subject 6 - Flight Performance & Planning (Vykonnost)     (25 otazek) - OK
+  Subject 7 - Aircraft General Knowledge (Znalost letadla)  (20 otazek) - OK
+  Subject 8 - Operational Procedures (Provozni postupy)     (20 otazek) - OK
+  Subject 9 - Navigation (Navigace)                         (30 otazek) - OK
+
+================================================================================
+DETAIL NALEZU
+================================================================================
+
+------------------------------------------------------------------------
+NALEZ 1 - [OPRAVENO] Subject 1 - Air Law (Letecke predpisy), ID 32
+------------------------------------------------------------------------
+Otazka : "Minimalni letova dohlednost v 5000 ft MSL ve vzdusnem prostoru
+          tridy B pro let VFR je:"
+Moznosti: [A] 5000 m  [B] 8000 m  [C] 3000 m  [D] 1500 m
+
+  Bylo:    correct=0 (A) = "5000 m"  [CHYBNE]
+  Oprava:  correct=1 (B) = "8000 m"  [SPRAVNE]
+  Zaklad:  EASA SERA.5001 - trida B pod FL 100 = 8 km
+  Status:  OPRAVENO v DynamoDB (2025-07-14)
+
+------------------------------------------------------------------------
+NALEZ 2 - [OPRAVENO] Subject 1 - Air Law (Letecke predpisy), ID 33
+------------------------------------------------------------------------
+Otazka : "Jaka je minimalni letova dohlednost ve vzdusnem prostoru tridy C
+          pro letadla letici za VFR v 5000 ft MSL?"
+Moznosti: [A] 5000 m  [B] 8000 m  [C] 3000 m  [D] 1500 m
+
+  Bylo:    correct=0 (A) = "5000 m"  [CHYBNE]
+  Oprava:  correct=1 (B) = "8000 m"  [SPRAVNE]
+  Zaklad:  EASA SERA.5001 - trida C pod FL 100 = 8 km
+  Status:  OPRAVENO v DynamoDB (2025-07-14)
+
+------------------------------------------------------------------------
+NALEZ 3 - [OPRAVENO] Subject 1 - Air Law (Letecke predpisy), ID 34
+------------------------------------------------------------------------
+Otazka : "Minimalni letova dohlednost ve vzdusnem prostoru tridy E pro
+          letadlo letici za VFR ve FL 75 je:"
+Moznosti: [A] 5000 m  [B] 8000 m  [C] 3000 m  [D] 1500 m
+
+  Bylo:    correct=0 (A) = "5000 m"  [CHYBNE]
+  Oprava:  correct=1 (B) = "8000 m"  [SPRAVNE]
+  Zaklad:  EASA SERA.5001 - trida E pod FL 100 = 8 km
+  Status:  OPRAVENO v DynamoDB (2025-07-14)
+
+------------------------------------------------------------------------
+NALEZ 4 - [OPRAVENO] Subject 1 - Air Law (Letecke predpisy), ID 38
+------------------------------------------------------------------------
+Otazka : "Jaka je minimalni dohlednost za letu ve vzdusnem prostoru tridy C
+          pod FL 100 pro let za VFR?"
+Moznosti: [A] 8 km  [B] 5 km  [C] 1.5 km  [D] 10 km
+
+  Bylo:    correct=1 (B) = "5 km"   [CHYBNE]
+  Oprava:  correct=0 (A) = "8 km"   [SPRAVNE]
+  Zaklad:  EASA SERA.5001 - trida C pod FL 100 = 8 km
+  Status:  OPRAVENO v DynamoDB (2025-07-14)
+
+------------------------------------------------------------------------
+NALEZ 5 - [OPRAVENO] Subject 4 - Communications (Radiotelefonie), bez originalId
+------------------------------------------------------------------------
+Otazka : "Letova hladina FL 180 se vysila takto"
+Moznosti: [A] letova hladina JEDEN OSUM NULA
+          [B] FL STO OSMDESET
+          [C] letova hladina JEDNA OSM NULA
+          [D] letova hladina JEDEN OSM NULA
+questionId: subject4_user_1773364226803_by07zz
+
+  Bylo:    correct=0 (A) = "letova hladina JEDEN OSUM NULA"  [CHYBNE]
+  Oprava:  correct=2 (C) = "letova hladina JEDNA OSM NULA"   [SPRAVNE]
+  Zaklad:  L10 CR / ICAO: cislovka "1" se pri vysílání FL vyslovuje "JEDNA"
+           (rod zensky), nikoliv "JEDEN" (rod muzsky). Spravne: JEDNA OSM NULA.
+  Status:  OPRAVENO v DynamoDB (2025-07-14)
+
+------------------------------------------------------------------------
+NALEZ 6 - [VYZADUJE OPRAVU OTAZKY] Subject 1 - Air Law (Letecke predpisy), ID 37
+------------------------------------------------------------------------
+Otazka : "Jaka je minimalni vzdalenost od oblacnosti pro let VFR ve tride
+          vzdusneho prostoru B?"
+Moznosti: [A] horizontalne 1.500 m, vertikalne 300 m
+          [B] horizontalne 1.000 m, vertikalne 1.500 ft
+          [C] horizontalne 1.000 m, vertikalne 300 m
+          [D] horizontalne 1.500 m, vertikalne 1.000 m
+
+  Aktualni: correct=0 (A) = "horizontalne 1.500 m, vertikalne 300 m"
+  Problem:  Trida B VFR = CLEAR OF CLOUDS dle EASA SERA.5001.
+            Zadna z nabizenych odpovedi neni spravna - spravna odpoved
+            "clear of clouds" v moznostech chybi.
+            Odpoved A (1500m H, 300m V) plati pro tridu G pod 3000ft AMSL.
+  Doporuceni: Nahradit jednu z moznosti za "clear of clouds / bez vzdalenosti
+              od oblacnosti" a nastavit ji jako spravnou.
+  Status:  NEOPRAVENO - vyzaduje rucni upravu obsahu otazky
+
+------------------------------------------------------------------------
+NALEZ 7 - [VYZADUJE OPRAVU OTAZKY] Subject 1 - Air Law (Letecke predpisy), ID 61
+------------------------------------------------------------------------
+Otazka : "Jake informace jsou v casti AD Letecke informacni prirucky (AIP)?"
+Moznosti: [A] mapove znacky, seznam radionavigacnich zarizeni...
+          [B] letecke vystrahy, prostory a trate...
+          [C] omezeni pristupu na letiste, kontroly cestujicich,
+              pozadavky na piloty, vzory prukazu a doby jejich platnosti
+          (pozn: moznost D v datech chybi - otazka ma jen 3 moznosti)
+
+  Aktualni: correct=2 (C) = "omezeni pristupu na letiste..."
+  Problem:  Cast AD (Aerodromes) obsahuje informace o letistich:
+            letistni mapy, dráhy, frekvence, priblizovaci postupy,
+            provozni hodiny, sluzby. Odpoved C popisuje obsah casti GEN.
+            Spravna odpoved mezi moznostmi chybi.
+  Doporuceni: Opravit moznosti tak, aby jedna obsahovala spravny popis
+              casti AD (letistni mapy, dráhy, frekvence, priblizovaci
+              postupy) a nastavit ji jako spravnou.
+  Status:  NEOPRAVENO - vyzaduje rucni upravu obsahu otazky
+
+------------------------------------------------------------------------
+NALEZ 8 - [CHYBA V ZADANI] Subject 3 - Meteorology (Meteorologie), ID 3
+------------------------------------------------------------------------
+Otazka : "Jaka je priblizna vyska troposfery ve strednich zemepisnych
+          sirkach?"
+Moznosti: [A] 11 km  [B] 11 NM  [C] 11000 m  [D] 11000 ft
+
+  Problem:  Odpovedi A (11 km) a C (11000 m) jsou identicke hodnoty.
+            11 km = 11000 m. Duplicitni spravne odpovedi v otazce.
+  Spravna hodnota: ~11 km = ~11000 m (odpovedi A i C jsou spravne)
+  Doporuceni: Nahradit jednu z duplicitnich moznosti jinou hodnotou
+              (napr. "36 000 ft" misto "11000 m").
+  Status:  NEOPRAVENO - vyzaduje rucni upravu obsahu otazky
+
+------------------------------------------------------------------------
+NALEZ 9 - [CHYBA V ZADANI] Subject 3 - Meteorology (Meteorologie), ID 4
+------------------------------------------------------------------------
+Otazka : "Standardni atmosfericky tlak (QNE) na hladine more je:"
+Moznosti: [A] 1013.25 hPa  [B] 1000 hPa  [C] 760 hPa  [D] 29.92 inHg
+
+  Problem:  Odpovedi A (1013.25 hPa) a D (29.92 inHg) jsou identicke
+            hodnoty v ruznych jednotkach. Obe jsou spravne.
+            1013.25 hPa = 29.92 inHg (standardni atmosfericky tlak ISA).
+  Doporuceni: Nahradit moznost D jinou neplatnou hodnotou
+              (napr. "30.92 inHg" nebo "28.92 inHg").
+  Status:  NEOPRAVENO - vyzaduje rucni upravu obsahu otazky
+
+------------------------------------------------------------------------
+NALEZ 10 - [CHYBA V ZADANI] Subject 4 - Communications (Radiotelefonie), bez originalId
+------------------------------------------------------------------------
+Otazka : "Kmitocet 406 MHz lze take zapsat"
+Moznosti: [A] 0,406 GHz
+          [B] 406 000 kHz
+          [C] 4,06 x 10^8 Hz
+          [D] 40,6 MHz x 10
+questionId: subject4_user_1773364226805_cszqtx
+
+  Problem:  Vsechny 4 moznosti jsou matematicky spravne prepisy 406 MHz:
+            A: 0,406 GHz = 406 MHz ✓
+            B: 406 000 kHz = 406 MHz ✓
+            C: 4,06 x 10^8 Hz = 406 000 000 Hz = 406 MHz ✓
+            D: 40,6 MHz x 10 = 406 MHz ✓
+            Otazka ma 4 spravne odpovedi - chyba v zadani.
+  Doporuceni: Nahradit 3 moznosti chybnymi hodnotami, ponechat pouze
+              jednu spravnou (napr. pouze A = 0,406 GHz).
+  Status:  NEOPRAVENO - vyzaduje rucni upravu obsahu otazky
+
+================================================================================
+PREHLED STAVU OPRAV
+================================================================================
+
+  Nalez  | Subject                        | ID/popis          | Zavaznost | Status
+  -------|--------------------------------|-------------------|-----------|------------------
+  1      | 1 - Air Law                    | ID 32 (trida B)   | KRITICKA  | OPRAVENO v DB
+  2      | 1 - Air Law                    | ID 33 (trida C)   | KRITICKA  | OPRAVENO v DB
+  3      | 1 - Air Law                    | ID 34 (trida E)   | KRITICKA  | OPRAVENO v DB
+  4      | 1 - Air Law                    | ID 38 (trida C)   | KRITICKA  | OPRAVENO v DB
+  5      | 4 - Communications             | FL 180 vyslovnost | STREDNI   | OPRAVENO v DB
+  6      | 1 - Air Law                    | ID 37 (trida B)   | KRITICKA  | CEKA NA OPRAVU
+  7      | 1 - Air Law                    | ID 61 (AIP cast)  | STREDNI   | CEKA NA OPRAVU
+  8      | 3 - Meteorology                | ID 3 (troposfera) | NIZKA     | CEKA NA OPRAVU
+  9      | 3 - Meteorology                | ID 4 (QNE tlak)   | NIZKA     | CEKA NA OPRAVU
+  10     | 4 - Communications             | 406 MHz prepis    | STREDNI   | CEKA NA OPRAVU
+
+================================================================================
+SUBJECTY BEZ NALEZENYCH CHYB
+================================================================================
+
+  Subject 2 - Human Performance (Lidska vykonnost)          (30 otazek) - AUDIT OK
+  Subject 5 - Principles of Flight (Letove zasady)          (30 otazek) - AUDIT OK
+  Subject 6 - Flight Performance & Planning (Vykonnost)     (25 otazek) - AUDIT OK
+  Subject 7 - Aircraft General Knowledge (Znalost letadla)  (20 otazek) - AUDIT OK
+  Subject 8 - Operational Procedures (Provozni postupy)     (20 otazek) - AUDIT OK
+  Subject 9 - Navigation (Navigace)                         (30 otazek) - AUDIT OK
+
+================================================================================
+DOPORUCENI
+================================================================================
+
+1. OKAMZITA AKCE: Opravit otazky ID 37 a ID 61 v Subject 1 - tyto otazky
+   nemaji spravnou odpoved mezi nabizenimi moznostmi. Studenti nemohou
+   odpovedět spravne.
+
+2. STREDNI PRIORITA: Opravit otazky s duplicitnimi spravnymi odpovedi
+   (Subject 3 ID 3, ID 4; Subject 4 406 MHz). Studenti mohou odpovedět
+   spravne, ale otazky jsou metodicky chybne.
+
+3. OVERIT: Otazka Subject 1 ID 61 ma pouze 3 moznosti misto standardnich 4.
+   Zkontrolovat, zda chybi moznost D v datech.
+
+4. PROCES: Zavest peer-review pri tvorbe novych otazek - overit ze:
+   a) Spravna odpoved je skutecne spravna dle platne legislativy
+   b) Zadna z nesprávnych moznosti neni take spravna
+   c) Nejsou duplicitni moznosti (stejna hodnota v ruznych jednotkach)
+
+================================================================================
+KONEC REPORTU
+================================================================================

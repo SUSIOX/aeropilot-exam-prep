@@ -1,0 +1,122 @@
+================================================================================
+AUDIT REPORT - OPRAVA CHYBNYCH SPRAVNYCH ODPOVEDI
+Projekt: Aeropilot Exam Prep (EASA PPL Knowledge Test)
+Soubor: subject_1.json (Air Law)
+Datum opravy: 2025-07-14
+Provedl: Amazon Q (automatizovana oprava na zaklade hlaseni uzivatele)
+================================================================================
+
+PRICINA AUDITU
+--------------
+Uzivatel nahlasil, ze otazka o minimalni dohlednosti ve vzdusnem prostoru
+tridy C pod FL 100 pro let za VFR byla vyhodnocovana nespravne.
+Aplikace oznacovala jako spravnou odpoved "5 km", zatimco spravna odpoved
+dle platne legislativy EASA je "8 km".
+
+Nasledna kontrola odhalila celkem 4 otazky se stejnym typem chyby.
+
+PRAVNI ZAKLAD
+-------------
+EASA SERA.5001 - Minima VFR (Standardized European Rules of the Air)
+Tabulka VFR minimu pro vzdusny prostor trid B, C, D, E:
+  - Pod FL 100: minimalni letova dohlednost = 8 km
+  - Na FL 100 a nad: minimalni letova dohlednost = 8 km
+  (Vyjimka 5 km plati pouze pod 3000 ft AMSL nebo 1000 ft AGL
+   za specifickych podminek - zadna z opravovanych otazek se teto
+   vyjimky netyka.)
+
+================================================================================
+SEZNAM OPRAV
+================================================================================
+
+------------------------------------------------------------------------
+OPRAVA 1 - Otazka ID 32
+------------------------------------------------------------------------
+Otazka : "Minimalni letova dohlednost v 5000 ft MSL ve vzdusnem prostoru
+          tridy B pro let VFR je:"
+Moznosti: [A] 5000 m  [B] 8000 m  [C] 3000 m  [D] 1500 m
+
+  PRED opravou:  correct = 0  =>  "5000 m"  [CHYBNE]
+  PO oprave:     correct = 1  =>  "8000 m"  [SPRAVNE]
+
+Zduvodneni: Trida B, 5000 ft MSL je pod FL 100. Dle SERA.5001 je
+            minimalni dohlednost 8000 m (8 km).
+
+------------------------------------------------------------------------
+OPRAVA 2 - Otazka ID 33
+------------------------------------------------------------------------
+Otazka : "Jaka je minimalni letova dohlednost ve vzdusnem prostoru
+          tridy C pro letadla letici za VFR v 5000 ft MSL?"
+Moznosti: [A] 5000 m  [B] 8000 m  [C] 3000 m  [D] 1500 m
+
+  PRED opravou:  correct = 0  =>  "5000 m"  [CHYBNE]
+  PO oprave:     correct = 1  =>  "8000 m"  [SPRAVNE]
+
+Zduvodneni: Trida C, 5000 ft MSL je pod FL 100. Dle SERA.5001 je
+            minimalni dohlednost 8000 m (8 km).
+
+------------------------------------------------------------------------
+OPRAVA 3 - Otazka ID 34
+------------------------------------------------------------------------
+Otazka : "Minimalni letova dohlednost ve vzdusnem prostoru tridy E
+          pro letadlo letici za VFR ve FL 75 je:"
+Moznosti: [A] 5000 m  [B] 8000 m  [C] 3000 m  [D] 1500 m
+
+  PRED opravou:  correct = 0  =>  "5000 m"  [CHYBNE]
+  PO oprave:     correct = 1  =>  "8000 m"  [SPRAVNE]
+
+Zduvodneni: Trida E, FL 75 je pod FL 100. Dle SERA.5001 je
+            minimalni dohlednost 8000 m (8 km).
+
+------------------------------------------------------------------------
+OPRAVA 4 - Otazka ID 38  [PUVODNI HLASENI UZIVATELE]
+------------------------------------------------------------------------
+Otazka : "Jaka je minimalni dohlednost za letu ve vzdusnem prostoru
+          tridy C pod FL 100 pro let za VFR?"
+Moznosti: [A] 8 km  [B] 5 km  [C] 1.5 km  [D] 10 km
+
+  PRED opravou:  correct = 1  =>  "5 km"   [CHYBNE]
+  PO oprave:     correct = 0  =>  "8 km"   [SPRAVNE]
+
+Zduvodneni: Trida C pod FL 100. Dle SERA.5001 je minimalni
+            dohlednost 8 km. Toto byla puvodni chyba nahlasena
+            uzivatelem.
+
+================================================================================
+OTAZKY BEZ ZMENY (overeno jako spravne)
+================================================================================
+
+ID 35 - "Minimalni letova dohlednost pro letadlo letici za VFR ve
+         vzdusnem prostoru tridy C ve FL 110 je:"
+         Moznosti: [A] 8000 m  [B] 5000 m  ...
+         correct = 0  =>  "8000 m"  [OK - FL 110 nad FL 100, 8 km spravne]
+
+ID 36 - "Minimalni letova dohlednost pro letadlo letici za VFR ve
+         vzdusnem prostoru tridy C ve FL 125 je:"
+         Moznosti: [A] 8000 m  [B] 5000 m  ...
+         correct = 0  =>  "8000 m"  [OK - FL 125 nad FL 100, 8 km spravne]
+
+ID 39 - "Jaka je minimalni dohlednost za letu ve vzdusnem prostoru
+         tridy C ve FL 100 a nad ni pro letadlo letici za VFR?"
+         Moznosti: [A] 8 km  [B] 5 km  ...
+         correct = 0  =>  "8 km"   [OK - FL 100 a nad, 8 km spravne]
+
+================================================================================
+DOPORUCENI PRO DALSI AUDIT
+================================================================================
+
+1. Zkontrolovat vsechny otazky v subject_1.json tykajici se VFR minimu
+   pro vzdusne prostory trid A-G (nejen B, C, E).
+
+2. Zkontrolovat, zda stejna chyba (5 km / 5000 m misto 8 km / 8000 m)
+   neni pritomna v ostatnich subject_*.json souborech.
+
+3. Overit otazky tykajici se vzdalenosti od oblacnosti (horizontalne /
+   vertikalne) pro jednotlive tridy vzdusneho prostoru.
+
+4. Zavest proces peer-review pri pridavani novych otazek do databaze,
+   aby se predchazelo chybam v poli "correct".
+
+================================================================================
+KONEC REPORTU
+================================================================================

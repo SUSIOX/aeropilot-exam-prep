@@ -1,0 +1,53 @@
+// Vložte toto do browser console na stránce aplikace (když jste přihlášen)
+
+(async () => {
+  try {
+    console.log('🔍 Hledám admin123 DeepSeek klíče...');
+    
+    // Získání AWS credentials z app kontextu
+    const { docClient } = window.dynamoDBService || {};
+    if (!docClient) {
+      console.error('❌ dynamoDBService nenalezen - musíte být na stránce aplikace');
+      return;
+    }
+    
+    // Scan command
+    const { ScanCommand, UpdateCommand } = await import('@aws-sdk/lib-dynamodb');
+    
+    const scanResult = await docClient.send(new ScanCommand({
+      TableName: 'aeropilot-exam-prep-USERS',
+      FilterExpression: 'attribute_exists(settings.deepseekApiKey)',
+      ProjectionExpression: 'userId, settings.deepseekApiKey'
+    }));
+    
+    const users = scanResult.Items || [];
+    console.log(`📊 Našel ${users.length} uživatelů s DeepSeek klíči`);
+    
+    let cleaned = 0;
+    for (const user of users) {
+      const key = user.settings?.deepseekApiKey;
+      console.log(`Uživatel ${user.userId}: "${key}"`);
+      
+      if (key === 'admin123' || key === 'test' || key === 'demo') {
+        console.log(`🧹 Mažu test klíč od uživatele ${user.userId}`);
+        
+        await docClient.send(new UpdateCommand({
+          TableName: 'aeropilot-exam-prep-USERS',
+          Key: { userId: user.userId },
+          UpdateExpression: 'REMOVE settings.deepseekApiKey SET updatedAt = :updatedAt',
+          ExpressionAttributeValues: {
+            ':updatedAt': new Date().toISOString()
+          }
+        }));
+        
+        cleaned++;
+        console.log(`✅ Vyčištěno: ${user.userId}`);
+      }
+    }
+    
+    console.log(`🎉 Hotovo! Smazáno ${cleaned} testovacích klíčů`);
+    
+  } catch (error) {
+    console.error('❌ Chyba:', error);
+  }
+})();

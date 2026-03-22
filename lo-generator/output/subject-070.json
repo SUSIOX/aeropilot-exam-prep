@@ -1,0 +1,737 @@
+[
+  {
+    "loId": "070.01.01.01",
+    "subjectId": 7,
+    "text": "Pre-flight inspections",
+    "knowledgeContent": "Understand the purpose and importance of pre-flight inspections. Know the key checks for airworthiness, fuel, oil, and control surfaces. Be aware of the consequences of skipping inspections.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.01.01.02",
+    "subjectId": 7,
+    "text": "Aircraft documentation requirements",
+    "knowledgeContent": "Identify required documents for flight (e.g., Certificate of Airworthiness, registration, maintenance records). Understand pilot responsibilities regarding documentation checks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.01.01.03",
+    "subjectId": 7,
+    "text": "Mass and balance calculations",
+    "knowledgeContent": "Perform basic mass and balance calculations using aircraft manuals. Understand the effects of exceeding limits on aircraft performance and handling.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.01.02.01",
+    "subjectId": 7,
+    "text": "Airport markings and signs",
+    "knowledgeContent": "Recognize and interpret standard airport markings (runway, taxiway, holding points) and signs. Understand their significance for safe ground operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.01.02.02",
+    "subjectId": 7,
+    "text": "Lighting systems",
+    "knowledgeContent": "Identify airport lighting systems (runway, approach, taxiway). Understand pilot-controlled lighting and its operation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.01.03.01",
+    "subjectId": 7,
+    "text": "ATC services at uncontrolled aerodromes",
+    "knowledgeContent": "Know procedures for operating at uncontrolled aerodromes. Understand radio procedures and traffic pattern entries.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.01.03.02",
+    "subjectId": 7,
+    "text": "Radio phraseology",
+    "knowledgeContent": "Use standard ICAO radio phraseology correctly. Understand importance of clear communications in flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.01.04.01",
+    "subjectId": 7,
+    "text": "Visual signals",
+    "knowledgeContent": "Recognize light and pyrotechnic signals from ATC. Know actions required in response to each signal type.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.01.05.01",
+    "subjectId": 7,
+    "text": "Aerodrome operating minima",
+    "knowledgeContent": "Understand factors determining aerodrome operating minima. Know how to assess weather conditions against minima.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.02.01.01",
+    "subjectId": 7,
+    "text": "Flight planning requirements",
+    "knowledgeContent": "Know documentation needed for flight planning (charts, NOTAMs, weather). Understand fuel reserve requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.02.01.02",
+    "subjectId": 7,
+    "text": "NOTAM interpretation",
+    "knowledgeContent": "Read and interpret NOTAMs relevant to flight operations. Identify critical information affecting the planned flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.02.02.01",
+    "subjectId": 7,
+    "text": "VFR flight rules",
+    "knowledgeContent": "Apply VFR rules regarding visibility, cloud clearance, and airspace requirements. Know special VFR procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.02.02.02",
+    "subjectId": 7,
+    "text": "Airspace classifications",
+    "knowledgeContent": "Identify airspace classes A-G and their characteristics. Know equipment and clearance requirements for each class.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.02.03.01",
+    "subjectId": 7,
+    "text": "ATS surveillance services",
+    "knowledgeContent": "Understand how ATC uses radar and other surveillance. Know pilot responsibilities when receiving surveillance services.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.02.04.01",
+    "subjectId": 7,
+    "text": "Flight information services",
+    "knowledgeContent": "Know what FIS provides and how to obtain it. Understand limitations of FIS compared to ATC services.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.02.05.01",
+    "subjectId": 7,
+    "text": "Alerting services",
+    "knowledgeContent": "Understand ALERFA, DETRESFA, and INCERFA phases. Know when and how to declare emergencies.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.03.01.01",
+    "subjectId": 7,
+    "text": "ATC clearances",
+    "knowledgeContent": "Read back and comply with ATC clearances correctly. Know actions if unable to comply with clearance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.03.01.02",
+    "subjectId": 7,
+    "text": "Separation standards",
+    "knowledgeContent": "Understand basic separation minima applied by ATC. Know pilot responsibilities for maintaining separation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.03.02.01",
+    "subjectId": 7,
+    "text": "Wake turbulence avoidance",
+    "knowledgeContent": "Apply wake turbulence avoidance procedures during takeoff, landing, and enroute. Understand factors affecting wake vortex behavior.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.03.03.01",
+    "subjectId": 7,
+    "text": "Traffic avoidance procedures",
+    "knowledgeContent": "Use see-and-avoid principle effectively. Know scanning techniques and collision avoidance maneuvers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.03.04.01",
+    "subjectId": 7,
+    "text": "Visual holding procedures",
+    "knowledgeContent": "Enter and maintain visual holding patterns. Understand timing and wind correction techniques.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.04.01.01",
+    "subjectId": 7,
+    "text": "Aircraft marshalling signals",
+    "knowledgeContent": "Recognize standard marshalling signals for ground operations. Know how to respond appropriately.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.04.02.01",
+    "subjectId": 7,
+    "text": "Runway incursion prevention",
+    "knowledgeContent": "Apply procedures to prevent runway incursions. Use airport diagrams and maintain situational awareness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.04.03.01",
+    "subjectId": 7,
+    "text": "Engine start procedures",
+    "knowledgeContent": "Follow correct engine start checklist. Know fire prevention measures during start.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.04.04.01",
+    "subjectId": 7,
+    "text": "Taxiing procedures",
+    "knowledgeContent": "Taxi safely using proper techniques and checklists. Maintain awareness of other aircraft and obstacles.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.04.05.01",
+    "subjectId": 7,
+    "text": "Pre-takeoff checks",
+    "knowledgeContent": "Complete pre-takeoff checks systematically. Know critical items requiring immediate action if unsatisfactory.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.05.01.01",
+    "subjectId": 7,
+    "text": "Normal takeoff procedures",
+    "knowledgeContent": "Execute normal takeoff considering wind, runway, and aircraft performance. Use correct crosswind techniques.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.05.01.02",
+    "subjectId": 7,
+    "text": "Rejected takeoff procedures",
+    "knowledgeContent": "Know conditions requiring rejected takeoff. Execute procedure safely within accelerate-stop distance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.05.02.01",
+    "subjectId": 7,
+    "text": "Circuit procedures",
+    "knowledgeContent": "Fly standard traffic patterns correctly. Apply proper altitude, spacing, and communication procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.05.03.01",
+    "subjectId": 7,
+    "text": "Normal landing procedures",
+    "knowledgeContent": "Execute normal landing considering wind, runway, and aircraft configuration. Use proper flare and touchdown techniques.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.05.03.02",
+    "subjectId": 7,
+    "text": "Go-around procedures",
+    "knowledgeContent": "Recognize situations requiring go-around. Execute procedure safely with proper power application and configuration changes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.05.04.01",
+    "subjectId": 7,
+    "text": "After-landing procedures",
+    "knowledgeContent": "Complete after-landing checks and taxi clear of runway promptly. Follow ATC instructions for parking.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.06.01.01",
+    "subjectId": 7,
+    "text": "Emergency checklists",
+    "knowledgeContent": "Use emergency checklists systematically. Understand memory items requiring immediate action.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.06.02.01",
+    "subjectId": 7,
+    "text": "Emergency communications",
+    "knowledgeContent": "Use correct emergency radio phraseology (MAYDAY, PAN-PAN). Know when to squawk emergency codes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.06.03.01",
+    "subjectId": 7,
+    "text": "Forced landing procedures",
+    "knowledgeContent": "Execute forced landing procedure selecting suitable landing area. Manage energy and configuration for safest outcome.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.06.04.01",
+    "subjectId": 7,
+    "text": "Fire emergency procedures",
+    "knowledgeContent": "Handle engine, electrical, and cabin fires appropriately. Use correct extinguishing techniques and aircraft systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.06.05.01",
+    "subjectId": 7,
+    "text": "Emergency descent procedures",
+    "knowledgeContent": "Execute emergency descent considering terrain and airspace. Use proper configuration and speed control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.07.01.01",
+    "subjectId": 7,
+    "text": "Aircraft servicing",
+    "knowledgeContent": "Know correct procedures for refueling, oil servicing, and oxygen replenishment. Understand safety precautions during servicing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.07.02.01",
+    "subjectId": 7,
+    "text": "Aircraft parking and securing",
+    "knowledgeContent": "Park aircraft considering wind, other traffic, and obstacles. Secure aircraft properly using tie-downs and controls locks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.07.03.01",
+    "subjectId": 7,
+    "text": "Hangar procedures",
+    "knowledgeContent": "Follow hangar safety procedures during aircraft movement and storage. Know fire prevention measures in hangars.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.08.01.01",
+    "subjectId": 7,
+    "text": "Flight restrictions",
+    "knowledgeContent": "Identify temporary flight restrictions (TFRs) and prohibited areas. Know how to obtain current restriction information.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.08.02.01",
+    "subjectId": 7,
+    "text": "Dangerous goods awareness",
+    "knowledgeContent": "Recognize dangerous goods symbols and restrictions. Know reporting procedures for suspected dangerous goods incidents.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.08.03.01",
+    "subjectId": 7,
+    "text": "Security measures",
+    "knowledgeContent": "Apply basic aircraft security measures (cockpit door, baggage screening). Know procedures for suspicious items or behavior.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.09.01.01",
+    "subjectId": 7,
+    "text": "Accident reporting",
+    "knowledgeContent": "Know legal requirements for reporting accidents and incidents. Understand preservation of evidence at accident scene.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.09.02.01",
+    "subjectId": 7,
+    "text": "Airspace violations",
+    "knowledgeContent": "Understand consequences of airspace violations. Know procedures if unintentional violation occurs.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.09.03.01",
+    "subjectId": 7,
+    "text": "Pilot responsibilities",
+    "knowledgeContent": "Understand PIC legal responsibilities regarding safety, documentation, and compliance with regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.10.01.01",
+    "subjectId": 7,
+    "text": "Human performance limitations",
+    "knowledgeContent": "Recognize effects of fatigue, stress, and medication on performance. Apply personal minimums and risk management.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.10.02.01",
+    "subjectId": 7,
+    "text": "Decision making",
+    "knowledgeContent": "Apply systematic decision-making models (e.g., DECIDE, 3P). Recognize and mitigate common decision-making errors.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  },
+  {
+    "loId": "070.10.03.01",
+    "subjectId": 7,
+    "text": "Situational awareness",
+    "knowledgeContent": "Maintain situational awareness through systematic scanning and information processing. Recognize and recover from loss of SA.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:18:18.371Z",
+    "updatedAt": "2026-03-17T19:18:18.371Z"
+  }
+]

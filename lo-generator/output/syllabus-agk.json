@@ -1,0 +1,4097 @@
+[
+  {
+    "loId": "81.1",
+    "subjectId": 7,
+    "text": "System design, loads, stresses, maintenance",
+    "knowledgeContent": "A PPL(A) student must understand the fundamental principles of aircraft system design, including how loads and stresses are managed, and the importance of maintenance to ensure structural integrity and safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.1.1",
+    "subjectId": 7,
+    "text": "Loads and combination loadings applied to an aircraft's structure",
+    "knowledgeContent": "The student must know the types of loads (e.g., aerodynamic, inertial, ground) and combination loadings (e.g., bending, torsion, shear) that act on an aircraft's structure during flight and ground operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.1.1.1",
+    "subjectId": 7,
+    "text": "Design concepts",
+    "knowledgeContent": "The student must understand basic design concepts such as structural integrity, material selection, and the role of safety factors in aircraft design.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.1.1.1.1Explain",
+    "subjectId": 7,
+    "text": "the purpose of redundancy in aircraft design",
+    "knowledgeContent": "The student must explain that redundancy in aircraft design ensures that critical systems have backup components or pathways to maintain functionality in case of failure, enhancing safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.1.1.2",
+    "subjectId": 7,
+    "text": "Loads and stresses",
+    "knowledgeContent": "The student must understand how loads (e.g., aerodynamic forces) create stresses (e.g., tension, compression) in aircraft structures and how these stresses are managed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.1.1.2.3Define",
+    "subjectId": 7,
+    "text": "the 'load factor (n)'",
+    "knowledgeContent": "The student must define the 'load factor (n)' as the ratio of the lift force to the weight of the aircraft, indicating the stress experienced during maneuvers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.1.1.3",
+    "subjectId": 7,
+    "text": "Fatigue and corrosion",
+    "knowledgeContent": "The student must understand the effects of fatigue (cyclic stress) and corrosion (chemical degradation) on aircraft structures and how these are mitigated through design and maintenance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.1.1.4",
+    "subjectId": 7,
+    "text": "Maintenance",
+    "knowledgeContent": "The student must know the importance of regular maintenance, inspections, and repairs to ensure the structural integrity and airworthiness of the aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.2",
+    "subjectId": 7,
+    "text": "Airframe",
+    "knowledgeContent": "The student must understand the design, construction, and function of major airframe components, including wings, fuselage, and control surfaces.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.2.1",
+    "subjectId": 7,
+    "text": "Wings, tail surfaces and control surfaces",
+    "knowledgeContent": "The student must know the design, construction, and function of wings, tail surfaces, and control surfaces, including their structural components and materials.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.2.1.1",
+    "subjectId": 7,
+    "text": "Design and constructions",
+    "knowledgeContent": "The student must understand the design and construction principles of wings, tail surfaces, and control surfaces, including aerodynamic and structural considerations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.2.1.1.2Describe",
+    "subjectId": 7,
+    "text": "different types of constructions: grid, sandwich",
+    "knowledgeContent": "The student must describe different types of constructions, such as grid (framework) and sandwich (composite layers with a core), used in aircraft structures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.2.1.2",
+    "subjectId": 7,
+    "text": "Structural components and materials",
+    "knowledgeContent": "The student must know the materials (e.g., aluminum alloys, composites) and structural components (e.g., spars, ribs) used in wings, tail surfaces, and control surfaces.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.2.1.3",
+    "subjectId": 7,
+    "text": "Stresses",
+    "knowledgeContent": "The student must understand the types of stresses (e.g., bending, torsion) experienced by wings, tail surfaces, and control surfaces during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.2.1.3.2Explain",
+    "subjectId": 7,
+    "text": "how to achieve stress relief by fuel-balancing during flight",
+    "knowledgeContent": "The student must explain how fuel-balancing during flight reduces stress on the wings by maintaining symmetrical weight distribution and minimizing bending moments.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.2.1.4",
+    "subjectId": 7,
+    "text": "Structural limitations",
+    "knowledgeContent": "The student must understand the structural limitations of wings, tail surfaces, and control surfaces, including maximum load factors and operational restrictions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.2.1.4.2Describe",
+    "subjectId": 7,
+    "text": "measures to reduce stress on aircraft parts",
+    "knowledgeContent": "The student must describe measures to reduce stress on aircraft parts, such as proper maintenance, load distribution, and adherence to operational limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.2.2",
+    "subjectId": 7,
+    "text": "Fuselage, doors, floor, wind-screen and windows",
+    "knowledgeContent": "The student must understand the design, construction, and function of the fuselage, doors, floor, windscreen, and windows, including their structural components and materials.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.2.2.1",
+    "subjectId": 7,
+    "text": "Design and constructions",
+    "knowledgeContent": "The student must know the design and construction principles of the fuselage, doors, floor, windscreen, and windows, including aerodynamic and structural considerations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.2.2.2",
+    "subjectId": 7,
+    "text": "Structural components and materials",
+    "knowledgeContent": "The student must understand the materials (e.g., aluminum alloys, composites) and structural components (e.g., frames, stringers) used in the fuselage, doors, floor, windscreen, and windows.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.2.2.3",
+    "subjectId": 7,
+    "text": "Stresses",
+    "knowledgeContent": "The student must know the types of stresses (e.g., compression, tension) experienced by the fuselage, doors, floor, windscreen, and windows during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.2.2.4",
+    "subjectId": 7,
+    "text": "Structural limitations",
+    "knowledgeContent": "The student must understand the structural limitations of the fuselage, doors, floor, windscreen, and windows, including maximum pressure differentials and operational restrictions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.3",
+    "subjectId": 7,
+    "text": "Hydraulics",
+    "knowledgeContent": "The student must understand the principles of hydromechanics and the operation of hydraulic systems in aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.3.1",
+    "subjectId": 7,
+    "text": "Hydromechanics",
+    "knowledgeContent": "The student must know the basic principles of hydromechanics, including fluid behavior, pressure, and force transmission in hydraulic systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.3.1.1",
+    "subjectId": 7,
+    "text": "Basic principles",
+    "knowledgeContent": "The student must understand the fundamental principles of hydromechanics, including Pascal's Law and the behavior of incompressible fluids.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.3.1.1.1Explain",
+    "subjectId": 7,
+    "text": "the concept and basic principles of hydromechanics",
+    "knowledgeContent": "The student must explain the concept of hydromechanics, which deals with the mechanical properties and behavior of fluids, particularly in hydraulic systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.3.1.1.2Explain",
+    "subjectId": 7,
+    "text": "the relationship between pressure, force and area",
+    "knowledgeContent": "The student must explain the relationship between pressure, force, and area using the formula P = F/A, where pressure is force per unit area.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.3.2",
+    "subjectId": 7,
+    "text": "Hydraulic systems",
+    "knowledgeContent": "The student must understand the types, characteristics, and limitations of hydraulic fluids used in aircraft systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.3.2.1",
+    "subjectId": 7,
+    "text": "Hydraulic fluids: types and characteristics, limitations",
+    "knowledgeContent": "The student must know the properties of hydraulic fluids, including viscosity, thermal stability, and compatibility with system materials.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.3.2.1.1Describe",
+    "subjectId": 7,
+    "text": "the desirable properties of a hydraulic fluid",
+    "knowledgeContent": "The student must describe desirable properties of hydraulic fluids, such as high viscosity index, low compressibility, and resistance to oxidation and corrosion.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:55:08.399Z",
+    "updatedAt": "2026-03-17T20:55:08.399Z"
+  },
+  {
+    "loId": "81.3.2.1.2State",
+    "subjectId": 7,
+    "text": "that hydraulic fluids are irritating to skin and eyes",
+    "knowledgeContent": "Hydraulic fluids, such as phosphate ester-based fluids, are highly irritating to skin and eyes. Immediate washing with soap and water is required upon contact to prevent chemical burns or irritation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.3.2.2.1Explain",
+    "subjectId": 7,
+    "text": "the working principle of a hydraulic system",
+    "knowledgeContent": "A hydraulic system operates based on Pascal's principle, where pressure applied to a confined fluid is transmitted equally in all directions. It uses hydraulic fluid to transfer force from a pump to actuators, enabling movement of components like landing gear or flight controls.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.3.2.2.2List",
+    "subjectId": 7,
+    "text": "typical aircraft systems that make use of hydraulic systems",
+    "knowledgeContent": "Typical aircraft systems using hydraulics include landing gear retraction/extension, flight control surfaces (e.g., ailerons, elevators), brakes, and thrust reversers. These systems rely on hydraulic pressure for reliable and precise operation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.3.2.2.3List",
+    "subjectId": 7,
+    "text": "and describe the instruments and alerts for monitoring a hydraulic systemx",
+    "knowledgeContent": "Hydraulic systems are monitored via pressure gauges, fluid level indicators, and warning lights/alerts for low pressure or fluid loss. These instruments ensure the system operates within safe parameters.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4",
+    "subjectId": 7,
+    "text": "Landing gear, wheels, tyres and brakes",
+    "knowledgeContent": "Landing gear, wheels, tyres, and brakes are critical for safe takeoff, landing, and ground operations. They must be inspected regularly for wear, damage, and proper functionality to ensure aircraft safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.1",
+    "subjectId": 7,
+    "text": "Landing gear",
+    "knowledgeContent": "Landing gear supports the aircraft during ground operations and absorbs landing shocks. It includes retractable or fixed systems, shock absorbers, and wheels.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.1.1",
+    "subjectId": 7,
+    "text": "Types and materials, and operation",
+    "knowledgeContent": "Landing gear types include tricycle, tailwheel, and tandem configurations, made from materials like aluminum alloys or composites. Operation involves retraction, extension, and shock absorption mechanisms.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.1.1.3State",
+    "subjectId": 7,
+    "text": "that ground stearing is usually actuated via rudder pedals",
+    "knowledgeContent": "Ground steering is typically actuated via rudder pedals, which control the nose wheel or tailwheel direction during taxiing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.1.1.4Describe",
+    "subjectId": 7,
+    "text": "how landing-gear position indication and alerting is implementedx",
+    "knowledgeContent": "Landing-gear position is indicated by lights (e.g., green for down and locked, red for unsafe) or mechanical indicators. Audible alerts may warn of incorrect gear configuration during landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.1.1.6Describe",
+    "subjectId": 7,
+    "text": "methods for emergency gear extension",
+    "knowledgeContent": "Emergency gear extension methods include manual release systems, gravity drop, or auxiliary hydraulic pumps. These ensure the landing gear can be deployed if primary systems fail.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.2",
+    "subjectId": 7,
+    "text": "Nose wheel steering",
+    "knowledgeContent": "Nose wheel steering allows directional control during taxiing, takeoff, and landing. It is typically hydraulically or mechanically linked to the rudder pedals.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.2.1",
+    "subjectId": 7,
+    "text": "Design and operation",
+    "knowledgeContent": "Nose wheel steering systems include hydraulic actuators, mechanical linkages, or electric motors. They provide precise control of the nose wheel's angle based on pilot input.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.2.1.1Explain",
+    "subjectId": 7,
+    "text": "the operating principle of nose wheel steering",
+    "knowledgeContent": "Nose wheel steering operates by transferring pilot input from the rudder pedals to the nose wheel via hydraulic or mechanical systems, enabling directional control on the ground.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.2.1.4Describe",
+    "subjectId": 7,
+    "text": "possible hazards in case of landing on the nose gear",
+    "knowledgeContent": "Landing on the nose gear first can cause excessive stress, leading to structural damage, nose gear collapse, or loss of control. Proper flare technique is essential to avoid this hazard.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.2.1.5State",
+    "subjectId": 7,
+    "text": "which flight errors might lead to a landing on the nose gear",
+    "knowledgeContent": "Flight errors such as excessive airspeed, improper flare, or misjudged descent rate can lead to landing on the nose gear first, risking damage or loss of control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.3",
+    "subjectId": 7,
+    "text": "Brakes",
+    "knowledgeContent": "Aircraft brakes are critical for deceleration during landing and taxiing. They include disc brakes, anti-skid systems, and parking brakes, made from heat-resistant materials like carbon composites.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.3.1",
+    "subjectId": 7,
+    "text": "Types and materials",
+    "knowledgeContent": "Disc brakes operate by applying friction to rotating discs via brake pads, converting kinetic energy into heat. They are commonly used in aircraft due to their reliability and efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.3.2",
+    "subjectId": 7,
+    "text": "System components: design, operation, indications and warnings",
+    "knowledgeContent": "Brake system components include hydraulic actuators, brake discs, pads, and anti-skid systems. Indications and warnings monitor brake temperature, pressure, and system integrity.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.3.2.3Describe",
+    "subjectId": 7,
+    "text": "the function of the parking brake",
+    "knowledgeContent": "The parking brake locks the brakes in place using hydraulic pressure or mechanical mechanisms, preventing aircraft movement when parked.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.4",
+    "subjectId": 7,
+    "text": "Wheels and tyres",
+    "knowledgeContent": "Wheels and tyres support the aircraft's weight and absorb landing shocks. They are designed for specific operational limits, including speed, pressure, and temperature.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.4.1",
+    "subjectId": 7,
+    "text": "Types and operational limitations",
+    "knowledgeContent": "Aircraft tyres are typically tubeless, radial, or bias-ply, with operational limitations such as maximum speed, load, and inflation pressure. Regular inspections are required to ensure safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.4.4.1.3Describe",
+    "subjectId": 7,
+    "text": "and recognize tyre creep marks and name their function",
+    "knowledgeContent": "Tyre creep marks indicate relative movement between the tyre and wheel rim. They help detect improper tyre installation or slippage, ensuring safe operation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.5",
+    "subjectId": 7,
+    "text": "Flight controls",
+    "knowledgeContent": "Flight controls enable the pilot to maneuver the aircraft in pitch, roll, and yaw. They include primary and secondary controls, operated manually or via hydraulic/electrical systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.5.1",
+    "subjectId": 7,
+    "text": "Aeroplane: primary flight controls",
+    "knowledgeContent": "Primary flight controls include ailerons, elevators, and rudders, which control roll, pitch, and yaw, respectively. They are essential for stable and controlled flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.5.1.1",
+    "subjectId": 7,
+    "text": "Definition and control surfaces",
+    "knowledgeContent": "Primary flight controls are surfaces directly responsible for controlling the aircraft's attitude and direction. They include ailerons (roll), elevators (pitch), and rudders (yaw).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.5.1.2",
+    "subjectId": 7,
+    "text": "Control systems and mechanical",
+    "knowledgeContent": "Fully manual control systems use cables, pulleys, and rods to transmit pilot input to control surfaces. They provide direct feedback and are common in smaller aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.5.1.3.1Explain",
+    "subjectId": 7,
+    "text": "the danger of control jamming",
+    "knowledgeContent": "Control jamming occurs when flight controls become stuck due to mechanical failure, foreign objects, or icing. It can severely limit the pilot's ability to maneuver the aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:56:00.615Z",
+    "updatedAt": "2026-03-17T20:56:00.615Z"
+  },
+  {
+    "loId": "81.5.2",
+    "subjectId": 7,
+    "text": "Aeroplane: secondary flight controls",
+    "knowledgeContent": "Secondary flight controls include devices such as flaps, slats, spoilers, and trim systems, which assist in controlling the aircraft's attitude and performance but are not essential for basic flight. They enhance stability, control, and efficiency during various phases of flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.5.2.1.1Define",
+    "subjectId": 7,
+    "text": "'secondary flight controls' and describe their purpose",
+    "knowledgeContent": "Secondary flight controls are auxiliary systems that support primary flight controls (ailerons, elevator, rudder) by improving aircraft performance, stability, and handling. Their purpose is to reduce pilot workload and optimize aerodynamic efficiency during takeoff, cruise, and landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.5.2.1.4Describe",
+    "subjectId": 7,
+    "text": "the operation of 'balance tabs'",
+    "knowledgeContent": "Balance tabs are small, hinged surfaces attached to primary control surfaces (e.g., ailerons, elevators) that move in the opposite direction to reduce the force required by the pilot to move the controls. They help maintain aerodynamic balance and reduce control forces.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.6",
+    "subjectId": 7,
+    "text": "Anti-icing systems",
+    "knowledgeContent": "Anti-icing systems prevent ice formation on critical aircraft surfaces, while de-icing systems remove ice after it has formed. These systems are essential for maintaining aircraft performance and safety in icing conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.6.1",
+    "subjectId": 7,
+    "text": "Concept, types and operation (pitot and windshield)",
+    "knowledgeContent": "Anti-icing systems include pitot heat and windshield heating, which prevent ice accumulation on these critical components. Pitot heat ensures accurate airspeed readings, while windshield heating maintains visibility.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.6.1.1",
+    "subjectId": 7,
+    "text": "Concept and general considerations",
+    "knowledgeContent": "Anti-icing systems are designed to prevent ice formation, while de-icing systems remove ice after it has formed. Both are critical for maintaining aircraft performance and safety in icing conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.6.1.1.1Explain",
+    "subjectId": 7,
+    "text": "the concept of 'clean aircraft'",
+    "knowledgeContent": "The 'clean aircraft' concept emphasizes the importance of ensuring all critical surfaces (wings, tail, propellers, etc.) are free of ice, snow, or frost before flight to maintain aerodynamic efficiency and safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.6.1.1.2Explain",
+    "subjectId": 7,
+    "text": "the concepts of anti-icing and de-icing",
+    "knowledgeContent": "Anti-icing prevents ice formation on aircraft surfaces, while de-icing removes ice after it has formed. Both are essential for maintaining aircraft performance and safety in icing conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.6.1.1.4Explain",
+    "subjectId": 7,
+    "text": "the effect of ice accretion on drag, wing lift, mass and available powerx",
+    "knowledgeContent": "Ice accretion increases drag, reduces wing lift, adds mass, and decreases available engine power, all of which degrade aircraft performance and increase stall speed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.6.1.1.5Name",
+    "subjectId": 7,
+    "text": "the components of an aircraft that can be protected from ice accretionx",
+    "knowledgeContent": "Components that can be protected from ice accretion include wings, tail surfaces, propellers, pitot tubes, and windshields.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.6.1.2",
+    "subjectId": 7,
+    "text": "Pitot",
+    "knowledgeContent": "Pitot heat prevents ice accumulation on the pitot tube, ensuring accurate airspeed readings. It is typically electrically powered and activated in icing conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.6.1.2.2Explain",
+    "subjectId": 7,
+    "text": "the operating principle of a pitot-heating system",
+    "knowledgeContent": "A pitot-heating system uses electrical resistance to generate heat, preventing ice from forming on the pitot tube and ensuring accurate airspeed measurements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.6.1.2.3Name",
+    "subjectId": 7,
+    "text": "situations when pitot-heat system should be switched on",
+    "knowledgeContent": "The pitot-heat system should be switched on during flight in visible moisture and temperatures near or below freezing, or as per the aircraft's operating manual.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.6.1.3",
+    "subjectId": 7,
+    "text": "Windshield",
+    "knowledgeContent": "Ice on the windshield can obstruct visibility, impairing the pilot's ability to navigate and maintain situational awareness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.6.1.3.2Explain",
+    "subjectId": 7,
+    "text": "the operating principle of a windshield de-ice system using fluidsx",
+    "knowledgeContent": "Windshield de-ice systems using fluids spray a mixture of alcohol or glycol onto the windshield to melt ice and prevent further accumulation, ensuring clear visibility.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.6.1.4",
+    "subjectId": 7,
+    "text": "Propeller",
+    "knowledgeContent": "Ice accretion on propellers can cause imbalance, reduce thrust, and increase vibration, potentially leading to engine damage or failure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.7",
+    "subjectId": 7,
+    "text": "Fuel system",
+    "knowledgeContent": "The fuel system stores and delivers fuel to the engine, ensuring reliable operation. It includes tanks, pumps, filters, and fuel lines, and may use gravity or pressure feed systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.7.1",
+    "subjectId": 7,
+    "text": "Piston engine",
+    "knowledgeContent": "Piston engines typically use AVGAS (100LL) or MOGAS, with Diesel being less common. The fuel system must ensure a consistent and clean fuel supply to the engine.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.7.1.1.1State",
+    "subjectId": 7,
+    "text": "the types of fuel used by a piston engine: AVGAS, MOGAS, Dieselx",
+    "knowledgeContent": "Piston engines use AVGAS (100LL), MOGAS, or Diesel as fuel types, with AVGAS being the most common due to its high octane rating and lead content.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.7.1.1.2Describe",
+    "subjectId": 7,
+    "text": "a gravity fuel feed system and a pressure feed fuel system",
+    "knowledgeContent": "A gravity feed system relies on fuel flowing from tanks to the engine by gravity, while a pressure feed system uses pumps to deliver fuel under pressure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.7.1.1.4Explain",
+    "subjectId": 7,
+    "text": "the function of 'cross-feed'",
+    "knowledgeContent": "Cross-feed allows fuel to be transferred between tanks, balancing fuel load and ensuring engine operation in case of tank imbalance or failure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.7.1.1.5Explain",
+    "subjectId": 7,
+    "text": "the term 'unusable fuel'",
+    "knowledgeContent": "Unusable fuel is the amount of fuel in the tank that cannot be safely used due to tank design or aircraft attitude, ensuring a reserve for safe operation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.7.1.1.6Explain",
+    "subjectId": 7,
+    "text": "the reasons and situations for 'draining' the fuel tanks",
+    "knowledgeContent": "Fuel tanks are drained to remove water, sediment, or contaminants that could impair engine performance or cause damage.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.7.2.1.1State",
+    "subjectId": 7,
+    "text": "the types of fuel used by a gas turbine engine: JET-A, JET-A1, JET-B-",
+    "knowledgeContent": "Gas turbine engines use JET-A, JET-A1, or JET-B as fuel types, with JET-A1 being the most common due to its low freezing point and high energy content.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.7.2.1.4Explain",
+    "subjectId": 7,
+    "text": "the limitations in the event of loss of booster pump fuel pressure-",
+    "knowledgeContent": "Loss of booster pump fuel pressure can lead to engine flameout or reduced performance, requiring immediate action to restore fuel flow or switch to alternate systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.8",
+    "subjectId": 7,
+    "text": "Electrics",
+    "knowledgeContent": "Aircraft electrical systems provide power for essential systems such as avionics, lighting, and engine ignition. They include batteries, alternators, and wiring.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.8.1",
+    "subjectId": 7,
+    "text": "Electrics: general and definitions",
+    "knowledgeContent": "Electrical systems are defined by voltage, current, and resistance, which govern the flow and distribution of electrical power in the aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.8.1.1.2Define",
+    "subjectId": 7,
+    "text": "'voltage', 'current' and 'resistance', and state their unit of measurementx",
+    "knowledgeContent": "Voltage (measured in volts) is the electrical potential difference, current (measured in amperes) is the flow of electrons, and resistance (measured in ohms) opposes the flow of current.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:04.221Z",
+    "updatedAt": "2026-03-17T20:57:04.221Z"
+  },
+  {
+    "loId": "81.8.1.1.3Explain",
+    "subjectId": 7,
+    "text": "Ohm's law in qualitative terms",
+    "knowledgeContent": "Ohm's law states that the current through a conductor between two points is directly proportional to the voltage across the two points and inversely proportional to the resistance. Mathematically, it is expressed as V = I * R, where V is voltage, I is current, and R is resistance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.1.1.4Define",
+    "subjectId": 7,
+    "text": "'electrical power' and state the unit of measurement",
+    "knowledgeContent": "Electrical power is the rate at which electrical energy is transferred by an electric circuit. It is measured in watts (W), where 1 watt equals 1 joule per second.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.1.2.2Define",
+    "subjectId": 7,
+    "text": "'frequency' and state the unit of measurement",
+    "knowledgeContent": "Frequency is the number of occurrences of a repeating event per unit of time. In electrical systems, it refers to the number of cycles per second of an alternating current (AC), measured in hertz (Hz).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.1.3",
+    "subjectId": 7,
+    "text": "Circuits: series and parallel",
+    "knowledgeContent": "In a series circuit, components are connected end-to-end, so the same current flows through all components. In a parallel circuit, components are connected across the same voltage, allowing different currents to flow through each component.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.1.4",
+    "subjectId": 7,
+    "text": "Magnetic field: effects in an electrical circuit",
+    "knowledgeContent": "A magnetic field is produced by moving electric charges and can exert forces on other moving charges. In an electrical circuit, this effect is utilized in devices like inductors and transformers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.1.4.1State",
+    "subjectId": 7,
+    "text": "that an electrical current produces a magnetic field",
+    "knowledgeContent": "An electrical current flowing through a conductor generates a magnetic field around the conductor. This principle is fundamental to the operation of electromagnets and electric motors.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.2",
+    "subjectId": 7,
+    "text": "Batteries",
+    "knowledgeContent": "Batteries are electrochemical devices that store chemical energy and convert it into electrical energy. They are essential for starting aircraft engines and powering electrical systems when the engine is off.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.2.1",
+    "subjectId": 7,
+    "text": "Types, characteristics and limitations",
+    "knowledgeContent": "Aircraft batteries are typically lead-acid or nickel-cadmium types, each with specific characteristics and limitations, such as weight, maintenance requirements, and temperature sensitivity.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.2.1.1Explain",
+    "subjectId": 7,
+    "text": "the function of an aircraft battery",
+    "knowledgeContent": "An aircraft battery provides electrical power for starting the engine and serves as a backup power source for essential systems in case of generator failure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.2.1.2Describe",
+    "subjectId": 7,
+    "text": "the effect of temperature on battery capacity and performancex",
+    "knowledgeContent": "Battery capacity decreases at lower temperatures, reducing performance. Conversely, higher temperatures can increase capacity but may shorten battery life due to accelerated chemical reactions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.2.2",
+    "subjectId": 7,
+    "text": "Battery chargers, characteristics and limitations",
+    "knowledgeContent": "Battery chargers replenish the energy in aircraft batteries, ensuring they are ready for use. They must be compatible with the battery type and have safety features to prevent overcharging.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.2.2.1Define",
+    "subjectId": 7,
+    "text": "the term 'capacity of batteries' and state the unit of measurementx",
+    "knowledgeContent": "Battery capacity is the amount of electrical charge a battery can store, typically measured in ampere-hours (Ah).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.2.2.2Explain",
+    "subjectId": 7,
+    "text": "the difference between 'battery voltage' and 'charging voltage'x",
+    "knowledgeContent": "Battery voltage is the potential difference between the battery terminals when it is not being charged or discharged. Charging voltage is the higher voltage applied to the battery during charging to overcome internal resistance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.3",
+    "subjectId": 7,
+    "text": "Static electricity: general",
+    "knowledgeContent": "Static electricity is the accumulation of electric charge on the surface of objects, which can discharge and cause sparks. It is a concern in aviation, particularly during refueling.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.3.1",
+    "subjectId": 7,
+    "text": "Basic principles",
+    "knowledgeContent": "Static electricity arises from the transfer of electrons between materials, often due to friction. It can build up on aircraft surfaces, especially in dry conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.3.1.2Explain",
+    "subjectId": 7,
+    "text": "why an aircraft must first be grounded before refuelling",
+    "knowledgeContent": "Grounding an aircraft before refueling dissipates any static charge, preventing sparks that could ignite fuel vapors. This is a critical safety measure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.3.2",
+    "subjectId": 7,
+    "text": "Static dischargers",
+    "knowledgeContent": "Static dischargers, or wicks, are installed on aircraft to safely dissipate static electricity into the atmosphere, reducing the risk of electrostatic discharge.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.4",
+    "subjectId": 7,
+    "text": "Generation: production, distribution and use",
+    "knowledgeContent": "Electrical generation in aircraft involves producing, distributing, and using electrical power. This typically includes alternators driven by the engine and a distribution system to supply power to various components.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.4.2.1Describe",
+    "subjectId": 7,
+    "text": "the working principle of a brushless three-phase AC generatorx",
+    "knowledgeContent": "A brushless three-phase AC generator uses a rotating magnetic field to induce alternating current in stationary windings, eliminating the need for brushes and reducing maintenance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.5",
+    "subjectId": 7,
+    "text": "Electric components",
+    "knowledgeContent": "Electric components like switches, circuit-breakers, and relays control the flow of electricity in aircraft systems. They ensure safe and reliable operation by managing electrical loads and protecting circuits from overloads.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.5.1",
+    "subjectId": 7,
+    "text": "Basic elements: basic principles of switches, circuit-breakers and relaysx",
+    "knowledgeContent": "Switches control the flow of current by opening or closing circuits. Circuit-breakers protect circuits by interrupting current flow during overloads. Relays use a small current to control a larger current in another circuit.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.5.1.1Explain",
+    "subjectId": 7,
+    "text": "the working principle of a fuse and a circuit breaker",
+    "knowledgeContent": "A fuse contains a metal wire that melts and breaks the circuit when current exceeds a safe level. A circuit breaker trips to interrupt current flow during an overload but can be reset after the fault is cleared.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.6",
+    "subjectId": 7,
+    "text": "Distribution",
+    "knowledgeContent": "Electrical distribution systems in aircraft deliver power from generators to various consumers, ensuring reliable operation of essential systems and instruments.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.6.1",
+    "subjectId": 7,
+    "text": "General:",
+    "knowledgeContent": "The generator is typically driven by the engine, converting mechanical energy into electrical energy to power the aircraft's electrical systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.6.1.3Describe",
+    "subjectId": 7,
+    "text": "a simple DC electrical system of a single-engine aircraft",
+    "knowledgeContent": "A simple DC electrical system in a single-engine aircraft includes a battery, alternator, bus bars, and fuses or circuit breakers to distribute power to lights, avionics, and other DC consumers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.6.1.4Give",
+    "subjectId": 7,
+    "text": "examples of DC consumers",
+    "knowledgeContent": "Examples of DC consumers in an aircraft include navigation lights, radios, fuel pumps, and flight instruments.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.8.6.1.6List",
+    "subjectId": 7,
+    "text": "instruments that may be affected by loss of electrical power",
+    "knowledgeContent": "Instruments that may be affected by loss of electrical power include the attitude indicator, heading indicator, and communication/navigation radios.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.9",
+    "subjectId": 7,
+    "text": "Piston Engines",
+    "knowledgeContent": "Piston engines are internal combustion engines that convert fuel into mechanical energy to propel aircraft. They are commonly used in general aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.9.1",
+    "subjectId": 7,
+    "text": "General",
+    "knowledgeContent": "Piston engines operate on the principle of converting the energy from burning fuel into mechanical motion through a series of controlled explosions in cylinders.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:57:55.326Z",
+    "updatedAt": "2026-03-17T20:57:55.326Z"
+  },
+  {
+    "loId": "81.9.1.1",
+    "subjectId": 7,
+    "text": "Types of internal combustion engine: basic principles and definitionsx",
+    "knowledgeContent": "A PPL(A) student must understand the basic principles of internal combustion engines, including the four-stroke cycle (intake, compression, power, exhaust). They should also know the definitions of key terms like piston displacement, compression ratio, and power-to-weight ratio as they apply to aviation engines.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.1.2",
+    "subjectId": 7,
+    "text": "Engine: design, operation, components and materials",
+    "knowledgeContent": "The student must know the main components of an aircraft engine (e.g., cylinders, pistons, crankshaft, valves) and their functions. They should also understand common materials used (e.g., aluminum alloys for cylinders, steel for crankshafts) and the operational principles of horizontally opposed engines typical in light aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.2",
+    "subjectId": 7,
+    "text": "Fuel",
+    "knowledgeContent": "The student must be aware of the types of aviation fuels, their properties, and how they affect engine performance. This includes understanding fuel grades, additives, and the importance of using the correct fuel for the engine type.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.2.1",
+    "subjectId": 7,
+    "text": "Types, grades, characteristics and limitations",
+    "knowledgeContent": "The student must know the different types of aviation gasoline (AVGAS), such as AVGAS 100 (green) and 100LL (blue), and their characteristics (e.g., lead content, color coding). They should also understand the limitations of each type, such as vapor pressure and freezing point.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.2.1.1Name",
+    "subjectId": 7,
+    "text": "the type of fuel used for petrol engines: AVGAS 100 (green), 100LL (blue)x",
+    "knowledgeContent": "The student must identify AVGAS 100 (green) and 100LL (blue) as the standard fuels for piston aviation engines. They should also recognize the color-coding system used to distinguish between fuel types.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.2.1.2Define",
+    "subjectId": 7,
+    "text": "the term 'octane rating'",
+    "knowledgeContent": "The student must define 'octane rating' as a measure of a fuel's resistance to detonation (knocking). They should understand that higher octane ratings allow for higher compression ratios without premature ignition.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.2.1.5Calculate",
+    "subjectId": 7,
+    "text": "volume (liters) from masses (kg or lbs) and vice versa for AVGASx",
+    "knowledgeContent": "The student must be able to convert between mass (kg or lbs) and volume (liters) for AVGAS using its typical density (0.72 kg/l or 6 lbs/US gal). For example, 10 liters of AVGAS ≈ 7.2 kg or 15.8 lbs.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.2.2",
+    "subjectId": 7,
+    "text": "Alternate fuel: characteristics and limitations",
+    "knowledgeContent": "The student must know the characteristics of alternate fuels like JET-A1, including their energy content, flash point, and limitations in piston engines. They should also understand why these fuels are unsuitable for most piston aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.2.2.3Name",
+    "subjectId": 7,
+    "text": "the type of fuel normally used for aviation diesel engines (JET-A1)x",
+    "knowledgeContent": "The student must name JET-A1 as the standard fuel for aviation diesel engines. They should also recognize its clear/colorless appearance and kerosene-like properties.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.2.2.4State",
+    "subjectId": 7,
+    "text": "the typical value of fuel density for diesel fuel",
+    "knowledgeContent": "The student must state the typical density of diesel fuel (JET-A1) as approximately 0.8 kg/l or 6.7 lbs/US gal. This value is used for mass-volume conversions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.2.2.5Calculate",
+    "subjectId": 7,
+    "text": "volume (liters) from masses (kg or lbs) and vice versa for diesel fuelx",
+    "knowledgeContent": "The student must be able to convert between mass (kg or lbs) and volume (liters) for diesel fuel (JET-A1) using its typical density (0.8 kg/l or 6.7 lbs/US gal). For example, 20 liters of JET-A1 ≈ 16 kg or 35.2 lbs.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.3",
+    "subjectId": 7,
+    "text": "Carburettor or injection system",
+    "knowledgeContent": "The student must understand the differences between carburettor and fuel injection systems, including their advantages and disadvantages. They should also know how these systems deliver fuel to the engine under various operating conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.3.1.2Explain",
+    "subjectId": 7,
+    "text": "the purpose and the operating principle of a primer pump",
+    "knowledgeContent": "The student must explain that a primer pump manually injects raw fuel into the engine intake to assist with cold starts. They should understand its operation and the risks of over-priming (e.g., hydraulic lock).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.3.1.3Explain",
+    "subjectId": 7,
+    "text": "the danger of carburettor fire, including corrective measures",
+    "knowledgeContent": "The student must explain that carburettor fire can occur due to backfiring or fuel leaks. Corrective measures include shutting off the fuel supply, continuing cranking to draw flames into the engine, and using a fire extinguisher if necessary.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.3.3",
+    "subjectId": 7,
+    "text": "Icing",
+    "knowledgeContent": "The student must understand the conditions that lead to carburettor icing (e.g., high humidity, temps between -5°C and +30°C) and its effects on engine performance. They should also know how to prevent and mitigate icing using carburettor heat.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.3.3.3Describe",
+    "subjectId": 7,
+    "text": "the indications for carburettor icing",
+    "knowledgeContent": "The student must describe the indications of carburettor icing, such as rough engine running, loss of RPM, and eventual engine stoppage. They should also recognize that these symptoms can mimic fuel starvation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.3.3.7Describe",
+    "subjectId": 7,
+    "text": "situations when carburettor heat must be OFF",
+    "knowledgeContent": "The student must describe situations when carburettor heat must be OFF, such as during takeoff or full-power operations, to avoid power loss due to reduced air density in the intake.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.4",
+    "subjectId": 7,
+    "text": "Air cooling systems",
+    "knowledgeContent": "The student must understand how air cooling systems work in aircraft engines, including the role of fins, baffles, and airflow. They should also know the indications of cooling system degradation (e.g., high CHT).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.4.1",
+    "subjectId": 7,
+    "text": "Design, operation, degraded modes of operation, indications and warningsx",
+    "knowledgeContent": "The student must know the design features of air-cooled engines (e.g., cylinder fins, cowling baffles) and how they enhance cooling. They should also understand degraded modes like overheating and their associated warnings (e.g., high CHT readings).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.4.1.2Describe",
+    "subjectId": 7,
+    "text": "the design features to enhance cylinder air cooling for helicopters-",
+    "knowledgeContent": "The student must describe helicopter-specific cooling features, such as enhanced airflow from rotor downwash or auxiliary fans, to compensate for lower forward airspeed during hover.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.4.1.3Name",
+    "subjectId": 7,
+    "text": "the cylinder head temperature indication to monitor engine coolingx",
+    "knowledgeContent": "The student must name the cylinder head temperature (CHT) gauge as the primary instrument for monitoring engine cooling effectiveness in air-cooled engines.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.4.2",
+    "subjectId": 7,
+    "text": "Differences to liquid-cooling systems",
+    "knowledgeContent": "The student must understand the differences between air and liquid cooling systems, including the components of liquid systems (radiator, coolant, pump) and their advantages (e.g., more consistent temperatures).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.4.2.1Describe",
+    "subjectId": 7,
+    "text": "the design and function of liquid cooling for aeroplanes",
+    "knowledgeContent": "The student must describe the design and function of liquid cooling systems in aeroplanes, including the circulation of coolant through the engine and radiator, and how heat is dissipated.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.5",
+    "subjectId": 7,
+    "text": "Lubrication systems",
+    "knowledgeContent": "The student must understand the purpose of lubrication systems in reducing friction, cooling, and cleaning engine components. They should also know the types of lubricants used and their properties.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.5.1",
+    "subjectId": 7,
+    "text": "Lubricants: types, characteristics and limitations",
+    "knowledgeContent": "The student must know the types of aviation lubricants (e.g., mineral, synthetic) and their characteristics (e.g., viscosity, additives). They should also understand limitations like temperature ranges and contamination risks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.5.1.1Describe",
+    "subjectId": 7,
+    "text": "the term 'viscosity', and describe how it is affected by temperaturex",
+    "knowledgeContent": "The student must describe viscosity as a measure of a fluid's resistance to flow and explain how it decreases with rising temperature (e.g., thinner oil when hot).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.5.1.2Describe",
+    "subjectId": 7,
+    "text": "the viscosity grade numbering system used in aviation",
+    "knowledgeContent": "The student must describe the SAE viscosity grading system (e.g., SAE 50, SAE 15W-50) and how multi-grade oils maintain performance across temperature ranges.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.5.2",
+    "subjectId": 7,
+    "text": "Design, operation, degraded modes of operation, indications and warningsx",
+    "knowledgeContent": "The student must understand the design of wet-sump and dry-sump lubrication systems, their operation, and signs of failure (e.g., low oil pressure, high temperature).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.5.2.4Describe",
+    "subjectId": 7,
+    "text": "actions to be taken in case of oil pressure drop",
+    "knowledgeContent": "The student must describe actions for oil pressure drop, such as reducing power, checking oil quantity, and landing as soon as possible if pressure remains critically low.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.6",
+    "subjectId": 7,
+    "text": "Ignition circuits",
+    "knowledgeContent": "The student must understand the components of ignition circuits (e.g., magnetos, spark plugs, wiring) and their role in generating sparks for combustion. They should also know the importance of redundancy (dual ignition).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:58:50.535Z",
+    "updatedAt": "2026-03-17T20:58:50.535Z"
+  },
+  {
+    "loId": "81.9.6.1",
+    "subjectId": 7,
+    "text": "Design, operation, degraded modes of operation",
+    "knowledgeContent": "The student must understand the design and operation of magneto-ignition systems, including their normal and degraded modes (e.g., single-magneto failure). They should know how these systems ensure redundancy in spark generation for piston engines.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.6.1.1Describe",
+    "subjectId": 7,
+    "text": "the working principle of a magneto-ignition system",
+    "knowledgeContent": "The student must describe how a magneto generates high-voltage sparks independently of the aircraft's electrical system, using rotating magnets and coil induction. They should also explain its self-contained nature and reliability.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.6.1.3Describe",
+    "subjectId": 7,
+    "text": "the purpose and function of the 'magneto check'",
+    "knowledgeContent": "The student must describe the 'magneto check' as a pre-flight procedure to verify each magneto's functionality by observing RPM drop during engine run-up. They should know acceptable drop limits (typically 50–125 RPM) and implications of excessive drop.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.6.1.4Explain",
+    "subjectId": 7,
+    "text": "how combustion is initiated in diesel engines",
+    "knowledgeContent": "The student must explain that diesel engines rely on compression ignition, where air is compressed to a high temperature (>500°C), causing spontaneous combustion when fuel is injected. No external spark is needed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.6.1.5State",
+    "subjectId": 7,
+    "text": "that ignition can be made electronically",
+    "knowledgeContent": "The student must state that modern piston engines may use electronic ignition systems (e.g., FADEC) for precise spark timing, replacing traditional magnetos. These systems require electrical power but offer improved efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.6.1.6Explain",
+    "subjectId": 7,
+    "text": "why dieselengines do not require an ignition system",
+    "knowledgeContent": "The student must explain that diesel engines omit ignition systems because fuel ignites automatically under high compression. They should contrast this with petrol engines requiring spark plugs.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.7",
+    "subjectId": 7,
+    "text": "Mixture",
+    "knowledgeContent": "The student must understand mixture control principles, including how leaning/richening affects combustion efficiency, engine temperature, and performance at varying altitudes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.7.1.2Describe",
+    "subjectId": 7,
+    "text": "the advantages and disadvantages of weak and rich mixturesx",
+    "knowledgeContent": "The student must describe weak mixtures (better fuel economy but risk of detonation) and rich mixtures (cooler engine operation but higher fuel consumption). They should relate these to climb/cruise settings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.7.1.4Explain",
+    "subjectId": 7,
+    "text": "how to shut down an petrol engine",
+    "knowledgeContent": "The student must explain the shutdown procedure for petrol engines: cutting fuel flow via mixture control (idle cutoff) to starve combustion, followed by magneto/ignition switch-off.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.7.1.5Explain",
+    "subjectId": 7,
+    "text": "the absence of mixture control in diesel engines",
+    "knowledgeContent": "The student must explain that diesel engines lack mixture control because fuel injection directly meters quantity, with air intake unthrottled (constant air/fuel ratio).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.8",
+    "subjectId": 7,
+    "text": "Propellers",
+    "knowledgeContent": "The student must understand propeller aerodynamics, including fixed-pitch vs. constant-speed mechanisms, and how blade angle affects thrust and efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.8.2.2Describe",
+    "subjectId": 7,
+    "text": "the propeller controls: power lever (black) and prop lever (blue)x",
+    "knowledgeContent": "The student must describe the power lever (throttle, black) controlling engine RPM/manifold pressure, and the propeller lever (blue) adjusting blade pitch in constant-speed systems. They should explain coordinated use.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.9",
+    "subjectId": 7,
+    "text": "Performance and engine handling",
+    "knowledgeContent": "The student must understand engine performance parameters (e.g., power output, fuel consumption) and handling techniques for optimal operation under varying flight conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.9.1.2Explain",
+    "subjectId": 7,
+    "text": "the term 'normally aspirated engine'",
+    "knowledgeContent": "The student must explain that a normally aspirated engine relies solely on atmospheric pressure for air intake, with no forced induction (turbo/supercharger). Performance decreases with altitude due to thinner air.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.9.2.1Explain",
+    "subjectId": 7,
+    "text": "reasons for a rough engine run, and state possible corrective actionsx",
+    "knowledgeContent": "The student must explain causes of rough engine runs (e.g., fouled spark plugs, carburetor icing) and corrective actions (e.g., applying carb heat, leaning mixture, or switching magnetos).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.9.3",
+    "subjectId": 7,
+    "text": "Engine handling: Single Level Power Control (SLPC)",
+    "knowledgeContent": "The student must understand Single Level Power Control (SLPC) systems, where a single lever manages both throttle and propeller pitch (common in turboprops).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.9.3.2Describe",
+    "subjectId": 7,
+    "text": "the procedures with SLPC for engine start and shut-off",
+    "knowledgeContent": "The student must describe SLPC start-up: advancing the lever to engage starter and fuel, then monitoring parameters. Shut-off involves retracting the lever to cutoff position.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.9.9.3.3Describe",
+    "subjectId": 7,
+    "text": "the procedures for engine checks with SLPC prior to take-off",
+    "knowledgeContent": "The student must describe pre-takeoff checks with SLPC: verifying smooth power response, checking RPM/stability, and ensuring no exceedance of torque/temperature limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.10.1.1Coupled",
+    "subjectId": 7,
+    "text": "turbine engine: design, operation, components and materials-",
+    "knowledgeContent": "The student must know turbine engine components (compressor, combustor, turbine) and materials (e.g., nickel alloys for blades), including coupled systems like gearboxes in turboprops.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.10.1.2.3Describe",
+    "subjectId": 7,
+    "text": "how the power is developed by a turboshaft/free-turbine engine-",
+    "knowledgeContent": "The student must describe how a turboshaft/free-turbine engine decouples the power turbine from the gas generator, directing energy to a shaft (e.g., for helicopter rotors or APUs).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.10.2.1.2Describe",
+    "subjectId": 7,
+    "text": "the working principle of a centrifugal and an axial flow compressor-",
+    "knowledgeContent": "The student must describe centrifugal compressors (radial airflow, high pressure rise per stage) and axial compressors (multi-stage, efficient for high airflow), used in different engine types.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.10.2.3.1Explain",
+    "subjectId": 7,
+    "text": "the purpose of a turbine in different types of gas turbine engines-",
+    "knowledgeContent": "The student must explain the turbine's role in extracting energy from hot gases to drive compressors (gas generator) or external loads (free turbine), with variations in single/multi-spool designs.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.10.2.6.3Describe",
+    "subjectId": 7,
+    "text": "the function of the heated pads on some helicopter air intakes-",
+    "knowledgeContent": "The student must describe how heated pads on helicopter intakes prevent icing by warming incoming air, ensuring uninterrupted airflow to the engine.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.10.3.1.9Name",
+    "subjectId": 7,
+    "text": "the main components of the starting system and state their function-",
+    "knowledgeContent": "The student must name turbine starter components (e.g., starter motor, ignition exciter, fuel control unit) and their functions in initiating the ignition sequence.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.12.1.1Types",
+    "subjectId": 7,
+    "text": "-",
+    "knowledgeContent": "The student must identify types of aircraft structures (e.g., monocoque, semi-monocoque) and materials (aluminum, composites), including their load-bearing principles.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.12.1.2Structural",
+    "subjectId": 7,
+    "text": "components and materials, stresses and structural limitations-",
+    "knowledgeContent": "The student must know key structural components (e.g., spars, ribs, stringers) and their materials, understanding stress types (tension, compression, shear) and design limitations (e.g., fatigue life).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.12.2.1Types",
+    "subjectId": 7,
+    "text": "-",
+    "knowledgeContent": "The student must identify helicopter rotor types (e.g., fully articulated, rigid) and their characteristics, including how they manage dissymmetry of lift.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.12.2.1.3Identify",
+    "subjectId": 7,
+    "text": "from a diagram the main structural components of tail-rotor systems-",
+    "knowledgeContent": "The student must identify tail-rotor components (e.g., blades, pitch links, gearbox) from diagrams, understanding their role in counteracting main rotor torque.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.12.2.2Structural",
+    "subjectId": 7,
+    "text": "components and materials, stresses and structural limitations-",
+    "knowledgeContent": "The student must describe helicopter structural materials (e.g., titanium for rotor heads) and stress considerations (e.g., dynamic loads, vibration) affecting airframe longevity.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:59:43.429Z",
+    "updatedAt": "2026-03-17T20:59:43.429Z"
+  },
+  {
+    "loId": "81.13.4.1.1Describe",
+    "subjectId": 7,
+    "text": "how power is transmitted from the engine to the main-rotor gearbox-",
+    "knowledgeContent": "Power is transmitted from the engine to the main-rotor gearbox via a drive shaft or a series of gears. The engine's output shaft connects to the gearbox, which reduces the rotational speed and increases torque to match the main rotor's requirements. Helicopters may also use a freewheeling unit (sprag clutch) to allow the rotor to continue turning in case of engine failure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "81.14.1.2.2List",
+    "subjectId": 7,
+    "text": "the main structural components of a main-rotor blade and their function-",
+    "knowledgeContent": "The main structural components of a main-rotor blade include the spar (load-bearing structure), skin (aerodynamic surface), ribs (internal support), and balance weights (to reduce vibrations). The spar carries bending and torsional loads, while the skin maintains the airfoil shape. Some blades also incorporate anti-icing elements or erosion-resistant leading edges.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "81.14.1.3Stresses",
+    "subjectId": 7,
+    "text": "-",
+    "knowledgeContent": "Main-rotor blades are subjected to centrifugal (tensile), bending (due to lift and weight), and torsional (due to aerodynamic forces) stresses. Dynamic stresses arise from flapping, lead-lag, and feathering motions. Fatigue is a critical concern, requiring regular inspections for cracks or delamination.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "81.14.1.5Adjustment",
+    "subjectId": 7,
+    "text": "-",
+    "knowledgeContent": "Main-rotor blade adjustments include tracking (aligning blade tips to minimize vibrations) and balancing (ensuring equal mass distribution). Pitch links may be adjusted to synchronize blade angles, while trim tabs or trailing-edge tabs can fine-tune aerodynamic performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "81.14.2.4Adjustment",
+    "subjectId": 7,
+    "text": "-",
+    "knowledgeContent": "Tail-rotor adjustments involve tracking and balancing to reduce vibrations and ensure symmetric thrust. Blade pitch may be adjusted via control rods or hydraulic actuators to maintain directional control. Proper alignment with the main rotor is critical for stability.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1",
+    "subjectId": 7,
+    "text": "Instrument and indication systems",
+    "knowledgeContent": "Instrument and indication systems provide pilots with critical data on engine performance, fuel, and aerodynamic parameters. These systems include pressure gauges, temperature sensors, fuel quantity indicators, and tachometers. Accuracy and reliability are essential for safe flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.1",
+    "subjectId": 7,
+    "text": "Pressure gauge",
+    "knowledgeContent": "Pressure gauges measure fluid pressures (e.g., oil, hydraulic) using Bourdon tubes, diaphragms, or piezoelectric sensors. They must be calibrated to account for temperature effects and mechanical wear. Units are typically psi or bar.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.1.1",
+    "subjectId": 7,
+    "text": "Different types, design, operation, characteristics and accuracy",
+    "knowledgeContent": "Pressure gauge types include mechanical (Bourdon tube, diaphragm) and electronic (strain gauge, capacitive). Design varies by application, with some gauges damped to reduce needle oscillation. Accuracy is typically ±2-5% of full scale, affected by temperature and vibration.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.2",
+    "subjectId": 7,
+    "text": "Temperature sensing",
+    "knowledgeContent": "Temperature sensing systems use thermocouples (for high temps like EGT), resistance temperature detectors (RTDs for oil/cabin temps), or bimetallic strips. Probes are placed in critical areas (cylinders, oil cooler) and must account for thermal lag.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.2.1",
+    "subjectId": 7,
+    "text": "Different types, design, operation, characteristics and accuracy",
+    "knowledgeContent": "Temperature sensors include thermocouples (based on Seebeck effect), RTDs (platinum wire resistance), and thermistors (non-linear resistance). Designs vary from bayonet probes to flush-mounted sensors. Accuracy ranges from ±1°C for RTDs to ±5°C for thermocouples.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.3",
+    "subjectId": 7,
+    "text": "Fuel gauge",
+    "knowledgeContent": "Fuel gauges indicate quantity via float-type sensors (mechanical) or capacitance probes (electronic). Accuracy is affected by aircraft attitude, fuel density, and sensor calibration. Redundant systems or dipsticks are often used for cross-verification.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.3.1",
+    "subjectId": 7,
+    "text": "Different types, design, operation, characteristics and accuracy",
+    "knowledgeContent": "Fuel gauge types include mechanical (float-arm potentiometers), capacitive (dielectric variation between plates), and ultrasonic. Electronic designs compensate for fuel slosh but may require calibration for fuel type. Accuracy is typically ±3-5% of total capacity.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.3.1.1State",
+    "subjectId": 7,
+    "text": "that the quantity of fuel is usually measured by capacitance (by volume)x",
+    "knowledgeContent": "Modern aircraft typically measure fuel quantity by capacitance probes, where fuel level changes the dielectric between capacitor plates, altering capacitance. This method measures volume and may require density correction for mass calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.3.1.2Convert",
+    "subjectId": 7,
+    "text": "between the various units of fuel quantity",
+    "knowledgeContent": "Fuel quantity units include liters, US gallons, imperial gallons, and pounds/kg. Conversions require knowing fuel density (e.g., AVGAS ~6 lb/US gal). Example: 100 liters × 0.72 kg/l ≈ 72 kg.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.4",
+    "subjectId": 7,
+    "text": "Flow meter",
+    "knowledgeContent": "Flow meters measure fuel consumption rate using turbine wheels (mechanical) or mass flow sensors (electronic). They provide real-time data for fuel management and endurance calculations. Accuracy is critical for reserve planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.4.1",
+    "subjectId": 7,
+    "text": "Different types, design, operation, characteristics and accuracy",
+    "knowledgeContent": "Flow meter types include turbine (rotational speed proportional to flow), vane (displacement), and Coriolis (mass flow via tube oscillation). Electronic designs offer higher accuracy (±1%) but are costlier. Units are typically liters/hour or pounds/hour.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.4.1.1Define",
+    "subjectId": 7,
+    "text": "'fuel flow' and how it is measured",
+    "knowledgeContent": "'Fuel flow' is the rate of fuel consumption by the engine, measured in volume/time (e.g., l/h) or mass/time (e.g., kg/h). It is sensed by meters that detect fuel movement through the supply line, often using turbine or pressure differential methods.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.6",
+    "subjectId": 7,
+    "text": "Tachometer",
+    "knowledgeContent": "Tachometers indicate engine RPM (piston) or %N1 (turbine) via mechanical linkages (cable-driven) or electronic sensors (magnetic or optical pickups). They are critical for monitoring engine limits and propeller synchronization.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.6.1",
+    "subjectId": 7,
+    "text": "Different types, design, operation, characteristics and accuracy",
+    "knowledgeContent": "Tachometer types include mechanical (centrifugal flyweights driving a needle) and electronic (pulse-counting from alternator or Hall-effect sensors). Digital displays may integrate with engine management systems. Accuracy is typically ±1%.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.6.1.1State",
+    "subjectId": 7,
+    "text": "where tachometers are used in general aviation aircraft",
+    "knowledgeContent": "In general aviation, tachometers are used to monitor piston engine RPM (crankshaft speed) and propeller RPM (if geared). Helicopters also use them for main and tail rotor speeds.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.6.1.3State",
+    "subjectId": 7,
+    "text": "the typical units for engine speed: RPM for piston-engine aircraftx",
+    "knowledgeContent": "Piston-engine aircraft tachometers display RPM (revolutions per minute), with typical cruise ranges of 2000-2700 RPM. Redline limits are marked to prevent over-speed damage.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.1.6.1.4State",
+    "subjectId": 7,
+    "text": "the typical units for engine speed: percentage for turbine-engine aircraft-",
+    "knowledgeContent": "Turbine-engine aircraft tachometers display %N1 (fan/low-pressure compressor speed) or %N2 (high-pressure spool speed). 100% N1 corresponds to the engine's rated RPM, not an absolute value.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.2",
+    "subjectId": 7,
+    "text": "Measurement of aerodynamic parameters",
+    "knowledgeContent": "Aerodynamic parameter measurement includes static/dynamic pressure (for airspeed, altitude) and temperature (for TAS, density altitude). Pitot-static systems and sensors feed data to primary flight instruments (ASI, altimeter, VSI).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.2.1",
+    "subjectId": 7,
+    "text": "Pressure measurement",
+    "knowledgeContent": "Static pressure (ambient air pressure) and dynamic pressure (ram air from motion) are measured by pitot-static probes. Density is derived from pressure and temperature. These values underpin airspeed and altitude calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.2.1.1",
+    "subjectId": 7,
+    "text": "Static pressure, dynamic pressure, density and definitions",
+    "knowledgeContent": "Static pressure is undisturbed atmospheric pressure, measured via static ports. Dynamic pressure (q) is ½ρv², sensed by pitot tubes. Density (ρ) is calculated via the ideal gas law (ρ=P/RT). These define calibrated airspeed (CAS) and true airspeed (TAS).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.2.1.2",
+    "subjectId": 7,
+    "text": "Design, operation, errors and accuracy",
+    "knowledgeContent": "Pitot-static systems use heated probes to prevent icing. Errors include position error (port placement), blockage, or leaks. Accuracy depends on probe design and AOA compensation. Alternate static sources introduce minor errors due to cabin pressure effects.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.2.1.2.3Describe",
+    "subjectId": 7,
+    "text": "alternate static sources and their effects when used",
+    "knowledgeContent": "Alternate static sources (e.g., cabin vent) are used if primary ports are blocked. This causes altimeter overreads (lower indicated altitude) and ASI underreads (lower indicated speed) due to higher cabin pressure vs. external static.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.2.2",
+    "subjectId": 7,
+    "text": "Temperature measurement: aeroplane and helicopter",
+    "knowledgeContent": "Aerodynamic temperature measurement uses probes (e.g., TAT probes) to sense outside air temperature (OAT) for TAS and icing calculations. Probes are often platinum RTDs with anti-icing. Displays may be analog or integrated into EFIS.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.2.2.1",
+    "subjectId": 7,
+    "text": "Design, operation, errors and accuracy",
+    "knowledgeContent": "Temperature probes measure OAT or total air temperature (TAT, including kinetic heating). Designs include unheated resistance elements or aspirated probes. Errors arise from solar radiation, probe placement, or icing. Accuracy is typically ±1°C.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.2.2.2",
+    "subjectId": 7,
+    "text": "Displays",
+    "knowledgeContent": "Temperature displays range from analog dials to digital readouts on EFIS. Some systems compute density altitude or TAS automatically. Color-coding may highlight icing risk (e.g., <5°C with visible moisture).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:00:50.783Z",
+    "updatedAt": "2026-03-17T21:00:50.783Z"
+  },
+  {
+    "loId": "82.2.3",
+    "subjectId": 7,
+    "text": "Altimeter",
+    "knowledgeContent": "The altimeter measures altitude by sensing atmospheric pressure and converting it into a height reading. It is essential for maintaining safe vertical separation from terrain and other aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.3.1",
+    "subjectId": 7,
+    "text": "The different barometric references (QNH, QFE and 1013.25)",
+    "knowledgeContent": "QNH is the atmospheric pressure adjusted to sea level, QFE is the pressure at the airfield elevation, and 1013.25 hPa is the standard pressure setting used above the transition altitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.3.1.1Define",
+    "subjectId": 7,
+    "text": "the following barometric references: 'QNH', 'QFE', '1013,25'",
+    "knowledgeContent": "QNH is the pressure setting to obtain elevation above sea level, QFE gives height above the airfield, and 1013.25 hPa is the standard pressure setting for flight levels.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.3.2.2Define",
+    "subjectId": 7,
+    "text": "the terms 'height', 'altitude' and 'pressure altitude (flight level)'x",
+    "knowledgeContent": "Height is the vertical distance above a specific point (e.g., airfield), altitude is the vertical distance above sea level, and pressure altitude is the altitude above the standard datum plane (1013.25 hPa).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.3.3",
+    "subjectId": 7,
+    "text": "Design, operation, errors and accuracy",
+    "knowledgeContent": "The altimeter consists of an aneroid capsule that expands and contracts with pressure changes. Errors include instrument, position, and lag errors, and accuracy depends on proper calibration and maintenance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.3.3.1Explain",
+    "subjectId": 7,
+    "text": "the operating principles of a barometric altimeter",
+    "knowledgeContent": "A barometric altimeter operates by measuring atmospheric pressure with an aneroid capsule, which mechanically translates pressure changes into altitude readings on a dial.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.3.3.2Explain",
+    "subjectId": 7,
+    "text": "the procedure for setting the correct pressure reference",
+    "knowledgeContent": "To set the correct pressure reference, adjust the altimeter's subscale to the current QNH, QFE, or standard pressure (1013.25 hPa) as required for the phase of flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.3.3.4Describe",
+    "subjectId": 7,
+    "text": "the effects of a blockage or leakage on the static pressure linex",
+    "knowledgeContent": "A blockage in the static pressure line causes erroneous altitude readings, while a leakage leads to inaccurate and fluctuating indications.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.3.4",
+    "subjectId": 7,
+    "text": "Displays",
+    "knowledgeContent": "The altimeter display shows altitude in feet or meters, with three pointers indicating thousands, hundreds, and tens of feet.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.3.4.3Interpret",
+    "subjectId": 7,
+    "text": "example altimeter indications be means of pressure reference settingx",
+    "knowledgeContent": "Altimeter indications vary based on the pressure reference setting: QNH shows altitude above sea level, QFE shows height above the airfield, and 1013.25 hPa shows pressure altitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.4",
+    "subjectId": 7,
+    "text": "Vertical speed indicator (VSI)",
+    "knowledgeContent": "The vertical speed indicator (VSI) measures the rate of climb or descent by detecting changes in static pressure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.4.1",
+    "subjectId": 7,
+    "text": "Design, operation, errors and accuracy",
+    "knowledgeContent": "The VSI operates using a calibrated leak to measure pressure changes, with units in feet per minute (ft/min) or meters per second (m/s). Errors include lag and instrument inaccuracies.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.4.1.1List",
+    "subjectId": 7,
+    "text": "the units used for VSIs: metres per second, feet per minute",
+    "knowledgeContent": "The VSI displays vertical speed in feet per minute (ft/min) or meters per second (m/s).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.4.1.2Explain",
+    "subjectId": 7,
+    "text": "the operating principles of a VSI",
+    "knowledgeContent": "The VSI works by comparing static pressure in a diaphragm to a calibrated leak, translating pressure changes into a rate of climb or descent.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.4.2",
+    "subjectId": 7,
+    "text": "Displays",
+    "knowledgeContent": "The VSI display shows the rate of climb or descent in feet per minute (ft/min) or meters per second (m/s).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.5",
+    "subjectId": 7,
+    "text": "Air speed indicator",
+    "knowledgeContent": "The airspeed indicator (ASI) measures the dynamic pressure of the airflow to display indicated airspeed (IAS), which is corrected to calibrated airspeed (CAS) and true airspeed (TAS).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.5.1",
+    "subjectId": 7,
+    "text": "The different speeds IAS, CAS, TAS: definition, usage and relationshipsx",
+    "knowledgeContent": "IAS is the uncorrected reading from the ASI, CAS is IAS corrected for instrument and position errors, and TAS is CAS corrected for altitude and temperature.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.5.1.1Define",
+    "subjectId": 7,
+    "text": "the terms: 'IAS', 'CAS', 'TAS'",
+    "knowledgeContent": "IAS is the direct reading from the ASI, CAS is IAS corrected for errors, and TAS is CAS adjusted for altitude and temperature.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.5.1.2Convert",
+    "subjectId": 7,
+    "text": "between IAS/CAS and TAS using the rule of thumb ('2% per 1000 ft')x",
+    "knowledgeContent": "To convert IAS/CAS to TAS, use the rule of thumb: TAS increases by 2% for every 1,000 feet of altitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.5.1.3Convert",
+    "subjectId": 7,
+    "text": "between IAS/CAS and TAS using the mechanical flight calculatorx",
+    "knowledgeContent": "Use a mechanical flight calculator to convert IAS/CAS to TAS by factoring in altitude, temperature, and pressure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.5.2",
+    "subjectId": 7,
+    "text": "Design, operation, errors and accuracy",
+    "knowledgeContent": "The ASI measures dynamic pressure using a pitot-static system, with errors including position, instrument, and density errors.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.5.2.1Explain",
+    "subjectId": 7,
+    "text": "the operating principles of an airspeed indicator (ASI)",
+    "knowledgeContent": "The ASI operates by comparing dynamic pressure from the pitot tube to static pressure from the static port, displaying the difference as airspeed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.2.5.3",
+    "subjectId": 7,
+    "text": "Displays",
+    "knowledgeContent": "The ASI displays airspeed in knots (kt) or kilometers per hour (km/h), with color-coded ranges for safe operating speeds.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.3",
+    "subjectId": 7,
+    "text": "Magnetism: direct reading compass",
+    "knowledgeContent": "The direct reading compass uses Earth's magnetic field to indicate heading, but it is subject to deviations and errors.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.3.1",
+    "subjectId": 7,
+    "text": "Earth magnetic field",
+    "knowledgeContent": "Earth's magnetic field has a geometry that varies by location, with magnetic north differing from true north due to declination.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.3.1.1",
+    "subjectId": 7,
+    "text": "Field geometry",
+    "knowledgeContent": "The Earth's magnetic field lines run from the magnetic south pole to the magnetic north pole, creating a directive force for compasses.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.3.1.2",
+    "subjectId": 7,
+    "text": "Directive force",
+    "knowledgeContent": "The directive force is the horizontal component of Earth's magnetic field that aligns the compass needle with magnetic north.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.3.2",
+    "subjectId": 7,
+    "text": "Direct reading compass",
+    "knowledgeContent": "The direct reading compass consists of a magnetized needle suspended in fluid, with deviations caused by magnetic interference.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.3.2.1",
+    "subjectId": 7,
+    "text": "Design, operation, data processing, accuracy and deviation",
+    "knowledgeContent": "The compass design includes a magnetized needle, damping fluid, and a deviation card to correct for magnetic interference.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.3.2.1.3Define",
+    "subjectId": 7,
+    "text": "'deviation (DEV)' and 'compass north (CN)'",
+    "knowledgeContent": "Deviation (DEV) is the error caused by magnetic interference, and compass north (CN) is the direction indicated by the compass needle.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:01:56.723Z",
+    "updatedAt": "2026-03-17T21:01:56.723Z"
+  },
+  {
+    "loId": "82.3.2.2",
+    "subjectId": 7,
+    "text": "Turning and acceleration errors",
+    "knowledgeContent": "Turning and acceleration errors occur in gyroscopic instruments due to the forces acting on the gyroscope during aircraft maneuvers. Turning errors affect the attitude indicator, causing it to indicate a bank when the aircraft is turning, while acceleration errors cause the attitude indicator to show a pitch change during acceleration or deceleration.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4",
+    "subjectId": 7,
+    "text": "Gyroscopic instruments",
+    "knowledgeContent": "Gyroscopic instruments, such as the attitude indicator, turn coordinator, and directional gyro, rely on the principles of gyroscopic inertia and precession to provide accurate flight information. These instruments are essential for maintaining situational awareness, especially in conditions of limited visibility.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.1",
+    "subjectId": 7,
+    "text": "Gyroscope: basic principles",
+    "knowledgeContent": "A gyroscope is a spinning wheel or disc mounted so that its axis can freely rotate, exhibiting properties of rigidity in space and precession. These properties allow gyroscopes to maintain a fixed orientation relative to space, making them useful in aviation instruments.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.1.1",
+    "subjectId": 7,
+    "text": "Definitions and design",
+    "knowledgeContent": "A gyroscope consists of a spinning rotor mounted in gimbals, allowing it to rotate freely in multiple axes. The design ensures that the gyroscope maintains its orientation in space, providing a stable reference for aircraft instruments.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.1.1.1Define",
+    "subjectId": 7,
+    "text": "a 'gyro'",
+    "knowledgeContent": "A 'gyro' is a device consisting of a spinning rotor mounted in gimbals, which maintains its orientation in space due to the principle of gyroscopic inertia.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.1.1.2Define",
+    "subjectId": 7,
+    "text": "the 'degrees of freedom' of a gyro",
+    "knowledgeContent": "The 'degrees of freedom' of a gyro refer to the number of axes around which the gyroscope can rotate freely, typically two or three, allowing it to maintain its orientation in space.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.1.2",
+    "subjectId": 7,
+    "text": "Fundamental properties",
+    "knowledgeContent": "Gyroscopic forces are based on the principles of inertia and precession. Inertia keeps the gyroscope spinning in a fixed plane, while precession causes the gyroscope to react to external forces by rotating around a perpendicular axis.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.1.2.2Explain",
+    "subjectId": 7,
+    "text": "the terms 'rigidity', 'precession', 'drift' and 'wander'",
+    "knowledgeContent": "'Rigidity' refers to the gyroscope's tendency to maintain its orientation in space. 'Precession' is the gyroscope's response to an applied force, causing it to rotate around a perpendicular axis. 'Drift' and 'wander' refer to the gradual loss of accuracy due to friction and external forces.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.1.2.3Describe",
+    "subjectId": 7,
+    "text": "the two ways of driving gyroscopes: air/vacuum or electricallyx",
+    "knowledgeContent": "Gyroscopes can be driven by air/vacuum systems, where air flow spins the rotor, or electrically, where an electric motor spins the rotor. Both methods ensure the gyroscope maintains its rotational speed for accurate operation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.2",
+    "subjectId": 7,
+    "text": "Turn and bank indicator",
+    "knowledgeContent": "The turn and bank indicator, also known as the turn coordinator, provides information about the rate of turn and the aircraft's balance (slip or skid). It uses a gyroscope to measure the rate of turn and a ball to indicate balance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.2.1",
+    "subjectId": 7,
+    "text": "Design, operation and errors",
+    "knowledgeContent": "The turn and bank indicator consists of a gyroscope mounted on a gimbal and a ball in a curved tube. The gyroscope measures the rate of turn, while the ball indicates whether the aircraft is in coordinated flight. Errors can occur due to gyroscopic precession or mechanical wear.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.2.1.1Explain",
+    "subjectId": 7,
+    "text": "the purpose of a rate-of-turn and balance (slip) indicator",
+    "knowledgeContent": "The rate-of-turn and balance (slip) indicator provides the pilot with information about the aircraft's rate of turn and whether the turn is coordinated. This helps maintain balanced flight and prevents skidding or slipping during turns.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.3",
+    "subjectId": 7,
+    "text": "Attitude indicator",
+    "knowledgeContent": "The attitude indicator, or artificial horizon, displays the aircraft's pitch and bank relative to the horizon. It uses a gyroscope to maintain a stable reference, allowing the pilot to maintain level flight in conditions of limited visibility.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.3.1",
+    "subjectId": 7,
+    "text": "Design, operation, errors and accuracy",
+    "knowledgeContent": "The attitude indicator consists of a gyroscope mounted in a gimbal, with a display showing the aircraft's pitch and bank. Errors can occur due to gyroscopic precession, friction, or extreme maneuvers, which can cause the gyroscope to tumble.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.3.1.1Explain",
+    "subjectId": 7,
+    "text": "the purpose of the attitude indicator",
+    "knowledgeContent": "The attitude indicator provides the pilot with a visual reference of the aircraft's pitch and bank relative to the horizon, essential for maintaining level flight in instrument meteorological conditions (IMC).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.3.1.4Describe",
+    "subjectId": 7,
+    "text": "the limitations of the ADI with regard to extreme flight situationsx",
+    "knowledgeContent": "The attitude indicator has limitations in extreme flight situations, such as rapid maneuvers or high bank angles, which can cause the gyroscope to tumble and lose accuracy. Regular recalibration is necessary to maintain precision.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.4",
+    "subjectId": 7,
+    "text": "Directional gyroscope",
+    "knowledgeContent": "The directional gyroscope, or heading indicator, provides the pilot with a stable reference for the aircraft's heading. It uses a gyroscope to maintain a fixed orientation, compensating for the magnetic compass's errors during turns and accelerations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.4.1",
+    "subjectId": 7,
+    "text": "Design, operation, errors and accuracy",
+    "knowledgeContent": "The directional gyroscope consists of a gyroscope mounted in a gimbal, with a display showing the aircraft's heading. Errors can occur due to gyroscopic drift, friction, or mechanical wear, requiring periodic recalibration.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.4.1.1Explain",
+    "subjectId": 7,
+    "text": "the purpose of the directional gyroscope",
+    "knowledgeContent": "The directional gyroscope provides the pilot with a stable reference for the aircraft's heading, compensating for the magnetic compass's errors during turns and accelerations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.4.4.1.4Describe",
+    "subjectId": 7,
+    "text": "how the directional gyroscope will drift over time",
+    "knowledgeContent": "The directional gyroscope will drift over time due to gyroscopic precession and friction, requiring periodic recalibration to maintain accuracy. This drift is typically corrected by aligning the gyroscope with the magnetic compass.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.5",
+    "subjectId": 7,
+    "text": "Communication systems",
+    "knowledgeContent": "Communication systems in aircraft include VHF, HF, and SATCOM, which are used for voice and data transmission between the aircraft and ground stations or other aircraft. These systems operate on specific frequency ranges and have varying ranges and limitations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.5.1",
+    "subjectId": 7,
+    "text": "Transmission modes: VHF, HF and SATCOM",
+    "knowledgeContent": "VHF (Very High Frequency) and HF (High Frequency) are the primary modes of voice communication in aviation. VHF is used for short-range communication, while HF is used for long-range communication, especially over oceans and remote areas.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.5.1.1",
+    "subjectId": 7,
+    "text": "Principles, bandwidth, operational limitations and use",
+    "knowledgeContent": "VHF operates in the frequency range of 118.000 to 136.975 MHz, providing line-of-sight communication. HF operates in the range of 3 to 30 MHz, allowing for long-range communication via skywave propagation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.5.1.1.1Describe",
+    "subjectId": 7,
+    "text": "the use of HF and VHF for voice communication",
+    "knowledgeContent": "VHF is used for short-range communication between aircraft and ground stations, while HF is used for long-range communication, especially in remote or oceanic areas where VHF is unavailable.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.5.1.1.2State",
+    "subjectId": 7,
+    "text": "the frequency range used with HF and VHF communication",
+    "knowledgeContent": "VHF operates in the frequency range of 118.000 to 136.975 MHz, while HF operates in the range of 3 to 30 MHz.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.5.1.1.3Explain",
+    "subjectId": 7,
+    "text": "which factors affect the range and availability of HF communicationx",
+    "knowledgeContent": "The range and availability of HF communication are affected by factors such as ionospheric conditions, time of day, and solar activity, which influence skywave propagation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.5.1.1.4Explain",
+    "subjectId": 7,
+    "text": "which factors affect the range and availability of VHF communicationx",
+    "knowledgeContent": "The range and availability of VHF communication are primarily limited by line-of-sight, meaning it is effective only within visual range of the transmitting and receiving stations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.6",
+    "subjectId": 7,
+    "text": "Alerting systems and proximity systems",
+    "knowledgeContent": "Alerting systems and proximity systems, such as TCAS (Traffic Collision Avoidance System) and GPWS (Ground Proximity Warning System), provide warnings to the pilot to avoid collisions with other aircraft or terrain.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.6.1",
+    "subjectId": 7,
+    "text": "Flight warning systems",
+    "knowledgeContent": "Flight warning systems, such as TCAS and GPWS, use sensors and radar to detect potential collisions with other aircraft or terrain. These systems provide visual and auditory alerts to the pilot, allowing for timely corrective action.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:03.135Z",
+    "updatedAt": "2026-03-17T21:03:03.135Z"
+  },
+  {
+    "loId": "82.6.1.1",
+    "subjectId": 7,
+    "text": "Design, operation, indications and alarms",
+    "knowledgeContent": "A PPL(A) student must understand the design principles, operational mechanisms, and the types of indications and alarms used in aircraft systems. This includes recognizing how systems provide feedback to the pilot and the importance of timely response to alarms.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:29.309Z",
+    "updatedAt": "2026-03-17T21:03:29.309Z"
+  },
+  {
+    "loId": "82.6.1.1State",
+    "subjectId": 7,
+    "text": "82.6.1.1State",
+    "knowledgeContent": "A PPL(A) student must know that red is used for warning indications, indicating immediate action is required, and amber is used for caution indications, signaling a need for attention but not immediate danger.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:29.309Z",
+    "updatedAt": "2026-03-17T21:03:29.309Z"
+  },
+  {
+    "loId": "82.6.1.1.2State",
+    "subjectId": 7,
+    "text": "how operational limits are displayed",
+    "knowledgeContent": "A PPL(A) student must understand how operational limits, such as airspeed, engine RPM, and temperature, are displayed on instruments, often using colored arcs, lines, or digital readouts to indicate safe and unsafe ranges.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:29.309Z",
+    "updatedAt": "2026-03-17T21:03:29.309Z"
+  },
+  {
+    "loId": "82.6.2",
+    "subjectId": 7,
+    "text": "Stall warning",
+    "knowledgeContent": "A PPL(A) student must comprehend the concept of stall warning, including the aerodynamic principles behind stalls and the importance of timely recognition to prevent loss of control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:29.309Z",
+    "updatedAt": "2026-03-17T21:03:29.309Z"
+  },
+  {
+    "loId": "82.6.2.1",
+    "subjectId": 7,
+    "text": "Design, operation, indications and alarms",
+    "knowledgeContent": "A PPL(A) student must understand the design, operation, and indications of stall warning systems, including how they alert the pilot to an impending stall through visual, auditory, or tactile signals.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:29.309Z",
+    "updatedAt": "2026-03-17T21:03:29.309Z"
+  },
+  {
+    "loId": "82.6.2.1.1Describe",
+    "subjectId": 7,
+    "text": "the purpose of an Stall Warning System (SWS)",
+    "knowledgeContent": "A PPL(A) student must describe the purpose of a Stall Warning System (SWS), which is to alert the pilot of an approaching stall condition, allowing corrective action to be taken to avoid loss of lift and control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:29.309Z",
+    "updatedAt": "2026-03-17T21:03:29.309Z"
+  },
+  {
+    "loId": "82.6.2.1.2Describe",
+    "subjectId": 7,
+    "text": "the different types of SWS used in general aviation aircraft",
+    "knowledgeContent": "A PPL(A) student must describe the different types of SWS used in general aviation aircraft, such as mechanical reed systems, electronic sensors, and angle-of-attack indicators, and how they function.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:29.309Z",
+    "updatedAt": "2026-03-17T21:03:29.309Z"
+  },
+  {
+    "loId": "82.7",
+    "subjectId": 7,
+    "text": "Integrated instruments: electronic displays",
+    "knowledgeContent": "A PPL(A) student must understand the principles of integrated electronic displays, including how they consolidate and present critical flight information in a user-friendly format.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:29.309Z",
+    "updatedAt": "2026-03-17T21:03:29.309Z"
+  },
+  {
+    "loId": "82.7.1",
+    "subjectId": 7,
+    "text": "Display units",
+    "knowledgeContent": "A PPL(A) student must understand the design and functionality of display units in modern aircraft, including their role in presenting flight data, navigation information, and system status.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:29.309Z",
+    "updatedAt": "2026-03-17T21:03:29.309Z"
+  },
+  {
+    "loId": "82.7.1.1",
+    "subjectId": 7,
+    "text": "Design, different technologies and limitations",
+    "knowledgeContent": "A PPL(A) student must understand the different technologies used in electronic displays, such as LCD and OLED, and their limitations, including readability in varying light conditions and potential failure modes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:29.309Z",
+    "updatedAt": "2026-03-17T21:03:29.309Z"
+  },
+  {
+    "loId": "82.7.1.1.6Identify",
+    "subjectId": 7,
+    "text": "displayed information from example display pictures",
+    "knowledgeContent": "A PPL(A) student must be able to identify and interpret displayed information from example display pictures, such as airspeed, altitude, heading, and engine parameters, on electronic flight instrument systems (EFIS).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:03:29.309Z",
+    "updatedAt": "2026-03-17T21:03:29.309Z"
+  }
+]

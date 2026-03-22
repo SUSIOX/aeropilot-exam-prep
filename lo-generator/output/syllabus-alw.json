@@ -1,0 +1,2867 @@
+[
+  {
+    "loId": "10.1",
+    "subjectId": 1,
+    "text": "International law: conventions, agreements and organisations",
+    "knowledgeContent": "Understand the framework of international aviation law, including key conventions, agreements, and organisations that regulate global civil aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.1.1",
+    "subjectId": 1,
+    "text": "The Convention on international civil aviation (Chicago) Doc. 7300/6",
+    "knowledgeContent": "Know the purpose and scope of the Chicago Convention (Doc. 7300/6), which established ICAO and governs international civil aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.1.1.1.1(a)",
+    "subjectId": 1,
+    "text": "general principles and application of the convention",
+    "knowledgeContent": "Understand the general principles of the Chicago Convention, including sovereignty over airspace and the promotion of safe and orderly development of international civil aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.1.1.1.2(b)",
+    "subjectId": 1,
+    "text": "flight over territory of Contracting States",
+    "knowledgeContent": "Know the rules governing flight over the territory of Contracting States, including the requirement for prior permission unless otherwise agreed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.1.1.1.3(c)",
+    "subjectId": 1,
+    "text": "nationality of aircraft",
+    "knowledgeContent": "Understand the concept of aircraft nationality, including the requirement for aircraft to be registered in a Contracting State and display nationality marks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.1.1.1.4(d)",
+    "subjectId": 1,
+    "text": "measures to facilitate air navigation",
+    "knowledgeContent": "Know the measures outlined in the Convention to facilitate air navigation, such as the provision of air navigation services and the elimination of unnecessary delays.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.1.1.1.5(e)",
+    "subjectId": 1,
+    "text": "conditions to be fulfilled on aircraft",
+    "knowledgeContent": "Understand the conditions aircraft must fulfil, including airworthiness, equipment, and crew qualifications, as specified by Contracting States.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.1.1.1.6(f)",
+    "subjectId": 1,
+    "text": "international standards and recommended practices",
+    "knowledgeContent": "Know the role of ICAO in establishing international standards and recommended practices (SARPs) for civil aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.1.1.1.7(g)",
+    "subjectId": 1,
+    "text": "validity of endorsed certificates and licences",
+    "knowledgeContent": "Understand the validity of endorsed certificates and licences, including their recognition by other Contracting States.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.1.1.1.8(h)",
+    "subjectId": 1,
+    "text": "notification of differences",
+    "knowledgeContent": "Know the requirement for Contracting States to notify ICAO of any differences between their national regulations and ICAO SARPs.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.1.1.2.1Describe",
+    "subjectId": 1,
+    "text": "the objectives of ICAO",
+    "knowledgeContent": "Describe ICAO's objectives, including the promotion of safe, efficient, and orderly international civil aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.1.2",
+    "subjectId": 1,
+    "text": "European Organisations",
+    "knowledgeContent": "Understand the role of European organisations in regulating civil aviation, including EASA and EUROCONTROL.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.1.2.1",
+    "subjectId": 1,
+    "text": "EASA",
+    "knowledgeContent": "Know the functions of EASA, including the regulation of airworthiness, safety, and environmental standards for aircraft in the EU.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.1.2.2",
+    "subjectId": 1,
+    "text": "EUROCONOTROL",
+    "knowledgeContent": "Understand the role of EUROCONTROL in managing European air traffic and harmonising air navigation services.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.2",
+    "subjectId": 1,
+    "text": "Annex 8: Airworthiness of aircraft",
+    "knowledgeContent": "Understand the provisions of ICAO Annex 8, which sets international standards for the airworthiness of aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.2.1.1",
+    "subjectId": 1,
+    "text": "Terms and definitions",
+    "knowledgeContent": "Know the key terms and definitions related to airworthiness as defined in Annex 8.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.2.1.2",
+    "subjectId": 1,
+    "text": "Procedures",
+    "knowledgeContent": "Understand the procedures outlined in Annex 8 for ensuring aircraft airworthiness, including certification and maintenance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.2.1.2.1State",
+    "subjectId": 1,
+    "text": "the issuing authority of a CofA",
+    "knowledgeContent": "Know that the issuing authority of a Certificate of Airworthiness (CofA) is the national aviation authority of the State of Registry.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.2.1.2.2State",
+    "subjectId": 1,
+    "text": "who shall determine an aircraft's continuing airworthiness",
+    "knowledgeContent": "Understand that the State of Registry is responsible for determining an aircraft's continuing airworthiness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.2.1.2.3Describe",
+    "subjectId": 1,
+    "text": "how a CofA can be renewed or may remain valid",
+    "knowledgeContent": "Describe how a CofA can be renewed or remain valid, including compliance with maintenance and inspection requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.2.1.2.5Identify",
+    "subjectId": 1,
+    "text": "an airworthiness review certificate (ARC) and assess its validity",
+    "knowledgeContent": "Identify an Airworthiness Review Certificate (ARC) and assess its validity based on compliance with airworthiness standards.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.2.2",
+    "subjectId": 1,
+    "text": "Aircraft Radio Station",
+    "knowledgeContent": "Understand the requirements for aircraft radio stations as outlined in ICAO Annexes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.2.2.1",
+    "subjectId": 1,
+    "text": "General",
+    "knowledgeContent": "Know the general principles governing the operation and certification of aircraft radio stations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.2.3",
+    "subjectId": 1,
+    "text": "Aircraft Logbook",
+    "knowledgeContent": "Understand the purpose and importance of aircraft logbooks in maintaining airworthiness and operational records.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.2.3.1",
+    "subjectId": 1,
+    "text": "Purpose",
+    "knowledgeContent": "Know that an aircraft logbook is required to record maintenance, inspections, and defects for any aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.2.3.1.1Explain",
+    "subjectId": 1,
+    "text": "why an aircraft logbook is required for any aircraft",
+    "knowledgeContent": "Explain why an aircraft logbook is essential for tracking maintenance, ensuring airworthiness, and complying with regulatory requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.2.3.2",
+    "subjectId": 1,
+    "text": "Tracking defects",
+    "knowledgeContent": "Understand the process of tracking defects in an aircraft logbook, including reporting and rectification procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.3",
+    "subjectId": 1,
+    "text": "Annex 7: Aircraft nationality and registration marks",
+    "knowledgeContent": "Understand the provisions of ICAO Annex 7 regarding aircraft nationality and registration marks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.3.1",
+    "subjectId": 1,
+    "text": "Nationality marks, common marks and registration marks",
+    "knowledgeContent": "Know the requirements for nationality marks, common marks, and registration marks on aircraft as per Annex 7.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.3.1.1",
+    "subjectId": 1,
+    "text": "Foreword and definitions",
+    "knowledgeContent": "Understand the foreword and key definitions in Annex 7, including the purpose of nationality and registration marks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:14:33.329Z",
+    "updatedAt": "2026-03-17T21:14:33.329Z"
+  },
+  {
+    "loId": "10.3.1.2",
+    "subjectId": 1,
+    "text": "Common- and registration marks",
+    "knowledgeContent": "A PPL(A) student must understand that common marks refer to the nationality and registration marks assigned to aircraft, typically consisting of a country prefix followed by a unique registration identifier. They must also know that these marks must be displayed prominently on the aircraft as per EASA regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.3.1.3",
+    "subjectId": 1,
+    "text": "Certificate of registration and aircraft nationality",
+    "knowledgeContent": "A PPL(A) student must know that the Certificate of Registration is a legal document proving the aircraft's nationality and ownership. They must understand that this certificate must be carried on board the aircraft at all times and that it links the aircraft to its registration marks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4",
+    "subjectId": 1,
+    "text": "Annex 1: Personnel licensing",
+    "knowledgeContent": "A PPL(A) student must be aware that Annex 1 of the ICAO Chicago Convention outlines the standards for personnel licensing, including the requirements for pilots, flight engineers, and air traffic controllers. They must understand that this annex ensures uniformity in licensing standards globally.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.1",
+    "subjectId": 1,
+    "text": "Aircrew Regulation - Annex I (Part-FCL)",
+    "knowledgeContent": "A PPL(A) student must understand that Annex I (Part-FCL) of the Aircrew Regulation specifies the requirements for the issuance, validity, and privileges of pilot licenses. They must know that it covers both theoretical knowledge and practical skill requirements for pilots.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.1.1",
+    "subjectId": 1,
+    "text": "Definitions and responsibilities",
+    "knowledgeContent": "A PPL(A) student must know that Part-FCL defines key terms such as 'PIC' (Pilot in Command) and outlines the responsibilities associated with each role. They must understand that these definitions and responsibilities are critical for ensuring safe and compliant flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.1.1.3Define",
+    "subjectId": 1,
+    "text": "the term 'PIC'",
+    "knowledgeContent": "A PPL(A) student must define 'PIC' as the pilot designated by the operator or owner as being in command and responsible for the operation and safety of the aircraft during flight time.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.1.1.5List",
+    "subjectId": 1,
+    "text": "the duties and responsibilities of the PIC with regard to NCO.GEN.105",
+    "knowledgeContent": "A PPL(A) student must list the duties of the PIC as per NCO.GEN.105, including ensuring the aircraft is airworthy, pre-flight inspections, compliance with operational procedures, and ensuring the safety of passengers and crew.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.1.1.6Explain",
+    "subjectId": 1,
+    "text": "the difference between a 'commercial' and 'non-commercial' flight",
+    "knowledgeContent": "A PPL(A) student must explain that a 'commercial flight' is conducted for hire or reward, while a 'non-commercial flight' is conducted without financial gain, such as private or recreational flying.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2",
+    "subjectId": 1,
+    "text": "Relevant parts of Annex 1 connected to Part-FCL and Part-Medical",
+    "knowledgeContent": "A PPL(A) student must understand that Annex 1 includes sections relevant to Part-FCL (Flight Crew Licensing) and Part-MED (Medical Requirements), which together ensure pilots meet both licensing and health standards.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.1",
+    "subjectId": 1,
+    "text": "Part FCL",
+    "knowledgeContent": "A PPL(A) student must know that Part FCL outlines the requirements for obtaining and maintaining pilot licenses, including theoretical exams, flight training, and skill tests.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.1.1Explain",
+    "subjectId": 1,
+    "text": "the structure of relevant parts of FLC (Part FCL, BFCL, SFCL)",
+    "knowledgeContent": "A PPL(A) student must explain that Part FCL, BFCL (Basic Flight Crew Licensing), and SFCL (Specific Flight Crew Licensing) form the structure of flight crew licensing requirements, each addressing different aspects of pilot training and certification.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.1.5Explain",
+    "subjectId": 1,
+    "text": "the term 'competent authority'",
+    "knowledgeContent": "A PPL(A) student must explain that a 'competent authority' refers to the national aviation authority responsible for implementing and enforcing EASA regulations, such as the CAA in the UK or the LBA in Germany.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.1.6Name",
+    "subjectId": 1,
+    "text": "and identify personal documents required to be carried on board",
+    "knowledgeContent": "A PPL(A) student must name and identify personal documents required on board, including the pilot license, medical certificate, and, if applicable, the radio operator license.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.1.7State",
+    "subjectId": 1,
+    "text": "which documents may be kept at the airfield during local flights",
+    "knowledgeContent": "A PPL(A) student must state that during local flights, certain documents such as the Certificate of Registration and the aircraft radio license may be kept at the airfield, provided they are accessible upon request.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.2",
+    "subjectId": 1,
+    "text": "Part MED",
+    "knowledgeContent": "A PPL(A) student must understand that Part MED specifies the medical standards pilots must meet to ensure they are fit to fly, including the issuance of medical certificates.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.2.1State",
+    "subjectId": 1,
+    "text": "the requirements for the issue of a medical certificate",
+    "knowledgeContent": "A PPL(A) student must state that the issue of a medical certificate requires passing a medical examination conducted by an authorized aviation medical examiner, assessing physical and mental fitness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.2.3State",
+    "subjectId": 1,
+    "text": "the period of validity of a Medical class 2 for a pilot with given age",
+    "knowledgeContent": "A PPL(A) student must state that a Medical Class 2 certificate is valid for 60 months for pilots under 40 years old and 24 months for pilots aged 40 and above.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.3",
+    "subjectId": 1,
+    "text": "Validity and priviledges of licences and ratings",
+    "knowledgeContent": "A PPL(A) student must understand that the validity and privileges of licenses and ratings are defined in Part-FCL, including the requirements for maintaining and renewing them.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.3.1State",
+    "subjectId": 1,
+    "text": "the requirements for the issue of a PPL, SPL or BPL",
+    "knowledgeContent": "A PPL(A) student must state that the issue of a PPL (Private Pilot License), SPL (Sailplane Pilot License), or BPL (Balloon Pilot License) requires completing theoretical and practical training, passing exams, and meeting medical requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.3.2State",
+    "subjectId": 1,
+    "text": "the privileges of a PPL, SPL or BPL",
+    "knowledgeContent": "A PPL(A) student must state that the privileges of a PPL include flying non-commercial flights in the relevant aircraft category, while SPL and BPL privileges are specific to sailplanes and balloons, respectively.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.3.3State",
+    "subjectId": 1,
+    "text": "the requirements for class ratings, their validity and privileges",
+    "knowledgeContent": "A PPL(A) student must state that class ratings, such as for single-engine piston aircraft, require specific training and are valid for the duration of the pilot's license, provided recurrent training is completed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.3.6State",
+    "subjectId": 1,
+    "text": "the period of validity of a PPL, SPL or BPL",
+    "knowledgeContent": "A PPL(A) student must state that a PPL, SPL, or BPL is valid indefinitely, provided the pilot meets the medical and recency requirements specified in Part-FCL.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.3.10Explain",
+    "subjectId": 1,
+    "text": "the terms 'differences training' and 'familiarization'",
+    "knowledgeContent": "A PPL(A) student must explain that 'differences training' is required when transitioning between aircraft with significant differences, while 'familiarization' is a less formal process for minor variations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.3.12State",
+    "subjectId": 1,
+    "text": "the period of validity of a differences training",
+    "knowledgeContent": "A PPL(A) student must state that differences training is valid for the duration of the pilot's license, provided they maintain recency on the aircraft type.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.3.13State",
+    "subjectId": 1,
+    "text": "the flight experience required for a pilot to act as a PIC",
+    "knowledgeContent": "A PPL(A) student must state that a pilot must have completed at least 10 hours of flight time in the relevant aircraft category to act as PIC.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.4.2.3.14State",
+    "subjectId": 1,
+    "text": "the flight experience required for a pilot to carry passengers",
+    "knowledgeContent": "A PPL(A) student must state that a pilot must have completed at least 5 hours of flight time in the relevant aircraft category within the last 12 months to carry passengers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.5",
+    "subjectId": 1,
+    "text": "Annex 2: Rules of the air",
+    "knowledgeContent": "A PPL(A) student must understand that Annex 2 of the ICAO Chicago Convention outlines the Rules of the Air, which govern the conduct of flights to ensure safety and order in airspace.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.5.1",
+    "subjectId": 1,
+    "text": "Essential definitions",
+    "knowledgeContent": "A PPL(A) student must know that Annex 2 provides essential definitions and scope for the Rules of the Air, including the classification of airspace and the responsibilities of pilots and air traffic controllers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.5.1.1",
+    "subjectId": 1,
+    "text": "Scope and definitions",
+    "knowledgeContent": "A PPL(A) student must understand that the scope of ICAO Annex 2 includes the application of rules to all aircraft operating in international airspace, ensuring uniformity and safety in global aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.5.1.1.1Explain",
+    "subjectId": 1,
+    "text": "the scope and purpose of ICAO Annex 2",
+    "knowledgeContent": "A PPL(A) student must explain that the purpose of ICAO Annex 2 is to establish standardized Rules of the Air to promote safe and efficient international air navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:15:38.269Z",
+    "updatedAt": "2026-03-17T21:15:38.269Z"
+  },
+  {
+    "loId": "10.5.1.1.2Define",
+    "subjectId": 1,
+    "text": "the term 'SERA'",
+    "knowledgeContent": "SERA stands for 'Standardised European Rules of the Air'. It is the regulatory framework established by EASA to harmonise air traffic rules across Europe, ensuring safe and efficient operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.1.1.3Explain",
+    "subjectId": 1,
+    "text": "the scope and main content of SERA",
+    "knowledgeContent": "SERA covers general flight rules, visual and instrument flight rules (VFR/IFR), right-of-way procedures, airspace classifications, and communication requirements. Its purpose is to standardise aviation regulations within the European Union.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.1.1.4Explain",
+    "subjectId": 1,
+    "text": "the terms 'VMC', 'IMC' and 'VFR' / 'IFR' flights",
+    "knowledgeContent": "VMC (Visual Meteorological Conditions) refers to weather conditions allowing flight under VFR. IMC (Instrument Meteorological Conditions) require IFR due to poor visibility. VFR flights rely on external visual references, while IFR flights depend on instruments and ATC guidance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.1.1.5Define",
+    "subjectId": 1,
+    "text": "the term 'ceiling'",
+    "knowledgeContent": "Ceiling is the height above ground or water level of the lowest cloud layer covering more than half the sky (BKN or OVC). It is critical for VFR flight planning and determining minimum safe altitudes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.2",
+    "subjectId": 1,
+    "text": "Applicability",
+    "knowledgeContent": "The Rules of the Air apply to all aircraft operating within European airspace, including foreign-registered aircraft. Exceptions may apply to state/military flights under specific agreements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.2.1",
+    "subjectId": 1,
+    "text": "Applicability of the Rules of the Air",
+    "knowledgeContent": "The Rules of the Air (SERA) govern all phases of flight, including ground operations, and apply universally unless superseded by local ATC instructions or special provisions for military/state aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.3",
+    "subjectId": 1,
+    "text": "General rules (except water operations)",
+    "knowledgeContent": "General rules include collision avoidance (see-and-avoid principle), right-of-way priorities (e.g., aircraft in distress has priority), and altitude separation. These exclude specific water operation procedures like ditching or maritime SAR.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.3.1",
+    "subjectId": 1,
+    "text": "Rules - SERA",
+    "knowledgeContent": "SERA rules mandate maintaining vigilance to avoid collisions, yielding right-of-way as prescribed (e.g., give-way to aircraft on the right), and adhering to traffic patterns and ATC clearances.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.3.1.1Describe",
+    "subjectId": 1,
+    "text": "the rules for the avoidance of collisions",
+    "knowledgeContent": "Collision avoidance requires scanning for traffic, adhering to right-of-way rules (e.g., gliders over powered aircraft), and maintaining safe separation. At night, navigation lights must be used to enhance visibility.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.3.1.2Describe",
+    "subjectId": 1,
+    "text": "the lights, including their angles, to be displayed by aircraft",
+    "knowledgeContent": "Aircraft must display navigation lights (red-left, green-right, white-tail) visible at 110° horizontally. Anti-collision lights (e.g., strobes) are required during flight and, for some aircraft, on the ground.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.3.1.5Explain",
+    "subjectId": 1,
+    "text": "the difference between 'populated' and 'unpopulated areas'",
+    "knowledgeContent": "Populated areas are densely inhabited regions where flight below 1,000 ft (or 500 ft horizontally) is prohibited. Unpopulated areas permit lower altitudes (e.g., 500 ft AGL) provided no hazard is created.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.3.1.6List",
+    "subjectId": 1,
+    "text": "example cases in which the minimum flight altitude does not apply",
+    "knowledgeContent": "Minimum altitude rules do not apply during takeoff/landing, emergencies, or with ATC approval (e.g., aerial work, SAR). Gliders may also operate below minima if safety is assured.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.4",
+    "subjectId": 1,
+    "text": "Visual flight rules",
+    "knowledgeContent": "VFR requires maintaining visual reference to the ground, specific visibility/distance-from-cloud minima (e.g., 5 km visibility in Class C airspace), and daylight operations unless a night rating is held.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.4.1",
+    "subjectId": 1,
+    "text": "Visual flight rules (VFR) - SERA",
+    "knowledgeContent": "VFR under SERA mandates compliance with airspace-specific visibility/cloud clearance, right-of-way rules (e.g., overtaking aircraft must alter course right), and altitude restrictions (e.g., odd/even FLs for easterly/westerly tracks).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.4.1.3Apply",
+    "subjectId": 1,
+    "text": "the right-of-way- and collision aviodance rules to given examples",
+    "knowledgeContent": "Right-of-way rules prioritize aircraft in distress, then balloons > gliders > airships > powered aircraft. Overtaking aircraft must pass to the right, while converging aircraft yield to traffic on their right.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.4.2",
+    "subjectId": 1,
+    "text": "Special VFR flights (SVFR)",
+    "knowledgeContent": "Special VFR (SVFR) permits VFR operations in controlled airspace when weather is below standard VMC minima, subject to ATC clearance and typically restricted to daylight hours unless otherwise authorized.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.4.2.1Explain",
+    "subjectId": 1,
+    "text": "the term 'Special VFR flight'",
+    "knowledgeContent": "SVFR allows flight in controlled airspace with visibility <5 km but ≥1.5 km (or ≥3 km for helicopters), provided the aircraft remains clear of clouds and ATC issues a clearance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.4.2.4State",
+    "subjectId": 1,
+    "text": "sthat Special VFR (SVFR) flights are bound to a specific clearance",
+    "knowledgeContent": "SVFR flights require explicit ATC clearance, which may include routing, altitude, and time restrictions. Pilots must adhere strictly to these instructions and request updates if conditions change.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.4.3",
+    "subjectId": 1,
+    "text": "VFR Night Flights",
+    "knowledgeContent": "VFR night flights require a night rating, aircraft equipped per SERA (e.g., functioning navigation/anti-collision lights), and adherence to VMC minima (e.g., 5 km visibility in Class G airspace).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.4.3.1State",
+    "subjectId": 1,
+    "text": "under which conditions a VFR flight may be conducted during night timex",
+    "knowledgeContent": "Night VFR is permitted if the pilot holds a night rating, the aircraft meets lighting/equipment requirements, and weather meets VMC minima (e.g., 5 km visibility, clear of clouds in Class G).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.4.3.2State",
+    "subjectId": 1,
+    "text": "the requirements to acquire a rating for VFR night flights",
+    "knowledgeContent": "To acquire a night rating, a PPL holder must complete theoretical training on night physiology/equipment and log at least 5 hours of dual night flight, including 3 hours of navigation and 5 solo takeoffs/landings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.5",
+    "subjectId": 1,
+    "text": "Signals and interception of civil aircraft",
+    "knowledgeContent": "Interception signals include rocking wings (follow me), flashing lights (acknowledge), and radio phrases (e.g., 'TRANSPONDER 7700'). Civil aircraft must comply without delay and avoid abrupt maneuvers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.5.1",
+    "subjectId": 1,
+    "text": "Interception of civil aircraft - SERA",
+    "knowledgeContent": "SERA mandates that intercepted aircraft squawk 7700, maintain course/speed, and follow visual/radio instructions from interceptors. Non-compliance may escalate to enforcement action.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.5.1.1State",
+    "subjectId": 1,
+    "text": "what primary action should be carried out by an intercepted aircraft",
+    "knowledgeContent": "The primary action for an intercepted aircraft is to acknowledge the interception (e.g., rocking wings), squawk 7700, and contact ATC on 121.5 MHz while maintaining a steady flight path.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.5.5.1.4Recall",
+    "subjectId": 1,
+    "text": "the interception signals and phrases",
+    "knowledgeContent": "Interception signals include: day—rocking wings (follow me), night—flashing landing lights; radio phrases: 'CALL SIGN [callsign] SQUAWK 7700' or 'FOLLOW ME'. Respond with identical signals if unable to comply.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.6.1.1",
+    "subjectId": 1,
+    "text": "Basic requirements and definitions",
+    "knowledgeContent": "Altimeter settings ensure accurate vertical separation (QNH for altitude above mean sea level) and terrain clearance (QFE for height above aerodrome elevation). Proper use prevents controlled flight into terrain (CFIT).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.6.1.1.1Describe",
+    "subjectId": 1,
+    "text": "the two main objectives of altimeter settings",
+    "knowledgeContent": "The two objectives are: (1) QNH provides MSL-referenced altitude for en-route separation, and (2) QFE gives aerodrome-referenced height for pattern operations, though QNH is standard in most European states.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.6.1.1.2Define",
+    "subjectId": 1,
+    "text": "the terms 'QNH' and 'QFE'",
+    "knowledgeContent": "QNH is the altimeter setting corrected to local pressure at MSL, displaying altitude. QFE is set to aerodrome elevation, displaying height above the runway (0 ft on landing).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.6.1.2",
+    "subjectId": 1,
+    "text": "Procedures applicable (except tables)",
+    "knowledgeContent": "Flight levels (FLs) are separated by 500 ft intervals below FL290 and 1,000 ft above, based on standard pressure (1013.25 hPa). This ensures vertical separation in IFR flights.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.6.1.2.1State",
+    "subjectId": 1,
+    "text": "the interval by which consecutive FLs shall be separated",
+    "knowledgeContent": "Consecutive flight levels (FLs) are separated by 500 ft below FL290 (e.g., FL80, FL85) and 1,000 ft above FL290 (e.g., FL290, FL310), using standard pressure settings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:16:37.201Z",
+    "updatedAt": "2026-03-17T21:16:37.201Z"
+  },
+  {
+    "loId": "10.6.1.2.3Explain",
+    "subjectId": 1,
+    "text": "the purpose of 'semi-circular rules'",
+    "knowledgeContent": "The semi-circular rules define the cruising levels for VFR flights based on magnetic track: flights on tracks 000° to 179° shall fly at odd thousands of feet plus 500 feet (e.g., 3,500 ft), while flights on tracks 180° to 359° shall fly at even thousands of feet plus 500 feet (e.g., 4,500 ft).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.6.2.1",
+    "subjectId": 1,
+    "text": "Operation of transponders",
+    "knowledgeContent": "Transponders are electronic devices that respond to radar interrogations by transmitting a coded signal (squawk code) to ATC, enhancing aircraft identification and situational awareness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.6.2.1.1State",
+    "subjectId": 1,
+    "text": "when and where the pilot shall operate the transponder",
+    "knowledgeContent": "The transponder must be operated in Mode A/C/S at all times when flying in controlled airspace, during IFR flights, or when instructed by ATC.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.6.2.1.4State",
+    "subjectId": 1,
+    "text": "when the pilot shall 'SQUAWK IDENT'",
+    "knowledgeContent": "The pilot shall 'SQUAWK IDENT' when instructed by ATC to momentarily activate the identification feature, making the aircraft's radar return stand out on the controller's screen.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.6.2.1.5Explain",
+    "subjectId": 1,
+    "text": "the use of the codes 7500, 7600, 7700",
+    "knowledgeContent": "The codes 7500, 7600, and 7700 are emergency squawk codes: 7500 indicates hijacking, 7600 indicates radio communication failure, and 7700 indicates a general emergency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.6.2.1.6Describe",
+    "subjectId": 1,
+    "text": "the consequences of a transponder failure in flight",
+    "knowledgeContent": "A transponder failure in flight requires the pilot to notify ATC immediately and follow specific procedures, such as squawking 7600 and adhering to alternative identification methods.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7",
+    "subjectId": 1,
+    "text": "Annex 11: Air Traffic Managent and Services",
+    "knowledgeContent": "Annex 11 outlines the standards and recommended practices for air traffic services, including airspace classification, ATC procedures, and coordination between states.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1",
+    "subjectId": 1,
+    "text": "Doc. 4444: Air Traffic Management",
+    "knowledgeContent": "Doc. 4444 provides detailed procedures for air traffic management, including separation standards, communication protocols, and coordination between ATC units.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.1",
+    "subjectId": 1,
+    "text": "Definitions",
+    "knowledgeContent": "Definitions in ICAO Annex 11 include terms such as 'air traffic control service,' 'flight information service,' and 'alerting service,' which are essential for understanding ATS operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.1.1Recall",
+    "subjectId": 1,
+    "text": "the definitions given in ICAO Annex 11",
+    "knowledgeContent": "Definitions in ICAO Annex 11 include 'air traffic control service' (provision of ATC instructions), 'flight information service' (provision of advice and information), and 'alerting service' (notification of SAR services).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.2",
+    "subjectId": 1,
+    "text": "General provisions for air traffic services",
+    "knowledgeContent": "The objectives of ATS are to prevent collisions, expedite and maintain orderly flow of air traffic, and provide advice and information for safe and efficient flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.2.1State",
+    "subjectId": 1,
+    "text": "the objectives of ATS",
+    "knowledgeContent": "The objectives of ATS include preventing collisions, organizing and expediting air traffic flow, and providing information and alerts to enhance flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.3",
+    "subjectId": 1,
+    "text": "Airspace structure",
+    "knowledgeContent": "Controlled airspace is designated airspace where ATC services are provided, while uncontrolled airspace lacks such services, and pilots are responsible for their own separation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.3.1Explain",
+    "subjectId": 1,
+    "text": "the difference between controlled and uncontrolled airspace",
+    "knowledgeContent": "Controlled airspace requires ATC clearance and provides separation services, whereas uncontrolled airspace does not mandate ATC clearance, and pilots maintain their own separation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.3.5List",
+    "subjectId": 1,
+    "text": "the available air traffic services for different types of airspace",
+    "knowledgeContent": "Available ATS include air traffic control service (ATC), flight information service (FIS), and alerting service (ALRS), varying by airspace classification.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.3.13Describe",
+    "subjectId": 1,
+    "text": "the purpose for establishing flight information regions (FIRs)",
+    "knowledgeContent": "Flight Information Regions (FIRs) are established to provide flight information and alerting services within defined geographical areas, ensuring seamless ATS coverage.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.4",
+    "subjectId": 1,
+    "text": "Visual separation in the vicinity of aerodromes",
+    "knowledgeContent": "Wake turbulence categories 'light,' 'medium,' and 'heavy' are based on aircraft maximum takeoff weight: 'light' (<7,000 kg), 'medium' (7,000–136,000 kg), and 'heavy' (>136,000 kg).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.4.1Describe",
+    "subjectId": 1,
+    "text": "the categories of wake-turbulence 'light', 'medium' and 'heavy'",
+    "knowledgeContent": "Wake turbulence categories classify aircraft by weight: 'light' (<7,000 kg), 'medium' (7,000–136,000 kg), and 'heavy' (>136,000 kg), influencing separation requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.5",
+    "subjectId": 1,
+    "text": "Procedures for aerodrome control services",
+    "knowledgeContent": "'RWY-in-use' refers to the runway designated by ATC for takeoff and landing, based on wind conditions, traffic, and other operational factors.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.5.1Explain",
+    "subjectId": 1,
+    "text": "the term 'RWY-in-use'",
+    "knowledgeContent": "'RWY-in-use' is the runway selected by ATC for aircraft operations, determined by factors such as wind direction, traffic volume, and noise abatement procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.6",
+    "subjectId": 1,
+    "text": "Radar services",
+    "knowledgeContent": "Radar vectoring involves ATC providing headings to pilots to achieve desired flight paths, ensuring safe separation and efficient traffic flow.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.6.2Explain",
+    "subjectId": 1,
+    "text": "the principle of 'radar vectoring'",
+    "knowledgeContent": "Radar vectoring is the process by which ATC directs aircraft via specific headings to maintain separation, expedite traffic, or guide them to a desired location.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.7",
+    "subjectId": 1,
+    "text": "Flight information service and alerting service",
+    "knowledgeContent": "Flight Information Service (FIS) is provided to all aircraft operating in or near controlled airspace, offering essential information for safe flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.7.1State",
+    "subjectId": 1,
+    "text": "for which aircraft FIS shall be provided",
+    "knowledgeContent": "FIS shall be provided to all aircraft operating in or near controlled airspace, including VFR flights, to enhance situational awareness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.7.2State",
+    "subjectId": 1,
+    "text": "the meaning of the term 'ATIS' in plain language",
+    "knowledgeContent": "ATIS (Automatic Terminal Information Service) is a continuous broadcast of essential aerodrome information, such as weather, active runways, and operational status.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.7.3Describe",
+    "subjectId": 1,
+    "text": "the content of an ATIS message",
+    "knowledgeContent": "An ATIS message includes current weather, active runway, transition level, and any other pertinent operational information for pilots.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.7.1.8.1Explain",
+    "subjectId": 1,
+    "text": "the procedure for communication failure",
+    "knowledgeContent": "In case of communication failure, the pilot shall squawk 7600, continue on the last assigned route or flight plan, and follow published procedures for landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.8",
+    "subjectId": 1,
+    "text": "Annex 15: Aeronautical information service",
+    "knowledgeContent": "Annex 15 specifies the standards for aeronautical information services, including the collection, dissemination, and management of aeronautical data.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.8.1",
+    "subjectId": 1,
+    "text": "Introduction, essential definitions",
+    "knowledgeContent": "Annex 15 introduces essential definitions and principles for aeronautical information services, ensuring standardized and reliable data for aviation operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.8.1.1",
+    "subjectId": 1,
+    "text": "Definitions",
+    "knowledgeContent": "Definitions in Annex 15 include terms such as 'aeronautical data,' 'aeronautical information publication (AIP),' and 'NOTAM,' which are critical for understanding AIS operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:17:40.024Z",
+    "updatedAt": "2026-03-17T21:17:40.024Z"
+  },
+  {
+    "loId": "10.8.1.1.1State",
+    "subjectId": 1,
+    "text": ", in general terms, the objective of an AIS",
+    "knowledgeContent": "The objective of the Aeronautical Information Service (AIS) is to ensure the flow of information necessary for the safety, regularity, and efficiency of international air navigation. This includes the collection, validation, and dissemination of aeronautical data and information in accordance with ICAO standards.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.8.2",
+    "subjectId": 1,
+    "text": "Integrated Aeronautical Information Package",
+    "knowledgeContent": "The Integrated Aeronautical Information Package (IAIP) is a comprehensive set of documents that provide essential aeronautical information. It includes the Aeronautical Information Publication (AIP), NOTAMs, AICs, and AIRAC updates, ensuring pilots and operators have access to current and accurate data.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.8.2.1",
+    "subjectId": 1,
+    "text": "Aeronautical information publication (AIP)",
+    "knowledgeContent": "The Aeronautical Information Publication (AIP) is a permanent document that contains essential aeronautical information for a specific country. It is structured into three parts: GEN (General), ENR (En Route), and AD (Aerodromes), each providing detailed information relevant to flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.8.2.1.1State",
+    "subjectId": 1,
+    "text": "the primary purpose of the AIP",
+    "knowledgeContent": "The primary purpose of the AIP is to provide a standardized and comprehensive source of aeronautical information necessary for safe and efficient air navigation. It ensures that pilots and operators have access to consistent and up-to-date information.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.8.2.1.2Name",
+    "subjectId": 1,
+    "text": "and explain the contents of the different parts of the AIP",
+    "knowledgeContent": "The AIP is divided into three main parts: GEN (General) covers administrative and regulatory information, ENR (En Route) provides details on airspace and navigation, and AD (Aerodromes) includes information on airports and landing facilities. Each part is further subdivided into sections for specific topics.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.8.2.2",
+    "subjectId": 1,
+    "text": "Notices to airmen (NOTAMs)",
+    "knowledgeContent": "Notices to Airmen (NOTAMs) are time-sensitive notifications issued to inform pilots of changes or hazards affecting flight operations. They cover temporary changes to aeronautical facilities, services, procedures, or hazards that are essential for safe navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.8.2.2.1Summarise",
+    "subjectId": 1,
+    "text": "the essential information which leads to the issue of a NOTAM",
+    "knowledgeContent": "NOTAMs are issued in response to changes or hazards that could affect flight safety, such as runway closures, navigation aid outages, or airspace restrictions. They provide essential information that pilots must be aware of before and during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.8.2.2.2Describe",
+    "subjectId": 1,
+    "text": "the means by which NOTAMs shall be distributed",
+    "knowledgeContent": "NOTAMs are distributed through various channels, including AIS offices, flight planning services, and electronic systems like the Aeronautical Fixed Telecommunication Network (AFTN). Pilots can access NOTAMs via pre-flight briefings or online databases.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.8.2.2.3Read",
+    "subjectId": 1,
+    "text": "and interpret information from NOTAMs goven by example",
+    "knowledgeContent": "NOTAMs are written in a standardized format, including a header, message, and validity period. Pilots must be able to interpret the information, such as identifying affected locations, the nature of the change, and the duration of the NOTAM.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.8.2.3",
+    "subjectId": 1,
+    "text": "Aeronautical information regulation and control (AIRAC)",
+    "knowledgeContent": "Aeronautical Information Regulation and Control (AIRAC) ensures the timely publication of aeronautical information that affects flight operations. AIRAC updates are issued on a fixed schedule, typically every 28 days, to allow for proper planning and implementation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.8.2.4",
+    "subjectId": 1,
+    "text": "Aeronautical information circulars (AICs)",
+    "knowledgeContent": "Aeronautical Information Circulars (AICs) provide supplementary information on topics such as regulatory changes, safety recommendations, and operational procedures. They are not legally binding but offer important guidance for pilots and operators.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.8.2.4.1Describe",
+    "subjectId": 1,
+    "text": "the type of information that may be published in AICs",
+    "knowledgeContent": "AICs may include information on changes to regulations, safety alerts, operational procedures, or administrative matters. They are intended to provide additional context or clarification beyond the mandatory information in the AIP.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.8.2.4.2Explain",
+    "subjectId": 1,
+    "text": "the organisation of AICs",
+    "knowledgeContent": "AICs are organized by subject matter and are typically issued by national aviation authorities. They are numbered sequentially and may include cross-references to related documents or regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9",
+    "subjectId": 1,
+    "text": "Annex 14, Volume 1 and 2: Aerodromes",
+    "knowledgeContent": "Annex 14, Volume 1 and 2 of the ICAO standards provide detailed specifications for aerodrome design and operations. Volume 1 covers aerodrome standards for international airports, while Volume 2 addresses heliports and other specialized facilities.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.1",
+    "subjectId": 1,
+    "text": "Introduction, essential definitions",
+    "knowledgeContent": "Annex 14 introduces essential definitions and concepts related to aerodrome operations, including the classification of aerodromes, movement areas, and visual aids. It provides the foundation for understanding aerodrome standards and procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.1.1",
+    "subjectId": 1,
+    "text": "General",
+    "knowledgeContent": "The general section of Annex 14 outlines the scope and applicability of aerodrome standards. It defines key terms such as 'movement area,' 'runway,' and 'taxiway,' which are essential for understanding aerodrome operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.1.1.2State",
+    "subjectId": 1,
+    "text": "the different parts of the 'traffic pattern' (or 'traffic circuit')",
+    "knowledgeContent": "The traffic pattern (or traffic circuit) consists of five segments: upwind, crosswind, downwind, base, and final. Each segment has specific procedures and altitudes that pilots must follow to ensure safe and orderly operations at an aerodrome.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.2",
+    "subjectId": 1,
+    "text": "Aerodrome data",
+    "knowledgeContent": "Aerodrome data includes detailed information on the physical characteristics of the movement area, such as runway dimensions, surface conditions, and obstacle limitations. This data is critical for flight planning and safe operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.2.1",
+    "subjectId": 1,
+    "text": "Conditions of the movement area and related facilities",
+    "knowledgeContent": "Conditions of the movement area and related facilities include details on runway surface type, friction characteristics, and maintenance status. Pilots must be aware of these conditions to assess landing and takeoff performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.3",
+    "subjectId": 1,
+    "text": "Visual aids for navigation",
+    "knowledgeContent": "Visual aids for navigation include indicators, markings, lights, signs, and markers that guide pilots during takeoff, landing, and taxiing. These aids are standardized to ensure consistency and safety across aerodromes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.3.1",
+    "subjectId": 1,
+    "text": "(a) indicators and signalling devices",
+    "knowledgeContent": "Indicators and signalling devices provide visual cues to pilots, such as wind direction, landing direction, and runway status. These devices are essential for safe operations, especially in low-visibility conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.3.1.1Describe",
+    "subjectId": 1,
+    "text": "the wind-direction indicators with which ADs shall be equipped",
+    "knowledgeContent": "Wind-direction indicators, such as windsocks, are required at aerodromes to show the current wind direction and speed. They are typically located in visible areas and are essential for determining runway selection and approach procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.3.1.2Describe",
+    "subjectId": 1,
+    "text": "a landing-direction indicator",
+    "knowledgeContent": "A landing-direction indicator, such as a T-shaped marker or lighted T, shows the preferred landing direction at an aerodrome. It is aligned with the runway and provides a visual reference for pilots during approach and landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.3.1.5Interpret",
+    "subjectId": 1,
+    "text": "indications and signals that may be used in a signal area",
+    "knowledgeContent": "Signal areas use light signals and flags to communicate with pilots, such as indicating runway closures or emergency conditions. Pilots must be able to interpret these signals correctly to ensure safe operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.3.2",
+    "subjectId": 1,
+    "text": "(b) markings",
+    "knowledgeContent": "Markings on runways, taxiways, and aprons provide visual guidance to pilots during ground operations. These include centerline markings, holding position markings, and runway threshold markings, all standardized for clarity and safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.3.3",
+    "subjectId": 1,
+    "text": "(c) lights",
+    "knowledgeContent": "Lighting systems at aerodromes include runway edge lights, approach lights, and taxiway lights, which guide pilots during night operations or low-visibility conditions. These lights are color-coded and positioned to ensure safe navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.3.3.3Describe",
+    "subjectId": 1,
+    "text": "the characteristics of an 'Aerodrome Beacon'",
+    "knowledgeContent": "An aerodrome beacon is a rotating light that identifies the location of an aerodrome, especially at night or in poor visibility. It typically emits white and green flashes and is mounted on a tall structure for maximum visibility.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.3.4",
+    "subjectId": 1,
+    "text": "(d) signs",
+    "knowledgeContent": "Signs at aerodromes provide essential information to pilots, such as runway designations, taxiway directions, and holding positions. These signs are standardized in size, color, and placement to ensure clarity and consistency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.3.5",
+    "subjectId": 1,
+    "text": "(e) markers",
+    "knowledgeContent": "Markers, such as runway threshold markers and touchdown zone markers, provide visual references for pilots during approach and landing. These markers are painted on the runway surface and are essential for safe operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.4",
+    "subjectId": 1,
+    "text": "Visual aids for denoting obstacles",
+    "knowledgeContent": "Visual aids for denoting obstacles include lighting and marking systems that highlight structures or terrain that could pose a hazard to aircraft. These aids are essential for ensuring safe navigation, especially in low-visibility conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:18:54.434Z",
+    "updatedAt": "2026-03-17T21:18:54.434Z"
+  },
+  {
+    "loId": "10.9.4.1",
+    "subjectId": 1,
+    "text": "(a) marking of objects",
+    "knowledgeContent": "A PPL(A) student must understand the purpose and methods of marking objects to ensure visibility and safety in aviation environments, including fixed and mobile objects.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.9.4.1.2Describe",
+    "subjectId": 1,
+    "text": "marking by colours (fixed or mobile objects)",
+    "knowledgeContent": "A PPL(A) student must describe how colours are used to mark objects, distinguishing between fixed (e.g., buildings, towers) and mobile (e.g., vehicles, equipment) objects for enhanced visibility and hazard identification.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.9.4.2",
+    "subjectId": 1,
+    "text": "(b) lighting of objects",
+    "knowledgeContent": "A PPL(A) student must understand the purpose and types of lighting used to mark objects, including low-intensity, medium-intensity, and high-intensity lights, to ensure visibility during day and night operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.9.5",
+    "subjectId": 1,
+    "text": "Visual aids for denoting restricted use of areas",
+    "knowledgeContent": "A PPL(A) student must know the visual aids used to denote restricted areas, including markings, signs, and lighting, to ensure compliance with airfield regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.9.5.1",
+    "subjectId": 1,
+    "text": "Visual aids for denoting restricted use of areas on RWYs and TWYs",
+    "knowledgeContent": "A PPL(A) student must understand the specific visual aids used to denote restricted areas on runways (RWYs) and taxiways (TWYs), including painted markings and signage.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.9.5.1.1Describe",
+    "subjectId": 1,
+    "text": "the colours and meaning of 'closed markings' on RWYs and TWYs",
+    "knowledgeContent": "A PPL(A) student must describe the colours and meanings of 'closed markings' on RWYs and TWYs, such as yellow crosses or red markings, indicating areas that are not available for use.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.9.6",
+    "subjectId": 1,
+    "text": "Emergency and other services",
+    "knowledgeContent": "A PPL(A) student must understand the roles and functions of emergency and other services at airports, including rescue, firefighting, and apron management.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.9.6.1",
+    "subjectId": 1,
+    "text": "(a) rescue and fire fighting",
+    "knowledgeContent": "A PPL(A) student must understand the role of rescue and firefighting (RFF) services, including their response capabilities and equipment based on airport category.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.9.6.1.1Explain",
+    "subjectId": 1,
+    "text": "the basic information the AD category (for RFF) depends upon",
+    "knowledgeContent": "A PPL(A) student must explain how the airport category for RFF services is determined, based on factors such as aircraft size, passenger capacity, and airport operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.9.6.2",
+    "subjectId": 1,
+    "text": "(b) apron management service",
+    "knowledgeContent": "A PPL(A) student must understand the role of apron management services in coordinating aircraft and vehicle movements on the apron.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.9.6.2.1State",
+    "subjectId": 1,
+    "text": "who has a right-of-way against vehicles operating on an apron",
+    "knowledgeContent": "A PPL(A) student must state that aircraft have the right-of-way over vehicles operating on the apron, ensuring priority for aircraft movements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.10",
+    "subjectId": 1,
+    "text": "Annex 12: Search and rescue",
+    "knowledgeContent": "A PPL(A) student must understand the principles and procedures of search and rescue (SAR) operations as outlined in Annex 12.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.10.1",
+    "subjectId": 1,
+    "text": "Essential definitions",
+    "knowledgeContent": "A PPL(A) student must know the essential definitions and responsibilities related to search and rescue operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.10.1.1Definitions",
+    "subjectId": 1,
+    "text": "and responsibilities",
+    "knowledgeContent": "A PPL(A) student must understand the definitions and responsibilities associated with search and rescue operations, including the roles of different agencies and personnel.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.10.1.1.2Recall",
+    "subjectId": 1,
+    "text": "the definitions of the following terms: INCERFA, ALERFA, DETRESFA",
+    "knowledgeContent": "A PPL(A) student must recall the definitions of INCERFA (Uncertainty Phase), ALERFA (Alert Phase), and DETRESFA (Distress Phase) as per SAR procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.10.2",
+    "subjectId": 1,
+    "text": "Operating procedures",
+    "knowledgeContent": "A PPL(A) student must understand the operating procedures for search and rescue, including actions for pilots-in-command (PIC) in emergency situations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.10.2.1(a)",
+    "subjectId": 1,
+    "text": "procedures for PIC at the scene of an accident",
+    "knowledgeContent": "A PPL(A) student must know the procedures for a PIC at the scene of an accident, including assessing the situation, providing assistance, and communicating with authorities.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.10.2.2(b)",
+    "subjectId": 1,
+    "text": "procedures for PIC intercepting a distress transmission",
+    "knowledgeContent": "A PPL(A) student must know the procedures for a PIC intercepting a distress transmission, including acknowledging the message, providing assistance, and relaying information to SAR authorities.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.10.3",
+    "subjectId": 1,
+    "text": "Search and rescue signals",
+    "knowledgeContent": "A PPL(A) student must understand the search and rescue signals used to communicate with survivors and rescuers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.10.3.1Search",
+    "subjectId": 1,
+    "text": "and rescue signals - Survivors",
+    "knowledgeContent": "A PPL(A) student must understand the search and rescue signals used by survivors to attract attention and communicate their status.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.10.3.1.1Explain",
+    "subjectId": 1,
+    "text": "the 'ground-air visual signal code' for use by survivors",
+    "knowledgeContent": "A PPL(A) student must explain the 'ground-air visual signal code' used by survivors, including symbols like 'V' for requiring assistance and 'X' for requiring medical aid.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.10.3.1.2Recognise",
+    "subjectId": 1,
+    "text": "the SAR 'air-to-ground signals' for use by survivors",
+    "knowledgeContent": "A PPL(A) student must recognise the SAR 'air-to-ground signals' used by rescuers, such as dropping supplies or using flares to indicate assistance is on the way.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.11",
+    "subjectId": 1,
+    "text": "Annex 17: Security",
+    "knowledgeContent": "A PPL(A) student must understand the principles of aviation security as outlined in Annex 17.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.11.1",
+    "subjectId": 1,
+    "text": "General",
+    "knowledgeContent": "A PPL(A) student must know the general principles and objectives of aviation security, including safeguarding passengers, crew, and aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.11.1.1Aims",
+    "subjectId": 1,
+    "text": "and objectives",
+    "knowledgeContent": "A PPL(A) student must understand the aims and objectives of aviation security, including preventing unlawful interference and ensuring safe operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.11.1.1.1State",
+    "subjectId": 1,
+    "text": "the objectives of security",
+    "knowledgeContent": "A PPL(A) student must state the objectives of aviation security, such as protecting passengers, crew, and aircraft from acts of unlawful interference.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.12",
+    "subjectId": 1,
+    "text": "Annex 13: Aircraft accident investigation",
+    "knowledgeContent": "A PPL(A) student must understand the principles and procedures of aircraft accident investigation as outlined in Annex 13.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.12.1",
+    "subjectId": 1,
+    "text": "Essential definitions and applicability",
+    "knowledgeContent": "A PPL(A) student must know the essential definitions and applicability of aircraft accident investigation procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.12.1.1Definition",
+    "subjectId": 1,
+    "text": "s",
+    "knowledgeContent": "A PPL(A) student must understand the definitions related to aircraft accident investigation, including terms like 'accident' and 'serious incident'.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.12.1.1.2Explain",
+    "subjectId": 1,
+    "text": "the difference between 'serious incident' and 'accident'",
+    "knowledgeContent": "A PPL(A) student must explain the difference between a 'serious incident' (an incident with a high risk of accident) and an 'accident' (an occurrence with fatal or serious injury, or significant aircraft damage).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:19:43.390Z",
+    "updatedAt": "2026-03-17T21:19:43.390Z"
+  },
+  {
+    "loId": "10.12.1.2Applicabilit",
+    "subjectId": 1,
+    "text": "y",
+    "knowledgeContent": "The student must understand the scope and applicability of aviation accident and incident investigations, including which events are subject to investigation under EASA and ICAO regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:20:04.371Z",
+    "updatedAt": "2026-03-17T21:20:04.371Z"
+  },
+  {
+    "loId": "10.12.1.2.1State",
+    "subjectId": 1,
+    "text": "the objective(s) of the investigation of an accident or incident",
+    "knowledgeContent": "The student must know that the primary objective of accident and incident investigations is to determine the causes and contributing factors to prevent future occurrences, not to assign blame or liability.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:20:04.371Z",
+    "updatedAt": "2026-03-17T21:20:04.371Z"
+  },
+  {
+    "loId": "10.12.1.3Objectives",
+    "subjectId": 1,
+    "text": "and procedures",
+    "knowledgeContent": "The student must understand the objectives and procedures of aviation accident and incident investigations, including the roles of investigators, evidence collection, and reporting.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:20:04.371Z",
+    "updatedAt": "2026-03-17T21:20:04.371Z"
+  },
+  {
+    "loId": "10.12.1.3.1State",
+    "subjectId": 1,
+    "text": "the objective(s) of the investigation of an accident or incident",
+    "knowledgeContent": "The student must state that the objective of investigations is to improve aviation safety by identifying causal factors and recommending preventive measures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:20:04.371Z",
+    "updatedAt": "2026-03-17T21:20:04.371Z"
+  },
+  {
+    "loId": "10.13",
+    "subjectId": 1,
+    "text": "National law",
+    "knowledgeContent": "The student must be aware of the national laws governing aviation in their country, including their alignment with ICAO Annexes and EU regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:20:04.371Z",
+    "updatedAt": "2026-03-17T21:20:04.371Z"
+  },
+  {
+    "loId": "10.13.1.1National",
+    "subjectId": 1,
+    "text": "regulations",
+    "knowledgeContent": "The student must understand the national regulatory framework for aviation, including the roles of national aviation authorities and relevant legislation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:20:04.371Z",
+    "updatedAt": "2026-03-17T21:20:04.371Z"
+  },
+  {
+    "loId": "10.13.1.1.1List",
+    "subjectId": 1,
+    "text": "the most important national regulations and laws concerning aviation",
+    "knowledgeContent": "The student must list key national regulations, such as air navigation laws, aviation safety regulations, and environmental laws affecting aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:20:04.371Z",
+    "updatedAt": "2026-03-17T21:20:04.371Z"
+  },
+  {
+    "loId": "10.13.1.1.2Explain",
+    "subjectId": 1,
+    "text": "how to find national laws and regulations",
+    "knowledgeContent": "The student must explain how to access national aviation laws and regulations, typically through official government or aviation authority websites and publications.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:20:04.371Z",
+    "updatedAt": "2026-03-17T21:20:04.371Z"
+  },
+  {
+    "loId": "10.13.1.2Differences",
+    "subjectId": 1,
+    "text": "from ICAO Annexes",
+    "knowledgeContent": "The student must understand the differences between national regulations and ICAO Annexes, including areas where national laws may impose stricter requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:20:04.371Z",
+    "updatedAt": "2026-03-17T21:20:04.371Z"
+  },
+  {
+    "loId": "10.13.1.3Differences",
+    "subjectId": 1,
+    "text": "from EU-Regulations",
+    "knowledgeContent": "The student must understand the differences between national regulations and EU aviation regulations, including the harmonization process and areas of divergence.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:20:04.371Z",
+    "updatedAt": "2026-03-17T21:20:04.371Z"
+  },
+  {
+    "loId": "10.13.1.3.1Describe",
+    "subjectId": 1,
+    "text": "the primacy of application of EU law",
+    "knowledgeContent": "The student must describe the principle of primacy of EU law, meaning EU regulations take precedence over conflicting national laws in aviation matters.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:20:04.371Z",
+    "updatedAt": "2026-03-17T21:20:04.371Z"
+  }
+]

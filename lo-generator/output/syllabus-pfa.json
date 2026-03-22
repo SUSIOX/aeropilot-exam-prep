@@ -1,0 +1,3872 @@
+[
+  {
+    "loId": "51.1",
+    "subjectId": 5,
+    "text": "Subsonic aerodynamics",
+    "knowledgeContent": "A PPL(A) student must understand the principles of subsonic aerodynamics, including the behavior of airflow at speeds below the speed of sound. This includes the generation of lift, drag, and other aerodynamic forces acting on an aircraft in flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1",
+    "subjectId": 5,
+    "text": "Basic concepts, laws and definitions",
+    "knowledgeContent": "The student must grasp the fundamental concepts, laws, and definitions related to aerodynamics, such as Bernoulli's principle, Newton's laws of motion, and key aerodynamic terms like lift, drag, and thrust.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.1",
+    "subjectId": 5,
+    "text": "Laws and definitions",
+    "knowledgeContent": "The student must know the laws and definitions governing aerodynamic forces, including the relationship between pressure, velocity, and airflow around an aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.1.1Define",
+    "subjectId": 5,
+    "text": "'static pressure', 'dynamic pressure' and 'total pressure'",
+    "knowledgeContent": "The student must define 'static pressure' as the pressure exerted by a fluid at rest, 'dynamic pressure' as the pressure due to the fluid's motion, and 'total pressure' as the sum of static and dynamic pressures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.1.3Describe",
+    "subjectId": 5,
+    "text": "the relationship of IAS and TAS with dynamic pressure",
+    "knowledgeContent": "The student must describe how Indicated Airspeed (IAS) is directly related to dynamic pressure, while True Airspeed (TAS) accounts for air density changes and is derived from IAS using altitude and temperature corrections.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.2",
+    "subjectId": 5,
+    "text": "Basics about airflow",
+    "knowledgeContent": "The student must understand the basics of airflow, including laminar and turbulent flow, and how these affect aerodynamic performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.3",
+    "subjectId": 5,
+    "text": "Aerodynamic forces on surfaces",
+    "knowledgeContent": "The student must comprehend the aerodynamic forces acting on aircraft surfaces, including lift, drag, thrust, and weight, and how these forces interact during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.3.3State",
+    "subjectId": 5,
+    "text": "that the lift force acts perpendicular to the airflow",
+    "knowledgeContent": "The student must state that the lift force acts perpendicular to the relative airflow, enabling the aircraft to overcome gravity and maintain altitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.3.4State",
+    "subjectId": 5,
+    "text": "that the drag force acts opposite to the direction of the flight path",
+    "knowledgeContent": "The student must state that the drag force acts opposite to the direction of the flight path, resisting the aircraft's motion through the air.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.3.5Define",
+    "subjectId": 5,
+    "text": "the term 'angle of attack (AOA)'",
+    "knowledgeContent": "The student must define 'angle of attack (AOA)' as the angle between the chord line of an airfoil and the relative wind.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.4",
+    "subjectId": 5,
+    "text": "Shape of an aerofoil section",
+    "knowledgeContent": "The student must understand the shape and design of an aerofoil section, including how its curvature and thickness affect lift and drag.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.4.3Describe",
+    "subjectId": 5,
+    "text": "and identify laminar and symmetric airfoils",
+    "knowledgeContent": "The student must describe and identify laminar airfoils, which minimize drag by maintaining smooth airflow, and symmetric airfoils, which produce equal lift on both sides when at zero AOA.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.4.4State",
+    "subjectId": 5,
+    "text": "and explain the advantages and disadvantages of a laminar airfoil",
+    "knowledgeContent": "The student must state that laminar airfoils reduce drag at high speeds but are more sensitive to surface imperfections and turbulence compared to conventional airfoils.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.5",
+    "subjectId": 5,
+    "text": "The wing shape",
+    "knowledgeContent": "The student must understand the significance of wing shape, including aspect ratio and wing span, and how these influence flight performance and stability.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.5.1Define",
+    "subjectId": 5,
+    "text": "'aspect ratio'",
+    "knowledgeContent": "The student must define 'aspect ratio' as the ratio of the wing's span to its mean chord, indicating the wing's slenderness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.5.2Identify",
+    "subjectId": 5,
+    "text": "wings with high and wings with low aspect ratio",
+    "knowledgeContent": "The student must identify wings with high aspect ratio (long and narrow) as efficient for gliding and low aspect ratio (short and wide) as suitable for maneuverability.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.5.3Explain",
+    "subjectId": 5,
+    "text": "the influence of aspect ratio on flight characteristics",
+    "knowledgeContent": "The student must explain that high aspect ratio wings reduce induced drag and improve efficiency, while low aspect ratio wings enhance maneuverability and structural strength.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.1.5.5Define",
+    "subjectId": 5,
+    "text": "'wing span'",
+    "knowledgeContent": "The student must define 'wing span' as the distance from one wingtip to the other, measured perpendicular to the aircraft's longitudinal axis.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.2",
+    "subjectId": 5,
+    "text": "The two-dimensional airflow about an aerofoil",
+    "knowledgeContent": "The student must understand the two-dimensional airflow around an aerofoil, including streamline patterns, pressure distribution, and the effects of angle of attack.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.2.1",
+    "subjectId": 5,
+    "text": "Streamline pattern",
+    "knowledgeContent": "The student must comprehend the streamline pattern around an aerofoil, visualizing airflow using streamlines to depict velocity and direction.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.2.1.1Describe",
+    "subjectId": 5,
+    "text": "the air flow around a streamline pattern (depiction with stream lines)",
+    "knowledgeContent": "The student must describe the airflow around a streamline pattern, illustrating how streamlines curve around the aerofoil and converge or diverge based on pressure changes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.2.1.2Describe",
+    "subjectId": 5,
+    "text": "the changes in air flow velocity around an airplane’s wing",
+    "knowledgeContent": "The student must describe how airflow velocity increases over the upper surface of the wing and decreases below it, creating a pressure differential that generates lift.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.2.2",
+    "subjectId": 5,
+    "text": "Stagnation point",
+    "knowledgeContent": "The student must understand the concept of the stagnation point, where airflow velocity is zero due to the aerofoil's obstruction.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.2.2.1Define",
+    "subjectId": 5,
+    "text": "and identify the stagnation point (from depictions)",
+    "knowledgeContent": "The student must define and identify the stagnation point as the location on the aerofoil where airflow splits and velocity drops to zero.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.2.2.2Describe",
+    "subjectId": 5,
+    "text": "the movement of the stagnation point with angle of attack",
+    "knowledgeContent": "The student must describe how the stagnation point moves downward on the aerofoil as the angle of attack increases.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.2.3",
+    "subjectId": 5,
+    "text": "Pressure distribution",
+    "knowledgeContent": "The student must understand how pressure distribution over an aerofoil generates lift, with lower pressure on the upper surface and higher pressure on the lower surface.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.2.3.2Describe",
+    "subjectId": 5,
+    "text": "lift generation in terms of pressure distribution",
+    "knowledgeContent": "The student must describe lift generation in terms of pressure distribution, explaining how the pressure differential between the upper and lower surfaces creates an upward force.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.2.4",
+    "subjectId": 5,
+    "text": "Centre of pressure",
+    "knowledgeContent": "The student must understand the concept of the center of pressure, the point where the resultant lift force acts on the aerofoil.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.2.5",
+    "subjectId": 5,
+    "text": "Influence of angle of attack",
+    "knowledgeContent": "The student must comprehend how the angle of attack influences lift, drag, and stall characteristics.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.2.5.1Describe",
+    "subjectId": 5,
+    "text": "the change in lift coefficient (cL) with angle of attack",
+    "knowledgeContent": "The student must describe how the lift coefficient (cL) increases with angle of attack up to the critical angle, beyond which stall occurs due to airflow separation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:45:53.472Z",
+    "updatedAt": "2026-03-17T20:45:53.472Z"
+  },
+  {
+    "loId": "51.1.2.6",
+    "subjectId": 5,
+    "text": "Flow separation at high angles of attack",
+    "knowledgeContent": "Flow separation occurs at high angles of attack when the airflow over the wing becomes turbulent and detaches from the wing surface, leading to a loss of lift and potential stall. The critical angle of attack is the point at which this separation begins.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.2.6.2Describe",
+    "subjectId": 5,
+    "text": "the change in center of pressure with flow separation",
+    "knowledgeContent": "As flow separation occurs at high angles of attack, the center of pressure moves rearward due to the loss of lift over the forward portion of the wing. This shift affects the aircraft's pitch stability and control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.2.7",
+    "subjectId": 5,
+    "text": "The lift – α graph",
+    "knowledgeContent": "The lift – α graph illustrates the relationship between lift and angle of attack (α). Lift increases linearly with α up to the critical angle, after which lift decreases sharply due to flow separation and stall.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.3",
+    "subjectId": 5,
+    "text": "The coefficients",
+    "knowledgeContent": "The coefficients (cL, cD) are dimensionless numbers that quantify lift and drag forces relative to dynamic pressure, wing area, and other factors. They are essential for aerodynamic calculations and performance analysis.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.3.1",
+    "subjectId": 5,
+    "text": "The lift coefficient cL: the lift formula",
+    "knowledgeContent": "The lift coefficient (cL) is a measure of lift generated by a wing relative to dynamic pressure and wing area. It is used in the lift formula: L = ½ ρ v² S cL, where ρ is air density, v is airspeed, and S is wing area.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.3.1.1Explain",
+    "subjectId": 5,
+    "text": "the meaning of the coefficients of lift cL and its usage in the lift formula",
+    "knowledgeContent": "The lift coefficient (cL) represents the efficiency of a wing in generating lift. It varies with angle of attack, airfoil shape, and Reynolds number, and is used in the lift formula to calculate lift force.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.3.1.2State",
+    "subjectId": 5,
+    "text": "the formula for lift qualitatively (factors, dependencies, no calculations)",
+    "knowledgeContent": "The lift formula is L = ½ ρ v² S cL, where lift depends on air density (ρ), airspeed (v), wing area (S), and lift coefficient (cL). It shows that lift increases with airspeed squared and wing area.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.3.2",
+    "subjectId": 5,
+    "text": "The drag coefficient Cd: the drag formula",
+    "knowledgeContent": "The drag coefficient (cD) quantifies drag force relative to dynamic pressure and wing area. It is used in the drag formula: D = ½ ρ v² S cD, where ρ is air density, v is airspeed, and S is wing area.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.3.2.1Explain",
+    "subjectId": 5,
+    "text": "the meaning of the coefficients of drag cD and its usage in the drag formula",
+    "knowledgeContent": "The drag coefficient (cD) measures the resistance of an aircraft to airflow. It depends on shape, surface roughness, and angle of attack, and is used in the drag formula to calculate drag force.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.3.2.2State",
+    "subjectId": 5,
+    "text": "the formula for drag qualitatively (factors, dependencies, no calculations)",
+    "knowledgeContent": "The drag formula is D = ½ ρ v² S cD, where drag depends on air density (ρ), airspeed (v), wing area (S), and drag coefficient (cD). Drag increases with airspeed squared and wing area.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.3.3",
+    "subjectId": 5,
+    "text": "Correlation of cL with cD",
+    "knowledgeContent": "The correlation of cL and cD is depicted in the cL-cD diagram, showing how lift and drag vary with angle of attack. Higher cL generally results in higher cD, especially near the critical angle.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.3.3.1Explain",
+    "subjectId": 5,
+    "text": "the correlation of cL and cD for various flight phases using the cL-cD diagram",
+    "knowledgeContent": "The cL-cD diagram illustrates the relationship between lift and drag coefficients for different flight phases. At low angles, cL increases linearly with cD, but near stall, cD rises sharply while cL decreases.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.4",
+    "subjectId": 5,
+    "text": "The three-dimensional airflow round a wing and a fuselage",
+    "knowledgeContent": "Three-dimensional airflow around a wing and fuselage involves complex interactions, including pressure distribution, streamline patterns, and induced drag. Understanding these is crucial for aerodynamic performance and stability.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.4.1",
+    "subjectId": 5,
+    "text": "Streamline pattern",
+    "knowledgeContent": "Streamline patterns describe the smooth flow of air around a wing and fuselage. Pressure equalization occurs as air flows from high-pressure areas (lower wing surface) to low-pressure areas (upper wing surface).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.4.1.1Describe",
+    "subjectId": 5,
+    "text": "the pressure equalization between upper and lower side of the wing",
+    "knowledgeContent": "Pressure equalization between the upper and lower wing surfaces occurs as air flows from the high-pressure lower side to the low-pressure upper side, creating lift. This process is influenced by wing shape and angle of attack.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.4.1.3Explain",
+    "subjectId": 5,
+    "text": "possible hazards from wake turbulence for succeeding aircraft",
+    "knowledgeContent": "Wake turbulence, caused by tip vortices and induced drag, poses hazards for succeeding aircraft by creating unstable airflow. Pilots must maintain safe separation distances to avoid these effects.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.4.2",
+    "subjectId": 5,
+    "text": "Induced drag",
+    "knowledgeContent": "Induced drag is caused by the generation of lift and the creation of tip vortices. It increases with higher angles of attack and lower airspeeds, and is influenced by wing shape and aspect ratio.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.4.2.1Explain",
+    "subjectId": 5,
+    "text": "the formation of induced drag and tip vortices",
+    "knowledgeContent": "Induced drag forms due to the pressure difference between the upper and lower wing surfaces, creating tip vortices. These vortices increase drag and reduce aerodynamic efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.4.2.3Explain",
+    "subjectId": 5,
+    "text": "how the shape of a wing can affect the formation of induced drag",
+    "knowledgeContent": "Wing shape, particularly aspect ratio and taper, affects induced drag. Higher aspect ratios reduce induced drag by minimizing tip vortices, while tapered wings improve aerodynamic efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.4.2.4Explain",
+    "subjectId": 5,
+    "text": "how using winglets can reduce induced drag",
+    "knowledgeContent": "Winglets reduce induced drag by minimizing tip vortices and redirecting airflow. This improves aerodynamic efficiency and reduces fuel consumption.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.5",
+    "subjectId": 5,
+    "text": "Drag",
+    "knowledgeContent": "Drag is the resistance an aircraft encounters while moving through the air. It includes parasite drag (form, friction, interference) and induced drag, each affecting performance differently.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.5.1",
+    "subjectId": 5,
+    "text": "The parasite drag",
+    "knowledgeContent": "Parasite drag consists of form drag, friction drag, and interference drag. Form drag is caused by the aircraft's shape, friction drag by surface roughness, and interference drag by airflow interactions between components.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.5.1.1Describe",
+    "subjectId": 5,
+    "text": "the formation of pressure drag (form drag)",
+    "knowledgeContent": "Pressure drag (form drag) occurs due to the shape of the aircraft, creating a pressure differential between the front and rear surfaces. Streamlined shapes minimize this drag.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.5.1.3Describe",
+    "subjectId": 5,
+    "text": "the formation of interference drag",
+    "knowledgeContent": "Interference drag arises from the interaction of airflow between adjacent aircraft components, such as the wing and fuselage. Fairings and smooth transitions reduce this drag.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.5.1.4State",
+    "subjectId": 5,
+    "text": "reasons for aerodynamic fairing of airframe parts, e.g. wheels",
+    "knowledgeContent": "Aerodynamic fairing of airframe parts, such as wheels, reduces drag by streamlining airflow and minimizing turbulence. This improves fuel efficiency and performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.5.1.6Describe",
+    "subjectId": 5,
+    "text": "the formation of friction drag",
+    "knowledgeContent": "Friction drag is caused by the roughness of the aircraft's surface interacting with the airflow. Smooth surfaces and laminar flow designs reduce this drag.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.5.2",
+    "subjectId": 5,
+    "text": "The parasite drag and speed",
+    "knowledgeContent": "Parasite drag increases with airspeed, as higher velocities create greater resistance. The relationship is quadratic, meaning drag increases with the square of airspeed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.5.2.1Describe",
+    "subjectId": 5,
+    "text": "the change in parasite drag with increasing air speed",
+    "knowledgeContent": "As airspeed increases, parasite drag rises due to greater airflow resistance. This includes form, friction, and interference drag, all of which contribute to higher overall drag.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.5.2.2State",
+    "subjectId": 5,
+    "text": "that double airspeed results in four times the parasite drag (square law)",
+    "knowledgeContent": "Doubling airspeed results in four times the parasite drag, following the square law. This relationship highlights the significant impact of speed on drag and fuel consumption.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.5.3",
+    "subjectId": 5,
+    "text": "The induced drag and speed",
+    "knowledgeContent": "Induced drag decreases with increasing airspeed, as higher velocities reduce the angle of attack required for lift. This inverse relationship is critical for understanding aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:47:06.750Z",
+    "updatedAt": "2026-03-17T20:47:06.750Z"
+  },
+  {
+    "loId": "51.1.5.3.1Describe",
+    "subjectId": 5,
+    "text": "the change in induced drag with increasing air speed",
+    "knowledgeContent": "Induced drag decreases as airspeed increases because it is inversely proportional to the square of the airspeed. At higher speeds, the angle of attack required for lift generation is reduced, minimizing the vortices and drag caused by lift.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.5.4",
+    "subjectId": 5,
+    "text": "The total drag",
+    "knowledgeContent": "Total drag is the sum of parasite drag (caused by friction and form) and induced drag (caused by lift generation). It varies with airspeed and reaches a minimum at a specific speed where parasite and induced drag are balanced.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.5.4.1State",
+    "subjectId": 5,
+    "text": "that total drag is composed from parasite drag and induced drag",
+    "knowledgeContent": "Total drag consists of parasite drag (non-lift-related drag) and induced drag (drag generated by lift). These two components combine to determine the overall drag experienced by the aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.5.4.2Explain",
+    "subjectId": 5,
+    "text": "why total drag is lowest at a certain airspeed",
+    "knowledgeContent": "Total drag is lowest at a specific airspeed where parasite drag (increasing with speed) and induced drag (decreasing with speed) intersect. This speed is known as the minimum drag speed (Vmd).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.6",
+    "subjectId": 5,
+    "text": "The ground effect",
+    "knowledgeContent": "Ground effect occurs when an aircraft is within one wingspan of the ground, reducing induced drag and increasing lift efficiency due to altered airflow patterns.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.6.1",
+    "subjectId": 5,
+    "text": "Effect on take off and landing characteristics of an aeroplane",
+    "knowledgeContent": "Ground effect improves takeoff performance by reducing drag and increasing lift, while during landing, it can cause a 'floating' effect as the aircraft resists settling due to reduced drag.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.6.1.1Explain",
+    "subjectId": 5,
+    "text": "the effects of entering and leaving ground effect.",
+    "knowledgeContent": "Entering ground effect reduces induced drag and increases lift, making the aircraft feel lighter. Leaving ground effect increases drag and reduces lift, requiring additional power or pitch adjustment to maintain altitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7",
+    "subjectId": 5,
+    "text": "The stall",
+    "knowledgeContent": "A stall occurs when the critical angle of attack is exceeded, causing a sudden loss of lift due to airflow separation over the wing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.1.2Describe",
+    "subjectId": 5,
+    "text": "a laminar boundary layer and identify it on a streamline pattern",
+    "knowledgeContent": "A laminar boundary layer is a smooth, orderly airflow close to the wing surface, characterized by minimal mixing. It can be identified on a streamline pattern as a region of parallel, undisturbed flow lines.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.1.3Describe",
+    "subjectId": 5,
+    "text": "a turbulent boundary layer and identify it on a streamline pattern",
+    "knowledgeContent": "A turbulent boundary layer is a chaotic airflow near the wing surface, characterized by mixing and eddies. It can be identified on a streamline pattern as a region of irregular, swirling flow lines.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.1.5Describe",
+    "subjectId": 5,
+    "text": "the transition point and locate it in streamline pattern",
+    "knowledgeContent": "The transition point is where the laminar boundary layer becomes turbulent. It can be located on a streamline pattern as the point where smooth flow lines begin to break into irregular patterns.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.1.6Describe",
+    "subjectId": 5,
+    "text": "the separation point and locate it in streamline pattern",
+    "knowledgeContent": "The separation point is where the airflow detaches from the wing surface, causing a loss of lift. It can be located on a streamline pattern as the point where flow lines diverge sharply from the wing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.1.8Explain",
+    "subjectId": 5,
+    "text": "the reduction in lift / cL at increasing AOA using the cL-alpha graph",
+    "knowledgeContent": "As the angle of attack increases, lift coefficient (cL) rises until the critical angle is reached, after which cL decreases sharply due to airflow separation. This is depicted on the cL-alpha graph as a peak followed by a steep decline.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.1.9Describe",
+    "subjectId": 5,
+    "text": "the 'critical angle of attack' and factors affecting it",
+    "knowledgeContent": "The critical angle of attack is the maximum angle at which lift is generated before airflow separation occurs. Factors affecting it include wing design, surface roughness, and airspeed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.1.10Describe",
+    "subjectId": 5,
+    "text": "the effects of flow separation onset ('buffeting')",
+    "knowledgeContent": "Flow separation onset causes buffeting, a vibration felt in the aircraft due to turbulent airflow over the wings. This is a warning sign of an impending stall.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.2",
+    "subjectId": 5,
+    "text": "The stall speed",
+    "knowledgeContent": "Stall speed is the minimum speed at which an aircraft can maintain level flight. It depends on factors such as weight, load factor, and wing configuration.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.2.1Explain",
+    "subjectId": 5,
+    "text": "the stall speed (IAS) from the factors speed and cL in the lift formula",
+    "knowledgeContent": "Stall speed (IAS) is derived from the lift formula, where lift equals weight. At higher speeds, less lift coefficient (cL) is required, but at stall speed, cL reaches its maximum, and lift equals weight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.2.2Describe",
+    "subjectId": 5,
+    "text": "the change in stall speed with varying mass",
+    "knowledgeContent": "Stall speed increases with higher aircraft mass because more lift is required to counteract the greater weight, necessitating a higher speed to achieve the required lift coefficient.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.2.3Derive",
+    "subjectId": 5,
+    "text": "the stall speeds from markings at the air speed indicator",
+    "knowledgeContent": "Stall speeds can be derived from markings on the airspeed indicator, such as Vs (stall speed in clean configuration) and Vs0 (stall speed in landing configuration).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.2.6Explain",
+    "subjectId": 5,
+    "text": "why the stall speed (IAS) is independent of altitude",
+    "knowledgeContent": "Stall speed (IAS) is independent of altitude because it depends on dynamic pressure, which is a function of airspeed and air density. IAS remains constant regardless of altitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.2.7Define",
+    "subjectId": 5,
+    "text": "'load factor (n)'",
+    "knowledgeContent": "Load factor (n) is the ratio of the lift force to the aircraft's weight. It increases during maneuvers such as turns or pull-ups, affecting stall speed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.2.8Explain",
+    "subjectId": 5,
+    "text": "the relationship between load factor and stall speed",
+    "knowledgeContent": "As load factor increases, stall speed increases because more lift is required to counteract the additional force, requiring a higher speed to achieve the necessary lift coefficient.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.2.10Explain",
+    "subjectId": 5,
+    "text": "the increase in stall speeds during turns",
+    "knowledgeContent": "Stall speed increases during turns due to the higher load factor, which requires greater lift to maintain the turn. This results in a higher speed needed to avoid stalling.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.3",
+    "subjectId": 5,
+    "text": "The initial stall in span-wise direction",
+    "knowledgeContent": "The initial stall in span-wise direction refers to the progression of airflow separation along the wing, influenced by factors such as wing design and washout.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.3.1Describe",
+    "subjectId": 5,
+    "text": "the influence of washout on an aircraft's stall characteristics",
+    "knowledgeContent": "Washout, a twist in the wing reducing angle of attack toward the tip, delays stall onset at the wingtips, improving aileron effectiveness and stall characteristics.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.3.2Describe",
+    "subjectId": 5,
+    "text": "the difference between aerodynamic and geometric washout",
+    "knowledgeContent": "Aerodynamic washout is achieved through wing design, while geometric washout involves physical twisting of the wing. Both reduce the angle of attack at the wingtips to delay stall.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.3.3Explain",
+    "subjectId": 5,
+    "text": "the effect of washout on the effectiveness of ailerons at low speed",
+    "knowledgeContent": "Washout maintains aileron effectiveness at low speeds by delaying stall at the wingtips, ensuring roll control remains available even as the wing root begins to stall.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.4",
+    "subjectId": 5,
+    "text": "Stall warning",
+    "knowledgeContent": "Stall warning systems alert pilots of an impending stall, typically activating at a threshold slightly above the stall speed (e.g., 5-10% above Vs).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.4.1State",
+    "subjectId": 5,
+    "text": "the approximate warning threshold of a stall warning (kt / % of stall speed)",
+    "knowledgeContent": "Stall warning systems typically activate at approximately 5-10% above the stall speed (e.g., 5-10 knots above Vs), providing an audible or visual alert.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.4.2Explain",
+    "subjectId": 5,
+    "text": "the effect of low speed / stall buffeting",
+    "knowledgeContent": "Low speed or stall buffeting occurs as airflow separation begins, causing vibrations that serve as a tactile warning of an impending stall.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:48:12.771Z",
+    "updatedAt": "2026-03-17T20:48:12.771Z"
+  },
+  {
+    "loId": "51.1.7.5",
+    "subjectId": 5,
+    "text": "Special phenomena of stall",
+    "knowledgeContent": "A PPL(A) student must understand the unique characteristics of stalls, including the factors that can exacerbate stall behavior, such as wing design, weight distribution, and environmental conditions. They should also recognize the potential for secondary effects like wing drop or buffet.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.7.5.1Describe",
+    "subjectId": 5,
+    "text": "the 'spin' and 'spiral dive' flight states",
+    "knowledgeContent": "A PPL(A) student must be able to describe a spin as an aggravated stall with one wing more stalled than the other, causing autorotation, and a spiral dive as a steep, descending turn with increasing airspeed and G-forces.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.7.5.2List",
+    "subjectId": 5,
+    "text": "flight situations that might lead to a spin",
+    "knowledgeContent": "A PPL(A) student must identify flight situations that can lead to a spin, such as uncoordinated turns, abrupt control inputs at low airspeeds, or attempting to recover from a stall improperly.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.7.5.5Describe",
+    "subjectId": 5,
+    "text": "the difference between a fully developed spin and a stall",
+    "knowledgeContent": "A PPL(A) student must describe a fully developed spin as a sustained autorotation with a steep descent, whereas a stall is a loss of lift due to exceeding the critical angle of attack without autorotation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.7.5.6Explain",
+    "subjectId": 5,
+    "text": "the term 'flat spin'",
+    "knowledgeContent": "A PPL(A) student must explain that a flat spin occurs when the aircraft's center of gravity is far aft, causing a near-horizontal spin with high rotational rates and difficulty in recovery.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.7.5.9Describe",
+    "subjectId": 5,
+    "text": "the general procedures for spin recovery, if not stated other in AFM/POH",
+    "knowledgeContent": "A PPL(A) student must describe the general spin recovery procedure: reduce power to idle, apply full opposite rudder, move the elevator control forward to break the stall, and recover from the dive once rotation stops.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.7.5.13Describe",
+    "subjectId": 5,
+    "text": "how greater amounts of ice or rain can jam a stall warning",
+    "knowledgeContent": "A PPL(A) student must describe how ice or rain accumulation on stall warning sensors can obstruct their function, delaying or preventing stall warnings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.8",
+    "subjectId": 5,
+    "text": "CL augmentation",
+    "knowledgeContent": "A PPL(A) student must understand the principles of lift augmentation, including the use of flaps and leading-edge devices to improve aircraft performance during take-off and landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.8.1",
+    "subjectId": 5,
+    "text": "Trailing edge flaps and the reasons for use in take-off and landing",
+    "knowledgeContent": "A PPL(A) student must understand the purpose of trailing-edge flaps, which increase lift and drag, allowing for steeper descent angles and lower approach speeds during take-off and landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.8.1.2Describe",
+    "subjectId": 5,
+    "text": "the effect of extending flaps with regard to the cL-alpha-graph",
+    "knowledgeContent": "A PPL(A) student must describe how extending flaps increases the lift coefficient (cL) on the cL-alpha graph, shifting the curve upward and allowing for higher lift at lower angles of attack.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.8.1.4Describe",
+    "subjectId": 5,
+    "text": "how the stall speed changes by deploying / retracting flaps",
+    "knowledgeContent": "A PPL(A) student must describe how deploying flaps reduces stall speed by increasing lift, while retracting flaps increases stall speed by reducing lift.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.8.1.6Explain",
+    "subjectId": 5,
+    "text": "the usage of flaps for take-off and landing",
+    "knowledgeContent": "A PPL(A) student must explain that flaps are used during take-off to reduce the required runway length and during landing to decrease approach speed and improve controllability.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.8.1.7State",
+    "subjectId": 5,
+    "text": "the procedure to retract flaps after take-off or go-around",
+    "knowledgeContent": "A PPL(A) student must state the procedure to retract flaps after take-off or during a go-around: reduce power, establish a positive rate of climb, and retract flaps incrementally to avoid sudden loss of lift.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.8.1.8Explain",
+    "subjectId": 5,
+    "text": "the effect of asymmetric deployment of flaps",
+    "knowledgeContent": "A PPL(A) student must explain that asymmetric flap deployment creates unequal lift on the wings, leading to roll and yaw tendencies that require corrective control inputs.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.8.1.9Describe",
+    "subjectId": 5,
+    "text": "the correct actions in case of asymmetric flaps deployment",
+    "knowledgeContent": "A PPL(A) student must describe the correct actions in case of asymmetric flap deployment: reduce power, maintain control with ailerons and rudder, and retract the deployed flap if possible.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.8.1.10Explain",
+    "subjectId": 5,
+    "text": "the 'ballooning' effect when deploying flaps, and describe how to counteract",
+    "knowledgeContent": "A PPL(A) student must explain that deploying flaps at high speeds can cause 'ballooning,' a sudden increase in lift, and describe how to counteract it by reducing power and adjusting pitch.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.8.2",
+    "subjectId": 5,
+    "text": "Leading edge devices and the reasons for use in take-off and landing",
+    "knowledgeContent": "A PPL(A) student must understand the purpose of leading-edge devices, such as slats and slots, which delay the onset of a stall by improving airflow over the wing during take-off and landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.8.2.3Identify",
+    "subjectId": 5,
+    "text": "common leading edge high-lift devices as such and be able to explain their function.",
+    "knowledgeContent": "A PPL(A) student must identify common leading-edge high-lift devices, such as slats, slots, and Krueger flaps, and explain their function in improving lift and delaying stall.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.9",
+    "subjectId": 5,
+    "text": "The boundary layer",
+    "knowledgeContent": "A PPL(A) student must understand the concept of the boundary layer, the thin layer of air adjacent to the wing surface, and its role in aerodynamic performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.9.1",
+    "subjectId": 5,
+    "text": "Different types",
+    "knowledgeContent": "A PPL(A) student must understand the different types of boundary layers, including laminar and turbulent, and their effects on drag and lift.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.9.1.1Describe",
+    "subjectId": 5,
+    "text": "a laminar boundary layer and identify it on a streamline pattern",
+    "knowledgeContent": "A PPL(A) student must describe a laminar boundary layer as smooth, orderly airflow with minimal drag, identifiable by streamlined patterns on the wing surface.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.9.1.2Describe",
+    "subjectId": 5,
+    "text": "a turbulent layer and identify it on a streamline pattern",
+    "knowledgeContent": "A PPL(A) student must describe a turbulent boundary layer as chaotic airflow with increased drag, identifiable by disrupted streamline patterns on the wing surface.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.10",
+    "subjectId": 5,
+    "text": "Special circumstances",
+    "knowledgeContent": "A PPL(A) student must understand the effects of special circumstances, such as ice or contamination, on aircraft performance and safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.1.10.1Ice",
+    "subjectId": 5,
+    "text": "and other contamination",
+    "knowledgeContent": "A PPL(A) student must understand how ice accumulation on the wings or other surfaces increases weight, reduces lift, and increases drag, significantly affecting aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.2",
+    "subjectId": 5,
+    "text": "Stability",
+    "knowledgeContent": "A PPL(A) student must understand the principles of aircraft stability, including static and dynamic stability, and how they affect flight control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.2.1",
+    "subjectId": 5,
+    "text": "Condition of equilibrium in steady horizontal flight",
+    "knowledgeContent": "A PPL(A) student must understand the condition of equilibrium in steady horizontal flight, where lift equals weight and thrust equals drag.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.2.1.1",
+    "subjectId": 5,
+    "text": "Precondition for static stability",
+    "knowledgeContent": "A PPL(A) student must understand that static stability requires the aircraft to return to equilibrium after a disturbance, such as a gust.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.2.1.2",
+    "subjectId": 5,
+    "text": "Equilibrium",
+    "knowledgeContent": "A PPL(A) student must understand the concept of equilibrium in flight, where all forces and moments acting on the aircraft are balanced.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.2.1.2.1Describe",
+    "subjectId": 5,
+    "text": "the effects of a gust on the equilibrium of forces",
+    "knowledgeContent": "A PPL(A) student must describe how a gust can disrupt equilibrium by temporarily altering lift, drag, or thrust, requiring pilot input to restore balance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.2.1.2.2Describe",
+    "subjectId": 5,
+    "text": "the effects of a gust on the equilibrium of forces",
+    "knowledgeContent": "A PPL(A) student must describe how a gust can disrupt equilibrium by temporarily altering lift, drag, or thrust, requiring pilot input to restore balance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:49:10.659Z",
+    "updatedAt": "2026-03-17T20:49:10.659Z"
+  },
+  {
+    "loId": "51.2.2",
+    "subjectId": 5,
+    "text": "Methods of achieving balance",
+    "knowledgeContent": "A PPL(A) student must understand the methods to achieve balance in an aircraft, including the distribution of weight and aerodynamic forces to ensure stable flight. This includes the role of the wing, empennage, and control surfaces in maintaining equilibrium.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.2.1",
+    "subjectId": 5,
+    "text": "Wing and empennage (tail and canard)",
+    "knowledgeContent": "The student must know how the wing and empennage (tail or canard) contribute to balance by generating lift and providing stability. The horizontal stabilizer and elevator control pitch, while the vertical stabilizer and rudder control yaw.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.2.2",
+    "subjectId": 5,
+    "text": "Control surfaces",
+    "knowledgeContent": "The student must understand the function of control surfaces (elevator, ailerons, rudder) in achieving balance by altering aerodynamic forces. These surfaces allow the pilot to control pitch, roll, and yaw.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.2.3",
+    "subjectId": 5,
+    "text": "Ballast or weight trim",
+    "knowledgeContent": "The student must know how ballast or weight trim is used to adjust the aircraft's center of gravity (CG) to ensure proper balance and stability. This may involve adding or removing weight or redistributing cargo.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.3",
+    "subjectId": 5,
+    "text": "Static and dynamic longitudinal stability",
+    "knowledgeContent": "The student must understand the concepts of static and dynamic longitudinal stability, which refer to the aircraft's ability to return to equilibrium after a disturbance and the oscillations that follow.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.3.1",
+    "subjectId": 5,
+    "text": "Basics and definitions",
+    "knowledgeContent": "The student must know the basics and definitions of longitudinal stability, including the forces and moments acting on the aircraft that influence its stability in the pitch axis.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.3.1.1Explain",
+    "subjectId": 5,
+    "text": "'static stability'",
+    "knowledgeContent": "The student must explain static stability as the initial tendency of an aircraft to return to equilibrium after a disturbance, such as a gust of wind.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.3.1.2Explain",
+    "subjectId": 5,
+    "text": "'dynamic stability'",
+    "knowledgeContent": "The student must explain dynamic stability as the aircraft's behavior over time after a disturbance, including whether oscillations dampen or increase.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.3.1.3Describe",
+    "subjectId": 5,
+    "text": "the requirement of static stability for dynamic stability",
+    "knowledgeContent": "The student must describe how static stability is a prerequisite for dynamic stability, as an aircraft must first have the tendency to return to equilibrium before oscillations can dampen.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.3.2",
+    "subjectId": 5,
+    "text": "Location of centre of gravity",
+    "knowledgeContent": "The student must understand the importance of the center of gravity (CG) location in maintaining longitudinal stability and controllability.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.3.2.1State",
+    "subjectId": 5,
+    "text": "the importance for keeping CG in limits to maintain controllability",
+    "knowledgeContent": "The student must state that keeping the CG within specified limits is crucial for maintaining controllability and stability, as an out-of-limit CG can lead to handling difficulties or loss of control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.4",
+    "subjectId": 5,
+    "text": "Dynamic lateral or directional stability",
+    "knowledgeContent": "The student must understand dynamic lateral and directional stability, which refers to the aircraft's ability to maintain stability in roll and yaw after a disturbance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.4.1",
+    "subjectId": 5,
+    "text": "Spiral dive and corrective actions",
+    "knowledgeContent": "The student must know how to recognize and correct a spiral dive, which occurs when the aircraft enters a descending turn due to a loss of lateral or directional stability.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.4.1.1Explain",
+    "subjectId": 5,
+    "text": "the influence of wing dihedral on roll stability",
+    "knowledgeContent": "The student must explain how wing dihedral enhances roll stability by creating a restoring moment when the aircraft rolls.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.4.1.2Explain",
+    "subjectId": 5,
+    "text": "the influence of the vertical stabilizer on directional stability",
+    "knowledgeContent": "The student must explain how the vertical stabilizer provides directional stability by generating a restoring force when the aircraft yaws.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.4.1.3Explain",
+    "subjectId": 5,
+    "text": "the term 'weather vaning'",
+    "knowledgeContent": "The student must explain 'weather vaning' as the tendency of an aircraft to align itself with the relative wind, similar to a weather vane.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.2.4.1.4Explain",
+    "subjectId": 5,
+    "text": "the effect of wing sweep on directional stability",
+    "knowledgeContent": "The student must explain how wing sweep enhances directional stability by delaying the onset of adverse yaw and improving airflow over the wings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.3",
+    "subjectId": 5,
+    "text": "Control",
+    "knowledgeContent": "The student must understand the principles of aircraft control, including the three planes (longitudinal, lateral, vertical) and three axes (pitch, roll, yaw).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.3.1",
+    "subjectId": 5,
+    "text": "General",
+    "knowledgeContent": "The student must know the basics of aircraft control, including the interaction of forces and moments in the three planes and around the three axes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.3.1.1",
+    "subjectId": 5,
+    "text": "Basics, the three planes and three axis",
+    "knowledgeContent": "The student must understand the three planes (longitudinal, lateral, vertical) and three axes (pitch, roll, yaw) and how control surfaces manipulate these axes to change the aircraft's attitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.3.1.2",
+    "subjectId": 5,
+    "text": "Angle of attack change",
+    "knowledgeContent": "The student must understand how changes in angle of attack (AOA) affect lift and drag, and how control surfaces alter the local AOA to control the aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.3.1.2.1Explain",
+    "subjectId": 5,
+    "text": "the influence of local AOA change by movement of a control surface",
+    "knowledgeContent": "The student must explain how movement of a control surface (e.g., elevator, aileron, rudder) changes the local angle of attack, generating aerodynamic forces that control the aircraft's attitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.3.2",
+    "subjectId": 5,
+    "text": "Pitch control",
+    "knowledgeContent": "The student must understand pitch control, which involves the elevator and horizontal stabilizer to manage the aircraft's attitude and flight path.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.3.2.1",
+    "subjectId": 5,
+    "text": "Elevator",
+    "knowledgeContent": "The student must know the function of the elevator in controlling pitch by altering the angle of attack of the horizontal stabilizer.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.3.2.1.1Identify",
+    "subjectId": 5,
+    "text": "and name the 'horizontal stabilizer' and 'elevator'",
+    "knowledgeContent": "The student must identify and name the horizontal stabilizer and elevator, understanding their roles in pitch control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.3.2.1.2Explain",
+    "subjectId": 5,
+    "text": "the aerodynamic basics of pitch control",
+    "knowledgeContent": "The student must explain the aerodynamic principles of pitch control, including how the elevator generates lift or downforce to change the aircraft's pitch attitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.3.2.1.3Define",
+    "subjectId": 5,
+    "text": "the term 'longitudinal stability'",
+    "knowledgeContent": "The student must define longitudinal stability as the aircraft's ability to maintain equilibrium in the pitch axis.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.3.2.1.4Describe",
+    "subjectId": 5,
+    "text": "how the elevator influences flight attitude / flight path",
+    "knowledgeContent": "The student must describe how the elevator influences the aircraft's flight attitude and flight path by changing the pitch angle.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.3.2.1.5Explain",
+    "subjectId": 5,
+    "text": "the functions of a horizontal stabilizer in terms of longitudinal stability.",
+    "knowledgeContent": "The student must explain how the horizontal stabilizer provides longitudinal stability by generating a restoring moment when the aircraft pitches.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.3.2.2",
+    "subjectId": 5,
+    "text": "Downwash effects",
+    "knowledgeContent": "The student must understand downwash effects, which refer to the airflow deflected downward by the wings and its influence on the horizontal stabilizer and elevator.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:50:11.745Z",
+    "updatedAt": "2026-03-17T20:50:11.745Z"
+  },
+  {
+    "loId": "51.3.2.2.1Explain",
+    "subjectId": 5,
+    "text": "the effect of downwash on the tailplane angle of attack",
+    "knowledgeContent": "The downwash from the wings affects the tailplane angle of attack by altering the relative airflow over the horizontal stabilizer. This changes the tailplane's lift, influencing pitch stability and control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.2.3",
+    "subjectId": 5,
+    "text": "Location of centre of gravity",
+    "knowledgeContent": "The center of gravity (CG) is the point where the aircraft's mass is balanced. Its location affects stability, control, and performance, and must remain within specified limits for safe flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.2.3.1Explain",
+    "subjectId": 5,
+    "text": "how the longitudinal stability changes with longitudinal CG position",
+    "knowledgeContent": "Longitudinal stability increases as the CG moves forward because the aircraft becomes more nose-heavy, requiring greater elevator deflection to change pitch. Conversely, a rearward CG reduces stability and increases sensitivity to pitch inputs.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.2.3.2Explain",
+    "subjectId": 5,
+    "text": "how the manoeuvrability stability changes with longitudinal CG position",
+    "knowledgeContent": "Maneuverability increases as the CG moves rearward due to reduced pitch stability, allowing quicker response to control inputs. However, this also reduces overall stability, making the aircraft more prone to overcontrol.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.3",
+    "subjectId": 5,
+    "text": "Yaw control",
+    "knowledgeContent": "Yaw control is achieved through the rudder, which deflects airflow to create a yawing moment around the vertical axis. This is essential for directional stability, coordination, and counteracting adverse yaw.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.3.1",
+    "subjectId": 5,
+    "text": "Pedal or rudder",
+    "knowledgeContent": "The rudder is controlled by pedals, which deflect the rudder to the left or right, creating a yawing motion. Proper use of the rudder is crucial for coordinated turns and maintaining directional control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.3.1.1Identify",
+    "subjectId": 5,
+    "text": "and name the 'vertical stabilizer' and 'rudder'",
+    "knowledgeContent": "The vertical stabilizer is the fixed vertical surface at the tail, while the rudder is the movable control surface attached to its trailing edge. Together, they provide directional stability and control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.3.1.2Explain",
+    "subjectId": 5,
+    "text": "the aerodynamic basics of yaw control",
+    "knowledgeContent": "Yaw control is achieved by deflecting the rudder, which changes the airflow around the vertical stabilizer, creating a side force that rotates the aircraft around its vertical axis.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.3.1.3List",
+    "subjectId": 5,
+    "text": "reasons for the lower significance of the rudder at higher airspeeds",
+    "knowledgeContent": "At higher airspeeds, the rudder's significance decreases because the aircraft's inherent directional stability increases, and smaller rudder inputs are sufficient to maintain control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.4",
+    "subjectId": 5,
+    "text": "Roll control",
+    "knowledgeContent": "Roll control is achieved through the ailerons, which deflect asymmetrically to create differential lift, causing the aircraft to roll around its longitudinal axis.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.4.1",
+    "subjectId": 5,
+    "text": "Ailerons: function in different phases of flight",
+    "knowledgeContent": "Ailerons function by deflecting upward or downward to increase or decrease lift on one wing, inducing roll. They are used during all phases of flight to control bank angle and turn coordination.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.4.1.1Identify",
+    "subjectId": 5,
+    "text": "and name the 'ailerons'",
+    "knowledgeContent": "The ailerons are the movable control surfaces located on the trailing edge of each wing, used to control the aircraft's roll around its longitudinal axis.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.4.1.2Explain",
+    "subjectId": 5,
+    "text": "the aerodynamic basics of aileron / roll control",
+    "knowledgeContent": "Ailerons create roll by deflecting asymmetrically: one aileron moves up to decrease lift on that wing, while the other moves down to increase lift, inducing a rolling motion.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.4.1.3Describe",
+    "subjectId": 5,
+    "text": "the correct method to fly 'coordinated turns'",
+    "knowledgeContent": "Coordinated turns require simultaneous use of ailerons to bank and rudder to counteract adverse yaw, ensuring balanced forces and minimizing slip or skid.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.4.1.4Describe",
+    "subjectId": 5,
+    "text": "the effects of slip / skid during turns.",
+    "knowledgeContent": "Slip occurs when the aircraft's nose is not aligned with the flight path, while skid occurs when the tail is not aligned. Both result in inefficient turns and potential loss of control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.4.1.5Describe",
+    "subjectId": 5,
+    "text": "the aileron / control reversal at low flight speeds",
+    "knowledgeContent": "At low speeds, aileron control reversal can occur due to reduced airflow over the wings, making roll control less effective and requiring larger inputs for the same response.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.4.2",
+    "subjectId": 5,
+    "text": "Adverse yaw",
+    "knowledgeContent": "Adverse yaw is the tendency of the aircraft to yaw in the opposite direction of a roll due to increased drag on the wing with the raised aileron.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.4.2.1Explain",
+    "subjectId": 5,
+    "text": "the effect of 'adverse yaw'",
+    "knowledgeContent": "Adverse yaw occurs because the upward-deflected aileron increases drag on that wing, causing the aircraft to yaw away from the intended turn direction.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.4.2.2Describe",
+    "subjectId": 5,
+    "text": "the flight path / attitude when initiating turns without using the rudder",
+    "knowledgeContent": "Without rudder input, initiating a turn results in adverse yaw, causing the aircraft's nose to swing opposite the bank direction, leading to uncoordinated flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.4.2.3Describe",
+    "subjectId": 5,
+    "text": "technical (aerodynamic) means to reduce adverse yaw by frise ailerons",
+    "knowledgeContent": "Frise ailerons reduce adverse yaw by designing the upward-deflected aileron to protrude into the airflow, increasing drag on the opposite wing and counteracting the yawing moment.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.5",
+    "subjectId": 5,
+    "text": "Means to reduce control forces",
+    "knowledgeContent": "Means to reduce control forces include aerodynamic balance, mass balance, and trimming systems, which make it easier for pilots to maneuver the aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.5.1",
+    "subjectId": 5,
+    "text": "Aerodynamic balance",
+    "knowledgeContent": "Aerodynamic balance reduces control forces by using tabs or other mechanisms to counteract the aerodynamic forces acting on control surfaces.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.5.1.1Describe",
+    "subjectId": 5,
+    "text": "the effect of aerodynamic balance by use of balance tabs / servo tabs",
+    "knowledgeContent": "Balance tabs and servo tabs reduce control forces by deflecting in the opposite direction of the control surface, creating a counteracting force that eases pilot input.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.5.1.2Explain",
+    "subjectId": 5,
+    "text": "the anti-balance tab",
+    "knowledgeContent": "Anti-balance tabs increase control forces by deflecting in the same direction as the control surface, providing greater resistance and feedback to the pilot.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.6",
+    "subjectId": 5,
+    "text": "Mass balance",
+    "knowledgeContent": "Mass balance ensures that control surfaces are dynamically balanced to prevent flutter and reduce control forces, enhancing safety and control effectiveness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.6.1",
+    "subjectId": 5,
+    "text": "Reasons to balance",
+    "knowledgeContent": "Mass balance involves adding weight to control surfaces to align their center of gravity with the hinge line, preventing flutter and reducing aerodynamic forces.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.6.1.1Describe",
+    "subjectId": 5,
+    "text": "the effect of aerodynamic balance by use of mass balance",
+    "knowledgeContent": "Mass balance reduces aerodynamic forces by aligning the control surface's center of gravity with its hinge line, minimizing flutter and improving control responsiveness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.7",
+    "subjectId": 5,
+    "text": "Trimming",
+    "knowledgeContent": "Trimming systems allow pilots to relieve control pressures by adjusting control surfaces to maintain a desired flight attitude without constant input.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.7.1",
+    "subjectId": 5,
+    "text": "Reasons to trim",
+    "knowledgeContent": "Trimming is essential to reduce pilot workload by maintaining a stable flight attitude without continuous control input, improving comfort and efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.7.1.1Explain",
+    "subjectId": 5,
+    "text": "why an elevator trim is fitted to the aircraft",
+    "knowledgeContent": "An elevator trim is fitted to the aircraft to allow pilots to adjust the pitch attitude without holding constant pressure on the control column, reducing fatigue and improving control precision.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:51:27.676Z",
+    "updatedAt": "2026-03-17T20:51:27.676Z"
+  },
+  {
+    "loId": "51.3.7.1.2Describe",
+    "subjectId": 5,
+    "text": "the limitations of trim (e.g. with incorrect CG position)",
+    "knowledgeContent": "A PPL(A) student must understand that trim effectiveness is limited by the aircraft's center of gravity (CG) position. An incorrect CG, particularly if too far forward or aft, can reduce or eliminate the ability of the trim system to maintain desired pitch attitudes, requiring greater control forces.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.3.7.1.3State",
+    "subjectId": 5,
+    "text": "that not all general aviation aeroplanes are fitted with an aileron / roll trim",
+    "knowledgeContent": "A PPL(A) student must know that not all general aviation aeroplanes are equipped with aileron or roll trim. In such cases, pilots must manually maintain lateral balance using control inputs.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.3.7.1.4State",
+    "subjectId": 5,
+    "text": "that not all general aviation aircraft are fitted with rudder trim",
+    "knowledgeContent": "A PPL(A) student must be aware that rudder trim is not standard on all general aviation aircraft. Without rudder trim, pilots must use pedal pressure to counteract yaw forces, especially during asymmetric thrust conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.3.7.2",
+    "subjectId": 5,
+    "text": "Trim tabs",
+    "knowledgeContent": "A PPL(A) student must understand that trim tabs are secondary control surfaces used to reduce pilot workload by maintaining aircraft attitude without continuous control input.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.3.7.2.1Name",
+    "subjectId": 5,
+    "text": "and describe the function of the most common types of trim",
+    "knowledgeContent": "A PPL(A) student must be able to name and describe the function of common trim types, including elevator trim, aileron trim, and rudder trim. These systems adjust the aircraft's pitch, roll, and yaw axes, respectively, to maintain desired flight attitudes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.3.7.2.2Explain",
+    "subjectId": 5,
+    "text": "the function of a fixed trim tab",
+    "knowledgeContent": "A PPL(A) student must explain that a fixed trim tab is a non-adjustable surface set during maintenance to counteract a specific aerodynamic imbalance, reducing the need for constant control input during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4",
+    "subjectId": 5,
+    "text": "Limitations",
+    "knowledgeContent": "A PPL(A) student must understand that operating limitations are critical to ensure the structural integrity and safe performance of the aircraft. These limitations include speed, load factors, and other operational constraints.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.1",
+    "subjectId": 5,
+    "text": "Operating limitations",
+    "knowledgeContent": "A PPL(A) student must know that operating limitations define the safe boundaries for aircraft performance, including speed ranges, load factors, and structural limits, as specified in the AFM/POH.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.1.1",
+    "subjectId": 5,
+    "text": "Flutter",
+    "knowledgeContent": "A PPL(A) student must understand that flutter is a dangerous oscillation of control surfaces or wings caused by aerodynamic forces, which can lead to structural failure if not mitigated.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.1.1.1Describe",
+    "subjectId": 5,
+    "text": "flutter effects generally",
+    "knowledgeContent": "A PPL(A) student must describe flutter as a self-excited vibration of aerodynamic surfaces, typically occurring at high speeds, which can rapidly escalate and cause catastrophic structural damage.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.1.1.2State",
+    "subjectId": 5,
+    "text": "in what speed range flutter can happen",
+    "knowledgeContent": "A PPL(A) student must state that flutter typically occurs at or above the aircraft's critical flutter speed, which is often close to or exceeds the maximum operating speed (VNO) or never-exceed speed (VNE).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.1.1.3Describe",
+    "subjectId": 5,
+    "text": "methods to reduce flutter",
+    "knowledgeContent": "A PPL(A) student must describe methods to reduce flutter, including maintaining the aircraft within its speed limits, ensuring proper maintenance of control surfaces, and avoiding abrupt control inputs at high speeds.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.1.2",
+    "subjectId": 5,
+    "text": "vFE",
+    "knowledgeContent": "A PPL(A) student must understand that vFE is the maximum speed at which high-lift devices (e.g., flaps) can be extended, as indicated by the white arc on the airspeed indicator.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.1.2.1State",
+    "subjectId": 5,
+    "text": "limits for operating high-lift devices (vFE) and describe how they are indicated",
+    "knowledgeContent": "A PPL(A) student must state that vFE is the maximum speed for operating high-lift devices, typically indicated by the upper limit of the white arc on the airspeed indicator. Exceeding vFE can damage the flaps or compromise aircraft control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.1.3",
+    "subjectId": 5,
+    "text": "vNO, vNE",
+    "knowledgeContent": "A PPL(A) student must understand that vNO is the maximum normal operating speed, and vNE is the never-exceed speed, both critical for maintaining structural integrity and safe flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.1.3.1Describe",
+    "subjectId": 5,
+    "text": "the velocities vNO and vNE and how they are indicated",
+    "knowledgeContent": "A PPL(A) student must describe vNO as the maximum speed for normal operations, indicated by the upper limit of the green arc, and vNE as the absolute maximum speed, indicated by the red line on the airspeed indicator.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.1.3.2List",
+    "subjectId": 5,
+    "text": "possible consequences of exceeding vNE",
+    "knowledgeContent": "A PPL(A) student must list the consequences of exceeding vNE, including structural damage, control surface flutter, and potential catastrophic failure of the aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.1.3.3Explain",
+    "subjectId": 5,
+    "text": "the meaning of the 'yellow range' on the airspeed indicator",
+    "knowledgeContent": "A PPL(A) student must explain that the yellow range on the airspeed indicator represents the caution range between vNO and vNE, where smooth air and cautious control inputs are required to avoid exceeding structural limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.2",
+    "subjectId": 5,
+    "text": "Manoeuvring envelope",
+    "knowledgeContent": "A PPL(A) student must understand that the manoeuvring envelope defines the safe limits of load factors and speeds for various flight conditions, ensuring structural integrity.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.2.1",
+    "subjectId": 5,
+    "text": "Manoeuvring load diagram",
+    "knowledgeContent": "A PPL(A) student must know that the manoeuvring load diagram graphically represents the relationship between load factors and airspeed, defining the aircraft's structural limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.2.1.1Identify",
+    "subjectId": 5,
+    "text": "and describe the manoeuvering envelope",
+    "knowledgeContent": "A PPL(A) student must identify and describe the manoeuvring envelope, which includes the positive and negative load factor limits as a function of airspeed, ensuring safe operation within structural limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.2.1.3Explain",
+    "subjectId": 5,
+    "text": "the difference between negative and positive load factor.",
+    "knowledgeContent": "A PPL(A) student must explain that positive load factors occur during upward accelerations (e.g., pull-ups), while negative load factors occur during downward accelerations (e.g., push-downs), both of which are limited by the aircraft's structural design.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.2.1.4Derive",
+    "subjectId": 5,
+    "text": "the maximum allowed load factor from a given AFM/POH",
+    "knowledgeContent": "A PPL(A) student must derive the maximum allowed load factor from the AFM/POH, ensuring that manoeuvres are performed within the aircraft's structural limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.2.1.5Derive",
+    "subjectId": 5,
+    "text": "the following data from the manoeuvering envelope: max. load factor",
+    "knowledgeContent": "A PPL(A) student must derive the maximum load factor from the manoeuvring envelope, ensuring that flight operations remain within the aircraft's structural capabilities.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.2.1.9Describe",
+    "subjectId": 5,
+    "text": "how to find out vA when in the cockpit",
+    "knowledgeContent": "A PPL(A) student must describe how to determine manoeuvring speed (vA) in the cockpit, typically by referencing the AFM/POH or placards, ensuring safe manoeuvring within structural limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.2.1.10Determine",
+    "subjectId": 5,
+    "text": "manoeuvering speed vA from AFM/POH",
+    "knowledgeContent": "A PPL(A) student must determine manoeuvring speed (vA) from the AFM/POH, ensuring that abrupt control inputs are made at or below this speed to avoid exceeding structural limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.2.2",
+    "subjectId": 5,
+    "text": "Contribution of mass",
+    "knowledgeContent": "A PPL(A) student must understand that the aircraft's mass directly affects load-factor limits, with heavier aircraft having lower allowable load factors due to increased structural stress.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.2.2.1State",
+    "subjectId": 5,
+    "text": "the relationship of mass to load-factor limits",
+    "knowledgeContent": "A PPL(A) student must state that as aircraft mass increases, the allowable load factor decreases, as heavier aircraft impose greater stress on the airframe during manoeuvres.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.3",
+    "subjectId": 5,
+    "text": "Gust envelope",
+    "knowledgeContent": "A PPL(A) student must understand that the gust envelope defines the aircraft's ability to withstand sudden changes in wind speed without exceeding structural limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.3.1",
+    "subjectId": 5,
+    "text": "Gust load diagram",
+    "knowledgeContent": "A PPL(A) student must know that the gust load diagram illustrates the relationship between airspeed and gust-induced load factors, ensuring safe operation in turbulent conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:52:31.874Z",
+    "updatedAt": "2026-03-17T20:52:31.874Z"
+  },
+  {
+    "loId": "51.4.3.1.1Recognise",
+    "subjectId": 5,
+    "text": "and describe a typical gust-load diagram",
+    "knowledgeContent": "A PPL(A) student must understand that a gust-load diagram illustrates the relationship between aircraft speed and the additional load imposed by gusts. They should be able to identify the safe operating envelope and the critical speeds where gust loads could exceed structural limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.4.3.2",
+    "subjectId": 5,
+    "text": "Factors contributing to gust loads",
+    "knowledgeContent": "The student must know that factors contributing to gust loads include gust intensity, aircraft speed, wing loading, and the aircraft's aerodynamic design. They should understand how these factors interact to affect structural stress during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.4.3.2.1Explain",
+    "subjectId": 5,
+    "text": "what speeds are safe when encountering gusts",
+    "knowledgeContent": "The student must explain that safe speeds when encountering gusts are typically below the maneuvering speed (Va), as this ensures the aircraft can withstand gust-induced loads without exceeding structural limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5",
+    "subjectId": 5,
+    "text": "Propellers",
+    "knowledgeContent": "The student must understand the basic principles of propeller operation, including how propellers convert engine torque into thrust and the factors affecting propeller efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.1",
+    "subjectId": 5,
+    "text": "Conversion of engine torque to thrust",
+    "knowledgeContent": "The student must know that propellers convert engine torque into thrust by accelerating air backward, creating a forward force. They should understand the relationship between engine power, propeller pitch, and thrust generation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.1.1",
+    "subjectId": 5,
+    "text": "Meaning of pitch",
+    "knowledgeContent": "The student must understand that pitch refers to the angle at which the propeller blade cuts through the air, determining how much air is displaced per rotation and thus the thrust generated.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.1.1.1Name",
+    "subjectId": 5,
+    "text": "and describe the geometric properties of a propeller",
+    "knowledgeContent": "The student must describe the geometric properties of a propeller, including blade angle, chord length, and twist, and how these affect aerodynamic performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.1.1.2Describe",
+    "subjectId": 5,
+    "text": "the movement (screw pattern) of a propeller, depending on its pitch",
+    "knowledgeContent": "The student must explain that a propeller moves in a helical (screw-like) pattern, with the pitch determining the angle of this helix and thus the efficiency of thrust generation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.1.1.5List",
+    "subjectId": 5,
+    "text": "flight phases in which a small or high propeller pitch is favorable",
+    "knowledgeContent": "The student must list flight phases where a small pitch is favorable (e.g., takeoff and climb) and where a high pitch is favorable (e.g., cruise), based on the need for thrust versus efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.1.1.6Explain",
+    "subjectId": 5,
+    "text": "why the efficiency of a fixed pitch propeller decreases at high air speeds",
+    "knowledgeContent": "The student must explain that the efficiency of a fixed-pitch propeller decreases at high air speeds because the blade angle becomes less optimal for the increased airflow, reducing thrust generation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.1.2",
+    "subjectId": 5,
+    "text": "Blade twist",
+    "knowledgeContent": "The student must understand that blade twist refers to the variation in pitch along the length of the propeller blade, optimizing performance across different sections of the blade.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.1.2.1Describe",
+    "subjectId": 5,
+    "text": "the 'blade twist' and explain why it is used",
+    "knowledgeContent": "The student must describe blade twist as the gradual decrease in pitch from the blade root to the tip, which ensures uniform thrust distribution and reduces aerodynamic inefficiencies.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.1.3",
+    "subjectId": 5,
+    "text": "Effects of ice on propeller",
+    "knowledgeContent": "The student must understand the effects of ice accretion on propeller blades, including reduced aerodynamic efficiency, increased drag, and potential imbalance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.1.3.1Explain",
+    "subjectId": 5,
+    "text": "the effect of ice accretion on the propeller blade",
+    "knowledgeContent": "The student must explain that ice accretion on propeller blades disrupts airflow, increases drag, and can cause vibration or imbalance, leading to reduced performance and potential structural damage.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.1.3.2List",
+    "subjectId": 5,
+    "text": "and describe systems to prevent ice accretion on the propeller blade (anti-ice)",
+    "knowledgeContent": "The student must list and describe anti-ice systems for propellers, such as electrically heated blades or fluid de-icing systems, which prevent ice buildup and maintain aerodynamic efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.2",
+    "subjectId": 5,
+    "text": "Engine failure or engine stop",
+    "knowledgeContent": "The student must understand the implications of engine failure or engine stop, including the effects of windmilling drag on gliding performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.2.1",
+    "subjectId": 5,
+    "text": "Windmilling drag",
+    "knowledgeContent": "The student must know that windmilling refers to the rotation of a propeller due to airflow after engine failure, which creates drag and reduces gliding performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.2.1.1Describe",
+    "subjectId": 5,
+    "text": "the term 'windmilling' and explain its influence on gliding performance",
+    "knowledgeContent": "The student must describe windmilling as the propeller rotating due to airflow, creating drag that reduces the aircraft's glide ratio and increases descent rate.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.3",
+    "subjectId": 5,
+    "text": "Moments due to propeller operation",
+    "knowledgeContent": "The student must understand the moments generated by propeller operation, including torque reaction, asymmetric slipstream effect, and asymmetric blade effect.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.3.1",
+    "subjectId": 5,
+    "text": "Torque reaction",
+    "knowledgeContent": "The student must know that torque reaction is the tendency of the aircraft to roll in the opposite direction of propeller rotation due to Newton's third law.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.3.1.1Describe",
+    "subjectId": 5,
+    "text": "the effects caused by the torque of the propeller",
+    "knowledgeContent": "The student must describe torque reaction as the aircraft's tendency to roll opposite to propeller rotation, requiring corrective aileron input to maintain level flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.3.2",
+    "subjectId": 5,
+    "text": "Asymmetric slipstream effect",
+    "knowledgeContent": "The student must understand that the asymmetric slipstream effect is the uneven airflow around the aircraft caused by propeller rotation, affecting yaw and roll.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.3.2.1Determine",
+    "subjectId": 5,
+    "text": "the direction of effect, given the propeller’s sense of rotation",
+    "knowledgeContent": "The student must determine the direction of the asymmetric slipstream effect based on the propeller's rotation, typically causing yaw to the left in a clockwise-rotating propeller.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.3.2.2Explain",
+    "subjectId": 5,
+    "text": "the effects caused by the slipstream of the propeller.",
+    "knowledgeContent": "The student must explain that the asymmetric slipstream effect causes yaw and roll due to uneven airflow around the vertical stabilizer and wings, requiring rudder and aileron input to counteract.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.3.2.3Name",
+    "subjectId": 5,
+    "text": "phases of flight in which the 'slipstream effect' is most significant.",
+    "knowledgeContent": "The student must name phases of flight where the slipstream effect is most significant, such as takeoff, climb, and low-speed maneuvers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.3.2.4Describe",
+    "subjectId": 5,
+    "text": "actions by the pilot to counteract the 'slipstream effect'",
+    "knowledgeContent": "The student must describe pilot actions to counteract the slipstream effect, such as applying rudder input to correct yaw and aileron input to maintain roll control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.3.2.5State",
+    "subjectId": 5,
+    "text": "phases of flight in which the 'slipstream effect' is most significant",
+    "knowledgeContent": "The student must state that the slipstream effect is most significant during takeoff, climb, and low-speed flight phases.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.3.3",
+    "subjectId": 5,
+    "text": "Asymmetric blade effect",
+    "knowledgeContent": "The student must understand the asymmetric blade effect (P-factor), which occurs when the descending blade produces more thrust than the ascending blade during high angles of attack.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.5.3.3.1Describe",
+    "subjectId": 5,
+    "text": "the 'asymmetric blade effect' (P-factor) and its effect on aircraft movement",
+    "knowledgeContent": "The student must describe P-factor as the asymmetric thrust generated by the propeller due to the difference in angle of attack between the ascending and descending blades, causing yaw.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.6",
+    "subjectId": 5,
+    "text": "Flight mechanics",
+    "knowledgeContent": "The student must understand the principles of flight mechanics, including the forces acting on an aircraft and how they interact to achieve controlled flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:53:29.741Z",
+    "updatedAt": "2026-03-17T20:53:29.741Z"
+  },
+  {
+    "loId": "51.6.1",
+    "subjectId": 5,
+    "text": "Forces acting on an aeroplane",
+    "knowledgeContent": "A PPL(A) student must understand the four primary forces acting on an aeroplane: lift, weight, thrust, and drag. They must know how these forces interact to maintain equilibrium or cause changes in flight conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.1",
+    "subjectId": 5,
+    "text": "Straight horizontal steady flight",
+    "knowledgeContent": "The student must know that in straight horizontal steady flight, lift equals weight and thrust equals drag, maintaining equilibrium. They should understand how changes in airspeed or configuration affect these forces.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.2",
+    "subjectId": 5,
+    "text": "Straight steady climb",
+    "knowledgeContent": "The student must understand that during a straight steady climb, lift is less than weight, and thrust exceeds drag. They should know how climb performance is influenced by factors like power, airspeed, and aircraft weight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.2.1State",
+    "subjectId": 5,
+    "text": "that forces are different during initiation of climb and steady climb",
+    "knowledgeContent": "The student must state that during the initiation of a climb, thrust increases significantly to overcome drag and provide vertical lift, whereas in a steady climb, thrust is balanced to maintain a constant climb rate.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.3",
+    "subjectId": 5,
+    "text": "Straight steady descent",
+    "knowledgeContent": "The student must understand that during a straight steady descent, thrust is less than drag, and lift is less than weight. They should know how descent rate is controlled by power and pitch adjustments.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.3.1State",
+    "subjectId": 5,
+    "text": "that forces are different during initiation of descend and steady descend",
+    "knowledgeContent": "The student must state that during the initiation of a descent, thrust is reduced significantly to allow drag to overcome thrust, whereas in a steady descent, thrust is balanced to maintain a constant descent rate.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.4",
+    "subjectId": 5,
+    "text": "Straight steady glide",
+    "knowledgeContent": "The student must understand that in a straight steady glide, thrust is absent, and a component of the weight force acts forward to balance drag. They should know how glide performance is affected by airspeed and configuration.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.4.2Describe",
+    "subjectId": 5,
+    "text": "how a component of the weight force substitutes the missing thrust",
+    "knowledgeContent": "The student must describe how, in a glide, the forward component of the weight vector substitutes for the missing thrust, allowing the aircraft to maintain forward motion.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.4.3Define",
+    "subjectId": 5,
+    "text": "and explain the terms 'glide path angle' and 'glide ratio'",
+    "knowledgeContent": "The student must define 'glide path angle' as the angle between the flight path and the horizontal, and 'glide ratio' as the ratio of horizontal distance traveled to altitude lost.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.4.4Derive",
+    "subjectId": 5,
+    "text": "glide path angle or glide ratio from an AFM/POH",
+    "knowledgeContent": "The student must be able to derive the glide path angle or glide ratio from the Aircraft Flight Manual (AFM) or Pilot’s Operating Handbook (POH) using performance charts or tables.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.4.6Explain",
+    "subjectId": 5,
+    "text": "the change of speed for best glide with mass",
+    "knowledgeContent": "The student must explain how the best glide speed changes with aircraft mass, as heavier aircraft require higher speeds to achieve the same glide ratio.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.5",
+    "subjectId": 5,
+    "text": "Steady coordinated turn",
+    "knowledgeContent": "The student must understand that in a steady coordinated turn, lift is increased to balance the centrifugal force and maintain altitude. They should know how bank angle affects lift and load factor.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.5.1State",
+    "subjectId": 5,
+    "text": "that the necessary increase in lift mainly depends on bank angle",
+    "knowledgeContent": "The student must state that the necessary increase in lift during a turn primarily depends on the bank angle, with steeper banks requiring greater lift.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.5.2Explain",
+    "subjectId": 5,
+    "text": "the increase in load factor during a turn",
+    "knowledgeContent": "The student must explain how the load factor increases during a turn due to the increased lift required to balance the centrifugal force.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.5.4Explain",
+    "subjectId": 5,
+    "text": "why during level turns an increase in speed (and throttle) is neccessary",
+    "knowledgeContent": "The student must explain that during level turns, increased speed and throttle are necessary to maintain altitude due to the increased drag and lift requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.5.6Describe",
+    "subjectId": 5,
+    "text": "how the turn radius changes with TAS and bank angle",
+    "knowledgeContent": "The student must describe how the turn radius decreases with higher True Airspeed (TAS) and shallower bank angles, and increases with lower TAS and steeper bank angles.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.5.7Define",
+    "subjectId": 5,
+    "text": "'rate-one-turn'",
+    "knowledgeContent": "The student must define 'rate-one-turn' as a turn in which the aircraft changes heading at a rate of 3 degrees per second, completing a 360-degree turn in 2 minutes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  },
+  {
+    "loId": "51.6.1.5.8Describe",
+    "subjectId": 5,
+    "text": "how the correct bank for a 'rate-one-turn' changes with TAS",
+    "knowledgeContent": "The student must describe how the correct bank angle for a 'rate-one-turn' increases with higher True Airspeed (TAS) to maintain the required turn rate.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:54:08.195Z",
+    "updatedAt": "2026-03-17T20:54:08.195Z"
+  }
+]

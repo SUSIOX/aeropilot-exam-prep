@@ -1,0 +1,857 @@
+================================================================================
+AUDIT REPORT - UZIVATELSKE OTAZKY / SUBJECT 1: AIR LAW
+Zdroj dat: AWS DynamoDB tabulka aeropilot-questions (source=user, subjectId=1)
+Datum auditu: 2026-03-17 20:17
+Celkem otazek: 97
+================================================================================
+
+LEGENDA
+----------------------------------------
+  [!!] = CHYBA POTVRZENA (opraveno v subject_1.json, DynamoDB NEOPRAVENO)
+  [??] = PODEZRELA ODPOVED (vyzaduje rucni overeni)
+  [OK] = Odpoved se jevi spravne
+
+================================================================================
+KOMPLETNI SEZNAM OTAZEK
+================================================================================
+
+[OK] ID   1 | subject1_q1
+      Otazka : Který z následujících dokumentů musí být na palubě při mezinárodním letu? a) Osvědčení o zápisu do leteckého rejstříku b) Osvědčení letové způsobilosti c) Osvědčení kontroly letové způsobilosti d) EASA Form 1 e) Palubní deník f) Doklady každého člena posádky g) Technický deník letadla
+      >>> [A] a, b, c, e, f
+          [B] b, c, d, e, f, g
+          [C] d, f, g
+          [D] a, b, e, g
+      Spravna odpoved: [A] index=0 => "a, b, c, e, f"
+
+[OK] ID   2 | subject1_q2
+      Otazka : Jaký prostor je možno proletět s určitými omezeními?
+          [A] zakázaný prostor
+      >>> [B] omezený prostor
+          [C] nebezpečný prostor
+          [D] bezletová zóna
+      Spravna odpoved: [B] index=1 => "omezený prostor"
+
+[OK] ID   3 | subject1_q3
+      Otazka : Kde lze nalézt druh omezení pro omezený prostor?
+          [A] mapa ICAO 1:500000
+      >>> [B] AIP
+          [C] AIC
+          [D] NOTAM
+      Spravna odpoved: [B] index=1 => "AIP"
+
+[OK] ID   4 | subject1_q4
+      Otazka : Jaké je postavení pravidel a postupů vytvořených v EASA, jako např. Part-SFCL, PART-MED?
+          [A] mají stejné postavení jako Annexy ICAO
+          [B] nejsou právně závazné, slouží pouze jako návod
+      >>> [C] jsou částí nařízení EU a právně závazné ve všech členských státech EU
+          [D] jsou právně závazné pouze po ratifikaci v jednotlivých členských státech EU
+      Spravna odpoved: [C] index=2 => "jsou částí nařízení EU a právně závazné ve všech členských státech EU"
+
+[OK] ID   5 | subject1_q5
+      Otazka : Jakou dobu platnosti má Osvědčení letové způsobilosti?
+          [A] 6 měsíců
+          [B] 12 let
+      >>> [C] neomezenou
+          [D] 12 měsíců
+      Spravna odpoved: [C] index=2 => "neomezenou"
+
+[OK] ID   6 | subject1_q6
+      Otazka : Co znamená zkratka ARC?
+          [A] Airworthiness Recurring Control = Řízení zachování letové způsobilosti
+          [B] Airspace Restriction Criteria = Kritéria omezeného prostoru
+      >>> [C] Airworthiness Review Certificate = Osvědčení kontroly letové způsobilosti
+          [D] Airspace Rulemaking Committee = Výbor pro tvorbu pravidel vzdušného prostoru
+      Spravna odpoved: [C] index=2 => "Airworthiness Review Certificate = Osvědčení kontroly letové způsobilosti"
+
+[OK] ID   7 | subject1_q7
+      Otazka : Osvědčení letové způsobilosti vydává stát:
+      >>> [A] kde je letadlo zapsáno do leteckého rejstříku
+          [B] kde bylo letadlo vyrobeno
+          [C] kde sídlí vlastník letadla
+          [D] ve kterém se provádí kontrola letové způsobilosti
+      Spravna odpoved: [A] index=0 => "kde je letadlo zapsáno do leteckého rejstříku"
+
+[OK] ID   8 | subject1_q8
+      Otazka : Průkaz pilot vydaný podle standardů ICAO je platný:
+      >>> [A] ve všech státech ICAO
+          [B] ve státu, kde byl průkaz získán
+          [C] ve státu vydání průkazu
+          [D] ve státech, které na základě žádosti tento průkaz uznaly
+      Spravna odpoved: [A] index=0 => "ve všech státech ICAO"
+
+[OK] ID   9 | subject1_q9
+      Otazka : Co je předmětem Anexu 1 ICAO?
+      >>> [A] způsobilost letových posádek
+          [B] provoz letadel
+          [C] Letové provozní služby
+          [D] pravidla létání
+      Spravna odpoved: [A] index=0 => "způsobilost letových posádek"
+
+[OK] ID  10 | subject1_q10
+      Otazka : Jaká je doba platnosti průkazu soukromého pilota (PPL)?
+          [A] 24 měsíců
+          [B] 60 měsíců
+      >>> [C] neomezená
+          [D] 48 měsíců
+      Spravna odpoved: [C] index=2 => "neomezená"
+
+[OK] ID  11 | subject1_q11
+      Otazka : V jakém minimálním věku lze získat průkaz soukromého pilota?
+          [A] 16 let
+      >>> [B] 17 let
+          [C] 18 let
+          [D] 21 let
+      Spravna odpoved: [B] index=1 => "17 let"
+
+[OK] ID  12 | subject1_q12
+      Otazka : Jaké jsou mimo jiné požadavky na získání kvalifikace pro lety VFR v noci?
+          [A] nejméně 10 hodin letu v noci, 3 z nich s instruktorem a nejméně 1 navigační let a 5 sólo vzletů a přistání s úplným zastavením
+      >>> [B] nejméně 5 hodin letu v noci, 3 z nich s instruktorem a nejméně 1 navigační let a 5 sólo vzletů a přistání s úplným zastavením
+          [C] nejméně 5 hodin letu v noci, 4 z nich s instruktorem a 1 hodina navigačního letu a 5 sólo vzletů a přistání s úplným zastavením
+          [D] nejméně 5 hodin letu v noci, 3 z nich s instruktorem a nejméně 1 hodina navigačního letu a 10 sólo vzletů a přistání s úplným zastavením
+      Spravna odpoved: [B] index=1 => "nejméně 5 hodin letu v noci, 3 z nich s instruktorem a nejméně 1 navigační let a 5 sólo vzletů a přistání s úplným zastavením"
+
+[OK] ID  13 | subject1_q13
+      Otazka : Doba platnosti Osvědčení zdravotní způsobilosti 2. třídy pro 62 letého pilota je:
+      >>> [A] 12 měsíců
+          [B] 60 měsíců
+          [C] 48 měsíců
+          [D] 24 měsíců
+      Spravna odpoved: [A] index=0 => "12 měsíců"
+
+[OK] ID  14 | subject1_q14
+      Otazka :  nesplnil požadovanou dobu letu?
+      >>> [A] přezkoušení odborné způsobilosti s examinátorem
+          [B] požadovanou dobu letu je třeba splnit pod dohledem letového instruktora
+          [C] ATO může prodloužit kvalifikaci po výcvikovém letu s letovým instruktorem
+          [D] podle nalétaných hodin je třeba provést několik výcvikových letů pod dohledem ATO
+      Spravna odpoved: [A] index=0 => "přezkoušení odborné způsobilosti s examinátorem"
+
+[OK] ID  15 | subject1_q15
+      Otazka : Práva držitele evropského průkazu soukromého pilota letounů (PPL(A)) jsou:
+      >>> [A] působit jako velitel letadla při neobchodních letech bez úplaty a přijímat úplatu jako letový instruktor
+          [B] působit jako velitel letadla, ale pouze na letadlech s MTOW maximálně 2000 kg lze obdržet úplatu
+          [C] působit jako velitel letadla při obchodních a neobchodních letech na jednomotorových letadlech
+          [D] působit jako pilot při obchodních letech, kdy jsou na palubě maximálně 4 osoby
+      Spravna odpoved: [A] index=0 => "působit jako velitel letadla při neobchodních letech bez úplaty a přijímat úplatu jako letový instruktor"
+
+[OK] ID  16 | subject1_q16
+      Otazka : Jaký je minimální věk pro první samostatný let v letecké škole?
+      >>> [A] 16 let
+          [B] 17 let
+          [C] 18 let
+          [D] 21 let
+      Spravna odpoved: [A] index=0 => "16 let"
+
+[OK] ID  17 | subject1_q17
+      Otazka : Co znamená zkratka SERA?
+      >>> [A] standardizovaná evropská pravidla létání
+          [B] selektivní radiovýškoměr
+          [C] zvláštní radarové přiblížení
+          [D] standardní evropské letecké tratě
+      Spravna odpoved: [A] index=0 => "standardizovaná evropská pravidla létání"
+
+[OK] ID  18 | subject1_q18
+      Otazka : Co znamená zkratka TRA?
+      >>> [A] dočasně vyhrazený vzdušný prostor
+          [B] oblast odpovídače sekundárního radaru
+          [C] dočasná oblast radarových tratí
+          [D] koncová oblast
+      Spravna odpoved: [A] index=0 => "dočasně vyhrazený vzdušný prostor"
+
+[OK] ID  19 | subject1_q19
+      Otazka : Co je třeba provést při vstupu do oblasti s povinným rádiovým spojením (RMZ)?
+      >>> [A] stále sledovat rádio a je-li to možné, navázat rádiové spojení
+          [B] obdržet povolení pro vstup do této oblasti
+          [C] odpovídač sekundárního radaru přepnout na mód C a 7000
+          [D] obdržet povolení od místního leteckého úřadu
+      Spravna odpoved: [A] index=0 => "stále sledovat rádio a je-li to možné, navázat rádiové spojení"
+
+[OK] ID  20 | subject1_q20
+      Otazka : Jakou podmínku je třeba splnit při zvláštním letu VFR?
+      >>> [A] viditelnost země
+          [B] minimální vzdálenost 2000 m od oblačnosti
+          [C] minimální přízemní dohlednost 500 m
+          [D] rychlost ne vyšší než 115 kt IAS
+      Spravna odpoved: [A] index=0 => "viditelnost země"
+
+[OK] ID  21 | subject1_q21
+      Otazka : Co musíte udělat při vstupu do oblasti s povinným odpovídačem sekundárního radaru (TMZ)?
+      >>> [A] zapnout odpovídač sekundárního radaru a nastavit mód A a C nebo mód S
+          [B] zapnout odpovídač sekundárního radaru, nastavit mód A a stisknout tlačítko IDENT
+          [C] vyžádat povolení ke vstupu
+          [D] před letem podat letový plán
+      Spravna odpoved: [A] index=0 => "zapnout odpovídač sekundárního radaru a nastavit mód A a C nebo mód S"
+
+[OK] ID  22 | subject1_q22
+      Otazka : Co znamená oblast označená TMZ?
+      >>> [A] oblast s povinným odpovídačem sekundárního radaru
+          [B] oblast uspořádání letového provozu
+          [C] oblast turistických motorových kluzáků
+          [D] oblast řízení dopravy
+      Spravna odpoved: [A] index=0 => "oblast s povinným odpovídačem sekundárního radaru"
+
+[OK] ID  23 | subject1_q23
+      Otazka : Co znamená zkratka IFR?
+          [A] podmínky pro let podle přístrojů
+      >>> [B] pravidla pro let podle přístrojů
+          [C] pravidla pro obchodní lety
+          [D] pravidla pro lety za špatného počasí
+      Spravna odpoved: [B] index=1 => "pravidla pro let podle přístrojů"
+
+[OK] ID  24 | subject1_q24
+      Otazka : Let se nazývá za vidu, když:
+      >>> [A] let je proveden podle pravidel letu za viditelnosti
+          [B] let je proveden v meteorologických podmínkách za viditelnosti
+          [C] dohlednost za letu je více než 8 km
+          [D] dohlednost za letu je více než 5 km
+      Spravna odpoved: [A] index=0 => "let je proveden podle pravidel letu za viditelnosti"
+
+[OK] ID  25 | subject1_q25
+      Otazka : Co znamená zkratka VMC?
+      >>> [A] meteorologické podmínky pro let za viditelnosti
+          [B] vizuální pravidla letu
+          [C] měnící se meteorologické podmínky
+          [D] podmínky pro let podle přístrojů
+      Spravna odpoved: [A] index=0 => "meteorologické podmínky pro let za viditelnosti"
+
+[OK] ID  26 | subject1_q26
+      Otazka : Dvoumotorová letadla letí ve stejné výšce na protisměrných tratích. Které z nich se má vyhnout?
+      >>> [A] obě mají uhnout doprava
+          [B] to těžší má stoupat
+          [C] obě mají uhnout doleva
+          [D] to lehčí má stoupat
+      Spravna odpoved: [A] index=0 => "obě mají uhnout doprava"
+
+[OK] ID  27 | subject1_q27
+      Otazka : Dva letouny letí po křižujících se tratích. Který z nich má uhnout?
+      >>> [A] letadlo letící zprava doleva má přednost
+          [B] letadlo letící zleva doprava má přednost
+          [C] obě letadla mají uhnout doprava
+          [D] obě letadla mají uhnout doleva
+      Spravna odpoved: [A] index=0 => "letadlo letící zprava doleva má přednost"
+
+[OK] ID  28 | subject1_q28
+      Otazka : Ve třídě vzdušného prostoru třídy D letí Boeing 737 a Cessna 152 po protínajících se tratích. Které z letadel se má vyhnout?
+      >>> [A] letoun letící zprava doleva má přednost, ten druhý se má vyhnout
+          [B] Cessna 152, protože lety IFR a obchodní lety mají přednost
+          [C] Boeing 737, protože dopravní letadlo má větší rezervu výkonnosti
+          [D] řízení letového provozu (ATC) má rozhodnout, které z letadel se má vyhnout
+      Spravna odpoved: [A] index=0 => "letoun letící zprava doleva má přednost, ten druhý se má vyhnout"
+
+[OK] ID  29 | subject1_q29
+      Otazka : Která z uvedených možností NENÍ dostatečný důvod pro let pod požadovanou minimální výškou?
+      >>> [A] špatné meteorologické podmínky v blízkosti letiště
+          [B] vzlet nebo přistání na letišti
+          [C] odhoz vlečených předmětů na letišti
+          [D] přiblížení bez přistání na letišti
+      Spravna odpoved: [A] index=0 => "špatné meteorologické podmínky v blízkosti letiště"
+
+[OK] ID  30 | subject1_q30
+      Otazka : Jednomotorový pístový a turbovrtulový letoun letí proti sobě ve stejné výšce. Který z nich má změnit kurz, aby se vyhnul srážce?
+          [A] turbovrtulový letoun má dát přednost jednomotorovému pístovému letounu
+      >>> [B] obě letadla mají uhnout doprava
+          [C] jednomotorový pístový letoun má dát přednost turbovrtulovému letounu
+          [D] obě letadla mají uhnout doleva
+      Spravna odpoved: [B] index=1 => "obě letadla mají uhnout doprava"
+
+[OK] ID  31 | subject1_q31
+      Otazka : Jaké vzdálenosti od oblačnosti je nutno dodržovat při letu VFR ve třídách vzdušného prostoru C, D a E?
+      >>> [A] 1500 m horizontálně, 1000 ft vertikálně
+          [B] 1000 m horizontálně, 1500 ft vertikálně
+          [C] 1000 m horizontálně, 300 m vertikálně
+          [D] 1500 m horizontálně, 1000 m vertikálně
+      Spravna odpoved: [A] index=0 => "1500 m horizontálně, 1000 ft vertikálně"
+
+[!!] ID  32 | subject1_q32
+      Otazka : Minimální letová dohlednost v 5000 ft MSL ve vzdušném prostoru třídy B pro let VFR je:
+      >>> [A] 5000 m
+          [B] 8000 m
+          [C] 3000 m
+          [D] 1500 m
+      Spravna odpoved: [A] index=0 => "5000 m"
+      *** CHYBA: DynamoDB ma stale "5000 m" misto "8000 m" ***
+      *** Duvod: Trida B pod FL 100, SERA.5001 ***
+      *** STATUS: Opraveno v subject_1.json | DynamoDB NEOPRAVENO ***
+
+[!!] ID  33 | subject1_q33
+      Otazka : Jaká je minimální letová dohlednost ve vzdušném prostoru třídy C pro letadla letící za VFR v 5000 ft MSL?
+      >>> [A] 5000 m
+          [B] 8000 m
+          [C] 3000 m
+          [D] 1500 m
+      Spravna odpoved: [A] index=0 => "5000 m"
+      *** CHYBA: DynamoDB ma stale "5000 m" misto "8000 m" ***
+      *** Duvod: Trida C pod FL 100, SERA.5001 ***
+      *** STATUS: Opraveno v subject_1.json | DynamoDB NEOPRAVENO ***
+
+[!!] ID  34 | subject1_q34
+      Otazka : Minimální letová dohlednost ve vzdušném prostoru třídy E pro letadlo letící za VFR ve FL 75 je:
+      >>> [A] 5000 m
+          [B] 8000 m
+          [C] 3000 m
+          [D] 1500 m
+      Spravna odpoved: [A] index=0 => "5000 m"
+      *** CHYBA: DynamoDB ma stale "5000 m" misto "8000 m" ***
+      *** Duvod: Trida E FL 75 pod FL 100, SERA.5001 ***
+      *** STATUS: Opraveno v subject_1.json | DynamoDB NEOPRAVENO ***
+
+[OK] ID  35 | subject1_q35
+      Otazka : Minimální letová dohlednost pro letadlo letící za VFR ve vzdušném prostoru třídy C ve FL 110 je:
+      >>> [A] 8000 m
+          [B] 5000 m
+          [C] 3000 m
+          [D] 1500 m
+      Spravna odpoved: [A] index=0 => "8000 m"
+
+[OK] ID  36 | subject1_q36
+      Otazka : Minimální letová dohlednost pro letadlo letící za VFR ve vzdušném prostoru třídy C ve FL 125 je:
+      >>> [A] 8000 m
+          [B] 5000 m
+          [C] 3000 m
+          [D] 1500 m
+      Spravna odpoved: [A] index=0 => "8000 m"
+
+[OK] ID  37 | subject1_q37
+      Otazka : Jaká je minimální vzdálenost od oblačnosti pro let VFR ve třídě vzdušného prostoru B?
+      >>> [A] horizontálně 1.500 m, vertikálně 300 m
+          [B] horizontálně 1.000 m, vertikálně 1.500 ft
+          [C] horizontálně 1.000 m, vertikálně 300 m
+          [D] horizontálně 1.500 m, vertikálně 1.000 m
+      Spravna odpoved: [A] index=0 => "horizontálně 1.500 m, vertikálně 300 m"
+
+[!!] ID  38 | subject1_q38
+      Otazka : Jaká je minimální dohlednost za letu ve vzdušném prostoru třídy C pod FL 100 pro let za VFR?
+          [A] 8 km
+      >>> [B] 5 km
+          [C] 1.5 km
+          [D] 10 km
+      Spravna odpoved: [B] index=1 => "5 km"
+      *** CHYBA: DynamoDB ma stale "5 km" misto "8 km" ***
+      *** Duvod: Trida C pod FL 100, SERA.5001 ***
+      *** STATUS: Opraveno v subject_1.json | DynamoDB NEOPRAVENO ***
+
+[OK] ID  39 | subject1_q39
+      Otazka : Jaká je minimální dohlednost za letu ve vzdušném prostoru třídy C ve FL 100 a nad ní pro letadlo letící za VFR?
+      >>> [A] 8 km
+          [B] 5 km
+          [C] 1.5 km
+          [D] 10 km
+      Spravna odpoved: [A] index=0 => "8 km"
+
+[OK] ID  40 | subject1_q40
+      Otazka : Pojem výška základny nejnižší význačné vrstvy oblačnosti je definován jako:
+          [A] nadmořská výška základny nejnižší vrstvy oblačnosti pokrývající více než jednu polovinu oblohy pod 20000 ft
+      >>> [B] výška nad zemí základny nejnižší vrstvy oblačnosti pokrývající více než jednu polovinu oblohy pod 20000 ft
+          [C] výška nad zemí základny nejnižší vrstvy oblačnosti pokrývající více než jednu polovinu oblohy pod 10000 ft
+          [D] nadmořská výška základny nejnižší vrstvy oblačnosti pokrývající více než jednu polovinu oblohy pod 10000 ft
+      Spravna odpoved: [B] index=1 => "výška nad zemí základny nejnižší vrstvy oblačnosti pokrývající více než jednu polovinu oblohy pod 20000 ft"
+
+[OK] ID  41 | subject1_q41
+      Otazka : Jaký je význam následujícího signálu při zakročování vojenským letadlem ve dne? Mávání křídly, normálně vlevo od zakročujícího letadla, následováno mírnou zatáčkou doleva.
+          [A] vstupujete do omezeného prostoru, okamžitě opusťte tento vzdušný prostor
+      >>> [B] následujte mě
+          [C] připravte se na bezpečnostní přistání, vstoupil jste do zakázaného prostoru
+          [D] jste vzdálen od všech omezených nebo vyhrazených prostorů, můžete pokračovat stávajícím kurzem
+      Spravna odpoved: [B] index=1 => "následujte mě"
+
+[OK] ID  42 | subject1_q42
+      Otazka : Jaký je význam následujícího signálu při zakročování vojenským letadlem ve dne? Náhlá změna kurzu o 90° nebo více a přitažení letadla bez překřižování dráhy letadla, proti kterému je zakročováno.
+          [A] vstupujete do omezeného prostoru, opusťte okamžitě tento prostor
+          [B] připravte se na bezpečnostní přistání, vstoupil jste do zakázaného prostoru
+          [C] následujte mě, přivedu Vás na nejbližší vhodné letiště
+      >>> [D] můžete pokračovat v letu
+      Spravna odpoved: [D] index=3 => "můžete pokračovat v letu"
+
+[OK] ID  43 | subject1_q43
+      Otazka : Výškoměr má být přestaven z místního QNH na 1013.25 hPa:
+          [A] ve 4000 ft
+          [B] ve výšce rozhodnutí
+      >>> [C] ve stoupání nad převodní výšku
+          [D] při klesání pod FL 100
+      Spravna odpoved: [C] index=2 => "ve stoupání nad převodní výšku"
+
+[OK] ID  44 | subject1_q44
+      Otazka : Při letu ve FL 80 má být výškoměr nastaven na:
+          [A] místní QNH
+          [B] místní QFE
+      >>> [C] 1013.25 hPa
+          [D] 1030.25 hPa
+      Spravna odpoved: [C] index=2 => "1013.25 hPa"
+
+[OK] ID  45 | subject1_q45
+      Otazka : Jaký je účel půlkruhového pravidla?
+      >>> [A] zabránit srážkám snížením pravděpodobnosti protisměrného provozu ve stejných výškách
+          [B] umožnit bezpečné stoupání nebo klesání ve vyčkávacím obrazci
+          [C] zabránit srážkám omezením manévrů zatáčení
+          [D] létat bez podaného letový plánu ve stanovených zónách publikovaných v AIP
+      Spravna odpoved: [A] index=0 => "zabránit srážkám snížením pravděpodobnosti protisměrného provozu ve stejných výškách"
+
+[OK] ID  46 | subject1_q46
+      Otazka : Jaké jsou možné módy odpovídače sekundárního radaru?
+          [A] A, C, R
+          [B] B, C, V
+          [C] B, R, S
+      >>> [D] A, C, S
+      Spravna odpoved: [D] index=3 => "A, C, S"
+
+[OK] ID  47 | subject1_q47
+      Otazka : Odpovídač sekundárního radaru schopný vysílat tlakovou hladinu letu je:
+          [A] odpovídač módu A
+          [B] tlakový dekodér
+          [C] odpovídač schválený pro třídu vzdušného prostu B
+      >>> [D] odpovídač módu C nebo S
+      Spravna odpoved: [D] index=3 => "odpovídač módu C nebo S"
+
+[OK] ID  48 | subject1_q48
+      Otazka : Jaký kód odpovídače sekundárného radaru znamená ztrátu spojení?
+          [A] 7000
+          [B] 2000
+          [C] 7700
+      >>> [D] 7600
+      Spravna odpoved: [D] index=3 => "7600"
+
+[OK] ID  49 | subject1_q49
+      Otazka : Jaký kód odpovídače sekundárního radaru má být nastaven při poruše rádia bez jakéhokoliv dalšího pokynu?
+      >>> [A] 7600
+          [B] 7500
+          [C] 7700
+          [D] 7000
+      Spravna odpoved: [A] index=0 => "7600"
+
+[OK] ID  50 | subject1_q50
+      Otazka : Jaký kód odpovídače sekundárního radaru má být nastaven bez vyžádání při stavu nouze?
+          [A] 7600
+          [B] 7500
+      >>> [C] 7700
+          [D] 7000
+      Spravna odpoved: [C] index=2 => "7700"
+
+[OK] ID  51 | subject1_q51
+      Otazka : Jaká letová provozní služba je odpovědná za bezpečné provedení letů?
+      >>> [A] řízení letového provozu (ATC)
+          [B] letová informační služba (FIS)
+          [C] pohotovostní služba (ALR)
+          [D] letecká informační služba (AIS)
+      Spravna odpoved: [A] index=0 => "řízení letového provozu (ATC)"
+
+[OK] ID  52 | subject1_q52
+      Otazka : Jaké služby poskytují řízení letového provozu?
+          [A] letová informační služba (FIS) letecká informační služba (AIS) letecká pevná telekomunikační služba (AFS)
+          [B] pohotovostní služba (ALR) služba pátrání a záchrany (SAR) letištní služba řízení (TWR)
+          [C] přibližovací služba řízení (APP) oblastní služba řízení (ACC) letová informační služba (FIS)
+      >>> [D] letištní služba řízení (TWR) přibližovací služba řízení (APP) oblastní služba řízení (ACC)
+      Spravna odpoved: [D] index=3 => "letištní služba řízení (TWR) přibližovací služba řízení (APP) oblastní služba řízení (ACC)"
+
+[OK] ID  53 | subject1_q53
+      Otazka : Jaká odpověď o rozstupech ve vzdušném prostoru třídy E je správná?
+          [A] provozu VFR jsou zajištěny rozstupy pouze od provozu IFR
+          [B] provozu IFR jsou zajištěny rozstupy pouze od provozu VFR
+      >>> [C] provozu VFR nejsou zajištěny rozstupy od žádného provozu
+          [D] provozu VFR jsou zajištěny rozstupy od provozu VFR i IFR
+      Spravna odpoved: [C] index=2 => "provozu VFR nejsou zajištěny rozstupy od žádného provozu"
+
+[OK] ID  54 | subject1_q54
+      Otazka : Jaká letové provozní služby lze očekávat v letové informační oblasti (FIR)?
+          [A] řízení letového provozu (ATC) letová informační služba (FIS)
+      >>> [B] letová informační služba (FIS) pohotovostní služba (ALR)
+          [C] letecká informační služba (AIS) služba pátrání a záchrany (SAR)
+          [D] řízení letového provozu (ATC) letecká informační služba (AIS)
+      Spravna odpoved: [B] index=1 => "letová informační služba (FIS) pohotovostní služba (ALR)"
+
+[OK] ID  55 | subject1_q55
+      Otazka : Pilot se může spojit s letovou informační službou (FIS):
+          [A] telefonicky
+          [B] internetem
+      >>> [C] rádiem
+          [D] osobní návštěvou
+      Spravna odpoved: [C] index=2 => "rádiem"
+
+[OK] ID  56 | subject1_q56
+      Otazka : Jaká je správná fráze o turbulenci v úplavu označující, že lehké letadlo letí za letadlem vyšší kategorie turbulence v úplavu?
+          [A] pozor, výstupní plyny za proudovým motorem
+          [B] pozor, proud vzduchu za vrtulí
+      >>> [C] pozor, turbulence v úplavu
+          [D] dávejte pozor na vítr v úplavu
+      Spravna odpoved: [C] index=2 => "pozor, turbulence v úplavu"
+
+[OK] ID  57 | subject1_q57
+      Otazka : Která z následujících možností znamená správné hlášení polohy?
+      >>> [A] OKABC, "N", 2500 ft
+          [B] OKABC nad "N" v letové hladině 2500 ft
+          [C] OKABC prolétávám nad "N"
+          [D] OKABC nad "N" ve 35
+      Spravna odpoved: [A] index=0 => "OKABC, "N", 2500 ft"
+
+[OK] ID  58 | subject1_q58
+      Otazka : Co znamená zkratka AIREP?
+          [A] letecká informační zpráva
+      >>> [B] hlášení z letadla
+          [C] zpráva o požadavcích na letecké přístroje
+          [D] zpráva automatické identifikace
+      Spravna odpoved: [B] index=1 => "hlášení z letadla"
+
+[OK] ID  59 | subject1_q59
+      Otazka : Jaké informace obsahuje část GEN (všeobecně) Letecké informační příručky (AIP)?
+      >>> [A] mapové značky, seznam radionavigačních zařízení, časy východu a západu slunce, letištní poplatky, poplatky za služby řízení letového provozu
+          [B] letecké výstrahy, vzdušné prostory a tratě, omezené a nebezpečné prostory
+          [C] obsah, seznam letišť s příslušnými mapami, přibližovací mapy, mapy pro pojíždění, omezené a nebezpečné prostory
+          [D] omezení přístupu na letištích, kontroly cestujících, požadavky na piloty, vzory průkazů a doby jejich platnosti
+      Spravna odpoved: [A] index=0 => "mapové značky, seznam radionavigačních zařízení, časy východu a západu slunce, letištní poplatky, poplatky za služby řízení letového provozu"
+
+[OK] ID  60 | subject1_q60
+      Otazka : Jaké jsou části Letecké informační příručky (AIP)?
+          [A] GEN AGA COM
+          [B] GEN COM MET
+          [C] GEN MET RAC
+      >>> [D] GEN ENR AD
+      Spravna odpoved: [D] index=3 => "GEN ENR AD"
+
+[OK] ID  61 | subject1_q61
+      Otazka : Jaké informace jsou v části AD Letecké informační příručky (AIP)?
+          [A] mapové značky, seznam radionavigačních zařízení, časy východu a západu slunce, letištní poplatky, poplatky za služby řízení letového provozu
+          [B] letecké výstrahy, prostory a tratě služeb letového provozu, omezené a nebezpečné prostory obsah, seznam letišť s příslušnými mapami, přibližovací mapy, mapy pro pojíždění
+      >>> [C] omezení přístupu na letiště, kontroly cestujících, požadavky na piloty, vzory průkazů a doby jejich platnosti
+      Spravna odpoved: [C] index=2 => "omezení přístupu na letiště, kontroly cestujících, požadavky na piloty, vzory průkazů a doby jejich platnosti"
+
+[OK] ID  62 | subject1_q62
+      Otazka : Následující NOTAM je platný do: A1024/13 A) LOWW B) 1305211200 C) 1305211400 E) STOCKERAU VOR STO 113.00 UNSERVICEABLE.
+      >>> [A] 21/05/2013 14:00 UTC
+          [B] 21/05/2014 13:00 UTC
+          [C] 13/05/2013 12:00 UTC
+          [D] 13/10/2013 00:00 UTC
+      Spravna odpoved: [A] index=0 => "21/05/2013 14:00 UTC"
+
+[OK] ID  63 | subject1_q63
+      Otazka : Předletový informační bulletin (PIB) je prezentací platných:
+          [A] informací Letecké informační příručky významných pro provoz připravených před letem
+      >>> [B] informací NOTAM významných pro provoz připravených před letem
+          [C] informací leteckých informačních oběžníků (AIC) významných pro provoz připravených po letu
+          [D] informací ICAO významných pro provoz připravených po letu
+      Spravna odpoved: [B] index=1 => "informací NOTAM významných pro provoz připravených před letem"
+
+[OK] ID  64 | subject1_q64
+      Otazka : Pojem výška letiště nad mořem je definován jako:
+          [A] nejvyšší bod na odbavovací ploše
+      >>> [B] nejvyšší bod přistávací plochy
+          [C] nejnižší bod přistávací plochy
+          [D] průměrná hodnota nadmořské výšky pohybové plochy
+      Spravna odpoved: [B] index=1 => "nejvyšší bod přistávací plochy"
+
+[OK] ID  65 | subject1_q65
+      Otazka : Pojem vzletová a přistávací dráha je definován jako:
+          [A] kruhová oblast letiště upravená na přistání a vzlety letadel
+          [B] obdélníková plocha na zemi nebo na vodě upravená pro přistání a vzlety letadel
+      >>> [C] obdélníková plocha na pozemním letišti upravená pro přistání a vzlety letadel
+          [D] obdélníková plocha na pozemním letišti upravená na přistání a vzlety vrtulníků
+      Spravna odpoved: [C] index=2 => "obdélníková plocha na pozemním letišti upravená pro přistání a vzlety letadel"
+
+[OK] ID  66 | subject1_q66
+      Otazka : Jaký výrok o vyčkávacím bodu při pojíždění je pravdivý?
+          [A] vyčkávací bod při pojíždění je oblast, kde musí letadlo zastavit, dokud nedostane povolení pokračovat
+      >>> [B] vyčkávací bod při pojíždění je bod, ve kterém musí letadlo zastavit, dokud nedostane povolení pokračovat
+          [C] vyčkávací bod při pojíždění je navržen, aby označil začátek bezpečnostní oblasti a může být přejet, když bylo vydáno povolení pojíždět
+          [D] vyčkávací bod při pojíždění slouží pouze pro provoz IFR, když převažují podmínky pro let podle přístrojů
+      Spravna odpoved: [B] index=1 => "vyčkávací bod při pojíždění je bod, ve kterém musí letadlo zastavit, dokud nedostane povolení pokračovat"
+
+[OK] ID  67 | subject1_q67
+      Otazka : Co znamená, je-li hlášen stav dráhy "mokrá" (wet)?
+      >>> [A] povrch dráhy je nasycen, ale nejsou tam žádné významné louže nebo stojící voda
+          [B] velká část povrchu dráhy je zatopena vodou
+          [C] na povrchu dráhy jsou vidět kaluže vody
+          [D] na povrchu dráhy není voda ani led nebo sníh
+      Spravna odpoved: [A] index=0 => "povrch dráhy je nasycen, ale nejsou tam žádné významné louže nebo stojící voda"
+
+[OK] ID  68 | subject1_q68
+      Otazka : Co znamená, je-li hlášen stav dráhy "vlhká" (damp)?
+          [A] mokrý povrch, ale nejsou vidět význačné louže
+          [B] velká část povrchu je zatopená vodou
+      >>> [C] změna barvy povrchu kvůli vlhkosti
+          [D] na dráze není voda ani sníh nebo led
+      Spravna odpoved: [C] index=2 => "změna barvy povrchu kvůli vlhkosti"
+
+[OK] ID  69 | subject1_q69
+      Otazka : Co znamená, jeli hlášen stav dráhy "mokré pásy" (water patches)?
+          [A] mokrý povrch, ale nejsou vidět kaluže
+          [B] velká část povrchu je zatopená vodou
+      >>> [C] jsou vidět kaluže stojící vody
+          [D] na dráze není voda ani led nebo sníh
+      Spravna odpoved: [C] index=2 => "jsou vidět kaluže stojící vody"
+
+[OK] ID  70 | subject1_q70
+      Otazka : Jak může být označen ukazatel směru větru, aby byl lépe vidět?
+          [A] může být vyroben ze zeleného materiálu
+          [B] může být umístěn na vrchol řídící věže
+      >>> [C] může být obklopen bílým kruhem
+          [D] může být umístěn na velké černé ploše
+      Spravna odpoved: [C] index=2 => "může být obklopen bílým kruhem"
+
+[OK] ID  71 | subject1_q71
+      Otazka : Co znamená signál letadlu na řízeném letišti blikajícím červeným světlem?
+          [A] vraťte se na přistání, je-li následován signálem stálým zeleným světlem
+          [B] dejte přednost jinému letadlu a pokračujte v letu po okruhu
+      >>> [C] letiště není bezpečné, nepřistávejte
+          [D] přistání povoleno
+      Spravna odpoved: [C] index=2 => "letiště není bezpečné, nepřistávejte"
+
+[OK] ID  72 | subject1_q72
+      Otazka : Co znamená signál letadlu na řízeném letišti blikajícím zeleným světlem?
+      >>> [A] vraťte se na přistání, je-li následován signálem stálým zeleným světlem
+          [B] dejte přednost jinému letadlu a pokračujte v letu po okruhu
+          [C] letiště není bezpečné, nepřistávejte
+          [D] přistání povoleno
+      Spravna odpoved: [A] index=0 => "vraťte se na přistání, je-li následován signálem stálým zeleným světlem"
+
+[OK] ID  73 | subject1_q73
+      Otazka : Co znamená signál letadlu na řízeném letišti stálým zeleným světlem?
+          [A] vraťte se na přistání, je-li následován signálem stálým zeleným světlem
+          [B] dejte přednost jinému letadlu a pokračujte v letu po okruhu
+          [C] letiště není bezpečné, nepřistávejte
+      >>> [D] přistání povoleno
+      Spravna odpoved: [D] index=3 => "přistání povoleno"
+
+[OK] ID  74 | subject1_q74
+      Otazka : Co znamená signál letadlu na zemi na řízeném letišti blikajícím bílým světlem?
+          [A] vzlet povolen
+      >>> [B] vraťte se zpět na odbavovací plochu
+          [C] opusťte pojížděcí / vzletovou dráhu
+          [D] pojíždění schváleno
+      Spravna odpoved: [B] index=1 => "vraťte se zpět na odbavovací plochu"
+
+[OK] ID  75 | subject1_q75
+      Otazka : Co znamená signál letadlu na zemi na řízeném letišti blikajícím červeným světlem?
+          [A] vzlet povolen
+          [B] vraťte se zpět na odbavovací plochu
+      >>> [C] okamžitě pojíždějte mimo dráhu v použití
+          [D] pojíždění schváleno
+      Spravna odpoved: [C] index=2 => "okamžitě pojíždějte mimo dráhu v použití"
+
+[OK] ID  76 | subject1_q76
+      Otazka : Co znamená signál letadlu na zemi na řízeném letišti blikajícím zeleným světlem?
+          [A] vzlet povolen
+          [B] vraťte se zpět na odbavovací plochu
+          [C] přistaňte na tomto letišti a pojíždějte na odbavovací lochu
+      >>> [D] pojíždění povoleno
+      Spravna odpoved: [D] index=3 => "pojíždění povoleno"
+
+[OK] ID  77 | subject1_q77
+      Otazka : Jaký tvar má ukazatel směru přistání?
+          [A] L
+          [B] přímá šipka
+      >>> [C] T
+          [D] zalomená šipka
+      Spravna odpoved: [C] index=2 => "T"
+
+[OK] ID  78 | subject1_q78
+      Otazka : Jaký je účel signálního čtverce na letišti?
+          [A] je to osvětlená plocha, na které jsou umístěna vozidla pátrání a záchrany a hasičů
+          [B] je to zvlášť označená plocha pro vyzvedávání a shazování předmětů vlečených za letadly
+      >>> [C] obsahuje zvláštní symboly označující vizuálně podmínky na letišti pro letící letadla
+          [D] letadla pojíždějí na tuto plochu, aby získala světelné signály pro pojíždění a pro povolení vzletu
+      Spravna odpoved: [C] index=2 => "obsahuje zvláštní symboly označující vizuálně podmínky na letišti pro letící letadla"
+
+[OK] ID  79 | subject1_q79
+      Otazka : Jak pilot potvrzuje přijetí světelných signálů za letu?
+      >>> [A] zamáváním křídly (ve dne)
+          [B] střídavými výchylkami směrovky
+          [C] změnami otáček motoru
+          [D] rychlými změnami podélného sklonu
+      Spravna odpoved: [A] index=0 => "zamáváním křídly (ve dne)"
+
+[OK] ID  80 | subject1_q80
+      Otazka : Co znamená stálé červené světlo jako signál letadlu na zemi na řízeném letišti?
+          [A] opusťte pojížděcí / vzletovou / přistávací dráhu
+          [B] vraťte se na odbavovací plochu
+          [C] přistaňte na tomto letišti a pokračujte na odbavovací plochu
+      >>> [D] zastavte
+      Spravna odpoved: [D] index=3 => "zastavte"
+
+[OK] ID  81 | subject1_q81
+      Otazka : Jak jsou značeny dvě paralelní dráhy?
+          [A] levá dráha má příponu "-1", pravá "-2"
+          [B] levá dráha má příponu "L", označení pravé dráhy se nemění
+          [C] označení levé dráhy se nemění, označení pravé dráhy se zvětší o 1
+      >>> [D] levá dráha má příponu "L", pravá "R"
+      Spravna odpoved: [D] index=3 => "levá dráha má příponu "L", pravá "R""
+
+[OK] ID  82 | subject1_q82
+      Otazka : Jaká je barva značení vzletové a přistávací dráhy podle Anexu 14 ICAO?
+          [A] žlutá
+          [B] modrá
+      >>> [C] bílá
+          [D] zelená
+      Spravna odpoved: [C] index=2 => "bílá"
+
+[OK] ID  83 | subject1_q83
+      Otazka : Co znamená obrazec podélných pruhů stejných rozměrů rozložený symetricky po obou stranách osy vzletové a přistávací dráhy?
+      >>> [A] před nimi neprovádějte dotyk se zemí
+          [B] za nimi neprovádějte dotyk se zemí
+          [C] v tomto bodu je průsečík sestupové osy ILS s povrchem dráhy
+          [D] z této polohy lze zahájit rozjezd při vzletu
+      Spravna odpoved: [A] index=0 => "před nimi neprovádějte dotyk se zemí"
+
+[OK] ID  84 | subject1_q84
+      Otazka : Jaké je správné označení dvou paralelních drah?
+      >>> [A] 06L a 06R
+          [B] 18 a 18-2
+          [C] 24 a 25
+          [D] 26 a 26R
+      Spravna odpoved: [A] index=0 => "06L a 06R"
+
+[OK] ID  85 | subject1_q85
+      Otazka : Co je PAPI (světelná sestupová soustava pro vizuální přiblížení)?
+          [A] Přístrojové zařízení poskytující informace, které pilotovi pomáhají dosáhnout a udržet správné přiblížení k letišti
+          [B] vizuální zařízení poskytující informace, které pilotovi pomáhají dosáhnout a udržet správnou odletovou trať při odletu z letiště
+          [C] vizuální zařízení poskytující informace, které pomáhají řídícímu letového provozu na věži dosáhnout a udržet správné přiblížení na letiště
+      >>> [D] vizuální zařízení poskytující informace, které pomáhají pilotovi dosáhnout a udržet správnou sestupovou rovinu při přiblížení k letišti
+      Spravna odpoved: [D] index=3 => "vizuální zařízení poskytující informace, které pomáhají pilotovi dosáhnout a udržet správnou sestupovou rovinu při přiblížení k letišti"
+
+[OK] ID  86 | subject1_q86
+      Otazka : Letištní maják (ABN) je:
+          [A] rotující maják umístěný na letišti a označující jeho polohu pilotům letadel na zemi
+          [B] pevný maják umístěný na letišti a označující jeho polohu pilotům letadel za letu
+          [C] rotující maják umístěný na začátku konečného přiblížení a označující jeho polohu pilotům letadel za letu
+      >>> [D] rotující maják umístěný na letišti a označující jeho polohu pilotům letadel za letu
+      Spravna odpoved: [D] index=3 => "rotující maják umístěný na letišti a označující jeho polohu pilotům letadel za letu"
+
+[OK] ID  87 | subject1_q87
+      Otazka : Jakou barvu mají postranní dráhová návěstidla?
+      >>> [A] bílou
+          [B] červenou
+          [C] zelenou
+          [D] modrou
+      Spravna odpoved: [A] index=0 => "bílou"
+
+[OK] ID  88 | subject1_q88
+      Otazka : Jakou barvu mají koncová návěstidla dráhy?
+          [A] bílou
+      >>> [B] červenou
+          [C] zelenou
+          [D] modrou
+      Spravna odpoved: [B] index=1 => "červenou"
+
+[OK] ID  89 | subject1_q89
+      Otazka : Co znamená znak v příloze? Viz obr. (ALW-019)
+      >>> [A] pojezdová dráha A
+          [B] část A vzletové a přistávací dráhy
+          [C] bod A na pojížděcí dráze
+          [D] parkovací místo A
+      Spravna odpoved: [A] index=0 => "pojezdová dráha A"
+
+[OK] ID  90 | subject1_q90
+      Otazka : Co znamená znak v příloze? Viz obr. (ALW-020)
+          [A] 2500 m v daném směru do dosažení odletového bodu vzletové a přistávací dráhy
+          [B] 2500 m v daném směru do dosažení parkovací plochy
+      >>> [C] od této křižovatky je použitelná délka dráhy v daném směru 2500 m
+          [D] celková použitelná délka dráhy je v daném směru 2500 m
+      Spravna odpoved: [C] index=2 => "od této křižovatky je použitelná délka dráhy v daném směru 2500 m"
+
+[OK] ID  91 | subject1_q91
+      Otazka : Co znamená tento znak na letišti? Viz obr. (ALW-011)
+          [A] pozor, manévrovací plocha je špatná
+          [B] po delší dobu je přistání zakázáno
+      >>> [C] probíhají lety kluzáků
+          [D] po vzletu a před přistáním mají být všechny zatáčky provedeny doprava
+      Spravna odpoved: [C] index=2 => "probíhají lety kluzáků"
+
+[OK] ID  92 | subject1_q92
+      Otazka : Co znamená zobrazená pozemní značka v signální ploše letiště? Viz obr. (ALW-012)
+          [A] pozor, manévrovací plocha je špatná
+          [B] zákaz přistání na delší dobu
+          [C] pohyb po zemi omezen na zpevněné povrchy
+      >>> [D] po vzletu a před přistáním je třeba provádět všechny zatáčky doprava
+      Spravna odpoved: [D] index=3 => "po vzletu a před přistáním je třeba provádět všechny zatáčky doprava"
+
+[OK] ID  93 | subject1_q93
+      Otazka : Co znamená zkratka DETRESFA?
+      >>> [A] údobí tísně
+          [B] údobí pohotovosti
+          [C] údobí nejistoty
+          [D] údobí záchrany
+      Spravna odpoved: [A] index=0 => "údobí tísně"
+
+[OK] ID  94 | subject1_q94
+      Otazka : Kdo poskytuje služby pátrání a záchrany?
+          [A] pouze vojenské organizace
+          [B] pouze civilní organizace
+      >>> [C] jak vojenské, tak civilní organizace
+          [D] mezinárodní schválené organizace
+      Spravna odpoved: [C] index=2 => "jak vojenské, tak civilní organizace"
+
+[OK] ID  95 | subject1_q95
+      Otazka : Jak může pilot za letu potvrdit signál pátrání a záchrany na zemi?
+      >>> [A] zamáváním křídel
+          [B] několikerým vysunutím a zasunutím vztlakových klapek
+          [C] několikanásobnou oboustrannou výchylkou směrového kormidla
+          [D] opakovaným letem po parabolické trajektorii
+      Spravna odpoved: [A] index=0 => "zamáváním křídel"
+
+[OK] ID  96 | subject1_q96
+      Otazka : Jaké jsou z hlediska zjišťování příčin nehod a incidentů tři kategorie událostí?
+      >>> [A] incident, vážný incident, nehoda
+          [B] příhoda, případ, vážný případ
+          [C] příhoda, vážná příhoda, nehoda
+          [D] případ, havárie, katastrofa
+      Spravna odpoved: [A] index=0 => "incident, vážný incident, nehoda"
+
+[OK] ID  97 | subject1_q97
+      Otazka : Co je hlavním účelem zjišťování příčin leteckých nehod?
+          [A] stanovit viníka a navrhnout právní důsledky
+          [B] práce pro státního žalobce a následná pomoc při nehodě
+          [C] vyjasnit otázky pojištění vzhledem k odškodnění cestujících
+      >>> [D] stanovit důvody a zpracovat bezpečnostní doporučení
+      Spravna odpoved: [D] index=3 => "stanovit důvody a zpracovat bezpečnostní doporučení"
+
+================================================================================
+SOUHRN NALEZENYCH CHYB
+================================================================================
+
+Celkem otazek v auditu : 97
+Potvrzene chyby        : 4
+Opraveno v JSON        : 4 (subject_1.json)
+Opraveno v DynamoDB    : 0  <-- VYZADUJE AKCI
+
+CHYBY DETAIL:
+
+  ID 32: "Minimální letová dohlednost v 5000 ft MSL ve vzdušném prostoru třídy B"
+         Chybna odpoved v DB : "5000 m"
+         Spravna odpoved     : "8000 m"
+         Pravni zaklad       : Trida B pod FL 100, SERA.5001
+
+  ID 33: "Jaká je minimální letová dohlednost ve vzdušném prostoru třídy C pro l"
+         Chybna odpoved v DB : "5000 m"
+         Spravna odpoved     : "8000 m"
+         Pravni zaklad       : Trida C pod FL 100, SERA.5001
+
+  ID 34: "Minimální letová dohlednost ve vzdušném prostoru třídy E pro letadlo l"
+         Chybna odpoved v DB : "5000 m"
+         Spravna odpoved     : "8000 m"
+         Pravni zaklad       : Trida E FL 75 pod FL 100, SERA.5001
+
+  ID 38: "Jaká je minimální dohlednost za letu ve vzdušném prostoru třídy C pod "
+         Chybna odpoved v DB : "5 km"
+         Spravna odpoved     : "8 km"
+         Pravni zaklad       : Trida C pod FL 100, SERA.5001
+
+================================================================================
+POZNAMKY PRO AUDITORA
+================================================================================
+
+1. Opravy byly provedeny pouze v lokalnim souboru subject_1.json.
+   DynamoDB tabulka 'aeropilot-questions' stale obsahuje chybne hodnoty
+   pro ID 32, 33, 34, 38. Aplikace v produkci (GitHub Pages / AWS) tedy
+   stale vyhodnocuje tyto otazky SPATNE.
+
+2. Vsechny 4 chyby se tykaji stejneho pravidla: minimalni VFR dohlednost
+   dle EASA SERA.5001. Chybna hodnota 5000 m / 5 km misto spravnych
+   8000 m / 8 km pro vzdusny prostor trid B, C, E pod FL 100.
+
+3. Otazky ID 35, 36, 39 (FL 110, FL 125, FL 100+) jsou spravne.
+
+4. Doporucena akce: spustit opravu primo v DynamoDB pres AWS CLI nebo
+   admin skript, ktery aktualizuje pole 'correct' a 'correctOption'
+   pro questionId: subject1_q32, subject1_q33, subject1_q34, subject1_q38
+
+================================================================================
+KONEC REPORTU
+================================================================================

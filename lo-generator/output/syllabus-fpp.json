@@ -1,0 +1,2837 @@
+[
+  {
+    "loId": "71.1",
+    "subjectId": 6,
+    "text": "Purpose of mass and balance considerations",
+    "knowledgeContent": "The purpose of mass and balance considerations is to ensure the aircraft operates within safe limits for structural integrity, stability, and performance. Proper mass and balance calculations prevent overloading and ensure the center of gravity (CG) remains within allowable limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.1.1",
+    "subjectId": 6,
+    "text": "Mass limitations",
+    "knowledgeContent": "Mass limitations refer to the maximum allowable weights for different phases of flight, such as take-off, landing, and zero-fuel mass. Exceeding these limits can compromise structural integrity and aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.1.1.1",
+    "subjectId": 6,
+    "text": "Importance in regard to structural limitations",
+    "knowledgeContent": "Structural limitations are critical as they define the maximum loads the aircraft can withstand without risking damage. Exceeding these limits can lead to structural failure or excessive stress on the airframe.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.1.1.1.1Describe",
+    "subjectId": 6,
+    "text": "the relationship between aircraft mass and structural stress",
+    "knowledgeContent": "Aircraft mass directly affects structural stress; heavier loads increase stress on the wings, fuselage, and landing gear. Exceeding mass limits can lead to fatigue, deformation, or catastrophic failure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.1.1.1.3Explain",
+    "subjectId": 6,
+    "text": "why loads exceeding the loading limitations have to be reduced to limits",
+    "knowledgeContent": "Loads exceeding loading limitations must be reduced to prevent structural damage, ensure safe flight performance, and comply with regulatory requirements. Overloading can compromise safety and lead to legal consequences.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.1.1.2",
+    "subjectId": 6,
+    "text": "Importance in regard to performance limitations",
+    "knowledgeContent": "Performance limitations are influenced by aircraft mass, affecting climb rate, stall speed, fuel efficiency, and maneuverability. Exceeding mass limits reduces performance and increases operational risks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.1.1.2.1Describe",
+    "subjectId": 6,
+    "text": "the relationship between aircraft mass and aircraft performance",
+    "knowledgeContent": "Increased aircraft mass reduces climb rate, increases stall speed, and extends take-off and landing distances. It also affects fuel consumption and overall flight efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.1.2",
+    "subjectId": 6,
+    "text": "CG limitations",
+    "knowledgeContent": "CG limitations ensure the aircraft remains stable and controllable during all phases of flight. An out-of-limits CG can lead to handling difficulties or loss of control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.1.2.1",
+    "subjectId": 6,
+    "text": "Importance in regard to stability and controllability",
+    "knowledgeContent": "The CG position directly affects aircraft stability and controllability. A forward CG increases stability but reduces maneuverability, while an aft CG decreases stability and increases the risk of stalls.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.1.2.1.1Describe",
+    "subjectId": 6,
+    "text": "the relationship between CG position and stability/controllability of the aircraftx",
+    "knowledgeContent": "A forward CG enhances longitudinal stability but requires more elevator input for pitch control. An aft CG reduces stability, making the aircraft more prone to stalls and harder to control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.1.2.1.2Describe",
+    "subjectId": 6,
+    "text": "possible hazards associated with a CG position out of aft/forward limits",
+    "knowledgeContent": "A CG position out of aft limits can cause difficulty in recovering from stalls, while a forward CG can make it hard to rotate during take-off or flare during landing. Both scenarios increase the risk of accidents.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.1.2.1.3Explain",
+    "subjectId": 6,
+    "text": "the importance of securing or tying down pieces of baggage",
+    "knowledgeContent": "Securing or tying down baggage prevents shifting during flight, which could alter the CG position and compromise stability and controllability.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.1.2.1.4Explain",
+    "subjectId": 6,
+    "text": "the importance to load or unload masses to achieve an acceptable CG positionx",
+    "knowledgeContent": "Loading or unloading masses adjusts the CG position to ensure it remains within acceptable limits, maintaining safe and predictable flight characteristics.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.1.2.2",
+    "subjectId": 6,
+    "text": "Importance in regard to performance",
+    "knowledgeContent": "The CG position affects aircraft performance, including stall speed, climb rate, and fuel efficiency. An optimal CG ensures balanced performance and safe operation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2",
+    "subjectId": 6,
+    "text": "Loading",
+    "knowledgeContent": "Loading involves calculating and distributing the aircraft's mass and CG to ensure compliance with structural and performance limitations. Proper loading is essential for safe flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.1",
+    "subjectId": 6,
+    "text": "Terminology",
+    "knowledgeContent": "Terminology related to mass and loading includes terms like basic empty mass, take-off mass, landing mass, and zero-fuel mass. Understanding these terms is crucial for accurate weight and balance calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.1.1",
+    "subjectId": 6,
+    "text": "Mass terms",
+    "knowledgeContent": "Mass terms define the weight of the aircraft in different configurations, such as basic empty mass (aircraft without fuel or payload), take-off mass (aircraft ready for flight), and landing mass (aircraft after flight).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.1.1.1Define",
+    "subjectId": 6,
+    "text": "the term 'basic empty mass'",
+    "knowledgeContent": "Basic empty mass refers to the weight of the aircraft including standard equipment, unusable fuel, and operating fluids, but excluding payload and usable fuel.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.1.1.2Define",
+    "subjectId": 6,
+    "text": "the terms 'take-off mass', 'landing mass', 'ramp/taxi mass', 'zero fuel mass'",
+    "knowledgeContent": "Take-off mass is the total weight of the aircraft at the start of take-off, including fuel, payload, and crew. Landing mass is the weight at touchdown, and zero-fuel mass is the weight excluding usable fuel.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.1.2",
+    "subjectId": 6,
+    "text": "Load terms (including fuel terms)",
+    "knowledgeContent": "Load terms include fuel terms and units of measurement like pounds (lbs), kilograms (kg), and kiloponds (kp). Converting between units ensures accurate weight and balance calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.1.2.2List",
+    "subjectId": 6,
+    "text": "the common units of measurement for masses and convert them (lbs, kg, kp, etc.)x",
+    "knowledgeContent": "Common units of measurement for mass include pounds (lbs), kilograms (kg), and kiloponds (kp). Conversions between these units are essential for international operations and accurate calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.2",
+    "subjectId": 6,
+    "text": "Mass limits",
+    "knowledgeContent": "Mass limits define the maximum allowable weights for different phases of flight, such as take-off, landing, and zero-fuel mass. These limits ensure structural integrity and safe performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.2.1",
+    "subjectId": 6,
+    "text": "Structural limitations",
+    "knowledgeContent": "Structural limitations include maximum ramp mass, maximum take-off mass (MTOM), maximum landing mass (MLM), and maximum zero-fuel mass (MZFM). These limits prevent overloading and structural damage.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.2.1.1Explain",
+    "subjectId": 6,
+    "text": "the term 'maximum ramp mass'",
+    "knowledgeContent": "Maximum ramp mass is the total weight of the aircraft while on the ground, including fuel, payload, and crew. It must not exceed the aircraft's structural limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.2.1.2Explain",
+    "subjectId": 6,
+    "text": "the term 'maximum take off mass (MTOM)'",
+    "knowledgeContent": "Maximum take-off mass (MTOM) is the highest weight at which the aircraft is certified to take off. Exceeding this limit compromises safety and performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.2.1.3Explain",
+    "subjectId": 6,
+    "text": "the term 'maximum landing mass (MLM)'",
+    "knowledgeContent": "Maximum landing mass (MLM) is the highest weight at which the aircraft is certified to land. Exceeding this limit risks structural damage during touchdown.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.2.1.4Explain",
+    "subjectId": 6,
+    "text": "the term 'maximum zero-fuel mass (MZFM)'",
+    "knowledgeContent": "Maximum zero-fuel mass (MZFM) is the highest weight of the aircraft excluding usable fuel. It ensures the airframe is not overloaded without fuel weight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.2.2",
+    "subjectId": 6,
+    "text": "Performance limitations",
+    "knowledgeContent": "Performance limitations include performance-limited take-off mass and landing mass, which are determined by factors like runway length, altitude, and temperature.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.2.2.1Describe",
+    "subjectId": 6,
+    "text": "the terms 'performance-limited take-off mass' and 'performance-limited landing mass'x",
+    "knowledgeContent": "Performance-limited take-off mass is the maximum weight at which the aircraft can safely take off given specific conditions. Performance-limited landing mass is the maximum weight for safe landing under similar constraints.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.2.3",
+    "subjectId": 6,
+    "text": "Baggage compartment limitations",
+    "knowledgeContent": "Baggage compartment limitations define the maximum weight and distribution of baggage to ensure the CG remains within acceptable limits and the aircraft's structural integrity is maintained.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:04:34.760Z",
+    "updatedAt": "2026-03-17T21:04:34.760Z"
+  },
+  {
+    "loId": "71.2.3",
+    "subjectId": 6,
+    "text": "Mass calculations",
+    "knowledgeContent": "The student must understand how to calculate the aircraft's mass, including empty weight, fuel, passengers, and baggage. They must know how to ensure the total mass does not exceed the maximum take-off and landing masses specified in the aircraft's documentation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.2.3.1",
+    "subjectId": 6,
+    "text": "Maximum masses for take-off and landing",
+    "knowledgeContent": "The student must know the maximum allowable masses for take-off and landing as per the aircraft's flight manual. They must understand the implications of exceeding these limits, including reduced performance and structural stress.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3",
+    "subjectId": 6,
+    "text": "Fundamentals of CG calculations",
+    "knowledgeContent": "The student must grasp the fundamentals of calculating the aircraft's center of gravity (CG), including how to determine the CG position using moments and arms. They must understand the importance of maintaining the CG within the prescribed limits for safe flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.1",
+    "subjectId": 6,
+    "text": "Definition of centre of gravity",
+    "knowledgeContent": "The student must be able to define the center of gravity (CG) as the point where the aircraft's mass is considered to be concentrated. They must understand how the CG affects aircraft stability and control.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.1.1",
+    "subjectId": 6,
+    "text": "Definition",
+    "knowledgeContent": "The student must define the center of gravity (CG) and explain its significance in aircraft performance and handling. They must understand how the CG position influences pitch stability and control effectiveness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.1.1.1Define",
+    "subjectId": 6,
+    "text": "and explain the meaning of 'center of gravity (CG)'",
+    "knowledgeContent": "The student must define 'center of gravity (CG)' as the point where the aircraft's weight is balanced in all directions. They must explain how the CG affects the aircraft's balance and stability during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.1.2",
+    "subjectId": 6,
+    "text": "Limitations",
+    "knowledgeContent": "The student must know the CG limits specified in the aircraft's flight manual and understand the consequences of operating outside these limits. They must be aware of how CG position affects stall characteristics, controllability, and structural loads.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.2",
+    "subjectId": 6,
+    "text": "Conditions of equilibrium (balance of forces and balance of moments",
+    "knowledgeContent": "The student must understand the conditions of equilibrium, including the balance of forces and moments acting on the aircraft. They must know how to calculate moments and ensure the aircraft is balanced for safe flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.2.1",
+    "subjectId": 6,
+    "text": "Definition",
+    "knowledgeContent": "The student must define 'datum' as the reference point from which all moment arms are measured. They must also define 'moment arm' as the horizontal distance from the datum to the CG of a mass, and 'moment' as the product of mass and moment arm.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.2.1.1Define",
+    "subjectId": 6,
+    "text": "‘datum’ (reference point), ‘moment arm’ and ‘moment’",
+    "knowledgeContent": "The student must define 'datum' as the reference point for moment calculations, 'moment arm' as the distance from the datum to a mass, and 'moment' as the product of mass and moment arm. They must understand how these terms are used in CG calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.2.2",
+    "subjectId": 6,
+    "text": "Relation between factors for equlilbrium",
+    "knowledgeContent": "The student must understand the relationship between the forces acting on the aircraft and how they contribute to the balance of moments. They must know how to ensure the sum of moments around the CG is zero for equilibrium.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.2.2.1List",
+    "subjectId": 6,
+    "text": "the forces acting for the balance of moments",
+    "knowledgeContent": "The student must list the forces acting on the aircraft, such as lift, weight, thrust, and drag, and explain how they contribute to the balance of moments. They must understand how these forces interact to maintain equilibrium.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.2.2.2Describe",
+    "subjectId": 6,
+    "text": "the relationship between center of pressure, CG and elevator downforce",
+    "knowledgeContent": "The student must describe the relationship between the center of pressure, CG, and elevator downforce. They must understand how the CG position affects the required elevator force to maintain level flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.3",
+    "subjectId": 6,
+    "text": "Basic calculations of CG",
+    "knowledgeContent": "The student must be able to perform basic CG calculations using the aircraft's mass and balance data. They must understand how to determine the CG position and ensure it remains within the allowable limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.3.1",
+    "subjectId": 6,
+    "text": "General considerations",
+    "knowledgeContent": "The student must understand the general considerations for CG calculations, including the use of moments and arms. They must know how to account for the mass and position of all loads, including fuel, passengers, and baggage.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.3.1.1Describe",
+    "subjectId": 6,
+    "text": "how to calculate 'moment' by multiplying 'mass (force)' x 'moment arm'",
+    "knowledgeContent": "The student must describe how to calculate a moment by multiplying the mass (or force) by its moment arm. They must understand how moments are used to determine the CG position of the aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.3.2",
+    "subjectId": 6,
+    "text": "Calculations",
+    "knowledgeContent": "The student must be able to perform CG calculations for different load configurations, including pilot, passengers, baggage, and fuel. They must understand how to use the aircraft's mass and balance documentation to ensure the CG remains within limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.3.2.1Calculate",
+    "subjectId": 6,
+    "text": "moments / CG position for different loads (pilot, passengers, baggage, fuel)x",
+    "knowledgeContent": "The student must calculate moments and CG positions for various load configurations, including pilot, passengers, baggage, and fuel. They must use the aircraft's mass and balance data to ensure the CG remains within the prescribed limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.3.3.2.2Determine",
+    "subjectId": 6,
+    "text": "whether a flight can be performed with a given load or not",
+    "knowledgeContent": "The student must determine whether a flight can be safely performed with a given load configuration by calculating the total mass and CG position. They must compare these values to the aircraft's limits and make adjustments if necessary.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.4",
+    "subjectId": 6,
+    "text": "Mass and balance details of aircraft",
+    "knowledgeContent": "The student must understand the details of the aircraft's mass and balance documentation, including how to extract and interpret relevant data. They must know how to use this information to perform mass and balance calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.4.1",
+    "subjectId": 6,
+    "text": "Contents of mass and balance documentation",
+    "knowledgeContent": "The student must know the contents of the aircraft's mass and balance documentation, including the datum, moment arms, and CG limits. They must understand how to use this information to ensure the aircraft is properly loaded.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.4.1.1",
+    "subjectId": 6,
+    "text": "Datum and moment arm",
+    "knowledgeContent": "The student must understand the concept of the datum as the reference point for moment calculations and the moment arm as the distance from the datum to a mass. They must know how these terms are used in mass and balance calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.4.1.1.2State",
+    "subjectId": 6,
+    "text": "where the datum and moment arms for aircraft can be found",
+    "knowledgeContent": "The student must state where the datum and moment arms for the aircraft can be found, typically in the aircraft's flight manual or mass and balance documentation. They must understand how to use this information for calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.4.1.1.3List",
+    "subjectId": 6,
+    "text": "the common units of measurement used for moments and convert them (kgm, lbft, etc.)",
+    "knowledgeContent": "The student must list the common units of measurement used for moments, such as kilogram-meters (kgm) or pound-feet (lbft), and be able to convert between them if necessary. They must understand how these units are used in mass and balance calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.4.1.2",
+    "subjectId": 6,
+    "text": "CG position as distance from datum",
+    "knowledgeContent": "The student must understand how the CG position is expressed as a distance from the datum. They must know how to calculate the CG position using the total moment and total mass of the aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.4.2",
+    "subjectId": 6,
+    "text": "Extraction of basic mass and balance data from aircraft documentation",
+    "knowledgeContent": "The student must be able to extract basic mass and balance data from the aircraft's documentation, including empty weight, moment, and CG position. They must understand how to use this data for pre-flight calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.4.2.1",
+    "subjectId": 6,
+    "text": "BEM",
+    "knowledgeContent": "The student must understand the concept of Basic Empty Mass (BEM) and how it is used as a starting point for mass and balance calculations. They must know how to extract the BEM and moment from the aircraft's weighing report.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.4.2.1.1Extract",
+    "subjectId": 6,
+    "text": "empty weight and moment from a given weighing report",
+    "knowledgeContent": "The student must extract the empty weight and moment from a given weighing report and understand how these values are used in mass and balance calculations. They must know how to adjust these values for additional loads.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.4.2.1.5State",
+    "subjectId": 6,
+    "text": "which pieces of equipment / fuel / oil masses are included in the basic empty weightx",
+    "knowledgeContent": "The student must state which pieces of equipment, fuel, and oil masses are included in the basic empty weight. They must understand how these components contribute to the aircraft's total mass and CG position.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.4.2.2",
+    "subjectId": 6,
+    "text": "CG position or moment at BEM",
+    "knowledgeContent": "The student must understand how to determine the CG position or moment at Basic Empty Mass (BEM). They must know how to use this information as a baseline for further mass and balance calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:05:31.933Z",
+    "updatedAt": "2026-03-17T21:05:31.933Z"
+  },
+  {
+    "loId": "71.4.2.2.1Determine",
+    "subjectId": 6,
+    "text": "CG position at basic empty mass from AFM/POH",
+    "knowledgeContent": "The student must know how to locate and interpret the basic empty mass (BEM) and corresponding CG position from the Aircraft Flight Manual (AFM) or Pilot's Operating Handbook (POH). This includes understanding the standard configuration and any adjustments needed for equipment or modifications.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "71.4.2.2.2Determine",
+    "subjectId": 6,
+    "text": "the allowed CG range from a given AFM/POH",
+    "knowledgeContent": "The student must be able to identify the permissible CG range from the AFM/POH, including any variations based on aircraft weight or configuration. They must understand the implications of operating outside this range.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "71.4.2.3",
+    "subjectId": 6,
+    "text": "Deviations from standard configuration",
+    "knowledgeContent": "The student must understand how deviations from standard configuration (e.g., additional equipment, fuel, or passengers) affect the CG position. They should know how to adjust calculations or consult the AFM/POH for non-standard setups.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "71.5",
+    "subjectId": 6,
+    "text": "Determination of CG position",
+    "knowledgeContent": "The student must know the principles of calculating the CG position, including the methods (arithmetic or graphic) and the importance of maintaining the CG within the allowable range for safe flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "71.5.1",
+    "subjectId": 6,
+    "text": "Methods",
+    "knowledgeContent": "The student must be familiar with the two primary methods for determining CG position: the arithmetic method (using moment arms and weights) and the graphic method (using loading graphs).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "71.5.1.1",
+    "subjectId": 6,
+    "text": "Arithmetic method",
+    "knowledgeContent": "The student must understand the arithmetic method, which involves calculating moments (weight × arm) and summing them to find the total moment and CG position. This includes knowing the reference datum and how to apply it.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "71.5.1.1.2Determine",
+    "subjectId": 6,
+    "text": "how the CG position will shift during flight",
+    "knowledgeContent": "The student must know how fuel burn, passenger movement, or cargo shifts affect the CG during flight. They should be able to predict CG changes using moment calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "71.5.1.1.3Explain",
+    "subjectId": 6,
+    "text": "how in some cases, a CG position out of limits can be corrected using trim ballastx",
+    "knowledgeContent": "The student must understand how adding trim ballast (e.g., weights in specific locations) can adjust an out-of-limits CG back within the allowable range. They should know the limitations and safety considerations of this method.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "71.5.1.2",
+    "subjectId": 6,
+    "text": "Graphic method",
+    "knowledgeContent": "The student must be familiar with the graphic method, which involves plotting weights and moments on a loading graph to visually determine the CG position. This method is often quicker but less precise than arithmetic.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "71.5.1.2.1Determine",
+    "subjectId": 6,
+    "text": "the CG position of an aircraft by using the loading graphs given in sample documentsx",
+    "knowledgeContent": "The student must be able to use loading graphs provided in sample documents (e.g., AFM/POH) to determine the CG position. This includes interpreting axes, plotting points, and verifying the CG is within limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "71.5.2",
+    "subjectId": 6,
+    "text": "Load and trim sheet",
+    "knowledgeContent": "The student must understand the purpose and components of a load and trim sheet, which summarizes weights, moments, and CG position for a specific flight configuration.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "71.5.2.1",
+    "subjectId": 6,
+    "text": "General considerations",
+    "knowledgeContent": "The student must know the general principles of load sheets, including their role in ensuring the aircraft is within weight and balance limits. They should understand regulatory requirements for completing them.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "71.5.2.1.1Explain",
+    "subjectId": 6,
+    "text": "the principle and the purpose of load sheets.",
+    "knowledgeContent": "The student must explain that load sheets document the aircraft's weight distribution and CG position, ensuring compliance with operational limits. They are critical for pre-flight safety checks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "71.5.2.2.1Add",
+    "subjectId": 6,
+    "text": "loading data and calculate masses in a sample load sheet/balance schedule",
+    "knowledgeContent": "The student must be able to input loading data (e.g., fuel, passengers, cargo) into a sample load sheet and calculate total mass, moments, and CG position. This includes verifying results against limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1",
+    "subjectId": 6,
+    "text": "Introduction",
+    "knowledgeContent": "The student must understand the foundational concepts of aircraft performance, including how weight, balance, and environmental factors affect flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1.1",
+    "subjectId": 6,
+    "text": "Performance classes",
+    "knowledgeContent": "The student must know the different performance classes (e.g., single-engine piston) and their relevance to operational limitations and certification standards.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1.1.1",
+    "subjectId": 6,
+    "text": "Definitions and concept",
+    "knowledgeContent": "The student must define performance classes and understand how they categorize aircraft based on engine type, weight, and operational characteristics.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1.2",
+    "subjectId": 6,
+    "text": "Stages of flight",
+    "knowledgeContent": "The student must be familiar with the stages of flight (e.g., takeoff, climb, cruise, descent, landing) and how performance varies during each phase.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1.2.1",
+    "subjectId": 6,
+    "text": "Definitions",
+    "knowledgeContent": "The student must define key terms like 'takeoff roll' (distance to become airborne) and 'landing roll' (distance to stop after touchdown), including their significance in performance planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1.2.1.1Define",
+    "subjectId": 6,
+    "text": "and explain the terms 'take off roll' and 'landing roll'",
+    "knowledgeContent": "The student must define 'takeoff roll' as the ground distance from brake release to liftoff and 'landing roll' as the ground distance from touchdown to full stop. They should understand factors affecting these distances.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1.2.2",
+    "subjectId": 6,
+    "text": "Factors affecting take-off and landing distances",
+    "knowledgeContent": "The student must know how factors like aircraft weight, density altitude, wind, runway surface, and slope influence takeoff and landing distances.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1.3.1",
+    "subjectId": 6,
+    "text": "General considerations",
+    "knowledgeContent": "The student must understand general considerations for performance, including how environmental and operational conditions impact flight safety and efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1.3.1.2Explain",
+    "subjectId": 6,
+    "text": "the influence of runway conditions on take-off and landing performance",
+    "knowledgeContent": "The student must explain how runway conditions (e.g., wet, icy, grass) affect takeoff and landing performance by altering friction and braking effectiveness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1.3.2",
+    "subjectId": 6,
+    "text": "Effect on aeroplane performance",
+    "knowledgeContent": "The student must understand how aeroplane performance (e.g., climb rate, stall speed) is influenced by factors like weight, wind, and configuration.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1.3.2.2Describe",
+    "subjectId": 6,
+    "text": "the influence of head- and tail wind on take-off and landing performance",
+    "knowledgeContent": "The student must describe how headwind reduces takeoff/landing distance by increasing effective lift, while tailwind increases distance by reducing lift and ground speed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1.3.2.3Describe",
+    "subjectId": 6,
+    "text": "the influence of aircraft mass on take-off and landing performance",
+    "knowledgeContent": "The student must describe how increased aircraft mass raises stall speed and required takeoff/landing distances due to higher lift and braking demands.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1.3.2.4Explain",
+    "subjectId": 6,
+    "text": "the influence of runway slope on take-off and landing performance",
+    "knowledgeContent": "The student must explain how an uphill runway slope increases takeoff distance (due to gravity) and reduces landing distance, while a downhill slope has the opposite effect.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1.4",
+    "subjectId": 6,
+    "text": "Gradients",
+    "knowledgeContent": "The student must understand climb and descent gradients, including their calculation and significance for obstacle clearance and flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1.4.1",
+    "subjectId": 6,
+    "text": "Definitions",
+    "knowledgeContent": "The student must know the definitions of key gradient-related terms, including how they are expressed (e.g., percentage vs. degrees) and their practical applications.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.1.4.1.1Define",
+    "subjectId": 6,
+    "text": "the term 'climb/descent gradient' and 'climb/descent angle'",
+    "knowledgeContent": "The student must define 'climb/descent gradient' as the vertical distance gained/lost per horizontal distance (e.g., feet per nautical mile) and 'angle' as the inclination relative to the horizon in degrees.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:06:22.151Z",
+    "updatedAt": "2026-03-17T21:06:22.151Z"
+  },
+  {
+    "loId": "72.2",
+    "subjectId": 6,
+    "text": "SE Aeroplanes",
+    "knowledgeContent": "A PPL(A) student must understand the characteristics and operational limitations of single-engine aeroplanes, including their design, systems, and performance capabilities as per EASA standards.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.1",
+    "subjectId": 6,
+    "text": "Definitions of terms and speeds",
+    "knowledgeContent": "The student must be able to define and explain key aviation terms and speeds relevant to aeroplane performance, such as stall speeds, rotation speed, and other critical velocities.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.1.1",
+    "subjectId": 6,
+    "text": "Terms",
+    "knowledgeContent": "The student must know and define essential aviation terms such as stall speed, rotation speed, and other performance-related terminology as specified in EASA regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.1.2",
+    "subjectId": 6,
+    "text": "Speeds",
+    "knowledgeContent": "The student must understand and differentiate between various speeds, including stall speeds (vS, vS0, vS1) and rotation speed (vR), and their significance in aeroplane operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.1.2.1Define",
+    "subjectId": 6,
+    "text": "the following speeds: stall speeds vS, vS0 and vS1, rotation speed vR",
+    "knowledgeContent": "The student must define stall speeds (vS, vS0, vS1) and rotation speed (vR), understanding their roles in aeroplane performance and safety during take-off and landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.2",
+    "subjectId": 6,
+    "text": "Take-off and landing performance",
+    "knowledgeContent": "The student must understand the factors affecting take-off and landing performance, including runway length, weight, and environmental conditions, as per EASA guidelines.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.2.1",
+    "subjectId": 6,
+    "text": "Use of aeroplane flight manual data",
+    "knowledgeContent": "The student must know how to use the Aeroplane Flight Manual (AFM) or Pilot Operating Handbook (POH) to extract performance data for take-off and landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.2.1.1Determine",
+    "subjectId": 6,
+    "text": "take-off and landing roll and distances from given AFM/POH tables",
+    "knowledgeContent": "The student must be able to calculate take-off and landing roll and distances using AFM/POH tables, considering factors like weight, wind, and runway conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.2.1.2Determine",
+    "subjectId": 6,
+    "text": "take-off and landing roll and distances from given AFM/POH graphs",
+    "knowledgeContent": "The student must be able to determine take-off and landing roll and distances using AFM/POH graphs, interpreting the data accurately for safe operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.3",
+    "subjectId": 6,
+    "text": "Climb and cruise performance",
+    "knowledgeContent": "The student must understand climb and cruise performance factors, including the impact of density altitude, weight, and power settings on aeroplane performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.3.1",
+    "subjectId": 6,
+    "text": "Use of aeroplane flight data",
+    "knowledgeContent": "The student must know how to use aeroplane flight data, including AFM/POH, to determine climb and cruise performance under various conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.3.2",
+    "subjectId": 6,
+    "text": "Effect of density altitude and aeroplane mass",
+    "knowledgeContent": "The student must understand the effects of density altitude and aeroplane mass on climb and cruise performance, including how these factors influence engine power and lift.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.3.2.1Explain",
+    "subjectId": 6,
+    "text": "the term 'density altitude'",
+    "knowledgeContent": "The student must explain the term 'density altitude' and its impact on aeroplane performance, including reduced engine power and lift at higher altitudes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.3.3.1Explain",
+    "subjectId": 6,
+    "text": "the effect of power on fuel flow, range and endurance",
+    "knowledgeContent": "The student must explain how power settings affect fuel flow, range, and endurance, understanding the trade-offs between speed and efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.3.3.2Explain",
+    "subjectId": 6,
+    "text": "the term 'maximum endurance'",
+    "knowledgeContent": "The student must explain the term 'maximum endurance' and how it relates to the minimum fuel consumption rate for prolonged flight time.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.3.3.3State",
+    "subjectId": 6,
+    "text": "which value for 'endurance' should to be entered into the ATS flight plan",
+    "knowledgeContent": "The student must state the correct value for 'endurance' to be entered into the ATS flight plan, ensuring compliance with EASA regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.3.4",
+    "subjectId": 6,
+    "text": "Still air range with various power or thrust settings",
+    "knowledgeContent": "The student must understand how still air range varies with different power or thrust settings, including the concept of maximum range.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.3.4.1Describe",
+    "subjectId": 6,
+    "text": "how the achievable range varies with different power settings",
+    "knowledgeContent": "The student must describe how achievable range changes with different power settings, understanding the relationship between speed, fuel consumption, and distance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "72.2.3.4.2Explain",
+    "subjectId": 6,
+    "text": "the term 'maximum range'",
+    "knowledgeContent": "The student must explain the term 'maximum range' and how it represents the optimal balance between speed and fuel efficiency for the longest possible flight distance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "73.1.1.2.1Explain",
+    "subjectId": 6,
+    "text": "the following phases of flight: take-off, climb, level flight, descent, approach and landing-",
+    "knowledgeContent": "The student must explain the phases of flight (take-off, climb, level flight, descent, approach, and landing) and their operational characteristics as per EASA standards.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "73.1.1.3",
+    "subjectId": 6,
+    "text": "Effect on performance of atmospheric, airport or heliport and helicopter conditions-",
+    "knowledgeContent": "The student must understand how atmospheric, airport, and helicopter conditions affect performance, including factors like temperature, pressure, and runway length.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "73.2.1.1.1Name",
+    "subjectId": 6,
+    "text": "the general differences between helicopters certified according to CS-27 and CS-29-",
+    "knowledgeContent": "The student must name the general differences between helicopters certified under CS-27 and CS-29, including their design and performance characteristics.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "73.3.1.2.1Define",
+    "subjectId": 6,
+    "text": "'VmaxRange' (speed for maximum range) and 'VmaxEnd' (speed for maximum endurance)-",
+    "knowledgeContent": "The student must define 'VmaxRange' (speed for maximum range) and 'VmaxEnd' (speed for maximum endurance), understanding their roles in optimizing flight efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "73.3.2",
+    "subjectId": 6,
+    "text": "Take-off, cruise and landing performance: Use and interpretation of diagrams and tables-",
+    "knowledgeContent": "The student must know how to use and interpret diagrams and tables for take-off, cruise, and landing performance, ensuring accurate calculations for safe operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "74.1",
+    "subjectId": 6,
+    "text": "Flight planning for VFR flights",
+    "knowledgeContent": "The student must understand the principles of flight planning for VFR flights, including route selection, airspace considerations, and fuel calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "74.1.1",
+    "subjectId": 6,
+    "text": "VFR navigation plan",
+    "knowledgeContent": "The student must know how to create a VFR navigation plan, including selecting routes, airfields, and appropriate altitudes based on VFR charts and EASA regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "74.1.1.1",
+    "subjectId": 6,
+    "text": "Routes, airfields, heights and altitudes from VFR charts",
+    "knowledgeContent": "The student must be able to extract and interpret information about routes, airfields, heights, and altitudes from VFR charts for flight planning purposes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "74.1.1.1.2Extract",
+    "subjectId": 6,
+    "text": "and interpret information about routings and airspace structure from VFR chartsx",
+    "knowledgeContent": "The student must extract and interpret information about routings and airspace structure from VFR charts, ensuring compliance with airspace regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "74.1.1.1.3Extract",
+    "subjectId": 6,
+    "text": "and interpret information about airfield data from VFR charts",
+    "knowledgeContent": "The student must extract and interpret airfield data from VFR charts, including runway lengths, frequencies, and operational details.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "74.1.1.1.4Extract",
+    "subjectId": 6,
+    "text": "and interpret information about heights and altitudes from VFR charts",
+    "knowledgeContent": "The student must extract and interpret information about heights and altitudes from VFR charts, ensuring safe terrain clearance and compliance with airspace requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:07:05.586Z",
+    "updatedAt": "2026-03-17T21:07:05.586Z"
+  },
+  {
+    "loId": "74.1.1.1.5Find",
+    "subjectId": 6,
+    "text": "the highest obstacle within a given distance on either side of the course",
+    "knowledgeContent": "The student must know how to identify the highest obstacle within a specified distance (e.g., 10 NM) on either side of the planned course using VFR charts. This includes recognizing terrain features, towers, and other obstructions marked on the chart. The assessment should ensure the student can apply this to avoid potential hazards during flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.1.1.1.6Extract",
+    "subjectId": 6,
+    "text": "and interpret various symbols from VFR charts according to ICAO standard",
+    "knowledgeContent": "The student must be able to identify and interpret ICAO-standard symbols on VFR charts, such as airspace boundaries, navigation aids, and aerodrome markings. This includes understanding the color-coding and symbology for different types of airspace (e.g., CTR, TMZ). Accuracy in chart reading is critical for safe navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.1.1.2",
+    "subjectId": 6,
+    "text": "Courses and distances from VFR charts",
+    "knowledgeContent": "The student must know how to measure courses (true and magnetic) and distances between waypoints using a plotter and VFR charts. This includes correcting for magnetic variation and understanding the chart's scale. Practical application involves plotting a route and calculating leg distances accurately.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.1.1.2.1Extract",
+    "subjectId": 6,
+    "text": "courses (true, magnetic) from VFR charts",
+    "knowledgeContent": "The student must extract true and magnetic courses from VFR charts, applying local magnetic variation (found in the chart margin) to convert between them. This ensures correct heading calculations during flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.1.1.2.2Extract",
+    "subjectId": 6,
+    "text": "distances from VFR charts",
+    "knowledgeContent": "The student must measure distances between points on VFR charts using a navigational plotter, accounting for the chart's scale (e.g., 1:500,000). This skill is essential for fuel planning and time estimations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.1.1.2.3Explain",
+    "subjectId": 6,
+    "text": "the use of distance markings ('ticks') on full degrees of longitude for distance measuringx",
+    "knowledgeContent": "The student must explain how distance markings ('ticks') on longitude lines are used for measuring distances on VFR charts. This involves understanding that each tick represents a specific distance (e.g., 1 NM) at the chart's latitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.1.1.3",
+    "subjectId": 6,
+    "text": "Aerodrome charts and aerodrome directory",
+    "knowledgeContent": "The student must know how to read aerodrome charts, including runway layouts, taxiways, and holding points, as well as use the aerodrome directory for key information like frequencies and operating hours. This ensures compliance with ground procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.1.1.4",
+    "subjectId": 6,
+    "text": "Communications and radio navigation planning data",
+    "knowledgeContent": "The student must plan communications and radio navigation, including selecting appropriate frequencies (e.g., ATIS, Tower) and understanding VOR/NDB identifiers. This ensures effective ATC communication and navigation during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.1.1.4.2Extract",
+    "subjectId": 6,
+    "text": "frequencies for radio navigation from a given VFR chart (e.g. NDB, VOR etc.)",
+    "knowledgeContent": "The student must extract radio navigation frequencies (e.g., VOR, NDB) from VFR charts and understand their use for en-route navigation. This includes identifying the Morse code identifiers for verification.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.1.1.5",
+    "subjectId": 6,
+    "text": "Completion of navigation plan",
+    "knowledgeContent": "The student must complete a navigation plan, including plotting the route, calculating headings, distances, and times, and noting checkpoints. This ensures a structured and safe flight plan.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2",
+    "subjectId": 6,
+    "text": "Fuel planning",
+    "knowledgeContent": "The student must understand fuel planning principles, including calculating required fuel, reserves, and contingencies. This ensures compliance with EASA regulations (e.g., 45-minute reserve for VFR day flights).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.1",
+    "subjectId": 6,
+    "text": "General knowledge",
+    "knowledgeContent": "The student must grasp general fuel concepts, such as fuel types, consumption rates, and tank capacities. This foundational knowledge supports accurate fuel calculations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.1.1",
+    "subjectId": 6,
+    "text": "Definitions and general considerations",
+    "knowledgeContent": "The student must know definitions like 'maximum usable fuel' (fuel available after accounting for unusable fuel) and 'total fuel' (including reserves). This ensures clarity in fuel planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.1.1.3Explain",
+    "subjectId": 6,
+    "text": "the terms 'maximum usable fuel', 'total amount of fuel', 'unusable fuel'",
+    "knowledgeContent": "The student must explain the terms 'maximum usable fuel', 'total amount of fuel', and 'unusable fuel' (fuel trapped in tanks or unusable in flight). This ensures accurate fuel quantity assessments.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.1.2",
+    "subjectId": 6,
+    "text": "General calculations",
+    "knowledgeContent": "The student must perform general fuel calculations, such as converting between volume (liters) and mass (kg), using fuel density (e.g., AVGAS 0.72 kg/L). This ensures correct fuel load computations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.2",
+    "subjectId": 6,
+    "text": "Pre-flight calculation of fuel required",
+    "knowledgeContent": "The student must calculate pre-flight fuel requirements, including trip fuel, contingency reserves, and alternate fuel. This ensures compliance with EASA minimums and safety margins.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.2.1",
+    "subjectId": 6,
+    "text": "General",
+    "knowledgeContent": "The student must understand general fuel planning steps, including engine-start, taxi, climb, cruise, descent, and reserve calculations. This ensures a systematic approach to fuel management.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.2.1.2State",
+    "subjectId": 6,
+    "text": "a suitable amount of fuel for engine-start, run-up and taxiing",
+    "knowledgeContent": "The student must state a suitable fuel amount for engine-start, run-up, and taxiing (e.g., 5-10% of total fuel). This accounts for ground operations before takeoff.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.2.1.3Determine",
+    "subjectId": 6,
+    "text": "the fuel consumption during climb, using the AFM/POH",
+    "knowledgeContent": "The student must determine climb fuel consumption using the Aircraft Flight Manual (AFM) or Pilot's Operating Handbook (POH), factoring in altitude and temperature. This ensures accurate climb fuel estimates.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.2.1.5Determine",
+    "subjectId": 6,
+    "text": "the fuel consumption during descent, using the AFM/POH",
+    "knowledgeContent": "The student must determine descent fuel consumption using the AFM/POH, considering idle power settings and descent rates. This ensures accurate fuel calculations for the descent phase.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.2.1.6Determine",
+    "subjectId": 6,
+    "text": "the fuel required for flight to the alternate aerodrome",
+    "knowledgeContent": "The student must calculate fuel required to divert to an alternate aerodrome, including distance, wind, and consumption rates. This ensures compliance with reserve requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.2.1.9State",
+    "subjectId": 6,
+    "text": "that the minimum reserve is to be calculated using cruise performance on cruise altitudex",
+    "knowledgeContent": "The student must state that the minimum reserve (e.g., 45 minutes for VFR day) is calculated using cruise performance at planned altitude. This ensures adherence to EASA regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.2.2",
+    "subjectId": 6,
+    "text": "Calculation of extra fuel",
+    "knowledgeContent": "The student must calculate extra fuel for contingencies (e.g., 5-10% of trip fuel) or unexpected delays. This ensures flexibility for operational uncertainties.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.2.2.2Describe",
+    "subjectId": 6,
+    "text": "situations in which cases additional fuel reserve can be / might be / should be carriedx",
+    "knowledgeContent": "The student must describe scenarios requiring additional fuel reserves, such as adverse weather, unfamiliar aerodromes, or mountainous terrain. This ensures proactive risk management.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.2.2.3Calculate",
+    "subjectId": 6,
+    "text": "the possible extra fuel under given conditions.",
+    "knowledgeContent": "The student must calculate possible extra fuel under given conditions (e.g., headwinds, holding patterns) using performance charts. This ensures adaptive fuel planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.2.3",
+    "subjectId": 6,
+    "text": "Completion of the fuel section of the navigation plan (fuel log) and calculation of total fuel",
+    "knowledgeContent": "The student must complete the fuel section of the navigation plan (fuel log), summing all fuel components (trip, reserve, alternate). This ensures a clear record for pre-flight verification.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.2.3.1Calculate",
+    "subjectId": 6,
+    "text": "the total fuel required for a given flight",
+    "knowledgeContent": "The student must calculate total fuel required for a flight, including all phases and reserves, ensuring it does not exceed the aircraft's maximum takeoff fuel capacity.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.2.2.3.2Complete",
+    "subjectId": 6,
+    "text": "the fuel section of the navigational plan (fuel log)",
+    "knowledgeContent": "The student must accurately fill out the fuel log in the navigation plan, documenting each fuel component (e.g., taxi, climb, cruise) for ATC and safety checks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.3",
+    "subjectId": 6,
+    "text": "Pre-flight preparation",
+    "knowledgeContent": "The student must perform pre-flight preparation, including reviewing AIP (Aeronautical Information Publication) and NOTAMs for route-specific updates. This ensures awareness of airspace changes or hazards.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.3.1",
+    "subjectId": 6,
+    "text": "AIP and NOTAM briefing",
+    "knowledgeContent": "The student must conduct an AIP and NOTAM briefing, identifying relevant information like temporary airspace restrictions, runway closures, or navigation aid outages. This ensures compliance with current operational conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:08:00.998Z",
+    "updatedAt": "2026-03-17T21:08:00.998Z"
+  },
+  {
+    "loId": "74.3.1.1",
+    "subjectId": 6,
+    "text": "General",
+    "knowledgeContent": "The student must understand the general principles of flight planning, including regulatory requirements, aeronautical information sources (AIP, NOTAMs, charts), and the importance of pre-flight preparation. They should be aware of EASA regulations and how they apply to private pilot operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.3.1.1.2",
+    "subjectId": 6,
+    "text": "74.3.1.1.2",
+    "knowledgeContent": "The student must know how to determine civil twilight times (ECET/BCMT) using the AIP, including the definition of civil twilight (sun 6° below horizon) and its significance for VFR flight planning (e.g., lighting requirements, night flying rules).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.3.1.1.3",
+    "subjectId": 6,
+    "text": "74.3.1.1.3",
+    "knowledgeContent": "The student must define NOTAM (Notice to Airmen) as a time-sensitive aeronautical information bulletin and describe how to access NOTAMs via AIS providers, EFB apps, or pre-flight briefing services. They should understand the importance of checking NOTAMs for hazards like runway closures or airspace restrictions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.3.1.2",
+    "subjectId": 6,
+    "text": "Ground facilities and services",
+    "knowledgeContent": "The student must be familiar with ground facilities (e.g., ATC, fueling, handling) and services available at aerodromes, including their operational hours and how to request them. They should understand the role of AIP in providing this information.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.3.1.2.2",
+    "subjectId": 6,
+    "text": "74.3.1.2.2",
+    "knowledgeContent": "The student must explain PPR (Prior Permission Required) as a mandatory approval from an aerodrome operator before landing, typically for military airfields, private strips, or airports with slot restrictions. They should know how to obtain PPR via published contact methods.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.3.1.3",
+    "subjectId": 6,
+    "text": "Departure, destination and alternate aerodromes",
+    "knowledgeContent": "The student must understand the criteria for selecting departure, destination, and alternate aerodromes, including runway length, services, weather minima, and availability of approach aids. They should recognize when an alternate is legally required (e.g., IFR flights below planning minima).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.3.1.3.1",
+    "subjectId": 6,
+    "text": "74.3.1.3.1",
+    "knowledgeContent": "The student must list selection criteria: runway length/width, surface type, obstacle clearance, lighting, ATC services, weather minima, and fuel availability. For alternates, they must consider forecast weather, navigation aids, and proximity to the route.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.3.1.3.2",
+    "subjectId": 6,
+    "text": "74.3.1.3.2",
+    "knowledgeContent": "The student must explain that alternates are required for IFR flights when destination weather is below planning minima (e.g., forecast visibility/cloud base < applicable thresholds) or when no suitable approach is available. VFR flights may need alternates if marginal weather is expected.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.3.1.3.5",
+    "subjectId": 6,
+    "text": "74.3.1.3.5",
+    "knowledgeContent": "The student must verify RAIM (Receiver Autonomous Integrity Monitoring) availability for GPS navigation using NOTAMs or forecasting tools, understanding that RAIM outages can affect GNSS approaches and en-route navigation. They should know backup procedures if RAIM is unavailable.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.3.1.4",
+    "subjectId": 6,
+    "text": "Airway routings and airspace structure",
+    "knowledgeContent": "The student must understand airway structures (e.g., VOR routes, RNAV tracks) and airspace classifications (A-G), including entry requirements, communication rules, and equipment mandates (e.g., transponder, DME).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.3.1.4.2",
+    "subjectId": 6,
+    "text": "74.3.1.4.2",
+    "knowledgeContent": "The student must determine required equipment (e.g., Mode C transponder for Class C airspace, DME for certain VOR routes) by cross-referencing AIP ENR 1.4 (airspace classification) and ENR 1.8 (navigation specifications).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.3.1.4.3",
+    "subjectId": 6,
+    "text": "74.3.1.4.3",
+    "knowledgeContent": "The student must assess if their aircraft's instrumentation (e.g., VOR, GNSS, transponder) meets the requirements for specific airspaces or routes by checking AIP tables and NOTAMs for temporary restrictions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.3.2",
+    "subjectId": 6,
+    "text": "Meteorological briefing",
+    "knowledgeContent": "The student must know how to obtain and interpret meteorological briefings (e.g., METAR, TAF, SIGMET), including sources like AIS, online weather portals, or flight briefing officers. They should understand weather minima for VFR/IFR flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.3.2.1.1",
+    "subjectId": 6,
+    "text": "74.3.2.1.1",
+    "knowledgeContent": "The student must state that flight into known icing conditions is prohibited unless the aircraft is certified for icing (e.g., equipped with de-icing/anti-icing systems) and the pilot is trained. They should recognize icing SIGMETs and PIREPs as critical sources.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.3.2.1.4",
+    "subjectId": 6,
+    "text": "74.3.2.1.4",
+    "knowledgeContent": "The student must calculate the lowest usable FL above a given transition altitude by applying the QNH-to-flight level conversion rule (FL = (QNH - 1013) * 30 + TA) and rounding up to the nearest odd/even level based on track.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4",
+    "subjectId": 6,
+    "text": "ICAO flight plan (ATS flight plan)",
+    "knowledgeContent": "The student must understand the purpose and legal basis of ICAO flight plans (ATS forms), including when they are mandatory (e.g., IFR, cross-border VFR) and how they facilitate ATC coordination and SAR services.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4.1",
+    "subjectId": 6,
+    "text": "Individual flight plan",
+    "knowledgeContent": "The student must know the structure of an individual flight plan (ICAO Form 201), including fields for aircraft identification, route, speeds, and alternate aerodromes. They should recognize differences between VFR/IFR plans.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4.1.1",
+    "subjectId": 6,
+    "text": "Format of flight plan",
+    "knowledgeContent": "The student must locate flight plan format requirements in AIP GEN 3.4 (or national supplements) and understand standardized ICAO field codes (e.g., 'N' for navigation equipment, 'Z' for SSR capabilities).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4.1.1.1",
+    "subjectId": 6,
+    "text": "74.4.1.1.1",
+    "knowledgeContent": "The student must state that ATS flight plan requirements are found in AIP GEN 3.4 and ICAO Doc 4444, including field-by-field instructions. They should know how to access these documents digitally or via AIS offices.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4.1.1.2",
+    "subjectId": 6,
+    "text": "74.4.1.1.2",
+    "knowledgeContent": "The student must state that an ATS flight plan is valid for 24 hours from the proposed departure time unless canceled or amended. They should know how to file delays or changes via ATC or flight planning portals.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4.1.1.4",
+    "subjectId": 6,
+    "text": "74.4.1.1.4",
+    "knowledgeContent": "The student must extract key ATS fields (e.g., callsign, aircraft type, route, endurance) from an operational flight plan, ensuring compliance with ICAO abbreviations (e.g., 'C172' for Cessna 172, 'K' for knots).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4.1.2",
+    "subjectId": 6,
+    "text": "Completion of the flight plan",
+    "knowledgeContent": "The student must correctly complete all flight plan sections, including equipment codes (e.g., 'S' for standard COM/NAV, 'G' for GNSS), wake turbulence category, and contingency routes. They should verify data against AIP requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4.1.2.1",
+    "subjectId": 6,
+    "text": "74.4.1.2.1",
+    "knowledgeContent": "The student must define EOBT as the estimated time the aircraft will commence movement (e.g., pushback/taxi) and ETA as the time over the destination's reference point. They should understand these are critical for ATC slot management.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4.1.2.3",
+    "subjectId": 6,
+    "text": "74.4.1.2.3",
+    "knowledgeContent": "The student must correctly enter state border crossings in Field 15 (Route) using the ICAO boundary crossing point code (e.g., 'BODLA' for Bordeaux FIR) and ensure diplomatic overflight clearances are obtained if required.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4.1.2.4",
+    "subjectId": 6,
+    "text": "74.4.1.2.4",
+    "knowledgeContent": "The student must enter a valid route in ICAO format (e.g., 'DCT LNZ VEBIT T120 BRN') using published waypoints, airways, and DCT segments, adhering to AIP routing restrictions and NOTAMs.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4.1.3",
+    "subjectId": 6,
+    "text": "Submission of the flight plan",
+    "knowledgeContent": "The student must know submission methods: online (e.g., EuroFPL), telephone to AIS, or in-person at ATC units. They should confirm receipt and obtain a filing reference number.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4.1.3.1",
+    "subjectId": 6,
+    "text": "74.4.1.3.1",
+    "knowledgeContent": "The student must describe submission via web platforms (e.g., ENAIRE, SkyDemon), phone briefings, or ATC units, emphasizing the need for confirmation codes. They should know regional variations (e.g., mandatory digital filing in some FIRs).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4.1.3.3",
+    "subjectId": 6,
+    "text": "74.4.1.3.3",
+    "knowledgeContent": "The student must explain that filing a flight plan enables SAR initiation if the aircraft is overdue, even for VFR flights where not legally required. They should cite examples of accidents where unfiled flights delayed rescue.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4.1.3.4",
+    "subjectId": 6,
+    "text": "74.4.1.3.4",
+    "knowledgeContent": "The student must state that ATS flight plans should be submitted at least 60 minutes before departure (IFR) or 30 minutes (VFR), with earlier deadlines for international or complex routings per AIP GEN 3.4.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4.1.3.5",
+    "subjectId": 6,
+    "text": "74.4.1.3.5",
+    "knowledgeContent": "The student must state that ATC should be contacted within 30 minutes after filing to activate the flight plan (e.g., via radio or phone), otherwise, it may be automatically canceled. They should know reactivation procedures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:06.511Z",
+    "updatedAt": "2026-03-17T21:09:06.511Z"
+  },
+  {
+    "loId": "74.4.1.3.7Describe",
+    "subjectId": 6,
+    "text": "how to postpone the 'EOBT' as submitted in the flight plan",
+    "knowledgeContent": "A PPL(A) student must know that the Estimated Off-Block Time (EOBT) can be postponed by submitting an updated flight plan to Air Traffic Control (ATC) or the relevant flight planning authority. The student should understand the procedures for communicating this change, including the use of appropriate phraseology and ensuring compliance with ATC instructions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:27.403Z",
+    "updatedAt": "2026-03-17T21:09:27.403Z"
+  },
+  {
+    "loId": "74.5",
+    "subjectId": 6,
+    "text": "Flight monitoring and in-flight replanning",
+    "knowledgeContent": "A PPL(A) student must understand the importance of continuous flight monitoring and the ability to replan during flight. This includes tracking the aircraft's position, fuel status, and weather conditions, and making necessary adjustments to ensure safety and compliance with the flight plan.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:27.403Z",
+    "updatedAt": "2026-03-17T21:09:27.403Z"
+  },
+  {
+    "loId": "74.5.1",
+    "subjectId": 6,
+    "text": "Flight monitoring",
+    "knowledgeContent": "A PPL(A) student must know that flight monitoring involves continuously observing the aircraft's progress against the flight plan. This includes verifying the track, altitude, speed, and fuel consumption to ensure the flight remains on course and within planned parameters.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:27.403Z",
+    "updatedAt": "2026-03-17T21:09:27.403Z"
+  },
+  {
+    "loId": "74.5.1.1",
+    "subjectId": 6,
+    "text": "Monitoring of track and time",
+    "knowledgeContent": "A PPL(A) student must understand the importance of monitoring the aircraft's track and time to ensure adherence to the flight plan. This includes using navigation aids, visual references, and timekeeping to verify the aircraft's position and progress.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:27.403Z",
+    "updatedAt": "2026-03-17T21:09:27.403Z"
+  },
+  {
+    "loId": "74.5.1.1.1Explain",
+    "subjectId": 6,
+    "text": "the relevance of an operational flight plan during flight planning and during flightx",
+    "knowledgeContent": "A PPL(A) student must know that the operational flight plan serves as a reference for both pre-flight planning and in-flight monitoring. It provides essential data such as route, fuel requirements, and alternate airports, ensuring the flight is conducted safely and efficiently.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:27.403Z",
+    "updatedAt": "2026-03-17T21:09:27.403Z"
+  },
+  {
+    "loId": "74.5.1.1.2State",
+    "subjectId": 6,
+    "text": "the reasons for possible deviations from the planned track and planned timingsx",
+    "knowledgeContent": "A PPL(A) student must understand that deviations from the planned track and timings can occur due to factors such as weather changes, ATC instructions, or navigational errors. The student should be aware of how to identify and address these deviations to maintain flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:27.403Z",
+    "updatedAt": "2026-03-17T21:09:27.403Z"
+  },
+  {
+    "loId": "74.5.1.2",
+    "subjectId": 6,
+    "text": "In-flight fuel management",
+    "knowledgeContent": "A PPL(A) student must know that in-flight fuel management involves continuously monitoring planned and actual fuel consumption. This ensures that the aircraft has sufficient fuel to reach the destination or alternate airport, and allows for timely decisions in case of unexpected fuel usage.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:27.403Z",
+    "updatedAt": "2026-03-17T21:09:27.403Z"
+  },
+  {
+    "loId": "74.5.1.2.1Explain",
+    "subjectId": 6,
+    "text": "the relevance of monitoring planned and actual fuel used and fuel on board",
+    "knowledgeContent": "A PPL(A) student must understand that monitoring planned and actual fuel usage is critical for ensuring flight safety. This includes comparing fuel consumption rates, calculating remaining fuel, and making decisions to divert or adjust the flight plan if necessary.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:27.403Z",
+    "updatedAt": "2026-03-17T21:09:27.403Z"
+  },
+  {
+    "loId": "74.5.1.3",
+    "subjectId": 6,
+    "text": "In-flight re-planning in case of deviation from planned data",
+    "knowledgeContent": "A PPL(A) student must know that in-flight re-planning is necessary when deviations from the planned data occur. This includes recalculating fuel requirements, adjusting the route, and communicating changes to ATC to ensure continued safe and efficient flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T21:09:27.403Z",
+    "updatedAt": "2026-03-17T21:09:27.403Z"
+  }
+]

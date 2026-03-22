@@ -1,0 +1,181 @@
+AUDIT NEZPRACOVANÝCH OTÁZEK (correct = -1)
+=========================================
+
+Následující otázky vyžadují ruční kontrolu správné odpovědi,
+protože v PDF nebyly automaticky rozpoznány zaškrtnuté obrázky.
+
+
+--- Předmět 1: Letecký zákon (2 otázek) ---
+ID 12: Jaké jsou mimo jiné požadavky na získání kvalifikace pro lety VFR v noci?
+  [0] nejméně 10 hodin letu v noci, 3 z nich s instruktorem a nejméně 1 navigační let a 5 sólo vzletů a přistání s
+  [1] úplným zastavením
+  [2] nejméně 5 hodin letu v noci, 3 z nich s instruktorem a nejméně 1 navigační let a 5 sólo vzletů a přistání s
+  [3] úplným zastavením
+  [4] nejméně 5 hodin letu v noci, 4 z nich s instruktorem a 1 hodina navigačního letu a 5 sólo vzletů a přistání s
+  [5] úplným zastavením
+  [6] nejméně 5 hodin letu v noci, 3 z nich s instruktorem a nejméně 1 hodina navigačního letu a 10 sólo vzletů
+  [7] a přistání s úplným zastavením
+
+ID 85: Co je PAPI (světelná sestupová soustava pro vizuální přiblížení)?
+  [0] Přístrojové zařízení poskytující informace, které pilotovi pomáhají dosáhnout a udržet správné přiblížení k
+  [1] letišti
+  [2] vizuální zařízení poskytující informace, které pilotovi pomáhají dosáhnout a udržet správnou odletovou
+  [3] trať při odletu z letiště
+  [4] vizuální zařízení poskytující informace, které pomáhají řídícímu letového provozu na věži dosáhnout a
+  [5] udržet správné přiblížení na letiště
+  [6] vizuální zařízení poskytující informace, které pomáhají pilotovi dosáhnout a udržet správnou sestupovou
+  [7] rovinu při přiblížení k letišti
+
+
+--- Předmět 2: Lidská výkonnost (2 otázek) ---
+ID 10: Co z následujícího NENÍ projevem hyperventilace?
+  [0] brnění
+  [1] křeče
+
+ID 33: Jaký optický klam může být způsoben přiblížením na dráhu se sklonem do kopce?
+  [0] pilot má pocit, že přiblížení je příliš nízké, a proto se k dráze přibližuje nad správným úhlem
+  [1] sestupu
+  [2] pilot mí pocit, že přiblížení je příliš rychlé, a proto se k dráze přibližuje nižší než normální
+  [3] přibližovací rychlostí
+  [4] pilot má pocit, že přiblížení je příliš vysoké, a proto se k dráze přibližuje níže než pod správným
+  [5] úhlem sestupu
+  [6] pilot má pocit, že přiblížení je příliš pomalé, a proto se k dráze přibližuje vyšší než normální
+  [7] přibližovací rychlostí
+
+
+--- Předmět 3: Meteorologie (2 otázek) ---
+ID 73: Jaký sled oblačnosti lze typicky pozorovat při přechodu teplé fronty?
+  [0] húlava s dešťovými přeháňkami a bouřky (Cb), nárazový vítr následováno kumulovitou
+  [1] oblačností s izolovanými dešťovými přeháňkami
+  [2] ve dne v pobřežních oblastech vítr od pobřeží a tvorbou kupovité oblačnosti, večer a v noci
+  [3] rozpady oblačnosti
+  [4] v létě slábnoucí vítr, rozpady oblačnosti a narůst teploty, v zimě tvorba vysokých vrstev mlhy
+  [5] cirus, ztenčující se altostratus a altokumulus, snižující se základna oblačnosti s deštěm,
+  [6] nimbostratus
+
+ID 74: Jakou oblačnost a jaké počasí lze typicky pozorovat při přechodu studené fronty?
+  [0] silně vyvinuté kumuly (Cb) s přeháňkami a bouřkami, nárazový vítr a následně kumulovitá
+  [1] oblačnost s izolovanými dešťovými přeháňkami
+  [2] v pobřežních oblastech ve dne vítr od pobřeží a tvorba kumulovité oblačnosti, večer a v noci
+  [3] rozpady oblačnosti
+  [4] v létě slábnoucí vítr, rozpady oblačnosti a nárůst teploty, v zimě tvorba vysokých vrstev mlhy
+  [5] cirus, ztenčující se altostratus a altokumulus, snižující se základna oblačnosti s deštěm,
+  [6] nimbostratus
+
+
+--- Předmět 4: Komunikace (3 otázek) ---
+ID 74: Jaký je správný postup při ztrátě spojení ve vzdušném prostoru třídy D?
+  [0] je třeba pokračovat v letu podle posledního povolení a podle pravidel VFR nebo tento prostor co nejkratší
+  [1] cestou opustit
+  [2] je třeba pokračovat v letu nad 5000 ft a podle pravidel VFR nebo tento prostor co nejkratší cestou opustit
+  [3] je třeba pokračovat v letu nad 5000 ft a podle pravidel VFR nebo tento prostor opustit po standardních
+  [4] tratích
+  [5] je třeba pokračovat v letu podle posledního povolení a podle pravidel VFR nebo tento prostor opustit po
+  [6] standardních tratích
+
+ID 78: Tísňové zprávy obsahují:
+  [0] informace týkající se naléhavé potřeby náhradních dílů potřebných pro pokračování v letu, které musí být
+  [1] objednány předem
+  [2] informace týkající se letadla a jeho cestujících, které čelí vážné a bezprostřední hrozbě a vyžaduje
+  [3] okamžitou pomoc
+  [4] informace týkající se bezpečnosti letadla, plavidla, vozidla nebo osoby v dohledu
+  [5] informace týkající se personálu na odbavovací ploše znamenajícího bezprostřední nebezpečí pro
+  [6] přistávající letadla
+
+ID 80: Jaký druh informace má být obsažen v pilnostní zprávě?
+  [0] zamýšlená trať, důležité informace pro podporu, úmysl pilota, letiště odletu, cílové letiště, kurz a
+  [1] nadmořská výška
+  [2] povaha problému nebo pozorování, důležité informace pro podporu, letiště odletu, informace o poloze,
+  [3] kurz a nadmořská výška
+  [4] zamýšlená trať, informace důležité pro podporu, úmysl pilota, informace o poloze, letiště odletu, kurz a
+  [5] nadmořská výška
+  [6] povaha problému nebo pozorování, důležité informace pro podporu, úmysl pilota, informace o poloze,
+  [7] kurz a nadmořská výška
+
+
+--- Předmět 5: Letové zásady (2 otázek) ---
+ID 8: Vyřazena
+  !!! CHYBÍ MOŽNOSTI (Answers is empty)
+
+ID 100: Jaký je rozdíl mezi vývrtkou a spirálou?
+  [0] vývrtka: odtržení proudu na vnitřním křídle, rychlost konstantní – spirála: není odtržení proudu,
+  [1] rychlost rychle narůstá
+  [2] vývrtka: odtržení proudu na vnějším křídle, rychlost konstantní – spirála: odtržení není, rychlost
+  [3] rychle narůstá
+  [4] vývrtka: odtržení proudu na vnitřním křídle, rychlost rychle narůstá – spirála: odtržení není,
+  [5] rychlost konstantní
+  [6] vývrtka: odtržení proudu na vnějším křídle, rychlost rychle narůstá – spirála: odtržení není,
+  [7] rychlost konstantní
+
+
+--- Předmět 6: Výkonnost a plánování (5 otázek) ---
+ID 37: Jaký vliv má nastavení vztlakových klapek na výkonnost letadla při vzletu?
+  [0] větší výchylka klapek zkracuje rozjezd po zemi, snižuje rychlost odpoutání, ale zhoršuje
+  [1] výkonnost při stoupání
+  [2] větší výchylka klapek zkracuje rozjezd po zemi, snižuje rychlost odpoutání a zvyšuje výkonnost
+  [3] při stoupání
+  [4] větší výchylka klapek zkracuje rozjezd po zemi, zvyšuje rychlost odpoutání a výkonnost při
+  [5] stoupání
+  [6] větší výchylka klapek prodlužuje rozjezd po zemi, zvyšuje rychlost odpoutání a výkonnost při
+  [7] stoupání
+
+ID 65: Jaká je maximální stoupavost letadla v tlakové výšce 6500 ft při teplotě vnějšího vzduchu
+  !!! CHYBÍ MOŽNOSTI (Answers is empty)
+
+ID 66: Jaká je pravá vzdušná rychlost (TAS) (kt) a spotřeba paliva (l/h) při traťovém letu s výkonem
+  !!! CHYBÍ MOŽNOSTI (Answers is empty)
+
+ID 97: Pro let je dáno: Traťové palivo = 70 US galonů, palivo pro mimořádné okolnosti = 5 % traťového paliv
+  !!! CHYBÍ MOŽNOSTI (Answers is empty)
+
+ID 98: Pro let je dáno: Traťové palivo = 70 US galonů, palivo pro mimořádné okolnosti = 5 % traťového paliv
+  [0] po přistání bude zbytek paliva 10.0 US galonů plus palivo pro let na náhradní letiště a konečná
+  [1] záloha paliva
+  [2] zbývající palivo nestačí pro přistání na cílovém letišti se zbytkem paliva pro let na náhradní
+  [3] letiště a konečnou zálohou paliva
+  [4] po přistání zbyde 30.0 US galonů plus palivo pro let na náhradní letiště a konečná záloha paliva
+  [5] po přistání zbyde celkem 10.0 US galonů paliva
+
+
+--- Předmět 7: Znalost letadla (AGK) (1 otázek) ---
+ID 73: Který z uvedených přístrojů získává údaje měřením tlaku?
+  [0] tlakoměr oleje, tlakoměr paliva, ukazatel plnícího tlaku, výškoměr, variometr, rychloměr,
+  [1] ukazatel tlaku sání
+  [2] tlakoměr oleje, tlakoměr paliva, palivoměr, ukazatel plnícího tlaku, ukazatel rozdílu tlaku,
+  [3] výškoměr
+  [4] rychloměr, variometr, výškoměr, směrový setrvačník, zatáčkoměr, tlakoměr oleje, tlakoměr
+  [5] paliva
+  [6] rychloměr, variometr, výškoměr, magnetický kompas, tlakoměr oleje, tlakoměr paliva
+
+
+--- Předmět 8: Provozní postupy (1 otázek) ---
+ID 30: Letadlo ihned po vzletu vlétne nečekaně do mikroburstu. Jak se lze vyhnout nechtěnému klesání?
+  [0] nastavit maximální výkon, zachovat stávající konfiguraci, udržet optimální rychlost pro
+  [1] maximální stoupavost
+  [2] nastavit maximální výkon, zasunout klapky a podvozek, zvětšit podélný sklon až do dosažení
+  [3] optimální stoupací rychlosti
+  [4] nastavit maximální výkon, zachovat stávající konfiguraci, zvýšit rychlost, aby letadlo opustilo co
+  [5] nejdříve oblast mikroburstu
+  [6] nastavit maximální výkon, zasunout podvozek a klapky, zvýšit rychlost, levou nebo pravou
+  [7] zatáčkou uniknout z oblasti mikroburstu
+
+
+--- Předmět 9: Navigace (3 otázek) ---
+ID 43: Jaké jsou vlastnosti mapy s Mercatorovým zobrazením?
+  [0] měřítko se zvětšuje se zeměpisnou šířkou, velké kružnice jsou zobrazeny jako křivky, loxodromy
+  [1] jsou zobrazeny jako přímky
+  [2] měřítko se zvětšuje se zeměpisnou šířkou, velké kružnice jsou zobrazeny jako přímky,
+  [3] loxodromy jsou zobrazeny jako křivky
+  [4] měřítko je konstantní, velké kružnice jsou zobrazeny jako křivky, loxodromy jsou zobrazeny jako
+  [5] přímky
+  [6] měřítko je konstantní, velké kružnice jsou zobrazeny jako přímky, loxodromy jsou zobrazeny
+  [7] jako křivky
+
+ID 74: Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt. vzdálenost:
+  !!! CHYBÍ MOŽNOSTI (Answers is empty)
+
+ID 75: Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt. vzdálenost:
+  !!! CHYBÍ MOŽNOSTI (Answers is empty)
+
+
+CELKEM K RUČNÍ KONTROLE: 21 otázek.

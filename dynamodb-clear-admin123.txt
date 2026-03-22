@@ -1,0 +1,22 @@
+Postup v AWS DynamoDB extension ve VS Code:
+
+1. Otevřete AWS DynamoDB extension (ikona v sidebar)
+2. Připojte se k vašemu AWS účtu
+3. Najděte tabulku: aeropilot-users
+4. Klikněte na tabulku a otevřete "Explore table"
+5. V "Items" view hledejte záznamy kde:
+   - settings.deepseekApiKey = "admin123"
+   - settings.deepseekApiKey = "test" 
+   - settings.deepseekApiKey = "demo"
+
+6. Pro každý nalezený záznam:
+   - Klikněte pravým tlačítkem -> "Edit item"
+   - Smažte pole "settings.deepseekApiKey"
+   - Uložte změny
+
+NEBO použijte "Execute query" s tímto filterem:
+
+Filter Expression: attribute_exists(settings.deepseekApiKey)
+Projection Expression: userId, settings.deepseekApiKey
+
+To vám ukáže všechny uživatele s DeepSeek klíči.

@@ -1,0 +1,31 @@
+{
+  // Panel settings - force panels to right side
+  "workbench.panel.location": "right",
+  "workbench.sideBar.location": "left",
+  "workbench.activityBar.location": "default",
+  
+  // Editor settings
+  "workbench.editor.openPositioning": "right",
+  "workbench.editor.showTabs": "multiple",
+  
+  // View settings
+  "workbench.view.alwaysShowHeaderActions": true,
+  
+  // Specific view locations if extension provides settings
+  // Try common extension view location settings
+  "workbench.view.location": "right",
+  
+  // Terminal settings
+  "terminal.integrated.location": "right",
+  
+  // Try hypothetical Deep Code extension settings
+  // These are guesses - check extension documentation
+  "deepcode.panel.location": "right",
+  "deepcode.view.location": "right",
+  "deepseek.panel.location": "right",
+  "deepseek.view.location": "right",
+  "vibecoding.panel.location": "right",
+  "aws-dynamodb.region": "eu-central-1",
+  "aws-dynamodb.profile": "Susixprog",
+  "aws-dynamodb.endpoint": "https://dynamodb.eu-central-1.amazonaws.com"
+}

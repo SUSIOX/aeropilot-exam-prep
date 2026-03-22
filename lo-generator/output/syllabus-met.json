@@ -1,0 +1,3752 @@
+[
+  {
+    "loId": "30.1",
+    "subjectId": 3,
+    "text": "THE ATMOSPHERE (AND PHYSICAL BASICS)",
+    "knowledgeContent": "The atmosphere is the layer of gases surrounding the Earth, essential for aviation as it affects aircraft performance and weather conditions. Understanding its physical basics, including composition, structure, and properties, is fundamental for safe flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.1",
+    "subjectId": 3,
+    "text": "Composition, extend and vertical division",
+    "knowledgeContent": "The atmosphere is composed primarily of nitrogen (78%) and oxygen (21%), with trace gases like argon and carbon dioxide. It extends vertically from the Earth's surface to space and is divided into distinct layers based on temperature and composition.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.1.1",
+    "subjectId": 3,
+    "text": "Structure of the atmosphere (Basics)",
+    "knowledgeContent": "The atmosphere is structured into layers: troposphere, stratosphere, mesosphere, thermosphere, and exosphere. Each layer has unique characteristics, such as temperature gradients and chemical composition, which influence aviation operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.1.1.2List",
+    "subjectId": 3,
+    "text": "the different layers of the atmosphere and know their approximate extent",
+    "knowledgeContent": "The atmosphere consists of five main layers: troposphere (up to 11 km), stratosphere (11-50 km), mesosphere (50-85 km), thermosphere (85-600 km), and exosphere (600 km and beyond). Each layer has distinct properties affecting weather and flight conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.1.1.3Describe",
+    "subjectId": 3,
+    "text": "the temperature profile within the troposphere and stratosphere",
+    "knowledgeContent": "In the troposphere, temperature decreases with altitude at an average rate of 2°C per 1,000 ft. In the stratosphere, temperature increases with altitude due to ozone absorption of ultraviolet radiation, creating a stable layer.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.1.1.4Explain",
+    "subjectId": 3,
+    "text": "the relationship between air pressure, air density and air temperature",
+    "knowledgeContent": "Air pressure decreases with altitude due to reduced air mass above. Air density decreases with altitude and increases with lower temperatures. These relationships are critical for understanding aircraft performance and atmospheric behavior.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.1.2",
+    "subjectId": 3,
+    "text": "Troposphere",
+    "knowledgeContent": "The troposphere contains water vapor, which is responsible for weather phenomena such as clouds, precipitation, and storms. This layer is crucial for aviation as it directly impacts flight conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.1.2.1State",
+    "subjectId": 3,
+    "text": "that the troposphere contains water vapour responsible for weather phenomena",
+    "knowledgeContent": "The troposphere contains water vapor, which is essential for the formation of weather phenomena such as clouds, rain, and thunderstorms.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.1.2.2Describe",
+    "subjectId": 3,
+    "text": "the Tropopause as the boundary area between Troposphere and Stratosphere",
+    "knowledgeContent": "The tropopause is the boundary between the troposphere and stratosphere, characterized by a stable temperature profile. Its altitude varies with latitude, being higher at the equator and lower at the poles.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.2",
+    "subjectId": 3,
+    "text": "Air temperature",
+    "knowledgeContent": "Air temperature is a critical factor in aviation, affecting aircraft performance, engine efficiency, and weather conditions. Understanding its definition, units, and vertical distribution is essential for flight planning and safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.2.1",
+    "subjectId": 3,
+    "text": "Definition and units",
+    "knowledgeContent": "Air temperature is defined as the measure of the kinetic energy of air molecules. In flight meteorology, it is measured in degrees Celsius (°C), which is the standard unit for aviation purposes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.2.1.1State",
+    "subjectId": 3,
+    "text": "the unit for air temperature used in flight meteorology: degrees Celsius",
+    "knowledgeContent": "The unit for air temperature used in flight meteorology is degrees Celsius (°C), which is essential for interpreting weather reports and forecasts.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.2.1.2Describe",
+    "subjectId": 3,
+    "text": "the physical character of air temperature",
+    "knowledgeContent": "Air temperature represents the average kinetic energy of air molecules. It influences air density, pressure, and humidity, all of which are critical for aircraft performance and weather conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.2.2",
+    "subjectId": 3,
+    "text": "Vertical distribution of temperature",
+    "knowledgeContent": "Temperature generally decreases with altitude in the troposphere at an average rate of 2°C per 1,000 ft. This vertical distribution affects atmospheric stability and aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.2.3",
+    "subjectId": 3,
+    "text": "Transfer of heat",
+    "knowledgeContent": "Heat is transferred in the atmosphere through conduction, convection, and radiation. These processes drive weather patterns and influence temperature distribution, which is vital for understanding flight conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.2.4",
+    "subjectId": 3,
+    "text": "Lapse rates, stability and instability",
+    "knowledgeContent": "Lapse rates describe the rate of temperature change with altitude. Stability refers to the atmosphere's resistance to vertical motion, while instability promotes vertical air movement, affecting weather and turbulence.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.2.4.4Describe",
+    "subjectId": 3,
+    "text": "the terms 'stable', 'unstable' or 'conditionally unstable' in atmospheric conditions",
+    "knowledgeContent": "A stable atmosphere resists vertical motion, an unstable atmosphere promotes vertical motion, and a conditionally unstable atmosphere becomes unstable when saturated. These conditions influence cloud formation and turbulence.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.2.5",
+    "subjectId": 3,
+    "text": "Development of inversions and types of inversions",
+    "knowledgeContent": "Inversions occur when temperature increases with altitude, creating stable air layers. Types include radiation inversions (nighttime cooling) and subsidence inversions (high-pressure systems).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.2.5.1Describe",
+    "subjectId": 3,
+    "text": "an 'inversion' as a layer with increasing temperature with increasing height",
+    "knowledgeContent": "An inversion is a layer where temperature increases with altitude, contrary to the typical decrease. This creates stable air conditions, often leading to fog or poor visibility.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.2.5.2Describe",
+    "subjectId": 3,
+    "text": "an 'isothermal layer' as a layer with constant temperature with increasing height",
+    "knowledgeContent": "An isothermal layer is a region where temperature remains constant with altitude. This condition can occur in the stratosphere or during specific weather phenomena.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.2.6.1Explain",
+    "subjectId": 3,
+    "text": "the effect of solar insolation on ground heating depending on latitude and seasons",
+    "knowledgeContent": "Solar insolation heats the Earth's surface unevenly due to variations in latitude and seasons. This differential heating drives atmospheric circulation and weather patterns, impacting flight conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.3",
+    "subjectId": 3,
+    "text": "Atmospheric pressure",
+    "knowledgeContent": "Atmospheric pressure is the force exerted by the weight of air molecules. It is measured in millibars (mbar), hectopascals (hPa), or inches of mercury (inHg) and varies with altitude and weather systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.3.1",
+    "subjectId": 3,
+    "text": "Barometric pressure and isobars",
+    "knowledgeContent": "Barometric pressure is the atmospheric pressure measured at a specific location. Isobars are lines on weather maps connecting points of equal pressure, used to identify pressure systems and wind patterns.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.3.1.1Define",
+    "subjectId": 3,
+    "text": "pressure and list units of pressure used in flight meteorology (mbar, hPa, inHg)",
+    "knowledgeContent": "Pressure is the force exerted by air molecules per unit area. Units used in flight meteorology include millibars (mbar), hectopascals (hPa), and inches of mercury (inHg).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.3.1.2Describe",
+    "subjectId": 3,
+    "text": "the origin of atmospheric pressure from the gravitational force acting on the mass of air",
+    "knowledgeContent": "Atmospheric pressure originates from the gravitational force acting on the mass of air above a given point. It decreases with altitude as the mass of air above diminishes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.3.2",
+    "subjectId": 3,
+    "text": "Pressure variation with height",
+    "knowledgeContent": "Pressure decreases with altitude at a predictable rate, approximately halving every 18,000 ft. This variation affects aircraft performance and altimeter readings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.3.3",
+    "subjectId": 3,
+    "text": "Reduction of pressure to mean sea level",
+    "knowledgeContent": "Pressure is reduced to mean sea level (MSL) to standardize measurements across different elevations. This allows for consistent weather reporting and altimeter settings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.3.4",
+    "subjectId": 3,
+    "text": "Relationship between surface pressure centres and pressure centres aloft",
+    "knowledgeContent": "Surface pressure centers, such as highs and lows, are linked to pressure centers aloft. These relationships influence wind patterns, weather systems, and flight conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.4",
+    "subjectId": 3,
+    "text": "Air density",
+    "knowledgeContent": "Air density is the mass of air per unit volume, influenced by pressure and temperature. It decreases with altitude and higher temperatures, directly affecting aircraft lift and engine performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.4.1",
+    "subjectId": 3,
+    "text": "Relationship between pressure, temperature and density",
+    "knowledgeContent": "Air density is determined by the relationship between pressure, temperature, and humidity. Higher pressure and lower temperature increase density, enhancing aircraft performance, while lower pressure and higher temperature reduce density.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:28:13.691Z",
+    "updatedAt": "2026-03-17T20:28:13.691Z"
+  },
+  {
+    "loId": "30.1.4.1.1Define",
+    "subjectId": 3,
+    "text": "'air density'",
+    "knowledgeContent": "Air density is the mass of air per unit volume, typically measured in kg/m³. It decreases with altitude due to lower atmospheric pressure and temperature variations. Understanding air density is crucial for aircraft performance calculations, as it affects lift and engine power.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.1.4.1.2Describe",
+    "subjectId": 3,
+    "text": "the relationship between air density, temperature and pressure",
+    "knowledgeContent": "Air density is inversely proportional to temperature and directly proportional to pressure (per the ideal gas law). Higher temperatures or lower pressures reduce air density, impacting aircraft performance. Pilots must account for these relationships, especially during takeoff and landing in hot or high-altitude conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.1.5",
+    "subjectId": 3,
+    "text": "ICAO standard atmosphere",
+    "knowledgeContent": "The ICAO Standard Atmosphere (ISA) defines a theoretical model of atmospheric conditions at sea level: 15°C, 1013.25 hPa, and a lapse rate of 1.98°C per 1000 ft up to the tropopause. It serves as a reference for aircraft performance, instrument calibration, and meteorological comparisons.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.1.5.1",
+    "subjectId": 3,
+    "text": "Standard values",
+    "knowledgeContent": "Standard ISA values include: sea-level pressure (1013.25 hPa), temperature (15°C), density (1.225 kg/m³), and a tropospheric lapse rate of 1.98°C/1000 ft. These values are essential for altimeter settings, performance charts, and flight planning under non-standard conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.1.5.1.3State",
+    "subjectId": 3,
+    "text": "the height of the tropopause in ISA with 11 km or 36.000 ft",
+    "knowledgeContent": "The tropopause in the ISA is at 11 km (36,090 ft), marking the boundary between the troposphere and stratosphere. Above this height, temperature remains constant at -56.5°C in the standard atmosphere.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.1.6",
+    "subjectId": 3,
+    "text": "Altimetry",
+    "knowledgeContent": "Altimetry involves measuring altitude based on atmospheric pressure. A pilot must understand how pressure changes with altitude, altimeter settings (QNH, QFE), and temperature corrections to ensure accurate vertical navigation and terrain clearance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.1.6.1",
+    "subjectId": 3,
+    "text": "Terminology and definitions",
+    "knowledgeContent": "Key terms include: pressure altitude (altitude above the 1013.25 hPa datum), QNH altitude (elevation above MSL corrected to local pressure), and true altitude (actual height above MSL). Misinterpretation can lead to altitude errors.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.1.6.1.1Define",
+    "subjectId": 3,
+    "text": "and describe the terms 'pressure altitude', 'QNH altitude' and 'true altitude'",
+    "knowledgeContent": "Pressure altitude is indicated when the altimeter is set to 1013.25 hPa. QNH altitude adjusts the altimeter to local MSL pressure, showing elevation above sea level. True altitude is the actual vertical distance above MSL, requiring temperature corrections.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.1.6.2",
+    "subjectId": 3,
+    "text": "Altimeter and altimeter settings",
+    "knowledgeContent": "Altimeter settings must be adjusted for local pressure (QNH) or aerodrome elevation (QFE). Errors occur if settings are not updated, particularly during pressure changes or when transitioning between regions with different reference pressures.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.1.6.2.3Convert",
+    "subjectId": 3,
+    "text": "QFE into QNH, using airfield elevation and MSL barometric lapse rate of 30 ft/hPa",
+    "knowledgeContent": "To convert QFE to QNH: QNH = QFE + (elevation in ft / 30). For example, at an airfield 600 ft AMSL with QFE 1000 hPa, QNH = 1000 + (600/30) = 1020 hPa. This accounts for the standard pressure lapse rate (1 hPa ≈ 30 ft).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.1.6.2.6Explain",
+    "subjectId": 3,
+    "text": "how temperatures lower than ISA affect the altimeter indication",
+    "knowledgeContent": "In temperatures lower than ISA, the altimeter overreads (indicates higher than true altitude) because cold air is denser, causing pressure to drop more rapidly with height. This can lead to insufficient terrain clearance if uncorrected.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.1.6.2.7Assess",
+    "subjectId": 3,
+    "text": "the hazards when flying from high to low pressure with constant altimeter setting",
+    "knowledgeContent": "Flying from high to low pressure without adjusting the altimeter setting causes the altimeter to overread, risking controlled flight into terrain (CFIT). Pilots must update QNH frequently when crossing pressure systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.1.6.3",
+    "subjectId": 3,
+    "text": "Calculations",
+    "knowledgeContent": "Calculations include determining true altitude using temperature deviation from ISA and pressure altitude. For example: True Altitude = Pressure Altitude + (ISA Dev × Pressure Altitude × 0.004).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.1.6.4",
+    "subjectId": 3,
+    "text": "Effect of accelerated airflow due to topography",
+    "knowledgeContent": "Accelerated airflow over mountains (venturi effect) lowers local pressure, causing altimeters to overread. Pilots must anticipate altitude errors in mountainous terrain to avoid flying lower than indicated.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2",
+    "subjectId": 3,
+    "text": "Wind",
+    "knowledgeContent": "Wind is the horizontal movement of air relative to the Earth's surface, measured in direction (from) and speed. It affects aircraft ground speed, fuel planning, and turbulence avoidance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.1",
+    "subjectId": 3,
+    "text": "Definition and measurement of wind",
+    "knowledgeContent": "Wind is measured using anemometers (speed) and wind vanes (direction). For aviation, it is reported in degrees true (e.g., 270° for westerly) and speed in knots (kt) or meters per second (m/s).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.1.1",
+    "subjectId": 3,
+    "text": "Definition and measurement",
+    "knowledgeContent": "Surface wind is measured at 10 m AGL, while upper winds are detected via pilot reports (PIREPs), radiosondes, or radar. Wind shear and gusts are critical for takeoff/landing safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.1.1.1Describe",
+    "subjectId": 3,
+    "text": "how wind is measured for flight meteorological purposes",
+    "knowledgeContent": "For flight purposes, wind is measured by ground stations (cup anemometers, sonic detectors) and aloft by aircraft instruments or weather balloons. Reports include averages over 2-10 minutes, with gusts noted.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.1.1.2List",
+    "subjectId": 3,
+    "text": "the units used for reporting wind speed in flight meteorology as kt or m/s",
+    "knowledgeContent": "Wind speed is reported in knots (kt) internationally, though some countries use m/s (1 kt ≈ 0.514 m/s). METARs and TAFs use kt, while synoptic charts may use m/s or km/h.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.2",
+    "subjectId": 3,
+    "text": "Primary cause of wind",
+    "knowledgeContent": "Wind is primarily caused by pressure gradients (air moving from high to low pressure), modified by the Coriolis force (deflecting right in the NH) and friction. Gradient wind balances these forces aloft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.2.1",
+    "subjectId": 3,
+    "text": "Primary cause of wind, pressure gradient, coriolis force and gradient wind",
+    "knowledgeContent": "Pressure gradient force drives wind from high to low pressure. Coriolis force deflects wind right (NH) or left (SH), creating geostrophic wind aloft. Surface friction reduces speed and increases cross-isobar flow.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.2.2",
+    "subjectId": 3,
+    "text": "Variation of wind in the friction layer",
+    "knowledgeContent": "In the friction layer (up to 2000 ft AGL), surface drag slows wind, reducing Coriolis effect and causing wind to angle 20-40° across isobars toward low pressure. Turbulence mixes momentum downward.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.2.2.1Explain",
+    "subjectId": 3,
+    "text": "the influence of surface friction on wind direction in the friction layer",
+    "knowledgeContent": "Surface friction decreases wind speed, weakening the Coriolis deflection. This causes wind to flow at an angle (typically 30°) toward lower pressure, creating convergence (rising air) or divergence (sinking air).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.2.3",
+    "subjectId": 3,
+    "text": "Effects of convergence and divergence",
+    "knowledgeContent": "Convergence (air piling up) forces ascent, often forming clouds/precipitation. Divergence (air spreading out) causes subsidence, clearing skies. These patterns are key to weather forecasting.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.3",
+    "subjectId": 3,
+    "text": "General global circulation",
+    "knowledgeContent": "Global circulation consists of Hadley, Ferrel, and Polar cells, driven by uneven solar heating. Trade winds, westerlies, and polar easterlies result, with high-pressure zones at 30° and poles, lows at 60° and equator.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.3.1",
+    "subjectId": 3,
+    "text": "General circulation around the globe",
+    "knowledgeContent": "The Hadley Cell (0-30°) creates trade winds; Ferrel Cell (30-60°) drives westerlies; Polar Cell (60-90°) produces easterlies. Jet streams form at cell boundaries due to temperature contrasts.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.3.1.3List",
+    "subjectId": 3,
+    "text": "the typical latitudes for High- and Low pressure areas resulting from global circulation",
+    "knowledgeContent": "High-pressure zones: subtropical (30°), polar (90°). Low-pressure zones: equatorial (0°), subpolar (60°). These latitudes shift seasonally, affecting wind patterns and weather systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.4",
+    "subjectId": 3,
+    "text": "Local winds",
+    "knowledgeContent": "Local winds arise from terrain or temperature differences. Anabatic (upslope) and katabatic (downslope) winds occur daily in mountains. Sea/land breezes reverse direction between day (onshore) and night (offshore).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.4.1.1Define",
+    "subjectId": 3,
+    "text": "the terms 'anabatic' and 'katabatic winds', and 'mountain' and 'valley winds'",
+    "knowledgeContent": "Anabatic wind: daytime upslope flow from valley heating. Katabatic wind: nighttime downslope flow from cooled air. Mountain/valley winds are large-scale versions of these, driven by regional pressure differences.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.4.1.5Explain",
+    "subjectId": 3,
+    "text": "the effect of sea breeze and land breeze with change of daytime",
+    "knowledgeContent": "Sea breeze: daytime onshore wind as land heats faster than water. Land breeze: nighttime offshore wind as land cools faster. Strength depends on temperature contrast, peaking mid-afternoon for sea breezes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:29:14.072Z",
+    "updatedAt": "2026-03-17T20:29:14.072Z"
+  },
+  {
+    "loId": "30.2.5",
+    "subjectId": 3,
+    "text": "Mountain waves (standing waves, lee waves)",
+    "knowledgeContent": "Mountain waves (standing waves, lee waves) are large-scale atmospheric oscillations caused by wind flowing over mountain ranges. A PPL student must understand their formation, associated hazards (e.g., severe turbulence, rotors), and how to recognize them visually (e.g., lenticular clouds).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.2.5.1",
+    "subjectId": 3,
+    "text": "Origin and characteristics",
+    "knowledgeContent": "The origin of mountain waves lies in stable air flowing over elevated terrain, creating oscillations downstream. Characteristics include alternating updrafts/downdrafts, potential for severe turbulence, and distinct cloud formations like lenticularis and rotor clouds.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.2.5.1.2Describe",
+    "subjectId": 3,
+    "text": "the formation of rotors and associated hazards",
+    "knowledgeContent": "Rotors form beneath mountain wave crests due to shear between descending and ascending air, creating violent eddies. Hazards include extreme turbulence, rapid altitude loss, and structural stress on aircraft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.2.5.1.3Describe",
+    "subjectId": 3,
+    "text": "the formation of lenticularis clouds and associated hazards",
+    "knowledgeContent": "Lenticularis clouds form in the crests of mountain waves where moist air condenses. Hazards include masking severe turbulence and indicating strong wave activity, requiring avoidance or altitude adjustments.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.2.6",
+    "subjectId": 3,
+    "text": "Turbulence",
+    "knowledgeContent": "Turbulence is irregular air motion caused by thermal, mechanical, or shear forces. A PPL student must classify types (thermal, mechanical, wake, clear-air) and understand their impact on flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.2.6.1",
+    "subjectId": 3,
+    "text": "Description and types of turbulence",
+    "knowledgeContent": "Turbulence types include convective (thermal), mechanical (obstruction-induced), wind shear, and wake turbulence. Each varies in intensity and predictability, affecting aircraft control and passenger comfort.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.2.6.1.1Define",
+    "subjectId": 3,
+    "text": "turbulence conditions 'light' / 'medium' / 'severe'",
+    "knowledgeContent": "Light turbulence causes slight erratic changes in altitude/attitude; medium turbulence reduces aircraft control momentarily; severe turbulence involves large abrupt changes, making control difficult. EASA defines these based on vertical acceleration (e.g., ±0.5g for light).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.2.6.2",
+    "subjectId": 3,
+    "text": "Formation and location of turbulence",
+    "knowledgeContent": "Turbulence forms due to surface friction, thermal updrafts, or wind shear (e.g., near jet streams). Common locations include mountain lee sides, convective clouds, and inversion layers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.2.6.2.1Describe",
+    "subjectId": 3,
+    "text": "typical zones with turbulence, and how they can be avoided",
+    "knowledgeContent": "Typical turbulence zones include mountain ridges, thunderstorm edges, and low-level wind shear areas. Avoidance strategies include flying at higher altitudes, staying upwind of obstacles, and monitoring weather reports.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.3",
+    "subjectId": 3,
+    "text": "THERMODYNAMICS",
+    "knowledgeContent": "Thermodynamics in aviation covers heat exchange, humidity, and adiabatic processes affecting weather. Key concepts include latent heat, saturation, and temperature/dew point relationships.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.3.1",
+    "subjectId": 3,
+    "text": "Humidity",
+    "knowledgeContent": "Humidity measures water vapor in air, influencing cloud/fog formation. Critical metrics include absolute humidity, relative humidity, and dew point (temperature at which air saturates).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.3.1.1",
+    "subjectId": 3,
+    "text": "Water vapour in the atmosphere",
+    "knowledgeContent": "Water vapor is an invisible gas mixed with dry air (N2/O2). Its concentration varies with temperature; warmer air holds more vapor, affecting condensation and precipitation processes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.3.1.1.1Describe",
+    "subjectId": 3,
+    "text": "air humidity as water molecules in gaseous form mixed with dry air",
+    "knowledgeContent": "Air humidity is the mass of water vapor per unit volume (absolute) or percentage of saturation (relative). Saturation occurs when air can’t hold more vapor at a given temperature.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.3.1.2",
+    "subjectId": 3,
+    "text": "Temperature/dew point, relative humidity",
+    "knowledgeContent": "Temperature/dew point spread indicates condensation risk (small spread = fog/clouds). Relative humidity depends on both vapor content and temperature (e.g., cooling increases RH).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.3.1.2.4Describe",
+    "subjectId": 3,
+    "text": "the dependence of saturation humidity on air temperature",
+    "knowledgeContent": "Saturation humidity rises exponentially with temperature (Clausius-Clapeyron relation). Warmer air requires far more vapor to saturate, explaining why dew is rare in hot climates.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.3.2",
+    "subjectId": 3,
+    "text": "Change of state of aggregation",
+    "knowledgeContent": "Phase changes (e.g., condensation, freezing) involve latent heat exchange. For example, condensation releases heat, fueling thunderstorm updrafts, while evaporation cools surfaces.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.3.2.1",
+    "subjectId": 3,
+    "text": "Condensation, evaporation, sublimation, freezing and melting, latent heat",
+    "knowledgeContent": "Condensation (gas→liquid) releases 2260 kJ/kg; freezing (liquid→solid) releases 334 kJ/kg. These processes drive weather systems (e.g., cumulus growth via latent heat release).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.3.3",
+    "subjectId": 3,
+    "text": "Adiabatic processes",
+    "knowledgeContent": "Adiabatic processes involve temperature changes without heat transfer (e.g., air expanding in rising currents). Dry adiabatic lapse rate is 9.8°C/km; saturated rate is lower (~5°C/km) due to latent heat.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.4",
+    "subjectId": 3,
+    "text": "CLOUDS AND FOG",
+    "knowledgeContent": "Clouds and fog form via cooling (adiabatic expansion, radiation, advection) and condensation on nuclei. Classification is by height (low/mid/high) and form (stratiform/cumuliform).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.4.1",
+    "subjectId": 3,
+    "text": "Cloud formation and description",
+    "knowledgeContent": "Cloud formation requires lifting (orographic, convective, frontal) to cool air to dew point. Key factors include humidity, stability, and inversion layers limiting vertical growth.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.4.1.1",
+    "subjectId": 3,
+    "text": "Cooling by adiabatic expansion and by advection",
+    "knowledgeContent": "Adiabatic cooling occurs when air rises and expands (e.g., over mountains). Advective cooling happens when warm air moves over cold surfaces (e.g., sea fog).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.4.1.1.1State",
+    "subjectId": 3,
+    "text": "that any clound formation requires a lifting process",
+    "knowledgeContent": "All cloud formation requires a lifting mechanism (e.g., convection, fronts, topography) to cool air to saturation. No lifting = no clouds, regardless of humidity.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.4.1.1.4Describe",
+    "subjectId": 3,
+    "text": "the effect of an upper level inversion on the height of the cloud tops",
+    "knowledgeContent": "Upper-level inversions act as lids, stopping convective cloud growth (e.g., flat cumulus tops). This stabilizes the atmosphere, preventing thunderstorms but trapping pollutants.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.4.1.1.5State",
+    "subjectId": 3,
+    "text": "that convection processes usually result in cloud formation",
+    "knowledgeContent": "Convection (uneven surface heating) creates updrafts, forming cumulus clouds. Strong convection leads to towering cumulus and cumulonimbus with turbulence/precipitation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.4.1.2",
+    "subjectId": 3,
+    "text": "Cloud types and cloud classification",
+    "knowledgeContent": "Cloud types are classified by height (low: 0-2km, mid: 2-7km, high: >7km) and shape (stratiform = layered, cumuliform = heaped). Prefixes (e.g., 'alto-') denote altitude.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.4.1.2.3Identify",
+    "subjectId": 3,
+    "text": "cumulus/stratus clouds on a given picture",
+    "knowledgeContent": "Cumulus (Cu) are puffy with flat bases; stratus (St) are uniform layers. Recognition is critical for assessing stability (cumulus = unstable; stratus = stable).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.4.1.2.4Identifiy",
+    "subjectId": 3,
+    "text": "low/alto/cirro clouds on a given picture",
+    "knowledgeContent": "Low clouds (St, Sc), mid (Ac, As), high (Ci, Cs). Alto- denotes mid-level (e.g., Altocumulus). Cirro- indicates ice crystals (e.g., Cirrostratus).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.4.1.2.5Identify",
+    "subjectId": 3,
+    "text": "clouds forming across multiple layers (nimbo)",
+    "knowledgeContent": "Multi-layer clouds (e.g., Nimbostratus, Cumulonimbus) span low to high altitudes, often producing precipitation. Cb features anvil tops due to tropopause penetration.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.4.1.2.6List",
+    "subjectId": 3,
+    "text": "the lettercodes for typical cloud types, e.g. Cu, Ac, St, As, Cb, Ci, Ns",
+    "knowledgeContent": "Standard codes: Cu (cumulus), Cb (cumulonimbus), Ac (altocumulus), As (altostratus), St (stratus), Sc (stratocumulus), Ci (cirrus), Ns (nimbostratus).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.4.1.3",
+    "subjectId": 3,
+    "text": "Influence of inversions on cloud development",
+    "knowledgeContent": "Inversions (temperature increasing with height) suppress vertical cloud growth, creating flat tops. Subsidence inversions (high-pressure systems) often lead to clear skies below.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:30:11.759Z",
+    "updatedAt": "2026-03-17T20:30:11.759Z"
+  },
+  {
+    "loId": "30.4.2",
+    "subjectId": 3,
+    "text": "Fog, mist, haze",
+    "knowledgeContent": "A PPL(A) student must understand the differences between fog, mist, and haze, including their definitions, visibility ranges, and meteorological codes (e.g., HZ for haze, BR for mist).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.1",
+    "subjectId": 3,
+    "text": "General aspects",
+    "knowledgeContent": "A PPL(A) student must know the general characteristics of fog, mist, and haze, including their formation processes and impact on aviation operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.1.2Associate",
+    "subjectId": 3,
+    "text": "'fog' with visibility lower than 1000 m",
+    "knowledgeContent": "A PPL(A) student must associate fog with visibility reduced to less than 1000 meters, as defined by meteorological standards.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.1.3Explain",
+    "subjectId": 3,
+    "text": "the difference between 'haze' (HZ) and 'mist' (BR)",
+    "knowledgeContent": "A PPL(A) student must explain that haze (HZ) is caused by suspended dry particles reducing visibility, while mist (BR) is caused by suspended water droplets with visibility typically above 1000 meters.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.1.4Interpret",
+    "subjectId": 3,
+    "text": "spread information from ATIS with regard to propability of fog formation",
+    "knowledgeContent": "A PPL(A) student must interpret ATIS information to assess the probability of fog formation based on temperature, dew point, and humidity conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.2",
+    "subjectId": 3,
+    "text": "Radiation fog",
+    "knowledgeContent": "A PPL(A) student must understand radiation fog, including its formation process and typical conditions for occurrence.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.2.1Explain",
+    "subjectId": 3,
+    "text": "the formation of radiation fog",
+    "knowledgeContent": "A PPL(A) student must explain that radiation fog forms on clear nights when the ground cools rapidly, causing the air near the surface to reach its dew point.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.2.3State",
+    "subjectId": 3,
+    "text": "that formation and dissipation of radiation depends on time of day and year",
+    "knowledgeContent": "A PPL(A) student must state that radiation fog forms and dissipates based on diurnal and seasonal variations in temperature and humidity.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.3",
+    "subjectId": 3,
+    "text": "Advection fog",
+    "knowledgeContent": "A PPL(A) student must understand advection fog, including its formation process and typical conditions for occurrence.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.3.1Explain",
+    "subjectId": 3,
+    "text": "the formation of advection fog",
+    "knowledgeContent": "A PPL(A) student must explain that advection fog forms when warm, moist air moves over a cooler surface, causing the air to cool to its dew point.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.3.2State",
+    "subjectId": 3,
+    "text": "example situations in which advection fog may occur",
+    "knowledgeContent": "A PPL(A) student must state that advection fog commonly occurs in coastal areas or when warm air moves over cold water or snow-covered ground.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.4",
+    "subjectId": 3,
+    "text": "Steaming fog",
+    "knowledgeContent": "A PPL(A) student must understand steaming fog (arctic smoke), including its formation process and typical conditions for occurrence.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.4.1Explain",
+    "subjectId": 3,
+    "text": "the formation of steaming fog (or arctic smoke)",
+    "knowledgeContent": "A PPL(A) student must explain that steaming fog forms when cold air moves over warmer water, causing rapid evaporation and condensation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.4.2State",
+    "subjectId": 3,
+    "text": "example situations in which steaming fog may occur",
+    "knowledgeContent": "A PPL(A) student must state that steaming fog often occurs in Arctic regions or over lakes and rivers during cold weather.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.5",
+    "subjectId": 3,
+    "text": "Frontal fog",
+    "knowledgeContent": "A PPL(A) student must understand frontal fog, including its formation process and typical conditions for occurrence.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.5.1Explain",
+    "subjectId": 3,
+    "text": "the formation of frontal (or mixing) fog",
+    "knowledgeContent": "A PPL(A) student must explain that frontal fog forms when warm, moist air rises over a frontal boundary, cooling to its dew point and condensing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.5.2State",
+    "subjectId": 3,
+    "text": "example situations in which frontal fog may occur",
+    "knowledgeContent": "A PPL(A) student must state that frontal fog often occurs ahead of warm fronts or in areas of precipitation associated with frontal systems.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.6",
+    "subjectId": 3,
+    "text": "Orographic fog (hill fog)",
+    "knowledgeContent": "A PPL(A) student must understand orographic fog (hill fog), including its formation process and typical conditions for occurrence.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.6.1Explain",
+    "subjectId": 3,
+    "text": "the formation of orographic (or hill) fog",
+    "knowledgeContent": "A PPL(A) student must explain that orographic fog forms when moist air is forced to rise over elevated terrain, cooling to its dew point and condensing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.4.2.6.2State",
+    "subjectId": 3,
+    "text": "example situations in which hill fog may occur",
+    "knowledgeContent": "A PPL(A) student must state that hill fog commonly occurs in mountainous or hilly regions with persistent moist airflow.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.5",
+    "subjectId": 3,
+    "text": "PRECIPITATION",
+    "knowledgeContent": "A PPL(A) student must understand the development and types of precipitation, including their relationship with cloud types and meteorological processes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.5.1",
+    "subjectId": 3,
+    "text": "Development of precipitation",
+    "knowledgeContent": "A PPL(A) student must understand the processes involved in the development of precipitation, including condensation, coalescence, and ice crystal growth.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.5.1.1",
+    "subjectId": 3,
+    "text": "Processes of development of precipitation",
+    "knowledgeContent": "A PPL(A) student must explain the processes of precipitation development, such as the collision-coalescence process in warm clouds and the Bergeron process in cold clouds.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.5.2.1",
+    "subjectId": 3,
+    "text": "Types of precipitation, relationship with cloud types",
+    "knowledgeContent": "A PPL(A) student must identify the types of precipitation (e.g., rain, snow, sleet, hail) and their associated cloud types (e.g., cumulonimbus, nimbostratus).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.6",
+    "subjectId": 3,
+    "text": "AIR MASSES AND FRONTS",
+    "knowledgeContent": "A PPL(A) student must understand air masses and fronts, including their classification, characteristics, and impact on weather.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.6.1",
+    "subjectId": 3,
+    "text": "Air masses",
+    "knowledgeContent": "A PPL(A) student must understand air masses, including their description, classification, and source regions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.6.1.1",
+    "subjectId": 3,
+    "text": "Description, classification and source regions of air masses",
+    "knowledgeContent": "A PPL(A) student must describe and classify air masses based on their temperature (polar, tropical) and moisture content (maritime, continental).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.6.1.1.1List",
+    "subjectId": 3,
+    "text": "the air masses usually affecting the weather in mid Europe",
+    "knowledgeContent": "A PPL(A) student must list the air masses affecting mid-Europe, such as maritime polar (mP), continental polar (cP), and maritime tropical (mT).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.6.1.2",
+    "subjectId": 3,
+    "text": "Modifications of air masses",
+    "knowledgeContent": "A PPL(A) student must understand how air masses are modified as they move over different surfaces, affecting temperature and humidity.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.6.2",
+    "subjectId": 3,
+    "text": "Fronts",
+    "knowledgeContent": "A PPL(A) student must understand fronts, including their types (cold, warm, occluded, stationary) and associated weather patterns.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:31:11.386Z",
+    "updatedAt": "2026-03-17T20:31:11.386Z"
+  },
+  {
+    "loId": "30.6.2.1",
+    "subjectId": 3,
+    "text": "General aspects",
+    "knowledgeContent": "A PPL(A) student must understand the fundamental principles of meteorology, including the structure of the atmosphere, atmospheric pressure, temperature, humidity, and wind patterns. They should also be aware of how these elements interact to influence weather conditions and flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.2",
+    "subjectId": 3,
+    "text": "Warm front, associated clouds, and weather",
+    "knowledgeContent": "A PPL(A) student must know that a warm front occurs when warm air advances and replaces colder air, leading to gradual cloud formation and precipitation. They should understand the typical sequence of clouds (cirrus, cirrostratus, altostratus, nimbostratus) and the associated weather changes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.2.1",
+    "subjectId": 3,
+    "text": "30.6.2.2.1",
+    "knowledgeContent": "A PPL(A) student must describe how warm air, being less dense, rises over cold air in a warm front, creating a gentle slope. This process leads to widespread cloud cover and prolonged precipitation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.2.2",
+    "subjectId": 3,
+    "text": "30.6.2.2.2",
+    "knowledgeContent": "A PPL(A) student must list typical clouds associated with a warm front: cirrus, cirrostratus, altostratus, and nimbostratus. They should also recognize that precipitation is usually steady and prolonged.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.2.3",
+    "subjectId": 3,
+    "text": "30.6.2.2.3",
+    "knowledgeContent": "A PPL(A) student must describe typical visual meteorological conditions associated with warm fronts, including reduced visibility due to precipitation, low cloud bases, and overcast skies.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.2.4",
+    "subjectId": 3,
+    "text": "30.6.2.2.4",
+    "knowledgeContent": "A PPL(A) student must list and explain hazards such as reduced visibility, icing, turbulence, and low cloud ceilings associated with warm fronts, which can impact flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.2.5",
+    "subjectId": 3,
+    "text": "30.6.2.2.5",
+    "knowledgeContent": "A PPL(A) student must state that the horizontal extension of a warm front's frontal area can span hundreds of kilometers, influencing weather over a large region.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.2.6",
+    "subjectId": 3,
+    "text": "30.6.2.2.6",
+    "knowledgeContent": "A PPL(A) student must name and identify warm fronts on surface weather charts, typically represented by red semicircles pointing in the direction of movement.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.3",
+    "subjectId": 3,
+    "text": "Cold front, associated clouds, and weather",
+    "knowledgeContent": "A PPL(A) student must know that a cold front occurs when cold air advances and replaces warm air, leading to abrupt weather changes. They should understand the typical cloud sequence (cumulonimbus) and associated weather phenomena.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.3.1",
+    "subjectId": 3,
+    "text": "30.6.2.3.1",
+    "knowledgeContent": "A PPL(A) student must describe how cold air, being denser, wedges under warm air in a cold front, creating a steep slope. This process leads to intense cloud development and short-duration precipitation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.3.2",
+    "subjectId": 3,
+    "text": "30.6.2.3.2",
+    "knowledgeContent": "A PPL(A) student must list typical clouds associated with a cold front: cumulonimbus and cumulus. They should also recognize that precipitation is often heavy and short-lived.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.3.3",
+    "subjectId": 3,
+    "text": "30.6.2.3.3",
+    "knowledgeContent": "A PPL(A) student must describe typical visual meteorological conditions associated with cold fronts, including sudden visibility changes, thunderstorms, and gusty winds.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.3.4",
+    "subjectId": 3,
+    "text": "30.6.2.3.4",
+    "knowledgeContent": "A PPL(A) student must list and explain hazards such as severe turbulence, thunderstorms, icing, and strong winds associated with cold fronts, which can significantly impact flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.3.5",
+    "subjectId": 3,
+    "text": "30.6.2.3.5",
+    "knowledgeContent": "A PPL(A) student must state that the horizontal extension of a cold front's frontal area is typically narrower than a warm front, often spanning tens of kilometers.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.3.6",
+    "subjectId": 3,
+    "text": "30.6.2.3.6",
+    "knowledgeContent": "A PPL(A) student must name and identify cold fronts on surface weather charts, typically represented by blue triangles pointing in the direction of movement.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.4",
+    "subjectId": 3,
+    "text": "Warm sector, associated clouds, and weather",
+    "knowledgeContent": "A PPL(A) student must understand that the warm sector is the area between warm and cold fronts, characterized by mild temperatures, stratiform clouds, and possible drizzle.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.5",
+    "subjectId": 3,
+    "text": "Weather behind the cold front",
+    "knowledgeContent": "A PPL(A) student must know that weather behind a cold front is typically cooler, drier, and clearer, with cumulus clouds and improving visibility.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.6",
+    "subjectId": 3,
+    "text": "Occlusions, associated clouds, and weather",
+    "knowledgeContent": "A PPL(A) student must understand that an occlusion occurs when a cold front overtakes a warm front, leading to complex weather patterns with characteristics of both fronts.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.6.2",
+    "subjectId": 3,
+    "text": "30.6.2.6.2",
+    "knowledgeContent": "A PPL(A) student must describe typical visual meteorological conditions associated with occlusions, including low cloud bases, reduced visibility, and prolonged precipitation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.6.3",
+    "subjectId": 3,
+    "text": "30.6.2.6.3",
+    "knowledgeContent": "A PPL(A) student must list possible hazards such as icing, turbulence, and low visibility associated with occlusions, which can affect flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.6.4",
+    "subjectId": 3,
+    "text": "30.6.2.6.4",
+    "knowledgeContent": "A PPL(A) student must name and identify occlusion lines on surface weather charts, typically represented by purple alternating triangles and semicircles.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.7",
+    "subjectId": 3,
+    "text": "Stationary front, associated clouds, and weather",
+    "knowledgeContent": "A PPL(A) student must understand that a stationary front occurs when neither warm nor cold air advances, leading to prolonged weather conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.7.1",
+    "subjectId": 3,
+    "text": "30.6.2.7.1",
+    "knowledgeContent": "A PPL(A) student must describe a stationary front as a front with no horizontal displacement, often resulting in persistent cloud cover and precipitation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.7.2",
+    "subjectId": 3,
+    "text": "30.6.2.7.2",
+    "knowledgeContent": "A PPL(A) student must describe typical visual meteorological conditions associated with stationary fronts, including overcast skies, prolonged precipitation, and reduced visibility.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.7.3",
+    "subjectId": 3,
+    "text": "30.6.2.7.3",
+    "knowledgeContent": "A PPL(A) student must name and identify stationary fronts on surface weather charts, typically represented by alternating red semicircles and blue triangles.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.8",
+    "subjectId": 3,
+    "text": "Movement of fronts and pressure systems, life cycle",
+    "knowledgeContent": "A PPL(A) student must understand the movement of fronts and pressure systems, including their life cycle and influence on weather patterns.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.8.2",
+    "subjectId": 3,
+    "text": "30.6.2.8.2",
+    "knowledgeContent": "A PPL(A) student must state that the life cycle of a polar front low typically spans a few days, progressing from formation to occlusion and dissipation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.6.2.9",
+    "subjectId": 3,
+    "text": "Changes of meteorological elements at a frontal wave",
+    "knowledgeContent": "A PPL(A) student must understand how meteorological elements such as temperature, pressure, and wind change at a frontal wave, influencing weather conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.7",
+    "subjectId": 3,
+    "text": "PRESSURE SYSTEMS",
+    "knowledgeContent": "A PPL(A) student must understand the characteristics and behavior of pressure systems, including anticyclones and depressions, and their impact on weather.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.7.1",
+    "subjectId": 3,
+    "text": "Anticyclone",
+    "knowledgeContent": "A PPL(A) student must know that an anticyclone is a high-pressure system characterized by descending air, clear skies, and stable weather conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:32:18.287Z",
+    "updatedAt": "2026-03-17T20:32:18.287Z"
+  },
+  {
+    "loId": "30.7.1.1.1State",
+    "subjectId": 3,
+    "text": "that high pressure results from wide-area increase or inflow of air mass",
+    "knowledgeContent": "A PPL(A) student must understand that high-pressure systems form due to large-scale subsidence or convergence of air masses, leading to stable atmospheric conditions. They should recognize that high pressure typically brings clear skies, light winds, and good visibility, but may also cause temperature inversions and fog in certain conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.7.2",
+    "subjectId": 3,
+    "text": "Non-frontal depressions",
+    "knowledgeContent": "The student must know that non-frontal depressions are low-pressure systems not associated with fronts, often caused by thermal lows, orographic lifting, or polar disturbances. They should understand these can lead to localized weather changes, including turbulence and convective activity.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.7.2.1",
+    "subjectId": 3,
+    "text": "Thermal, orographic and polar depressions, troughs",
+    "knowledgeContent": "The student must differentiate between thermal depressions (caused by surface heating), orographic depressions (due to mountain lifting), and polar depressions (cold-air cyclones). They should recognize how troughs (elongated low-pressure areas) influence weather patterns, such as enhancing cloud formation and precipitation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.8",
+    "subjectId": 3,
+    "text": "CLIMATOLOGY",
+    "knowledgeContent": "The student must grasp climatology as the study of long-term weather patterns and their influence on aviation. This includes understanding regional climate variations and their impact on flight planning, such as prevailing winds, seasonal storms, and temperature extremes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.8.1",
+    "subjectId": 3,
+    "text": "Climatic zones",
+    "knowledgeContent": "The student must identify the major climatic zones (tropical, temperate, polar) and their characteristics, including typical weather phenomena like trade winds, jet streams, and polar fronts. They should understand how these zones affect aircraft performance and routing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.8.1.1",
+    "subjectId": 3,
+    "text": "General seasonal circulation in the troposphere",
+    "knowledgeContent": "The student must explain how seasonal shifts in solar heating drive global wind patterns, including the Intertropical Convergence Zone (ITCZ) and polar jet streams. They should recognize how these circulations influence mid-latitude weather systems and flight conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.8.1.1.1Describe",
+    "subjectId": 3,
+    "text": "the seasonal variation of the polar front",
+    "knowledgeContent": "The student must describe how the polar front migrates seasonally, shifting north in summer and south in winter, affecting storm tracks and pressure systems in mid-latitudes. They should link this to typical weather changes encountered during cross-country flights.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.8.1.1.2List",
+    "subjectId": 3,
+    "text": "the typical locations of high and low pressure areas (e.g. Azores High, Iceland Low)",
+    "knowledgeContent": "The student must list semi-permanent pressure systems like the Azores High (subtropical high) and Iceland Low (subpolar low), and explain their role in steering mid-latitude depressions. They should associate these with common wind patterns (e.g., westerlies) and weather regimes in Europe.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.8.2",
+    "subjectId": 3,
+    "text": "Typical weather situations in the mid-latitudes",
+    "knowledgeContent": "The student must recognize typical mid-latitude weather scenarios, including cyclonic systems, anticyclones, and transitional patterns. They should understand how these influence cloud types, visibility, and wind shear relevant to VFR flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.8.2.1",
+    "subjectId": 3,
+    "text": "Westerly situation",
+    "knowledgeContent": "The student must explain the westerly situation, where prevailing westerly winds dominate mid-latitudes, bringing alternating high- and low-pressure systems. They should identify associated weather features like frontal passages, stratiform clouds, and intermittent precipitation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.8.2.2",
+    "subjectId": 3,
+    "text": "High-pressure area",
+    "knowledgeContent": "The student must describe high-pressure weather characteristics: light winds, temperature inversions, and potential for fog or haze. They should also recognize that prolonged high pressure can lead to poor dispersion of pollutants, reducing visibility.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.8.2.3",
+    "subjectId": 3,
+    "text": "Flat-pressure pattern",
+    "knowledgeContent": "The student must understand that flat-pressure patterns indicate weak pressure gradients, resulting in light/variable winds and localized weather dominated by diurnal heating (e.g., thermal turbulence, convective clouds).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.8.2.3.1State",
+    "subjectId": 3,
+    "text": "that high pressure areas in summer are usually associated with flat pressure pattern",
+    "knowledgeContent": "The student must state that summer high-pressure systems often create flat-pressure patterns, leading to calm surface conditions but possible afternoon convection due to surface heating. They should associate this with fair-weather cumulus development.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.8.2.3.2Describe",
+    "subjectId": 3,
+    "text": "the prevailing weather situation with flat pressure pattern",
+    "knowledgeContent": "The student must describe flat-pressure weather as stable with minimal synoptic-scale activity, but susceptible to local effects like sea breezes, valley winds, or thunderstorms triggered by orography or daytime heating.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.8.2.3.3State",
+    "subjectId": 3,
+    "text": "that with a flat pressure pattern local wind systems may form",
+    "knowledgeContent": "The student must state that weak pressure gradients allow local wind systems (e.g., katabatic/anabatic winds, land/sea breezes) to dominate surface winds, which can create unexpected wind shear or turbulence during takeoff/landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.8.3",
+    "subjectId": 3,
+    "text": "Local winds and associated weather",
+    "knowledgeContent": "The student must identify common local winds (e.g., Foehn, Mistral) and their hazards, such as severe turbulence, rotor clouds, or rapid temperature changes. They should understand how terrain amplifies these effects and impacts flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.8.3.1",
+    "subjectId": 3,
+    "text": "Mountain waves, e.g. Foehn",
+    "knowledgeContent": "The student must recognize mountain waves as standing waves downwind of ridges, with associated lenticular clouds, rotors, and severe turbulence. They should know to avoid wave zones by flying higher or diverting, as rotor turbulence can exceed aircraft limits.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.8.3.1.1Explain",
+    "subjectId": 3,
+    "text": "the typical conditions and development of a mountain wave over the alps ('Foehn')",
+    "knowledgeContent": "The student must explain Foehn wind formation: moist air rising over mountains cools adiabatically, precipitates, then descends as dry, warm wind on the lee side. They should associate this with turbulence, high winds, and rapid snowmelt hazards.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.9",
+    "subjectId": 3,
+    "text": "FLIGHT HAZARDS",
+    "knowledgeContent": "The student must categorize flight hazards (icing, turbulence, wind shear) by their causes and effects. They should prioritize avoidance strategies and recall aircraft limitations (e.g., no flight into known icing for non-FIKI aircraft).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.9.1",
+    "subjectId": 3,
+    "text": "Icing",
+    "knowledgeContent": "The student must identify icing conditions: visible moisture and temperatures at or below freezing. They should understand structural icing types (rime, clear, mixed) and their impact on aerodynamics, weight, and systems (e.g., pitot blockage).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.9.1.1",
+    "subjectId": 3,
+    "text": "Conditions for ice accretion",
+    "knowledgeContent": "The student must list icing prerequisites: supercooled water droplets, aircraft surface temperature ≤0°C, and droplet size. They should recognize that freezing rain (large droplets) causes rapid clear ice accumulation, the most hazardous type.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.9.1.2",
+    "subjectId": 3,
+    "text": "Types of ice accretion",
+    "knowledgeContent": "The student must differentiate rime ice (opaque, brittle, from small droplets) from clear ice (transparent, hard, from large droplets), and mixed ice (combination). They should know clear ice adheres strongly and disrupts airflow most severely.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.9.1.2.1List",
+    "subjectId": 3,
+    "text": "and describe different forms of ice build up (clear ice, rime ice and mixed ice)",
+    "knowledgeContent": "The student must list and describe rime ice (rough, milky, accumulates on leading edges), clear ice (smooth, glossy, forms along surfaces), and mixed ice (layered combination). They should associate each with specific cloud types and temperature ranges.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.9.1.3",
+    "subjectId": 3,
+    "text": "Hazards of ice accretion, avoidance",
+    "knowledgeContent": "The student must recall that icing increases weight, drag, and stall speed while reducing lift and control effectiveness. They should know to exit icing immediately by descending to warmer air or climbing to colder (ice-sublimating) altitudes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.9.1.3.2Describe",
+    "subjectId": 3,
+    "text": "typical situations with possible hazards of airframe icing",
+    "knowledgeContent": "The student must describe high-risk icing scenarios: flying through freezing rain, in cumuliform clouds near freezing level, or near frontal zones. They should recognize that thin cirrus can also harbor ice crystals causing engine icing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.9.1.3.3Recall",
+    "subjectId": 3,
+    "text": "strategies / flight paths to leave a zone of icing on the fastest / most effective way",
+    "knowledgeContent": "The student must recall that escaping icing requires immediate action: request ATC assistance, descend (if warmer below) or climb (if colder above), or turn back. They should know to avoid abrupt maneuvers due to degraded aircraft performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.9.1.3.5Explain",
+    "subjectId": 3,
+    "text": "under which conditions flight into known icing is approved / possible",
+    "knowledgeContent": "The student must explain that flight into known icing is only permitted for aircraft with FIKI certification, including de-icing/anti-icing systems (e.g., heated leading edges, boots). They should know non-FIKI aircraft must avoid forecast or observed icing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.9.2",
+    "subjectId": 3,
+    "text": "Turbulence",
+    "knowledgeContent": "The student must classify turbulence as mechanical (obstruction-induced), convective (thermal), or wind shear-related. They should understand how turbulence intensity (light, moderate, severe) affects aircraft control and passenger safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.9.2.1",
+    "subjectId": 3,
+    "text": "Effects on flight, avoidance",
+    "knowledgeContent": "The student must describe turbulence effects: altitude deviations, structural stress, and difficulty maintaining controlled flight. They should know to reduce speed to maneuvering speed (VA) and avoid cumulonimbus clouds or mountain wave zones.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.9.2.1.1Describe",
+    "subjectId": 3,
+    "text": "effects of of different types turbulence (light, moderate, severe) on the aircraft",
+    "knowledgeContent": "The student must describe light turbulence as slight altitude/attitude changes (seatbelt tension), moderate as definite control inputs needed (loose objects move), and severe as large, abrupt deviations (temporary loss of control). They should report turbulence to ATC using these standards.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:33:21.365Z",
+    "updatedAt": "2026-03-17T20:33:21.365Z"
+  },
+  {
+    "loId": "30.9.3",
+    "subjectId": 3,
+    "text": "Wind shear",
+    "knowledgeContent": "Wind shear refers to a sudden change in wind speed or direction over a short distance, which can occur horizontally or vertically. It is critical for pilots to recognize and understand wind shear as it can significantly affect aircraft performance and safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.3.1",
+    "subjectId": 3,
+    "text": "Definition of wind shear",
+    "knowledgeContent": "Wind shear is defined as a rapid change in wind speed or direction over a short distance, either horizontally or vertically. This phenomenon can occur at any altitude and is particularly hazardous during takeoff and landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.3.1.2Explain",
+    "subjectId": 3,
+    "text": "the possible hazards associated with horizontal or vertical wind sheer",
+    "knowledgeContent": "Horizontal wind shear can cause sudden changes in airspeed, while vertical wind shear can lead to abrupt changes in altitude. Both types can result in loss of control, increased stall risk, and difficulty in maintaining a stable approach or climb.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.3.2",
+    "subjectId": 3,
+    "text": "Weather conditions for wind shear",
+    "knowledgeContent": "Wind shear often occurs in weather conditions such as thunderstorms, frontal passages, and strong temperature inversions. Pilots must be aware of these conditions to anticipate and mitigate the risks associated with wind shear.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.3.2.1Describe",
+    "subjectId": 3,
+    "text": "wind sheer associated with rain showers and vertical downdrafts",
+    "knowledgeContent": "Wind shear associated with rain showers and vertical downdrafts is typically caused by the cooling effect of precipitation, which creates strong downward air currents. These downdrafts can lead to sudden changes in wind speed and direction near the surface.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.3.2.2Describe",
+    "subjectId": 3,
+    "text": "wind sheer associated with strong inversion layers",
+    "knowledgeContent": "Wind shear associated with strong inversion layers occurs when a layer of warm air traps cooler air beneath it, creating a sharp change in wind speed or direction at the boundary. This is common during clear nights and early mornings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.3.3",
+    "subjectId": 3,
+    "text": "Effects on flight, avoidance",
+    "knowledgeContent": "Wind shear can cause abrupt changes in airspeed, altitude, and aircraft control, particularly during critical phases of flight. Pilots should avoid areas prone to wind shear, use appropriate techniques to recover, and rely on weather reports and onboard systems for detection.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.4",
+    "subjectId": 3,
+    "text": "Thunderstorms",
+    "knowledgeContent": "Thunderstorms are severe weather phenomena characterized by lightning, heavy rain, strong winds, and turbulence. They pose significant hazards to aviation, including wind shear, hail, and reduced visibility.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.4.1",
+    "subjectId": 3,
+    "text": "Conditions for, and process of, development, forecast, location, type specification",
+    "knowledgeContent": "Thunderstorms develop from cumulonimbus clouds and require moisture, instability, and lifting mechanisms. They can be forecasted using weather charts and radar, and their location and type (e.g., single-cell, multi-cell) are critical for flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.4.1.3Explain",
+    "subjectId": 3,
+    "text": "the effect of topography on the formation of thunderstorms",
+    "knowledgeContent": "Topography influences thunderstorm formation by forcing air to rise over mountains, enhancing lifting mechanisms. This can lead to localized thunderstorms, particularly on the windward side of mountain ranges.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.4.2.1Describe",
+    "subjectId": 3,
+    "text": "the formation and life-cycle of single-cell thunderstorms",
+    "knowledgeContent": "Single-cell thunderstorms have a life-cycle consisting of three stages: the cumulus stage (updrafts dominate), the mature stage (updrafts and downdrafts coexist), and the dissipating stage (downdrafts dominate). These storms typically last 20-30 minutes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.4.3",
+    "subjectId": 3,
+    "text": "Electrical discharges",
+    "knowledgeContent": "Electrical discharges in thunderstorms, such as lightning, pose hazards to aircraft by potentially damaging avionics, causing structural damage, or temporarily blinding pilots. Aircraft should avoid thunderstorms to minimize these risks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.4.3.1Explain",
+    "subjectId": 3,
+    "text": "the possible hazards from lightning strikes to aircrafts in flight",
+    "knowledgeContent": "Lightning strikes can cause electrical system malfunctions, structural damage, or temporary blindness due to the intense flash. Pilots should avoid thunderstorms and use lightning detection systems to maintain safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.4.4",
+    "subjectId": 3,
+    "text": "Development and effects of downbursts",
+    "knowledgeContent": "Downbursts are intense downward air currents associated with thunderstorms that spread out upon reaching the ground. They can cause severe wind shear, turbulence, and sudden changes in airspeed, posing significant hazards during takeoff and landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.4.5",
+    "subjectId": 3,
+    "text": "Thunderstorm avoidance",
+    "knowledgeContent": "Thunderstorm avoidance involves delaying takeoff or landing, altering flight paths, and maintaining a safe distance from storm cells. Pilots should use weather radar, reports, and visual cues to identify and avoid thunderstorms.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.4.5.2Explain",
+    "subjectId": 3,
+    "text": "how to avoid thunderstorms by delaying take-off or final approach",
+    "knowledgeContent": "To avoid thunderstorms, pilots should delay takeoff or final approach until the storm has passed or moved away. This minimizes exposure to hazards such as wind shear, turbulence, and lightning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.4.5.3Explain",
+    "subjectId": 3,
+    "text": "how to avoid single-cell thunderstorm enroute by small changes of heading",
+    "knowledgeContent": "Enroute avoidance of single-cell thunderstorms can be achieved by making small heading changes to navigate around the storm. Pilots should maintain a safe distance of at least 20 nautical miles from severe thunderstorms.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.5",
+    "subjectId": 3,
+    "text": "Inversions",
+    "knowledgeContent": "Inversions are atmospheric conditions where temperature increases with altitude, contrary to the normal lapse rate. They can trap pollutants, reduce visibility, and affect aircraft performance by altering air density and engine efficiency.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.5.1",
+    "subjectId": 3,
+    "text": "Influence on aircraft performance",
+    "knowledgeContent": "Inversions can reduce aircraft performance by decreasing engine power and lift due to higher air density at lower altitudes. Pilots should be aware of inversion conditions, especially during takeoff and climb.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.6",
+    "subjectId": 3,
+    "text": "Hazards in mountainous areas",
+    "knowledgeContent": "Mountainous areas present unique hazards such as turbulence, wind shear, and ice accretion due to terrain-induced weather phenomena. Pilots must understand these risks and plan flights accordingly to ensure safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.6.1",
+    "subjectId": 3,
+    "text": "Influence of terrain on clouds and precipitation, frontal passage",
+    "knowledgeContent": "Terrain influences cloud formation and precipitation by forcing air to rise, leading to orographic lifting. Frontal passages can also be intensified in mountainous areas, resulting in severe weather conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.6.1.1Describe",
+    "subjectId": 3,
+    "text": "the effect of topography on frontal activity and formation of clouds",
+    "knowledgeContent": "Topography affects frontal activity by forcing air to rise over mountains, enhancing cloud formation and precipitation. This can lead to localized severe weather, particularly on the windward side of mountain ranges.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.6.2",
+    "subjectId": 3,
+    "text": "Vertical movements, mountain waves, wind shear, turbulence, ice accretion",
+    "knowledgeContent": "Mountainous areas can produce vertical movements, mountain waves, wind shear, turbulence, and ice accretion due to terrain-induced weather phenomena. These hazards require careful flight planning and awareness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.6.3",
+    "subjectId": 3,
+    "text": "Development and effect of valley inversions",
+    "knowledgeContent": "Valley inversions occur when cold air becomes trapped in valleys, often during clear, calm nights. These inversions can reduce visibility, trap pollutants, and affect aircraft performance during takeoff and landing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.6.3.1Describe",
+    "subjectId": 3,
+    "text": "the development of valley inversions",
+    "knowledgeContent": "Valley inversions develop when cold air sinks into valleys and becomes trapped beneath warmer air. This phenomenon is common during clear nights with light winds and can persist until daytime heating disperses the inversion.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.6.3.2Explain",
+    "subjectId": 3,
+    "text": "the hazards when departing through a strong valley inversion",
+    "knowledgeContent": "Departing through a strong valley inversion can be hazardous due to reduced visibility, potential engine performance issues, and the risk of encountering turbulence or wind shear. Pilots should assess conditions carefully before departure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.7",
+    "subjectId": 3,
+    "text": "Visibility-reducing phenomena",
+    "knowledgeContent": "Visibility-reducing phenomena include precipitation, fog, haze, and smoke, which can significantly impact flight safety. Pilots must be able to identify and respond to these conditions to maintain safe operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.7.1",
+    "subjectId": 3,
+    "text": "Reduction of visibility caused by precipitation and obscuration",
+    "knowledgeContent": "Reduced visibility can be caused by precipitation (rain, snow), fog, haze, smoke, or dust. These conditions can obscure landmarks, runways, and other aircraft, increasing the risk of accidents.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.7.1.1List",
+    "subjectId": 3,
+    "text": "possible reasons for reduced visibility",
+    "knowledgeContent": "Possible reasons for reduced visibility include fog, rain, snow, haze, smoke, dust, and volcanic ash. Each of these phenomena can significantly impair a pilot's ability to navigate and maintain situational awareness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.7.1.2Explain",
+    "subjectId": 3,
+    "text": "possible hazards from a reduction in visibility",
+    "knowledgeContent": "Reduced visibility poses hazards such as difficulty in identifying runways, obstacles, and other aircraft, increasing the risk of collisions or controlled flight into terrain (CFIT). Pilots must rely on instruments and ATC guidance in such conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:34:32.332Z",
+    "updatedAt": "2026-03-17T20:34:32.332Z"
+  },
+  {
+    "loId": "30.9.7.2",
+    "subjectId": 3,
+    "text": "Reduction of visibility caused by other phenomena",
+    "knowledgeContent": "A PPL(A) student must know that visibility can be reduced by phenomena such as haze, smoke, dust, volcanic ash, or industrial pollution. These particles scatter or absorb light, lowering visibility horizontally and sometimes vertically. The student should understand how these conditions affect flight safety and decision-making.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.9.7.2.1Explain",
+    "subjectId": 3,
+    "text": "why flying below an inversion layer visibility may be reduced",
+    "knowledgeContent": "A PPL(A) student must understand that flying below an inversion layer may result in reduced visibility due to trapped pollutants, moisture, or haze beneath the stable air. The inversion prevents vertical mixing, allowing fog or smog to persist near the surface, which can significantly impair visual flight rules (VFR) operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10",
+    "subjectId": 3,
+    "text": "METEOROLOGICAL INFORMATION",
+    "knowledgeContent": "A PPL(A) student must know that meteorological information includes observations, forecasts, and charts used for flight planning. This data is critical for assessing weather hazards, such as turbulence, icing, or thunderstorms, and ensuring safe flight operations under VFR.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.1",
+    "subjectId": 3,
+    "text": "Observation",
+    "knowledgeContent": "A PPL(A) student must understand that meteorological observations include surface reports, radiosonde data, satellite imagery, and radar observations. These provide real-time or recent weather conditions essential for pre-flight and in-flight decision-making.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.1.1",
+    "subjectId": 3,
+    "text": "Surface observations",
+    "knowledgeContent": "A PPL(A) student must know that surface observations (e.g., METAR) report current weather conditions at aerodromes, including wind, visibility, cloud cover, and temperature. These are crucial for assessing departure, en-route, and arrival weather.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.1.1.2Identify",
+    "subjectId": 3,
+    "text": "the VALID TIME from a given synoptic chart or observation message",
+    "knowledgeContent": "A PPL(A) student must be able to locate and interpret the VALID TIME (e.g., 'VALID 1200Z TO 1800Z') on synoptic charts or observation messages. This indicates the period for which the data is applicable and ensures the information is current for flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.1.2",
+    "subjectId": 3,
+    "text": "Radiosonde observations",
+    "knowledgeContent": "A PPL(A) student must know that radiosonde observations provide vertical profiles of temperature, humidity, and pressure up to the stratosphere. These are used to analyze stability, cloud layers, and potential icing conditions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.1.2.1Determine",
+    "subjectId": 3,
+    "text": "the temperature and dew point at a given altitude from a radio sonde plot",
+    "knowledgeContent": "A PPL(A) student must be able to extract temperature and dew point at a specified altitude from a radiosonde plot (e.g., skew-T log-P diagram). This helps identify saturation levels, cloud bases, and freezing levels.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.1.2.2Determine",
+    "subjectId": 3,
+    "text": "cloud or fog layers by interpretation of temperature / dew point plots",
+    "knowledgeContent": "A PPL(A) student must interpret temperature/dew point plots to identify cloud or fog layers, where the two curves converge. This indicates saturation, with the altitude of convergence marking the base of the cloud or fog layer.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.1.3",
+    "subjectId": 3,
+    "text": "Satellite observations",
+    "knowledgeContent": "A PPL(A) student must know that satellite observations provide imagery of cloud patterns, storm systems, and frontal boundaries. These are essential for tracking large-scale weather systems affecting flight routes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.1.3.1Explain",
+    "subjectId": 3,
+    "text": "the purpose of meteorological satellite imagery",
+    "knowledgeContent": "A PPL(A) student must understand that meteorological satellite imagery is used to monitor weather systems, including cloud cover, thunderstorms, and tropical cyclones. It aids in visualizing weather trends and hazards beyond ground-based observations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.1.3.2Describe",
+    "subjectId": 3,
+    "text": "different types of satellity image construction (VIS / IR)",
+    "knowledgeContent": "A PPL(A) student must describe Visible (VIS) imagery, which shows reflected sunlight for daytime cloud analysis, and Infrared (IR) imagery, which detects thermal emissions for day/night cloud-top temperature assessment.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.1.3.3Describe",
+    "subjectId": 3,
+    "text": "and interpret data from meteorological satellite imagery",
+    "knowledgeContent": "A PPL(A) student must interpret satellite imagery to identify features like cumulonimbus clouds, frontal boundaries, or fog. For example, bright white in IR indicates cold, high-altitude clouds associated with thunderstorms.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.1.4",
+    "subjectId": 3,
+    "text": "Weather radar observations",
+    "knowledgeContent": "A PPL(A) student must know that weather radar observations detect precipitation intensity and movement. Ground-based radar (e.g., NEXRAD) is critical for identifying convective activity and avoiding hazardous weather.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.1.4.1Explain",
+    "subjectId": 3,
+    "text": "the purpose of ground-based WX radar",
+    "knowledgeContent": "A PPL(A) student must explain that ground-based WX radar detects precipitation by reflecting radio waves off water droplets or ice crystals. It helps pilots avoid areas of heavy rain, hail, or turbulence.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.1.4.2Describe",
+    "subjectId": 3,
+    "text": "the operating principle of WX radar",
+    "knowledgeContent": "A PPL(A) student must describe how WX radar operates by emitting pulses and measuring reflected signals (echoes). The intensity of returns (dBZ) correlates with precipitation rates, with higher values indicating stronger storms.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.1.4.3Describe",
+    "subjectId": 3,
+    "text": "and interpret information from WX radar images",
+    "knowledgeContent": "A PPL(A) student must interpret WX radar images to distinguish light (green), moderate (yellow), and heavy (red/magenta) precipitation. They should also recognize artifacts like ground clutter or attenuation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.1.5",
+    "subjectId": 3,
+    "text": "Aircraft observations and reporting",
+    "knowledgeContent": "A PPL(A) student must know that aircraft observations (e.g., PIREPs) provide real-time reports of turbulence, icing, or cloud tops. These supplement ground-based data and are vital for en-route weather updates.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.2",
+    "subjectId": 3,
+    "text": "Weather charts",
+    "knowledgeContent": "A PPL(A) student must understand that weather charts, such as surface and significant weather charts, graphically depict meteorological conditions. These are used to plan routes avoiding hazardous weather.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.2.1",
+    "subjectId": 3,
+    "text": "Significant weather charts",
+    "knowledgeContent": "A PPL(A) student must know that Significant Weather Charts (SWC) forecast conditions like jet streams, turbulence, and icing at specific flight levels. They are issued for high- and low-level flights.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.2.1.2Describe",
+    "subjectId": 3,
+    "text": "the structure of Significant Weather Charts (SWC) with chart and legend part",
+    "knowledgeContent": "A PPL(A) student must describe the SWC's two-part structure: the chart (showing weather symbols and contours) and the legend (explaining symbols like CB, turbulence, or freezing levels). Validity times are typically 12 or 24 hours.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.2.2",
+    "subjectId": 3,
+    "text": "Surface charts",
+    "knowledgeContent": "A PPL(A) student must know that surface charts (synoptic charts) display pressure systems, fronts, and isobars. These help predict wind patterns and weather changes over the next few hours to days.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.2.2.1Describe",
+    "subjectId": 3,
+    "text": "the basic contents shown in surface weather charts (synoptic or analytic charts)",
+    "knowledgeContent": "A PPL(A) student must describe the basic contents of surface charts: high/low-pressure centers, fronts (cold, warm, occluded), isobars (pressure lines), and station plots (local weather data).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.2.2.3Identify",
+    "subjectId": 3,
+    "text": "areas from a weather chart which may impose hazards to a planned flight",
+    "knowledgeContent": "A PPL(A) student must identify hazardous areas on a weather chart, such as frontal zones (risk of thunderstorms), low visibility near fog symbols, or strong winds indicated by tight isobar spacing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.3",
+    "subjectId": 3,
+    "text": "Information for flight planning",
+    "knowledgeContent": "A PPL(A) student must know that meteorological information for flight planning includes METAR, TAF, and ATIS messages. These provide current and forecasted conditions for safe VFR operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 1,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.3.1",
+    "subjectId": 3,
+    "text": "Aviation weather messages",
+    "knowledgeContent": "A PPL(A) student must understand that aviation weather messages (METAR, TAF, ATIS) are standardized reports. They include wind, visibility, clouds, and hazards, with specific formats and validity periods.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.3.1.1Define",
+    "subjectId": 3,
+    "text": "METAR and describe content with structure, time of issue and validity period",
+    "knowledgeContent": "A PPL(A) student must define METAR as an hourly surface weather report, with sections for wind, visibility, weather phenomena, clouds, and temperature. Validity is typically 1 hour unless amended.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.3.1.2Define",
+    "subjectId": 3,
+    "text": "TAF and describe content with structure, time of issue and validity period",
+    "knowledgeContent": "A PPL(A) student must define TAF as a Terminal Aerodrome Forecast, issued every 6 hours with 24-30 hour validity. It predicts wind, visibility, weather, and clouds in a structured format (e.g., BECMG for gradual changes).",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.3.1.3Define",
+    "subjectId": 3,
+    "text": "ATIS and describe content with structure, time of issue and validity period",
+    "knowledgeContent": "A PPL(A) student must define ATIS as an Automated Terminal Information Service broadcast, providing current runway, weather, and procedures at busy aerodromes. It is updated hourly or as conditions change.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.3.1.4List",
+    "subjectId": 3,
+    "text": "and interpret the lettergroups for METAR and TAF commonly used in Europe",
+    "knowledgeContent": "A PPL(A) student must list and interpret common METAR/TAF codes in Europe, such as RA (rain), BR (mist), or SHRA (rain showers). For example, 'FEW030' means few clouds at 3,000 ft.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:32.090Z",
+    "updatedAt": "2026-03-17T20:35:32.090Z"
+  },
+  {
+    "loId": "30.10.3.1.5Extract",
+    "subjectId": 3,
+    "text": "the validity period of a TAF message from a given TAF message",
+    "knowledgeContent": "A PPL(A) student must know how to identify the validity period of a TAF (Terminal Aerodrome Forecast) message, which is typically 24 or 30 hours. The validity period is explicitly stated in the TAF message, usually in the format 'YYYYMMDDHHMM' for the start and end times.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:55.584Z",
+    "updatedAt": "2026-03-17T20:35:55.584Z"
+  },
+  {
+    "loId": "30.10.3.1.6Decide",
+    "subjectId": 3,
+    "text": "if indicated weather conditions allow a VFR or SVFR flight",
+    "knowledgeContent": "A PPL(A) student must be able to assess weather conditions from METARs, TAFs, and other sources to determine if they meet the visibility, cloud clearance, and ceiling requirements for VFR (Visual Flight Rules) or SVFR (Special Visual Flight Rules) flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:55.584Z",
+    "updatedAt": "2026-03-17T20:35:55.584Z"
+  },
+  {
+    "loId": "30.10.3.2",
+    "subjectId": 3,
+    "text": "Meteorological broadcasts for aviation",
+    "knowledgeContent": "A PPL(A) student must understand the purpose and content of meteorological broadcasts for aviation, such as ATIS, VOLMET, and SIGMET, and how to access and interpret them for pre-flight and in-flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:55.584Z",
+    "updatedAt": "2026-03-17T20:35:55.584Z"
+  },
+  {
+    "loId": "30.10.3.2.1Describe",
+    "subjectId": 3,
+    "text": "VOLMET service and possible application on enroute flights",
+    "knowledgeContent": "A PPL(A) student must describe the VOLMET service, which provides continuous weather broadcasts for selected airports worldwide, and its application for enroute flights to monitor weather conditions at destination and alternate aerodromes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:55.584Z",
+    "updatedAt": "2026-03-17T20:35:55.584Z"
+  },
+  {
+    "loId": "30.10.3.3",
+    "subjectId": 3,
+    "text": "Use of meteorological documents",
+    "knowledgeContent": "A PPL(A) student must know how to use meteorological documents such as METARs, TAFs, SIGMETs, and weather charts to assess current and forecast weather conditions for flight planning and decision-making.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:55.584Z",
+    "updatedAt": "2026-03-17T20:35:55.584Z"
+  },
+  {
+    "loId": "30.10.3.4",
+    "subjectId": 3,
+    "text": "Meteorological warnings",
+    "knowledgeContent": "A PPL(A) student must understand the purpose of meteorological warnings, such as SIGMETs and AIRMETs, and their significance in identifying hazardous weather conditions that could affect flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:55.584Z",
+    "updatedAt": "2026-03-17T20:35:55.584Z"
+  },
+  {
+    "loId": "30.10.3.4.1Describe",
+    "subjectId": 3,
+    "text": "SIGMET and list criteria for issueing",
+    "knowledgeContent": "A PPL(A) student must describe SIGMETs, which warn of severe weather phenomena such as thunderstorms, turbulence, icing, and volcanic ash, and list the criteria for their issuance, including intensity, coverage, and duration.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:55.584Z",
+    "updatedAt": "2026-03-17T20:35:55.584Z"
+  },
+  {
+    "loId": "30.10.4",
+    "subjectId": 3,
+    "text": "Meteorological services",
+    "knowledgeContent": "A PPL(A) student must understand the role of meteorological services, including the World Area Forecast System (WAFS) and local meteorological offices, in providing weather data and forecasts for aviation purposes.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:55.584Z",
+    "updatedAt": "2026-03-17T20:35:55.584Z"
+  },
+  {
+    "loId": "30.10.4.1",
+    "subjectId": 3,
+    "text": "World area forecast system (WAFS) and meteorological offices",
+    "knowledgeContent": "A PPL(A) student must know the function of the World Area Forecast System (WAFS) and meteorological offices in providing global and regional weather forecasts, including upper wind, temperature, and significant weather charts.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:55.584Z",
+    "updatedAt": "2026-03-17T20:35:55.584Z"
+  },
+  {
+    "loId": "30.10.4.1.3Describe",
+    "subjectId": 3,
+    "text": "how data from numerical weather prediction models can be used during flight",
+    "knowledgeContent": "A PPL(A) student must describe how data from numerical weather prediction (NWP) models, such as GFS and ECMWF, can be used during flight to assess forecast accuracy and update weather-related decisions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "ecqb-syllabus-v23.1",
+    "createdAt": "2026-03-17T20:35:55.584Z",
+    "updatedAt": "2026-03-17T20:35:55.584Z"
+  }
+]

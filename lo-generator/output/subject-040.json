@@ -1,0 +1,902 @@
+[
+  {
+    "loId": "040.01.01.01",
+    "subjectId": 4,
+    "text": "Human Factors in Aviation",
+    "knowledgeContent": "Understand the importance of human factors in aviation, including the role of human performance in flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.02",
+    "subjectId": 4,
+    "text": "Human Limitations",
+    "knowledgeContent": "Identify the physical and mental limitations of humans that can affect flight performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.03",
+    "subjectId": 4,
+    "text": "Sensory Systems",
+    "knowledgeContent": "Describe the sensory systems (vision, hearing, balance) and their role in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.04",
+    "subjectId": 4,
+    "text": "Vision in Flight",
+    "knowledgeContent": "Explain how vision is used in flight, including night vision, depth perception, and visual illusions.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.05",
+    "subjectId": 4,
+    "text": "Hearing and Balance",
+    "knowledgeContent": "Understand the role of hearing and balance in maintaining spatial orientation during flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.06",
+    "subjectId": 4,
+    "text": "Spatial Disorientation",
+    "knowledgeContent": "Identify the causes and effects of spatial disorientation and how to prevent it.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.07",
+    "subjectId": 4,
+    "text": "Fatigue and Sleep",
+    "knowledgeContent": "Describe the effects of fatigue and sleep deprivation on pilot performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.08",
+    "subjectId": 4,
+    "text": "Circadian Rhythms",
+    "knowledgeContent": "Understand the impact of circadian rhythms on pilot alertness and performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.09",
+    "subjectId": 4,
+    "text": "Stress and Performance",
+    "knowledgeContent": "Explain how stress affects decision-making and performance in flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.10",
+    "subjectId": 4,
+    "text": "Decision-Making Process",
+    "knowledgeContent": "Describe the decision-making process and factors that can influence it.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.11",
+    "subjectId": 4,
+    "text": "Situational Awareness",
+    "knowledgeContent": "Understand the concept of situational awareness and its importance in flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.12",
+    "subjectId": 4,
+    "text": "Communication Skills",
+    "knowledgeContent": "Identify effective communication techniques for pilots to ensure clear and accurate information exchange.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.13",
+    "subjectId": 4,
+    "text": "Crew Resource Management",
+    "knowledgeContent": "Understand the principles of crew resource management (CRM) and its application in single-pilot operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.14",
+    "subjectId": 4,
+    "text": "Human Error",
+    "knowledgeContent": "Describe the types of human error and strategies to minimize them in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.15",
+    "subjectId": 4,
+    "text": "Health and Fitness",
+    "knowledgeContent": "Understand the importance of maintaining good health and fitness for pilots.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.16",
+    "subjectId": 4,
+    "text": "Nutrition and Hydration",
+    "knowledgeContent": "Explain the impact of nutrition and hydration on pilot performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.17",
+    "subjectId": 4,
+    "text": "Alcohol and Drugs",
+    "knowledgeContent": "Describe the effects of alcohol and drugs on pilot performance and the legal implications.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.18",
+    "subjectId": 4,
+    "text": "Medical Conditions",
+    "knowledgeContent": "Identify common medical conditions that can affect pilot performance and safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.19",
+    "subjectId": 4,
+    "text": "Environmental Factors",
+    "knowledgeContent": "Understand how environmental factors (temperature, altitude, noise) affect human performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.20",
+    "subjectId": 4,
+    "text": "Hypoxia",
+    "knowledgeContent": "Describe the causes, symptoms, and effects of hypoxia and how to prevent it.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.21",
+    "subjectId": 4,
+    "text": "Hyperventilation",
+    "knowledgeContent": "Explain the causes, symptoms, and effects of hyperventilation and how to manage it.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.22",
+    "subjectId": 4,
+    "text": "Decompression Sickness",
+    "knowledgeContent": "Understand the causes, symptoms, and prevention of decompression sickness.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.23",
+    "subjectId": 4,
+    "text": "Carbon Monoxide Poisoning",
+    "knowledgeContent": "Describe the symptoms and effects of carbon monoxide poisoning and how to prevent it.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.24",
+    "subjectId": 4,
+    "text": "Motion Sickness",
+    "knowledgeContent": "Explain the causes, symptoms, and management of motion sickness in flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.25",
+    "subjectId": 4,
+    "text": "Noise and Hearing Loss",
+    "knowledgeContent": "Understand the effects of noise on hearing and strategies to protect hearing.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.26",
+    "subjectId": 4,
+    "text": "Vibration Effects",
+    "knowledgeContent": "Describe the effects of vibration on human performance and comfort.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.27",
+    "subjectId": 4,
+    "text": "Temperature Extremes",
+    "knowledgeContent": "Explain the effects of extreme temperatures on pilot performance and health.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.28",
+    "subjectId": 4,
+    "text": "Psychological Factors",
+    "knowledgeContent": "Understand the impact of psychological factors (e.g., anxiety, fear) on pilot performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.29",
+    "subjectId": 4,
+    "text": "Cognitive Load",
+    "knowledgeContent": "Describe the concept of cognitive load and its impact on decision-making.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.30",
+    "subjectId": 4,
+    "text": "Attention and Vigilance",
+    "knowledgeContent": "Explain the importance of attention and vigilance in maintaining flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.31",
+    "subjectId": 4,
+    "text": "Memory and Recall",
+    "knowledgeContent": "Understand the role of memory and recall in aviation tasks and decision-making.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.32",
+    "subjectId": 4,
+    "text": "Perception and Interpretation",
+    "knowledgeContent": "Describe how perception and interpretation can influence pilot decision-making.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.33",
+    "subjectId": 4,
+    "text": "Risk Management",
+    "knowledgeContent": "Understand the principles of risk management and their application in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.34",
+    "subjectId": 4,
+    "text": "Error Management",
+    "knowledgeContent": "Describe strategies for managing and mitigating errors in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.35",
+    "subjectId": 4,
+    "text": "Safety Culture",
+    "knowledgeContent": "Understand the importance of a positive safety culture in aviation operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.36",
+    "subjectId": 4,
+    "text": "Human Factors Training",
+    "knowledgeContent": "Describe the role of human factors training in improving aviation safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.37",
+    "subjectId": 4,
+    "text": "Automation and Human Performance",
+    "knowledgeContent": "Understand the impact of automation on human performance and decision-making.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.38",
+    "subjectId": 4,
+    "text": "Workload Management",
+    "knowledgeContent": "Explain the principles of workload management and its importance in flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.39",
+    "subjectId": 4,
+    "text": "Task Prioritization",
+    "knowledgeContent": "Describe techniques for prioritizing tasks to manage workload effectively.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.40",
+    "subjectId": 4,
+    "text": "Time Management",
+    "knowledgeContent": "Understand the importance of time management in ensuring efficient flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.41",
+    "subjectId": 4,
+    "text": "Emergency Situations",
+    "knowledgeContent": "Describe how human performance is affected in emergency situations and strategies to manage them.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.42",
+    "subjectId": 4,
+    "text": "Stress Management Techniques",
+    "knowledgeContent": "Identify techniques for managing stress to maintain optimal performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.43",
+    "subjectId": 4,
+    "text": "Coping with Fatigue",
+    "knowledgeContent": "Describe strategies for coping with fatigue during flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.44",
+    "subjectId": 4,
+    "text": "Personal Limitations",
+    "knowledgeContent": "Understand the importance of recognizing and respecting personal limitations in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.45",
+    "subjectId": 4,
+    "text": "Self-Assessment",
+    "knowledgeContent": "Describe the role of self-assessment in maintaining pilot proficiency and safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.46",
+    "subjectId": 4,
+    "text": "Learning and Adaptation",
+    "knowledgeContent": "Understand how learning and adaptation contribute to improving pilot performance.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.47",
+    "subjectId": 4,
+    "text": "Feedback and Improvement",
+    "knowledgeContent": "Describe the importance of feedback in continuous improvement of pilot skills.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.48",
+    "subjectId": 4,
+    "text": "Teamwork in Aviation",
+    "knowledgeContent": "Understand the role of teamwork in ensuring safe and efficient flight operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.49",
+    "subjectId": 4,
+    "text": "Conflict Resolution",
+    "knowledgeContent": "Describe techniques for resolving conflicts in aviation environments.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.50",
+    "subjectId": 4,
+    "text": "Leadership Skills",
+    "knowledgeContent": "Understand the importance of leadership skills in aviation operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.51",
+    "subjectId": 4,
+    "text": "Cultural Differences",
+    "knowledgeContent": "Describe how cultural differences can impact communication and teamwork in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.52",
+    "subjectId": 4,
+    "text": "Ethical Considerations",
+    "knowledgeContent": "Understand the ethical considerations relevant to aviation operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.53",
+    "subjectId": 4,
+    "text": "Legal Responsibilities",
+    "knowledgeContent": "Describe the legal responsibilities of pilots in ensuring flight safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.54",
+    "subjectId": 4,
+    "text": "Regulatory Compliance",
+    "knowledgeContent": "Understand the importance of regulatory compliance in aviation operations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.55",
+    "subjectId": 4,
+    "text": "Incident Reporting",
+    "knowledgeContent": "Describe the process and importance of reporting incidents in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.56",
+    "subjectId": 4,
+    "text": "Safety Audits",
+    "knowledgeContent": "Understand the role of safety audits in maintaining aviation safety standards.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.57",
+    "subjectId": 4,
+    "text": "Continuous Improvement",
+    "knowledgeContent": "Describe the concept of continuous improvement in aviation safety.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.58",
+    "subjectId": 4,
+    "text": "Human Factors Research",
+    "knowledgeContent": "Understand the role of research in advancing knowledge of human factors in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.59",
+    "subjectId": 4,
+    "text": "Future Trends",
+    "knowledgeContent": "Describe emerging trends in human factors and their potential impact on aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  },
+  {
+    "loId": "040.01.01.60",
+    "subjectId": 4,
+    "text": "Case Studies",
+    "knowledgeContent": "Analyze case studies to understand the application of human factors principles in real-world scenarios.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 3,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:12:53.396Z",
+    "updatedAt": "2026-03-17T19:12:53.396Z"
+  }
+]

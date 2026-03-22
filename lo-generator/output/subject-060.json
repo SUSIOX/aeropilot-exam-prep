@@ -1,0 +1,917 @@
+[
+  {
+    "loId": "060.01.01.01",
+    "subjectId": 6,
+    "text": "Earth's Shape and Dimensions",
+    "knowledgeContent": "Understand the Earth's shape as an oblate spheroid and its approximate dimensions, including equatorial and polar diameters.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.01.02",
+    "subjectId": 6,
+    "text": "Great Circles and Rhumb Lines",
+    "knowledgeContent": "Define great circles and rhumb lines, and explain their significance in navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.01.03",
+    "subjectId": 6,
+    "text": "Latitude and Longitude",
+    "knowledgeContent": "Describe the concepts of latitude and longitude, including their measurement and representation on charts.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.01.04",
+    "subjectId": 6,
+    "text": "Nautical Miles and Kilometers",
+    "knowledgeContent": "Explain the relationship between nautical miles and kilometers, and their use in aviation navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.01.05",
+    "subjectId": 6,
+    "text": "Time Zones and UTC",
+    "knowledgeContent": "Understand the concept of time zones and Coordinated Universal Time (UTC), and their application in aviation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.02.01",
+    "subjectId": 6,
+    "text": "Magnetic North and True North",
+    "knowledgeContent": "Differentiate between magnetic north and true north, and explain magnetic variation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.02.02",
+    "subjectId": 6,
+    "text": "Magnetic Compass",
+    "knowledgeContent": "Describe the operation and limitations of a magnetic compass in aircraft navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.02.03",
+    "subjectId": 6,
+    "text": "Magnetic Deviation",
+    "knowledgeContent": "Explain magnetic deviation and its impact on compass readings.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.02.04",
+    "subjectId": 6,
+    "text": "Isogonals",
+    "knowledgeContent": "Define isogonals and their significance in navigation charts.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.03.01",
+    "subjectId": 6,
+    "text": "Aeronautical Charts",
+    "knowledgeContent": "Identify different types of aeronautical charts and their uses in navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.03.02",
+    "subjectId": 6,
+    "text": "Chart Symbols",
+    "knowledgeContent": "Recognize and interpret common symbols and abbreviations used on aeronautical charts.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.03.03",
+    "subjectId": 6,
+    "text": "Chart Scales",
+    "knowledgeContent": "Understand the concept of chart scales and their impact on navigation planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.03.04",
+    "subjectId": 6,
+    "text": "Topographic Features",
+    "knowledgeContent": "Identify and interpret topographic features on aeronautical charts.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.04.01",
+    "subjectId": 6,
+    "text": "Dead Reckoning Principles",
+    "knowledgeContent": "Explain the principles of dead reckoning navigation and its application in flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.04.02",
+    "subjectId": 6,
+    "text": "Wind Triangle",
+    "knowledgeContent": "Understand the wind triangle concept and its use in calculating heading and groundspeed.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.04.03",
+    "subjectId": 6,
+    "text": "Track and Heading",
+    "knowledgeContent": "Differentiate between track and heading, and explain how wind affects them.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.04.04",
+    "subjectId": 6,
+    "text": "Drift Angle",
+    "knowledgeContent": "Calculate drift angle and its impact on navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.05.01",
+    "subjectId": 6,
+    "text": "Flight Planning Basics",
+    "knowledgeContent": "Describe the basic steps involved in flight planning, including route selection and fuel calculation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.05.02",
+    "subjectId": 6,
+    "text": "Fuel Requirements",
+    "knowledgeContent": "Understand the regulatory requirements for fuel reserves and their calculation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.05.03",
+    "subjectId": 6,
+    "text": "Weather Considerations",
+    "knowledgeContent": "Explain how weather conditions impact flight planning and navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.05.04",
+    "subjectId": 6,
+    "text": "Alternate Airports",
+    "knowledgeContent": "Identify the criteria for selecting alternate airports during flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.06.01",
+    "subjectId": 6,
+    "text": "VFR Navigation Techniques",
+    "knowledgeContent": "Describe visual flight rules (VFR) navigation techniques, including pilotage and dead reckoning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.06.02",
+    "subjectId": 6,
+    "text": "Pilotage",
+    "knowledgeContent": "Explain the use of pilotage for navigation by reference to visible landmarks.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.06.03",
+    "subjectId": 6,
+    "text": "Radio Navigation Aids",
+    "knowledgeContent": "Identify common radio navigation aids and their use in VFR navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.06.04",
+    "subjectId": 6,
+    "text": "GPS Navigation",
+    "knowledgeContent": "Understand the principles of GPS navigation and its application in VFR flight.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.07.01",
+    "subjectId": 6,
+    "text": "IFR Navigation Basics",
+    "knowledgeContent": "Describe the basic principles of instrument flight rules (IFR) navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.07.02",
+    "subjectId": 6,
+    "text": "IFR Charts",
+    "knowledgeContent": "Identify and interpret IFR charts, including enroute and approach charts.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.07.03",
+    "subjectId": 6,
+    "text": "Instrument Approaches",
+    "knowledgeContent": "Explain the different types of instrument approaches and their use in IFR navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.07.04",
+    "subjectId": 6,
+    "text": "Holding Patterns",
+    "knowledgeContent": "Understand the purpose and procedures for entering and flying holding patterns.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.08.01",
+    "subjectId": 6,
+    "text": "Radio Navigation Principles",
+    "knowledgeContent": "Explain the basic principles of radio navigation, including VOR, NDB, and DME.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.08.02",
+    "subjectId": 6,
+    "text": "VOR Navigation",
+    "knowledgeContent": "Describe the operation and use of VOR (VHF Omnidirectional Range) for navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.08.03",
+    "subjectId": 6,
+    "text": "NDB Navigation",
+    "knowledgeContent": "Explain the operation and use of NDB (Non-Directional Beacon) for navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.08.04",
+    "subjectId": 6,
+    "text": "DME Navigation",
+    "knowledgeContent": "Understand the use of DME (Distance Measuring Equipment) in navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.09.01",
+    "subjectId": 6,
+    "text": "GPS Principles",
+    "knowledgeContent": "Explain the basic principles of GPS (Global Positioning System) and its components.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.09.02",
+    "subjectId": 6,
+    "text": "GPS Accuracy",
+    "knowledgeContent": "Understand the factors affecting GPS accuracy and the concept of selective availability.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.09.03",
+    "subjectId": 6,
+    "text": "GPS Waypoints",
+    "knowledgeContent": "Describe the creation and use of GPS waypoints in navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.09.04",
+    "subjectId": 6,
+    "text": "GPS Navigation Errors",
+    "knowledgeContent": "Identify common GPS navigation errors and their mitigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.10.01",
+    "subjectId": 6,
+    "text": "Airspace Classification",
+    "knowledgeContent": "Understand the different classes of airspace and their navigation requirements.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.10.02",
+    "subjectId": 6,
+    "text": "Controlled Airspace",
+    "knowledgeContent": "Explain the navigation requirements and procedures for operating in controlled airspace.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.10.03",
+    "subjectId": 6,
+    "text": "Uncontrolled Airspace",
+    "knowledgeContent": "Describe the navigation considerations for operating in uncontrolled airspace.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.10.04",
+    "subjectId": 6,
+    "text": "Special Use Airspace",
+    "knowledgeContent": "Identify special use airspace and its impact on navigation planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.11.01",
+    "subjectId": 6,
+    "text": "Flight Logs",
+    "knowledgeContent": "Explain the purpose and content of a flight log in navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.11.02",
+    "subjectId": 6,
+    "text": "Navigation Logs",
+    "knowledgeContent": "Describe the process of completing a navigation log for flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.11.03",
+    "subjectId": 6,
+    "text": "Fuel Logs",
+    "knowledgeContent": "Understand the importance of fuel logs in navigation and flight planning.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.11.04",
+    "subjectId": 6,
+    "text": "Flight Progress Monitoring",
+    "knowledgeContent": "Explain the methods for monitoring flight progress during navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.12.01",
+    "subjectId": 6,
+    "text": "Lost Procedures",
+    "knowledgeContent": "Describe the procedures to follow if lost during navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.12.02",
+    "subjectId": 6,
+    "text": "Emergency Navigation",
+    "knowledgeContent": "Explain the techniques for emergency navigation in case of equipment failure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.12.03",
+    "subjectId": 6,
+    "text": "Diverting to Alternate",
+    "knowledgeContent": "Understand the procedures for diverting to an alternate airport during navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.12.04",
+    "subjectId": 6,
+    "text": "SAR Procedures",
+    "knowledgeContent": "Describe the search and rescue (SAR) procedures relevant to navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.13.01",
+    "subjectId": 6,
+    "text": "Navigation Equipment",
+    "knowledgeContent": "Identify the essential navigation equipment required for VFR and IFR flights.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.13.02",
+    "subjectId": 6,
+    "text": "Equipment Checks",
+    "knowledgeContent": "Explain the pre-flight checks for navigation equipment.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.13.03",
+    "subjectId": 6,
+    "text": "Equipment Failure",
+    "knowledgeContent": "Understand the procedures to follow in case of navigation equipment failure.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.13.04",
+    "subjectId": 6,
+    "text": "Backup Navigation",
+    "knowledgeContent": "Describe the use of backup navigation methods and equipment.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.14.01",
+    "subjectId": 6,
+    "text": "Navigation Regulations",
+    "knowledgeContent": "Understand the regulatory requirements for navigation in VFR and IFR flights.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.14.02",
+    "subjectId": 6,
+    "text": "Flight Rules",
+    "knowledgeContent": "Explain the differences between VFR and IFR flight rules and their impact on navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.14.03",
+    "subjectId": 6,
+    "text": "ATC Communications",
+    "knowledgeContent": "Describe the role of ATC communications in navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.14.04",
+    "subjectId": 6,
+    "text": "Navigation Clearances",
+    "knowledgeContent": "Understand the procedures for obtaining and complying with navigation clearances.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.15.01",
+    "subjectId": 6,
+    "text": "International Navigation",
+    "knowledgeContent": "Explain the considerations for international navigation, including customs and regulations.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.15.02",
+    "subjectId": 6,
+    "text": "ICAO Standards",
+    "knowledgeContent": "Understand the ICAO standards and recommended practices for navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.15.03",
+    "subjectId": 6,
+    "text": "Cross-Border Procedures",
+    "knowledgeContent": "Describe the procedures for crossing international borders during navigation.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  },
+  {
+    "loId": "060.01.15.04",
+    "subjectId": 6,
+    "text": "Language Requirements",
+    "knowledgeContent": "Understand the language requirements for international navigation and ATC communications.",
+    "appliesTo": [
+      "PPL",
+      "SPL"
+    ],
+    "level": 2,
+    "version": "2021",
+    "source": "deepseek-generated",
+    "createdAt": "2026-03-17T19:51:38.454Z",
+    "updatedAt": "2026-03-17T19:51:38.454Z"
+  }
+]

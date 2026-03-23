@@ -41,7 +41,7 @@ export interface UserProgressItem extends DynamoDBItem {
 export interface UserSettingsItem extends DynamoDBItem {
   userId: string;
   settings: {
-    sorting: 'default' | 'random' | 'hardest_first' | 'least_practiced';
+    sorting: 'default' | 'random' | 'hardest_first' | 'least_practiced' | 'weighted_learning' | 'id';
     immediateFeedback: boolean;
     showExplanationOnDemand: boolean;
     sourceFilters: ('user' | 'ai')[];

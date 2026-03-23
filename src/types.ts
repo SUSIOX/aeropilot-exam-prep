@@ -63,7 +63,7 @@ export interface Stats {
 export type ViewMode = 'dashboard' | 'drill' | 'exam' | 'stats' | 'settings' | 'ai';
 
 export interface DrillSettings {
-  sorting: 'default' | 'random' | 'hardest_first' | 'least_practiced' | 'weighted_learning';
+  sorting: 'default' | 'random' | 'hardest_first' | 'least_practiced' | 'weighted_learning' | 'id';
   immediateFeedback: boolean;
   showExplanationOnDemand: boolean;
   sourceFilters: ('user' | 'ai')[];

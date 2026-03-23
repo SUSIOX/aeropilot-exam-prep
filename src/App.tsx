@@ -42,14 +42,15 @@ import {
 } from 'lucide-react';
 import { Subject, Question, Stats, ViewMode, DrillSettings } from './types';
 import { LearningEngine } from './lib/LearningEngine';
+import { sortQuestions, updateShuffleHistory, SortingConfig } from './services/sortingService';
 import { 
-  generateBatchQuestions, 
   getDetailedExplanation, 
   getDetailedHumanExplanation, 
   translateQuestion, 
   verifyApiKey, 
   checkDeepSeekBalance, 
   checkDeepSeekBalanceProxy, 
+  generateBatchQuestions,
   EasaLO, 
   mockLOs, 
   getAllLOs,
@@ -93,7 +94,6 @@ const checkAnswer = (shuffledQuestion: ShuffledQuestion, userAnswerIndex: number
 import { CognitoAuth } from './components/CognitoAuth';
 import { useLanguage, LanguageButton, TranslatedText, TranslatedOption } from './utils/language';
 import { markdownToHtml, sanitizeHtml } from './utils/markdown';
-import { shuffle, hashArray } from './utils/shuffle';
 import { computeWeights } from './utils/shuffle.weights';
 import { AICancellationManager, useAICancellation } from './utils/aiCancellation';
 import { LandingPage } from './components/LandingPage';
@@ -198,9 +198,34 @@ export default function App() {
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [isSettingQuestions, setIsSettingQuestions] = useState(false); // Prevent duplicate setQuestions calls
+  
+  // Wrap setQuestions to add debugging
+  const debugSetQuestions = (newQuestions: Question[] | ((prev: Question[]) => Question[])) => {
+    console.log(`🔧 setQuestions called, type: ${typeof newQuestions}`);
+    if (typeof newQuestions === 'function') {
+      setQuestions((prev) => {
+        const result = newQuestions(prev);
+        console.log(`🔧 setQuestions function result - first ID: ${result[0]?.id}, length: ${result.length}`);
+        return result;
+      });
+    } else {
+      console.log(`🔧 setQuestions array - first ID: ${newQuestions[0]?.id}, length: ${newQuestions.length}`);
+      setQuestions(newQuestions);
+    }
+  };
   const [originalQuestions, setOriginalQuestions] = useState<Question[]>([]); // Store unfiltered questions
   const [isEcqbPatternsOpen, setIsEcqbPatternsOpen] = useState(false); // ECQB patterns collapsible
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  
+  // Track when questions or currentQuestionIndex change
+  useEffect(() => {
+    // console.log(`📍 STATE DEBUG: currentQuestionIndex changed to: ${currentQuestionIndex}`);
+  }, [currentQuestionIndex]);
+  
+  useEffect(() => {
+    // console.log(`📍 STATE DEBUG: questions changed, first question ID: ${questions[0]?.id}, length: ${questions.length}`);
+  }, [questions]);
   const [stats, setStats] = useState<Stats | null>(null);
   const [answered, setAnswered] = useState<string | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
@@ -240,20 +265,32 @@ export default function App() {
         if (parsed.excludeAnswered === undefined) {
           parsed.excludeAnswered = false;
         }
+        // Ensure weightedLearning is set with defaults if not present
+        if (!parsed.weightedLearning) {
+          parsed.weightedLearning = {
+            enabled: true,
+            halflife_days: 7,
+            w_performance: 0.50,
+            w_decay: 0.30,
+            w_difficulty: 0.20
+          };
+        } else if (parsed.weightedLearning.enabled === undefined) {
+          parsed.weightedLearning.enabled = true;
+        }
         return parsed;
       } catch (e) {
         // Failed to parse drillSettings
       }
     }
     return {
-      sorting: 'default',
+      sorting: 'weighted_learning',
       immediateFeedback: true,
       showExplanationOnDemand: true,
       sourceFilters: ['user', 'ai'],
       shuffleAnswers: false,
       excludeAnswered: false,
       weightedLearning: {
-        enabled: false,
+        enabled: true,
         halflife_days: 7,
         w_performance: 0.50,
         w_decay: 0.30,
@@ -263,6 +300,11 @@ export default function App() {
       shuffleHistorySize: 10
     };
   });
+
+  // Track when drillSettings.sorting changes
+  useEffect(() => {
+    // console.log(`📍 SORTING DEBUG: drillSettings.sorting changed to: ${drillSettings.sorting}`);
+  }, [drillSettings.sorting]);
 
   // LOs loaded from DB (falls back to mockLOs)
   const [allLOs, setAllLOs] = useState<EasaLO[]>(mockLOs);
@@ -505,10 +547,10 @@ export default function App() {
       // Try Cognito auth first
       const cognitoUser = cognitoAuthService.getCurrentUser();
       if (cognitoUser) {
-        // Prefer Identity Pool identity ID (needed for DynamoDB LeadingKeys policy).
-        // It's stored in sessionStorage after the first getAWSCredentials() call.
-        const identityId = sessionStorage.getItem('identity_id') || cognitoUser.id;
-        return { id: identityId, username: cognitoUser.username };
+        // For authenticated users, we need to wait for AWS credentials to get identity ID
+        // Use temporary ID until credentials are ready
+        const tempId = cognitoUser.id;
+        return { id: tempId, username: cognitoUser.username };
       }
 
       // Fallback to old system
@@ -688,10 +730,13 @@ export default function App() {
           dynamoDBService.reinitialize();
           const identityId = cognitoAuthService.getIdentityId();
           if (identityId) {
-            setUser((prev: { id: string, username: string } | null) => prev ? { ...prev, id: identityId } : prev);
+            setUser((prev: { id: string, username: string } | null) => prev ? { ...prev, id: identityId } : null);
           }
           if (!isCredentialsReady) setIsCredentialsReady(true);
-          else syncUserData(); // credentials were already ready, manually trigger sync
+          else {
+            // Force syncUserData with updated user ID
+            setTimeout(() => syncUserData(), 100);
+          }
         }
       } else {
         // User is not authenticated, use guest credentials
@@ -1004,9 +1049,14 @@ export default function App() {
         .then(result => {
           if (result.success && result.settings) {
             // Merge with localStorage settings (DynamoDB takes precedence)
+            // But preserve weightedLearning defaults if not present in DB
             setDrillSettings(prev => ({
               ...prev,
-              ...result.settings
+              ...result.settings,
+              weightedLearning: {
+                ...prev.weightedLearning,
+                ...result.settings.weightedLearning
+              }
             }));
 
             // Restore API keys and AI settings from DB
@@ -1114,10 +1164,16 @@ export default function App() {
       
       // Update shuffle history if using weighted learning
       if (drillSettings.sorting === 'weighted_learning') {
-        updateShuffleHistory(mapped);
+        updateShuffleHistoryLocal(mapped);
       }
     }
   }, [drillSettings.sourceFilters, drillSettings.excludeAnswered, view, originalQuestions.length, selectedSubject]);
+
+  // Force re-render of progress bars when filters change
+  useEffect(() => {
+    // This effect ensures progress bars re-calculate when source filters change
+    // The dependency array includes all variables used in progress bar calculations
+  }, [drillSettings.sourceFilters, selectedSubject, questions, stats]);
 
   // Static data loading for GitHub Pages deployment
   const loadStaticSubjects = async () => {
@@ -1430,7 +1486,44 @@ export default function App() {
     });
   };
 
+  // Helper functions for filtered progress calculations
+  const getQuestionType = (questionId: string, allQuestions: Question[]): 'user' | 'ai' => {
+    const question = allQuestions.find(q => String(q.id) === questionId);
+    const isAi = question && (Number(question.is_ai) === 1 || question.source === 'ai' || question.source === 'easa');
+    return isAi ? 'ai' : 'user';
+  };
+
+  const getFilteredQuestionCount = (subject: Subject, sourceFilters: ('user' | 'ai')[]) => {
+    let count = 0;
+    if (sourceFilters.includes('user')) count += subject.user_count || 0;
+    if (sourceFilters.includes('ai')) count += subject.ai_count || 0;
+    return count;
+  };
+
+  const getFilteredAnsweredCount = (subjectId: number, sourceFilters: ('user' | 'ai')[], allQuestions: Question[]) => {
+    const answers = JSON.parse(localStorage.getItem(userKey('answers')) || '{}');
+    return Object.keys(answers).filter(questionId => {
+      const answer = answers[questionId] as { isCorrect: boolean; subjectId: number; timestamp: string };
+      if (answer.subjectId !== subjectId) return false;
+      
+      const questionType = getQuestionType(questionId, allQuestions);
+      return sourceFilters.includes(questionType);
+    }).length;
+  };
+
+  const getFilteredCorrectCount = (subjectId: number, sourceFilters: ('user' | 'ai')[], allQuestions: Question[]) => {
+    const answers = JSON.parse(localStorage.getItem(userKey('answers')) || '{}');
+    return Object.entries(answers).filter(([questionId, answer]) => {
+      const typedAnswer = answer as { isCorrect: boolean; subjectId: number; timestamp: string };
+      if (typedAnswer.subjectId !== subjectId) return false;
+      
+      const questionType = getQuestionType(questionId, allQuestions);
+      return sourceFilters.includes(questionType) && typedAnswer.isCorrect;
+    }).length;
+  };
+
   const startDrill = async (subject: Subject) => {
+    console.log(`🚀 startDrill called for subject: ${subject.name} (ID: ${subject.id})`);
     try {
       setSelectedSubject(subject);
       // Save selected subject to localStorage for guest mode persistence
@@ -1439,6 +1532,9 @@ export default function App() {
       }
       // Use static questions loading for GitHub Pages deployment
       const data: Question[] = await loadStaticQuestions(subject.id);
+
+      // Store original questions for dynamic filtering
+      setOriginalQuestions(data);
 
       const answers = JSON.parse(localStorage.getItem(userKey('answers')) || '{}');
       let processedQuestions = data.filter(q => {
@@ -1460,9 +1556,7 @@ export default function App() {
         alert('Pro tento předmět a vybrané filtry nebyly nalezeny žádné otázky.');
         return;
       }
-
-      // Store original questions for dynamic filtering
-      setOriginalQuestions(data);
+      
       setQuestions(processedQuestions);
       setCurrentQuestionIndex(0);
       setAnswered(null);
@@ -1470,7 +1564,7 @@ export default function App() {
       
       // Update shuffle history if using weighted learning
       if (drillSettings.sorting === 'weighted_learning') {
-        updateShuffleHistory(processedQuestions);
+        updateShuffleHistoryLocal(processedQuestions);
       }
       language.resetTranslation(); // Reset translation when starting new drill
       setView('drill');
@@ -1479,87 +1573,42 @@ export default function App() {
     }
   };
 
-  // Helper function to apply sorting to questions
+  // Helper function to apply sorting to questions (using centralized sorting service)
   const applySorting = (questions: Question[], sorting: string): Question[] => {
-    let sorted = [...questions];
-    if (sorting === 'random') {
-      sorted = shuffle(sorted);
-      console.log(`🎲 applySorting: Shuffled ${sorted.length} questions. First question ID: ${sorted[0]?.id}`);
-    } else if (sorting === 'hardest_first') {
-      sorted = sorted.sort((a, b) => {
-        const diffA = a.difficulty ?? 0;
-        const diffB = b.difficulty ?? 0;
-        if (diffB !== diffA) return diffB - diffA;
-        return String(a.id).localeCompare(String(b.id));
-      });
-      console.log(`🔥 applySorting: Sorted by difficulty. First question ID: ${sorted[0]?.id}, difficulty: ${sorted[0]?.difficulty}`);
-    } else if (sorting === 'least_practiced') {
-      sorted = sorted.sort((a, b) => {
-        if (!a.last_practiced && !b.last_practiced) return String(a.id).localeCompare(String(b.id));
-        if (!a.last_practiced) return -1;
-        if (!b.last_practiced) return 1;
-        return new Date(a.last_practiced).getTime() - new Date(b.last_practiced).getTime();
-      });
-      console.log(`📚 applySorting: Sorted by least practiced. First question ID: ${sorted[0]?.id}, last_practiced: ${sorted[0]?.last_practiced}`);
-    } else if (sorting === 'weighted_learning') {
-      // Use weighted shuffle for learning algorithm
-      if (drillSettings.weightedLearning?.enabled) {
-        const weights = computeWeights(sorted, drillSettings.weightedLearning);
-        sorted = shuffle(sorted, { 
-          weights, 
-          seed: user?.id || Date.now(),
-          history: drillSettings.shuffleHistory 
-        });
-        console.log(`🧠 applySorting: Weighted learning shuffle applied. First question ID: ${sorted[0]?.id}, weight: ${weights[sorted.findIndex(q => q.id === sorted[0]?.id)]?.toFixed(3)}`);
-      } else {
-        // Fallback to random if weighted learning not enabled
-        sorted = shuffle(sorted);
-        console.log(`⚠️ applySorting: Weighted learning not enabled, falling back to random shuffle`);
-      }
-    } else {
-      // default - Robust sort by ID (handling 9_1, 9_10, subjectX_qY etc. numerically)
-      sorted = sorted.sort((a, b) => {
-        const getParts = (id: any) => String(id).split('_').map(p => {
-          // If part looks like a number or 'q' followed by number, extract number
-          const n = parseInt(p.startsWith('q') ? p.substring(1) : p);
-          return isNaN(n) ? p : n;
-        });
-        
-        const partsA = getParts(a.id);
-        const partsB = getParts(b.id);
-        
-        // Hierarchical comparison
-        for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
-          const valA = partsA[i];
-          const valB = partsB[i];
-          
-          if (valA === undefined) return -1;
-          if (valB === undefined) return 1;
-          
-          if (valA !== valB) {
-            // Numeric comparison if both are numbers
-            if (typeof valA === 'number' && typeof valB === 'number') return valA - valB;
-            // String comparison otherwise
-            return String(valA).localeCompare(String(valB));
-          }
-        }
-        return 0;
-      });
-      console.log(`📋 applySorting: Using robust ID order. First question ID: ${sorted[0]?.id}`);
-    }
-    return sorted;
+    const config: SortingConfig = {
+      type: sorting as any,
+      weightedLearning: drillSettings.weightedLearning ? {
+        enabled: drillSettings.weightedLearning.enabled,
+        halflife_days: drillSettings.weightedLearning.halflife_days,
+        difficulty_weight: drillSettings.weightedLearning.w_difficulty,
+        time_weight: drillSettings.weightedLearning.w_performance
+      } : undefined,
+      shuffleHistory: drillSettings.shuffleHistory,
+      shuffleHistorySize: drillSettings.shuffleHistorySize,
+      userId: user?.id
+    };
+
+    return sortQuestions(questions, { config });
   };
 
-  // Function to update shuffle history
-  const updateShuffleHistory = (shuffledQuestions: Question[]) => {
-    if (drillSettings.sorting === 'weighted_learning' && drillSettings.weightedLearning?.enabled) {
-      const newHash = hashArray(shuffledQuestions.map(q => q.id));
-      const currentHistory = drillSettings.shuffleHistory || [];
-      const maxSize = drillSettings.shuffleHistorySize || 10;
-      
-      // Add new hash to history and maintain size limit
-      const updatedHistory = [newHash, ...currentHistory].slice(0, maxSize);
-      
+  // Function to update shuffle history (using centralized sorting service)
+  const updateShuffleHistoryLocal = (shuffledQuestions: Question[]) => {
+    const config: SortingConfig = {
+      type: drillSettings.sorting as any,
+      weightedLearning: drillSettings.weightedLearning ? {
+        enabled: drillSettings.weightedLearning.enabled,
+        halflife_days: drillSettings.weightedLearning.halflife_days,
+        difficulty_weight: drillSettings.weightedLearning.w_difficulty,
+        time_weight: drillSettings.weightedLearning.w_performance
+      } : undefined,
+      shuffleHistory: drillSettings.shuffleHistory,
+      shuffleHistorySize: drillSettings.shuffleHistorySize,
+      userId: user?.id
+    };
+
+    const updatedHistory = updateShuffleHistory(shuffledQuestions, config);
+    
+    if (updatedHistory.length > 0) {
       setDrillSettings(prev => ({
         ...prev,
         shuffleHistory: updatedHistory
@@ -1567,22 +1616,24 @@ export default function App() {
     }
   };
 
-  // Function to reshuffle current questions during drill
+  // Function to reshuffle current questions during drill (using centralized sorting service)
   const reshuffleQuestions = () => {
-    let shuffled: Question[];
+    console.log(`🔄 reshuffleQuestions called! Current sorting: ${drillSettings.sorting}`);
     
-    if (drillSettings.sorting === 'weighted_learning' && drillSettings.weightedLearning?.enabled) {
-      const weights = computeWeights(questions, drillSettings.weightedLearning);
-      shuffled = shuffle(questions, { 
-        weights, 
-        seed: user?.id || Date.now(),
-        history: drillSettings.shuffleHistory 
-      });
-      console.log(`🧠 Reshuffled with weighted learning. First question ID: ${shuffled[0]?.id}`);
-    } else {
-      shuffled = shuffle(questions);
-      console.log(`🎲 Reshuffled questions. New first question ID: ${shuffled[0]?.id}`);
-    }
+    const config: SortingConfig = {
+      type: drillSettings.sorting as any,
+      weightedLearning: drillSettings.weightedLearning ? {
+        enabled: drillSettings.weightedLearning.enabled,
+        halflife_days: drillSettings.weightedLearning.halflife_days,
+        difficulty_weight: drillSettings.weightedLearning.w_difficulty,
+        time_weight: drillSettings.weightedLearning.w_performance
+      } : undefined,
+      shuffleHistory: drillSettings.shuffleHistory,
+      shuffleHistorySize: drillSettings.shuffleHistorySize,
+      userId: user?.id
+    };
+
+    const shuffled = sortQuestions(questions, { config });
     
     setQuestions(shuffled);
     setCurrentQuestionIndex(0);
@@ -1590,7 +1641,7 @@ export default function App() {
     setShowExplanation(false);
     
     // Update shuffle history
-    updateShuffleHistory(shuffled);
+    updateShuffleHistoryLocal(shuffled);
   };
 
   const startMix = async () => {
@@ -1640,7 +1691,7 @@ export default function App() {
       
       // Update shuffle history if using weighted learning
       if (drillSettings.sorting === 'weighted_learning') {
-        updateShuffleHistory(sortedQuestions);
+        updateShuffleHistoryLocal(sortedQuestions);
       }
       language.resetTranslation(); // Reset translation when starting MIX
       setView('drill');
@@ -1703,7 +1754,7 @@ export default function App() {
       
       // Update shuffle history if using weighted learning
       if (drillSettings.sorting === 'weighted_learning') {
-        updateShuffleHistory(sortedQuestions);
+        updateShuffleHistoryLocal(sortedQuestions);
       }
       language.resetTranslation();
       setView('drill');
@@ -1753,7 +1804,7 @@ export default function App() {
       
       // Update shuffle history if using weighted learning
       if (drillSettings.sorting === 'weighted_learning') {
-        updateShuffleHistory(sortedQuestions);
+        updateShuffleHistoryLocal(sortedQuestions);
       }
       setView('drill');
     } catch (error) {
@@ -1972,8 +2023,10 @@ export default function App() {
         );
 
         if (categoryQuestions.length >= count) {
-          // Shuffle and take required number
-          const shuffled = shuffle(categoryQuestions);
+          // Shuffle and take required number using centralized sorting service
+          const shuffled = sortQuestions(categoryQuestions, { 
+            config: { type: 'random', userId: user?.id } 
+          });
           examSet.push(...shuffled.slice(0, count));
         } else {
           // Not enough questions, take all available
@@ -2025,7 +2078,7 @@ export default function App() {
         saveAnswerToLocalStorage(currentQuestion.id, isCorrect, currentQuestion.subject_id);
         updateUserStats(isCorrect);
         // Sync to DynamoDB only for authenticated users (not guests)
-        if (!isGuestMode && user?.id) {
+        if (!isGuestMode && user?.id && isCredentialsReady) {
           dynamoDBService.saveUserProgress(String(user.id), String(currentQuestion.id), isCorrect).catch(() => { });
         }
       } catch (error) {
@@ -2730,7 +2783,7 @@ V nastavení lze změnit defaultni model.`);
     try {
       const report = await checkSubjectDuplicates(importSubjectId, loadStaticQuestions);
       setDuplicateReport(report);
-      console.log('🔍 Duplicate Report:', report);
+      // console.log('🔍 Duplicate Report:', report);
     } catch (error) {
       console.error('Error checking duplicates:', error);
     } finally {
@@ -2782,7 +2835,7 @@ V nastavení lze změnit defaultni model.`);
 
       if (result.success) {
         setGeneratedLOs(result.los);
-        console.log('🎯 Generated LOs:', result.los);
+        // console.log('🎯 Generated LOs:', result.los);
       } else {
         console.error('Error generating LOs:', result.error);
         alert(`Chyba při generování LOs: ${result.error}`);
@@ -2917,27 +2970,8 @@ V nastavení lze změnit defaultni model.`);
       return;
     }
 
-    // Apply sorting based on drillSettings
-    if (drillSettings.sorting === 'random') {
-      loQuestions = shuffle(loQuestions);
-    } else if (drillSettings.sorting === 'hardest_first') {
-      loQuestions = [...loQuestions].sort((a, b) => {
-        const diffA = a.difficulty ?? 0;
-        const diffB = b.difficulty ?? 0;
-        if (diffB !== diffA) return diffB - diffA;
-        return a.id - b.id;
-      });
-    } else if (drillSettings.sorting === 'least_practiced') {
-      loQuestions = [...loQuestions].sort((a, b) => {
-        if (!a.last_practiced && !b.last_practiced) return a.id - b.id;
-        if (!a.last_practiced) return -1;
-        if (!b.last_practiced) return 1;
-        return new Date(a.last_practiced).getTime() - new Date(b.last_practiced).getTime();
-      });
-    } else {
-      // default - sort by ID
-      loQuestions = [...loQuestions].sort((a, b) => a.id - b.id);
-    }
+    // Apply sorting using centralized sorting service
+    loQuestions = applySorting(loQuestions, drillSettings.sorting);
 
     setQuestions(loQuestions);
     setCurrentQuestionIndex(0);
@@ -2946,7 +2980,7 @@ V nastavení lze změnit defaultni model.`);
     
     // Update shuffle history if using weighted learning
     if (drillSettings.sorting === 'weighted_learning') {
-      updateShuffleHistory(loQuestions);
+      updateShuffleHistoryLocal(loQuestions);
     }
     language.resetTranslation(); // Reset translation when opening from syllabus
     setView('drill');
@@ -3112,7 +3146,7 @@ V nastavení lze změnit defaultni model.`);
       setActualCoveredLOs(uniqueLosWithQuestions.size);
 
       // Debug: Show LO IDs and question LO IDs
-      console.log('🔍 Debug - LOs analysis:', {
+      /* console.log('🔍 Debug - LOs analysis:', {
         subjectId: importSubjectId,
         totalLOs: allSubjectLOs.length,
         loIds: allSubjectLOs.slice(0, 5).map(lo => ({ id: lo.id, title: lo.title })),
@@ -3120,7 +3154,7 @@ V nastavení lze změnit defaultni model.`);
         questionLoIds: existingQuestions.slice(0, 5).map(q => ({ lo_id: q.lo_id, question: q.text.substring(0, 50) })),
         losWithQuestions: Array.from(losWithQuestions).slice(0, 5),
         uniqueLosWithQuestionsCount: uniqueLosWithQuestions.size
-      });
+      }); */
 
       // Filter LOs that don't have questions yet
       const missingLOs = allSubjectLOs.filter(lo => !losWithQuestions.has(lo.id));
@@ -3142,7 +3176,7 @@ V nastavení lze změnit defaultni model.`);
         return;
       }
 
-      console.log(`🎯 Selected ${targets.length} LOs for generation:`, targets.map(t => t.id));
+      // console.log(`🎯 Selected ${targets.length} LOs for generation:`, targets.map(t => t.id));
 
       // Process in chunks of 5 LOs to avoid hitting output token limits
       const CHUNK_SIZE = 5;
@@ -4185,6 +4219,22 @@ V nastavení lze změnit defaultni model.`);
                                 localStorage.setItem('drillSettings', JSON.stringify(newSettings));
                                 return newSettings;
                               });
+                              
+                              // Immediately re-sort current questions and go to first
+                              if (questions.length > 0) {
+                                // console.log(`🔄 DEBUG: Sorting changed to: ${newSorting}`);
+                                // console.log(`🔄 DEBUG: Before re-sort - First question ID: ${questions[0]?.id}`);
+                                const sortedQuestions = applySorting(questions, newSorting);
+                                // console.log(`🔄 DEBUG: After re-sort - First question ID: ${sortedQuestions[0]?.id}`);
+                                
+                                // Update all state in single batch
+                                debugSetQuestions(sortedQuestions);
+                                setAnswered(null);
+                                setShowExplanation(false);
+                                
+                                // Set index last to ensure questions are updated first
+                                setCurrentQuestionIndex(0);
+                              }
                             }}
                             className="w-full p-3 bg-transparent border border-[var(--line)] rounded-xl focus:outline-none focus:border-[var(--ink)]"
                           >
@@ -4330,12 +4380,13 @@ V nastavení lze změnit defaultni model.`);
                       {drillSettings.weightedLearning?.enabled && (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-[var(--line)]">
                           <div className="space-y-2">
-                            <label className="text-xs font-bold opacity-50">Polovrní doba zapomnění (dny)</label>
+                            <label className="text-xs font-bold opacity-50">Poloviční doba zapomnění (dny)</label>
                             <input
                               type="number"
                               min="1"
                               max="30"
                               value={drillSettings.weightedLearning.halflife_days}
+                              placeholder="7"
                               onChange={(e) => setDrillSettings(prev => ({
                                 ...prev,
                                 weightedLearning: {
@@ -4903,6 +4954,7 @@ V nastavení lze změnit defaultni model.`);
                             )}
                           </div>
                           <div className="flex-1">
+                            {/* console.log(`🎯 RENDER DEBUG: Rendering question at index ${currentQuestionIndex}, ID: ${questions[currentQuestionIndex]?.id}`) */}
                             <TranslatedText
                               question={questions[currentQuestionIndex]}
                               field="text"
@@ -5257,41 +5309,90 @@ V nastavení lze změnit defaultni model.`);
                       {/* Progress Banner */}
                       {selectedSubject && (
                         <div className="p-2 md:p-3 border border-[var(--line)] rounded-xl bg-gradient-to-r from-gray-500/5 to-blue-500/5 mt-auto">
-                          <div className="flex flex-col">
-                            <p className="text-xs font-bold">Progres v {selectedSubject.name}</p>
-                            <div className="flex items-center gap-3">
-                              <div className="text-left">
-                                <p className="text-lg font-mono font-bold">
-                                  {(() => {
-                                    const subjectStats = stats?.subjectStats?.[selectedSubject.id];
-                                    if (!subjectStats) return '0%';
-                                    const percentage = Math.round((subjectStats.correctAnswers / subjectStats.totalAnswered) * 100);
-                                    return `${percentage}%`;
-                                  })()}
-                                </p>
-                                <p className="text-[10px] opacity-60">
-                                  {(() => {
-                                    const subjectStats = stats?.subjectStats?.[selectedSubject.id];
-                                    if (!subjectStats) return '0/0';
-                                    return (
-                                      <span>
-                                        {subjectStats.correctAnswers} OK / {subjectStats.totalAnswered - subjectStats.correctAnswers} Fail
-                                      </span>
-                                    );
-                                  })()}
-                                </p>
+                          <div className="space-y-3">
+                            {/* Success Rate */}
+                            <div className="flex flex-col">
+                              <p className="text-xs font-bold">Úspěšnost v {selectedSubject.name}</p>
+                              <div className="flex items-center gap-3">
+                                <div className="text-left">
+                                  <p className="text-lg font-mono font-bold">
+                                    {(() => {
+                                      const filteredCorrect = getFilteredCorrectCount(selectedSubject.id, drillSettings.sourceFilters, questions);
+                                      const filteredAnswered = getFilteredAnsweredCount(selectedSubject.id, drillSettings.sourceFilters, questions);
+                                      if (filteredAnswered === 0) return '0%';
+                                      const percentage = Math.round((filteredCorrect / filteredAnswered) * 100);
+                                      return `${percentage}%`;
+                                    })()}
+                                  </p>
+                                  <p className="text-[10px] opacity-60">
+                                    {(() => {
+                                      const filteredCorrect = getFilteredCorrectCount(selectedSubject.id, drillSettings.sourceFilters, questions);
+                                      const filteredAnswered = getFilteredAnsweredCount(selectedSubject.id, drillSettings.sourceFilters, questions);
+                                      if (filteredAnswered === 0) return '0/0';
+                                      return (
+                                        <span>
+                                          {filteredCorrect} OK / {filteredAnswered - filteredCorrect} Fail
+                                        </span>
+                                      );
+                                    })()}
+                                  </p>
+                                </div>
+                                <div className="flex-1 h-1.5 bg-gray-700 dark:bg-black rounded-full overflow-hidden">
+                                  <div
+                                    className="h-full bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-500"
+                                    style={{
+                                      width: `${(() => {
+                                        const filteredCorrect = getFilteredCorrectCount(selectedSubject.id, drillSettings.sourceFilters, questions);
+                                        const filteredAnswered = getFilteredAnsweredCount(selectedSubject.id, drillSettings.sourceFilters, questions);
+                                        if (filteredAnswered === 0) return '0%';
+                                        return Math.round((filteredCorrect / filteredAnswered) * 100);
+                                      })()}%`
+                                    }}
+                                  />
+                                </div>
                               </div>
-                              <div className="flex-1 h-1.5 bg-gray-700 dark:bg-black rounded-full overflow-hidden">
-                                <div
-                                  className="h-full bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-500"
-                                  style={{
-                                    width: `${(() => {
-                                      const subjectStats = stats?.subjectStats?.[selectedSubject.id];
-                                      if (!subjectStats) return '0%';
-                                      return Math.round((subjectStats.correctAnswers / subjectStats.totalAnswered) * 100);
-                                    })()}%`
-                                  }}
-                                />
+                            </div>
+                            
+                            {/* Progress */}
+                            <div className="flex flex-col">
+                              <p className="text-xs font-bold">Progres v {selectedSubject.name}</p>
+                              <div className="flex items-center gap-3">
+                                <div className="text-left">
+                                  <p className="text-lg font-mono font-bold">
+                                    {(() => {
+                                      const filteredAnswered = getFilteredAnsweredCount(selectedSubject.id, drillSettings.sourceFilters, questions);
+                                      const filteredTotal = getFilteredQuestionCount(selectedSubject, drillSettings.sourceFilters);
+                                      if (filteredTotal === 0) return '0%';
+                                      const percentage = Math.round((filteredAnswered / filteredTotal) * 100);
+                                      return `${percentage}%`;
+                                    })()}
+                                  </p>
+                                  <p className="text-[10px] opacity-60">
+                                    {(() => {
+                                      const filteredAnswered = getFilteredAnsweredCount(selectedSubject.id, drillSettings.sourceFilters, questions);
+                                      const filteredTotal = getFilteredQuestionCount(selectedSubject, drillSettings.sourceFilters);
+                                      if (filteredTotal === 0) return '0/0';
+                                      return (
+                                        <span>
+                                          {filteredAnswered} / {filteredTotal} zodpovězeno
+                                        </span>
+                                      );
+                                    })()}
+                                  </p>
+                                </div>
+                                <div className="flex-1 h-1.5 bg-gray-700 dark:bg-black rounded-full overflow-hidden">
+                                  <div
+                                    className="h-full bg-gradient-to-r from-green-400 to-green-600 transition-all duration-500"
+                                    style={{
+                                      width: `${(() => {
+                                        const filteredAnswered = getFilteredAnsweredCount(selectedSubject.id, drillSettings.sourceFilters, questions);
+                                        const filteredTotal = getFilteredQuestionCount(selectedSubject, drillSettings.sourceFilters);
+                                        if (filteredTotal === 0) return '0%';
+                                        return Math.round((filteredAnswered / filteredTotal) * 100);
+                                      })()}%`
+                                    }}
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>

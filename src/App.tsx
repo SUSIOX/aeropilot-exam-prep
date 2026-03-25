@@ -1384,16 +1384,34 @@ export default function App() {
           ({ total, user: userQuestions, ai } = countsResult.data);
         }
 
-        // 2. Fetch User Profile (Progress & Settings)
+        // 2. Fetch User Profile (Settings)
         const profileResult = await dynamoDBService.getUserProfileWithProgress(uid);
         
+        // 2b. Fetch User Progress (New Single-Table Design)
+        const progressResult = await dynamoDBService.getUserProgress(uid);
+
         if (profileResult.success && profileResult.data) {
           const profile = profileResult.data;
           
-          // Hydrate Answers Map
-          if (profile.progress) {
-            localStorage.setItem(`${uid}:answers`, JSON.stringify(profile.progress));
+          // Reconstruct allAnswers from the new single-table lines
+          const allAnswers: any = {};
+          if (progressResult.success && progressResult.data) {
+            for (const item of progressResult.data) {
+              if (item.SK && item.SK.startsWith('Q#')) {
+                const rawSk = item.SK.substring(2);
+                const qid = !isNaN(Number(rawSk)) && String(rawSk).trim() !== '' ? String(Number(rawSk)) : rawSk;
+                allAnswers[qid] = {
+                  isCorrect: item.correct,
+                  subjectId: item.subjectId !== -1 ? item.subjectId : undefined,
+                  answerTimestamp: item.updated_at,
+                  attempts: item.attempts
+                };
+              }
+            }
           }
+
+          // Hydrate Answers Map
+          localStorage.setItem(`${uid}:answers`, JSON.stringify(allAnswers));
 
           // Hydrate Settings
           if (profile.settings) {
@@ -1402,7 +1420,6 @@ export default function App() {
           }
 
           // Compute Statistics
-          const allAnswers = profile.progress || {};
           const practicedCount = Object.keys(allAnswers).length;
           const correctCount = Object.values(allAnswers).filter((a: any) => a.isCorrect).length;
           const successRate = practicedCount > 0 ? correctCount / practicedCount : 0;
@@ -2075,11 +2092,16 @@ export default function App() {
 
       // Save answer to localStorage + DynamoDB
       try {
+        const answersKey = userKey('answers');
+        const guestAnswers = JSON.parse(localStorage.getItem(answersKey) || '{}');
+        const isFirstAttempt = !(currentQuestion.id in guestAnswers);
+
         saveAnswerToLocalStorage(currentQuestion.id, isCorrect, currentQuestion.subject_id);
         updateUserStats(isCorrect);
         // Sync to DynamoDB only for authenticated users (not guests)
+        console.log('🔍 DB save check:', { isGuestMode, userId: user?.id, isCredentialsReady });
         if (!isGuestMode && user?.id && isCredentialsReady) {
-          dynamoDBService.saveUserProgress(String(user.id), String(currentQuestion.id), isCorrect).catch(() => { });
+          dynamoDBService.saveUserProgress(String(user.id), String(currentQuestion.id), isCorrect, isFirstAttempt, currentQuestion.subject_id).catch(() => { });
         }
       } catch (error) {
         // Silent fail
@@ -3526,6 +3548,7 @@ V nastavení lze změnit defaultni model.`);
 
   return (
     <div className="min-h-screen transition-colors duration-300">
+      {isGuestMode && <div className="demo-app-frame" />}
       {/* Loading State - Prevent landing page flash */}
       {isAuthLoading ? (
         <div className="min-h-screen bg-[var(--bg)] flex items-center justify-center">
@@ -3672,10 +3695,10 @@ V nastavení lze změnit defaultni model.`);
                   {isGuestMode ? (
                     <button
                       onClick={() => showAuthPrompt('stats')}
-                      className="hidden sm:flex items-center h-10 px-3 text-gray-600 dark:text-gray-300 rounded-full min-w-0 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                      className="hidden sm:flex items-center h-10 px-3 text-gray-600 dark:text-gray-300 rounded-full min-w-0 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors guest-button-blink"
                     >
                       <User size={12} className="opacity-50 flex-shrink-0" />
-                      <span className="text-[10px] font-bold uppercase tracking-widest truncate ml-1">Guest</span>
+                      <span className="text-[10px] font-bold uppercase tracking-widest truncate ml-1">DEMO</span>
                     </button>
                   ) : (
                     <div className="hidden sm:flex items-center h-10 px-3 text-gray-600 dark:text-gray-300 rounded-full min-w-0">
@@ -3706,10 +3729,10 @@ V nastavení lze změnit defaultni model.`);
                   {isGuestMode ? (
                     <button
                       onClick={() => showAuthPrompt('stats')}
-                      className="hidden sm:flex items-center h-10 px-3 text-gray-600 dark:text-gray-300 rounded-full min-w-0 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex-shrink-0"
+                      className="hidden sm:flex items-center h-10 px-3 text-gray-600 dark:text-gray-300 rounded-full min-w-0 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex-shrink-0 guest-button-blink"
                     >
                       <User size={12} className="opacity-50 flex-shrink-0" />
-                      <span className="text-[10px] font-bold uppercase tracking-widest truncate ml-1">Guest</span>
+                      <span className="text-[10px] font-bold uppercase tracking-widest truncate ml-1">DEMO</span>
                     </button>
                   ) : (
                     <div className="hidden sm:flex items-center h-10 px-3 text-gray-600 dark:text-gray-300 rounded-full min-w-0 flex-shrink-0">
@@ -3855,10 +3878,10 @@ V nastavení lze změnit defaultni model.`);
                             showAuthPrompt('stats');
                             setIsMobileMenuOpen(false);
                           }}
-                          className="w-full flex items-center gap-3 p-3 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                          className="w-full flex items-center gap-3 p-3 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors guest-button-blink"
                         >
                           <User size={18} />
-                          <span className="font-semibold">Guest - Přihlásit se</span>
+                          <span className="font-semibold">DEMO - Přihlásit se</span>
                         </button>
                       ) : (
                         <div className="flex items-center gap-3 p-3 text-gray-600 dark:text-gray-300 rounded-lg">
@@ -3892,7 +3915,7 @@ V nastavení lze změnit defaultni model.`);
             )}
           </AnimatePresence>
 
-          <main className="max-w-7xl mx-auto p-6">
+          <main className={`max-w-7xl mx-auto p-6 transition-all ${isGuestMode ? 'demo-window-blink' : ''}`}>
             <AnimatePresence mode="wait">
               {view === 'dashboard' && (
                 <motion.div
@@ -7289,7 +7312,7 @@ V nastavení lze změnit defaultni model.`);
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0.9, opacity: 0 }}
-                  className="bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6 max-w-md w-full"
+                  className={`bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6 max-w-md w-full shadow-2xl ${isGuestMode ? 'demo-window-blink' : ''}`}
                   onClick={(e) => e.stopPropagation()}
                 >
                   <div className="flex items-center justify-between mb-6">

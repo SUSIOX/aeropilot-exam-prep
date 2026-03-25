@@ -109,7 +109,7 @@ export function LoginPrompt({ isOpen, onClose, onLoginSuccess, feature }: LoginP
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="w-full max-w-md bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6 shadow-2xl"
+            className={`w-full max-w-md bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6 shadow-2xl ${feature ? 'demo-window-blink' : ''}`}
             onClick={(e) => e.stopPropagation()}
           >
             {mode === 'prompt' ? (

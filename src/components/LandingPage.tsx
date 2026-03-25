@@ -127,7 +127,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onGuestMode, onAuthSuc
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="relative z-10 w-full max-w-xs mx-2 p-3 sm:p-4 glass-panel rounded-xl space-y-3 sm:space-y-4 border border-white/20 bg-white/10 backdrop-blur-xl"
+        className="relative z-10 w-full max-w-xs mx-2 p-3 sm:p-4 glass-panel rounded-xl space-y-3 sm:space-y-4 border border-white/20 bg-white/10 backdrop-blur-xl demo-window-blink"
       >
         {/* Logo and Title */}
         <div className="text-center space-y-1">

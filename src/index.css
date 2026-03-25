@@ -194,3 +194,156 @@ body {
   }
 }
 
+/* Guest button blinking animation */
+@keyframes guest-pulse {
+  0%, 100% {
+    transform: scale(1);
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+  }
+}
+
+.guest-button-blink {
+  animation: guest-pulse 2s ease-in-out infinite;
+  color: #000 !important;
+  font-weight: 700 !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+
+/* Guest/DEMO badge pulse animations */
+@keyframes guest-pulse-dark {
+  0%, 100% {
+    transform: scale(1);
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+  }
+}
+
+@keyframes guest-pulse-light {
+  0%, 100% {
+    transform: scale(1);
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    background-color: rgba(0, 0, 0, 1);
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.guest-button-blink {
+  font-weight: 700 !important;
+}
+
+/* Light mode for badge (dark text, black bg as requested) */
+:not(.dark) .guest-button-blink {
+  animation: guest-pulse-light 2s ease-in-out infinite;
+  color: #fff !important;
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  border: 1px solid rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Dark mode for badge (white bg, dark text) */
+.dark .guest-button-blink {
+  animation: guest-pulse-dark 2s ease-in-out infinite;
+  color: #000 !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Demo component/window pulse animations */
+@keyframes demo-border-pulse-dark {
+  0%, 100% {
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    border-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.4), inset 0 0 20px 5px rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes demo-border-pulse-light {
+  0%, 100% {
+    border-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    border-color: rgba(0, 0, 0, 1);
+    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.3), inset 0 0 20px 5px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.demo-window-blink {
+  border: 4px solid !important;
+}
+
+:not(.dark) .demo-window-blink {
+  animation: demo-border-pulse-light 2s ease-in-out infinite;
+  border-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.dark .demo-window-blink {
+  animation: demo-border-pulse-dark 2s ease-in-out infinite;
+  border-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Main app frame blink overlay (inset from edges) */
+.demo-app-frame {
+  position: fixed;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  pointer-events: none;
+  z-index: 10000;
+  box-sizing: border-box;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 12px; /* Smooth rounded corners for the floating frame */
+}
+
+@keyframes demo-frame-pulse-dark {
+  0%, 100% {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    border-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.4), inset 0 0 20px 5px rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes demo-frame-pulse-light {
+  0%, 100% {
+    border-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    border-color: rgba(0, 0, 0, 1);
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.3), inset 0 0 20px 5px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.dark .demo-app-frame {
+  animation: demo-frame-pulse-dark 2.5s ease-in-out infinite;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+:not(.dark) .demo-app-frame {
+  animation: demo-frame-pulse-light 2.5s ease-in-out infinite;
+  border-color: rgba(0, 0, 0, 0.6);
+}

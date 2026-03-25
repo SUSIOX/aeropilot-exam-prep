@@ -32,6 +32,8 @@ export default defineConfig(({mode}) => {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modify—file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
+      host: true, // Allow external connections
+      port: 5173, // Back to original port
       proxy: {
         '/api/token': {
           target: 'https://tf53kvzipuiavhoorbp3ltt56i0rkjow.lambda-url.eu-central-1.on.aws',

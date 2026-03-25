@@ -57,7 +57,9 @@ export const getSecureDocClient = () => {
 export const TABLE_NAMES = {
   EASA_OBJECTIVES: 'easa-objectives',          // Master LO data (EasaObjective)
   QUESTIONS: 'questions',                       // aeropilot-questions
-  USERS: 'users'                                // aeropilot-users
+  USERS: 'users',                               // aeropilot-users
+  USER_PROGRESS: 'user-progress-v2',            // single-table design for user progress
+  EXAM_RESULTS: 'exam-results'                  // aeropilot-exam-results
 } as const;
 
 // Get full table name with prefix

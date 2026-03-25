@@ -180,8 +180,11 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
         window.history.replaceState({}, document.title, window.location.pathname);
         return;
       }
-      // Consume state to prevent replay
-      localStorage.removeItem('cognito_state');
+      // Consume state to prevent replay - but only after successful validation
+      // Don't remove immediately to handle StrictMode double-invoke
+      if (!exchangeStarted.current) {
+        localStorage.removeItem('cognito_state');
+      }
       exchangeStarted.current = true; // Prevent duplicate calls
       console.log('🔑 Processing Cognito callback with code:', code.substring(0, 10) + '...');
       setIsLoading(true);
@@ -244,7 +247,7 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="w-full max-w-md bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6 shadow-2xl"
+            className="w-full max-w-md bg-[var(--bg)] border border-[var(--line)] rounded-2xl p-6 shadow-2xl demo-window-blink"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}

@@ -1,6 +1,6 @@
 // AWS DynamoDB Service - LAZY INITIALIZATION VERSION
 import { DynamoDBClient, GetItemCommand, PutItemCommand, UpdateItemCommand, DeleteItemCommand, BatchWriteItemCommand } from '@aws-sdk/client-dynamodb';
-import { DynamoDBDocumentClient, GetCommand as DocGetCommand, PutCommand as DocPutCommand, UpdateCommand as DocUpdateCommand, DeleteCommand as DocDeleteCommand, QueryCommand as DocQueryCommand, ScanCommand as DocScanCommand, BatchWriteCommand as DocBatchWriteCommand } from '@aws-sdk/lib-dynamodb';
+import { DynamoDBDocumentClient, GetCommand as DocGetCommand, PutCommand as DocPutCommand, UpdateCommand as DocUpdateCommand, DeleteCommand as DocDeleteCommand, QueryCommand as DocQueryCommand, ScanCommand as DocScanCommand, BatchWriteCommand as DocBatchWriteCommand, TransactWriteCommand as DocTransactWriteCommand } from '@aws-sdk/lib-dynamodb';
 import { awsConfig, getTableName, TABLE_NAMES, getSecureDynamoClient, getSecureDocClient, isSecureCredentialsAvailable } from './awsConfig';
 import { 
   DynamoDBResponse, 
@@ -64,7 +64,9 @@ export class DynamoDBService {
 
   // Metoda, kterou zavoláš před každým dotazem do DB
   private async ensureInitialized(): Promise<void> {
+    console.log('🔧 ensureInitialized called');
     if (this.isInitialized && this.client && this.docClient) {
+      console.log('✅ Already initialized');
       return;
     }
 
@@ -262,62 +264,106 @@ export class DynamoDBService {
 
   async saveUserProgress(
     userId: string,
-    questionId: string,
+    questionId: string | number,
     isCorrect: boolean,
-    attempts: number = 1
+    isFirstAttempt: boolean = true,
+    subjectId?: number
   ): Promise<DynamoDBResponse> {
+    console.log('💾 saveUserProgress (V2) called:', { userId, questionId, isCorrect, isFirstAttempt, subjectId });
     try {
       await this.ensureInitialized();
 
-      const item: UserProgressItem = {
-        userId,
-        questionId,
-        isCorrect,
-        answerTimestamp: new Date().toISOString(),
-        attempts
-      };
-
       const now = new Date().toISOString();
-      const prog = { isCorrect, answerTimestamp: now, attempts };
+      const sk = `Q#${String(questionId).padStart(5, '0')}`;
 
-      // DynamoDB nepovoluje SET progress = if_not_exists(...) a progress.#qid = ... v jednom výrazu
-      // Proto: nejdřív inicializuj progress map pokud neexistuje, pak nastav konkrétní klíč
-      try {
-        await this.docClient.send(new DocUpdateCommand({
-          TableName: getTableName('USERS'),
-          Key: { userId },
-          UpdateExpression: 'SET progress.#qid = :prog, updatedAt = :now',
-          ExpressionAttributeNames: { '#qid': questionId },
-          ExpressionAttributeValues: { ':prog': prog, ':now': now }
-        }));
-      } catch (e: any) {
-        if (e.name === 'ValidationException' && e.message.includes('document path')) {
-          // progress map neexistuje — inicializuj ho a zkus znovu
-          await this.docClient.send(new DocUpdateCommand({
-            TableName: getTableName('USERS'),
-            Key: { userId },
-            UpdateExpression: 'SET progress = if_not_exists(progress, :emptyMap)',
-            ExpressionAttributeValues: { ':emptyMap': {} }
-          }));
-          await this.docClient.send(new DocUpdateCommand({
-            TableName: getTableName('USERS'),
-            Key: { userId },
-            UpdateExpression: 'SET progress.#qid = :prog, updatedAt = :now',
-            ExpressionAttributeNames: { '#qid': questionId },
-            ExpressionAttributeValues: { ':prog': prog, ':now': now }
-          }));
-        } else {
-          throw e;
+      const transactItems: any[] = [
+        {
+          Update: {
+            TableName: getTableName('USER_PROGRESS'),
+            Key: { PK: `USER#${userId}`, SK: sk },
+            UpdateExpression: "SET correct = :c, correct_str = :cs, updated_at = :ts, subjectId = :sid ADD attempts :inc",
+            ExpressionAttributeValues: {
+              ":c": isCorrect,
+              ":cs": isCorrect ? "Y" : "N",
+              ":ts": now,
+              ":sid": subjectId !== undefined ? subjectId : -1,
+              ":inc": 1
+            }
+          }
         }
+      ];
+
+      // 2. Aktualizuj SUMMARY (jen při první odpovědi)
+      if (isFirstAttempt) {
+        transactItems.push({
+          Update: {
+            TableName: getTableName('USER_PROGRESS'),
+            Key: { PK: `USER#${userId}`, SK: "SUMMARY" },
+            UpdateExpression: "ADD answered :inc, correct_count :cc SET last_active = :ts",
+            ExpressionAttributeValues: {
+              ":inc": 1,
+              ":cc": isCorrect ? 1 : 0,
+              ":ts": now
+            }
+          }
+        });
       }
+
+      await this.docClient!.send(new DocTransactWriteCommand({
+        TransactItems: transactItems
+      }));
 
       return { success: true };
 
     } catch (error) {
+      console.error('❌ saveUserProgress (V2) failed:', error);
       return {
         success: false,
         error: this.handleError(error, 'saveUserProgress').message
       };
+    }
+  }
+
+  async getUserProgress(userId: string): Promise<DynamoDBResponse & { data?: any[] }> {
+    try {
+      await this.ensureInitialized();
+      const result = await this.docClient!.send(new DocQueryCommand({
+        TableName: getTableName('USER_PROGRESS'),
+        KeyConditionExpression: "PK = :pk",
+        ExpressionAttributeValues: { ":pk": `USER#${userId}` }
+      }));
+      return { success: true, data: result.Items || [] };
+    } catch (error) {
+      return { success: false, error: this.handleError(error, 'getUserProgress').message };
+    }
+  }
+
+  async getWrongAnswers(userId: string): Promise<DynamoDBResponse & { data?: any[] }> {
+    try {
+      await this.ensureInitialized();
+      const result = await this.docClient!.send(new DocQueryCommand({
+        TableName: getTableName('USER_PROGRESS'),
+        IndexName: "CorrectIndex",
+        KeyConditionExpression: "PK = :pk AND correct_str = :c",
+        ExpressionAttributeValues: { ":pk": `USER#${userId}`, ":c": "N" }
+      }));
+      return { success: true, data: result.Items || [] };
+    } catch (error) {
+       return { success: false, error: this.handleError(error, 'getWrongAnswers').message };
+    }
+  }
+
+  async getAnswer(userId: string, questionId: string | number): Promise<DynamoDBResponse & { data?: any }> {
+    try {
+      await this.ensureInitialized();
+      const sk = `Q#${String(questionId).padStart(5, '0')}`;
+      const result = await this.docClient!.send(new DocGetCommand({
+        TableName: getTableName('USER_PROGRESS'),
+        Key: { PK: `USER#${userId}`, SK: sk }
+      }));
+      return { success: true, data: result.Item };
+    } catch (error) {
+       return { success: false, error: this.handleError(error, 'getAnswer').message };
     }
   }
 
@@ -1199,6 +1245,40 @@ export class DynamoDBService {
     }
   }
 
+  // User Statistics Operations
+  async saveUserStats(
+    userId: string,
+    stats: {
+      practicedQuestions: number;
+      overallSuccess: number;
+      subjectStats: { [subjectId: number]: { correctAnswers: number; totalAnswered: number } };
+    }
+  ): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocUpdateCommand({
+        TableName: getTableName('USERS'),
+        Key: { userId },
+        UpdateExpression: 'SET stats = :stats, updatedAt = :now',
+        ExpressionAttributeValues: {
+          ':stats': stats,
+          ':now': new Date().toISOString()
+        }
+      });
+
+      await this.docClient.send(command);
+
+      return { success: true };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'saveUserStats').message
+      };
+    }
+  }
+
   // Learning Objectives Operations
 
   async getLOById(losid: string): Promise<DynamoDBResponse<LOItem>> {
@@ -1482,6 +1562,83 @@ export class DynamoDBService {
       return {
         success: false,
         error: this.handleError(error, 'linkQuestionToLO').message
+      };
+    }
+  }
+
+  // Exam Results Operations
+  async saveExamResult(
+    userId: string, 
+    examData: {
+      examType: string;
+      score: number;
+      total: number;
+      percentage: number;
+      timeSpentSeconds: number;
+      dateTaken: string;
+      questionCount: number;
+      passed: boolean;
+    }
+  ): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      const examId = `${userId}_${examData.examType}_${Date.now()}`;
+      
+      const command = new DocPutCommand({
+        TableName: getTableName('EXAM_RESULTS'),
+        Item: {
+          examId,
+          userId,
+          examType: examData.examType,
+          score: examData.score,
+          total: examData.total,
+          percentage: examData.percentage,
+          timeSpentSeconds: examData.timeSpentSeconds,
+          dateTaken: examData.dateTaken,
+          questionCount: examData.questionCount,
+          passed: examData.passed,
+          createdAt: new Date().toISOString()
+        }
+      });
+
+      await this.docClient.send(command);
+
+      return { success: true };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'saveExamResult').message
+      };
+    }
+  }
+
+  async getExamResults(userId: string): Promise<DynamoDBResponse & { data?: any[] }> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocQueryCommand({
+        TableName: getTableName('EXAM_RESULTS'),
+        IndexName: 'UserIdIndex', // Assuming we have a GSI on userId
+        KeyConditionExpression: 'userId = :userId',
+        ExpressionAttributeValues: {
+          ':userId': userId
+        },
+        ScanIndexForward: false // Sort by date descending (most recent first)
+      });
+
+      const result = await this.docClient.send(command);
+
+      return {
+        success: true,
+        data: result.Items || []
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'getExamResults').message
       };
     }
   }

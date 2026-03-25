@@ -1209,14 +1209,17 @@ export default function App() {
 
   const loadStaticQuestions = async (subjectId: number) => {
     try {
-      // Try DynamoDB first
       const result = await dynamoDBService.getQuestionsBySubject(subjectId);
       if (result.success && result.data && result.data.length > 0) {
+        const answers = JSON.parse(localStorage.getItem(`${user?.id || 'guest'}:answers`) || '{}');
         const questions: Question[] = result.data.map((q: any) => {
           const rawId = q.originalId || q.questionId;
           const isNumericId = !isNaN(Number(rawId)) && !String(rawId).startsWith('ai_');
+          const compositeId = isNumericId ? `${subjectId}_${rawId}` : String(rawId);
+          const answer = answers[compositeId];
+
           return {
-            id: isNumericId ? `${subjectId}_${rawId}` : String(rawId),
+            id: compositeId,
             subject_id: subjectId,
             text: q.question,
             text_cz: q.question_cz || undefined,
@@ -1236,10 +1239,10 @@ export default function App() {
             source: q.source || 'user',
             difficulty: q.difficulty || 1,
             image: q.image || null,
-            correct_count: null,
-            incorrect_count: null,
+            correct_count: answer?.attempts !== undefined ? (answer.isCorrect ? 1 : 0) : null,
+            incorrect_count: answer?.attempts !== undefined ? (answer.isCorrect ? 0 : 1) : null,
             is_flagged: false,
-            last_practiced: null,
+            last_practiced: answer?.answerTimestamp || null,
             created_at: q.createdAt || new Date().toISOString(),
             updated_at: q.createdAt || new Date().toISOString(),
             approved: q.approved || false,
@@ -1597,8 +1600,9 @@ export default function App() {
       weightedLearning: drillSettings.weightedLearning ? {
         enabled: drillSettings.weightedLearning.enabled,
         halflife_days: drillSettings.weightedLearning.halflife_days,
-        difficulty_weight: drillSettings.weightedLearning.w_difficulty,
-        time_weight: drillSettings.weightedLearning.w_performance
+        w_difficulty: drillSettings.weightedLearning.w_difficulty,
+        w_performance: drillSettings.weightedLearning.w_performance,
+        w_decay: drillSettings.weightedLearning.w_decay
       } : undefined,
       shuffleHistory: drillSettings.shuffleHistory,
       shuffleHistorySize: drillSettings.shuffleHistorySize,
@@ -1615,8 +1619,9 @@ export default function App() {
       weightedLearning: drillSettings.weightedLearning ? {
         enabled: drillSettings.weightedLearning.enabled,
         halflife_days: drillSettings.weightedLearning.halflife_days,
-        difficulty_weight: drillSettings.weightedLearning.w_difficulty,
-        time_weight: drillSettings.weightedLearning.w_performance
+        w_difficulty: drillSettings.weightedLearning.w_difficulty,
+        w_performance: drillSettings.weightedLearning.w_performance,
+        w_decay: drillSettings.weightedLearning.w_decay
       } : undefined,
       shuffleHistory: drillSettings.shuffleHistory,
       shuffleHistorySize: drillSettings.shuffleHistorySize,
@@ -1642,8 +1647,9 @@ export default function App() {
       weightedLearning: drillSettings.weightedLearning ? {
         enabled: drillSettings.weightedLearning.enabled,
         halflife_days: drillSettings.weightedLearning.halflife_days,
-        difficulty_weight: drillSettings.weightedLearning.w_difficulty,
-        time_weight: drillSettings.weightedLearning.w_performance
+        w_difficulty: drillSettings.weightedLearning.w_difficulty,
+        w_performance: drillSettings.weightedLearning.w_performance,
+        w_decay: drillSettings.weightedLearning.w_decay
       } : undefined,
       shuffleHistory: drillSettings.shuffleHistory,
       shuffleHistorySize: drillSettings.shuffleHistorySize,
@@ -6534,18 +6540,93 @@ V nastavení lze změnit defaultni model.`);
                           const subject = subjects.find(sub => sub.id === Number(subjectId));
                           if (!subject || s.totalAnswered === 0) return null;
                           const rate = s.correctAnswers / s.totalAnswered;
+                          // Completion rate (max 100%)
+                          const completionRate = subject.question_count ? Math.min(1, s.totalAnswered / subject.question_count) : 0;
+                          
+                          const handleReset = async (e: React.MouseEvent) => {
+                            e.stopPropagation();
+                            if (!window.confirm(`Opravdu chcete vymazat historii odpovědí pro předmět "${subject.description || subject.name}"? Tento krok nelze vzít zpět.`)) return;
+                            
+                            // 1. Clear locally
+                            const answersKey = `${user?.id || 'guest'}:answers`;
+                            const allAnswers = JSON.parse(localStorage.getItem(answersKey) || '{}');
+                            const newAnswers = { ...allAnswers };
+                            Object.keys(newAnswers).forEach(key => {
+                              if (newAnswers[key].subjectId === Number(subjectId)) {
+                                delete newAnswers[key];
+                              }
+                            });
+                            localStorage.setItem(answersKey, JSON.stringify(newAnswers));
+                            
+                            // 2. Clear in DynamoDB if logged in
+                            if (!isGuestMode && user?.id) {
+                              try {
+                                await dynamoDBService.deleteSubjectProgress(String(user.id), Number(subjectId));
+                              } catch (err) {
+                                console.error('Failed to delete remote subject progress', err);
+                              }
+                            }
+                            
+                            // 3. Recalculate stats immediately
+                            const practicedCount = Object.keys(newAnswers).length;
+                            const correctCount = Object.values(newAnswers).filter((a: any) => a.isCorrect).length;
+                            const successRate = practicedCount > 0 ? correctCount / practicedCount : 0;
+                            
+                            const perSubject: Record<number, { correct: number; total: number }> = {};
+                            for (const a of Object.values(newAnswers) as any[]) {
+                              const sid = a.subjectId;
+                              if (!sid) continue;
+                              if (!perSubject[sid]) perSubject[sid] = { correct: 0, total: 0 };
+                              perSubject[sid].total++;
+                              if (a.isCorrect) perSubject[sid].correct++;
+                            }
+                            const newSubjectStats: { [id: number]: { correctAnswers: number; totalAnswered: number } } = {};
+                            subjects.forEach(sub => {
+                              newSubjectStats[sub.id] = {
+                                correctAnswers: perSubject[sub.id] ? perSubject[sub.id].correct : 0,
+                                totalAnswered: perSubject[sub.id] ? perSubject[sub.id].total : 0
+                              };
+                            });
+                            
+                            setStats(prev => prev ? {
+                              ...prev,
+                              practicedQuestions: practicedCount,
+                              overallSuccess: successRate,
+                              subjectStats: newSubjectStats
+                            } : prev);
+                          };
+                          
                           return (
                             <div key={subjectId} className="space-y-1">
-                              <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider">
-                                <span>{subject.description || subject.name}</span>
-                                <span className="font-mono">{Math.round(rate * 100)}%</span>
+                              <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-wider group cursor-pointer" onClick={handleReset} title="Klikněte pro reset statistik">
+                                <span className="flex items-center gap-2">
+                                  <span>{subject.description || subject.name}</span>
+                                  <span className="opacity-0 group-hover:opacity-100 text-rose-500 transition-opacity">
+                                    [RESET]
+                                  </span>
+                                </span>
+                                <div className="text-right leading-tight">
+                                  <div className="font-mono text-emerald-400">{Math.round(rate * 100)}% úspěšnost</div>
+                                  <div className="font-mono text-indigo-400 opacity-70 text-[8px]">{Math.round(completionRate * 100)}% hotovo</div>
+                                </div>
                               </div>
-                              <div className="h-4 bg-[var(--line)] rounded-sm overflow-hidden">
-                                <motion.div
-                                  initial={{ width: 0 }}
-                                  animate={{ width: `${rate * 100}%` }}
-                                  className={`h-full ${rate > 0.75 ? 'bg-emerald-500' : rate > 0.5 ? 'bg-amber-500' : 'bg-rose-500'}`}
-                                />
+                              <div className="space-y-0.5">
+                                {/* Success Rate Bar */}
+                                <div className="h-2.5 bg-[var(--line)] rounded-sm overflow-hidden" title="Úspěšnost odpovědí">
+                                  <motion.div
+                                    initial={{ width: 0 }}
+                                    animate={{ width: `${rate * 100}%` }}
+                                    className={`h-full ${rate > 0.75 ? 'bg-emerald-500' : rate > 0.5 ? 'bg-amber-500' : 'bg-rose-500'}`}
+                                  />
+                                </div>
+                                {/* Completion Rate Bar */}
+                                <div className="h-1.5 bg-[var(--line)] rounded-sm overflow-hidden opacity-70" title="Postup (Zodpovězeno / Celkem v předmětu)">
+                                  <motion.div
+                                    initial={{ width: 0 }}
+                                    animate={{ width: `${completionRate * 100}%` }}
+                                    className="h-full bg-indigo-500"
+                                  />
+                                </div>
                               </div>
                             </div>
                           );

@@ -1,16 +1,12 @@
 import { Question } from '../types';
 import { shuffle, ShuffleOptions } from '../utils/shuffle';
+import { computeWeights, WeightConfig } from '../utils/shuffle.weights';
 
 export type SortingType = 'default' | 'random' | 'hardest_first' | 'least_practiced' | 'weighted_learning' | 'id';
 
 export interface SortingConfig {
   type: SortingType;
-  weightedLearning?: {
-    enabled: boolean;
-    halflife_days?: number;
-    difficulty_weight?: number;
-    time_weight?: number;
-  };
+  weightedLearning?: WeightConfig & { enabled: boolean };
   shuffleHistory?: string[];
   shuffleHistorySize?: number;
   userId?: string;
@@ -111,7 +107,15 @@ export class SortingService {
       return this.sortRandom(questions, options);
     }
 
-    const weights = this.computeWeights(questions, config.weightedLearning);
+    // Prepare item stats for computeWeights
+    const itemStats = questions.map(q => ({
+      difficulty: q.difficulty || 1,
+      correct_count: q.correct_count,
+      incorrect_count: q.incorrect_count,
+      last_practiced: q.last_practiced || null
+    }));
+
+    const weights = computeWeights(itemStats, config.weightedLearning);
     const shuffleOptions: ShuffleOptions = {
       ...options,
       weights,
@@ -179,27 +183,6 @@ export class SortingService {
       const parsedNum = parseInt(part.startsWith('q') ? part.substring(1) : part);
       const num = isNaN(parsedNum) ? NaN : parsedNum;
       return isNaN(num) ? part : num;
-    });
-  }
-
-  /**
-   * Compute weights for weighted learning algorithm
-   */
-  private computeWeights(questions: Question[], config: SortingConfig['weightedLearning']): number[] {
-    const halflifeDays = config?.halflife_days || 7;
-    const difficultyWeight = config?.difficulty_weight || 0.3;
-    const timeWeight = config?.time_weight || 0.7;
-    
-    return questions.map(q => {
-      let difficultyScore = 1 - (q.difficulty || 0); // Higher weight for easier questions
-      let timeScore = 1;
-      
-      if (q.last_practiced) {
-        const daysSincePractice = (Date.now() - new Date(q.last_practiced).getTime()) / (1000 * 60 * 60 * 24);
-        timeScore = 1 - Math.pow(0.5, daysSincePractice / halflifeDays);
-      }
-      
-      return (difficultyScore * difficultyWeight) + (timeScore * timeWeight);
     });
   }
 

@@ -67,8 +67,9 @@ describe('SortingService', () => {
       weightedLearning: {
         enabled: true,
         halflife_days: 7,
-        difficulty_weight: 0.3,
-        time_weight: 0.7
+        w_difficulty: 0.3,
+        w_performance: 0.7,
+        w_decay: 0.1
       },
       userId: 'test-user'
     };

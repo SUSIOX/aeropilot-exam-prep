@@ -385,6 +385,75 @@ export class DynamoDBService {
     }
   }
 
+  async deleteSubjectProgress(userId: string, subjectId: number): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+      
+      // 1. Fetch all progress for the user
+      const result = await this.docClient!.send(new DocQueryCommand({
+        TableName: getTableName('USER_PROGRESS'),
+        KeyConditionExpression: "PK = :pk",
+        ExpressionAttributeValues: { ":pk": `USER#${userId}` }
+      }));
+      
+      const items = result.Items || [];
+      
+      // 2. Filter items belonging to the subject
+      const itemsToDelete = items.filter(item => item.subjectId === subjectId && item.SK.startsWith('Q#'));
+      
+      if (itemsToDelete.length === 0) {
+        return { success: true }; // Nothing to delete
+      }
+
+      // Calculate how many were correct to update the SUMMARY record
+      let correctCountToSubtract = 0;
+      for (const item of itemsToDelete) {
+        if (item.correct === true) {
+          correctCountToSubtract++;
+        }
+      }
+
+      // 3. Batch delete the filtered items (Max 25 at a time)
+      const MAX_BATCH_SIZE = 25;
+      for (let i = 0; i < itemsToDelete.length; i += MAX_BATCH_SIZE) {
+        const batch = itemsToDelete.slice(i, i + MAX_BATCH_SIZE);
+        
+        const deleteRequests = batch.map(item => ({
+          DeleteRequest: {
+            Key: {
+              PK: item.PK,
+              SK: item.SK
+            }
+          }
+        }));
+        
+        // Use batch write to delete items
+        await this.docClient!.send(new DocBatchWriteCommand({
+          RequestItems: {
+            [getTableName('USER_PROGRESS')]: deleteRequests
+          }
+        }));
+      }
+
+      // 4. Update the SUMMARY record
+      await this.docClient!.send(new DocUpdateCommand({
+        TableName: getTableName('USER_PROGRESS'),
+        Key: { PK: `USER#${userId}`, SK: "SUMMARY" },
+        UpdateExpression: "ADD answered :negAns, correct_count :negCor SET last_active = :ts",
+        ExpressionAttributeValues: {
+          ":negAns": -itemsToDelete.length,
+          ":negCor": -correctCountToSubtract,
+          ":ts": new Date().toISOString()
+        }
+      }));
+
+      return { success: true };
+    } catch (error) {
+      console.error('❌ deleteSubjectProgress failed:', error);
+      return { success: false, error: this.handleError(error, 'deleteSubjectProgress').message };
+    }
+  }
+
   // User Settings Operations
 
   async saveUserSettings(

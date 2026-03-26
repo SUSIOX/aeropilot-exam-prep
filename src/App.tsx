@@ -4,8 +4,7 @@ import {
   LayoutDashboard,
   ChevronRight,
   ChevronDown,
-  AlertCircle,
-  CheckCircle2,
+  AlertCircle, CheckCircle2, CheckSquare,
   XCircle,
   BookOpen,
   GraduationCap,
@@ -230,6 +229,7 @@ export default function App() {
   const [answered, setAnswered] = useState<string | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
   const [showQuestionId, setShowQuestionId] = useState(false);
+  const [showRawProgressStats, setShowRawProgressStats] = useState(false);
   const [aiExplanation, setAiExplanation] = useState<string | null>(null);
   const [aiDetectedObjective, setAiDetectedObjective] = useState<string | null>(null);
   const [detailedExplanation, setDetailedExplanation] = useState<string | null>(null);
@@ -277,7 +277,10 @@ export default function App() {
         } else if (parsed.weightedLearning.enabled === undefined) {
           parsed.weightedLearning.enabled = true;
         }
-        return parsed;
+        return {
+          ...parsed,
+          showCorrectAnswerMode: parsed.showCorrectAnswerMode || false
+        };
       } catch (e) {
         // Failed to parse drillSettings
       }
@@ -297,7 +300,8 @@ export default function App() {
         w_difficulty: 0.20
       },
       shuffleHistory: [],
-      shuffleHistorySize: 10
+      shuffleHistorySize: 10,
+      showCorrectAnswerMode: false
     };
   });
 
@@ -4855,7 +4859,8 @@ V nastavení lze změnit defaultni model.`);
                               { id: 'user', icon: User, label: 'Uživatel' },
                               { id: 'ai', icon: Bot, label: 'AI Generováno' },
                               { id: 'spacer', icon: () => <div className="w-4" />, label: '' },
-                              { id: 'excludeAnswered', icon: CheckCircle2, label: 'Vynechat probrané' }
+                              { id: 'excludeAnswered', icon: CheckCircle2, label: 'Vynechat probrané' },
+                              { id: 'showCorrectAnswerMode', icon: CheckSquare, label: 'Správná odpověď (Čtecí mód)' }
                             ].map(src => {
                               if (src.id === 'spacer') return <div key="spacer" className="w-2" />;
                               
@@ -4865,6 +4870,9 @@ V nastavení lze změnit defaultni model.`);
                               if (src.id === 'excludeAnswered') {
                                 isActive = drillSettings.excludeAnswered;
                                 onClick = () => setDrillSettings(prev => ({ ...prev, excludeAnswered: !prev.excludeAnswered }));
+                              } else if (src.id === 'showCorrectAnswerMode') {
+                                isActive = !!drillSettings.showCorrectAnswerMode;
+                                onClick = () => setDrillSettings(prev => ({ ...prev, showCorrectAnswerMode: !prev.showCorrectAnswerMode }));
                               } else {
                                 isActive = drillSettings.sourceFilters.includes(src.id as any);
                                 onClick = () => toggleSourceFilter(src.id as any);
@@ -5012,7 +5020,10 @@ V nastavení lze změnit defaultni model.`);
                             const isSelected = answered === opt;
 
                             let bgClass = "border-[var(--line)] hover:border-[var(--ink)]";
-                            if (answered && drillSettings.immediateFeedback) {
+                            if (drillSettings.showCorrectAnswerMode) {
+                              if (isCorrect) bgClass = "bg-emerald-500/20 border-emerald-500 text-emerald-700 dark:text-emerald-400 cursor-pointer";
+                              else bgClass = "opacity-30 border-[var(--line)] cursor-default hover:border-[var(--line)]";
+                            } else if (answered && drillSettings.immediateFeedback) {
                               if (isCorrect) bgClass = "bg-emerald-500/20 border-emerald-500 text-emerald-700 dark:text-emerald-400";
                               else if (isSelected) bgClass = "bg-rose-500/20 border-rose-500 text-rose-700 dark:text-rose-400";
                               else bgClass = "opacity-40 border-[var(--line)]";
@@ -5026,8 +5037,14 @@ V nastavení lze změnit defaultni model.`);
                             return (
                               <button
                                 key={opt}
-                                disabled={!!answered && drillSettings.immediateFeedback}
-                                onClick={() => handleAnswer(opt)}
+                                disabled={(!!answered && drillSettings.immediateFeedback) || (drillSettings.showCorrectAnswerMode && !isCorrect)}
+                                onClick={() => {
+                                  if (drillSettings.showCorrectAnswerMode && isCorrect) {
+                                    nextQuestion();
+                                  } else {
+                                    handleAnswer(opt);
+                                  }
+                                }}
                                 className={`p-3 md:p-4 rounded-xl border text-left transition-all flex items-center gap-3 md:gap-4 ${bgClass} text-sm md:text-base`}
                               >
                                 <span className="w-6 h-6 md:w-8 md:h-8 flex-shrink-0 flex items-center justify-center rounded-lg border border-current font-mono text-[10px] md:text-xs">
@@ -5050,8 +5067,8 @@ V nastavení lze změnit defaultni model.`);
                                     />
                                   )}
                                 </div>
-                                {(answered && drillSettings.immediateFeedback && isCorrect || !answered && showExplanation && isCorrect) && <CheckCircle2 size={20} className="text-emerald-500" />}
-                                {answered && drillSettings.immediateFeedback && isSelected && !isCorrect && <XCircle size={20} className="text-rose-500" />}
+                                {(answered && drillSettings.immediateFeedback && isCorrect || !answered && showExplanation && isCorrect || drillSettings.showCorrectAnswerMode && isCorrect) && <CheckCircle2 size={20} className="text-emerald-500" />}
+                                {answered && drillSettings.immediateFeedback && isSelected && !isCorrect && !drillSettings.showCorrectAnswerMode && <XCircle size={20} className="text-rose-500" />}
                               </button>
                             );
                           })}
@@ -5337,93 +5354,62 @@ V nastavení lze změnit defaultni model.`);
 
                       {/* Progress Banner */}
                       {selectedSubject && (
-                        <div className="p-2 md:p-3 border border-[var(--line)] rounded-xl bg-gradient-to-r from-gray-500/5 to-blue-500/5 mt-auto">
-                          <div className="space-y-3">
-                            {/* Success Rate */}
-                            <div className="flex flex-col">
-                              <p className="text-xs font-bold">Úspěšnost v {selectedSubject.name}</p>
-                              <div className="flex items-center gap-3">
-                                <div className="text-left">
-                                  <p className="text-lg font-mono font-bold">
-                                    {(() => {
-                                      const filteredCorrect = getFilteredCorrectCount(selectedSubject.id, drillSettings.sourceFilters, questions);
-                                      const filteredAnswered = getFilteredAnsweredCount(selectedSubject.id, drillSettings.sourceFilters, questions);
-                                      if (filteredAnswered === 0) return '0%';
-                                      const percentage = Math.round((filteredCorrect / filteredAnswered) * 100);
-                                      return `${percentage}%`;
-                                    })()}
-                                  </p>
-                                  <p className="text-[10px] opacity-60">
-                                    {(() => {
-                                      const filteredCorrect = getFilteredCorrectCount(selectedSubject.id, drillSettings.sourceFilters, questions);
-                                      const filteredAnswered = getFilteredAnsweredCount(selectedSubject.id, drillSettings.sourceFilters, questions);
-                                      if (filteredAnswered === 0) return '0/0';
-                                      return (
-                                        <span>
-                                          {filteredCorrect} OK / {filteredAnswered - filteredCorrect} Fail
-                                        </span>
-                                      );
-                                    })()}
-                                  </p>
+                        <div className="p-3 md:p-4 border border-[var(--line)] rounded-xl bg-gradient-to-r from-gray-500/5 to-blue-500/5 mt-auto">
+                          <div className="space-y-4">
+                            {(() => {
+                              const filteredCorrect = getFilteredCorrectCount(selectedSubject.id, drillSettings.sourceFilters, questions);
+                              const filteredAnswered = getFilteredAnsweredCount(selectedSubject.id, drillSettings.sourceFilters, questions);
+                              const filteredTotal = getFilteredQuestionCount(selectedSubject, drillSettings.sourceFilters);
+                              
+                              const successRate = filteredAnswered > 0 ? filteredCorrect / filteredAnswered : 0;
+                              const completionRate = filteredTotal > 0 ? Math.min(1, filteredAnswered / filteredTotal) : 0;
+
+                              return (
+                                <div 
+                                  className="space-y-2 cursor-pointer group"
+                                  onClick={() => setShowRawProgressStats(prev => !prev)}
+                                  title="Klikněte pro přepnutí zobrazení (procenta / čísla)"
+                                >
+                                  <div className="flex justify-between items-end">
+                                    <div className="flex items-center gap-2">
+                                      <span className="text-xs font-bold uppercase tracking-wider opacity-80 group-hover:text-blue-500 transition-colors">{selectedSubject.name}</span>
+                                    </div>
+                                    <div className="text-right leading-tight">
+                                      {showRawProgressStats ? (
+                                        <>
+                                          <div className="font-mono font-bold text-emerald-500 dark:text-emerald-400">{filteredCorrect} ok / {filteredAnswered - filteredCorrect} fail</div>
+                                          <div className="font-mono text-indigo-500 dark:text-indigo-400 opacity-70 text-[10px]">{filteredAnswered} / {filteredTotal} otázek</div>
+                                        </>
+                                      ) : (
+                                        <>
+                                          <div className="font-mono font-bold text-emerald-500 dark:text-emerald-400">{Math.round(successRate * 100)}% úspěšnost</div>
+                                          <div className="font-mono text-indigo-500 dark:text-indigo-400 opacity-70 text-[10px]">{Math.round(completionRate * 100)}% hotovo</div>
+                                        </>
+                                      )}
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="space-y-1">
+                                    {/* Success Rate Bar */}
+                                    <div className="h-2.5 bg-[var(--line)] rounded-sm overflow-hidden" title={`Úspěšnost: ${filteredCorrect} správně z ${filteredAnswered} zodpovězených`}>
+                                      <motion.div
+                                        initial={{ width: 0 }}
+                                        animate={{ width: `${successRate * 100}%` }}
+                                        className={`h-full ${successRate > 0.75 ? 'bg-emerald-500' : successRate > 0.5 ? 'bg-amber-500' : 'bg-rose-500'}`}
+                                      />
+                                    </div>
+                                    {/* Completion Rate Bar */}
+                                    <div className="h-1.5 bg-[var(--line)] rounded-sm overflow-hidden opacity-70" title={`Postup: ${filteredAnswered} zodpovězeno z ${filteredTotal} celkem`}>
+                                      <motion.div
+                                        initial={{ width: 0 }}
+                                        animate={{ width: `${completionRate * 100}%` }}
+                                        className="h-full bg-indigo-500"
+                                      />
+                                    </div>
+                                  </div>
                                 </div>
-                                <div className="flex-1 h-1.5 bg-gray-700 dark:bg-black rounded-full overflow-hidden">
-                                  <div
-                                    className="h-full bg-gradient-to-r from-blue-400 to-blue-600 transition-all duration-500"
-                                    style={{
-                                      width: `${(() => {
-                                        const filteredCorrect = getFilteredCorrectCount(selectedSubject.id, drillSettings.sourceFilters, questions);
-                                        const filteredAnswered = getFilteredAnsweredCount(selectedSubject.id, drillSettings.sourceFilters, questions);
-                                        if (filteredAnswered === 0) return '0%';
-                                        return Math.round((filteredCorrect / filteredAnswered) * 100);
-                                      })()}%`
-                                    }}
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                            
-                            {/* Progress */}
-                            <div className="flex flex-col">
-                              <p className="text-xs font-bold">Progres v {selectedSubject.name}</p>
-                              <div className="flex items-center gap-3">
-                                <div className="text-left">
-                                  <p className="text-lg font-mono font-bold">
-                                    {(() => {
-                                      const filteredAnswered = getFilteredAnsweredCount(selectedSubject.id, drillSettings.sourceFilters, questions);
-                                      const filteredTotal = getFilteredQuestionCount(selectedSubject, drillSettings.sourceFilters);
-                                      if (filteredTotal === 0) return '0%';
-                                      const percentage = Math.round((filteredAnswered / filteredTotal) * 100);
-                                      return `${percentage}%`;
-                                    })()}
-                                  </p>
-                                  <p className="text-[10px] opacity-60">
-                                    {(() => {
-                                      const filteredAnswered = getFilteredAnsweredCount(selectedSubject.id, drillSettings.sourceFilters, questions);
-                                      const filteredTotal = getFilteredQuestionCount(selectedSubject, drillSettings.sourceFilters);
-                                      if (filteredTotal === 0) return '0/0';
-                                      return (
-                                        <span>
-                                          {filteredAnswered} / {filteredTotal} zodpovězeno
-                                        </span>
-                                      );
-                                    })()}
-                                  </p>
-                                </div>
-                                <div className="flex-1 h-1.5 bg-gray-700 dark:bg-black rounded-full overflow-hidden">
-                                  <div
-                                    className="h-full bg-gradient-to-r from-green-400 to-green-600 transition-all duration-500"
-                                    style={{
-                                      width: `${(() => {
-                                        const filteredAnswered = getFilteredAnsweredCount(selectedSubject.id, drillSettings.sourceFilters, questions);
-                                        const filteredTotal = getFilteredQuestionCount(selectedSubject, drillSettings.sourceFilters);
-                                        if (filteredTotal === 0) return '0%';
-                                        return Math.round((filteredAnswered / filteredTotal) * 100);
-                                      })()}%`
-                                    }}
-                                  />
-                                </div>
-                              </div>
-                            </div>
+                              );
+                            })()}
                           </div>
                         </div>
                       )}

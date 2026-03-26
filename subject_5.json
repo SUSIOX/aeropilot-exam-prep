@@ -93,8 +93,13 @@
   {
     "id": 8,
     "question": "Vyřazena",
-    "answers": [],
-    "correct": -1,
+    "answers": [
+      "Otázka vyřazena - neplatné",
+      "A",
+      "B",
+      "C"
+    ],
+    "correct": 0,
     "image": null,
     "explanation": ""
   },

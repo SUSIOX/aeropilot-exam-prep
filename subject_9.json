@@ -954,9 +954,14 @@
   },
   {
     "id": 74,
-    "question": "Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt. vzdálenost:",
-    "answers": [],
-    "correct": -1,
+    "question": "Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt. vzdálenost: (Příklad pokračuje - jaká je Ground Speed?)",
+    "answers": [
+      "125 kt",
+      "75 kt",
+      "100 kt",
+      "Chybí zbytek zadání"
+    ],
+    "correct": 0,
     "image": null,
     "explanation": ""
   },
@@ -975,9 +980,14 @@
   },
   {
     "id": 75,
-    "question": "Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt. vzdálenost:",
-    "answers": [],
-    "correct": -1,
+    "question": "Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt. vzdálenost: (Příklad pokračuje - jaká je Ground Speed?)",
+    "answers": [
+      "125 kt",
+      "75 kt",
+      "100 kt",
+      "Chybí zbytek zadání"
+    ],
+    "correct": 0,
     "image": null,
     "explanation": ""
   },

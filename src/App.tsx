@@ -4,7 +4,7 @@ import {
   LayoutDashboard,
   ChevronRight,
   ChevronDown,
-  AlertCircle, CheckCircle2, CheckSquare,
+  AlertCircle, CheckCircle2, ListTodo,
   XCircle,
   BookOpen,
   GraduationCap,
@@ -230,6 +230,7 @@ export default function App() {
   const [showExplanation, setShowExplanation] = useState(false);
   const [showQuestionId, setShowQuestionId] = useState(false);
   const [showRawProgressStats, setShowRawProgressStats] = useState(false);
+  const [isProgressExpanded, setIsProgressExpanded] = useState(false);
   const [aiExplanation, setAiExplanation] = useState<string | null>(null);
   const [aiDetectedObjective, setAiDetectedObjective] = useState<string | null>(null);
   const [detailedExplanation, setDetailedExplanation] = useState<string | null>(null);
@@ -4860,7 +4861,7 @@ V nastavení lze změnit defaultni model.`);
                               { id: 'ai', icon: Bot, label: 'AI Generováno' },
                               { id: 'spacer', icon: () => <div className="w-4" />, label: '' },
                               { id: 'excludeAnswered', icon: CheckCircle2, label: 'Vynechat probrané' },
-                              { id: 'showCorrectAnswerMode', icon: CheckSquare, label: 'Správná odpověď (Čtecí mód)' }
+                              { id: 'showCorrectAnswerMode', icon: ListTodo, label: 'Správná odpověď (Čtecí mód)' }
                             ].map(src => {
                               if (src.id === 'spacer') return <div key="spacer" className="w-2" />;
                               
@@ -5037,9 +5038,20 @@ V nastavení lze změnit defaultni model.`);
                             return (
                               <button
                                 key={opt}
-                                disabled={(!!answered && drillSettings.immediateFeedback) || (drillSettings.showCorrectAnswerMode && !isCorrect)}
+                                disabled={
+                                  (drillSettings.showCorrectAnswerMode && !isCorrect) ||
+                                  (!!answered && drillSettings.immediateFeedback && !drillSettings.showCorrectAnswerMode && !isCorrect)
+                                }
                                 onClick={() => {
                                   if (drillSettings.showCorrectAnswerMode && isCorrect) {
+                                    if (!showExplanation) {
+                                      setShowExplanation(true);
+                                      handleFetchAiExplanation();
+                                    } else {
+                                      nextQuestion();
+                                    }
+                                  } else if (answered && isCorrect) {
+                                    // Běžný drill mód - druhé kliknutí na správnou odpověď posune dál
                                     nextQuestion();
                                   } else {
                                     handleAnswer(opt);
@@ -5074,15 +5086,16 @@ V nastavení lze změnit defaultni model.`);
                           })}
                         </div>
 
-                        {(answered || !drillSettings.immediateFeedback || selectedSubject.id === -2) && (
+                        {(answered || drillSettings.showExplanationOnDemand || selectedSubject.id === -2 || drillSettings.showCorrectAnswerMode) && (
                           <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             className="pt-6 border-t border-[var(--line)] space-y-4"
                           >
-                            <div className="flex justify-between items-center">
-                              {(drillSettings.showExplanationOnDemand || selectedSubject.id === -2) && (
-                                <div className="flex items-center gap-2">
+                            <div className="flex flex-col gap-3">
+                              {/* Top row: Explanation button + Next Question */}
+                              <div className="flex flex-wrap justify-between items-center gap-2">
+                                {(drillSettings.showExplanationOnDemand || selectedSubject.id === -2 || drillSettings.showCorrectAnswerMode) && (
                                   <button
                                     onClick={() => {
                                       if (!showExplanation) {
@@ -5098,74 +5111,67 @@ V nastavení lze změnit defaultni model.`);
                                       {showExplanation ? <HelpCircle size={16} /> : (isGeneratingAiExplanation ? <RotateCcw size={16} className="animate-spin" /> : <HelpCircle size={16} />)}
                                     </div>
                                     <span className="underline underline-offset-4">
-                                      {isGeneratingAiExplanation ? 'Generuji...' : (showExplanation ? 'Skrýt vysvětlení' : 'Zobrazit vysvětlení')}
+                                      {isGeneratingAiExplanation ? 'Generuji...' : (showExplanation ? 'Skrýt' : 'Vysvětlení')}
                                     </span>
                                   </button>
+                                )}
+                                <div className="flex-1" />
+                                {showExplanation && (
+                                  <button
+                                    onClick={nextQuestion}
+                                    className="bg-[var(--ink)] text-[var(--bg)] px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-2"
+                                  >
+                                    Další otázka <ChevronRight size={14} />
+                                  </button>
+                                )}
+                              </div>
 
-                                  {/* Model selector - only show when explanation is shown and exists */}
-                                  {showExplanation && aiExplanation && (
-                                    <div className="flex items-center gap-2">
-                                      <select
-                                        value={aiModel}
-                                        onChange={(e) => {
-                                          const selectedModel = e.target.value;
-                                          // Switch provider if needed
-                                          if (selectedModel.startsWith('claude') && aiProvider !== 'claude') {
-                                            setAiProvider('claude');
-                                          } else if (selectedModel.startsWith('gemini') && aiProvider !== 'gemini') {
-                                            setAiProvider('gemini');
-                                          } else if (selectedModel.startsWith('deepseek') && aiProvider !== 'deepseek') {
-                                            setAiProvider('deepseek');
-                                          }
-                                          setAiModel(selectedModel);
-                                          // Save to localStorage for persistence
-                                          localStorage.setItem('aiModel', selectedModel);
-                                          localStorage.setItem('aiProvider', selectedModel.startsWith('claude') ? 'claude' : selectedModel.startsWith('deepseek') ? 'deepseek' : 'gemini');
-                                          // Immediately regenerate with new model
-                                          setAiExplanation(null);
-                                          setDetailedExplanation(null);
-                                          handleFetchAiExplanation();
-                                        }}
-                                        className="text-xs px-2 py-1 bg-transparent border border-[var(--line)] rounded focus:outline-none focus:border-[var(--ink)]"
-                                        disabled={isGeneratingAiExplanation}
-                                      >
-                                        <optgroup label="Google Gemini">
-                                          <option value="gemini-2.0-flash-exp">Gemini 2.0 Flash (Doporučeno)</option>
-                                          <option value="gemini-1.5-flash">Gemini 1.5 Flash (Nejrychlejší)</option>
-                                          <option value="gemini-1.5-pro">Gemini 1.5 Pro (Pokročilý)</option>
-                                        </optgroup>
-                                        <optgroup label="Anthropic Claude">
-                                          <option value="claude-3-5-sonnet-20240620">Claude 3.5 Sonnet (Nejlepší)</option>
-                                          <option value="claude-3-haiku-20240307">Claude 3 Haiku (Nejrychlejší)</option>
-                                          <option value="claude-3-opus-20240229">Claude 3 Opus (Nejsilnější)</option>
-                                        </optgroup>
-                                        <optgroup label="DeepSeek">
-                                          <option value="deepseek-chat">DeepSeek V3 (Doporučeno)</option>
-                                          <option value="deepseek-reasoner">DeepSeek R1 (Reasoning)</option>
-                                        </optgroup>
-                                      </select>
-                                      <span className="text-xs text-orange-600 dark:text-orange-400 opacity-60">
-                                        <button
-                                          onClick={handleRegenerateExplanation}
-                                          disabled={isRegeneratingExplanation || isGeneratingDetailedExplanation}
-                                          className="flex items-center gap-1.5 hover:opacity-80 transition-opacity"
-                                          title="Vygenerovat nové vysvětlení"
-                                        >
-                                          {isRegeneratingExplanation ? <RotateCcw size={12} className="animate-spin" /> : <RefreshCw size={12} />}
-                                          <span className="text-[10px] font-bold uppercase tracking-widest">Regenerovat</span>
-                                        </button>
-                                      </span>
-                                    </div>
-                                  )}
+                              {/* Model selector row - only visible when explanation shown */}
+                              {showExplanation && aiExplanation && (
+                                <div className="flex flex-wrap items-center gap-2">
+                                  <select
+                                    value={aiModel}
+                                    onChange={(e) => {
+                                      const selectedModel = e.target.value;
+                                      if (selectedModel.startsWith('claude') && aiProvider !== 'claude') setAiProvider('claude');
+                                      else if (selectedModel.startsWith('gemini') && aiProvider !== 'gemini') setAiProvider('gemini');
+                                      else if (selectedModel.startsWith('deepseek') && aiProvider !== 'deepseek') setAiProvider('deepseek');
+                                      setAiModel(selectedModel);
+                                      localStorage.setItem('aiModel', selectedModel);
+                                      localStorage.setItem('aiProvider', selectedModel.startsWith('claude') ? 'claude' : selectedModel.startsWith('deepseek') ? 'deepseek' : 'gemini');
+                                      setAiExplanation(null);
+                                      setDetailedExplanation(null);
+                                      handleFetchAiExplanation();
+                                    }}
+                                    className="text-xs px-2 py-1 bg-transparent border border-[var(--line)] rounded focus:outline-none focus:border-[var(--ink)]"
+                                    disabled={isGeneratingAiExplanation}
+                                  >
+                                    <optgroup label="Google Gemini">
+                                      <option value="gemini-2.0-flash-exp">Gemini 2.0 Flash (Doporučeno)</option>
+                                      <option value="gemini-1.5-flash">Gemini 1.5 Flash (Nejrychlejší)</option>
+                                      <option value="gemini-1.5-pro">Gemini 1.5 Pro (Pokročilý)</option>
+                                    </optgroup>
+                                    <optgroup label="Anthropic Claude">
+                                      <option value="claude-3-5-sonnet-20240620">Claude 3.5 Sonnet (Nejlepší)</option>
+                                      <option value="claude-3-haiku-20240307">Claude 3 Haiku (Nejrychlejší)</option>
+                                      <option value="claude-3-opus-20240229">Claude 3 Opus (Nejsilnější)</option>
+                                    </optgroup>
+                                    <optgroup label="DeepSeek">
+                                      <option value="deepseek-chat">DeepSeek V3 (Doporučeno)</option>
+                                      <option value="deepseek-reasoner">DeepSeek R1 (Reasoning)</option>
+                                    </optgroup>
+                                  </select>
+                                  <button
+                                    onClick={handleRegenerateExplanation}
+                                    disabled={isRegeneratingExplanation || isGeneratingDetailedExplanation}
+                                    className="flex items-center gap-1.5 text-xs text-orange-600 dark:text-orange-400 opacity-60 hover:opacity-80 transition-opacity"
+                                    title="Vygenerovat nové vysvětlení"
+                                  >
+                                    {isRegeneratingExplanation ? <RotateCcw size={12} className="animate-spin" /> : <RefreshCw size={12} />}
+                                    <span className="text-[10px] font-bold uppercase tracking-widest">Regenerovat</span>
+                                  </button>
                                 </div>
                               )}
-                              <div className="flex-1" />
-                              <button
-                                onClick={nextQuestion}
-                                className="bg-[var(--ink)] text-[var(--bg)] px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-2"
-                              >
-                                Další otázka <ChevronRight size={14} />
-                              </button>
                             </div>
 
                             {showExplanation && drillSettings.showExplanationOnDemand && (
@@ -5366,28 +5372,41 @@ V nastavení lze změnit defaultni model.`);
 
                               return (
                                 <div 
-                                  className="space-y-2 cursor-pointer group"
-                                  onClick={() => setShowRawProgressStats(prev => !prev)}
-                                  title="Klikněte pro přepnutí zobrazení (procenta / čísla)"
+                                  className={`cursor-pointer group transition-all duration-300 ${isProgressExpanded ? 'space-y-2' : ''}`}
+                                  onClick={() => setIsProgressExpanded(prev => !prev)}
+                                  title={isProgressExpanded ? "Klikněte pro sbalení postupu" : "Klikněte pro rozbalení postupu"}
                                 >
-                                  <div className="flex justify-between items-end">
-                                    <div className="flex items-center gap-2">
-                                      <span className="text-xs font-bold uppercase tracking-wider opacity-80 group-hover:text-blue-500 transition-colors">{selectedSubject.name}</span>
-                                    </div>
-                                    <div className="text-right leading-tight">
-                                      {showRawProgressStats ? (
-                                        <>
-                                          <div className="font-mono font-bold text-emerald-500 dark:text-emerald-400">{filteredCorrect} ok / {filteredAnswered - filteredCorrect} fail</div>
-                                          <div className="font-mono text-indigo-500 dark:text-indigo-400 opacity-70 text-[10px]">{filteredAnswered} / {filteredTotal} otázek</div>
-                                        </>
-                                      ) : (
-                                        <>
-                                          <div className="font-mono font-bold text-emerald-500 dark:text-emerald-400">{Math.round(successRate * 100)}% úspěšnost</div>
-                                          <div className="font-mono text-indigo-500 dark:text-indigo-400 opacity-70 text-[10px]">{Math.round(completionRate * 100)}% hotovo</div>
-                                        </>
-                                      )}
-                                    </div>
-                                  </div>
+                                  {isProgressExpanded && (
+                                    <motion.div 
+                                      initial={{ opacity: 0, height: 0 }}
+                                      animate={{ opacity: 1, height: 'auto' }}
+                                      className="flex justify-between items-end mb-2"
+                                    >
+                                      <div className="flex items-center gap-2">
+                                        <span className="text-xs font-bold uppercase tracking-wider opacity-80 group-hover:text-blue-500 transition-colors">{selectedSubject.name}</span>
+                                      </div>
+                                      <div 
+                                        className="text-right leading-tight hover:opacity-80 transition-opacity"
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          setShowRawProgressStats(prev => !prev);
+                                        }}
+                                        title="Klikněte pro přepnutí zobrazení (procenta / čísla)"
+                                      >
+                                        {showRawProgressStats ? (
+                                          <>
+                                            <div className="font-mono font-bold text-emerald-500 dark:text-emerald-400">{filteredCorrect} ok / {filteredAnswered - filteredCorrect} fail</div>
+                                            <div className="font-mono text-indigo-500 dark:text-indigo-400 opacity-70 text-[10px]">{filteredAnswered} / {filteredTotal} otázek</div>
+                                          </>
+                                        ) : (
+                                          <>
+                                            <div className="font-mono font-bold text-emerald-500 dark:text-emerald-400">{Math.round(successRate * 100)}% úspěšnost</div>
+                                            <div className="font-mono text-indigo-500 dark:text-indigo-400 opacity-70 text-[10px]">{Math.round(completionRate * 100)}% hotovo</div>
+                                          </>
+                                        )}
+                                      </div>
+                                    </motion.div>
+                                  )}
                                   
                                   <div className="space-y-1">
                                     {/* Success Rate Bar */}
@@ -5395,7 +5414,7 @@ V nastavení lze změnit defaultni model.`);
                                       <motion.div
                                         initial={{ width: 0 }}
                                         animate={{ width: `${successRate * 100}%` }}
-                                        className={`h-full ${successRate > 0.75 ? 'bg-emerald-500' : successRate > 0.5 ? 'bg-amber-500' : 'bg-rose-500'}`}
+                                        className={`h-full transition-colors duration-300 ${!isProgressExpanded ? 'bg-[var(--ink)] opacity-60' : (successRate > 0.75 ? 'bg-emerald-500' : successRate > 0.5 ? 'bg-amber-500' : 'bg-rose-500')}`}
                                       />
                                     </div>
                                     {/* Completion Rate Bar */}
@@ -5403,7 +5422,7 @@ V nastavení lze změnit defaultni model.`);
                                       <motion.div
                                         initial={{ width: 0 }}
                                         animate={{ width: `${completionRate * 100}%` }}
-                                        className="h-full bg-indigo-500"
+                                        className={`h-full transition-colors duration-300 ${!isProgressExpanded ? 'bg-[var(--ink)] opacity-30' : 'bg-indigo-500'}`}
                                       />
                                     </div>
                                   </div>

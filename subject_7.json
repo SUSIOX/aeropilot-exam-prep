@@ -337,7 +337,7 @@
       "147.5 in"
     ],
     "correct": 0,
-    "image": null,
+    "image": "PFP-052E.jpg",
     "explanation": ""
   },
   {
@@ -402,7 +402,7 @@
       "0.403 m"
     ],
     "correct": 0,
-    "image": null,
+    "image": "PFP-053E.jpg",
     "explanation": ""
   },
   {
@@ -832,9 +832,14 @@
   },
   {
     "id": 65,
-    "question": "Jaká je maximální stoupavost letadla v tlakové výšce 6500 ft při teplotě vnějšího vzduchu",
-    "answers": [],
-    "correct": -1,
+    "question": "Jaká je maximální stoupavost letadla v tlakové výšce 6500 ft při teplotě vnějšího vzduchu? (Zadání je neúplné)",
+    "answers": [
+      "Chybí příloha pro výpočet",
+      "350 ft/min",
+      "500 ft/min",
+      "150 ft/min"
+    ],
+    "correct": 0,
     "image": null,
     "explanation": ""
   },
@@ -853,9 +858,14 @@
   },
   {
     "id": 66,
-    "question": "Jaká je pravá vzdušná rychlost (TAS) (kt) a spotřeba paliva (l/h) při traťovém letu s výkonem",
-    "answers": [],
-    "correct": -1,
+    "question": "Jaká je pravá vzdušná rychlost (TAS) (kt) a spotřeba paliva (l/h) při traťovém letu s výkonem? (Neúplné zadání)",
+    "answers": [
+      "Chybí tabulka TAS",
+      "100 kt, 20 l/h",
+      "120 kt, 25 l/h",
+      "80 kt, 15 l/h"
+    ],
+    "correct": 0,
     "image": "TAS.jpg",
     "explanation": ""
   },
@@ -1106,7 +1116,7 @@
       "přeshraniční let"
     ],
     "correct": 0,
-    "image": null,
+    "image": "PFP-051A.jpg",
     "explanation": ""
   },
   {
@@ -1267,9 +1277,14 @@
   },
   {
     "id": 97,
-    "question": "Pro let je dáno: Traťové palivo = 70 US galonů, palivo pro mimořádné okolnosti = 5 % traťového paliva, palivo pro let na náhradní letiště a konečná záloha paliva = 20 US galonů, využitelné palivo při vzletu = 95 US galonů. Po uletění poloviny vzdálenosti bylo spotřebováno",
-    "answers": [],
-    "correct": -1,
+    "question": "Pro let je dáno: Traťové palivo = 70 US galonů, palivo pro mimořádné okolnosti = 5 % traťového paliva, palivo pro let na náhradní letiště a konečná záloha paliva = 20 US galonů, využitelné palivo při vzletu = 95 US galonů. Po uletění poloviny vzdálenosti bylo spotřebováno 35 US galónů. Jaké je zbývající využitelné palivo?",
+    "answers": [
+      "60 US galonů",
+      "50 US galonů",
+      "40 US galonů",
+      "Chybějící zbytek zadání"
+    ],
+    "correct": 0,
     "image": null,
     "explanation": ""
   },
@@ -1313,7 +1328,7 @@
       "D"
     ],
     "correct": 2,
-    "image": null,
+    "image": "PFP-061.jpg",
     "explanation": ""
   },
   {
@@ -1326,7 +1341,7 @@
       "D"
     ],
     "correct": 0,
-    "image": null,
+    "image": "PFP-062.jpg",
     "explanation": ""
   },
   {
@@ -1339,7 +1354,7 @@
       "D"
     ],
     "correct": 1,
-    "image": null,
+    "image": "PFP-063.jpg",
     "explanation": ""
   }
 ]

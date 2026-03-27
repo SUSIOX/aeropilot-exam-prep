@@ -37,21 +37,24 @@ import {
   Menu,
   Trash2,
   Filter,
-  Brain
+  Brain,
+  Heart,
+  Copy,
+  Check
 } from 'lucide-react';
 import { Subject, Question, Stats, ViewMode, DrillSettings } from './types';
 import { LearningEngine } from './lib/LearningEngine';
 import { sortQuestions, updateShuffleHistory, SortingConfig } from './services/sortingService';
-import { 
-  getDetailedExplanation, 
-  getDetailedHumanExplanation, 
-  translateQuestion, 
-  verifyApiKey, 
-  checkDeepSeekBalance, 
-  checkDeepSeekBalanceProxy, 
+import {
+  getDetailedExplanation,
+  getDetailedHumanExplanation,
+  translateQuestion,
+  verifyApiKey,
+  checkDeepSeekBalance,
+  checkDeepSeekBalanceProxy,
   generateBatchQuestions,
-  EasaLO, 
-  mockLOs, 
+  EasaLO,
+  mockLOs,
   getAllLOs,
   SYLLABUS_SCOPE,
   SUBJECT_NAMES,
@@ -198,7 +201,7 @@ export default function App() {
   const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [isSettingQuestions, setIsSettingQuestions] = useState(false); // Prevent duplicate setQuestions calls
-  
+
   // Wrap setQuestions to add debugging
   const debugSetQuestions = (newQuestions: Question[] | ((prev: Question[]) => Question[])) => {
     console.log(`🔧 setQuestions called, type: ${typeof newQuestions}`);
@@ -216,12 +219,12 @@ export default function App() {
   const [originalQuestions, setOriginalQuestions] = useState<Question[]>([]); // Store unfiltered questions
   const [isEcqbPatternsOpen, setIsEcqbPatternsOpen] = useState(false); // ECQB patterns collapsible
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  
+
   // Track when questions or currentQuestionIndex change
   useEffect(() => {
     // console.log(`📍 STATE DEBUG: currentQuestionIndex changed to: ${currentQuestionIndex}`);
   }, [currentQuestionIndex]);
-  
+
   useEffect(() => {
     // console.log(`📍 STATE DEBUG: questions changed, first question ID: ${questions[0]?.id}, length: ${questions.length}`);
   }, [questions]);
@@ -244,6 +247,8 @@ export default function App() {
   const [examResults, setExamResults] = useState<{ score: number; total: number } | null>(null);
   const [timer, setTimer] = useState(0);
   const [showExamTypeSelection, setShowExamTypeSelection] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
 
   // Drill Settings
   const [drillSettings, setDrillSettings] = useState<DrillSettings>(() => {
@@ -365,7 +370,7 @@ export default function App() {
   const [syllabusExpandedSubtopics, setSyllabusExpandedSubtopics] = useState<Set<string>>(new Set());
   const [syllabusLicenseFilter, setSyllabusLicenseFilter] = useState<'ALL' | 'PPL' | 'SPL'>('ALL');
   const [syllabusSearch, setSyllabusSearch] = useState('');
-  
+
   // Memoized list of LOs that match current syllabus filters (search + license)
   const activeSyllabusLOs = React.useMemo(() => {
     const term = syllabusSearch.toLowerCase();
@@ -390,7 +395,7 @@ export default function App() {
     if (!expandedSyllabusQuestion || isNavigatingSyllabus) return;
 
     const qIndex = syllabusLOQuestions.findIndex(q => (q.questionId || q.id) === (expandedSyllabusQuestion.questionId || expandedSyllabusQuestion.id));
-    
+
     // CASE 1: Still in same LO
     if (direction === 'next' && qIndex < syllabusLOQuestions.length - 1) {
       setExpandedSyllabusQuestion(syllabusLOQuestions[qIndex + 1]);
@@ -404,7 +409,7 @@ export default function App() {
     // CASE 2: Jump to another LO
     const currentLoId = expandedSyllabusQuestion.loId;
     const loIdx = activeSyllabusLOs.findIndex(l => l.id === currentLoId);
-    
+
     if (loIdx === -1) return; // Should not happen
 
     setIsNavigatingSyllabus(true);
@@ -416,7 +421,7 @@ export default function App() {
       while (targetLoIdx >= 0 && targetLoIdx < activeSyllabusLOs.length) {
         const nextLo = activeSyllabusLOs[targetLoIdx];
         const resp = await dynamoDBService.getQuestionsByLO(nextLo.id);
-        
+
         if (resp.success && resp.data && resp.data.length > 0) {
           // Found matching questions!
           const q = direction === 'next' ? resp.data[0] : resp.data[resp.data.length - 1];
@@ -440,7 +445,7 @@ export default function App() {
     }
     setIsNavigatingSyllabus(false);
   };
-   
+
   const [expandedSyllabusQuestion, setExpandedSyllabusQuestion] = useState<any | null>(null);
   const [syllabusGeneratingLO, setSyllabusGeneratingLO] = useState<string | null>(null);
   const [syllabusGeneratedQuestion, setSyllabusGeneratedQuestion] = useState<{ loId: string; question: Partial<Question> } | null>(null);
@@ -462,7 +467,7 @@ export default function App() {
       })
       .finally(() => setSyllabusLOQuestionsLoading(false));
   }, [syllabusSelectedLO]);
-  
+
   // Keyboard navigation for Expanded Syllabus Question Modal
   useEffect(() => {
     if (!expandedSyllabusQuestion) return;
@@ -834,12 +839,12 @@ export default function App() {
     const savedGemini = localStorage.getItem(`${uid}:userApiKey`);
     const savedClaude = localStorage.getItem(`${uid}:claudeApiKey`);
     const savedDeepseek = localStorage.getItem(`${uid}:deepseekApiKey`);
-    
+
     // Only use localStorage if DynamoDB hasn't loaded keys yet (fallback)
     if (!userApiKey && savedGemini) setUserApiKey(savedGemini);
     if (!claudeApiKey && savedClaude) setClaudeApiKey(savedClaude);
     if (!deepseekApiKey && savedDeepseek) setDeepseekApiKey(savedDeepseek);
-    
+
     setKeyStatus('idle');
   }, [user]);
 
@@ -942,10 +947,10 @@ export default function App() {
         // Test proxy connection
         const proxyParams = getProxyParams();
         const testResult = await dynamoDBService.testProxyConnection(proxyParams.proxyUrl!, proxyParams.idToken!);
-        
+
         if (testResult.success) {
           setKeyStatus('valid');
-          
+
           // Check proxy balance
           try {
             const balanceResult = await checkDeepSeekBalanceProxy(proxyParams.proxyUrl!, proxyParams.idToken!);
@@ -978,11 +983,11 @@ export default function App() {
       try {
         // First check balance
         const balanceResult = await checkDeepSeekBalance(deepseekApiKey);
-        
+
         if (balanceResult.success) {
           // Then verify the key works
           const verifyResult = await verifyApiKey(deepseekApiKey, 'deepseek');
-          
+
           if (verifyResult.success) {
             setKeyStatus('valid');
             alert(`✅ DeepSeek API klíč je platný.\n💰 Zůstatek: ${balanceResult.balance}\nKlíč byl uložen.`);
@@ -1045,7 +1050,7 @@ export default function App() {
     }
   }, [drillSettings, user?.id, userApiKey, claudeApiKey, deepseekApiKey, aiProvider, aiModel]);
 
-  
+
   // Load user settings from DynamoDB on login
   useEffect(() => {
     if (!isGuestMode && user?.id && isCredentialsReady) {
@@ -1077,13 +1082,13 @@ export default function App() {
         });
     }
   }, [user?.id, isCredentialsReady]);
-  
+
   // Fetch cloud data on login
   useEffect(() => {
     if (!isGuestMode && user?.id && isCredentialsReady) {
       console.log('🔄 Fetching user data from cloud...');
       const userId = String(user.id);
-      
+
       // 1. Fetch Flags
       dynamoDBService.getQuestionFlags(userId).then(response => {
         if (response.success && response.data?.flags) {
@@ -1092,8 +1097,8 @@ export default function App() {
           const mergedFlags = { ...existingFlags, ...response.data.flags };
           localStorage.setItem('question_flags', JSON.stringify(mergedFlags));
         }
-      }).catch(() => {});
-      
+      }).catch(() => { });
+
       // 2. Sync Progress (Optional, already handled on startDrill but good for heatmap)
       dynamoDBService.getUserSettings(userId).then(response => {
         if (response.success && response.settings?.progress) {
@@ -1103,7 +1108,7 @@ export default function App() {
           localStorage.setItem(answersKey, JSON.stringify(mergedAnswers));
           console.log(`✅ Synced progress heatmap (${Object.keys(response.settings.progress).length} entries)`);
         }
-      }).catch(() => {});
+      }).catch(() => { });
     }
   }, [user?.id, isGuestMode, isCredentialsReady]);
 
@@ -1111,7 +1116,7 @@ export default function App() {
   useEffect(() => {
     // Only re-filter during standard subject drill (id > 0)
     // Modes like 'Review Errors' (id: -1) and 'Flagged' (id: -2) manage their own filtering
-    if (view === 'drill' && originalQuestions.length > 0 && selectedSubject && selectedSubject.id !== 0) {
+    if (view === 'drill' && originalQuestions.length > 0 && selectedSubject && selectedSubject.id > 0) {
       // Re-apply filters to ORIGINAL questions, not already filtered ones
       const answers = JSON.parse(localStorage.getItem(userKey('answers')) || '{}');
       const flags = JSON.parse(localStorage.getItem('question_flags') || '{}');
@@ -1119,7 +1124,7 @@ export default function App() {
         const isAi = Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa';
         const sourceMatch = isAi ? drillSettings.sourceFilters.includes('ai') : drillSettings.sourceFilters.includes('user');
         if (!sourceMatch) return false;
-        
+
         if (selectedSubject.id === -1) {
           // Error review filtering
           const answer = answers[String(q.id)];
@@ -1130,18 +1135,18 @@ export default function App() {
           const compositeId = String(q.id);
           const rawId = compositeId.includes('_') ? compositeId.split('_')[1] : compositeId;
           const flag = flags[compositeId] || flags[rawId] || flags[String(rawId)];
-          
+
           let isFlagged = false;
           if (typeof flag === 'object' && flag !== null) isFlagged = !!flag.isFlagged;
           else isFlagged = !!flag;
-          
+
           if (!isFlagged) return false;
         } else if (drillSettings.excludeAnswered) {
           // Standard subject filtering
           const answer = answers[String(q.id)];
           if (answer && answer.isCorrect) return false;
         }
-        
+
         return true;
       });
 
@@ -1166,7 +1171,7 @@ export default function App() {
       setCurrentQuestionIndex(0); // Reset to first question
       setAnswered(null); // Clear answer
       setShowExplanation(false); // Hide explanation
-      
+
       // Update shuffle history if using weighted learning
       if (drillSettings.sorting === 'weighted_learning') {
         updateShuffleHistoryLocal(mapped);
@@ -1327,7 +1332,7 @@ export default function App() {
       if (isGuestMode) {
         const guestStats = loadGuestStats();
         const countsResult = await dynamoDBService.getAllQuestionCounts();
-        
+
         let total: Record<number, number> = {};
         let userQuestions: Record<number, number> = {};
         let ai: Record<number, number> = {};
@@ -1394,13 +1399,13 @@ export default function App() {
 
         // 2. Fetch User Profile (Settings)
         const profileResult = await dynamoDBService.getUserProfileWithProgress(uid);
-        
+
         // 2b. Fetch User Progress (New Single-Table Design)
         const progressResult = await dynamoDBService.getUserProgress(uid);
 
         if (profileResult.success && profileResult.data) {
           const profile = profileResult.data;
-          
+
           // Reconstruct allAnswers from the new single-table lines
           const allAnswers: any = {};
           if (progressResult.success && progressResult.data) {
@@ -1519,30 +1524,48 @@ export default function App() {
   };
 
   const getFilteredQuestionCount = (subject: Subject, sourceFilters: ('user' | 'ai')[]) => {
+    if (subject.id <= 0) return subject.question_count || 0;
+
     let count = 0;
     if (sourceFilters.includes('user')) count += subject.user_count || 0;
     if (sourceFilters.includes('ai')) count += subject.ai_count || 0;
     return count;
   };
 
-  const getFilteredAnsweredCount = (subjectId: number, sourceFilters: ('user' | 'ai')[], allQuestions: Question[]) => {
+  const getFilteredAnsweredCount = (subjectId: number, sourceFilters: ('user' | 'ai')[], drillQuestions: Question[]) => {
     const answers = JSON.parse(localStorage.getItem(userKey('answers')) || '{}');
+
+    if (subjectId < 0) {
+      return drillQuestions.filter(q => {
+        const ans = answers[String(q.id)];
+        return ans && ans.isCorrect;
+      }).length;
+    }
+
     return Object.keys(answers).filter(questionId => {
       const answer = answers[questionId] as { isCorrect: boolean; subjectId: number; timestamp: string };
-      if (answer.subjectId !== subjectId) return false;
-      
-      const questionType = getQuestionType(questionId, allQuestions);
+      if (subjectId > 0 && answer.subjectId !== subjectId) return false;
+
+      const questionType = getQuestionType(questionId, drillQuestions);
       return sourceFilters.includes(questionType);
     }).length;
   };
 
-  const getFilteredCorrectCount = (subjectId: number, sourceFilters: ('user' | 'ai')[], allQuestions: Question[]) => {
+  const getFilteredCorrectCount = (subjectId: number, sourceFilters: ('user' | 'ai')[], drillQuestions: Question[]) => {
     const answers = JSON.parse(localStorage.getItem(userKey('answers')) || '{}');
+
+    if (subjectId < 0) {
+      return drillQuestions.filter(q => {
+        const ans = answers[String(q.id)];
+        return ans && ans.isCorrect;
+      }).length;
+    }
+
     return Object.entries(answers).filter(([questionId, answer]) => {
       const typedAnswer = answer as { isCorrect: boolean; subjectId: number; timestamp: string };
-      if (typedAnswer.subjectId !== subjectId) return false;
-      
-      const questionType = getQuestionType(questionId, allQuestions);
+      if (subjectId > 0 && typedAnswer.subjectId !== subjectId) return false;
+
+      const questionType = getQuestionType(questionId, drillQuestions);
       return sourceFilters.includes(questionType) && typedAnswer.isCorrect;
     }).length;
   };
@@ -1566,7 +1589,7 @@ export default function App() {
         const isAi = Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa';
         const sourceMatch = isAi ? drillSettings.sourceFilters.includes('ai') : drillSettings.sourceFilters.includes('user');
         if (!sourceMatch) return false;
-        
+
         if (drillSettings.excludeAnswered) {
           const answer = answers[String(q.questionId || q.id)];
           return !answer || !answer.isCorrect;
@@ -1581,12 +1604,12 @@ export default function App() {
         alert('Pro tento předmět a vybrané filtry nebyly nalezeny žádné otázky.');
         return;
       }
-      
+
       setQuestions(processedQuestions);
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
-      
+
       // Update shuffle history if using weighted learning
       if (drillSettings.sorting === 'weighted_learning') {
         updateShuffleHistoryLocal(processedQuestions);
@@ -1634,7 +1657,7 @@ export default function App() {
     };
 
     const updatedHistory = updateShuffleHistory(shuffledQuestions, config);
-    
+
     if (updatedHistory.length > 0) {
       setDrillSettings(prev => ({
         ...prev,
@@ -1646,7 +1669,7 @@ export default function App() {
   // Function to reshuffle current questions during drill (using centralized sorting service)
   const reshuffleQuestions = () => {
     console.log(`🔄 reshuffleQuestions called! Current sorting: ${drillSettings.sorting}`);
-    
+
     const config: SortingConfig = {
       type: drillSettings.sorting as any,
       weightedLearning: drillSettings.weightedLearning ? {
@@ -1662,12 +1685,12 @@ export default function App() {
     };
 
     const shuffled = sortQuestions(questions, { config });
-    
+
     setQuestions(shuffled);
     setCurrentQuestionIndex(0);
     setAnswered(null);
     setShowExplanation(false);
-    
+
     // Update shuffle history
     updateShuffleHistoryLocal(shuffled);
   };
@@ -1716,7 +1739,7 @@ export default function App() {
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
-      
+
       // Update shuffle history if using weighted learning
       if (drillSettings.sorting === 'weighted_learning') {
         updateShuffleHistoryLocal(sortedQuestions);
@@ -1761,7 +1784,7 @@ export default function App() {
         const isAi = Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa';
         const sourceMatch = isAi ? drillSettings.sourceFilters.includes('ai') : drillSettings.sourceFilters.includes('user');
         if (!sourceMatch) return false;
-        
+
         const compositeId = String(q.id);
         const answer = allAnswers[compositeId];
         return answer && !answer.isCorrect;
@@ -1779,7 +1802,7 @@ export default function App() {
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
-      
+
       // Update shuffle history if using weighted learning
       if (drillSettings.sorting === 'weighted_learning') {
         updateShuffleHistoryLocal(sortedQuestions);
@@ -1808,10 +1831,10 @@ export default function App() {
 
           const compositeId = String(q.id);
           const rawId = compositeId.includes('_') ? compositeId.split('_')[1] : compositeId;
-          
+
           // Legacy support: match by compositeId (preferred) or old raw numeric ID
           const flag = flags[compositeId] || flags[rawId] || flags[String(rawId)];
-          
+
           if (typeof flag === 'object' && flag !== null) return !!flag.isFlagged;
           return !!flag;
         })
@@ -1829,7 +1852,7 @@ export default function App() {
       setCurrentQuestionIndex(0);
       setAnswered(null);
       setShowExplanation(false);
-      
+
       // Update shuffle history if using weighted learning
       if (drillSettings.sorting === 'weighted_learning') {
         updateShuffleHistoryLocal(sortedQuestions);
@@ -1901,11 +1924,11 @@ export default function App() {
       };
 
       // Filter for UCL test - prefer user questions but include AI if needed
-      const userQuestions = allQuestions.filter(q => 
+      const userQuestions = allQuestions.filter(q =>
         (Number(q.is_ai) !== 1 && q.source !== 'ai' && q.source !== 'easa')
       );
-      
-      const aiQuestions = allQuestions.filter(q => 
+
+      const aiQuestions = allQuestions.filter(q =>
         Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa'
       );
 
@@ -1915,7 +1938,7 @@ export default function App() {
 
       // Try to get questions for each category according to distribution
       for (const [categoryId, count] of Object.entries(categoryDistribution)) {
-        const categoryQuestions = availableQuestions.filter(q => 
+        const categoryQuestions = availableQuestions.filter(q =>
           q.subject_id === parseInt(categoryId)
         );
 
@@ -1933,7 +1956,7 @@ export default function App() {
       // If we still don't have 120 questions, fill with remaining questions
       if (examSet.length < 120) {
         const needed = 120 - examSet.length;
-        const remainingQuestions = availableQuestions.filter(q => 
+        const remainingQuestions = availableQuestions.filter(q =>
           !examSet.includes(q)
         );
         examSet.push(...remainingQuestions.slice(0, needed));
@@ -1976,11 +1999,11 @@ export default function App() {
       }
 
       // Filter for EASA test - prefer AI questions but include user if needed
-      const aiQuestions = allQuestions.filter(q => 
+      const aiQuestions = allQuestions.filter(q =>
         Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa'
       );
-      
-      const userQuestions = allQuestions.filter(q => 
+
+      const userQuestions = allQuestions.filter(q =>
         (Number(q.is_ai) !== 1 && q.source !== 'ai' && q.source !== 'easa')
       );
 
@@ -2032,11 +2055,11 @@ export default function App() {
       };
 
       // Filter for SPL test - prefer user questions but include AI if needed
-      const userQuestions = allQuestions.filter(q => 
+      const userQuestions = allQuestions.filter(q =>
         (Number(q.is_ai) !== 1 && q.source !== 'ai' && q.source !== 'easa')
       );
-      
-      const aiQuestions = allQuestions.filter(q => 
+
+      const aiQuestions = allQuestions.filter(q =>
         Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa'
       );
 
@@ -2046,14 +2069,14 @@ export default function App() {
 
       // Try to get questions for each SPL category according to distribution
       for (const [categoryId, count] of Object.entries(categoryDistribution)) {
-        const categoryQuestions = availableQuestions.filter(q => 
+        const categoryQuestions = availableQuestions.filter(q =>
           q.subject_id === parseInt(categoryId)
         );
 
         if (categoryQuestions.length >= count) {
           // Shuffle and take required number using centralized sorting service
-          const shuffled = sortQuestions(categoryQuestions, { 
-            config: { type: 'random', userId: user?.id } 
+          const shuffled = sortQuestions(categoryQuestions, {
+            config: { type: 'random', userId: user?.id }
           });
           examSet.push(...shuffled.slice(0, count));
         } else {
@@ -2347,7 +2370,7 @@ V nastavení lze změnit defaultni model.`);
           setIsGeneratingAiExplanation(false);
           return;
         }
-      } catch (error) { 
+      } catch (error) {
         console.error('[Cache] DynamoDB error:', error);
       }
 
@@ -2377,7 +2400,7 @@ V nastavení lze změnit defaultni model.`);
             ).catch(() => { });
             return;
           }
-        } catch (error) { 
+        } catch (error) {
           console.error('[Cache] localStorage parse error:', error);
         }
       }
@@ -2636,7 +2659,7 @@ V nastavení lze změnit defaultni model.`);
       try {
         const proxyToken = await getProxyIdToken();
         console.log('[Detailed] Proxy token obtained:', !!proxyToken);
-        
+
         detailedExplanationResult = await getDetailedHumanExplanation(
           q, lo,
           currentApiKey,
@@ -2646,7 +2669,7 @@ V nastavení lze změnit defaultni model.`);
             setDetailedExplanation(prev => prev + chunk);
           }
         );
-        
+
         console.log('[Detailed] AI call completed, result length:', detailedExplanationResult?.length);
         setDetailedExplanation(detailedExplanationResult);
       } catch (error) {
@@ -2660,7 +2683,7 @@ V nastavení lze změnit defaultni model.`);
         const explanationKey = `${q.subject_id}_${q.id}`;
         console.log('[Detailed] Explanation key:', explanationKey);
         console.log('[Detailed] Result to save:', detailedExplanationResult?.substring(0, 100) + '...');
-        
+
         // Save to DynamoDB
         dynamoDBService.saveExplanationWithObjective(
           explanationKey,
@@ -2674,7 +2697,7 @@ V nastavení lze změnit defaultni model.`);
         }).catch((err) => {
           console.error('[Detailed] ❌ DynamoDB save failed:', err);
         });
-        
+
         // Save to localStorage
         const explanations = JSON.parse(localStorage.getItem('ai_explanations') || '{}');
         explanations[explanationKey] = {
@@ -2687,7 +2710,7 @@ V nastavení lze změnit defaultni model.`);
         };
         localStorage.setItem('ai_explanations', JSON.stringify(explanations));
         console.log('[Detailed] ✅ Saved to localStorage');
-        
+
         setQuestions(prev => prev.map(question =>
           question.id === q.id ? { ...question, ai_detailed_explanation: detailedExplanationResult } : question
         ));
@@ -3010,7 +3033,7 @@ V nastavení lze změnit defaultni model.`);
     setCurrentQuestionIndex(0);
     setAnswered(null);
     setShowExplanation(false);
-    
+
     // Update shuffle history if using weighted learning
     if (drillSettings.sorting === 'weighted_learning') {
       updateShuffleHistoryLocal(loQuestions);
@@ -3053,7 +3076,7 @@ V nastavení lze změnit defaultni model.`);
       id: Date.now() + Math.random(),
       question: question.text || '',
       answers: [question.option_a || '', question.option_b || '', question.option_c || '', question.option_d || ''],
-      correct: ['A','B','C','D'].indexOf(question.correct_option || 'A'),
+      correct: ['A', 'B', 'C', 'D'].indexOf(question.correct_option || 'A'),
       explanation: question.explanation || '',
       lo_id: loId,
       source: 'ai',
@@ -3677,8 +3700,8 @@ V nastavení lze změnit defaultni model.`);
 
                 {/* Fixed controls (hidden on mobile, visible on tablet+) */}
                 {(view === 'drill' || view === 'exam') && questions[currentQuestionIndex]?.approved && (
-                  <div 
-                    className="flex items-center justify-center bg-green-500 text-white w-9 h-9 rounded-full shadow-lg shadow-green-500/20 flex-shrink-0" 
+                  <div
+                    className="flex items-center justify-center bg-green-500 text-white w-9 h-9 rounded-full shadow-lg shadow-green-500/20 flex-shrink-0"
                     title="Otázka schválena auditorem"
                   >
                     <ShieldCheck size={18} strokeWidth={3} />
@@ -4233,6 +4256,70 @@ V nastavení lze změnit defaultni model.`);
                     <h2 className="font-bold text-3xl">Nastavení</h2>
                   </div>
 
+                  {/* 0. Support / Donate */}
+                  <section className="space-y-6">
+                    <div className="flex items-center gap-2 px-2">
+                      <Heart size={20} className="text-red-500" />
+                      <h3 className="font-bold uppercase tracking-widest text-sm">Podpořit projekt</h3>
+                    </div>
+
+                    <div className="p-6 sm:p-8 border border-blue-500/20 rounded-3xl space-y-6 bg-gradient-to-br from-blue-500/5 to-purple-500/5">
+                      <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                        <div className="shrink-0 bg-white p-3 rounded-2xl shadow-sm border border-black/5">
+                          <img src="/assets/images/donate-qr.png.JPG" alt="QR Platba" className="w-32 h-32 md:w-40 md:h-40 object-contain" />
+                        </div>
+                        <div className="space-y-4 flex-1 text-center md:text-left">
+                          <h4 className="text-lg md:text-xl font-bold">Líbí se vám Aeropilot?</h4>
+                          <p className="opacity-80 text-sm md:text-base leading-relaxed">
+                            Pokud se vám aplikace líbí a pomáhá vám v přípravě na zkoušky, přispějte mi na letové hodiny. Každá podpora se počítá a pomáhá udržet projekt při životě!
+                          </p>
+                          <div className="flex flex-col gap-4">
+                            <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 md:gap-4 pt-2">
+                              <button
+                                onClick={() => {
+                                  navigator.clipboard.writeText("5157306043/0800");
+                                  setCopySuccess(true);
+                                  setShowThankYou(true);
+                                  setTimeout(() => setCopySuccess(false), 2000);
+                                }}
+                                className="flex items-center gap-2 bg-[var(--ink)] text-[var(--bg)] px-5 md:px-6 py-2.5 md:py-3 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest hover:scale-[1.02] transition-all shadow-lg"
+                              >
+                                {copySuccess ? <Check size={16} className="text-emerald-400" /> : <Copy size={16} />}
+                                {copySuccess ? 'Číslo účtu zkopírováno' : 'Zkopírovat číslo účtu'}
+                              </button>
+                            </div>
+
+                            <AnimatePresence>
+                              {showThankYou && (
+                                <motion.div
+                                  initial={{ opacity: 0, height: 0, y: -10 }}
+                                  animate={{ opacity: 1, height: 'auto', y: 0 }}
+                                  exit={{ opacity: 0, height: 0, y: -10 }}
+                                  className="overflow-hidden"
+                                >
+                                  <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl text-emerald-800 dark:text-emerald-200 text-sm mt-2 text-center md:text-left">
+                                    <p className="font-bold mb-1">Děkuji vám! — Kristian H.</p>
+                                    <p className="opacity-80">
+                                      Kontaktovat mě můžete na adrese{' '}
+                                      <a
+                                        href={`mailto:${['boorgxx', 'gmail.com'].join('@')}`}
+                                        className="font-medium underline hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+                                      >
+                                        <span>{'boorgxx'}</span>
+                                        <span>{'@'}</span>
+                                        <span>{'gmail.com'}</span>
+                                      </a>
+                                    </p>
+                                  </div>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
                   {/* 1. Uživatelská nastavení (Obecná) */}
                   <section className="space-y-6">
                     <div className="flex items-center gap-2 px-2">
@@ -4253,19 +4340,19 @@ V nastavení lze změnit defaultni model.`);
                                 localStorage.setItem('drillSettings', JSON.stringify(newSettings));
                                 return newSettings;
                               });
-                              
+
                               // Immediately re-sort current questions and go to first
                               if (questions.length > 0) {
                                 // console.log(`🔄 DEBUG: Sorting changed to: ${newSorting}`);
                                 // console.log(`🔄 DEBUG: Before re-sort - First question ID: ${questions[0]?.id}`);
                                 const sortedQuestions = applySorting(questions, newSorting);
                                 // console.log(`🔄 DEBUG: After re-sort - First question ID: ${sortedQuestions[0]?.id}`);
-                                
+
                                 // Update all state in single batch
                                 debugSetQuestions(sortedQuestions);
                                 setAnswered(null);
                                 setShowExplanation(false);
-                                
+
                                 // Set index last to ensure questions are updated first
                                 setCurrentQuestionIndex(0);
                               }
@@ -4290,7 +4377,7 @@ V nastavení lze změnit defaultni model.`);
                               { id: 'excludeAnswered', icon: CheckCircle2, label: 'Vynechat', title: 'Nezobrazovat otázky, které jste již správně zodpověděli' }
                             ].map((src) => {
                               if (src.id === 'spacer') return <div key="spacer" className="w-4 md:w-8" />;
-                              
+
                               let isActive: boolean;
                               let onClick: () => void;
 
@@ -4308,8 +4395,8 @@ V nastavení lze změnit defaultni model.`);
                                   onClick={onClick}
                                   title={src.title}
                                   className={`flex-1 flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all ${isActive
-                                      ? 'border-indigo-600 bg-indigo-600/5 text-indigo-600 scale-105 shadow-sm'
-                                      : 'border-[var(--line)] opacity-40 grayscale hover:opacity-60'
+                                    ? 'border-indigo-600 bg-indigo-600/5 text-indigo-600 scale-105 shadow-sm'
+                                    : 'border-[var(--line)] opacity-40 grayscale hover:opacity-60'
                                     }`}
                                 >
                                   <src.icon size={24} strokeWidth={isActive ? 2.5 : 2} />
@@ -4517,7 +4604,7 @@ V nastavení lze změnit defaultni model.`);
                                 setKeyStatus('idle');
                               }}
                               placeholder={
-                                aiProvider === 'deepseek' && !deepseekApiKey && getProxyParams().idToken 
+                                aiProvider === 'deepseek' && !deepseekApiKey && getProxyParams().idToken
                                   ? 'Používá se testovací klíč (proxy)'
                                   : `Vložte váš ${aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek'} API klíč...`
                               }
@@ -4527,10 +4614,10 @@ V nastavení lze změnit defaultni model.`);
                             {keyStatus === 'valid' && <CheckCircle2 size={16} className="absolute right-3 top-3.5 text-emerald-500" />}
                             {keyStatus === 'invalid' && <XCircle size={16} className="absolute right-3 top-3.5 text-red-500" />}
                             {keyStatus === 'idle' && <HelpCircle size={16} className="absolute right-3 top-3.5 opacity-30 cursor-help" title={
-  aiProvider === 'deepseek' && !deepseekApiKey && getProxyParams().idToken 
-    ? 'Ověří proxy připojení k Lambda funkci' 
-    : 'Ověří platnost API klíče'
-} />}
+                              aiProvider === 'deepseek' && !deepseekApiKey && getProxyParams().idToken
+                                ? 'Ověří proxy připojení k Lambda funkci'
+                                : 'Ověří platnost API klíče'
+                            } />}
                           </div>
                           <button
                             onClick={handleVerifyKey}
@@ -4551,8 +4638,8 @@ V nastavení lze změnit defaultni model.`);
                               ? ' Získejte klíč na console.anthropic.com.'
                               : ' Získejte klíč na platform.deepseek.com.'}
                         </p>
-                        
-                                              </div>
+
+                      </div>
                     </div>
                   </section>
 
@@ -4575,7 +4662,7 @@ V nastavení lze změnit defaultni model.`);
                       </div>
                     </button>
                   </section>
-                  
+
                   {/* 4. Správa dat */}
                   <section className="space-y-6 pt-6 border-t border-[var(--line)]">
                     <div className="flex items-center gap-3">
@@ -4608,7 +4695,7 @@ V nastavení lze změnit defaultni model.`);
                           if (window.confirm('Opravdu chcete smazat historii všech pokusů? Tuto akci nelze vrátit.')) {
                             localStorage.removeItem(userKey('answers'));
                             if (!isGuestMode && user?.id) {
-                              dynamoDBService.deleteAllUserProgress(String(user.id)).catch(() => {});
+                              dynamoDBService.deleteAllUserProgress(String(user.id)).catch(() => { });
                             }
                             alert('Historie pokusů byla vymazána.');
                             window.location.reload(); // Refresh to update success rates on dashboard
@@ -4824,79 +4911,79 @@ V nastavení lze změnit defaultni model.`);
                             </span>
                           )}
                           <p className="text-[10px] font-bold uppercase tracking-widest opacity-40 mb-1">
-                            {selectedSubject.id === 0 
+                            {selectedSubject.id === 0
                               ? `Mix- ${subjects.find(s => s.id === questions[currentQuestionIndex]?.subject_id)?.name || 'Neznámá kategorie'}`
                               : selectedSubject.name
                             }
                           </p>
                           <div className="flex items-center gap-2">
-                          {/* Navigace vlevo */}
-                          <div className="flex items-center gap-2">
-                            <button
-                              disabled={currentQuestionIndex === 0}
-                              onClick={() => setCurrentQuestionIndex(prev => prev - 1)}
-                              className="p-1 hover:bg-[var(--line)] rounded-full disabled:opacity-20 transition-colors"
-                            >
-                              <ChevronLeft size={16} />
-                            </button>
-                            <button
-                              onClick={jumpToRandomQuestion}
-                              title="Skočit na náhodnou otázku"
-                              className="font-mono text-xs sm:text-xs md:text-xs opacity-50 hover:opacity-100 hover:text-white transition-all cursor-pointer px-2 py-1 rounded hover:bg-[var(--line)] whitespace-nowrap"
-                            >
-                              {currentQuestionIndex + 1} / {questions.length}
-                            </button>
-                            <button
-                              disabled={currentQuestionIndex === questions.length - 1}
-                              onClick={nextQuestion}
-                              className="p-1 hover:bg-[var(--line)] rounded-full disabled:opacity-20 transition-colors"
-                            >
-                              <ChevronRight size={16} />
-                            </button>
-                          </div>
-                          {/* Filtry vpravo */}
-                          <div className="flex items-center gap-2 ml-auto">
-                            {[
-                              { id: 'user', icon: User, label: 'Uživatel' },
-                              { id: 'ai', icon: Bot, label: 'AI Generováno' },
-                              { id: 'spacer', icon: () => <div className="w-4" />, label: '' },
-                              { id: 'excludeAnswered', icon: CheckCircle2, label: 'Vynechat probrané' },
-                              { id: 'showCorrectAnswerMode', icon: ListTodo, label: 'Správná odpověď (Čtecí mód)' }
-                            ].map(src => {
-                              if (src.id === 'spacer') return <div key="spacer" className="w-2" />;
-                              
-                              let isActive: boolean;
-                              let onClick: () => void;
+                            {/* Navigace vlevo */}
+                            <div className="flex items-center gap-2">
+                              <button
+                                disabled={currentQuestionIndex === 0}
+                                onClick={() => setCurrentQuestionIndex(prev => prev - 1)}
+                                className="p-1 hover:bg-[var(--line)] rounded-full disabled:opacity-20 transition-colors"
+                              >
+                                <ChevronLeft size={16} />
+                              </button>
+                              <button
+                                onClick={jumpToRandomQuestion}
+                                title="Skočit na náhodnou otázku"
+                                className="font-mono text-xs sm:text-xs md:text-xs opacity-50 hover:opacity-100 hover:text-white transition-all cursor-pointer px-2 py-1 rounded hover:bg-[var(--line)] whitespace-nowrap"
+                              >
+                                {currentQuestionIndex + 1} / {questions.length}
+                              </button>
+                              <button
+                                disabled={currentQuestionIndex === questions.length - 1}
+                                onClick={nextQuestion}
+                                className="p-1 hover:bg-[var(--line)] rounded-full disabled:opacity-20 transition-colors"
+                              >
+                                <ChevronRight size={16} />
+                              </button>
+                            </div>
+                            {/* Filtry vpravo */}
+                            <div className="flex items-center gap-2 ml-auto">
+                              {[
+                                { id: 'user', icon: User, label: 'Uživatel' },
+                                { id: 'ai', icon: Bot, label: 'AI Generováno' },
+                                { id: 'spacer', icon: () => <div className="w-4" />, label: '' },
+                                { id: 'excludeAnswered', icon: CheckCircle2, label: 'Vynechat probrané' },
+                                { id: 'showCorrectAnswerMode', icon: ListTodo, label: 'Správná odpověď (Čtecí mód)' }
+                              ].map(src => {
+                                if (src.id === 'spacer') return <div key="spacer" className="w-2" />;
 
-                              if (src.id === 'excludeAnswered') {
-                                isActive = drillSettings.excludeAnswered;
-                                onClick = () => setDrillSettings(prev => ({ ...prev, excludeAnswered: !prev.excludeAnswered }));
-                              } else if (src.id === 'showCorrectAnswerMode') {
-                                isActive = !!drillSettings.showCorrectAnswerMode;
-                                onClick = () => setDrillSettings(prev => ({ ...prev, showCorrectAnswerMode: !prev.showCorrectAnswerMode }));
-                              } else {
-                                isActive = drillSettings.sourceFilters.includes(src.id as any);
-                                onClick = () => toggleSourceFilter(src.id as any);
-                              }
-                              
-                              return (
-                                <button
-                                  key={src.id}
-                                  onClick={onClick}
-                                  title={src.label}
-                                  className={`transition-all duration-300 flex items-center gap-1 relative ${isActive
+                                let isActive: boolean;
+                                let onClick: () => void;
+
+                                if (src.id === 'excludeAnswered') {
+                                  isActive = drillSettings.excludeAnswered;
+                                  onClick = () => setDrillSettings(prev => ({ ...prev, excludeAnswered: !prev.excludeAnswered }));
+                                } else if (src.id === 'showCorrectAnswerMode') {
+                                  isActive = !!drillSettings.showCorrectAnswerMode;
+                                  onClick = () => setDrillSettings(prev => ({ ...prev, showCorrectAnswerMode: !prev.showCorrectAnswerMode }));
+                                } else {
+                                  isActive = drillSettings.sourceFilters.includes(src.id as any);
+                                  onClick = () => toggleSourceFilter(src.id as any);
+                                }
+
+                                return (
+                                  <button
+                                    key={src.id}
+                                    onClick={onClick}
+                                    title={src.label}
+                                    className={`transition-all duration-300 flex items-center gap-1 relative ${isActive
                                       ? 'text-indigo-600 opacity-100'
                                       : 'text-[var(--ink)] opacity-40 hover:opacity-60'
-                                    }`}
-                                >
-                                  <src.icon size={16} strokeWidth={isActive ? 2.5 : 2} />
-                                </button>
-                              );
-                            })}
+                                      }`}
+                                  >
+                                    <src.icon size={16} strokeWidth={isActive ? 2.5 : 2} />
+                                  </button>
+                                );
+                              })}
+                            </div>
                           </div>
+                          {/* Filtry samostatně pod navigací - ODSTRANIT */}
                         </div>
-                        {/* Filtry samostatně pod navigací - ODSTRANIT */}
-                      </div>
                         <div className="flex items-center gap-2 shrink-0">
                           {(userRole === 'admin' || userRole === 'auditor') && (
                             <>
@@ -4952,10 +5039,10 @@ V nastavení lze změnit defaultni model.`);
                               const q = questions[currentQuestionIndex];
                               const answers = JSON.parse(localStorage.getItem(userKey('answers')) || '{}');
                               const isAlreadyCorrect = answers[String(q.questionId || q.id)]?.isCorrect;
-                              
+
                               return (
                                 <div className="mt-1 flex-shrink-0 flex gap-2 rotate-0 items-center">
-                                  <div 
+                                  <div
                                     onClick={() => setShowQuestionId(!showQuestionId)}
                                     className="cursor-pointer hover:opacity-80 transition-opacity"
                                     title="Klikněte pro zobrazení ID otázky"
@@ -4974,7 +5061,7 @@ V nastavení lze změnit defaultni model.`);
                             })()}
                             {showQuestionId && (
                               <div className="text-[10px] opacity-60">
-                                <span 
+                                <span
                                   className="font-mono cursor-pointer hover:opacity-80 underline underline-offset-2"
                                   onClick={() => {
                                     const q = questions[currentQuestionIndex];
@@ -5066,7 +5153,7 @@ V nastavení lze změnit defaultni model.`);
                                   {drillSettings.shuffleAnswers && shuffledQuestion ? (
                                     <TranslatedOption
                                       question={questions[currentQuestionIndex]}
-                                      option={(['A','B','C','D'][shuffledQuestion.shuffleMap[index]] as 'A'|'B'|'C'|'D')}
+                                      option={(['A', 'B', 'C', 'D'][shuffledQuestion.shuffleMap[index]] as 'A' | 'B' | 'C' | 'D')}
                                       language={language}
                                       className="flex-1"
                                     />
@@ -5185,9 +5272,9 @@ V nastavení lze změnit defaultni model.`);
                                     setExpandedLOContent({
                                       id: aiDetectedObjective || q.loId || q.lo_id || 'Importovaná otázka',
                                       text: lo?.text || 'Obecné znalosti letectví.',
-                                      type: aiDetectedObjective 
-                                        ? 'AI detekovaný' 
-                                        : (q.source === 'ai' ? 'Generovaná AI' 
+                                      type: aiDetectedObjective
+                                        ? 'AI detekovaný'
+                                        : (q.source === 'ai' ? 'Generovaná AI'
                                           : (q.source === 'user' ? 'Uživatelská' : 'Oficiální EASA')),
                                       level: lo?.level
                                     });
@@ -5366,18 +5453,18 @@ V nastavení lze změnit defaultni model.`);
                               const filteredCorrect = getFilteredCorrectCount(selectedSubject.id, drillSettings.sourceFilters, questions);
                               const filteredAnswered = getFilteredAnsweredCount(selectedSubject.id, drillSettings.sourceFilters, questions);
                               const filteredTotal = getFilteredQuestionCount(selectedSubject, drillSettings.sourceFilters);
-                              
+
                               const successRate = filteredAnswered > 0 ? filteredCorrect / filteredAnswered : 0;
                               const completionRate = filteredTotal > 0 ? Math.min(1, filteredAnswered / filteredTotal) : 0;
 
                               return (
-                                <div 
+                                <div
                                   className={`cursor-pointer group transition-all duration-300 ${isProgressExpanded ? 'space-y-2' : ''}`}
                                   onClick={() => setIsProgressExpanded(prev => !prev)}
                                   title={isProgressExpanded ? "Klikněte pro sbalení postupu" : "Klikněte pro rozbalení postupu"}
                                 >
                                   {isProgressExpanded && (
-                                    <motion.div 
+                                    <motion.div
                                       initial={{ opacity: 0, height: 0 }}
                                       animate={{ opacity: 1, height: 'auto' }}
                                       className="flex justify-between items-end mb-2"
@@ -5385,7 +5472,7 @@ V nastavení lze změnit defaultni model.`);
                                       <div className="flex items-center gap-2">
                                         <span className="text-xs font-bold uppercase tracking-wider opacity-80 group-hover:text-blue-500 transition-colors">{selectedSubject.name}</span>
                                       </div>
-                                      <div 
+                                      <div
                                         className="text-right leading-tight hover:opacity-80 transition-opacity"
                                         onClick={(e) => {
                                           e.stopPropagation();
@@ -5407,7 +5494,7 @@ V nastavení lze změnit defaultni model.`);
                                       </div>
                                     </motion.div>
                                   )}
-                                  
+
                                   <div className="space-y-1">
                                     {/* Success Rate Bar */}
                                     <div className="h-2.5 bg-[var(--line)] rounded-sm overflow-hidden" title={`Úspěšnost: ${filteredCorrect} správně z ${filteredAnswered} zodpovězených`}>
@@ -5577,7 +5664,7 @@ V nastavení lze změnit defaultni model.`);
                                     {drillSettings.shuffleAnswers && shuffledQuestion && view === 'drill' ? (
                                       <TranslatedOption
                                         question={questions[currentQuestionIndex]}
-                                        option={(['A','B','C','D'][shuffledQuestion.shuffleMap[index]] as 'A'|'B'|'C'|'D')}
+                                        option={(['A', 'B', 'C', 'D'][shuffledQuestion.shuffleMap[index]] as 'A' | 'B' | 'C' | 'D')}
                                         language={language}
                                         className="flex-1"
                                       />
@@ -6022,8 +6109,8 @@ V nastavení lze změnit defaultni model.`);
                               <button
                                 onClick={() => setSelectedLicense('PPL')}
                                 className={`px-3 py-1 rounded-full text-[10px] font-bold transition-all cursor-pointer ${selectedLicense === 'PPL'
-                                    ? 'bg-indigo-600 text-white border border-indigo-600'
-                                    : 'border border-[var(--line)] opacity-40 hover:opacity-60'
+                                  ? 'bg-indigo-600 text-white border border-indigo-600'
+                                  : 'border border-[var(--line)] opacity-40 hover:opacity-60'
                                   }`}
                               >
                                 PPL(A) Pattern
@@ -6031,8 +6118,8 @@ V nastavení lze změnit defaultni model.`);
                               <button
                                 onClick={() => setSelectedLicense('SPL')}
                                 className={`px-3 py-1 rounded-full text-[10px] font-bold transition-all cursor-pointer ${selectedLicense === 'SPL'
-                                    ? 'bg-indigo-600 text-white border border-indigo-600'
-                                    : 'border border-[var(--line)] opacity-40 hover:opacity-60'
+                                  ? 'bg-indigo-600 text-white border border-indigo-600'
+                                  : 'border border-[var(--line)] opacity-40 hover:opacity-60'
                                   }`}
                               >
                                 SPL Pattern
@@ -6423,7 +6510,7 @@ V nastavení lze změnit defaultni model.`);
                                       <div className="h-1 bg-[var(--line)] rounded-full overflow-hidden">
                                         <div
                                           className={`h-full transition-all duration-500 ${sa.percentage >= 80 ? 'bg-green-600' :
-                                              sa.percentage >= 50 ? 'bg-yellow-600' : 'bg-red-600'
+                                            sa.percentage >= 50 ? 'bg-yellow-600' : 'bg-red-600'
                                             }`}
                                           style={{ width: `${sa.percentage}%` }}
                                         />
@@ -6547,11 +6634,11 @@ V nastavení lze změnit defaultni model.`);
                           const rate = s.correctAnswers / s.totalAnswered;
                           // Completion rate (max 100%)
                           const completionRate = subject.question_count ? Math.min(1, s.totalAnswered / subject.question_count) : 0;
-                          
+
                           const handleReset = async (e: React.MouseEvent) => {
                             e.stopPropagation();
                             if (!window.confirm(`Opravdu chcete vymazat historii odpovědí pro předmět "${subject.description || subject.name}"? Tento krok nelze vzít zpět.`)) return;
-                            
+
                             // 1. Clear locally
                             const answersKey = `${user?.id || 'guest'}:answers`;
                             const allAnswers = JSON.parse(localStorage.getItem(answersKey) || '{}');
@@ -6562,7 +6649,7 @@ V nastavení lze změnit defaultni model.`);
                               }
                             });
                             localStorage.setItem(answersKey, JSON.stringify(newAnswers));
-                            
+
                             // 2. Clear in DynamoDB if logged in
                             if (!isGuestMode && user?.id) {
                               try {
@@ -6571,12 +6658,12 @@ V nastavení lze změnit defaultni model.`);
                                 console.error('Failed to delete remote subject progress', err);
                               }
                             }
-                            
+
                             // 3. Recalculate stats immediately
                             const practicedCount = Object.keys(newAnswers).length;
                             const correctCount = Object.values(newAnswers).filter((a: any) => a.isCorrect).length;
                             const successRate = practicedCount > 0 ? correctCount / practicedCount : 0;
-                            
+
                             const perSubject: Record<number, { correct: number; total: number }> = {};
                             for (const a of Object.values(newAnswers) as any[]) {
                               const sid = a.subjectId;
@@ -6592,7 +6679,7 @@ V nastavení lze změnit defaultni model.`);
                                 totalAnswered: perSubject[sub.id] ? perSubject[sub.id].total : 0
                               };
                             });
-                            
+
                             setStats(prev => prev ? {
                               ...prev,
                               practicedQuestions: practicedCount,
@@ -6600,7 +6687,7 @@ V nastavení lze změnit defaultni model.`);
                               subjectStats: newSubjectStats
                             } : prev);
                           };
-                          
+
                           return (
                             <div key={subjectId} className="space-y-1">
                               <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-wider group cursor-pointer" onClick={handleReset} title="Klikněte pro reset statistik">
@@ -6987,7 +7074,7 @@ V nastavení lze změnit defaultni model.`);
                                         </div>
                                         <Maximize2 size={12} className="shrink-0 mt-0.5 opacity-0 group-hover:opacity-40 transition-opacity text-indigo-600" />
                                       </div>
-                                      
+
                                       <div className="space-y-0.5 border-t border-indigo-500/5 pt-2">
                                         {(q.answers || q.options)?.map((a: string, ai: number) => (
                                           <p key={ai} className={`text-[10px] leading-snug pl-2 ${ai === (q.correct_answer ?? q.correctAnswer) ? 'text-emerald-600 font-bold opacity-100' : 'opacity-40'}`}>
@@ -7022,9 +7109,9 @@ V nastavení lze změnit defaultni model.`);
                                     <p className="text-[9px] uppercase tracking-widest opacity-40 font-bold">Vygenerovaná otázka — preview</p>
                                     <div className="text-xs font-medium leading-snug" dangerouslySetInnerHTML={{ __html: sanitizeHtml(markdownToHtml(syllabusGeneratedQuestion.question.text || '')) }} />
                                     <div className="space-y-1 pt-1">
-                                      {(['option_a','option_b','option_c','option_d'] as const).map((opt, i) => (
-                                        <div key={opt} className={`text-[10px] pl-2 ${syllabusGeneratedQuestion.question.correct_option === String.fromCharCode(65+i) ? 'text-emerald-600 font-bold' : 'opacity-50'}`}>
-                                          <span>{String.fromCharCode(65+i)}. </span>
+                                      {(['option_a', 'option_b', 'option_c', 'option_d'] as const).map((opt, i) => (
+                                        <div key={opt} className={`text-[10px] pl-2 ${syllabusGeneratedQuestion.question.correct_option === String.fromCharCode(65 + i) ? 'text-emerald-600 font-bold' : 'opacity-50'}`}>
+                                          <span>{String.fromCharCode(65 + i)}. </span>
                                           <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(markdownToHtml(String(syllabusGeneratedQuestion.question[opt] || ''))) }} />
                                         </div>
                                       ))}
@@ -7257,10 +7344,10 @@ V nastavení lze změnit defaultni model.`);
                   {/* Sticky header */}
                   {(() => {
                     const qIndex = expandedSyllabusQuestion ? syllabusLOQuestions.findIndex(q => (q.questionId || q.id) === (expandedSyllabusQuestion.questionId || expandedSyllabusQuestion.id)) : -1;
-                    
+
                     const currentLoId = expandedSyllabusQuestion?.loId;
                     const loIdx = activeSyllabusLOs.findIndex(l => l.id === currentLoId);
-                    
+
                     const canGoPrev = qIndex > 0 || (loIdx > 0 && loIdx !== -1);
                     const canGoNext = (qIndex !== -1 && qIndex < syllabusLOQuestions.length - 1) || (loIdx !== -1 && loIdx < activeSyllabusLOs.length - 1);
 
@@ -7291,9 +7378,9 @@ V nastavení lze změnit defaultni model.`);
                               e.stopPropagation();
                               handleNavigateSyllabus('prev');
                             }}
-                            className={`w-9 h-9 flex items-center justify-center rounded-xl transition-all ${canGoPrev 
-                                ? 'bg-indigo-500/10 text-indigo-600 hover:bg-indigo-600 hover:text-white active:scale-90' 
-                                : 'opacity-20 cursor-not-allowed bg-slate-500/5 text-slate-400'
+                            className={`w-9 h-9 flex items-center justify-center rounded-xl transition-all ${canGoPrev
+                              ? 'bg-indigo-500/10 text-indigo-600 hover:bg-indigo-600 hover:text-white active:scale-90'
+                              : 'opacity-20 cursor-not-allowed bg-slate-500/5 text-slate-400'
                               }`}
                             title="Předchozí"
                           >
@@ -7305,9 +7392,9 @@ V nastavení lze změnit defaultni model.`);
                               e.stopPropagation();
                               handleNavigateSyllabus('next');
                             }}
-                            className={`w-9 h-9 flex items-center justify-center rounded-xl transition-all ${canGoNext 
-                                ? 'bg-indigo-500/10 text-indigo-600 hover:bg-indigo-600 hover:text-white active:scale-90' 
-                                : 'opacity-20 cursor-not-allowed bg-slate-500/5 text-slate-400'
+                            className={`w-9 h-9 flex items-center justify-center rounded-xl transition-all ${canGoNext
+                              ? 'bg-indigo-500/10 text-indigo-600 hover:bg-indigo-600 hover:text-white active:scale-90'
+                              : 'opacity-20 cursor-not-allowed bg-slate-500/5 text-slate-400'
                               }`}
                             title="Další"
                           >
@@ -7345,8 +7432,8 @@ V nastavení lze změnit defaultni model.`);
                           <div
                             key={ai}
                             className={`flex items-start gap-3 p-3 rounded-xl border transition-all ${isCorrect
-                                ? 'bg-emerald-500/10 border-emerald-500/30 ring-1 ring-emerald-500/20'
-                                : 'bg-slate-500/5 border-slate-200/20 dark:border-slate-700/30 opacity-55'
+                              ? 'bg-emerald-500/10 border-emerald-500/30 ring-1 ring-emerald-500/20'
+                              : 'bg-slate-500/5 border-slate-200/20 dark:border-slate-700/30 opacity-55'
                               }`}
                           >
                             {/* Letter badge */}

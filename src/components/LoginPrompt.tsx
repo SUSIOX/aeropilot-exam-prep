@@ -140,15 +140,25 @@ export function LoginPrompt({ isOpen, onClose, onLoginSuccess, feature }: LoginP
                     <p className="text-sm opacity-70 leading-relaxed">{description}</p>
                   </div>
 
-                  <div className="space-y-2">
-                    <p className="text-[10px] font-semibold uppercase tracking-widest opacity-50">S přihlášením získáte:</p>
-                    <div className="space-y-2">
-                      {benefits.map((benefit, index) => (
-                        <div key={index} className="flex items-center gap-2 text-sm">
-                          <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></div>
-                          <span className="opacity-80">{benefit}</span>
-                        </div>
-                      ))}
+                  <div className="flex gap-4 items-center">
+                    <div className="space-y-2 flex-1">
+                      <p className="text-[10px] font-semibold uppercase tracking-widest opacity-50">S přihlášením získáte:</p>
+                      <div className="space-y-2">
+                        {benefits.map((benefit, index) => (
+                          <div key={index} className="flex items-start gap-2 text-sm pt-0.5">
+                            <div className="w-1.5 h-1.5 bg-indigo-500 rounded-full shrink-0 mt-1.5"></div>
+                            <span className="opacity-80 leading-snug">{benefit}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="w-32 shrink-0 flex flex-col items-center gap-2">
+                      <div className="bg-white p-1.5 rounded-xl shadow-sm border border-black/5">
+                        <img src="/assets/images/donate-qr.png.JPG" alt="QR Platba" className="w-full h-auto object-contain" />
+                      </div>
+                      <p className="text-[10px] opacity-60 text-center leading-tight font-medium">
+                        Pokud se vám aplikace líbí, přispějte mi na letové hodiny.
+                      </p>
                     </div>
                   </div>
                 </div>

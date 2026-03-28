@@ -359,6 +359,26 @@ export default function App() {
     return (localStorage.getItem('selectedLicense') as 'PPL' | 'SPL') || 'PPL';
   });
 
+  // Recalculate subject counts when license changes
+  useEffect(() => {
+    setSubjects(prev => {
+      return SUBJECT_DEFS.map(s => {
+        const existing = prev.find(p => p.id === s.id);
+        const totalCount = selectedLicense === 'SPL' && [6, 7, 8].includes(s.id) ? 0 : (existing?.question_count || 0);
+        const userCount = selectedLicense === 'SPL' && [6, 7, 8].includes(s.id) ? 0 : (existing?.user_count || 0);
+        const aiCount = selectedLicense === 'SPL' && [6, 7, 8].includes(s.id) ? 0 : (existing?.ai_count || 0);
+        
+        return {
+          ...s,
+          question_count: totalCount,
+          user_count: userCount,
+          ai_count: aiCount,
+          success_rate: existing?.success_rate ?? 0.75
+        };
+      });
+    });
+  }, [selectedLicense]);
+
   // Syllabus Browser state
   const [syllabusOpen, setSyllabusOpen] = useState(false);
   const [focusedLOId, setFocusedLOId] = useState<string | null>(null);
@@ -1125,6 +1145,10 @@ export default function App() {
         const sourceMatch = isAi ? drillSettings.sourceFilters.includes('ai') : drillSettings.sourceFilters.includes('user');
         if (!sourceMatch) return false;
 
+        // License filter - only show questions for selected license
+        const appliesTo = q.metadata?.applies_to || ['PPL', 'SPL'];
+        if (!appliesTo.includes(selectedLicense)) return false;
+
         if (selectedSubject.id === -1) {
           // Error review filtering
           const answer = answers[String(q.id)];
@@ -1177,13 +1201,13 @@ export default function App() {
         updateShuffleHistoryLocal(mapped);
       }
     }
-  }, [drillSettings.sourceFilters, drillSettings.excludeAnswered, view, originalQuestions.length, selectedSubject]);
+  }, [drillSettings.sourceFilters, drillSettings.excludeAnswered, view, originalQuestions.length, selectedSubject, selectedLicense]);
 
   // Force re-render of progress bars when filters change
   useEffect(() => {
     // This effect ensures progress bars re-calculate when source filters change
     // The dependency array includes all variables used in progress bar calculations
-  }, [drillSettings.sourceFilters, selectedSubject, questions, stats]);
+  }, [drillSettings.sourceFilters, selectedSubject, questions, stats, selectedLicense]);
 
   // Static data loading for GitHub Pages deployment
   const loadStaticSubjects = async () => {
@@ -1257,7 +1281,8 @@ export default function App() {
             updated_at: q.createdAt || new Date().toISOString(),
             approved: q.approved || false,
             approvedBy: q.approvedBy || undefined,
-            approvedAt: q.approvedAt || undefined
+            approvedAt: q.approvedAt || undefined,
+            metadata: q.metadata || { applies_to: ['PPL', 'SPL'] }
           };
         });
         return questions;
@@ -1298,7 +1323,8 @@ export default function App() {
         last_practiced: null,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
-        approved: false
+        approved: false,
+        metadata: { applies_to: ['PPL', 'SPL'] }
       }));
       return questions;
     } catch (error) {
@@ -1529,6 +1555,14 @@ export default function App() {
     let count = 0;
     if (sourceFilters.includes('user')) count += subject.user_count || 0;
     if (sourceFilters.includes('ai')) count += subject.ai_count || 0;
+    
+    // Filter by license - estimate based on subject relevance to selected license
+    // This is a rough estimate since we don't have per-subject license breakdown
+    if (selectedLicense === 'SPL') {
+      // SPL only has subjects 1,2,3,4,5,9 (excludes 6,7,8)
+      if ([6, 7, 8].includes(subject.id)) return 0;
+    }
+    
     return count;
   };
 
@@ -1757,7 +1791,14 @@ export default function App() {
       const qs = await loadStaticQuestions(subject.id);
       all.push(...qs);
     }
-    return all;
+    
+    // Filter by selected license
+    const filtered = all.filter(q => {
+      const appliesTo = q.metadata?.applies_to || ['PPL', 'SPL'];
+      return appliesTo.includes(selectedLicense);
+    });
+    
+    return filtered;
   };
 
   const startErrors = async () => {
@@ -3989,34 +4030,72 @@ V nastavení lze změnit defaultni model.`);
                       <p className="col-header text-[8px] sm:text-[10px] md:text-sm">
                         Databáze otázek
                       </p>
-                      <p className="text-sm sm:text-lg md:text-4xl font-mono font-bold">
+                      <p className="text-lg sm:text-xl md:text-2xl font-mono font-bold" title={`Celkový počet otázek pro ${selectedLicense === 'SPL' ? 'SPL (kluzáky)' : 'PPL (motorová letadla)'}${selectedLicense === 'SPL' ? ' - bez předmětů 6,7,8' : ''}`}>
                         {(() => {
+                          let totalCount = 0;
+                          let userCount = 0;
+                          let aiCount = 0;
+                          
                           if (isGuestMode) {
                             // Guest: Use localStorage data, fallback to DB data
                             const guestStats = loadGuestStats();
                             if (guestStats && guestStats.totalAnswers > 0) {
-                              return guestStats.totalAnswers;
+                              totalCount = guestStats.totalAnswers;
                             } else {
                               // Fallback to DB data for first-time guests
-                              return stats ? (stats.totalQuestions || 0) : 0;
+                              totalCount = stats ? (stats.totalQuestions || 0) : 0;
                             }
                           } else {
                             // User: Use existing logic
-                            return stats ? (stats.totalQuestions || 0) : 0;
+                            totalCount = stats ? (stats.totalQuestions || 0) : 0;
                           }
+                          
+                          // Filter by license
+                          if (selectedLicense === 'SPL') {
+                            // Estimate SPL count by excluding subjects 6,7,8 (roughly 1/3 of questions)
+                            totalCount = Math.round(totalCount * 0.67);
+                            userCount = stats ? Math.round((stats.userQuestions || 0) * 0.67) : 0;
+                            aiCount = stats ? Math.round((stats.aiQuestions || 0) * 0.67) : 0;
+                          } else {
+                            userCount = stats ? (stats.userQuestions || 0) : 0;
+                            aiCount = stats ? (stats.aiQuestions || 0) : 0;
+                          }
+                          
+                          // Return as continuous number without spaces
+                          return totalCount.toString();
                         })()}
                         {(() => {
+                          let userCount = 0;
+                          let aiCount = 0;
+                          
                           if (!isGuestMode && stats) {
+                            // Filter by license
+                            if (selectedLicense === 'SPL') {
+                              userCount = Math.round((stats.userQuestions || 0) * 0.67);
+                              aiCount = Math.round((stats.aiQuestions || 0) * 0.67);
+                            } else {
+                              userCount = stats.userQuestions || 0;
+                              aiCount = stats.aiQuestions || 0;
+                            }
+                            
                             return (
-                              <span className="text-sm sm:text-base md:text-lg opacity-60 ml-2">
-                                {stats.userQuestions || 0}/{stats.aiQuestions || 0}
+                              <span className="text-sm sm:text-base md:text-lg opacity-60 ml-2" title={`Uživatelské otázky: ${userCount.toLocaleString('cs-CZ')} | AI/EASA otázky: ${aiCount.toLocaleString('cs-CZ')}`}>
+                                {userCount.toLocaleString('cs-CZ').replace(/\s/g, '')}/{aiCount.toLocaleString('cs-CZ').replace(/\s/g, '')}
                               </span>
                             );
                           } else if (isGuestMode && stats) {
                             // Guest: Show DB breakdown if available
+                            if (selectedLicense === 'SPL') {
+                              userCount = Math.round((stats.userQuestions || 0) * 0.67);
+                              aiCount = Math.round((stats.aiQuestions || 0) * 0.67);
+                            } else {
+                              userCount = stats.userQuestions || 0;
+                              aiCount = stats.aiQuestions || 0;
+                            }
+                            
                             return (
-                              <span className="text-sm sm:text-base md:text-lg opacity-60 ml-2">
-                                {stats.userQuestions || 0}/{stats.aiQuestions || 0}
+                              <span className="text-sm sm:text-base md:text-lg opacity-60 ml-2" title={`Uživatelské otázky: ${userCount.toLocaleString('cs-CZ')} | AI/EASA otázky: ${aiCount.toLocaleString('cs-CZ')}`}>
+                                {userCount.toLocaleString('cs-CZ').replace(/\s/g, '')}/{aiCount.toLocaleString('cs-CZ').replace(/\s/g, '')}
                               </span>
                             );
                           }
@@ -4025,7 +4104,16 @@ V nastavení lze změnit defaultni model.`);
                       </p>
                       <p className="text-[8px] sm:text-[10px] md:text-sm opacity-50">
                         {stats ? `otázek • UCL/EASA` : 'otázek'}
-                        <span className="ml-2 opacity-80">({allLOs.length} LOs)</span>
+                        <span className="ml-2 opacity-80" title={`Learning Objectives - výukové cíle podle EASA syllabu${selectedLicense === 'SPL' ? ' (jen pro SPL)' : ''}`}>({(() => {
+                          // Filter LOs by license
+                          const relevantLOs = selectedLicense === 'SPL' 
+                            ? allLOs.filter(lo => {
+                                // SPL excludes subjects 6,7,8
+                                return ![6, 7, 8].includes(lo.subject_id || 0);
+                              }).length
+                            : allLOs.length;
+                          return relevantLOs;
+                        })()} LOs)</span>
                       </p>
                     </div>
                     <div className="p-1 sm:p-2 md:p-6 border border-[var(--line)] rounded sm:rounded-lg md:rounded-2xl space-y-0 sm:space-y-0.5 md:space-y-2">
@@ -4034,12 +4122,22 @@ V nastavení lze změnit defaultni model.`);
                       </p>
                       <p className="text-sm sm:text-lg md:text-4xl font-mono font-bold">
                         {(() => {
+                          let practiced = 0;
+                          let total = 0;
+                          
                           if (isGuestMode) {
                             // Guest: Use localStorage data, fallback to DB data (0 for first-time)
                             const guestStats = loadGuestStats();
                             if (guestStats && guestStats.totalAnswers > 0) {
-                              const practiced = guestStats.totalAnswers;
-                              const total = stats ? (stats.totalQuestions || 0) : 0;
+                              practiced = guestStats.totalAnswers;
+                              total = stats ? (stats.totalQuestions || 0) : 0;
+                              
+                              // Filter by license
+                              if (selectedLicense === 'SPL') {
+                                practiced = Math.round(practiced * 0.67);
+                                total = Math.round(total * 0.67);
+                              }
+                              
                               const percentage = total > 0 ? Math.round((practiced / total) * 100) : 0;
                               return (
                                 <>
@@ -4057,8 +4155,15 @@ V nastavení lze změnit defaultni model.`);
                             }
                           } else {
                             // User: Use existing logic
-                            const practiced = stats ? (stats.practicedQuestions || 0) : 0;
-                            const total = stats ? (stats.totalQuestions || 0) : 0;
+                            practiced = stats ? (stats.practicedQuestions || 0) : 0;
+                            total = stats ? (stats.totalQuestions || 0) : 0;
+                            
+                            // Filter by license
+                            if (selectedLicense === 'SPL') {
+                              practiced = Math.round(practiced * 0.67);
+                              total = Math.round(total * 0.67);
+                            }
+                            
                             const percentage = total > 0 ? Math.round((practiced / total) * 100) : 0;
                             return (
                               <>
@@ -4127,7 +4232,15 @@ V nastavení lze změnit defaultni model.`);
                         <div className="hidden sm:flex justify-end w-8 flex-shrink-0"></div>
                       </div>
 
-                      {subjects.map((s) => (
+                      {subjects.filter((s) => {
+                        // Filter subjects based on selected license
+                        if (selectedLicense === 'SPL') {
+                          // SPL only includes subjects 1,2,3,4,5,9
+                          return [1, 2, 3, 4, 5, 9].includes(s.id);
+                        }
+                        // PPL includes all subjects
+                        return true;
+                      }).map((s) => (
                         <div
                           key={s.id}
                           onClick={() => startDrill(s)}
@@ -4145,9 +4258,20 @@ V nastavení lze změnit defaultni model.`);
                           <div className="flex justify-end items-center gap-4 sm:gap-8">
                             <div className="w-24 sm:w-32 font-mono text-xs flex justify-center">
                               {(s.ai_count || 0) > 0 ? (
-                                <span className="opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">{s.user_count || 0}/{s.ai_count}</span>
+                                <span className="opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">
+                                  {(() => {
+                                    const userCount = selectedLicense === 'SPL' && [6, 7, 8].includes(s.id) ? 0 : (s.user_count || 0);
+                                    const aiCount = selectedLicense === 'SPL' && [6, 7, 8].includes(s.id) ? 0 : (s.ai_count || 0);
+                                    return `${userCount}/${aiCount}`;
+                                  })()}
+                                </span>
                               ) : (
-                                <span className="opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">{s.question_count || 0}</span>
+                                <span className="opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">
+                                  {(() => {
+                                    const totalCount = selectedLicense === 'SPL' && [6, 7, 8].includes(s.id) ? 0 : (s.question_count || 0);
+                                    return totalCount;
+                                  })()}
+                                </span>
                               )}
                             </div>
                             <div className="w-16 sm:w-20 font-mono text-sm flex justify-end group-hover:text-gray-900 dark:group-hover:text-gray-100">{Math.round(s.success_rate * 100)}%</div>
@@ -4421,9 +4545,9 @@ V nastavení lze změnit defaultni model.`);
                           </div>
                           <button
                             onClick={() => setDrillSettings(prev => ({ ...prev, immediateFeedback: !prev.immediateFeedback }))}
-                            className={`w-12 h-6 rounded-full transition-colors relative ${drillSettings.immediateFeedback ? 'bg-[var(--ink)]' : 'bg-[var(--line)]'}`}
+                            className={`w-12 h-6 rounded-full transition-colors relative ${drillSettings.immediateFeedback ? 'bg-[var(--toggle-active)]' : 'bg-[var(--line)]'}`}
                           >
-                            <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${drillSettings.immediateFeedback ? 'left-7' : 'left-1'}`} />
+                            <div className={`absolute top-1 w-4 h-4 bg-[var(--toggle-thumb)] rounded-full transition-all ${drillSettings.immediateFeedback ? 'left-7' : 'left-1'}`} />
                           </button>
                         </div>
 
@@ -4439,9 +4563,9 @@ V nastavení lze změnit defaultni model.`);
                           </div>
                           <button
                             onClick={() => setDrillSettings(prev => ({ ...prev, showExplanationOnDemand: !prev.showExplanationOnDemand }))}
-                            className={`w-12 h-6 rounded-full transition-colors relative ${drillSettings.showExplanationOnDemand ? 'bg-[var(--ink)]' : 'bg-[var(--line)]'}`}
+                            className={`w-12 h-6 rounded-full transition-colors relative ${drillSettings.showExplanationOnDemand ? 'bg-[var(--toggle-active)]' : 'bg-[var(--line)]'}`}
                           >
-                            <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${drillSettings.showExplanationOnDemand ? 'left-7' : 'left-1'}`} />
+                            <div className={`absolute top-1 w-4 h-4 bg-[var(--toggle-thumb)] rounded-full transition-all ${drillSettings.showExplanationOnDemand ? 'left-7' : 'left-1'}`} />
                           </button>
                         </div>
 
@@ -4457,9 +4581,9 @@ V nastavení lze změnit defaultni model.`);
                           </div>
                           <button
                             onClick={() => setDrillSettings(prev => ({ ...prev, shuffleAnswers: !prev.shuffleAnswers }))}
-                            className={`w-12 h-6 rounded-full transition-colors relative ${drillSettings.shuffleAnswers ? 'bg-[var(--ink)]' : 'bg-[var(--line)]'}`}
+                            className={`w-12 h-6 rounded-full transition-colors relative ${drillSettings.shuffleAnswers ? 'bg-[var(--toggle-active)]' : 'bg-[var(--line)]'}`}
                           >
-                            <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${drillSettings.shuffleAnswers ? 'left-7' : 'left-1'}`} />
+                            <div className={`absolute top-1 w-4 h-4 bg-[var(--toggle-thumb)] rounded-full transition-all ${drillSettings.shuffleAnswers ? 'left-7' : 'left-1'}`} />
                           </button>
                         </div>
                       </div>
@@ -4492,9 +4616,9 @@ V nastavení lze změnit defaultni model.`);
                               enabled: !prev.weightedLearning?.enabled
                             }
                           }))}
-                          className={`w-12 h-6 rounded-full transition-colors relative ${drillSettings.weightedLearning?.enabled ? 'bg-[var(--ink)]' : 'bg-[var(--line)]'}`}
+                          className={`w-12 h-6 rounded-full transition-colors relative ${drillSettings.weightedLearning?.enabled ? 'bg-[var(--toggle-active)]' : 'bg-[var(--line)]'}`}
                         >
-                          <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${drillSettings.weightedLearning?.enabled ? 'left-7' : 'left-1'}`} />
+                          <div className={`absolute top-1 w-4 h-4 bg-[var(--toggle-thumb)] rounded-full transition-all ${drillSettings.weightedLearning?.enabled ? 'left-7' : 'left-1'}`} />
                         </button>
                       </div>
 
@@ -4622,7 +4746,7 @@ V nastavení lze změnit defaultni model.`);
                           <button
                             onClick={handleVerifyKey}
                             disabled={isVerifyingKey || !(aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || getProxyParams().idToken))}
-                            className="px-6 bg-[var(--ink)] text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform disabled:opacity-50"
+                            className="px-6 bg-[var(--ink)] text-[var(--ink-text)] rounded-xl text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform disabled:opacity-50"
                           >
                             {isVerifyingKey ? <RotateCcw size={14} className="animate-spin" /> : 'Ověřit'}
                           </button>
@@ -4742,7 +4866,15 @@ V nastavení lze změnit defaultni model.`);
                               onChange={(e) => setImportSubjectId(Number(e.target.value))}
                               className="w-full p-3 bg-transparent border border-[var(--line)] rounded-xl focus:outline-none focus:border-[var(--ink)]"
                             >
-                              {subjects.map(s => (
+                              {subjects.filter((s) => {
+                                // Filter subjects based on selected license
+                                if (selectedLicense === 'SPL') {
+                                  // SPL only includes subjects 1,2,3,4,5,9
+                                  return [1, 2, 3, 4, 5, 9].includes(s.id);
+                                }
+                                // PPL includes all subjects
+                                return true;
+                              }).map(s => (
                                 <option key={s.id} value={s.id}>{s.name}</option>
                               ))}
                             </select>
@@ -5497,19 +5629,19 @@ V nastavení lze změnit defaultni model.`);
 
                                   <div className="space-y-1">
                                     {/* Success Rate Bar */}
-                                    <div className="h-2.5 bg-[var(--line)] rounded-sm overflow-hidden" title={`Úspěšnost: ${filteredCorrect} správně z ${filteredAnswered} zodpovězených`}>
+                                    <div className="h-2.5 bg-[var(--progress-bg)] rounded-sm overflow-hidden" title={`Úspěšnost: ${filteredCorrect} správně z ${filteredAnswered} zodpovězených`}>
                                       <motion.div
                                         initial={{ width: 0 }}
                                         animate={{ width: `${successRate * 100}%` }}
-                                        className={`h-full transition-colors duration-300 ${!isProgressExpanded ? 'bg-[var(--ink)] opacity-60' : (successRate > 0.75 ? 'bg-emerald-500' : successRate > 0.5 ? 'bg-amber-500' : 'bg-rose-500')}`}
+                                        className={`h-full transition-colors duration-300 ${!isProgressExpanded ? 'bg-[var(--progress-fill)] opacity-60' : (successRate > 0.75 ? 'bg-emerald-500' : successRate > 0.5 ? 'bg-amber-500' : 'bg-rose-500')}`}
                                       />
                                     </div>
                                     {/* Completion Rate Bar */}
-                                    <div className="h-1.5 bg-[var(--line)] rounded-sm overflow-hidden opacity-70" title={`Postup: ${filteredAnswered} zodpovězeno z ${filteredTotal} celkem`}>
+                                    <div className="h-1.5 bg-[var(--progress-bg)] rounded-sm overflow-hidden opacity-70" title={`Postup: ${filteredAnswered} zodpovězeno z ${filteredTotal} celkem`}>
                                       <motion.div
                                         initial={{ width: 0 }}
                                         animate={{ width: `${completionRate * 100}%` }}
-                                        className={`h-full transition-colors duration-300 ${!isProgressExpanded ? 'bg-[var(--ink)] opacity-30' : 'bg-indigo-500'}`}
+                                        className={`h-full transition-colors duration-300 ${!isProgressExpanded ? 'bg-[var(--progress-fill)] opacity-30' : 'bg-indigo-500'}`}
                                       />
                                     </div>
                                   </div>
@@ -6166,7 +6298,15 @@ V nastavení lze změnit defaultni model.`);
                                 onChange={(e) => setImportSubjectId(Number(e.target.value))}
                                 className="w-full p-3 bg-transparent border border-[var(--line)] rounded-xl text-xs font-bold focus:outline-none focus:border-indigo-600"
                               >
-                                {subjects.map(s => (
+                                {subjects.filter((s) => {
+                                  // Filter subjects based on selected license
+                                  if (selectedLicense === 'SPL') {
+                                    // SPL only includes subjects 1,2,3,4,5,9
+                                    return [1, 2, 3, 4, 5, 9].includes(s.id);
+                                  }
+                                  // PPL includes all subjects
+                                  return true;
+                                }).map(s => (
                                   <option key={s.id} value={s.id}>{s.name} (Scope: {SYLLABUS_SCOPE[s.id] || 0} LOs)</option>
                                 ))}
                               </select>
@@ -6704,7 +6844,7 @@ V nastavení lze změnit defaultni model.`);
                               </div>
                               <div className="space-y-0.5">
                                 {/* Success Rate Bar */}
-                                <div className="h-2.5 bg-[var(--line)] rounded-sm overflow-hidden" title="Úspěšnost odpovědí">
+                                <div className="h-2.5 bg-[var(--progress-bg)] rounded-sm overflow-hidden" title="Úspěšnost odpovědí">
                                   <motion.div
                                     initial={{ width: 0 }}
                                     animate={{ width: `${rate * 100}%` }}
@@ -6712,7 +6852,7 @@ V nastavení lze změnit defaultni model.`);
                                   />
                                 </div>
                                 {/* Completion Rate Bar */}
-                                <div className="h-1.5 bg-[var(--line)] rounded-sm overflow-hidden opacity-70" title="Postup (Zodpovězeno / Celkem v předmětu)">
+                                <div className="h-1.5 bg-[var(--progress-bg)] rounded-sm overflow-hidden opacity-70" title="Postup (Zodpovězeno / Celkem v předmětu)">
                                   <motion.div
                                     initial={{ width: 0 }}
                                     animate={{ width: `${completionRate * 100}%` }}

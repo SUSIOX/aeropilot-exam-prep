@@ -288,11 +288,11 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
                     ))}
                   </div>
                 </div>
-                <div className="w-32 shrink-0 flex flex-col items-center gap-2">
-                  <div className="bg-white p-1.5 rounded-xl shadow-sm border border-black/5">
+                <div className="flex-1 flex flex-col items-center gap-2">
+                  <div className="bg-white p-4 rounded-xl shadow-sm border border-black/5 w-full max-w-xs">
                     <img src="/aeropilot-exam-prep/images/donate-qr.jpg" alt="QR Platba" className="w-full h-auto object-contain" />
                   </div>
-                  <p className="text-[10px] opacity-60 text-center leading-tight font-medium">
+                  <p className="text-xs opacity-60 text-center leading-tight font-medium">
                     Pokud se vám aplikace líbí, přispějte mi na letové hodiny.
                   </p>
                 </div>

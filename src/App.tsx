@@ -4265,8 +4265,8 @@ V nastavení lze změnit defaultni model.`);
 
                     <div className="p-6 sm:p-8 border border-blue-500/20 rounded-3xl space-y-6 bg-gradient-to-br from-blue-500/5 to-purple-500/5">
                       <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-                        <div className="shrink-0 bg-white p-3 rounded-2xl shadow-sm border border-black/5">
-                          <img src="/aeropilot-exam-prep/images/donate-qr.jpg" alt="QR Platba" className="w-32 h-32 md:w-40 md:h-40 object-contain" />
+                        <div className="flex-1 max-w-sm bg-white p-4 rounded-2xl shadow-sm border border-black/5">
+                          <img src="/aeropilot-exam-prep/images/donate-qr.jpg" alt="QR Platba" className="w-full h-auto object-contain" />
                         </div>
                         <div className="space-y-4 flex-1 text-center md:text-left">
                           <h4 className="text-lg md:text-xl font-bold">Líbí se vám Aeropilot?</h4>

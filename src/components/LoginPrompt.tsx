@@ -154,7 +154,7 @@ export function LoginPrompt({ isOpen, onClose, onLoginSuccess, feature }: LoginP
                     </div>
                     <div className="w-32 shrink-0 flex flex-col items-center gap-2">
                       <div className="bg-white p-1.5 rounded-xl shadow-sm border border-black/5">
-                        <img src="/assets/images/donate-qr.png.JPG" alt="QR Platba" className="w-full h-auto object-contain" />
+                        <img src="/assets/images/donate-qr.jpg" alt="QR Platba" className="w-full h-auto object-contain" />
                       </div>
                       <p className="text-[10px] opacity-60 text-center leading-tight font-medium">
                         Pokud se vám aplikace líbí, přispějte mi na letové hodiny.

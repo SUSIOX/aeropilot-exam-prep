@@ -475,8 +475,7 @@ export class DynamoDBService {
         ExpressionAttributeValues: {
           ':settings': settings,
           ':updatedAt': new Date().toISOString()
-        },
-        ConditionExpression: 'attribute_exists(userId)' // Only update if user exists
+        }
       });
 
       const result = await this.docClient!.send(command);
@@ -494,7 +493,7 @@ export class DynamoDBService {
     }
   }
 
-  // Save API keys to user settings
+  // Save API keys and user settings
   async saveApiKeys(
     userId: string,
     apiKeys: {
@@ -503,6 +502,7 @@ export class DynamoDBService {
       deepseekApiKey?: string;
       aiProvider?: string;
       aiModel?: string;
+      [key: string]: any; // Allow DrillSettings spread
     }
   ): Promise<DynamoDBResponse> {
     try {
@@ -524,8 +524,7 @@ export class DynamoDBService {
         ExpressionAttributeValues: {
           ':settings': mergedSettings,
           ':updatedAt': new Date().toISOString()
-        },
-        ConditionExpression: 'attribute_exists(userId)'
+        }
       });
 
       const result = await this.docClient!.send(command);
@@ -959,9 +958,33 @@ export class DynamoDBService {
     }
   }
 
+  // Helper: Verify LO ID exists in database
+  private async verifyLOIdExists(loId: string): Promise<boolean> {
+    if (!loId) return true; // null/undefined is allowed
+    
+    try {
+      const result = await this.getLOById(loId);
+      return result.success && !!result.data;
+    } catch (error) {
+      console.error(`Error verifying LO ID ${loId}:`, error);
+      return false;
+    }
+  }
+
   async saveQuestion(subjectId: number, question: any): Promise<DynamoDBResponse> {
     try {
       await this.ensureInitialized();
+
+      // Validate LO ID if provided
+      if (question.lo_id) {
+        const loExists = await this.verifyLOIdExists(question.lo_id);
+        if (!loExists) {
+          return {
+            success: false,
+            error: `Invalid LO ID: ${question.lo_id}. This Learning Objective does not exist in the EASA syllabus database. Questions can only be linked to official EASA LOs.`
+          };
+        }
+      }
 
       const optionKeys = ['A', 'B', 'C', 'D'];
       const item = {
@@ -1554,15 +1577,23 @@ export class DynamoDBService {
         results.explanationSaved = true;
       }
 
-      // 2. If loId provided, link question → EasaObjective in both places
+      // 2. If loId provided, validate and link question → EasaObjective in both places
       if (loId) {
-        // 2a. Update loId directly on the question record
-        await this.updateQuestionLO(questionId, loId).catch(() => {});
+        // Validate LO ID exists before linking
+        const loExists = await this.verifyLOIdExists(loId);
+        if (!loExists) {
+          // Log warning but still save explanation - don't block user questions without official LOs
+          console.warn(`[saveExplanationWithObjective] Warning: LO ID ${loId} not found in database. Explanation saved but question not linked to LO.`);
+          results.loLinked = false;
+        } else {
+          // 2a. Update loId directly on the question record
+          await this.updateQuestionLO(questionId, loId).catch(() => {});
 
-        // 2b. Create M:N record in question-objectives table
-        await this.linkQuestionToLO(questionId, loId, confidence, `ai-${provider}`).catch(() => {});
+          // 2b. Create M:N record in question-objectives table
+          await this.linkQuestionToLO(questionId, loId, confidence, `ai-${provider}`).catch(() => {});
 
-        results.loLinked = true;
+          results.loLinked = true;
+        }
       }
 
       return { success: true, data: results };
@@ -1610,6 +1641,15 @@ export class DynamoDBService {
   ): Promise<DynamoDBResponse> {
     try {
       await this.ensureInitialized();
+
+      // Validate LO ID exists
+      const loExists = await this.verifyLOIdExists(loId);
+      if (!loExists) {
+        return {
+          success: false,
+          error: `Invalid LO ID: ${loId}. This Learning Objective does not exist in the EASA syllabus database. Cannot link question to non-existent LO.`
+        };
+      }
 
       const now = new Date().toISOString();
       const command = new DocUpdateCommand({

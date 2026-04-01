@@ -1137,7 +1137,7 @@ export async function generateBatchQuestions(
     3. Questions must be practical and scenario-based where appropriate.
     4. Use real aviation terminology matching the active license (${license}).
     5. Explanation: Strictly technical, max 2 sentences.
-    6. If you propose a NEW LO, use a valid EASA ID format (e.g. 021.XX.XX.XX) and a precise name.
+    6. CRITICAL - USE EXACT LO IDs FROM THE LIST ABOVE: Do NOT create new LO IDs. Use the exact LO IDs provided in the 'Known/Priority Objectives' list. If an LO exists in the EASA syllabus with a specific number, you MUST use that exact number. Never rewrite or modify LO IDs from the official EASA syllabus.
     7. For all physical formulas or math, use standard LaTeX notation enclosed in $ for inline (e.g., $v^2$) and $$ for block equations. Do NOT use HTML tags for formatting formulas.
     8. ${targetLanguage === 'CZ'
       ? 'Generate ALL fields (text, option_a, option_b, option_c, option_d, explanation) in Czech. No separate _cz fields needed.'
@@ -1805,6 +1805,11 @@ export async function importMockLOsToDB(): Promise<{ success: boolean; imported:
   }
 }
 
+/**
+ * @deprecated This function is deprecated. Creating new LO IDs via AI is no longer supported.
+ * All LOs must come from the official EASA ECQB-PPL syllabus PDF.
+ * Use the audit/generate_missing_los.py script to populate missing LOs from the official PDF instead.
+ */
 export async function generateMissingLearningObjectives(
   existingLOs: EasaLO[],
   subjectId: number,
@@ -1819,236 +1824,16 @@ export async function generateMissingLearningObjectives(
   idToken?: string
 ): Promise<{ success: boolean, los: EasaLO[], error?: string }> {
 
-  if (!apiKey && !(provider === 'deepseek' && proxyUrl && idToken)) {
-    return { success: false, los: [], error: 'API klíč je vyžadován pro generování LOs' };
-  }
+  // DEPRECATED: This function no longer generates new LOs
+  console.warn('[generateMissingLearningObjectives] DEPRECATED: This function is deprecated and no longer generates new LO IDs.');
+  console.warn('[generateMissingLearningObjectives] All LOs must come from the official EASA ECQB-PPL syllabus PDF.');
+  console.warn('[generateMissingLearningObjectives] Use the audit/generate_missing_los.py script to populate missing LOs from the official PDF instead.');
 
-  try {
-    // Cache Aircademy PDF for reference if enabled
-    if (useAircademy) {
-      await cacheAircademyPDF();
-    }
-
-    // Get subject name for context
-    const subjectNames: Record<number, string> = {
-      1: 'Air Law',
-      2: 'Human Performance',
-      3: 'Meteorology',
-      4: 'Communications',
-      5: 'Principles of Flight',
-      6: 'Operational Procedures',
-      7: 'Flight Performance & Planning',
-      8: 'Aircraft General Knowledge',
-      9: 'Navigation'
-    };
-
-    const subjectName = subjectNames[subjectId] || `Subject ${subjectId}`;
-
-    // Calculate estimated tokens based on input size
-    const estimatedTokens = Math.max(4000, existingLOs.length * 50 + 2000);
-
-    // Create enhanced prompt with conditional references
-    let prompt = '';
-
-    if (provider === 'claude') {
-      // Claude: Send only missing LOs (more efficient)
-      const totalExpected = SYLLABUS_SCOPE[subjectId] || 100;
-      const missingIds = findMissingLOIds(subjectId, existingLOs, totalExpected);
-
-      if (missingIds.length === 0) {
-        return { success: false, los: [], error: 'Všechny LOs pro tento předmět již existují.' };
-      }
-
-      // Take only first 10 missing IDs to avoid too large prompts
-      const missingLOs = missingIds.slice(0, 10);
-
-      prompt = `
-Generate content for ${missingLOs.length} missing Learning Objectives for ${subjectName} (${licenseType} license).
-
-MISSING LO IDs to complete:
-${missingLOs.map(id => `- ${id}`).join('\n')}
-
-REFERENCE SOURCES:
-1. EASA Official Learning Objectives Syllabus (primary)
-${useAircademy ? `2. Aircademy ECQB-PPL Detailed Syllabus (https://aircademy.com/downloads/ECQB-PPL-DetailedSyllabus.pdf)
-3. EASA Acceptable Means of Compliance (AMC) & Guidance Material (GM)` : `2. EASA Acceptable Means of Compliance (AMC) & Guidance Material (GM)`}
-
-${additionalDocuments.length > 0 ? `
-ADDITIONAL DOCUMENTS:
-Analyze these resources for additional insights:
-${additionalDocuments.map((doc, index) => `${index + 1}. ${doc}`).join('\n')}
-` : ''}
-
-${useAircademy ? 'Use Aircademy syllabus insights for detailed context.' : 'Use official EASA materials for context.'}
-
-Return JSON array:
-[
-  {"id": "XXX.XX.XX.XX", "text": "Learning objective content", "context": "Detailed explanation${useAircademy ? ' with Aircademy insights' : ''}", "level": 1, "subject_id": ${subjectId}, "applies_to": ["PPL(A)"]}
-]
-`;
-
-    } else {
-      // Gemini: Keep original logic for now
-      prompt = `
-Find 3-5 missing Learning Objectives for ${subjectName} (${licenseType} license).
-
-REFERENCE SOURCES:
-1. EASA Official Learning Objectives Syllabus (primary)
-${useAircademy ? `2. Aircademy ECQB-PPL Detailed Syllabus (https://aircademy.com/downloads/ECQB-PPL-DetailedSyllabus.pdf)
-3. EASA Acceptable Means of Compliance (AMC) & Guidance Material (GM)
-
-AIRCADEMY SYLLABUS:
-The Aircademy syllabus provides detailed explanations and practical examples for each LO.
-Use this as supplementary material to enhance understanding and identify gaps.
-` : `2. EASA Acceptable Means of Compliance (AMC) & Guidance Material (GM)`}
-
-${additionalDocuments.length > 0 ? `
-ADDITIONAL DOCUMENTS:
-Analyze these resources for additional insights:
-${additionalDocuments.map((doc, index) => `${index + 1}. ${doc}`).join('\n')}
-` : ''}
-
-EXISTING LOs (${existingLOs.length}):
-${existingLOs.slice(0, 50).map(lo => `${lo.id}: ${lo.text}`).join('\n')}
-${existingLOs.length > 50 ? `\n... and ${existingLOs.length - 50} more (showing first 50)` : ''}
-
-IMPORTANT: Generate ONLY LOs that are NOT in the existing list above.
-Focus on gaps in coverage for ${licenseType} requirements.
-${useAircademy ? 'Use Aircademy syllabus insights for detailed context.' : 'Use official EASA materials for context.'}
-
-Return JSON array:
-[
-  {"id": "XXX.XX.XX.XX", "text": "New objective not in existing list", "context": "Details${useAircademy ? ' with Aircademy insights' : ''}", "level": 1, "subject_id": ${subjectId}, "applies_to": ["PPL(A)"]}
-]
-`;
-    }
-
-    let response: string;
-
-    if (!apiKey) {
-      // Return empty results without API key (no mock LOs)
-      return {
-        success: false,
-        los: [],
-        error: 'API klíč je vyžadován pro generování LOs'
-      };
-    }
-
-    if (provider === 'gemini') {
-      const ai = getAiInstance(apiKey);
-      const result = await callWithRetry(() => ai.models.generateContent({
-        model: model,
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
-        config: {
-          responseMimeType: "application/json"
-        }
-      }), 2, 'gemini', signal);
-
-      const text = result.text;
-      if (!text) {
-        return { success: false, los: [], error: 'Empty response from AI' };
-      }
-
-      try {
-        const missingLOs = JSON.parse(extractJSON(text)) as any[];
-
-        // Validate and format LOs
-        const validLOs = missingLOs.map(lo => ({
-          id: lo.id || generateLOId(subjectId, existingLOs.length + 1),
-          text: lo.text,
-          context: lo.context || lo.text,
-          level: (typeof lo.level === 'number' ? lo.level : lo.level === 'Recall' ? 1 : lo.level === 'State' ? 2 : lo.level === 'Explain' ? 3 : 1) as 1 | 2 | 3,
-          subject_id: subjectId,
-          applies_to: Array.isArray(lo.applies_to) ? lo.applies_to : [lo.applies_to || 'PPL(A)']
-        }));
-
-        return {
-          success: true,
-          los: validLOs
-        };
-
-      } catch (parseError) {
-        console.error("❌ JSON parse error (LO Generator). Response length:", text.length, "Last 100 chars:", text.slice(-100));
-        return { success: false, los: [], error: `Invalid JSON response: ${parseError instanceof Error ? parseError.message : 'Unknown error'}` };
-      }
-    } else if (provider === 'claude') {
-      const claude = getClaudeInstance(apiKey);
-      const claudeResponse = await callWithRetry(() => claude.messages.create({
-        model: model,
-        max_tokens: estimatedTokens,
-        messages: [{ role: 'user', content: prompt }]
-      }), 2, 'claude', signal);
-
-      const text = (claudeResponse.content[0] as any)?.text || "";
-      if (!text) {
-        return { success: false, los: [], error: 'Empty response from Claude' };
-      }
-
-      console.log('🔍 Claude LO Generator Response:', text.slice(0, 200));
-
-      try {
-        const missingLOs = JSON.parse(extractJSON(text)) as any[];
-
-        // Validate and format LOs
-        const validLOs = missingLOs.map(lo => ({
-          id: lo.id || generateLOId(subjectId, existingLOs.length + 1),
-          text: lo.text,
-          context: lo.context || lo.text,
-          level: (typeof lo.level === 'number' ? lo.level : lo.level === 'Recall' ? 1 : lo.level === 'State' ? 2 : lo.level === 'Explain' ? 3 : 1) as 1 | 2 | 3,
-          subject_id: subjectId,
-          applies_to: Array.isArray(lo.applies_to) ? lo.applies_to : [lo.applies_to || 'PPL(A)']
-        }));
-
-        return {
-          success: true,
-          los: validLOs
-        };
-
-      } catch (parseError) {
-        console.error("❌ JSON parse error (Claude LO Generator). Response length:", text.length, "Stop reason:", claudeResponse.stop_reason, "Last 100 chars:", text.slice(-100));
-        if (claudeResponse.stop_reason === 'max_tokens') {
-          return { success: false, los: [], error: `Claude response truncated (max_tokens: ${estimatedTokens}). Try smaller batch.` };
-        }
-        return { success: false, los: [], error: `Invalid JSON response: ${parseError instanceof Error ? parseError.message : 'Unknown error'}` };
-      }
-    } else if (provider === 'deepseek') {
-      let text: string;
-      if (proxyUrl && idToken && (!apiKey || apiKey === '')) {
-        text = await callWithRetry(() => callProxy(proxyUrl, idToken, model, prompt, estimatedTokens, true), 2, 'deepseek', signal);
-      } else if (apiKey && apiKey !== '') {
-        text = await callWithRetry(() => callDeepSeek(apiKey, model, prompt, estimatedTokens, true), 2, 'deepseek', signal);
-      } else {
-        console.warn('[DeepSeek] No API key or proxy available for LO generation');
-        return { success: false, los: [], error: 'No API key or proxy available' };
-      }
-      if (!text) return { success: false, los: [], error: 'Empty response from DeepSeek' };
-      try {
-        const missingLOs = JSON.parse(extractJSON(text)) as any[];
-        const validLOs = missingLOs.map(lo => ({
-          id: lo.id || generateLOId(subjectId, existingLOs.length + 1),
-          text: lo.text,
-          context: lo.context || lo.text,
-          level: (typeof lo.level === 'number' ? lo.level : lo.level === 'Recall' ? 1 : lo.level === 'State' ? 2 : lo.level === 'Explain' ? 3 : 1) as 1 | 2 | 3,
-          subject_id: subjectId,
-          applies_to: Array.isArray(lo.applies_to) ? lo.applies_to : [lo.applies_to || 'PPL(A)']
-        }));
-        return { success: true, los: validLOs };
-      } catch (parseError) {
-        console.error('❌ JSON parse error (DeepSeek LO Generator). Length:', text.length);
-        return { success: false, los: [], error: `Invalid JSON response: ${parseError instanceof Error ? parseError.message : 'Unknown error'}` };
-      }
-    }
-
-    return { success: false, los: [], error: 'Unsupported AI provider' };
-
-  } catch (error) {
-    console.error('Error generating missing LOs:', error);
-    return {
-      success: false,
-      los: [],
-      error: error instanceof Error ? error.message : 'Unknown error'
-    };
-  }
+  return {
+    success: false,
+    los: [],
+    error: 'DEPRECATED: AI LO generation is disabled. All LOs must come from the official EASA ECQB-PPL syllabus PDF. Use audit/generate_missing_los.py to populate missing LOs from the official PDF.'
+  };
 }
 
 // Helper function to generate LO IDs

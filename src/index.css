@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
 
 @theme {
   --font-sans: "Inter", "Verdana", ui-sans-serif, system-ui, sans-serif;
@@ -12,6 +13,10 @@
   --ink-text: #dcd9d9;
   --line: #141414;
   --badge-bg: #cecece;
+  --toggle-active: #141414;
+  --toggle-thumb: #FFFFFF;
+  --progress-bg: #e5e7eb;
+  --progress-fill: #141414;
 }
 
 body {
@@ -61,8 +66,12 @@ body {
 .dark {
   --bg: #000000; /* Pure black for maximum contrast */
   --ink: #FFFFFF;
-  --ink-text: #FFFFFF;
+  --ink-text: #000000;
   --line: rgba(255, 255, 255, 0.2);
+  --toggle-active: #FFFFFF;
+  --toggle-thumb: #000000;
+  --progress-bg: rgba(255, 255, 255, 0.2);
+  --progress-fill: #FFFFFF;
 }
 
 .glass-panel {

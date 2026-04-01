@@ -78,4 +78,5 @@ export interface DrillSettings {
   };
   shuffleHistory?: string[];
   shuffleHistorySize?: number;
+  showCorrectAnswerMode?: boolean;
 }

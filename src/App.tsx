@@ -60,7 +60,7 @@ import {
   SUBJECT_NAMES,
   buildSyllabusTree,
   getDynamicSyllabusScope,
-  generateMissingLearningObjectives,
+  
   getSubjectAnalysis
 } from './services/aiService';
 import type { AIProvider } from './services/aiService';
@@ -105,6 +105,7 @@ import { initializeSecureCredentials, initializeAuthenticatedCredentials, initia
 import { cognitoAuthService, UserRole } from './services/cognitoAuthService';
 import { AccessDenied } from './components/AccessDenied';
 import { ModelButton, ProviderIcon } from './components/ModelButton';
+
 
 const SUBJECT_DEFS = [
   { id: 1, name: "Air Law", description: "Právní předpisy v oblasti letectví" },
@@ -197,6 +198,15 @@ export default function App() {
     const saved = localStorage.getItem('darkMode');
     return saved ? JSON.parse(saved) : false;
   });
+
+  // Sync dark mode class to document element
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -355,8 +365,15 @@ export default function App() {
   const [newDocumentLink, setNewDocumentLink] = useState<string>('');
   const [loControlsExpanded, setLoControlsExpanded] = useState<boolean>(true);
   const [isLOSectionOpen, setIsLOSectionOpen] = useState<boolean>(false);
-  const [selectedLicense, setSelectedLicense] = useState<'PPL' | 'SPL'>(() => {
-    return (localStorage.getItem('selectedLicense') as 'PPL' | 'SPL') || 'PPL';
+  const [selectedLicense, setSelectedLicense] = useState<'PPL' | 'SPL' | 'BOTH'>(() => {
+    return (localStorage.getItem('selectedLicense') as 'PPL' | 'SPL' | 'BOTH') || 'BOTH';
+  });
+  const [selectedLicenseSubtype, setSelectedLicenseSubtype] = useState<string>(() => {
+    const stored = localStorage.getItem('selectedLicenseSubtype');
+    if (stored && ['PPL(A)', 'LAPL(A)', 'PPL(H)', 'LAPL(H)', 'SPL', 'LAPL(S)', 'BPL', 'LAPL(B)'].includes(stored)) return stored;
+    // Fallback: if we only had 'PPL' or 'SPL' or nothing
+    const broad = localStorage.getItem('selectedLicense');
+    return broad === 'SPL' ? 'SPL' : 'PPL(A)';
   });
 
   // Recalculate subject counts when license changes
@@ -389,6 +406,7 @@ export default function App() {
   const [syllabusExpandedTopics, setSyllabusExpandedTopics] = useState<Set<string>>(new Set());
   const [syllabusExpandedSubtopics, setSyllabusExpandedSubtopics] = useState<Set<string>>(new Set());
   const [syllabusLicenseFilter, setSyllabusLicenseFilter] = useState<'ALL' | 'PPL' | 'SPL'>('ALL');
+  const [syllabusLicenseFilterSubtype, setSyllabusLicenseFilterSubtype] = useState<string>('ALL');
   const [syllabusSearch, setSyllabusSearch] = useState('');
 
   // Memoized list of LOs that match current syllabus filters (search + license)
@@ -518,9 +536,9 @@ export default function App() {
   const [clearExisting, setClearExisting] = useState(false);
   const [updateExisting, setUpdateExisting] = useState(false);
   const [isImportSectionOpen, setIsImportSectionOpen] = useState(false);
-  const [userApiKey, setUserApiKey] = useState('');
-  const [claudeApiKey, setClaudeApiKey] = useState('');
-  const [deepseekApiKey, setDeepseekApiKey] = useState('');
+  const [userApiKey, setUserApiKey] = useState(() => localStorage.getItem('userApiKey') || '');
+  const [claudeApiKey, setClaudeApiKey] = useState(() => localStorage.getItem('claudeApiKey') || '');
+  const [deepseekApiKey, setDeepseekApiKey] = useState(() => localStorage.getItem('deepseekApiKey') || '');
 
   // AI Proxy — used when user has no own DeepSeek key
   const AI_PROXY_URL = (import.meta as any).env?.VITE_AI_PROXY_URL as string | undefined;
@@ -536,7 +554,7 @@ export default function App() {
   };
   const [aiProvider, setAiProvider] = useState<AIProvider>(() => {
     const saved = localStorage.getItem('aiProvider');
-    return (saved === 'claude' ? 'claude' : saved === 'deepseek' ? 'deepseek' : 'gemini');
+    return (saved === 'gemini' ? 'gemini' : saved === 'claude' ? 'claude' : 'deepseek');
   });
   const [aiModel, setAiModel] = useState(() => {
     const saved = localStorage.getItem('aiModel');
@@ -565,7 +583,7 @@ export default function App() {
       return modelMap[saved];
     }
 
-    return saved || 'gemini-flash-latest';
+    return saved || 'deepseek-chat';
   });
   const [isVerifyingKey, setIsVerifyingKey] = useState(false);
   const [keyStatus, setKeyStatus] = useState<'idle' | 'valid' | 'invalid'>('idle');
@@ -1052,11 +1070,21 @@ export default function App() {
     }
   };
 
+  // Settings Ready Flag ensures we only write to DynamoDB after reading
+  const [settingsLoadedUserId, setSettingsLoadedUserId] = useState<string | null>(null);
+
   useEffect(() => {
     localStorage.setItem('drillSettings', JSON.stringify(drillSettings));
+    if (aiProvider) localStorage.setItem('aiProvider', aiProvider);
+    if (aiModel) localStorage.setItem('aiModel', aiModel);
+    if (userApiKey) localStorage.setItem('userApiKey', userApiKey);
+    if (claudeApiKey) localStorage.setItem('claudeApiKey', claudeApiKey);
+    if (deepseekApiKey) localStorage.setItem('deepseekApiKey', deepseekApiKey);
 
     // Sync API keys and settings to DynamoDB for authenticated users (not guests)
-    if (!isGuestMode && user?.id) {
+    // IMPORTANT: Wait for settings to load from DynamoDB to avoid overwriting remote DB with local defaults
+    if (!isGuestMode && user?.id && settingsLoadedUserId === String(user.id)) {
+      console.log('📝 Saving settings to DynamoDB:', { aiProvider, aiModel, shuffleAnswers: drillSettings.shuffleAnswers });
       dynamoDBService.saveApiKeys(String(user.id), {
         userApiKey,
         claudeApiKey,
@@ -1064,11 +1092,14 @@ export default function App() {
         aiProvider,
         aiModel,
         ...drillSettings
-      }).catch(() => {
-        // Silent fail - localStorage is backup storage
+      }).then(res => {
+        if (!res.success) console.error('❌ Failed to save DynamoDB settings:', res.error);
+        else console.log('✅ DynamoDB settings saved successfully');
+      }).catch(err => {
+        console.error('❌ Silent fail writing DynamoDB:', err);
       });
     }
-  }, [drillSettings, user?.id, userApiKey, claudeApiKey, deepseekApiKey, aiProvider, aiModel]);
+  }, [drillSettings, user?.id, userApiKey, claudeApiKey, deepseekApiKey, aiProvider, aiModel, settingsLoadedUserId]);
 
 
   // Load user settings from DynamoDB on login
@@ -1096,9 +1127,11 @@ export default function App() {
             if (result.settings.aiProvider) setAiProvider(result.settings.aiProvider);
             if (result.settings.aiModel) setAiModel(result.settings.aiModel);
           }
+          setSettingsLoadedUserId(String(user.id));
         })
         .catch(() => {
           // Silent fail - use localStorage settings
+          setSettingsLoadedUserId(String(user.id));
         });
     }
   }, [user?.id, isCredentialsReady]);
@@ -1119,16 +1152,7 @@ export default function App() {
         }
       }).catch(() => { });
 
-      // 2. Sync Progress (Optional, already handled on startDrill but good for heatmap)
-      dynamoDBService.getUserSettings(userId).then(response => {
-        if (response.success && response.settings?.progress) {
-          const answersKey = userKey('answers');
-          const existingAnswers = JSON.parse(localStorage.getItem(answersKey) || '{}');
-          const mergedAnswers = { ...existingAnswers, ...response.settings.progress };
-          localStorage.setItem(answersKey, JSON.stringify(mergedAnswers));
-          console.log(`✅ Synced progress heatmap (${Object.keys(response.settings.progress).length} entries)`);
-        }
-      }).catch(() => { });
+
     }
   }, [user?.id, isGuestMode, isCredentialsReady]);
 
@@ -1145,9 +1169,23 @@ export default function App() {
         const sourceMatch = isAi ? drillSettings.sourceFilters.includes('ai') : drillSettings.sourceFilters.includes('user');
         if (!sourceMatch) return false;
 
-        // License filter - only show questions for selected license
-        const appliesTo = q.metadata?.applies_to || ['PPL', 'SPL'];
-        if (!appliesTo.includes(selectedLicense)) return false;
+        // License filter - use global selectedLicenseSubtype
+        if (selectedLicenseSubtype !== 'ALL') {
+          const appliesTo = q.metadata?.applies_to || ['PPL', 'SPL'];
+          
+          // Map selectedLicenseSubtype to internal metadata tags
+          let isMatch = false;
+          if (selectedLicenseSubtype === 'PPL(A)') isMatch = appliesTo.includes('PPL');
+          else if (selectedLicenseSubtype === 'LAPL(A)') isMatch = appliesTo.includes('LAPL');
+          else if (selectedLicenseSubtype === 'PPL(H)') isMatch = appliesTo.includes('PPL');
+          else if (selectedLicenseSubtype === 'LAPL(H)') isMatch = appliesTo.includes('LAPL');
+          else if (selectedLicenseSubtype === 'SPL') isMatch = appliesTo.includes('SPL');
+          else if (selectedLicenseSubtype === 'LAPL(S)') isMatch = appliesTo.includes('SPL') || appliesTo.includes('LAPL');
+          else if (selectedLicenseSubtype === 'BPL') isMatch = appliesTo.includes('BPL');
+          else if (selectedLicenseSubtype === 'LAPL(B)') isMatch = appliesTo.includes('BPL') || appliesTo.includes('LAPL');
+          
+          if (!isMatch) return false;
+        }
 
         if (selectedSubject.id === -1) {
           // Error review filtering
@@ -1201,7 +1239,7 @@ export default function App() {
         updateShuffleHistoryLocal(mapped);
       }
     }
-  }, [drillSettings.sourceFilters, drillSettings.excludeAnswered, view, originalQuestions.length, selectedSubject, selectedLicense]);
+  }, [drillSettings.sourceFilters, drillSettings.excludeAnswered, view, originalQuestions.length, selectedSubject, selectedLicense, selectedLicenseSubtype]);
 
   // Force re-render of progress bars when filters change
   useEffect(() => {
@@ -1454,9 +1492,27 @@ export default function App() {
 
           // Hydrate Settings
           if (profile.settings) {
-            localStorage.setItem('drillSettings', JSON.stringify(profile.settings));
-            setDrillSettings(profile.settings);
+            setDrillSettings(prev => {
+              const newSettings = {
+                ...prev,
+                ...profile.settings,
+                weightedLearning: {
+                  ...prev.weightedLearning,
+                  ...profile.settings.weightedLearning
+                }
+              };
+              localStorage.setItem('drillSettings', JSON.stringify(newSettings));
+              return newSettings;
+            });
+            
+            // Restore API keys and AI settings from DB
+            if (profile.settings.userApiKey) setUserApiKey(profile.settings.userApiKey);
+            if (profile.settings.claudeApiKey) setClaudeApiKey(profile.settings.claudeApiKey);
+            if (profile.settings.deepseekApiKey) setDeepseekApiKey(profile.settings.deepseekApiKey);
+            if (profile.settings.aiProvider) setAiProvider(profile.settings.aiProvider);
+            if (profile.settings.aiModel) setAiModel(profile.settings.aiModel);
           }
+          setSettingsLoadedUserId(uid);
 
           // Compute Statistics
           const practicedCount = Object.keys(allAnswers).length;
@@ -2888,175 +2944,11 @@ V nastavení lze změnit defaultni model.`);
     }
   };
 
-  const handleGenerateLOs = async () => {
-    if (!importSubjectId) return;
-
-    setIsGeneratingLOs(true);
-    setGeneratedLOs([]);
-
-    try {
-      // Get existing LOs for the subject
-      const existingLOs = allLOs.filter(lo => lo.subject_id === importSubjectId);
-
-      // Get API key based on active provider
-      let effectiveApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined);
-
-      if (!effectiveApiKey && !(aiProvider === 'deepseek' && getProxyParams().idToken)) {
-        alert('API klíč nenalezen. Zadejte ho prosím v nastavení.');
-        setIsGeneratingLOs(false);
-        return;
-      }
-
-      // Prepare additional context for AI
-      let additionalContext = '';
-      if (useAircademySyllabus) {
-        additionalContext += '\nUSING AIRCADEMY SYLLABUS: Reference detailed explanations from Aircademy ECQB-PPL syllabus.\n';
-      }
-      if (additionalDocumentLinks.length > 0) {
-        additionalContext += `\nADDITIONAL DOCUMENTS: Analyze these resources for insights:\n${additionalDocumentLinks.join('\n')}\n`;
-      }
-
-      const result = await generateMissingLearningObjectives(
-        existingLOs,
-        importSubjectId,
-        loLicenseType,
-        effectiveApiKey,
-        aiModel,
-        aiProvider,
-        undefined, // signal
-        useAircademySyllabus,
-        additionalDocumentLinks,
-        AI_PROXY_URL,
-        await getProxyIdToken()
-      );
-
-      if (result.success) {
-        setGeneratedLOs(result.los);
-        // console.log('🎯 Generated LOs:', result.los);
-      } else {
-        console.error('Error generating LOs:', result.error);
-        alert(`Chyba při generování LOs: ${result.error}`);
-      }
-    } catch (error) {
-      console.error('Error generating LOs:', error);
-      alert('Chyba při generování Learning Objectives');
-    } finally {
-      setIsGeneratingLOs(false);
-    }
-  };
-
-  const handleSaveGeneratedLOs = async () => {
-    if (userRole !== 'admin') {
-      alert('Nemáte dostatečné oprávnění. Tuto akci může provést pouze administrátor.');
-      return;
-    }
-    if (generatedLOs.length === 0) return;
-
-    try {
-      // Check for duplicates before saving
-      const existingLOs = allLOs.filter(lo => lo.subject_id === importSubjectId);
-      const existingIds = new Set(existingLOs.map(lo => lo.id));
-
-      // Filter out any duplicates
-      const uniqueNewLOs = generatedLOs.filter(lo => !existingIds.has(lo.id));
-
-      if (uniqueNewLOs.length === 0) {
-        alert('Všechny vygenerované LOs již existují v databázi.');
-        setGeneratedLOs([]);
-        return;
-      }
-
-      console.log('💾 Saving LOs to DynamoDB:', uniqueNewLOs);
-
-      // Save each LO to DynamoDB
-      let successCount = 0;
-      let failCount = 0;
-
-      for (const lo of uniqueNewLOs) {
-        if (!lo.subject_id) {
-          console.warn('Skipping LO without subject_id:', lo.id);
-          failCount++;
-          continue;
-        }
-        try {
-          const result = await dynamoDBService.saveLO({
-            losid: lo.id,
-            loId: lo.id, // Add loId for EasaObjective table
-            text: lo.text,
-            context: lo.context,
-            subject_id: lo.subject_id,
-            subjectId: lo.subject_id, // Add subjectId for EasaObjective
-            applies_to: lo.applies_to,
-            source: 'ai-generated'
-          });
-
-          if (result.success) {
-            successCount++;
-          } else {
-            failCount++;
-            console.error('Failed to save LO:', lo.id, result.error);
-          }
-        } catch (error) {
-          failCount++;
-          console.error('Error saving LO:', lo.id, error);
-        }
-      }
-
-      // Update allLOs state
-      const updatedLOs = [...allLOs, ...uniqueNewLOs];
-      // Note: In a real implementation, you'd update the actual allLOs state
-      // For now, we'll trigger a refresh of LOs from DB
-
-      // Refresh LOs from database to get the updated state
-      try {
-        const freshLOs = await getAllLOs();
-        if (freshLOs.length > 0) setAllLOs(freshLOs);
-      } catch (error) {
-        console.warn('Failed to refresh LOs from DB:', error);
-      }
-
-      // Refresh coverage calculations
-      if (importSubjectId) {
-        await fetchCoverage(importSubjectId);
-      }
-
-      // Show success message
-      const message = successCount > 0
-        ? `✅ Úspěšně uloženo ${successCount} nových Learning Objectives!${failCount > 0 ? ` (${failCount} selhalo)` : ''}\n\nCelkem pro subject ${importSubjectId}: ${updatedLOs.filter(lo => lo.subject_id === importSubjectId).length} LOs`
-        : `❌ Nepodařilo se uložit žádné LOs (${failCount} chyb)`;
-
-      alert(message);
-
-      // Clear generated LOs
-      setGeneratedLOs([]);
-
-      console.log('📊 Save summary:', {
-        total: uniqueNewLOs.length,
-        success: successCount,
-        failed: failCount,
-        updatedTotal: updatedLOs.filter(lo => lo.subject_id === importSubjectId).length
-      });
-
-    } catch (error) {
-      console.error('Error saving LOs:', error);
-      alert('Chyba při ukládání Learning Objectives');
-    }
-  };
-
-  const openSyllabusAtLO = (loId: string | null | undefined) => {
-    if (loId) {
-      setFocusedLOId(loId);
-      setSyllabusSelectedLO(loId);
-      // Auto-expand the path to this LO
-      const parts = loId.split('.');
-      const lo = allLOs.find(l => l.id === loId);
-      if (lo?.subject_id) {
-        setSyllabusExpandedSubjects(prev => new Set([...prev, lo.subject_id!]));
-      }
-      if (parts.length >= 2) setSyllabusExpandedTopics(prev => new Set([...prev, parts.slice(0, 2).join('.')]));
-      if (parts.length >= 3) setSyllabusExpandedSubtopics(prev => new Set([...prev, parts.slice(0, 3).join('.')]));
-    }
-    setSyllabusOpen(true);
+  // DEPRECATED: LO generation removed
+const handleGenerateLOs = async () => {
+    console.warn('[handleGenerateLOs] DEPRECATED');
+    setIsGeneratingLOs(false);
+    return { success: false, los: [], error: 'DEPRECATED' };
   };
 
   const startDrillForLO = (loId: string) => {
@@ -3111,8 +3003,23 @@ V nastavení lze změnit defaultni model.`);
     if (!syllabusGeneratedQuestion || userRole !== 'admin') return;
     const { loId, question } = syllabusGeneratedQuestion;
     const lo = allLOs.find(l => l.id === loId);
-    const subjectId = lo?.subject_id;
-    if (!subjectId) return;
+    
+    // Zkusit získat subjectId z LO, nebo z prefixu LO ID (např. '010' -> 1)
+    let subjectId = lo?.subject_id;
+    if (!subjectId) {
+      const prefix = loId.split('.')[0];
+      const mapping: Record<string, number> = {
+        '010': 1, '040': 2, '050': 3, '090': 4, '081': 5, '082': 5, 
+        '070': 6, '033': 7, '030': 7, '021': 8, '022': 8, '061': 9, '062': 9
+      };
+      subjectId = mapping[prefix];
+    }
+
+    if (!subjectId) {
+      alert(`Nepodařilo se určit předmět (subjectId) pro LO: ${loId}. Uložení přerušeno.`);
+      return;
+    }
+
     const q = {
       id: Date.now() + Math.random(),
       question: question.text || '',
@@ -3126,7 +3033,25 @@ V nastavení lze změnit defaultni model.`);
       const result = await dynamoDBService.saveQuestion(subjectId, q);
       if (result.success) {
         setSyllabusGeneratedQuestion(null);
-        setSyllabusSelectedLO(loId);
+        
+        // Vynutit nové načtení otázek pro tento LO v UI
+        setSyllabusLOQuestionsLoading(true);
+        dynamoDBService.getQuestionsByLO(loId)
+          .then(r => {
+            const mapped = (r.data || []).map((q: any) => ({
+              ...q,
+              id: q.questionId || q.id,
+              text: q.question || q.text,
+              answers: q.answers || q.options || [],
+              correct_answer: q.correct !== undefined ? q.correct : (q.correct_answer ?? q.correctAnswer),
+              _sourceLayoutId: `syllabus-q-${q.questionId || q.id}`
+            }));
+            setSyllabusLOQuestions(mapped);
+          })
+          .finally(() => {
+            setSyllabusLOQuestionsLoading(false);
+          });
+
         await syncUserData();
       } else {
         alert('Uložení selhalo: ' + result.error);
@@ -3134,6 +3059,28 @@ V nastavení lze změnit defaultni model.`);
     } catch (e: any) {
       alert('Chyba při ukládání: ' + e.message);
     }
+  };
+
+  const openSyllabusAtLO = (loId: string) => {
+    setSyllabusOpen(true);
+    setSyllabusSelectedLO(loId);
+    
+    // Auto-expand parents based on LO ID structure (e.g. 010.02.01)
+    const parts = loId.split('.');
+    if (parts.length >= 1) {
+      setSyllabusExpandedSubjects(prev => Array.from(new Set([...prev, parts[0]])));
+    }
+    if (parts.length >= 2) {
+      setSyllabusExpandedTopics(prev => Array.from(new Set([...prev, parts.slice(0, 2).join('.')])));
+    }
+    if (parts.length >= 3) {
+      setSyllabusExpandedSubtopics(prev => Array.from(new Set([...prev, parts.slice(0, 3).join('.')])));
+    }
+  };
+
+  const handleSaveGeneratedLOs = async () => {
+    if (userRole !== 'admin' || !generatedLOs.length) return;
+    alert('Ukládání hromadně generovaných LO není v této verzi plně implementováno.');
   };
 
   const handlePreviewQuestionForLO = async (loId: string) => {
@@ -3622,7 +3569,7 @@ V nastavení lze změnit defaultni model.`);
 
 
   return (
-    <div className="min-h-screen transition-colors duration-300">
+    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'dark' : ''}`}>
       {isGuestMode && <div className="demo-app-frame" />}
       {/* Loading State - Prevent landing page flash */}
       {isAuthLoading ? (
@@ -4033,42 +3980,23 @@ V nastavení lze změnit defaultni model.`);
                       <p className="text-lg sm:text-xl md:text-2xl font-mono font-bold" title={`Celkový počet otázek pro ${selectedLicense === 'SPL' ? 'SPL (kluzáky)' : 'PPL (motorová letadla)'}${selectedLicense === 'SPL' ? ' - bez předmětů 6,7,8' : ''}`}>
                         {(() => {
                           let totalCount = 0;
-                          let userCount = 0;
-                          let aiCount = 0;
                           
-                          if (isGuestMode) {
-                            // Guest: Use localStorage data, fallback to DB data
-                            const guestStats = loadGuestStats();
-                            if (guestStats && guestStats.totalAnswers > 0) {
-                              totalCount = guestStats.totalAnswers;
-                            } else {
-                              // Fallback to DB data for first-time guests
-                              totalCount = stats ? (stats.totalQuestions || 0) : 0;
-                            }
-                          } else {
-                            // User: Use existing logic
-                            totalCount = stats ? (stats.totalQuestions || 0) : 0;
-                          }
+                          // Both guest and user should see the total DB size
+                          totalCount = stats ? (stats.totalQuestions || 0) : 0;
                           
                           // Filter by license
                           if (selectedLicense === 'SPL') {
                             // Estimate SPL count by excluding subjects 6,7,8 (roughly 1/3 of questions)
                             totalCount = Math.round(totalCount * 0.67);
-                            userCount = stats ? Math.round((stats.userQuestions || 0) * 0.67) : 0;
-                            aiCount = stats ? Math.round((stats.aiQuestions || 0) * 0.67) : 0;
-                          } else {
-                            userCount = stats ? (stats.userQuestions || 0) : 0;
-                            aiCount = stats ? (stats.aiQuestions || 0) : 0;
                           }
                           
-                          // Return as continuous number without spaces
-                          return totalCount.toString();
+                          return totalCount > 0 ? totalCount.toLocaleString('cs-CZ').replace(/\s/g, '') : '0';
                         })()}
                         {(() => {
                           let userCount = 0;
                           let aiCount = 0;
                           
-                          if (!isGuestMode && stats) {
+                          if (stats) {
                             // Filter by license
                             if (selectedLicense === 'SPL') {
                               userCount = Math.round((stats.userQuestions || 0) * 0.67);
@@ -4080,22 +4008,7 @@ V nastavení lze změnit defaultni model.`);
                             
                             return (
                               <span className="text-sm sm:text-base md:text-lg opacity-60 ml-2" title={`Uživatelské otázky: ${userCount.toLocaleString('cs-CZ')} | AI/EASA otázky: ${aiCount.toLocaleString('cs-CZ')}`}>
-                                {userCount.toLocaleString('cs-CZ').replace(/\s/g, '')}/{aiCount.toLocaleString('cs-CZ').replace(/\s/g, '')}
-                              </span>
-                            );
-                          } else if (isGuestMode && stats) {
-                            // Guest: Show DB breakdown if available
-                            if (selectedLicense === 'SPL') {
-                              userCount = Math.round((stats.userQuestions || 0) * 0.67);
-                              aiCount = Math.round((stats.aiQuestions || 0) * 0.67);
-                            } else {
-                              userCount = stats.userQuestions || 0;
-                              aiCount = stats.aiQuestions || 0;
-                            }
-                            
-                            return (
-                              <span className="text-sm sm:text-base md:text-lg opacity-60 ml-2" title={`Uživatelské otázky: ${userCount.toLocaleString('cs-CZ')} | AI/EASA otázky: ${aiCount.toLocaleString('cs-CZ')}`}>
-                                {userCount.toLocaleString('cs-CZ').replace(/\s/g, '')}/{aiCount.toLocaleString('cs-CZ').replace(/\s/g, '')}
+                                ({userCount.toLocaleString('cs-CZ').replace(/\s/g, '')}/{aiCount.toLocaleString('cs-CZ').replace(/\s/g, '')})
                               </span>
                             );
                           }
@@ -4182,31 +4095,48 @@ V nastavení lze změnit defaultni model.`);
                         {stats && stats.overallSuccess < 1 ? 'Dostupné' : ''}
                       </p>
                     </div>
-                    <div className="p-1 sm:p-2 md:p-6 border border-[var(--line)] rounded sm:rounded-lg md:rounded-2xl space-y-0 sm:space-y-0.5 md:space-y-2">
-                      <p className="col-header text-[8px] sm:text-[10px] md:text-sm">
-                        Aktuální licence
-                      </p>
-                      <p className="text-sm sm:text-lg md:text-4xl font-mono font-bold">
-                        {(() => {
-                          // Both User and Guest show the same license buttons
-                          return (
-                            <span className="flex gap-0.5 sm:gap-1 md:gap-2">
-                              {(['PPL', 'SPL'] as const).map(lic => (
-                                <button
-                                  key={lic}
-                                  onClick={() => { setSelectedLicense(lic); localStorage.setItem('selectedLicense', lic); }}
-                                  className={`w-[3rem] sm:w-[3.5rem] md:w-[4rem] px-1 sm:px-1.5 md:px-3 py-1 rounded-full text-[6px] sm:text-[8px] font-bold transition-all ${selectedLicense === lic ? 'bg-gray-600 dark:bg-gray-700 text-white' : 'border border-gray-400 dark:border-gray-600 text-gray-600 dark:text-gray-400 opacity-50 hover:opacity-80'}`}
-                                >
-                                  {lic === 'PPL' ? 'PPL(A)' : 'SPL'}
-                                </button>
-                              ))}
-                            </span>
-                          );
-                        })()}
-                      </p>
-                      <p className="text-[8px] sm:text-[10px] md:text-sm opacity-50">
-                        Licence
-                      </p>
+                    {/* Aktuální licence */}
+                    <div className="p-1 sm:p-2 md:p-6 border border-[var(--line)] rounded sm:rounded-lg md:rounded-2xl flex flex-col items-start lg:flex-row lg:items-center justify-between gap-1 lg:gap-2 h-full">
+                       <p className="col-header text-[8px] sm:text-[10px] md:text-sm font-bold uppercase tracking-wider text-black dark:text-white/60 m-0 mb-0.5 lg:mb-0 leading-tight">
+                         Licence
+                       </p>
+                       <div className="flex items-center">
+                         <div className="relative group overflow-hidden rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-300 dark:border-white/10 hover:border-indigo-500/50 transition-all px-2 py-0.5">
+                           <select
+                             value={selectedLicenseSubtype}
+                             onChange={(e: any) => {
+                               const v = e.target.value;
+                               setSelectedLicenseSubtype(v);
+                               localStorage.setItem('selectedLicenseSubtype', v);
+                               // Update the broad category for global filtering/syllabus
+                               const broad = ['SPL', 'LAPL(S)', 'BPL', 'LAPL(B)'].includes(v) ? 'SPL' : 'PPL';
+                               setSelectedLicense(broad);
+                               localStorage.setItem('selectedLicense', broad);
+                             }}
+                             className="appearance-none bg-transparent border-none outline-none focus:ring-0 cursor-pointer text-black dark:text-white font-bold text-xs sm:text-sm md:text-base leading-tight pr-5 pl-1 py-0.5"
+                           >
+                             <optgroup label="Letadla (A)" className="bg-white dark:bg-gray-900 text-black dark:text-white">
+                               <option value="PPL(A)">PPL(A)</option>
+                               <option value="LAPL(A)">LAPL(A)</option>
+                             </optgroup>
+                             <optgroup label="Vrtulníky (H)" className="bg-white dark:bg-gray-900 text-black dark:text-white">
+                               <option value="PPL(H)">PPL(H)</option>
+                               <option value="LAPL(H)">LAPL(H)</option>
+                             </optgroup>
+                             <optgroup label="Kluzáky (S)" className="bg-white dark:bg-gray-900 text-black dark:text-white">
+                               <option value="SPL">SPL</option>
+                               <option value="LAPL(S)">LAPL(S)</option>
+                             </optgroup>
+                             <optgroup label="Balóny (B)" className="bg-white dark:bg-gray-900 text-black dark:text-white">
+                               <option value="BPL">BPL</option>
+                               <option value="LAPL(B)">LAPL(B)</option>
+                             </optgroup>
+                           </select>
+                           <div className="pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 text-gray-500">
+                             <ChevronDown size={14} />
+                           </div>
+                         </div>
+                       </div>
                     </div>
                   </div>
 
@@ -4306,7 +4236,7 @@ V nastavení lze změnit defaultni model.`);
                             {isGuestMode ? '-' : (stats?.practicedQuestions && stats.overallSuccess < 1 ? 'Dostupné' : '-')}
                           </div>
                           <div className="font-mono text-sm flex justify-center min-w-[3rem]">
-                            {isGuestMode ? '0%' : (stats ? Math.round((1 - stats.overallSuccess) * 100) : 0)}% chyb
+                            {isGuestMode ? '0' : (stats ? Math.round((1 - stats.overallSuccess) * 100) : 0)}% chyb
                           </div>
                         </div>
 
@@ -4529,6 +4459,7 @@ V nastavení lze změnit defaultni model.`);
                               );
                             })}
                           </div>
+
                         </div>
                       </div>
 
@@ -6093,8 +6024,7 @@ V nastavení lze změnit defaultni model.`);
 
                                     {/* Generate Button */}
                                     <button
-                                      onClick={handleGenerateLOs}
-                                      disabled={isGeneratingLOs || !importSubjectId}
+                                      disabled={true}
                                       className="w-full py-4 px-4 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-400 text-white text-sm font-bold rounded-xl transition-colors"
                                       style={{
                                         backgroundColor: isGeneratingLOs || !importSubjectId ? '#9ca3af' : '#9333ea',
@@ -6118,7 +6048,7 @@ V nastavení lze změnit defaultni model.`);
                                         }
                                       }}
                                     >
-                                      {isGeneratingLOs ? 'Analyzuji EASA zdroje...' : '🔍 Najít chybějící LOs'}
+                                      {isGeneratingLOs ? 'Analyzuji EASA zdroje...' : '⛔ LO Generování Zablokováno'}
                                     </button>
 
                                     {/* Generated LOs Results */}
@@ -6960,17 +6890,45 @@ V nastavení lze změnit defaultni model.`);
                       )}
                     </div>
 
-                    {/* License filter pills — compact */}
-                    <div className="flex gap-0.5 border border-[var(--line)] rounded-xl p-0.5 flex-shrink-0">
-                      {(['ALL', 'PPL', 'SPL'] as const).map(f => (
-                        <button
-                          key={f}
-                          onClick={() => setSyllabusLicenseFilter(f)}
-                          className={`px-2 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wide transition-all ${syllabusLicenseFilter === f ? 'bg-indigo-600 text-white' : 'opacity-50 hover:opacity-80'}`}
-                        >
-                          {f === 'ALL' ? 'Vše' : f}
-                        </button>
-                      ))}
+                    {/* License filter pills — compact (dropdown) */}
+                    <div className="flex border border-[var(--line)] rounded-xl p-0.5 flex-shrink-0 relative bg-indigo-600/10">
+                      <select
+                        value={syllabusLicenseFilterSubtype}
+                        onChange={(e: any) => {
+                          const v = e.target.value;
+                          setSyllabusLicenseFilterSubtype(v);
+                          if (v === 'ALL') {
+                            setSyllabusLicenseFilter('ALL');
+                          } else if (['SPL', 'LAPL(S)', 'BPL', 'LAPL(B)'].includes(v)) {
+                            setSyllabusLicenseFilter('SPL');
+                          } else {
+                            setSyllabusLicenseFilter('PPL');
+                          }
+                        }}
+                        className="px-2 pr-4 py-1 rounded-lg text-xs font-bold uppercase tracking-wide transition-all bg-indigo-600 text-white outline-none cursor-pointer appearance-none text-center h-full min-w-[70px]"
+                        style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
+                      >
+                        <option value="ALL">VŠE (ALL)</option>
+                        <optgroup label="Letadla (A)">
+                          <option value="PPL(A)">PPL(A)</option>
+                          <option value="LAPL(A)">LAPL(A)</option>
+                        </optgroup>
+                        <optgroup label="Vrtulníky (H)">
+                          <option value="PPL(H)">PPL(H)</option>
+                          <option value="LAPL(H)">LAPL(H)</option>
+                        </optgroup>
+                        <optgroup label="Kluzáky (S)">
+                          <option value="SPL">SPL</option>
+                          <option value="LAPL(S)">LAPL(S)</option>
+                        </optgroup>
+                        <optgroup label="Balóny (B)">
+                          <option value="BPL">BPL</option>
+                          <option value="LAPL(B)">LAPL(B)</option>
+                        </optgroup>
+                      </select>
+                      <div className="pointer-events-none absolute inset-y-0 right-1 flex items-center text-white">
+                        <ChevronDown size={12} />
+                      </div>
                     </div>
                   </div>
                 </div>

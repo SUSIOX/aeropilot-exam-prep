@@ -239,6 +239,28 @@ export default function App() {
     // console.log(`📍 STATE DEBUG: questions changed, first question ID: ${questions[0]?.id}, length: ${questions.length}`);
   }, [questions]);
   const [stats, setStats] = useState<Stats | null>(null);
+
+  // Sync actual success rates into subjects state when stats change
+  useEffect(() => {
+    if (stats?.subjectStats) {
+      setSubjects(prev => {
+        let hasChanges = false;
+        const newSubjects = prev.map(s => {
+          const subjectStat = stats.subjectStats[s.id];
+          const newRate = subjectStat && subjectStat.totalAnswered > 0 
+            ? subjectStat.correctAnswers / subjectStat.totalAnswered 
+            : 0;
+            
+          if (Math.abs((s.success_rate || 0) - newRate) > 0.001) {
+            hasChanges = true;
+            return { ...s, success_rate: newRate };
+          }
+          return s;
+        });
+        return hasChanges ? newSubjects : prev;
+      });
+    }
+  }, [stats]);
   const [answered, setAnswered] = useState<string | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
   const [showQuestionId, setShowQuestionId] = useState(false);
@@ -1253,7 +1275,7 @@ export default function App() {
 
     // First set with 0 counts so UI loads immediately
     const staticSubjects: Subject[] = subjectDefs.map(s => ({
-      ...s, question_count: 0, success_rate: 0.75
+      ...s, question_count: 0, success_rate: 0
     }));
     setSubjects(staticSubjects);
     if (staticSubjects.length > 0 && !importSubjectId) {
@@ -1270,7 +1292,7 @@ export default function App() {
           question_count: total[s.id] || 0,
           user_count: user[s.id] || 0,
           ai_count: ai[s.id] || 0,
-          success_rate: 0.75
+          success_rate: 0
         }));
         setSubjects(withCounts);
       }
@@ -1440,130 +1462,130 @@ export default function App() {
               question_count: total[s.id] ?? existing?.question_count ?? 0,
               user_count: userQuestions[s.id] ?? existing?.user_count ?? 0,
               ai_count: ai[s.id] ?? existing?.ai_count ?? 0,
-              success_rate: existing?.success_rate ?? 0.75
-            };
-          });
-        });
-      } else {
-        // AUTHENTICATED MODE SYNC
-        const uid = user?.id;
-        if (!uid) return;
-
-        console.log(`📡 Starting data sync for user ${uid}...`);
-
-        // 1. Fetch Question Counts
-        const countsResult = await dynamoDBService.getAllQuestionCounts();
-        let total: Record<number, number> = {};
-        let userQuestions: Record<number, number> = {};
-        let ai: Record<number, number> = {};
-
-        if (countsResult.success && countsResult.data) {
-          ({ total, user: userQuestions, ai } = countsResult.data);
-        }
-
-        // 2. Fetch User Profile (Settings)
-        const profileResult = await dynamoDBService.getUserProfileWithProgress(uid);
-
-        // 2b. Fetch User Progress (New Single-Table Design)
-        const progressResult = await dynamoDBService.getUserProgress(uid);
-
-        if (profileResult.success && profileResult.data) {
-          const profile = profileResult.data;
-
-          // Reconstruct allAnswers from the new single-table lines
-          const allAnswers: any = {};
-          if (progressResult.success && progressResult.data) {
-            for (const item of progressResult.data) {
-              if (item.SK && item.SK.startsWith('Q#')) {
-                const rawSk = item.SK.substring(2);
-                const qid = !isNaN(Number(rawSk)) && String(rawSk).trim() !== '' ? String(Number(rawSk)) : rawSk;
-                allAnswers[qid] = {
-                  isCorrect: item.correct,
-                  subjectId: item.subjectId !== -1 ? item.subjectId : undefined,
-                  answerTimestamp: item.updated_at,
-                  attempts: item.attempts
-                };
-              }
-            }
-          }
-
-          // Hydrate Answers Map
-          localStorage.setItem(`${uid}:answers`, JSON.stringify(allAnswers));
-
-          // Hydrate Settings
-          if (profile.settings) {
-            setDrillSettings(prev => {
-              const newSettings = {
-                ...prev,
-                ...profile.settings,
-                weightedLearning: {
-                  ...prev.weightedLearning,
-                  ...profile.settings.weightedLearning
-                }
-              };
-              localStorage.setItem('drillSettings', JSON.stringify(newSettings));
-              return newSettings;
-            });
-            
-            // Restore API keys and AI settings from DB
-            if (profile.settings.userApiKey) setUserApiKey(profile.settings.userApiKey);
-            if (profile.settings.claudeApiKey) setClaudeApiKey(profile.settings.claudeApiKey);
-            if (profile.settings.deepseekApiKey) setDeepseekApiKey(profile.settings.deepseekApiKey);
-            if (profile.settings.aiProvider) setAiProvider(profile.settings.aiProvider);
-            if (profile.settings.aiModel) setAiModel(profile.settings.aiModel);
-          }
-          setSettingsLoadedUserId(uid);
-
-          // Compute Statistics
-          const practicedCount = Object.keys(allAnswers).length;
-          const correctCount = Object.values(allAnswers).filter((a: any) => a.isCorrect).length;
-          const successRate = practicedCount > 0 ? correctCount / practicedCount : 0;
-
-          const perSubject: Record<number, { correct: number; total: number }> = {};
-          for (const a of Object.values(allAnswers) as any[]) {
-            const sid = a.subjectId;
-            if (!sid) continue;
-            if (!perSubject[sid]) perSubject[sid] = { correct: 0, total: 0 };
-            perSubject[sid].total++;
-            if (a.isCorrect) perSubject[sid].correct++;
-          }
-
-          const subjectStats: { [subjectId: number]: { correctAnswers: number; totalAnswered: number } } = {};
-          SUBJECT_DEFS.forEach(s => {
-            subjectStats[s.id] = {
-              correctAnswers: perSubject[s.id] ? perSubject[s.id].correct : 0,
-              totalAnswered: perSubject[s.id] ? perSubject[s.id].total : 0
-            };
-          });
-
-          const totalQ = Object.values(total).reduce((a, b) => a + b, 0);
-          const userQ = Object.values(userQuestions).reduce((a, b) => a + b, 0);
-          const aiQ = Object.values(ai).reduce((a, b) => a + b, 0);
-
-          const newStats = {
-            totalQuestions: totalQ,
-            userQuestions: userQ,
-            aiQuestions: aiQ,
-            practicedQuestions: practicedCount,
-            overallSuccess: successRate,
-            subjectStats
-          };
-
-          setStats(newStats);
-          localStorage.setItem(`${uid}:user_stats`, JSON.stringify(newStats));
-        }
-
-        // 3. Update Subjects Row Counts
-        setSubjects(prev => {
-          return SUBJECT_DEFS.map(s => {
-            const existing = prev.find(p => p.id === s.id);
-            return {
-              ...s,
-              question_count: total[s.id] ?? existing?.question_count ?? 0,
-              user_count: userQuestions[s.id] ?? existing?.user_count ?? 0,
-              ai_count: ai[s.id] ?? existing?.ai_count ?? 0,
-              success_rate: existing?.success_rate ?? 0.75
-            };
+              success_rate: existing?.success_rate ?? 0
+                            };
+                          });
+                        });
+                      } else {
+                        // AUTHENTICATED MODE SYNC
+                        const uid = user?.id;
+                        if (!uid) return;
+                
+                        console.log(`📡 Starting data sync for user ${uid}...`);
+                
+                        // 1. Fetch Question Counts
+                        const countsResult = await dynamoDBService.getAllQuestionCounts();
+                        let total: Record<number, number> = {};
+                        let userQuestions: Record<number, number> = {};
+                        let ai: Record<number, number> = {};
+                
+                        if (countsResult.success && countsResult.data) {
+                          ({ total, user: userQuestions, ai } = countsResult.data);
+                        }
+                
+                        // 2. Fetch User Profile (Settings)
+                        const profileResult = await dynamoDBService.getUserProfileWithProgress(uid);
+                
+                        // 2b. Fetch User Progress (New Single-Table Design)
+                        const progressResult = await dynamoDBService.getUserProgress(uid);
+                
+                        if (profileResult.success && profileResult.data) {
+                          const profile = profileResult.data;
+                
+                          // Reconstruct allAnswers from the new single-table lines
+                          const allAnswers: any = {};
+                          if (progressResult.success && progressResult.data) {
+                            for (const item of progressResult.data) {
+                              if (item.SK && item.SK.startsWith('Q#')) {
+                                const rawSk = item.SK.substring(2);
+                                const qid = !isNaN(Number(rawSk)) && String(rawSk).trim() !== '' ? String(Number(rawSk)) : rawSk;
+                                allAnswers[qid] = {
+                                  isCorrect: item.correct,
+                                  subjectId: item.subjectId !== -1 ? item.subjectId : undefined,
+                                  answerTimestamp: item.updated_at,
+                                  attempts: item.attempts
+                                };
+                              }
+                            }
+                          }
+                
+                          // Hydrate Answers Map
+                          localStorage.setItem(`${uid}:answers`, JSON.stringify(allAnswers));
+                
+                          // Hydrate Settings
+                          if (profile.settings) {
+                            setDrillSettings(prev => {
+                              const newSettings = {
+                                ...prev,
+                                ...profile.settings,
+                                weightedLearning: {
+                                  ...prev.weightedLearning,
+                                  ...profile.settings.weightedLearning
+                                }
+                              };
+                              localStorage.setItem('drillSettings', JSON.stringify(newSettings));
+                              return newSettings;
+                            });
+                            
+                            // Restore API keys and AI settings from DB
+                            if (profile.settings.userApiKey) setUserApiKey(profile.settings.userApiKey);
+                            if (profile.settings.claudeApiKey) setClaudeApiKey(profile.settings.claudeApiKey);
+                            if (profile.settings.deepseekApiKey) setDeepseekApiKey(profile.settings.deepseekApiKey);
+                            if (profile.settings.aiProvider) setAiProvider(profile.settings.aiProvider);
+                            if (profile.settings.aiModel) setAiModel(profile.settings.aiModel);
+                          }
+                          setSettingsLoadedUserId(uid);
+                
+                          // Compute Statistics
+                          const practicedCount = Object.keys(allAnswers).length;
+                          const correctCount = Object.values(allAnswers).filter((a: any) => a.isCorrect).length;
+                          const successRate = practicedCount > 0 ? correctCount / practicedCount : 0;
+                
+                          const perSubject: Record<number, { correct: number; total: number }> = {};
+                          for (const a of Object.values(allAnswers) as any[]) {
+                            const sid = Number(a.subjectId);
+                            if (!sid) continue;
+                            if (!perSubject[sid]) perSubject[sid] = { correct: 0, total: 0 };
+                            perSubject[sid].total++;
+                            if (a.isCorrect) perSubject[sid].correct++;
+                          }
+                
+                          const subjectStats: { [subjectId: number]: { correctAnswers: number; totalAnswered: number } } = {};
+                          SUBJECT_DEFS.forEach(s => {
+                            subjectStats[s.id] = {
+                              correctAnswers: perSubject[s.id] ? perSubject[s.id].correct : 0,
+                              totalAnswered: perSubject[s.id] ? perSubject[s.id].total : 0
+                            };
+                          });
+                
+                          const totalQ = Object.values(total).reduce((a, b) => a + b, 0);
+                          const userQ = Object.values(userQuestions).reduce((a, b) => a + b, 0);
+                          const aiQ = Object.values(ai).reduce((a, b) => a + b, 0);
+                
+                          const newStats = {
+                            totalQuestions: totalQ,
+                            userQuestions: userQ,
+                            aiQuestions: aiQ,
+                            practicedQuestions: practicedCount,
+                            overallSuccess: successRate,
+                            subjectStats
+                          };
+                
+                          setStats(newStats);
+                          localStorage.setItem(`${uid}:user_stats`, JSON.stringify(newStats));
+                        }
+                
+                        // 3. Update Subjects Row Counts
+                        setSubjects(prev => {
+                          return SUBJECT_DEFS.map(s => {
+                            const existing = prev.find(p => p.id === s.id);
+                            return {
+                              ...s,
+                              question_count: total[s.id] ?? existing?.question_count ?? 0,
+                              user_count: userQuestions[s.id] ?? existing?.user_count ?? 0,
+                              ai_count: ai[s.id] ?? existing?.ai_count ?? 0,
+                              success_rate: existing?.success_rate ?? 0
+                            };
           });
         });
 
@@ -4204,7 +4226,15 @@ V nastavení lze změnit defaultni model.`);
                                 </span>
                               )}
                             </div>
-                            <div className="w-16 sm:w-20 font-mono text-sm flex justify-end group-hover:text-gray-900 dark:group-hover:text-gray-100">{Math.round(s.success_rate * 100)}%</div>
+                            <div className="w-16 sm:w-20 font-mono text-sm flex justify-end group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                              {(() => {
+                                const subStat = stats?.subjectStats?.[s.id];
+                                if (subStat && subStat.totalAnswered > 0) {
+                                  return `${Math.round((subStat.correctAnswers / subStat.totalAnswered) * 100)}%`;
+                                }
+                                return '-';
+                              })()}
+                            </div>
                           </div>
 
                           <div className="hidden sm:flex justify-end w-8 flex-shrink-0">

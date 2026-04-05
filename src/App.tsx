@@ -1174,12 +1174,25 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
 
       // 1. Fetch Flags
       dynamoDBService.getQuestionFlags(userId).then(response => {
-        if (response.success && response.data?.flags) {
-          console.log(`✅ Loaded ${Object.keys(response.data.flags).length} flags from cloud`);
-          const existingFlags = JSON.parse(localStorage.getItem('question_flags') || '{}');
-          const mergedFlags = { ...existingFlags, ...response.data.flags };
-          localStorage.setItem('question_flags', JSON.stringify(mergedFlags));
+        const localFlags: Record<string, any> = JSON.parse(localStorage.getItem('question_flags') || '{}');
+        const dbFlags: Record<string, any> = (response.success && response.data?.flags) ? response.data.flags : {};
+
+        if (response.success) {
+          console.log(`✅ Loaded ${Object.keys(dbFlags).length} flags from cloud`);
         }
+
+        // Push any locally flagged questions missing in DynamoDB (catch-up)
+        for (const [qid, flagData] of Object.entries(localFlags)) {
+          const isFlagged = typeof flagData === 'object' && flagData !== null ? !!flagData.isFlagged : !!flagData;
+          if (isFlagged && !dbFlags[qid]) {
+            console.log(`🔄 Flag catch-up: pushing flag for ${qid}`);
+            dynamoDBService.toggleQuestionFlag(userId, qid, true).catch(() => {});
+          }
+        }
+
+        // Merge: DB wins for items present in both
+        const mergedFlags = { ...localFlags, ...dbFlags };
+        localStorage.setItem('question_flags', JSON.stringify(mergedFlags));
       }).catch(() => { });
 
 
@@ -1522,6 +1535,26 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
                               };
                             }
                           }
+                        }
+
+                        // Catch-up sync: find localStorage answers missing in DynamoDB and push them
+                        const localAnswers: any = JSON.parse(localStorage.getItem(`${uid}:answers`) || '{}');
+                        const missingInDB: Array<{ questionId: string; isCorrect: boolean; subjectId?: number; timestamp?: string }> = [];
+                        for (const [qid, localAns] of Object.entries(localAnswers) as [string, any][]) {
+                          if (!allAnswers[qid]) {
+                            missingInDB.push({
+                              questionId: qid,
+                              isCorrect: !!localAns.isCorrect,
+                              subjectId: localAns.subjectId,
+                              timestamp: localAns.timestamp || localAns.answerTimestamp
+                            });
+                            // Include in stats immediately
+                            allAnswers[qid] = { isCorrect: localAns.isCorrect, subjectId: localAns.subjectId, answerTimestamp: localAns.timestamp || localAns.answerTimestamp };
+                          }
+                        }
+                        if (missingInDB.length > 0) {
+                          console.log(`🔄 Catch-up sync: pushing ${missingInDB.length} missing answers to DynamoDB`);
+                          dynamoDBService.pushMissingProgress(uid, missingInDB).catch(err => console.error('❌ catch-up sync failed:', err));
                         }
 
                         // Hydrate Answers Map

@@ -503,6 +503,69 @@ export class DynamoDBService {
     }
   }
 
+  // Catch-up sync: push answers present in localStorage but missing in DynamoDB
+  async pushMissingProgress(
+    userId: string,
+    items: Array<{ questionId: string; isCorrect: boolean; subjectId?: number; timestamp?: string }>
+  ): Promise<DynamoDBResponse> {
+    if (items.length === 0) return { success: true };
+    try {
+      await this.ensureInitialized();
+      const tableName = getTableName('USER_PROGRESS');
+      const now = new Date().toISOString();
+
+      // Batch PUT all missing Q# records (max 25 per batch)
+      const MAX_BATCH_SIZE = 25;
+      for (let i = 0; i < items.length; i += MAX_BATCH_SIZE) {
+        const batch = items.slice(i, i + MAX_BATCH_SIZE);
+        let requestItems: Record<string, any[]> = {
+          [tableName]: batch.map(item => ({
+            PutRequest: {
+              Item: {
+                PK: `USER#${userId}`,
+                SK: `Q#${String(item.questionId).padStart(5, '0')}`,
+                correct: item.isCorrect,
+                correct_str: item.isCorrect ? 'Y' : 'N',
+                subjectId: item.subjectId !== undefined ? item.subjectId : -1,
+                updated_at: item.timestamp || now,
+                attempts: 1
+              }
+            }
+          }))
+        };
+        let batchResponse = await this.docClient!.send(new DocBatchWriteCommand({ RequestItems: requestItems }));
+        let retries = 0;
+        while (
+          batchResponse.UnprocessedItems &&
+          Object.keys(batchResponse.UnprocessedItems).length > 0 &&
+          retries < 5
+        ) {
+          await new Promise(r => setTimeout(r, 200 * (retries + 1)));
+          batchResponse = await this.docClient!.send(new DocBatchWriteCommand({ RequestItems: batchResponse.UnprocessedItems }));
+          retries++;
+        }
+      }
+
+      // Update SUMMARY with correct totals (SET, not ADD, to avoid drift)
+      const correctCount = items.reduce((sum, i) => sum + (i.isCorrect ? 1 : 0), 0);
+      await this.docClient!.send(new DocUpdateCommand({
+        TableName: tableName,
+        Key: { PK: `USER#${userId}`, SK: 'SUMMARY' },
+        UpdateExpression: 'ADD answered :ans, correct_count :cor SET last_active = :ts',
+        ExpressionAttributeValues: {
+          ':ans': items.length,
+          ':cor': correctCount,
+          ':ts': now
+        }
+      }));
+
+      return { success: true };
+    } catch (error) {
+      console.error('❌ pushMissingProgress failed:', error);
+      return { success: false, error: this.handleError(error, 'pushMissingProgress').message };
+    }
+  }
+
   // User Settings Operations
 
   async saveUserSettings(

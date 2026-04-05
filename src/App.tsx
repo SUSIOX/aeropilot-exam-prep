@@ -5253,7 +5253,11 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                               alt="Question illustration"
                               className="max-w-full max-h-full object-contain"
                               referrerPolicy="no-referrer"
-                              onError={(e) => (e.currentTarget.style.display = 'none')}
+                              onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                                const parent = e.currentTarget.parentElement;
+                                if (parent) parent.style.display = 'none';
+                              }}
                             />
                           </div>
                         )}
@@ -5843,7 +5847,11 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                 alt="Question illustration"
                                 className="max-w-full max-h-full object-contain"
                                 referrerPolicy="no-referrer"
-                                onError={(e) => (e.currentTarget.style.display = 'none')}
+                                onError={(e) => {
+                                  e.currentTarget.style.display = 'none';
+                                  const parent = e.currentTarget.parentElement;
+                                  if (parent) parent.style.display = 'none';
+                                }}
                               />
                             </div>
                           )}

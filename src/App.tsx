@@ -1504,30 +1504,29 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
                         // 2b. Fetch User Progress (New Single-Table Design)
                         const progressResult = await dynamoDBService.getUserProgress(uid);
                 
-                        if (profileResult.success && profileResult.data) {
-                          const profile = profileResult.data;
-                
-                          // Reconstruct allAnswers from the new single-table lines
-                          const allAnswers: any = {};
-                          if (progressResult.success && progressResult.data) {
-                            for (const item of progressResult.data) {
-                              if (item.SK && item.SK.startsWith('Q#')) {
-                                const rawSk = item.SK.substring(2);
-                                const qid = !isNaN(Number(rawSk)) && String(rawSk).trim() !== '' ? String(Number(rawSk)) : rawSk;
-                                allAnswers[qid] = {
-                                  isCorrect: item.correct,
-                                  subjectId: item.subjectId !== -1 ? item.subjectId : undefined,
-                                  answerTimestamp: item.updated_at,
-                                  attempts: item.attempts
-                                };
-                              }
+                        // Reconstruct allAnswers from USER_PROGRESS table — always, independent of USERS profile
+                        const allAnswers: any = {};
+                        if (progressResult.success && progressResult.data) {
+                          for (const item of progressResult.data) {
+                            if (item.SK && item.SK.startsWith('Q#')) {
+                              const rawSk = item.SK.substring(2);
+                              const qid = !isNaN(Number(rawSk)) && String(rawSk).trim() !== '' ? String(Number(rawSk)) : rawSk;
+                              allAnswers[qid] = {
+                                isCorrect: item.correct,
+                                subjectId: item.subjectId !== -1 ? item.subjectId : undefined,
+                                answerTimestamp: item.updated_at,
+                                attempts: item.attempts
+                              };
                             }
                           }
-                
-                          // Hydrate Answers Map
-                          localStorage.setItem(`${uid}:answers`, JSON.stringify(allAnswers));
-                
-                          // Hydrate Settings
+                        }
+
+                        // Hydrate Answers Map
+                        localStorage.setItem(`${uid}:answers`, JSON.stringify(allAnswers));
+
+                        // Hydrate Settings — only if USERS profile record exists
+                        if (profileResult.success && profileResult.data) {
+                          const profile = profileResult.data;
                           if (profile.settings) {
                             setDrillSettings(prev => {
                               const newSettings = {
@@ -1541,8 +1540,6 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
                               localStorage.setItem('drillSettings', JSON.stringify(newSettings));
                               return newSettings;
                             });
-                            
-                            // Restore API keys and AI settings from DB
                             if (profile.settings.userApiKey) setUserApiKey(profile.settings.userApiKey);
                             if (profile.settings.claudeApiKey) setClaudeApiKey(profile.settings.claudeApiKey);
                             if (profile.settings.deepseekApiKey) setDeepseekApiKey(profile.settings.deepseekApiKey);
@@ -1550,45 +1547,45 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
                             if (profile.settings.aiModel) setAiModel(profile.settings.aiModel);
                           }
                           setSettingsLoadedUserId(uid);
-                
-                          // Compute Statistics
-                          const practicedCount = Object.keys(allAnswers).length;
-                          const correctCount = Object.values(allAnswers).filter((a: any) => a.isCorrect).length;
-                          const successRate = practicedCount > 0 ? correctCount / practicedCount : 0;
-                
-                          const perSubject: Record<number, { correct: number; total: number }> = {};
-                          for (const a of Object.values(allAnswers) as any[]) {
-                            const sid = Number(a.subjectId);
-                            if (!sid) continue;
-                            if (!perSubject[sid]) perSubject[sid] = { correct: 0, total: 0 };
-                            perSubject[sid].total++;
-                            if (a.isCorrect) perSubject[sid].correct++;
-                          }
-                
-                          const subjectStats: { [subjectId: number]: { correctAnswers: number; totalAnswered: number } } = {};
-                          SUBJECT_DEFS.forEach(s => {
-                            subjectStats[s.id] = {
-                              correctAnswers: perSubject[s.id] ? perSubject[s.id].correct : 0,
-                              totalAnswered: perSubject[s.id] ? perSubject[s.id].total : 0
-                            };
-                          });
-                
-                          const totalQ = Object.values(total).reduce((a, b) => a + b, 0);
-                          const userQ = Object.values(userQuestions).reduce((a, b) => a + b, 0);
-                          const aiQ = Object.values(ai).reduce((a, b) => a + b, 0);
-                
-                          const newStats = {
-                            totalQuestions: totalQ,
-                            userQuestions: userQ,
-                            aiQuestions: aiQ,
-                            practicedQuestions: practicedCount,
-                            overallSuccess: successRate,
-                            subjectStats
-                          };
-                
-                          setStats(newStats);
-                          localStorage.setItem(`${uid}:user_stats`, JSON.stringify(newStats));
                         }
+
+                        // Compute Statistics — always, regardless of whether USERS profile exists
+                        const practicedCount = Object.keys(allAnswers).length;
+                        const correctCount = Object.values(allAnswers).filter((a: any) => a.isCorrect).length;
+                        const successRate = practicedCount > 0 ? correctCount / practicedCount : 0;
+
+                        const perSubject: Record<number, { correct: number; total: number }> = {};
+                        for (const a of Object.values(allAnswers) as any[]) {
+                          const sid = Number(a.subjectId);
+                          if (!sid) continue;
+                          if (!perSubject[sid]) perSubject[sid] = { correct: 0, total: 0 };
+                          perSubject[sid].total++;
+                          if (a.isCorrect) perSubject[sid].correct++;
+                        }
+
+                        const subjectStats: { [subjectId: number]: { correctAnswers: number; totalAnswered: number } } = {};
+                        SUBJECT_DEFS.forEach(s => {
+                          subjectStats[s.id] = {
+                            correctAnswers: perSubject[s.id] ? perSubject[s.id].correct : 0,
+                            totalAnswered: perSubject[s.id] ? perSubject[s.id].total : 0
+                          };
+                        });
+
+                        const totalQ = Object.values(total).reduce((a, b) => a + b, 0);
+                        const userQ = Object.values(userQuestions).reduce((a, b) => a + b, 0);
+                        const aiQ = Object.values(ai).reduce((a, b) => a + b, 0);
+
+                        const newStats = {
+                          totalQuestions: totalQ,
+                          userQuestions: userQ,
+                          aiQuestions: aiQ,
+                          practicedQuestions: practicedCount,
+                          overallSuccess: successRate,
+                          subjectStats
+                        };
+
+                        setStats(newStats);
+                        localStorage.setItem(`${uid}:user_stats`, JSON.stringify(newStats));
                 
                         // 3. Update Subjects Row Counts
                         setSubjects(prev => {

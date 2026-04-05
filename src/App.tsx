@@ -619,10 +619,13 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
       // Try Cognito auth first
       const cognitoUser = cognitoAuthService.getCurrentUser();
       if (cognitoUser) {
-        // For authenticated users, we need to wait for AWS credentials to get identity ID
-        // Use temporary ID until credentials are ready
-        const tempId = cognitoUser.id;
-        return { id: tempId, username: cognitoUser.username };
+        // Use cached identity_id from sessionStorage when available (set after first successful
+        // credential init). This ensures syncUserData on refresh uses the correct DynamoDB PK
+        // (USER#identityId) immediately, instead of the temporary Cognito sub which would
+        // query the wrong partition and wipe localStorage stats with empty results.
+        const cachedIdentityId = sessionStorage.getItem('identity_id');
+        const id = cachedIdentityId || cognitoUser.id;
+        return { id, username: cognitoUser.username };
       }
 
       // Fallback to old system

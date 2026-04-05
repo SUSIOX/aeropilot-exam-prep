@@ -324,15 +324,23 @@ export class DynamoDBService {
     }
   }
 
-  async getUserProgress(userId: string): Promise<DynamoDBResponse & { data?: any[] }> {
+  async getUserProgress(userId: string, consistentRead = false): Promise<DynamoDBResponse & { data?: any[] }> {
     try {
       await this.ensureInitialized();
-      const result = await this.docClient!.send(new DocQueryCommand({
-        TableName: getTableName('USER_PROGRESS'),
-        KeyConditionExpression: "PK = :pk",
-        ExpressionAttributeValues: { ":pk": `USER#${userId}` }
-      }));
-      return { success: true, data: result.Items || [] };
+      const allItems: any[] = [];
+      let lastKey: any = undefined;
+      do {
+        const result = await this.docClient!.send(new DocQueryCommand({
+          TableName: getTableName('USER_PROGRESS'),
+          KeyConditionExpression: "PK = :pk",
+          ExpressionAttributeValues: { ":pk": `USER#${userId}` },
+          ConsistentRead: consistentRead,
+          ExclusiveStartKey: lastKey
+        }));
+        if (result.Items) allItems.push(...result.Items);
+        lastKey = result.LastEvaluatedKey;
+      } while (lastKey);
+      return { success: true, data: allItems };
     } catch (error) {
       return { success: false, error: this.handleError(error, 'getUserProgress').message };
     }
@@ -370,15 +378,49 @@ export class DynamoDBService {
   async deleteAllUserProgress(userId: string): Promise<DynamoDBResponse> {
     try {
       await this.ensureInitialized();
-      await this.docClient.send(new DocUpdateCommand({
-        TableName: getTableName('USERS'),
-        Key: { userId },
-        UpdateExpression: 'SET progress = :empty, updatedAt = :now',
-        ExpressionAttributeValues: {
-          ':empty': {},
-          ':now': new Date().toISOString()
+
+      // 1. Fetch all progress records for the user from USER_PROGRESS table (paginated)
+      const items: any[] = [];
+      let lastKey: any = undefined;
+      do {
+        const result = await this.docClient!.send(new DocQueryCommand({
+          TableName: getTableName('USER_PROGRESS'),
+          KeyConditionExpression: "PK = :pk",
+          ExpressionAttributeValues: { ":pk": `USER#${userId}` },
+          ExclusiveStartKey: lastKey
+        }));
+        if (result.Items) items.push(...result.Items);
+        lastKey = result.LastEvaluatedKey;
+      } while (lastKey);
+
+      if (items.length === 0) {
+        return { success: true };
+      }
+
+      // 2. Batch delete all items (Q# records + SUMMARY), max 25 per batch
+      const MAX_BATCH_SIZE = 25;
+      const tableName = getTableName('USER_PROGRESS');
+      for (let i = 0; i < items.length; i += MAX_BATCH_SIZE) {
+        const batch = items.slice(i, i + MAX_BATCH_SIZE);
+        let requestItems: Record<string, any[]> = {
+          [tableName]: batch.map(item => ({
+            DeleteRequest: { Key: { PK: item.PK, SK: item.SK } }
+          }))
+        };
+        let batchResponse = await this.docClient!.send(new DocBatchWriteCommand({ RequestItems: requestItems }));
+        // Retry any unprocessed items (DynamoDB may throttle partial batches)
+        let retries = 0;
+        while (
+          batchResponse.UnprocessedItems &&
+          Object.keys(batchResponse.UnprocessedItems).length > 0 &&
+          retries < 5
+        ) {
+          await new Promise(r => setTimeout(r, 200 * (retries + 1)));
+          batchResponse = await this.docClient!.send(new DocBatchWriteCommand({ RequestItems: batchResponse.UnprocessedItems }));
+          retries++;
         }
-      }));
+      }
+
       return { success: true };
     } catch (error) {
       return { success: false, error: this.handleError(error, 'deleteAllUserProgress').message };
@@ -389,14 +431,19 @@ export class DynamoDBService {
     try {
       await this.ensureInitialized();
       
-      // 1. Fetch all progress for the user
-      const result = await this.docClient!.send(new DocQueryCommand({
-        TableName: getTableName('USER_PROGRESS'),
-        KeyConditionExpression: "PK = :pk",
-        ExpressionAttributeValues: { ":pk": `USER#${userId}` }
-      }));
-      
-      const items = result.Items || [];
+      // 1. Fetch all progress for the user (paginated)
+      const items: any[] = [];
+      let lastKey: any = undefined;
+      do {
+        const result = await this.docClient!.send(new DocQueryCommand({
+          TableName: getTableName('USER_PROGRESS'),
+          KeyConditionExpression: "PK = :pk",
+          ExpressionAttributeValues: { ":pk": `USER#${userId}` },
+          ExclusiveStartKey: lastKey
+        }));
+        if (result.Items) items.push(...result.Items);
+        lastKey = result.LastEvaluatedKey;
+      } while (lastKey);
       
       // 2. Filter items belonging to the subject
       const itemsToDelete = items.filter(item => item.subjectId === subjectId && item.SK.startsWith('Q#'));
@@ -415,24 +462,26 @@ export class DynamoDBService {
 
       // 3. Batch delete the filtered items (Max 25 at a time)
       const MAX_BATCH_SIZE = 25;
+      const tableName = getTableName('USER_PROGRESS');
       for (let i = 0; i < itemsToDelete.length; i += MAX_BATCH_SIZE) {
         const batch = itemsToDelete.slice(i, i + MAX_BATCH_SIZE);
-        
-        const deleteRequests = batch.map(item => ({
-          DeleteRequest: {
-            Key: {
-              PK: item.PK,
-              SK: item.SK
-            }
-          }
-        }));
-        
-        // Use batch write to delete items
-        await this.docClient!.send(new DocBatchWriteCommand({
-          RequestItems: {
-            [getTableName('USER_PROGRESS')]: deleteRequests
-          }
-        }));
+        let requestItems: Record<string, any[]> = {
+          [tableName]: batch.map(item => ({
+            DeleteRequest: { Key: { PK: item.PK, SK: item.SK } }
+          }))
+        };
+        let batchResponse = await this.docClient!.send(new DocBatchWriteCommand({ RequestItems: requestItems }));
+        // Retry any unprocessed items
+        let retries = 0;
+        while (
+          batchResponse.UnprocessedItems &&
+          Object.keys(batchResponse.UnprocessedItems).length > 0 &&
+          retries < 5
+        ) {
+          await new Promise(r => setTimeout(r, 200 * (retries + 1)));
+          batchResponse = await this.docClient!.send(new DocBatchWriteCommand({ RequestItems: batchResponse.UnprocessedItems }));
+          retries++;
+        }
       }
 
       // 4. Update the SUMMARY record

@@ -43,6 +43,7 @@ import {
   Check
 } from 'lucide-react';
 import { Subject, Question, Stats, ViewMode, DrillSettings } from './types';
+import { Spinner } from './components/Spinner';
 import { LearningEngine } from './lib/LearningEngine';
 import { sortQuestions, updateShuffleHistory, SortingConfig } from './services/sortingService';
 import {
@@ -239,6 +240,7 @@ export default function App() {
     // console.log(`📍 STATE DEBUG: questions changed, first question ID: ${questions[0]?.id}, length: ${questions.length}`);
   }, [questions]);
   const [stats, setStats] = useState<Stats | null>(null);
+const [isStatsLoading, setIsStatsLoading] = useState(false);
 
   // Sync actual success rates into subjects state when stats change
   useEffect(() => {
@@ -392,7 +394,7 @@ export default function App() {
   });
   const [selectedLicenseSubtype, setSelectedLicenseSubtype] = useState<string>(() => {
     const stored = localStorage.getItem('selectedLicenseSubtype');
-    if (stored && ['PPL(A)', 'LAPL(A)', 'PPL(H)', 'LAPL(H)', 'SPL', 'LAPL(S)', 'BPL', 'LAPL(B)'].includes(stored)) return stored;
+    if (stored && ['ALL', 'PPL(A)', 'LAPL(A)', 'PPL(H)', 'LAPL(H)', 'SPL', 'LAPL(S)', 'BPL', 'LAPL(B)'].includes(stored)) return stored;
     // Fallback: if we only had 'PPL' or 'SPL' or nothing
     const broad = localStorage.getItem('selectedLicense');
     return broad === 'SPL' ? 'SPL' : 'PPL(A)';
@@ -697,7 +699,10 @@ export default function App() {
     return 'Nepodařilo se vygenerovat vysvětlení. Zkuste to znovu.';
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+  const uid = user?.id || 'guest';
+  await fullyResetUserProgress(uid, isGuestMode);
+
     // Clear old system
     setToken(null);
     localStorage.removeItem('token');
@@ -716,20 +721,20 @@ export default function App() {
   };
 
   // Guest mode functions
-  const switchToGuestMode = (fromLanding = false) => {
-    setUserMode('guest');
-    setToken(null);
-    localStorage.removeItem('token');
-    const uid = user?.id || 'guest';
-    localStorage.removeItem(`${uid}:user_progress`);
-    localStorage.removeItem(`${uid}:user_stats`);
-    setUser(null);
-    if (fromLanding) {
-      localStorage.setItem('landingPageShown', 'true');
-      setShowLandingPage(false);
-      setView('dashboard');
-    }
-  };
+  const switchToGuestMode = async (fromLanding = false) => {
+  const uid = user?.id || 'guest';
+  await fullyResetUserProgress(uid, true);
+
+  setUserMode('guest');
+  setToken(null);
+  localStorage.removeItem('token');
+  setUser(null);
+  if (fromLanding) {
+    localStorage.setItem('landingPageShown', 'true');
+    setShowLandingPage(false);
+    setView('dashboard');
+  }
+};
 
   const handleLandingGuestMode = () => switchToGuestMode(true);
 
@@ -1312,6 +1317,15 @@ export default function App() {
           const compositeId = isNumericId ? `${subjectId}_${rawId}` : String(rawId);
           const answer = answers[compositeId];
 
+          // Helper function to extract value from DynamoDB attribute format
+          const extractDynamoValue = (attr: any) => {
+            if (!attr) return null;
+            if (attr.S) return attr.S;
+            if (attr.NULL) return null;
+            if (attr.N) return Number(attr.N);
+            return attr;
+          };
+
           return {
             id: compositeId,
             subject_id: subjectId,
@@ -1332,7 +1346,7 @@ export default function App() {
             is_ai: (q.source === 'ai' || Number(q.is_ai) === 1) ? 1 : 0,
             source: q.source || 'user',
             difficulty: q.difficulty || 1,
-            image: q.image || null,
+            image: extractDynamoValue(q.image),
             correct_count: answer?.attempts !== undefined ? (answer.isCorrect ? 1 : 0) : null,
             incorrect_count: answer?.attempts !== undefined ? (answer.isCorrect ? 0 : 1) : null,
             is_flagged: false,
@@ -1376,7 +1390,7 @@ export default function App() {
         is_ai: 1,
         source: 'ai',
         difficulty: q.difficulty || 1,
-        image: null,
+        image: q.image || null,
         correct_count: null,
         incorrect_count: null,
         is_flagged: false,
@@ -1414,6 +1428,7 @@ export default function App() {
   const syncUserData = async () => {
     if (isSyncingRef.current) return;
     isSyncingRef.current = true;
+    setIsStatsLoading(true);
     try {
       if (isGuestMode) {
         const guestStats = loadGuestStats();
@@ -1595,6 +1610,7 @@ export default function App() {
       console.error('❌ syncUserData failed:', err);
     } finally {
       isSyncingRef.current = false;
+      setIsStatsLoading(false);
     }
   };
 
@@ -1830,10 +1846,16 @@ export default function App() {
       }
 
       // Apply source filters
-      const filtered = allQuestions.filter(q => {
+      const sourceFiltered = allQuestions.filter(q => {
         const isAi = Number(q.is_ai) === 1 || q.source === 'ai';
         if (isAi) return drillSettings.sourceFilters.includes('ai');
         return drillSettings.sourceFilters.includes('user');
+      });
+
+      // Apply license filter - show only questions applicable to selected license
+      const filtered = sourceFiltered.filter(q => {
+        const appliesTo = q.metadata?.applies_to || ['PPL', 'SPL'];
+        return appliesTo.includes(selectedLicense);
       });
 
       if (filtered.length === 0) {
@@ -3326,35 +3348,122 @@ V nastavení lze změnit defaultni model.`);
     }
   };
 
-  const handleResetProgress = async () => {
+  const fullyResetUserProgress = async (userId: string, isGuestMode: boolean) => {
+  // Smaž postup v databázi, pokud je uživatel přihlášen
+  if (!isGuestMode && userId && dynamoDBService?.deleteAllUserProgress) {
+    try {
+      const result = await dynamoDBService.deleteAllUserProgress(String(userId));
+      if (!result.success) {
+        console.error('[Reset] Failed:', result.error);
+        alert('Nepodařilo se smazat postup v databázi: ' + result.error);
+      }
+    } catch (err) {
+      console.error('[Reset] Error při mazání v DB:', err);
+    }
+  }
+  // Smaž všechny relevantní položky v localStorage
+  const uid = userId || 'guest';
+  localStorage.removeItem(`${uid}:user_progress`);
+  localStorage.removeItem(`${uid}:user_stats`);
+  localStorage.removeItem(`${uid}:answers`);
+  localStorage.removeItem(`${uid}:guest_stats`);
+  localStorage.removeItem(`${uid}:session_start`);
+  localStorage.removeItem('question_flags');
+  // Další případné položky k mazání lze doplnit zde
+};
+
+const handleResetProgress = async () => {
     if (!confirm('Opravdu chcete smazat veškerý váš postup a historii testů? Tato akce je nevratná.')) return;
 
     try {
       const uid = user?.id || 'guest';
-      localStorage.removeItem(`${uid}:user_progress`);
-      localStorage.removeItem(`${uid}:user_stats`);
-      localStorage.removeItem(`${uid}:answers`);
-      localStorage.removeItem(`${uid}:guest_stats`);
-      localStorage.removeItem(`${uid}:session_start`);
+      await fullyResetUserProgress(uid, isGuestMode);
+      setStats({
+        totalQuestions: 0,
+        userQuestions: 0,
+        aiQuestions: 0,
+        practicedQuestions: 0,
+        overallSuccess: 0,
+        subjectStats: []
+      });
+      alert('Váš postup byl úspěšně smazán.');
+      window.location.reload();
+    } catch (err) {
+      console.error('[Reset] Error:', err);
+      alert('Nepodařilo se smazat postup.');
+    }
+  };
+  
+  // Reset progress for specific subject/category
+  const handleResetSubjectProgress = async (subjectId: number, subjectName: string) => {
+    if (!window.confirm(`Opravdu chcete smazat postup pro předmět "${subjectName}"? Tato akce je nevratná.`)) return;
 
-      // Delete progress from DynamoDB for authenticated users
+    try {
+      const uid = user?.id || 'guest';
+      
+      // Delete from DynamoDB first for authenticated users
       if (!isGuestMode && user?.id) {
-        const result = await dynamoDBService.deleteAllUserProgress(String(user.id));
+        console.log(`[Reset Subject] Deleting subject ${subjectId} from DynamoDB...`);
+        const result = await dynamoDBService.deleteSubjectProgress(String(user.id), subjectId);
         if (!result.success) {
+          console.error('[Reset Subject] Failed to delete from DynamoDB:', result.error);
           alert('Nepodařilo se smazat postup v databázi: ' + result.error);
           return;
         }
+        console.log('[Reset Subject] DynamoDB deletion successful');
       }
+      
+      const answersKey = `${uid}:answers`;
+      const existingAnswers = JSON.parse(localStorage.getItem(answersKey) || '{}');
+      
+      // Filter out answers for this subject
+      const filteredAnswers = Object.entries(existingAnswers).reduce((acc, [key, value]: [string, any]) => {
+        if (value.subjectId !== subjectId) {
+          acc[key] = value;
+        }
+        return acc;
+      }, {} as Record<string, any>);
+      
+      localStorage.setItem(answersKey, JSON.stringify(filteredAnswers));
+      console.log('[Reset Subject] localStorage updated');
 
-      // Reload fresh data from DB (correct question counts etc.)
-      await syncUserData();
+      // Recalculate stats locally from filtered answers - do NOT call syncUserData()
+      // because getUserProgress uses eventually consistent reads and may return
+      // the just-deleted items, overwriting the freshly cleaned localStorage.
+      const practicedCount = Object.keys(filteredAnswers).length;
+      const correctCount = Object.values(filteredAnswers).filter((a: any) => a.isCorrect).length;
+      const successRate = practicedCount > 0 ? correctCount / practicedCount : 0;
 
-      alert('Váš postup byl úspěšně smazán.');
+      const perSubject: Record<number, { correct: number; total: number }> = {};
+      for (const a of Object.values(filteredAnswers) as any[]) {
+        const sid = Number(a.subjectId);
+        if (!sid) continue;
+        if (!perSubject[sid]) perSubject[sid] = { correct: 0, total: 0 };
+        perSubject[sid].total++;
+        if (a.isCorrect) perSubject[sid].correct++;
+      }
+      const newSubjectStats: { [id: number]: { correctAnswers: number; totalAnswered: number } } = {};
+      subjects.forEach(sub => {
+        newSubjectStats[sub.id] = {
+          correctAnswers: perSubject[sub.id] ? perSubject[sub.id].correct : 0,
+          totalAnswered: perSubject[sub.id] ? perSubject[sub.id].total : 0
+        };
+      });
+
+      setStats(prev => prev ? {
+        ...prev,
+        practicedQuestions: practicedCount,
+        overallSuccess: successRate,
+        subjectStats: newSubjectStats
+      } : prev);
+
+      alert(`Postup pro předmět "${subjectName}" byl smazán.`);
     } catch (err) {
       alert('Nepodařilo se smazat postup.');
     }
   };
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -4131,12 +4240,18 @@ V nastavení lze změnit defaultni model.`);
                                setSelectedLicenseSubtype(v);
                                localStorage.setItem('selectedLicenseSubtype', v);
                                // Update the broad category for global filtering/syllabus
-                               const broad = ['SPL', 'LAPL(S)', 'BPL', 'LAPL(B)'].includes(v) ? 'SPL' : 'PPL';
-                               setSelectedLicense(broad);
-                               localStorage.setItem('selectedLicense', broad);
+                               if (v === 'ALL') {
+                                 setSelectedLicense('BOTH');
+                                 localStorage.setItem('selectedLicense', 'BOTH');
+                               } else {
+                                 const broad = ['SPL', 'LAPL(S)', 'BPL', 'LAPL(B)'].includes(v) ? 'SPL' : 'PPL';
+                                 setSelectedLicense(broad);
+                                 localStorage.setItem('selectedLicense', broad);
+                               }
                              }}
                              className="appearance-none bg-transparent border-none outline-none focus:ring-0 cursor-pointer text-black dark:text-white font-bold text-xs sm:text-sm md:text-base leading-tight pr-5 pl-1 py-0.5"
                            >
+                             <option value="ALL">Všechny (All)</option>
                              <optgroup label="Letadla (A)" className="bg-white dark:bg-gray-900 text-black dark:text-white">
                                <option value="PPL(A)">PPL(A)</option>
                                <option value="LAPL(A)">LAPL(A)</option>
@@ -4179,6 +4294,7 @@ V nastavení lze změnit defaultni model.`);
                         <div className="flex items-center flex-1">Předmět</div>
                         <div className="flex justify-end items-center gap-4 sm:gap-8">
                           <div className="w-24 sm:w-32 text-center text-[9px] sm:text-[10px]">UŽIV./EASA</div>
+                          <div className="w-16 sm:w-20 text-right">Postup</div>
                           <div className="w-16 sm:w-20 text-right">Úspěšnost</div>
                         </div>
                         <div className="hidden sm:flex justify-end w-8 flex-shrink-0"></div>
@@ -4225,6 +4341,17 @@ V nastavení lze změnit defaultni model.`);
                                   })()}
                                 </span>
                               )}
+                            </div>
+                            <div className="w-16 sm:w-20 font-mono text-xs flex justify-end opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">
+                              {(() => {
+                                const subStat = stats?.subjectStats?.[s.id];
+                                const answered = subStat?.totalAnswered ?? 0;
+                                const total = s.question_count || 0;
+                                if (answered > 0 && total > 0) {
+                                  return `${answered}/${total}`;
+                                }
+                                return '-';
+                              })()}
                             </div>
                             <div className="w-16 sm:w-20 font-mono text-sm flex justify-end group-hover:text-gray-900 dark:group-hover:text-gray-100">
                               {(() => {
@@ -4635,7 +4762,7 @@ V nastavení lze změnit defaultni model.`);
                           <label className="col-header">AI Provider</label>
                           <div className="flex gap-2 flex-wrap">
                             {(['gemini', 'claude', 'deepseek'] as const).map(p => (
-                              (ModelButton as any)({ key: p, provider: p, active: aiProvider === p, onClick: () => setAiProvider(p) })
+                              <ModelButton key={p} provider={p} active={aiProvider === p} onClick={() => setAiProvider(p)} />
                             ))}
                           </div>
                         </div>
@@ -4776,14 +4903,21 @@ V nastavení lze změnit defaultni model.`);
                       </button>
 
                       <button
-                        onClick={() => {
-                          if (window.confirm('Opravdu chcete smazat historii všech pokusů? Tuto akci nelze vrátit.')) {
-                            localStorage.removeItem(userKey('answers'));
+                        onClick={async () => {
+                          if (window.confirm('Opravdu chcete smazat historii všech pokusů? Toto smaže všechny vaše odpovědi a úspěšnost.')) {
+                            const uid = user?.id || 'guest';
+
                             if (!isGuestMode && user?.id) {
-                              dynamoDBService.deleteAllUserProgress(String(user.id)).catch(() => { });
+                              await dynamoDBService.deleteAllUserProgress(String(user.id));
                             }
+
+                            // Remove all answers
+                            localStorage.removeItem(userKey('answers'));
+                            localStorage.removeItem(`${uid}:user_stats`);
+                            localStorage.removeItem(`${uid}:guest_stats`);
+
                             alert('Historie pokusů byla vymazána.');
-                            window.location.reload(); // Refresh to update success rates on dashboard
+                            window.location.reload();
                           }
                         }}
                         className="flex items-center justify-between p-4 border border-red-500/20 hover:bg-red-500/[0.03] active:bg-red-500/10 rounded-2xl transition-all group relative overflow-hidden active:scale-95"
@@ -5116,7 +5250,7 @@ V nastavení lze změnit defaultni model.`);
 
                       <div className="p-4 md:p-8 border border-[var(--line)] rounded-3xl space-y-6 md:space-y-8 bg-[var(--bg)]/50">
                         {questions[currentQuestionIndex].image && (
-                          <div className="w-full max-h-64 overflow-hidden rounded-xl border border-[var(--line)] flex items-center justify-center bg-white/5">
+                          <div className="w-full p-4 rounded-xl border border-[var(--line)] flex items-center justify-center bg-white/5">
                             <img
                               src={`https://aeropilotexam.s3.eu-central-1.amazonaws.com/questions/${questions[currentQuestionIndex].image}`}
                               alt="Question illustration"
@@ -5589,6 +5723,25 @@ V nastavení lze změnit defaultni model.`);
                                   )}
 
                                   <div className="space-y-1">
+                                    {/* License-specific Progress for Mixed Questions */}
+                                    {(selectedLicense === 'BOTH' || (selectedLicense === 'PPL' && (stats as any)?.spl?.total > 0) || (selectedLicense === 'SPL' && (stats as any)?.ppl?.total > 0)) && (
+                                      <div className="mb-3 pb-3 border-b border-[var(--line)]/50">
+                                        <LicenseProgress
+                                          questions={questions}
+                                          answers={JSON.parse(localStorage.getItem(userKey('answers')) || '{}')}
+                                          subjectId={selectedSubject.id}
+                                          showDetails={isProgressExpanded}
+                                        />
+                                        {/* Per-subject reset button */}
+                                        <button
+                                          onClick={() => handleResetSubjectProgress(selectedSubject.id, selectedSubject.name)}
+                                          className="mt-2 text-[10px] text-red-500 hover:text-red-400 underline"
+                                        >
+                                          Resetovat postup pro tento předmět
+                                        </button>
+                                      </div>
+                                    )}
+                                    
                                     {/* Success Rate Bar */}
                                     <div className="h-2.5 bg-[var(--progress-bg)] rounded-sm overflow-hidden" title={`Úspěšnost: ${filteredCorrect} správně z ${filteredAnswered} zodpovězených`}>
                                       <motion.div
@@ -5687,7 +5840,7 @@ V nastavení lze změnit defaultni model.`);
                       <>
                         <div className="lg:col-span-3 p-8 border border-[var(--line)] rounded-3xl space-y-8">
                           {questions[currentQuestionIndex].image && (
-                            <div className="w-full max-h-64 overflow-hidden rounded-xl border border-[var(--line)] flex items-center justify-center bg-white/5">
+                            <div className="w-full rounded-xl border border-[var(--line)] flex items-center justify-center bg-white/5 p-4">
                               <img
                                 src={`https://aeropilotexam.s3.eu-central-1.amazonaws.com/questions/${questions[currentQuestionIndex].image}`}
                                 alt="Question illustration"
@@ -6706,6 +6859,12 @@ V nastavení lze změnit defaultni model.`);
               )}
 
               {view === 'stats' && (
+  !isGuestMode && isStatsLoading ? (
+    <div className="flex justify-center items-center h-64">
+      <Spinner className="w-16 h-16" />
+    </div>
+  ) : (
+
                 <motion.div
                   key="stats"
                   initial={{ opacity: 0, x: 20 }}
@@ -6846,7 +7005,8 @@ V nastavení lze změnit defaultni model.`);
                     </section>
                   </div>
                 </motion.div>
-              )}
+              )
+            )}
             </AnimatePresence>
           </main>
 

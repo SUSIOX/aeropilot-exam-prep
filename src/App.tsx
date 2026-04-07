@@ -2532,7 +2532,7 @@ V nastavení lze změnit defaultni model.`);
 
       // Check DynamoDB cache first
       try {
-        const cacheKey = `${q.subject_id}_${q.id}`;
+        const cacheKey = String(q.id);
         console.log(`[Cache] Checking DynamoDB for key: ${cacheKey}, model: ${aiModel}, provider: ${aiProvider}`);
         const cached = await dynamoDBService.getCachedExplanation(cacheKey, aiModel);
         console.log(`[Cache] DynamoDB result:`, cached);
@@ -2549,7 +2549,7 @@ V nastavení lze změnit defaultni model.`);
       }
 
       // Check localStorage as fallback
-      const localStorageKey = `ai_explanation_${q.subject_id}_${q.id}_${aiProvider}_${aiModel}`;
+      const localStorageKey = `ai_explanation_${q.id}_${aiProvider}_${aiModel}`;
       console.log(`[Cache] Checking localStorage for key: ${localStorageKey}`);
       const localStorageData = localStorage.getItem(localStorageKey);
       if (localStorageData) {
@@ -2563,7 +2563,7 @@ V nastavení lze změnit defaultni model.`);
             setShowExplanation(true);
             setIsGeneratingAiExplanation(false);
             // Backfill to DynamoDB if found only in localStorage
-            const cacheKey = `${q.subject_id}_${q.id}`;
+            const cacheKey = String(q.id);
             dynamoDBService.saveExplanationWithObjective(
               cacheKey,
               parsed.explanation,
@@ -2629,7 +2629,7 @@ V nastavení lze změnit defaultni model.`);
 
       // Save AI explanation to DynamoDB
       try {
-        const cacheKey = `${q.subject_id}_${q.id}`;
+        const cacheKey = String(q.id);
         await dynamoDBService.saveExplanationWithObjective(
           cacheKey,
           result.explanation,
@@ -2649,7 +2649,7 @@ V nastavení lze změnit defaultni model.`);
 
       // Always save to localStorage as fallback
       try {
-        const localStorageKey = `ai_explanation_${q.subject_id}_${q.id}_${aiProvider}_${aiModel}`;
+        const localStorageKey = `ai_explanation_${q.id}_${aiProvider}_${aiModel}`;
         const explanationData = {
           questionId: q.id,
           explanation: result.explanation,
@@ -2741,7 +2741,7 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
       setDetailedExplanation(null);
 
       // Save to cache
-      const cacheKey = `${q.subject_id}_${q.id}`;
+      const cacheKey = String(q.id);
       dynamoDBService.saveExplanationWithObjective(
         cacheKey,
         explanation.explanation,
@@ -2854,7 +2854,7 @@ V nastavení lze změnit defaultni model.`);
       // Save detailed explanation to DynamoDB + localStorage
       try {
         console.log('[Detailed] Starting save to DB...');
-        const explanationKey = `${q.subject_id}_${q.id}`;
+        const explanationKey = String(q.id);
         console.log('[Detailed] Explanation key:', explanationKey);
         console.log('[Detailed] Result to save:', detailedExplanationResult?.substring(0, 100) + '...');
 

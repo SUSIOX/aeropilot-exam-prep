@@ -139,7 +139,7 @@ export class DynamoDBService {
       const result = await this.docClient.send(command);
       const item = result.Item;
 
-      if (item && item.ai_explanation && item.ai_explanation_model === model) {
+      if (item && item.ai_explanation) { // vrátit vysvětlení bez ohledu na model
         return {
           success: true,
           data: {

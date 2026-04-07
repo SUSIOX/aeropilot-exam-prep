@@ -269,6 +269,7 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
   const [showRawProgressStats, setShowRawProgressStats] = useState(false);
   const [isProgressExpanded, setIsProgressExpanded] = useState(false);
   const [aiExplanation, setAiExplanation] = useState<string | null>(null);
+  const [aiExplanationGeneratedBy, setAiExplanationGeneratedBy] = useState<{ provider: string; model: string } | null>(null);
   const [aiDetectedObjective, setAiDetectedObjective] = useState<string | null>(null);
   const [detailedExplanation, setDetailedExplanation] = useState<string | null>(null);
   const [isGeneratingDetailedExplanation, setIsGeneratingDetailedExplanation] = useState(false);
@@ -1330,7 +1331,8 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
         const questions: Question[] = result.data.map((q: any) => {
           const rawId = q.originalId || q.questionId;
           const isNumericId = !isNaN(Number(rawId)) && !String(rawId).startsWith('ai_');
-          const compositeId = isNumericId ? `${subjectId}_${rawId}` : String(rawId);
+          // DŮLEŽITÉ: compositeId = DynamoDB questionId klíč (subjectN_qID pro PDF otázky, ai_hash pro AI)
+          const compositeId = isNumericId ? `subject${subjectId}_q${rawId}` : String(rawId);
           const answer = answers[compositeId];
 
           // Helper function to extract value from DynamoDB attribute format
@@ -1344,6 +1346,7 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
 
           return {
             id: compositeId,
+            questionId: compositeId,
             subject_id: subjectId,
             text: q.question,
             text_cz: q.question_cz || undefined,
@@ -1387,7 +1390,8 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
       if (!response.ok) throw new Error('Failed to load questions');
       const jsonQuestions = await response.json();
       const questions: Question[] = jsonQuestions.map((q: any) => ({
-        id: typeof q.id === 'number' ? `${subjectId}_${q.id}` : String(q.id),
+        id: typeof q.id === 'number' ? `subject${subjectId}_q${q.id}` : String(q.id),
+        questionId: typeof q.id === 'number' ? `subject${subjectId}_q${q.id}` : String(q.id),
         subject_id: subjectId,
         text: q.question,
         text_cz: q.question_cz || undefined,
@@ -2422,6 +2426,7 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
 
       setShowExplanation(false);
       setAiExplanation(null);
+      setAiExplanationGeneratedBy(null);
       setAiDetectedObjective(null);
       setDetailedExplanation(null);
       language.resetTranslation(); // Reset translation when changing question
@@ -2540,6 +2545,7 @@ V nastavení lze změnit defaultni model.`);
           console.log(`[Cache] Found in DynamoDB, using cached explanation`);
           setAiExplanation(cached.data.explanation);
           setDetailedExplanation(cached.data.detailedExplanation || null);
+          setAiExplanationGeneratedBy({ provider: cached.data.provider || 'unknown', model: cached.data.model || 'unknown' });
           setShowExplanation(true);
           setIsGeneratingAiExplanation(false);
           return;
@@ -2560,18 +2566,21 @@ V nastavení lze změnit defaultni model.`);
             console.log(`[Cache] Found in localStorage, using cached explanation`);
             setAiExplanation(parsed.explanation);
             setDetailedExplanation(parsed.detailedExplanation || null);
+            setAiExplanationGeneratedBy({ provider: parsed.provider || aiProvider, model: parsed.model || aiModel });
             setShowExplanation(true);
             setIsGeneratingAiExplanation(false);
-            // Backfill to DynamoDB if found only in localStorage
-            const cacheKey = String(q.id);
-            dynamoDBService.saveExplanationWithObjective(
-              cacheKey,
-              parsed.explanation,
-              parsed.detailedExplanation || null,
-              null, // No objective in localStorage data
-              aiProvider as 'gemini' | 'claude',
-              aiModel
-            ).catch((err) => { console.error('[Explanation] ❌ DynamoDB backfill FAILED:', err); });
+            // Backfill to DynamoDB (only authenticated users)
+            if (!isGuestMode && user?.id && isCredentialsReady) {
+              const cacheKey = String(q.id);
+              dynamoDBService.saveExplanationWithObjective(
+                cacheKey,
+                parsed.explanation,
+                parsed.detailedExplanation || null,
+                null,
+                (parsed.provider || aiProvider) as 'gemini' | 'claude',
+                parsed.model || aiModel
+              ).catch((err) => { console.error('[Explanation] ❌ DynamoDB backfill FAILED:', err); });
+            }
             return;
           }
         } catch (error) {
@@ -2581,15 +2590,14 @@ V nastavení lze změnit defaultni model.`);
 
       // Check question data cache
       console.log(`[Cache] Checking question data cache. q.ai_explanation: ${q.ai_explanation ? 'exists' : 'null'}, q.ai_explanation_provider: ${q.ai_explanation_provider}`);
-      if (q.ai_explanation && q.ai_explanation_provider === aiProvider) {
-        console.log(`[Cache] Found in question data cache, provider matches`);
+      if (q.ai_explanation) {
+        console.log(`[Cache] Found in question data cache, provider: ${q.ai_explanation_provider}`);
         setAiExplanation(q.ai_explanation);
         setDetailedExplanation(q.ai_detailed_explanation || null);
+        setAiExplanationGeneratedBy({ provider: q.ai_explanation_provider || 'unknown', model: q.ai_explanation_model || 'unknown' });
         setShowExplanation(true);
         setIsGeneratingAiExplanation(false);
         return;
-      } else if (q.ai_explanation) {
-        console.log(`[Cache] Found explanation but provider mismatch. Stored: ${q.ai_explanation_provider}, Current: ${aiProvider}`);
       }
 
       console.log(`[Cache] No cached explanation found, calling AI API for provider: ${aiProvider}`);
@@ -2625,6 +2633,7 @@ V nastavení lze změnit defaultni model.`);
       }
 
       setAiExplanation(result.explanation);
+      setAiExplanationGeneratedBy({ provider: aiProvider, model: aiModel });
       setShowExplanation(true);
 
       // Save AI explanation to DynamoDB (only for authenticated users — guests nemají UpdateItem IAM)
@@ -5647,10 +5656,15 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                       <div className="flex items-center gap-2 text-indigo-400">
                                         <Terminal size={14} />
                                         <span className="text-[10px] font-bold uppercase tracking-widest">AI_ENGINE_OUTPUT_LOG</span>
-                                        <span className="flex items-center gap-1 opacity-70 ml-2">
-                                          <ProviderIcon provider={aiProvider} size={11} />
-                                          <span className="text-[9px] font-bold" style={{ color: aiProvider === 'gemini' ? '#4285F4' : aiProvider === 'claude' ? '#cc785c' : '#4D6BFE' }}>{aiProvider === 'gemini' ? 'Gemini' : aiProvider === 'claude' ? 'Claude' : 'DeepSeek'}</span>
-                                        </span>
+                                        {aiExplanationGeneratedBy && (
+                                          <span className="flex items-center gap-1 opacity-70 ml-2" title={`Vygenerováno: ${aiExplanationGeneratedBy.model}`}>
+                                            <ProviderIcon provider={aiExplanationGeneratedBy.provider} size={11} />
+                                            <span className="text-[9px] font-bold" style={{ color: aiExplanationGeneratedBy.provider === 'gemini' ? '#4285F4' : aiExplanationGeneratedBy.provider === 'claude' ? '#cc785c' : '#4D6BFE' }}>
+                                              {aiExplanationGeneratedBy.provider === 'gemini' ? 'Gemini' : aiExplanationGeneratedBy.provider === 'claude' ? 'Claude' : 'DeepSeek'}
+                                            </span>
+                                            <span className="text-[8px] opacity-50 font-mono">{aiExplanationGeneratedBy.model}</span>
+                                          </span>
+                                        )}
                                       </div>
                                       <div
                                         className="text-xs leading-relaxed opacity-90 max-w-none border-l border-indigo-500/30 pl-4 prose prose-sm prose-invert"

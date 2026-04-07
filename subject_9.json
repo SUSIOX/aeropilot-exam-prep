@@ -549,16 +549,12 @@
     "id": 43,
     "question": "Jaké jsou vlastnosti mapy s Mercatorovým zobrazením?",
     "answers": [
-      "měřítko se zvětšuje se zeměpisnou šířkou, velké kružnice jsou zobrazeny jako křivky, loxodromy",
-      "jsou zobrazeny jako přímky",
-      "měřítko se zvětšuje se zeměpisnou šířkou, velké kružnice jsou zobrazeny jako přímky,",
-      "loxodromy jsou zobrazeny jako křivky",
-      "měřítko je konstantní, velké kružnice jsou zobrazeny jako křivky, loxodromy jsou zobrazeny jako",
-      "přímky",
-      "měřítko je konstantní, velké kružnice jsou zobrazeny jako přímky, loxodromy jsou zobrazeny",
-      "jako křivky"
+      "měřítko se zvětšuje se zeměpisnou šířkou, velké kružnice jsou zobrazeny jako křivky, loxodromy jsou zobrazeny jako přímky",
+      "měřítko se zvětšuje se zeměpisnou šířkou, velké kružnice jsou zobrazeny jako přímky, loxodromy jsou zobrazeny jako křivky",
+      "měřítko je konstantní, velké kružnice jsou zobrazeny jako křivky, loxodromy jsou zobrazeny jako přímky",
+      "měřítko je konstantní, velké kružnice jsou zobrazeny jako přímky, loxodromy jsou zobrazeny jako křivky"
     ],
-    "correct": -1,
+    "correct": 0,
     "image": null,
     "explanation": ""
   },
@@ -967,7 +963,7 @@
   },
   {
     "id": 100,
-    "question": "NM. Traťová rychlost (GS) je:",
+    "question": "Letadlo urazilo vzdálenost 250 NM za 2 hodiny. Traťová rychlost (GS) je:",
     "answers": [
       "120 kt",
       "125 kt",
@@ -976,7 +972,7 @@
     ],
     "correct": 1,
     "image": null,
-    "explanation": ""
+    "explanation": "Ground Speed = Distance / Time = 250 NM / 2 hodiny = 125 kt"
   },
   {
     "id": 75,

@@ -1284,16 +1284,12 @@
     "id": 100,
     "question": "Jaký je rozdíl mezi vývrtkou a spirálou?",
     "answers": [
-      "vývrtka: odtržení proudu na vnitřním křídle, rychlost konstantní – spirála: není odtržení proudu,",
-      "rychlost rychle narůstá",
-      "vývrtka: odtržení proudu na vnějším křídle, rychlost konstantní – spirála: odtržení není, rychlost",
-      "rychle narůstá",
-      "vývrtka: odtržení proudu na vnitřním křídle, rychlost rychle narůstá – spirála: odtržení není,",
-      "rychlost konstantní",
-      "vývrtka: odtržení proudu na vnějším křídle, rychlost rychle narůstá – spirála: odtržení není,",
-      "rychlost konstantní"
+      "vývrtka: odtržení proudu na vnitřním křídle, rychlost konstantní – spirála: není odtržení proudu, rychlost rychle narůstá",
+      "vývrtka: odtržení proudu na vnějším křídle, rychlost konstantní – spirála: odtržení není, rychlost rychle narůstá",
+      "vývrtka: odtržení proudu na vnitřním křídle, rychlost rychle narůstá – spirála: odtržení není, rychlost konstantní",
+      "vývrtka: odtržení proudu na vnějším křídle, rychlost rychle narůstá – spirála: odtržení není, rychlost konstantní"
     ],
-    "correct": -1,
+    "correct": 0,
     "image": null,
     "explanation": ""
   }

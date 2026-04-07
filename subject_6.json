@@ -380,16 +380,12 @@
 		"id": 30,
 		"question": "Letadlo ihned po vzletu vlétne nečekaně do mikroburstu. Jak se lze vyhnout nechtěnému klesání?",
 		"answers": [
-			"nastavit maximální výkon, zachovat stávající konfiguraci, udržet optimální rychlost pro",
-			"maximální stoupavost",
-			"nastavit maximální výkon, zasunout klapky a podvozek, zvětšit podélný sklon až do dosažení",
-			"optimální stoupací rychlosti",
-			"nastavit maximální výkon, zachovat stávající konfiguraci, zvýšit rychlost, aby letadlo opustilo co",
-			"nejdříve oblast mikroburstu",
-			"nastavit maximální výkon, zasunout podvozek a klapky, zvýšit rychlost, levou nebo pravou",
-			"zatáčkou uniknout z oblasti mikroburstu"
+			"nastavit maximální výkon, zachovat stávající konfiguraci, udržet optimální rychlost pro maximální stoupavost",
+			"nastavit maximální výkon, zasunout klapky a podvozek, zvětšit podélný sklon až do dosažení optimální stoupací rychlosti",
+			"nastavit maximální výkon, zachovat stávající konfiguraci, zvýšit rychlost, aby letadlo opustilo co nejdříve oblast mikroburstu",
+			"nastavit maximální výkon, zasunout podvozek a klapky, zvýšit rychlost, levou nebo pravou zatáčkou uniknout z oblasti mikroburstu"
 		],
-		"correct": -1,
+		"correct": 0,
 		"image": null,
 		"explanation": ""
 	},

@@ -954,15 +954,12 @@
     "id": 74,
     "question": "Jaký je správný postup při ztrátě spojení ve vzdušném prostoru třídy D?",
     "answers": [
-      "je třeba pokračovat v letu podle posledního povolení a podle pravidel VFR nebo tento prostor co nejkratší",
-      "cestou opustit",
-      "je třeba pokračovat v letu nad 5000 ft a podle pravidel VFR nebo tento prostor co nejkratší cestou opustit",
-      "je třeba pokračovat v letu nad 5000 ft a podle pravidel VFR nebo tento prostor opustit po standardních",
-      "tratích",
-      "je třeba pokračovat v letu podle posledního povolení a podle pravidel VFR nebo tento prostor opustit po",
-      "standardních tratích"
+      "pokračovat podle posledního povolení a podle pravidel VFR nebo opustit prostor nejkratší cestou",
+      "pokračovat nad 5000 ft a podle pravidel VFR nebo opustit prostor nejkratší cestou",
+      "pokračovat nad 5000 ft a podle pravidel VFR nebo opustit prostor po standardních tratích",
+      "pokračovat podle posledního povolení a podle pravidel VFR nebo opustit prostor po standardních tratích"
     ],
-    "correct": -1,
+    "correct": 0,
     "image": null,
     "explanation": ""
   },
@@ -1011,15 +1008,12 @@
     "id": 78,
     "question": "Tísňové zprávy obsahují:",
     "answers": [
-      "informace týkající se naléhavé potřeby náhradních dílů potřebných pro pokračování v letu, které musí být",
-      "objednány předem",
-      "informace týkající se letadla a jeho cestujících, které čelí vážné a bezprostřední hrozbě a vyžaduje",
-      "okamžitou pomoc",
-      "informace týkající se bezpečnosti letadla, plavidla, vozidla nebo osoby v dohledu",
-      "informace týkající se personálu na odbavovací ploše znamenajícího bezprostřední nebezpečí pro",
-      "přistávající letadla"
+      "informace o náhradních dílech potřebných pro pokračování v letu",
+      "informace o letadle a cestujících čelících vážné bezprostřední hrozbě vyžadující okamžitou pomoc",
+      "informace o bezpečnosti letadla, plavidla, vozidla nebo osoby v dohledu",
+      "informace o personálu na odbavovací ploše znamenající bezprostřední nebezpečí pro přistávající letadla"
     ],
-    "correct": -1,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -1040,16 +1034,12 @@
     "id": 80,
     "question": "Jaký druh informace má být obsažen v pilnostní zprávě?",
     "answers": [
-      "zamýšlená trať, důležité informace pro podporu, úmysl pilota, letiště odletu, cílové letiště, kurz a",
-      "nadmořská výška",
-      "povaha problému nebo pozorování, důležité informace pro podporu, letiště odletu, informace o poloze,",
-      "kurz a nadmořská výška",
-      "zamýšlená trať, informace důležité pro podporu, úmysl pilota, informace o poloze, letiště odletu, kurz a",
-      "nadmořská výška",
-      "povaha problému nebo pozorování, důležité informace pro podporu, úmysl pilota, informace o poloze,",
-      "kurz a nadmořská výška"
+      "zamýšlená trať, důležité informace pro podporu, úmysl pilota, letiště odletu, cílové letiště, kurz a nadmořská výška",
+      "povaha problému, důležité informace pro podporu, letiště odletu, informace o poloze, kurz a nadmořská výška",
+      "zamýšlená trať, informace pro podporu, úmysl pilota, informace o poloze, letiště odletu, kurz a nadmořská výška",
+      "povaha problému, důležité informace pro podporu, úmysl pilota, informace o poloze, kurz a nadmořská výška"
     ],
-    "correct": -1,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },

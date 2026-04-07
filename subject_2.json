@@ -121,9 +121,11 @@
     "question": "Co z následujícího NENÍ projevem hyperventilace?",
     "answers": [
       "brnění",
-      "křeče"
+      "křeče",
+      "závratě",
+      "bolest hlavy"
     ],
-    "correct": -1,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -417,16 +419,12 @@
     "id": 33,
     "question": "Jaký optický klam může být způsoben přiblížením na dráhu se sklonem do kopce?",
     "answers": [
-      "pilot má pocit, že přiblížení je příliš nízké, a proto se k dráze přibližuje nad správným úhlem",
-      "sestupu",
-      "pilot mí pocit, že přiblížení je příliš rychlé, a proto se k dráze přibližuje nižší než normální",
-      "přibližovací rychlostí",
-      "pilot má pocit, že přiblížení je příliš vysoké, a proto se k dráze přibližuje níže než pod správným",
-      "úhlem sestupu",
-      "pilot má pocit, že přiblížení je příliš pomalé, a proto se k dráze přibližuje vyšší než normální",
-      "přibližovací rychlostí"
+      "pilot má pocit, že přiblížení je příliš nízké, a proto se přibližuje nad správným úhlem sestupu",
+      "pilot má pocit, že přiblížení je příliš rychlé, a proto se přibližuje nižší než normální přibližovací rychlostí",
+      "pilot má pocit, že přiblížení je příliš vysoké, a proto se přibližuje níže než pod správným úhlem sestupu",
+      "pilot má pocit, že přiblížení je příliš pomalé, a proto se přibližuje vyšší než normální přibližovací rychlostí"
     ],
-    "correct": -1,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },

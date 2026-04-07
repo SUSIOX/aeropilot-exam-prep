@@ -931,15 +931,12 @@
     "id": 73,
     "question": "Který z uvedených přístrojů získává údaje měřením tlaku?",
     "answers": [
-      "tlakoměr oleje, tlakoměr paliva, ukazatel plnícího tlaku, výškoměr, variometr, rychloměr,",
-      "ukazatel tlaku sání",
-      "tlakoměr oleje, tlakoměr paliva, palivoměr, ukazatel plnícího tlaku, ukazatel rozdílu tlaku,",
-      "výškoměr",
-      "rychloměr, variometr, výškoměr, směrový setrvačník, zatáčkoměr, tlakoměr oleje, tlakoměr",
-      "paliva",
+      "tlakoměr oleje, tlakoměr paliva, ukazatel plnícího tlaku, výškoměr, variometr, rychloměr, ukazatel tlaku sání",
+      "tlakoměr oleje, tlakoměr paliva, palivoměr, ukazatel plnícího tlaku, ukazatel rozdílu tlaku, výškoměr",
+      "rychloměr, variometr, výškoměr, směrový setrvačník, zatáčkoměr, tlakoměr oleje, tlakoměr paliva",
       "rychloměr, variometr, výškoměr, magnetický kompas, tlakoměr oleje, tlakoměr paliva"
     ],
-    "correct": -1,
+    "correct": 0,
     "image": null,
     "explanation": ""
   },

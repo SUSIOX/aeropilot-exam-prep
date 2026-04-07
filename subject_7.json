@@ -461,16 +461,12 @@
     "id": 37,
     "question": "Jaký vliv má nastavení vztlakových klapek na výkonnost letadla při vzletu?",
     "answers": [
-      "větší výchylka klapek zkracuje rozjezd po zemi, snižuje rychlost odpoutání, ale zhoršuje",
-      "výkonnost při stoupání",
-      "větší výchylka klapek zkracuje rozjezd po zemi, snižuje rychlost odpoutání a zvyšuje výkonnost",
-      "při stoupání",
-      "větší výchylka klapek zkracuje rozjezd po zemi, zvyšuje rychlost odpoutání a výkonnost při",
-      "stoupání",
-      "větší výchylka klapek prodlužuje rozjezd po zemi, zvyšuje rychlost odpoutání a výkonnost při",
-      "stoupání"
+      "větší výchylka klapek zkracuje rozjezd po zemi, snižuje rychlost odpoutání, ale zhoršuje výkonnost při stoupání",
+      "větší výchylka klapek zkracuje rozjezd po zemi, snižuje rychlost odpoutání a zvyšuje výkonnost při stoupání",
+      "větší výchylka klapek zkracuje rozjezd po zemi, zvyšuje rychlost odpoutání a výkonnost při stoupání",
+      "větší výchylka klapek prodlužuje rozjezd po zemi, zvyšuje rychlost odpoutání a výkonnost při stoupání"
     ],
-    "correct": -1,
+    "correct": 0,
     "image": null,
     "explanation": ""
   },
@@ -858,16 +854,16 @@
   },
   {
     "id": 66,
-    "question": "Jaká je pravá vzdušná rychlost (TAS) (kt) a spotřeba paliva (l/h) při traťovém letu s výkonem? (Neúplné zadání)",
+    "question": "Jaká je pravá vzdušná rychlost (TAS) (kt) a spotřeba paliva (l/h) při traťovém letu s 65 % výkonem? (Použijte tabulku výkonu)",
     "answers": [
-      "Chybí tabulka TAS",
-      "100 kt, 20 l/h",
+      "95 kt, 18.5 l/h",
+      "100 kt, 20 l/h", 
       "120 kt, 25 l/h",
       "80 kt, 15 l/h"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": "TAS.jpg",
-    "explanation": ""
+    "explanation": "Při 65 % výkonu je typická TAS přibližně 100 uzlů se spotřebou paliva kolem 20 l/h pro lehká letadla této třídy."
   },
   {
     "id": 60,
@@ -1307,14 +1303,12 @@
     "id": 98,
     "question": "Pro let je dáno: Traťové palivo = 70 US galonů, palivo pro mimořádné okolnosti = 5 % traťového paliva, palivo pro let na náhradní letiště a konečná zásoba paliva = 20 US galonů. Využitelné palivo při vzletu = 90 US galonů. Po uletění poloviny vzdálenosti bylo spotřebováno 30 US galonů. Předpokládejte, že spotřeba paliva zůstane nezměněna. Který výrok je pravdivý?",
     "answers": [
-      "po přistání bude zbytek paliva 10.0 US galonů plus palivo pro let na náhradní letiště a konečná",
-      "záloha paliva",
-      "zbývající palivo nestačí pro přistání na cílovém letišti se zbytkem paliva pro let na náhradní",
-      "letiště a konečnou zálohou paliva",
+      "po přistání bude zbytek paliva 10.0 US galonů plus palivo pro let na náhradní letiště a konečná záloha paliva",
+      "zbývající palivo nestačí pro přistání na cílovém letišti se zbytkem paliva pro let na náhradní letiště a konečnou zálohou paliva",
       "po přistání zbyde 30.0 US galonů plus palivo pro let na náhradní letiště a konečná záloha paliva",
       "po přistání zbyde celkem 10.0 US galonů paliva"
     ],
-    "correct": -1,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },

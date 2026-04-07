@@ -939,15 +939,12 @@
     "id": 73,
     "question": "Jaký sled oblačnosti lze typicky pozorovat při přechodu teplé fronty?",
     "answers": [
-      "húlava s dešťovými přeháňkami a bouřky (Cb), nárazový vítr následováno kumulovitou",
-      "oblačností s izolovanými dešťovými přeháňkami",
-      "ve dne v pobřežních oblastech vítr od pobřeží a tvorbou kupovité oblačnosti, večer a v noci",
-      "rozpady oblačnosti",
-      "v létě slábnoucí vítr, rozpady oblačnosti a narůst teploty, v zimě tvorba vysokých vrstev mlhy",
-      "cirus, ztenčující se altostratus a altokumulus, snižující se základna oblačnosti s deštěm,",
-      "nimbostratus"
+      "húlava s dešťovými přeháňkami a bouřky, nárazový vítr následováno kumulovitou oblačností s izolovanými dešťovými přeháňkami",
+      "ve dne v pobřežních oblastech vítr od pobřeží a tvorbou kupovité oblačnosti, večer a v noci rozpady oblačnosti",
+      "v létě slábnoucí vítr, rozpady oblačnosti a nárůst teploty, v zimě tvorba vysokých vrstev mlhy",
+      "cirus, ztenčující se altostratus a altokumulus, snižující se základna oblačnosti s deštěm, nimbostratus"
     ],
-    "correct": -1,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -955,15 +952,12 @@
     "id": 74,
     "question": "Jakou oblačnost a jaké počasí lze typicky pozorovat při přechodu studené fronty?",
     "answers": [
-      "silně vyvinuté kumuly (Cb) s přeháňkami a bouřkami, nárazový vítr a následně kumulovitá",
-      "oblačnost s izolovanými dešťovými přeháňkami",
-      "v pobřežních oblastech ve dne vítr od pobřeží a tvorba kumulovité oblačnosti, večer a v noci",
-      "rozpady oblačnosti",
+      "silně vyvinuté kumuly (Cb) s přeháňkami a bouřkami, nárazový vítr a následně kumulovitá oblačnost s izolovanými dešťovými přeháňkami",
+      "v pobřežních oblastech ve dne vítr od pobřeží a tvorba kumulovité oblačnosti, večer a v noci rozpady oblačnosti",
       "v létě slábnoucí vítr, rozpady oblačnosti a nárůst teploty, v zimě tvorba vysokých vrstev mlhy",
-      "cirus, ztenčující se altostratus a altokumulus, snižující se základna oblačnosti s deštěm,",
-      "nimbostratus"
+      "cirus, ztenčující se altostratus a altokumulus, snižující se základna oblačnosti s deštěm, nimbostratus"
     ],
-    "correct": -1,
+    "correct": 0,
     "image": null,
     "explanation": ""
   },

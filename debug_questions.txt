@@ -1,0 +1,36 @@
+File: subject_5.json ID: 8
+Q: Vyřazena
+IMG: null
+---
+File: subject_7.json ID: 65
+Q: Jaká je maximální stoupavost letadla v tlakové výšce 6500 ft při teplotě vnějšího vzduchu
+IMG: null
+---
+File: subject_7.json ID: 66
+Q: Jaká je pravá vzdušná rychlost (TAS) (kt) a spotřeba paliva (l/h) při traťovém letu s výkonem
+IMG: TAS.jpg
+---
+File: subject_7.json ID: 97
+Q: Pro let je dáno: Traťové palivo = 70 US galonů, palivo pro mimořádné okolnosti = 5 % traťového paliva, palivo pro let na náhradní letiště a konečná záloha paliva = 20 US galonů, využitelné palivo při vzletu = 95 US galonů. Po uletění poloviny vzdálenosti bylo spotřebováno
+IMG: null
+---
+File: subject_7.json ID: 99
+Q: (Pro tuto otázku použijte přílohu PFP-061) Jaký symbol dle ICAO označuje skupinu neosvětlených překážek?
+IMG: PFP-061.jpg
+---
+File: subject_7.json ID: 100
+Q: (Pro tuto otázku použijte přílohu PFP-062) Jaký symbol dle ICAO označuje civilní letiště (ne mezinárodní) se zpevněnou vzletovou a přistávací drahou?
+IMG: PFP-062.jpg
+---
+File: subject_7.json ID: 101
+Q: (Pro tuto otázku použijte přílohu PFP-063) Jaký symbol dle ICAO označuje nadmořskou výšku bodu?
+IMG: PFP-063.jpg
+---
+File: subject_9.json ID: 74
+Q: Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt. vzdálenost:
+IMG: null
+---
+File: subject_9.json ID: 75
+Q: Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt. vzdálenost:
+IMG: null
+---

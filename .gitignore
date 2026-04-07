@@ -45,3 +45,6 @@ windsurf.json
 # CAA PDF downloads
 caa_ppl_lapl_pdfs/
 *.pdf
+backups/aeropilot-users.json
+backups/aeropilot-users-backup.json
+backups/aeropilot-users.json

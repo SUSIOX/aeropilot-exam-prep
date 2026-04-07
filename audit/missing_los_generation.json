@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-03-31T23:47:23.207366",
+  "pdf_lo_details_found": 2343,
+  "missing_los": 1491,
+  "items_generated": 1491,
+  "result": {
+    "created": 1491,
+    "errors": [],
+    "backup_file": "./backups/created_los_20260331_234639.json",
+    "total": 1491
+  }
+}

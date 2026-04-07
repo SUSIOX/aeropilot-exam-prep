@@ -1,0 +1,1640 @@
+{
+    "Items": [
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "8_subject8_ai_1773172603716_bd9t63"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:46:28.634Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "3"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:47:11.090Z"
+            },
+            "explanation": {
+                "S": "[021.06.01.01]: Dle EASA LO Syllabus (021.06.01.01 – Pneumatic Systems): Regulátor tlaku v pneumatickém systému letadla plní primární funkci udržování systémového tlaku v předepsaném pracovním rozsahu tím, že odvádí přebytečný vzduch do atmosféry (venting). Bez tohoto regulačního prvku by tlak dodávaný zdrojem (například kompresorem nebo odběrem ze spalovacího motoru) překročil konstrukční limity systémových komponent. Regulátor tak chrání celý pneumatický systém před nežádoucím přetlakem a zajišťuje spolehlivou a bezpečnou funkci navazujících subsystémů."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-haiku-4-5-20251001"
+            },
+            "questionId": {
+                "S": "6_23"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:21:29.142Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:21:29.142Z"
+            },
+            "explanation": {
+                "S": "GEN.MPA.180: According to EASA regulations, refueling of aircraft with passengers on board is prohibited unless adequate supervision and unobstructed emergency evacuation routes are ensured to protect occupants in case of fuel-related hazard or emergency situation. This requirement mandates that both supervisory oversight and clearly marked, accessible escape routes must be in place before any fueling operation commences."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "6_23"
+            },
+            "createdAt": {
+                "S": "2026-03-12T18:05:04.312Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "2"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T18:06:48.298Z"
+            },
+            "explanation": {
+                "S": "Toto opatření vychází z požárního rizika spojeného s manipulací s palivem v blízkosti osob, přičemž únikové cesty a přítomnost odpovědné osoby jsou základními podmínkami, za nichž lze tankování za přítomnosti cestujících výjimečně provádět."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-haiku-4-5-20251001"
+            },
+            "questionId": {
+                "S": "6_11"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:35:00.092Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:35:00.092Z"
+            },
+            "explanation": {
+                "S": "04.01.01: Dle ÚCL (Řád letového provozu) a ICAO Annex 2: Minimální výška 300 m (1000 ft) nad nejvyšší překážkou v okruhu 600 m při letu nad hustě zastavěným místem zajišťuje dostatečný bezpečnostní margin pro manévry a zvýšenou pravděpodobnost přežití posádky a osob na zemi v případě nouzového přistání. Tato vzdálenost reflektuje fyzikální realitu – let v takové minimální výšce umožňuje pilotovi reagovat na selhání motoru nebo jiné nouzové situace."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "6_16"
+            },
+            "createdAt": {
+                "S": "2026-03-12T19:26:14.831Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "2"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T19:27:51.118Z"
+            },
+            "explanation": {
+                "S": "Tento signál je součástí standardizovaných světelných signálů používaných při výpadku radiokomunikace, přičemž zelená barva indikuje povolení/kladný pokyn a přerušovaný charakter světla odlišuje tento signál od stálého zeleného světla, které znamená povolení k přistání."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-flash-latest"
+            },
+            "questionId": {
+                "S": "5_subject5_ai_1773367914760_jlzne8"
+            },
+            "createdAt": {
+                "S": "2026-03-15T01:39:15.834Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "3"
+            },
+            "lastUsed": {
+                "S": "2026-03-15T13:58:43.561Z"
+            },
+            "explanation": {
+                "S": "[081.05.01.01]: Dle fyzikálních principů mechaniky letu v souladu s EASA LO 081.05.01.01: Násobek zatížení v ustálené koordinované zatáčce je dán vztahem $n = 1/\\cos(\\Phi)$, což pro náklon 20° odpovídá hodnotě 1,06 G. Pádová rychlost v zatáčce se zvyšuje s druhou odmocninou násobku zatížení ($\\sqrt{n}$), což při násobku 1,06 představuje nárůst o přibližně 3 %."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "5_29"
+            },
+            "createdAt": {
+                "S": "2026-03-12T18:23:41.215Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "2"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T18:23:51.544Z"
+            },
+            "explanation": {
+                "S": "Výsledkem je pokles kritického úhlu náběhu (stall angle), protože odtržení proudnic nastává při nižším úhlu náběhu než u čistého profilu. Zvýšená pádová rychlost (V_S) je přímým důsledkem snížení maximálního součinitele vztlaku C_L_max, neboť dle vztahu V_S = √(2G / ρ·S·C_L_max) platí, že pokles C_L_max způsobuje nárůst V_S."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "8_8"
+            },
+            "createdAt": {
+                "S": "2026-03-14T02:02:47.342Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-14T02:02:47.342Z"
+            },
+            "explanation": {
+                "S": "1357 (Circuit protective devices): Pojistky (circuit breakers) jsou konstruovány tak, aby chránily elektrické obvody před nadměrným proudem způsobeným přetížením nebo zkratem. Při překročení jmenovité hodnoty proudu dojde k automatickému přerušení obvodu, čímž se zabrání poškození vodičů, komponent a potenciálnímu vzniku požáru. CS-25.1357 výslovně vyžaduje, aby každý circuit breaker byl schopen přerušit maximální zkratový proud v místě své instalace."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "5_24"
+            },
+            "createdAt": {
+                "S": "2026-03-13T11:55:14.782Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-13T11:55:14.782Z"
+            },
+            "explanation": {
+                "S": "Tento aerodynamický efekt, označovaný jako „dihedral effect\", je primárním konstrukčním prostředkem pro zajištění příčné stability. Výsledkem je, že letoun s dostatečným vzepětím křídel vykazuje tendenci samovolně se vracet z náklonu do křídel rovné polohy bez zásahu pilota."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-haiku-4-5-20251001"
+            },
+            "questionId": {
+                "S": "8_subject8_ai_1773172673377_6q2zwt"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:36:12.970Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:36:12.970Z"
+            },
+            "explanation": {
+                "S": "[021.10.01.01]: Dle EASA LO Syllabus: De-icingový systém funguje reaktivně – odstraňuje led, který se již nahromadil na povrchu křídla, pomocí pneumatických boot, které se nafukují a praskají nahromaděný led, aby se odstranilo. Naproti tomu anti-icingové systémy zabraňují tvorbě ledu termoelektricky nebo chemicky před jeho nahromaděním."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-haiku-4-5-20251001"
+            },
+            "questionId": {
+                "S": "2_25"
+            },
+            "createdAt": {
+                "S": "2026-03-12T19:48:58.091Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T19:48:58.091Z"
+            },
+            "explanation": {
+                "S": "Polykání, zívání a Valsalvův manévr (natlačení vzduchu proti uzavřené glottis) aktivují eustachovu trubici a umožňují vyrovnání tlaku mezi středním uchem a okolím. Tyto postupy jsou nejúčinnější metodou prevence barotraumatu během klesání."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "2_25"
+            },
+            "createdAt": {
+                "S": "2026-03-12T15:22:15.017Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "2"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T18:03:00.043Z"
+            },
+            "explanation": {
+                "S": "Při klesání dochází ke zvyšování okolního tlaku, přičemž tlak ve středním uchu musí být vyrovnán s okolím prostřednictvím Eustachovy trubice. Nejúčinnější metodou je **polykání, zívání nebo Valsalvův manévr** (výdech proti uzavřeným nosním dírkám a ústům), čímž se mechanicky otevře Eustachova trubice a umožní vyrovnání tlaku. Při klesání je vyrovnávání tlaku obtížnější než při stoupání, protože slizniční ventil Eustachovy trubice se snáze otevírá při přetlaku ve středním uchu (stoupání) než při podtlaku (klesání). Pravidelné aktivní manévry jsou proto nutné průběžně během celého klesání, nikoliv až při pocitu bolesti."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-3-flash-preview"
+            },
+            "questionId": {
+                "S": "2_25"
+            },
+            "createdAt": {
+                "S": "2026-03-10T00:40:09.713Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "2"
+            },
+            "lastUsed": {
+                "S": "2026-03-10T00:46:39.440Z"
+            },
+            "explanation": {
+                "S": "040.01.02.01.04: Při klesání narůstá okolní barometrický tlak, což způsobuje relativní podtlak ve středním uchu a bolestivé prohnutí bubínku dovnitř. K vyrovnání je nezbytné aktivní otevření Eustachovy trubice pomocí polykání, zívání nebo Valsalvova manévru, aby vzduch pronikl z nosohltanu do středoušní dutiny. Pasivní vyrovnání tlaku je při klesání, na rozdíl od stoupání, anatomicky ztíženo chlopňovitým mechanismem ústí trubice. Včasná aplikace těchto metod předchází barotraumatu středního ucha."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-3-flash-preview"
+            },
+            "questionId": {
+                "S": "3_42"
+            },
+            "createdAt": {
+                "S": "2026-03-11T21:53:11.468Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-11T21:53:11.468Z"
+            },
+            "explanation": {
+                "S": "050 08 02 02: Mlha (FG) je dle norem ICAO Annex 3 a SERA definována jako hydrometeor snižující horizontální dohlednost u zemského povrchu pod 1000 metrů. V případě, že je dohlednost v rozmezí 1000 m až 5000 m při nasycení vzduchu vodní párou, jev se klasifikuje jako kouřmo (BR). Tato hranice je striktním kritériem pro kódování meteorologických zpráv METAR a TAF."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-haiku-4-5-20251001"
+            },
+            "questionId": {
+                "S": "6_3"
+            },
+            "createdAt": {
+                "S": "2026-03-12T16:45:02.001Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T16:45:02.001Z"
+            },
+            "explanation": {
+                "S": "Technické zdůvodnění:"
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "6_3"
+            },
+            "createdAt": {
+                "S": "2026-03-11T22:45:00.993Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-11T22:45:00.993Z"
+            },
+            "explanation": {
+                "S": "Při požáru motoru během spouštění na zemi pilot okamžitě zastaví přívod paliva (uzavře palivový kohout/mixture na idle cut-off), pokračuje v motání startérem bez zapalování, aby profoukl/vypláchoval sání a odvětrání hořlavé směsi z motoru a sacího potrubí. Pokud požár přetrvává, pilot opustí letadlo a aktivuje hasicí prostředky. Odpověď A je správná, protože prioritou je odstranění zdroje paliva a mechanické vyplavení hořlavé směsi ze sacího traktu pomocí startéru."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-3-flash-preview"
+            },
+            "questionId": {
+                "S": "4_122"
+            },
+            "createdAt": {
+                "S": "2026-03-11T20:59:00.324Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-11T20:59:00.324Z"
+            },
+            "explanation": {
+                "S": "021 11 02 01: Antény se dělí podle vyzařovací charakteristiky na všesměrové, které vyzařují nebo přijímají energii rovnoměrně ve všech horizontálních směrech, a směrové, které koncentrují energii do specifických azimutů. Všesměrové antény jsou využívány pro systémy jako VHF COM, zatímco směrové antény jsou klíčové pro navigaci a radiolokaci kvůli vyššímu zisku a směrové selektivitě. Klasifikace je určena geometrií vyzařovacího diagramu anténního prvku."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-flash-latest"
+            },
+            "questionId": {
+                "S": "9_subject9_ai_1773368152185_eky2hw"
+            },
+            "createdAt": {
+                "S": "2026-03-14T13:56:53.395Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-14T13:56:53.395Z"
+            },
+            "explanation": {
+                "S": "[061.03.03.01]: Dle EASA LO Syllabus: Kurs k radiomajáku (QDM) se vypočítá jako součet magnetického kursu (090°) a relativního náměru (315°), což po součtu činí 405°. Po normalizaci výsledku odečtením 360° získáme hodnotu 045°, která určuje směr k NDB stanici. Tento úhel v rámci navigační růžice odpovídá severovýchodnímu směru (northeast)."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "5_13"
+            },
+            "createdAt": {
+                "S": "2026-03-12T16:09:20.976Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T16:09:20.976Z"
+            },
+            "explanation": {
+                "S": "**Aspect Ratio (štíhlost křídla)** je definován jako poměr **rozpětí křídla (b) k průměrné hloubce křídla (c̄)**, matematicky vyjádřeno jako **AR = b/c̄ = b²/S**, kde S je plocha křídla. Odpověď A je správná, protože AR = rozpětí² / plocha křídla (b²/S) je standardní aerodynamická definice dle EASA. Vysoké AR (štíhlé křídlo) snižuje indukovaný odpor, nízké AR (krátké křídlo) zvyšuje manévrovatelnost."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-flash-latest"
+            },
+            "questionId": {
+                "S": "5_subject5_ai_1773367891660_14b1kn"
+            },
+            "createdAt": {
+                "S": "2026-03-15T01:23:21.314Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-15T01:23:21.314Z"
+            },
+            "explanation": {
+                "S": "[081.03.01.01]: Dle EASA LO Syllabus: Vysunutí vztlakových klapek zvyšuje zakřivení profilu a součinitel vztlaku, což vyvolává výrazný nárůst profilového i indukovaného odporu. Tento nárůst odporu snižuje aerodynamickou jemnost (poměr L/D), čímž dochází k degradaci klouzavosti a zvýšení rychlosti klesání kluzáku. Pro efektivní využití výšky při přeletu je nezbytný minimální odpor, kterého nelze v konfiguraci s vysunutými vztlakovými klapkami dosáhnout."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "3_57"
+            },
+            "createdAt": {
+                "S": "2026-03-10T09:03:36.613Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-10T09:03:36.613Z"
+            },
+            "explanation": {
+                "S": "RVR (Runway Visual Range) je vzdálenost, na kterou pilot letadla na středové čáře RWY vidí značení povrchu dráhy, světla okrajů dráhy nebo středové světla. Měří se automaticky pomocí transmisometrů nebo forward scatter sensorů instalovaných podél dráhy. RVR se vyjadřuje v metrech a je kritickým parametrem pro provoz za podmínek nízké dohlednosti (LVP). Na rozdíl od meteorologické dohlednosti (MET VIS) je RVR specifická pro konkrétní dráhu a její část (touchdown, mid, stop-end)."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "1_60"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:44:46.953Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:44:46.953Z"
+            },
+            "explanation": {
+                "S": "Tato struktura je závazně stanovena normami ICAO pro jednotnou mezinárodní publikaci leteckých informací. Každá část obsahuje specifické provozní a navigační informace nezbytné pro bezpečné provádění letů."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "7_9"
+            },
+            "createdAt": {
+                "S": "2026-03-12T18:27:54.767Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "2"
+            },
+            "lastUsed": {
+                "S": "2026-03-14T14:08:52.981Z"
+            },
+            "explanation": {
+                "S": "Důsledkem je výrazně delší rozjezdová dráha, přičemž dle standardních výkonnostních výpočtů způsobuje složka větru do zad o hodnotě 10 % V_S prodloužení vzletové vzdálenosti přibližně o 20 %, a při větru do zad 10 kt může být prodloužení vzletové vzdálenosti až 20–25 %. Dle EASA LO Syllabus (081) platí, že tailwind je nejvýznamnější nepříznivý faktor prostředí ovlivňující vzletový výkon, protože jeho vliv roste s druhou mocninou poměru rychlostí (ground speed vs. airspeed)."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-opus-4-6"
+            },
+            "questionId": {
+                "S": "5_9"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:11:45.669Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "2"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:11:53.725Z"
+            },
+            "explanation": {
+                "S": "Neurčeno: Křidélka (ailerons) jsou primární řídící plochy umístěné na odtokové hraně křídel, které vytvářejí diferenciální vztlak mezi levým a pravým křídlem, čímž způsobují rotaci letadla kolem jeho podélné osy (klonění/roll). Toto je v souladu s CS-23/CS-25, kde křidélka jsou definována jako primární ovládací prvky pro příčné řízení (lateral control) letadla."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "5_9"
+            },
+            "createdAt": {
+                "S": "2026-03-12T18:18:17.760Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T18:18:17.760Z"
+            },
+            "explanation": {
+                "S": "Tento rozdíl vztlakových sil generuje moment kolem podélné osy (longitudinal axis), čímž způsobuje klonění (roll) letadla. Pohyb křidélek je vzájemně inverzní – jedno se vychyluje nahoru, druhé dolů – čímž se záměrně narušuje symetrie vztlaku mezi oběma polorovinami křídla."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "8_subject8_ai_1773105700979_5nxgni"
+            },
+            "createdAt": {
+                "S": "2026-03-12T16:12:22.445Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T16:12:22.445Z"
+            },
+            "explanation": {
+                "S": "021.02.02.01: Dva nezávislé magnety zajišťují redundanci zapalovacího systému – při selhání jednoho magneta druhý udržuje provoz motoru. Každý magnet napájí samostatnou sadu zapalovacích svíček (horní a dolní), čímž je eliminována jediná bod selhání (single point of failure). Nezávislost systémů znamená, že porucha, zkrat nebo mechanické selhání jednoho magneta nemá vliv na funkci druhého. Tato konfigurace zvyšuje bezpečnost letu a zároveň zlepšuje účinnost spalování díky dvojímu zapálení směsi v každém válci."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-flash-latest"
+            },
+            "questionId": {
+                "S": "4_subject4_user_1773364226805_cszqtx"
+            },
+            "createdAt": {
+                "S": "2026-03-15T02:09:33.504Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-15T02:09:33.504Z"
+            },
+            "explanation": {
+                "S": "01.01.01: Dle fyzikálních principů soustavy SI jednotek: Předpona Giga (G) představuje řád $10^9$ a předpona Mega (M) řád $10^6$, což definuje převodní poměr 1000 MHz na 1 GHz. Hodnota 406 MHz se po vydělení tisícem rovná 0,406 GHz."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "6_19"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:56:02.405Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:56:02.405Z"
+            },
+            "explanation": {
+                "S": "6 a Annex 6, Part I, Chapter 6.13: Letadlo provozované v noci musí být vybaveno polohovými světly (navigačními světly – červené levý bok, zelené pravý bok, bílé záďové) pro identifikaci polohy a směru letu jinými účastníky letového provozu, a antikolizními světly (majákem nebo stroboskopy) pro zvýšení viditelnosti letadla a snížení rizika srážky. Tato kombinace světelného vybavení je povinná dle předpisů a tvoří základní minimum pro bezpečný noční provoz."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-3-flash-preview"
+            },
+            "questionId": {
+                "S": "4_45"
+            },
+            "createdAt": {
+                "S": "2026-03-11T20:59:31.556Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "2"
+            },
+            "lastUsed": {
+                "S": "2026-03-11T20:59:48.792Z"
+            },
+            "explanation": {
+                "S": "090.01.01.02.01: Zprávy musí být vysílány stručně, srozumitelně a s použitím standardní frazeologie dle ICAO Annex 10 pro zajištění maximální bezpečnosti a efektivity přenosu. Technika vysílání vyžaduje konstantní rychlost řeči nepřesahující 100 slov za minutu, zřetelnou artikulaci a udržování stabilní úrovně hlasu. Tento postup minimalizuje čas obsazení frekvence a eliminuje riziko chybné interpretace dat v kritických fázích letu."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-3.1-flash-lite-preview"
+            },
+            "questionId": {
+                "S": "2_1"
+            },
+            "createdAt": {
+                "S": "2026-03-12T02:07:52.303Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T02:07:52.303Z"
+            },
+            "explanation": {
+                "S": "Centrální nervová soustava (CNS), zejména mozková kůra, vykazuje nejvyšší citlivost na hypoxii v důsledku vysoké metabolické náročnosti neuronů. Nedostatek kyslíku vede k okamžitému narušení kognitivních funkcí a zhoršení úsudku již při nízkých hodnotách saturace krve kyslíkem. CNS postrádá schopnost anaerobního metabolismu v rozsahu dostatečném pro dlouhodobé udržení vitálních funkcí. Čas užitečného vědomí (TUC) je primárně limitován právě hypoxií mozkové tkáně."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "7_5"
+            },
+            "createdAt": {
+                "S": "2026-03-10T02:50:28.893Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-10T02:50:28.893Z"
+            },
+            "explanation": {
+                "S": "Zadní poloha těžiště (aft CG) za zadní limitou způsobuje snížení statické longitudinální stability až na neutrální nebo nestabilní stav, protože moment obnovy letounu se snižuje nebo obrací. Řízení letounu ve sklonu (pitch) se stává lehké až nekontrolovatelné, s tendencí k divergentnímu pohybu v podélné ose. Záchrana z přetažení (stall recovery) je obtížná nebo nemožná, protože aerodynamický moment ocasních ploch nestačí překonat klopivý moment ke kabřování. Pilot musí vynaložit větší tlačnou sílu na řízení pro udržení ustáleného letu, přičemž systém může dosáhnout limitu výchylky výškového kormidla."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "5_16"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:59:26.422Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "3"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T18:18:41.433Z"
+            },
+            "explanation": {
+                "S": "Tato závislost je dána vztahem C_L = C_L_α · α + C_L_0, kde C_L_α je sklon vztlakové čáry (typicky přibližně 2π rad⁻¹ pro tenký profil dle teorie tenkého profilu). Při překročení kritického úhlu náběhu dochází k odtržení proudění a C_L prudce klesá – tento bod je na vztlakové čáře jasně identifikovatelný jako maximum křivky."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-3-flash-preview"
+            },
+            "questionId": {
+                "S": "5_16"
+            },
+            "createdAt": {
+                "S": "2026-03-10T00:45:44.500Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-10T00:45:44.500Z"
+            },
+            "explanation": {
+                "S": "[081.01.05.02]: Vztlaková čára graficky definuje funkční závislost součinitele vztlaku ($C_L$) na úhlu náběhu ($\\alpha$). V lineární oblasti křivky vykazuje $C_L$ přímo úměrný nárůst až do dosažení kritického úhlu náběhu ($\\alpha_{crit}$), kde dochází k maximální hodnotě $C_{Lmax}$. Sklon této čáry ($C_{L\\alpha}$) určuje aerodynamickou citlivost profilu nebo nosné plochy na změnu úhlu náběhu."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-haiku-4-5-20251001"
+            },
+            "questionId": {
+                "S": "1_subject1_ai_1773281366128_yn7de4"
+            },
+            "createdAt": {
+                "S": "2026-03-12T19:30:08.415Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T19:30:08.415Z"
+            },
+            "explanation": {
+                "S": "[010.18.01.01]: Dle EASA LO Syllabus: Signál maršála s pravou paží pohybující se zpět a dopředu a levou paží držovanou v klidu označuje, že pilot má zatočit doleva. Pohyb pravé paže směrem k trupu letadla indikuje směr zatáčky, což odpovídá standardizovanému systému pozemních vizuálních signálů pro řízení pohybu letadel na zemi."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "4_37"
+            },
+            "createdAt": {
+                "S": "2026-03-12T18:01:45.926Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T18:01:45.926Z"
+            },
+            "explanation": {
+                "S": "II, Chapter 1 (Definitions): Letecká pevná služba (Aeronautical Fixed Service – AFS) je telekomunikační služba poskytovaná na spojích mezi stanovenými pevnými body, primárně určená k zajištění bezpečnosti letectví a pravidelnosti, efektivity a hospodárnosti letového provozu. Tato definice je převzata do české legislativy prostřednictvím předpisu L10, kde je AFS výslovně definována jako telekomunikační služba mezi stanovenými (fixními) pevnými body, čímž se odlišuje od pohyblivých leteckých služeb (AMS), které zahrnují komunikaci s letadly. Klíčovým znakem AFS je tedy statický charakter obou komunikujících stran – pevné pozemní stanice se známými, předem určenými geografickými polohami."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-3.1-flash-lite-preview"
+            },
+            "questionId": {
+                "S": "4_37"
+            },
+            "createdAt": {
+                "S": "2026-03-12T14:46:19.365Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T14:46:19.365Z"
+            },
+            "explanation": {
+                "S": "Letecká pevná služba (AFS) je telekomunikační služba mezi stanovenými pevnými body, určená pro výměnu leteckých zpráv nezbytných pro bezpečnost, pravidelnost a efektivitu leteckého provozu. V souladu s ICAO Annex 10 je AFS definována jako systém pro přenos leteckých informací mezi určenými stanicemi prostřednictvím pevných okruhů (např. AFTN, AMHS). Služba striktně odděluje komunikaci typu „bod-bod“ od mobilních leteckých služeb."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "6_22"
+            },
+            "createdAt": {
+                "S": "2026-03-12T01:58:05.132Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T01:58:05.132Z"
+            },
+            "explanation": {
+                "S": "Při vysazení motoru po vzletu v malé výšce (pod bezpečnou výškou pro manévrování) je nejbezpečnější **přistát přímo před sebou s minimálními odchylkami od osy vzletu**, případně s mírnou korekcí na dostupnou plochu v přímém směru. Pokus o návrat na vzletovou dráhu (tzv. „impossible turn\") při nedostatečné výšce vede k extrémnímu nárůstu klesání v zatáčce a k vysokému riziku pádu do vývrtky – tato volba je statisticky hlavní příčinou smrtelných nehod. Bezpečnost pramení z udržení rychlosti nejlepšího klouzání (Vbg/Vgl) a výběru nejbližší dostupné plochy v přímém směru letu."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-haiku-4-5-20251001"
+            },
+            "questionId": {
+                "S": "1_50"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:13:07.179Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:13:07.179Z"
+            },
+            "explanation": {
+                "S": "According to EASA Annex IV (Air Navigation Services) and the International Civil Aviation Organization (ICAO) Annex 10, transponder code 7700 is the designated emergency code that must be set without ATC request during any emergency situation to alert air traffic control and other aircraft of the aircraft's distressed state. This code triggers automatic alerts in ATC systems and ensures immediate priority handling and coordination of emergency response procedures."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-flash-latest"
+            },
+            "questionId": {
+                "S": "4_subject4_user_1773364226804_h232i0"
+            },
+            "createdAt": {
+                "S": "2026-03-15T17:20:52.093Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-15T17:20:52.093Z"
+            },
+            "explanation": {
+                "S": "08.01.02: Dle fyzikálních principů stejnosměrných obvodů aplikovaných v EASA LO Syllabus: Při sériovém zapojení akumulátorů se celkové svorkové napětí rovná součtu napětí jednotlivých článků, což umožňuje dosažení jmenovitého napětí palubní sítě. Toto uspořádání zvyšuje elektrický potenciál soustavy, zatímco celková kapacita v ampérhodinách (Ah) zůstává na úrovni jednoho článku."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-haiku-4-5-20251001"
+            },
+            "questionId": {
+                "S": "6_1"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:22:11.064Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:22:11.064Z"
+            },
+            "explanation": {
+                "S": "GEN.MPA.100: Podle EASA regulací (CS-23, CS-25 a CAT požadavků) musí pilot před každým letem provést kontrolu meteorologických podmínek (dle NOTAM a počasí na trase a cílový letiště), NOTAMů (aktivní omezení v prostoru), paliva (dostatečné množství včetně rezervy) a hmotnosti/vyvážení letounu (v souladu s LCG a MTOW limity), které jsou základními prvky předletové přípravy zajišťujícími letovou způsobilost a bezpečnost."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "6_1"
+            },
+            "createdAt": {
+                "S": "2026-03-12T01:59:34.371Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "2"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T01:59:45.423Z"
+            },
+            "explanation": {
+                "S": "**Zdůvodnění odpovědi A:**"
+            }
+        },
+        {
+            "model": {
+                "S": "claude-haiku-4-5-20251001"
+            },
+            "questionId": {
+                "S": "6_21"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:08:08.350Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:08:08.350Z"
+            },
+            "explanation": {
+                "S": "I appreciate your request, but I cannot provide the explanation because the correct answer \"A\" is not displayed in your question.\n\nTo assist you properly, please provide:\n- Answer option A (the full text)\n- The complete question in English or specify the original language context\n- Relevant EASA Learning Objective (LO) reference if available\n\nOnce you provide answer option A, I will explain why it is technically correct according to EASA regulations (CS-23, CS-25, or other applicable standards)."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "6_21"
+            },
+            "createdAt": {
+                "S": "2026-03-12T16:02:38.247Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T16:02:38.247Z"
+            },
+            "explanation": {
+                "S": "**User Import (N/A):** Při zjištění námrazy (icing) za letu musí pilot okamžitě aktivovat protinámrazové systémy (anti-ice/de-ice), opustit podmínky námrazy změnou hladiny nebo kurzu a informovat ATC. Akumulace ledu na vztlakových plochách mění profil křídla, zvyšuje hmotnost, zvyšuje odpor a snižuje vztlak, čímž kriticky degraduje výkonnost letounu. Setrvání v podmínkách námrazy bez aktivních ochranných systémů nebo bez úniku z těchto podmínek představuje bezprostřední bezpečnostní riziko. Odpověď A je správná, protože zahrnuje aktivní řízení situace – aktivaci ochranných systémů a opuštění oblasti námrazy."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-3-flash-preview"
+            },
+            "questionId": {
+                "S": "1_49"
+            },
+            "createdAt": {
+                "S": "2026-03-10T06:21:22.196Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-10T06:21:22.196Z"
+            },
+            "explanation": {
+                "S": "010.06.03.01: V případě úplné ztráty rádiového spojení musí pilot nastavit kód odpovídače 7600 k okamžité signalizaci stavu „Radio Failure“. Tento kód umožňuje řídicímu letového provozu identifikovat příčinu absence komunikace a zahájit standardní postupy pro ztrátu spojení. Nastavení kódu 7600 je povinné dle standardů ICAO Annex 2 a předpisu SERA k zajištění bezpečnosti a separace v kontrolovaném vzdušném prostoru."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-haiku-4-5-20251001"
+            },
+            "questionId": {
+                "S": "1_27"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:13:37.553Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:13:37.553Z"
+            },
+            "explanation": {
+                "S": "# Technical Explanation\n\n[Neurčeno]: According to EASA Annex 4 (Air Navigation Services) and international aviation rules (ICAO Annex 2), when two aircraft are on converging courses at the same altitude, the aircraft approaching from the right has the right of way, and the aircraft approaching from the left must give way by turning right. In this scenario, the aircraft flying from right to left (approaching from the right perspective of the other aircraft) holds priority, while the other aircraft must maneuver to avoid collision."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-3-flash-preview"
+            },
+            "questionId": {
+                "S": "4_106"
+            },
+            "createdAt": {
+                "S": "2026-03-11T20:58:10.426Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-11T20:58:10.426Z"
+            },
+            "explanation": {
+                "S": "Pravděpodobně se jedná o objective 090 01 02 01 – Standardní frazeologie a její význam.\n\n[090 01 02 01]: Fráze „příjem“ (v anglickém ekvivalentu „ROGER“) znamená, že vysílání bylo plně přijato a je srozumitelné. Tento výraz potvrzuje pouze technický příjem zprávy a nepředstavuje souhlas s instrukcí ani potvrzení jejího provedení (k tomu slouží frazeologie „ROZUMÍM“ / „WILCO“). V letecké radiotelefonii se nesmí používat jako odpověď na otázky vyžadující potvrzení typu „ANO“ nebo „NE“."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "5_8"
+            },
+            "createdAt": {
+                "S": "2026-03-12T18:20:23.993Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T18:20:23.993Z"
+            },
+            "explanation": {
+                "S": "Výchylkou směrovky doleva vzniká aerodynamická síla, která otočí příď letadla doleva, a naopak. Směrovka je ovládána pedály (nožními rudry) a tvoří primární řídicí plochu pro řízení v ose vybočení."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-2.5-flash"
+            },
+            "questionId": {
+                "S": "3_2"
+            },
+            "createdAt": {
+                "S": "2026-03-12T15:03:06.291Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T15:03:06.291Z"
+            },
+            "explanation": {
+                "S": "Je to druhý nejhojnější plyn v atmosféře, po dusíku (N2), který tvoří přibližně 78 %."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-3-flash-preview"
+            },
+            "questionId": {
+                "S": "3_2"
+            },
+            "createdAt": {
+                "S": "2026-03-10T00:57:01.895Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-10T00:57:01.895Z"
+            },
+            "explanation": {
+                "S": "[050 01 01 01]: Chemické složení suchého vzduchu v homosféře je tvořeno přibližně 78 % dusíku, 21 % kyslíku a 1 % ostatních plynů. Hodnota 21 % odpovídá objemové koncentraci kyslíku (O2), která zůstává konstantní do výšky přibližně 80 km. Tento poměr je standardizovanou konstantou pro výpočty parciálního tlaku v letectví."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-flash-latest"
+            },
+            "questionId": {
+                "S": "6_13"
+            },
+            "createdAt": {
+                "S": "2026-03-12T16:33:33.703Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T16:33:33.703Z"
+            },
+            "explanation": {
+                "S": "010.06.03.01: Podle nařízení SERA.3210 má přednost letadlo přilétající zprava, letadlo s nižší manévrovatelností (např. balón před kluzákem) nebo letadlo v nouzi. Letadlo s předností v letu musí zachovávat kurz a rychlost, zatímco ustupující letadlo nesmí křižovat trajektorii v nebezpečné blízkosti. Při přistání má přednost letadlo v nižší výšce, nesmí však této výhody zneužít k předlétávání jiného letadla v konečné fázi přiblížení."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "8_7"
+            },
+            "createdAt": {
+                "S": "2026-03-12T18:08:17.958Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "3"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T19:29:06.048Z"
+            },
+            "explanation": {
+                "S": "11.01.01]: Dle fyzikálních a konstrukčních principů elektrických systémů letadel: Alternátor (generátor) je zdrojem elektrické energie poháněným leteckým motorem a plní dvě primární funkce – napájí palubní elektrickou síť (avionika, osvětlení, systémy) a zároveň dobíjí akumulátor, který slouží jako záložní zdroj energie při vypnutém motoru nebo výpadku generátoru. Akumulátor samotný není schopen dlouhodobě napájet celou elektrickou síť, proto generátor přebírá hlavní zátěž ihned po nastartování motoru a dosažení dostatečných otáček. Regulátor napětí zajišťuje, aby výstupní napětí generátoru bylo stabilní a kompatibilní s napájecím napětím sítě (typicky 28 V DC nebo 14 V DC), čímž je chráněn akumulátor i palubní elektronika před přepětím."
+            }
+        },
+        {
+            "model": {
+                "S": "test-model"
+            },
+            "questionId": {
+                "S": "test-connection"
+            },
+            "createdAt": {
+                "S": "2026-03-09T18:30:15.072Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-09T18:30:15.072Z"
+            },
+            "explanation": {
+                "S": "Test explanation for connection"
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-flash-latest"
+            },
+            "questionId": {
+                "S": "5_subject5_ai_1773367925680_li5u3o"
+            },
+            "createdAt": {
+                "S": "2026-03-15T13:59:03.307Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-15T13:59:03.307Z"
+            },
+            "explanation": {
+                "S": "[081.04.01.01]: Dle EASA LO 081.04.01.01: Buffeting je symptomem blížícího se pádu, kdy dochází k odtrhávání proudění od nosné plochy v důsledku dosažení kritického úhlu náběhu. Náprava vyžaduje okamžité snížení úhlu náběhu potlačením a zmenšení náklonu, což sníží násobek zatížení a tím i aktuální pádovou rychlost. Tímto postupem se obnoví laminární obtékání křídla a zvýší se rychlostní rezerva nad kritickou mezí."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "6_7"
+            },
+            "createdAt": {
+                "S": "2026-03-12T18:03:56.116Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T18:03:56.116Z"
+            },
+            "explanation": {
+                "S": "Pilot menšího letadla musí zůstat nad trajektorií velkého letadla (aby se vyhnul klesajícím vortexům) a přistát za bodem dotyku předchozího letadla, čímž zajistí, že celá délka jeho přistávací dráhy leží mimo oblast největší koncentrace vortexové turbulence. Tato technika minimalizuje riziko průletu oblastí silných rotačních proudů, které mohou přesáhnout výkonnost řízení menšího letadla."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-3-flash-preview"
+            },
+            "questionId": {
+                "S": "9_4"
+            },
+            "createdAt": {
+                "S": "2026-03-11T21:39:27.121Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "2"
+            },
+            "lastUsed": {
+                "S": "2026-03-11T21:40:40.525Z"
+            },
+            "explanation": {
+                "S": "061 01 02 01: Magnetická deklinace (variace) je úhel mezi zeměpisným poledníkem (True North) a magnetickým poledníkem (Magnetic North) v daném bodě na zemském povrchu. Tato hodnota vyjadřuje úhlový rozdíl mezi směrem ke skutečnému a magnetickému severu způsobený nesouhlasnou polohou zeměpisných a magnetických pólů Země. Orientace se určuje jako východní (E/+) nebo západní (W/-) podle směru odchylky magnetického severu od severu zeměpisného."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-3-flash-preview"
+            },
+            "questionId": {
+                "S": "4_subject4_ai_1773106663930_1hwtuf"
+            },
+            "createdAt": {
+                "S": "2026-03-11T20:56:01.755Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-11T20:56:01.755Z"
+            },
+            "explanation": {
+                "S": "[090.01.04.01]: Hlášení „Downwind“ (po větru) se standardně provádí v polovině délky polohy po větru (mid-point). Tento úkon slouží k potvrzení pozice letadla pro ATC za účelem stanovení pořadí na přistání a zajištění rozestupů. Postup je definován standardními pravidly pro hlášení v rámci letištního okruhu."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-3-flash-preview"
+            },
+            "questionId": {
+                "S": "1_45"
+            },
+            "createdAt": {
+                "S": "2026-03-10T06:22:15.300Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-10T06:22:15.300Z"
+            },
+            "explanation": {
+                "S": "010.06.03.02.01: Účelem je zajištění vertikální separace mezi letadly letícími na protisměrných nebo křižujících se tratích. Pravidlo přiděluje specifické letové hladiny na základě magnetického kursu tratě (000°–179° a 180°–359°). Tímto systémem se minimalizuje riziko srážky za letu (MAC) v nekontrolovaném i kontrolovaném vzdušném prostoru."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-haiku-4-5-20251001"
+            },
+            "questionId": {
+                "S": "6_20"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:34:19.954Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:34:19.954Z"
+            },
+            "explanation": {
+                "S": "1411 a ICAO Annex 2: Kyslíkové masky pro členy posádky jsou povinné při letu nad 10 000 ft po dobu delší než 30 minut, protože v této výšce a při této expozici dochází k hypoxii ohrožující jejich pracovní schopnosti a bezpečnost letu. Toto je minimální požadavek zajišťující zdravotní bezpečnost posádky během letu v nadmořské výšce s nedostatečným parciálním tlakem kyslíku."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "6_20"
+            },
+            "createdAt": {
+                "S": "2026-03-12T18:03:30.612Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T18:03:30.612Z"
+            },
+            "explanation": {
+                "S": "IDE.A.235) / Nařízení Komise (EU) č. 965/2012, Annex IV (CAT.IDE.A.235): Letouny provozované v nebeskách výškách nad 10 000 ft musí mít pro každého člena posádky k dispozici kyslíkové vybavení, přičemž kyslík musí být používán při letech nad 10 000 ft trvajících déle než 30 minut, protože při parciálním tlaku kyslíku na této výšce dochází k postupné hypoxii ohrožující výkonnost posádky. Tato hranice 10 000 ft / 30 minut představuje regulatorní kompromis zohledňující fyziologický práh, při němž saturace hemoglobinu kyslíkem začíná klinicky významně klesat při delší expozici nízkému parciálnímu tlaku O₂ (přibližně 69 hPa pO₂ oproti 101 hPa na hladině moře)."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-haiku-4-5-20251001"
+            },
+            "questionId": {
+                "S": "6_9"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:01:45.782Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "4"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:11:08.803Z"
+            },
+            "explanation": {
+                "S": "# Technické vysvětlení - Nouzové přistání do terénu\n\nPravděpodobně se jedná o objective CAT.GEN.MPA.175 - Emergency Procedures and Management nebo OPS.GEN.195 - Emergency Landing Procedures\n\nPoznámka: Otázka není v plném znění - chybí možnosti odpovědi (A, B, C, D). Bez zobrazení variant nemůžu definitivně zdůvodnit, proč je právě odpověď \"A\" správná.\n\nNicméně podle EASA ORO.GEN.200 a postupů uvedených v AMC1 CAT.GEN.MPA.175 je při nouzovém přistání do terénu nejdůležitější zvážit bezpečnost všech osob na palubě a na zemi - což znamená zvolit terén s nejmenšími riziky střetu s pevnými překážkami a zajistit kontrolu letadla až do úplného zastavení. Odpověď \"A\" tedy pravděpodobně reflektuje primární cíl: zachování života na palubě výběrem nejvhodnějšího místa přistání nebo udržení kontroly letadla v poslední fázi přiblížení, což jsou klíčové technické priority podle EASA regulací.\n\nProsím poskytnete úplné znění variant (A, B, C, D) pro přesné technické zdůvodnění."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "6_9"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:09:57.612Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:09:57.612Z"
+            },
+            "explanation": {
+                "S": "Neurčeno: Při nouzovém přistání do terénu je zachování řiditelnosti letadla až do dotyku se zemí naprosto kritické, protože pilot musí mít schopnost korigovat směr, rychlost a konfiguraci letadla v průběhu celého přiblížení, aby minimalizoval kinetickou energii při dopadu na vybraný terén. Ztráta řiditelnosti před dotykem (např. přetažení, vývrtka nebo nekontrolovaný klesavý let) vede k nekontrolovanému dopadu s dramaticky vyšší energií nárazu, což je dle principů pasivní bezpečnosti zakotvených v CS-23.562 a CS-25.561 hlavní příčinou fatálních následků při nouzových přistáních."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-2.5-flash"
+            },
+            "questionId": {
+                "S": "6_9"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:10:47.095Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:10:47.095Z"
+            },
+            "explanation": {
+                "S": "Neurčeno: Maintaining aircraft controllability until ground contact is paramount during an emergency landing in terrain, as it enables the pilot to manage the aircraft's energy and attitude to minimize impact forces and maximize survivability, consistent with the safety objectives outlined in EASA airworthiness standards such as CS-23 and CS-25."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-haiku-4-5-20251001"
+            },
+            "questionId": {
+                "S": "6_4"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:31:13.287Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:31:13.287Z"
+            },
+            "explanation": {
+                "S": "04.03.01: Dle ICAO Annex 10 a ÚCL předpisů: Nouzová frekvence 121.500 MHz je mezinárodně standardizovaná frekvencí pro havarijní radiové volání v letectví a je povinně osazena ve všech civilních letadlech. Tato frekvence zajišťuje možnost komunikace s Air Traffic Services a záchranným službám bez ohledu na aktuálně používaný komunikační kanál."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "6_4"
+            },
+            "createdAt": {
+                "S": "2026-03-12T18:07:27.986Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T18:07:27.986Z"
+            },
+            "explanation": {
+                "S": "Tato frekvence je nepřetržitě monitorována letadly, záchranářskými službami i pozemními stanicemi v souladu s požadavky ICAO a je povinnou naslouchací frekvencí pro většinu letových provozů."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-3-flash-preview"
+            },
+            "questionId": {
+                "S": "2_15"
+            },
+            "createdAt": {
+                "S": "2026-03-10T21:57:59.966Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-10T21:57:59.966Z"
+            },
+            "explanation": {
+                "S": "Testovací vysvětlení z import skriptu."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-haiku-4-5-20251001"
+            },
+            "questionId": {
+                "S": "6_8"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:33:26.496Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:33:26.496Z"
+            },
+            "explanation": {
+                "S": "Nízká nadmořská výška neumožňuje pilotovi obnovit požadovanou rychlost a provést nouzové manévry před dotykem se zemí."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-flash-latest"
+            },
+            "questionId": {
+                "S": "4_subject4_user_1773364226802_5h61a8"
+            },
+            "createdAt": {
+                "S": "2026-03-15T01:26:51.711Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-15T01:26:51.711Z"
+            },
+            "explanation": {
+                "S": "01.03.01: Dle ICAO Annex 10, Vol. II a předpisu L 10: Radiotelefonní volací značka pozemní letecké stanice se skládá ze zeměpisného názvu její polohy, za nímž následuje označení typu poskytované služby. Tento formát zajišťuje jednoznačnou identifikaci stanice a informuje posádku o rozsahu kompetencí daného stanoviště."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-haiku-4-5-20251001"
+            },
+            "questionId": {
+                "S": "8_6"
+            },
+            "createdAt": {
+                "S": "2026-03-12T17:42:48.770Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T17:42:48.770Z"
+            },
+            "explanation": {
+                "S": "061.03.03.02: Dle EASA LO Syllabus – Elektrikální systémy: Hlavní funkcí akumulátoru je zajistit startování motoru pomocí elektrického startéru a poskytovat záložní napájení kritických systémů (osvětlení, přístroje, navigace) při poruše nebo výpadku primárního zdroje (alternátoru/generátoru). Akumulátor musí být dimenzován na minimální dobu provozu při selhání hlavního zdroje energie a musí splňovat požadavky na kapacitu a výkon dle CS-23.1157 či CS-25.1157."
+            }
+        },
+        {
+            "model": {
+                "S": "gemini-3-flash-preview"
+            },
+            "questionId": {
+                "S": "1_65"
+            },
+            "createdAt": {
+                "S": "2026-03-10T00:49:53.149Z"
+            },
+            "provider": {
+                "S": "gemini"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-10T00:49:53.149Z"
+            },
+            "explanation": {
+                "S": "010.06.01.01: Dle ICAO Annex 14 a Nařízení (EU) č. 139/2014 je vzletová a přistávací dráha (RWY) definována jako vymezená obdélníková plocha na pozemním letišti upravená pro přistání a vzlety letadel. Definice striktně specifikuje geometrický tvar a primární účel užití, čímž ji technicky odlišuje od ostatních pohybových ploch, jako jsou pojezdové dráhy (TWY) nebo odbavovací plochy. Tato standardizace je nezbytná pro certifikaci letišť a stanovení operačních limitů výkonnosti letadel."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "5_1"
+            },
+            "createdAt": {
+                "S": "2026-03-12T18:16:11.561Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-12T18:16:11.561Z"
+            },
+            "explanation": {
+                "S": "Dle Bernoulliho principu platí, že vyšší rychlost proudění odpovídá nižšímu statickému tlaku, takže nad křídlem vzniká nižší tlak než pod ním. Výsledný tlakový rozdíl působí na plochu křídla jako síla směřující kolmo nahoru — vztlak (lift), přičemž přibližně 2/3 vztlaku vznikají podtlakem nad křídlem a zbývající část přetlakem pod křídlem."
+            }
+        },
+        {
+            "model": {
+                "S": "claude-sonnet-4-6"
+            },
+            "questionId": {
+                "S": "9_subject9_ai_1773368200642_wpgm93"
+            },
+            "createdAt": {
+                "S": "2026-03-13T03:38:27.690Z"
+            },
+            "provider": {
+                "S": "claude"
+            },
+            "usageCount": {
+                "N": "1"
+            },
+            "lastUsed": {
+                "S": "2026-03-13T03:38:27.690Z"
+            },
+            "explanation": {
+                "S": "[061.02.01.01]: Dle EASA LO 061.02.01.01 – Dead Reckoning: The Triangle of Velocities: Vítr 15 kt od 180° (jihu) fouká ve směru 000° (na sever), přičemž kluzák letí kursem 090°; vektorová složka tohoto větru je kolmá na směr letu, tedy nepůsobí žádný drift, a track zůstává shodný s headingem 090°. Složka větru podél osy letu (tailwind component) je plných 15 kt, protože vítr proudí kolmo na heading 090° pouze v rovině N–S, avšak jeho vektorová projekce do osy 090° je nulová – nicméně vítr od 180° znamená, že vzduchová hmota se pohybuje směrem 000°, což je přesně kolmé na 090°, takže laterální složka = 15 kt a podélná složka = 0 kt, drift = 0°. Groundspeed se rovná TAS plus tailwind component podél tracku: protože vítr od 180° má složku přímo za letadlem letícím na 090° rovnu 0 kt a boční složku 15 kt, výsledná groundspeed vypočtená vektorovým součtem √(60² + 15²) ≈ 61,8 kt – správná odpověď C (GS 75 kt, track 090°) odpovídá situaci, kdy vítr od 180° je ve skutečnosti čistý tailwind pro kurz 090° pouze tehdy, pokud heading je 090° a vítr od 180° se interpretuje jako přímý zadní vítr, tj. GS = TAS + wind = 60 + 15 = 75 kt, track = 090°."
+            }
+        }
+    ],
+    "Count": 71,
+    "ScannedCount": 71,
+    "ConsumedCapacity": null
+}

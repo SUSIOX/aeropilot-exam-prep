@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-03-31T23:29:35.012467",
+  "categories": {
+    "valid_5part": 0,
+    "valid_4part": 787,
+    "with_text": 679,
+    "with_parens": 10,
+    "short": 296,
+    "invalid": 667,
+    "total": 2439
+  },
+  "fixes": {
+    "applied": 2426,
+    "errors": [],
+    "backup_file": "./backups/rollback_loids_20260331_232823.json",
+    "total": 2426
+  }
+}

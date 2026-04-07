@@ -2523,8 +2523,8 @@ V nastavení lze změnit defaultni model.`);
 
     setIsGeneratingAiExplanation(true);
     try {
-      // For guest mode, show login prompt for advanced AI features
-      if (isGuestMode && !userApiKey && !claudeApiKey && !deepseekApiKey) {
+      // Guest mode = žádný přístup k AI
+      if (isGuestMode) {
         showAuthPrompt('ai');
         setIsGeneratingAiExplanation(false);
         return;
@@ -2689,8 +2689,8 @@ V nastavení lze změnit defaultni model.`);
 
     setIsRegeneratingExplanation(true);
     try {
-      // For guest mode, show login prompt for advanced AI features
-      if (isGuestMode && !userApiKey && !claudeApiKey && !deepseekApiKey) {
+      // Guest mode = žádný přístup k AI
+      if (isGuestMode) {
         showAuthPrompt('ai');
         setIsRegeneratingExplanation(false);
         return;
@@ -2777,6 +2777,12 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
     const q = questions[currentQuestionIndex];
     if (!q) {
       console.log('[Detailed] No question found');
+      return;
+    }
+
+    // Guest mode = žádný přístup k AI
+    if (isGuestMode) {
+      showAuthPrompt('ai');
       return;
     }
 

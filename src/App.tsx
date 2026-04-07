@@ -2548,8 +2548,8 @@ V nastavení lze změnit defaultni model.`);
         console.error('[Cache] DynamoDB error:', error);
       }
 
-      // Check localStorage as fallback
-      const localStorageKey = `ai_explanation_${q.id}_${aiProvider}_${aiModel}`;
+      // Check localStorage as fallback — klíč bez model názvu aby fungoval i po změně modelu
+      const localStorageKey = `ai_explanation_${q.id}`;
       console.log(`[Cache] Checking localStorage for key: ${localStorageKey}`);
       const localStorageData = localStorage.getItem(localStorageKey);
       if (localStorageData) {
@@ -2627,29 +2627,33 @@ V nastavení lze změnit defaultni model.`);
       setAiExplanation(result.explanation);
       setShowExplanation(true);
 
-      // Save AI explanation to DynamoDB
-      try {
-        const cacheKey = String(q.id);
-        await dynamoDBService.saveExplanationWithObjective(
-          cacheKey,
-          result.explanation,
-          null,
-          result.objective || null,
-          aiProvider as 'gemini' | 'claude',
-          aiModel
-        );
+      // Save AI explanation to DynamoDB (only for authenticated users — guests nemají UpdateItem IAM)
+      if (!isGuestMode && user?.id && isCredentialsReady) {
+        try {
+          const cacheKey = String(q.id);
+          await dynamoDBService.saveExplanationWithObjective(
+            cacheKey,
+            result.explanation,
+            null,
+            result.objective || null,
+            aiProvider as 'gemini' | 'claude',
+            aiModel
+          );
 
-        // Also save the LO directly to the question if it's an AI-generated question
-        if (q.source === 'ai' && result.objective) {
-          dynamoDBService.updateQuestionLO(q.questionId || q.id, result.objective).catch(() => { });
+          // Also save the LO directly to the question if it's an AI-generated question
+          if (q.source === 'ai' && result.objective) {
+            dynamoDBService.updateQuestionLO(q.questionId || q.id, result.objective).catch(() => { });
+          }
+        } catch (error) {
+          console.error('[Explanation] ❌ DynamoDB save FAILED:', error);
         }
-      } catch (error) {
-        console.error('[Explanation] ❌ DynamoDB save FAILED:', error);
+      } else if (isGuestMode) {
+        console.warn('[Explanation] Guest mode — explanation uložen pouze do localStorage (přihlas se pro cloud sync)');
       }
 
-      // Always save to localStorage as fallback
+      // Always save to localStorage — klíč bez model názvu pro kompatibilitu
       try {
-        const localStorageKey = `ai_explanation_${q.id}_${aiProvider}_${aiModel}`;
+        const localStorageKey = `ai_explanation_${q.id}`;
         const explanationData = {
           questionId: q.id,
           explanation: result.explanation,
@@ -2858,31 +2862,33 @@ V nastavení lze změnit defaultni model.`);
         console.log('[Detailed] Explanation key:', explanationKey);
         console.log('[Detailed] Result to save:', detailedExplanationResult?.substring(0, 100) + '...');
 
-        // Save to DynamoDB
-        dynamoDBService.saveExplanationWithObjective(
-          explanationKey,
-          q.ai_explanation || aiExplanation || '',
-          detailedExplanationResult,
-          null,
-          aiProvider as 'gemini' | 'claude',
-          aiModel
-        ).then(() => {
-          console.log('[Detailed] ✅ Saved to DynamoDB');
-        }).catch((err) => {
-          console.error('[Detailed] ❌ DynamoDB save failed:', err);
-        });
+        // Save to DynamoDB — only for authenticated users
+        if (!isGuestMode && user?.id && isCredentialsReady) {
+          dynamoDBService.saveExplanationWithObjective(
+            explanationKey,
+            q.ai_explanation || aiExplanation || '',
+            detailedExplanationResult,
+            null,
+            aiProvider as 'gemini' | 'claude',
+            aiModel
+          ).then(() => {
+            console.log('[Detailed] ✅ Saved to DynamoDB');
+          }).catch((err) => {
+            console.error('[Detailed] ❌ DynamoDB save failed:', err);
+          });
+        }
 
-        // Save to localStorage
-        const explanations = JSON.parse(localStorage.getItem('ai_explanations') || '{}');
-        explanations[explanationKey] = {
+        // Save to localStorage — klíč bez model názvu
+        const localKey = `ai_explanation_${String(q.id)}`;
+        const existing = JSON.parse(localStorage.getItem(localKey) || '{}');
+        localStorage.setItem(localKey, JSON.stringify({
+          ...existing,
           questionId: q.id,
-          explanation: q.ai_explanation || aiExplanation || '',
           detailedExplanation: detailedExplanationResult,
           provider: aiProvider,
           model: aiModel,
           createdAt: new Date().toISOString()
-        };
-        localStorage.setItem('ai_explanations', JSON.stringify(explanations));
+        }));
         console.log('[Detailed] ✅ Saved to localStorage');
 
         setQuestions(prev => prev.map(question =>

@@ -2588,18 +2588,6 @@ V nastavení lze změnit defaultni model.`);
         }
       }
 
-      // Check question data cache
-      console.log(`[Cache] Checking question data cache. q.ai_explanation: ${q.ai_explanation ? 'exists' : 'null'}, q.ai_explanation_provider: ${q.ai_explanation_provider}`);
-      if (q.ai_explanation) {
-        console.log(`[Cache] Found in question data cache, provider: ${q.ai_explanation_provider}`);
-        setAiExplanation(q.ai_explanation);
-        setDetailedExplanation(q.ai_detailed_explanation || null);
-        setAiExplanationGeneratedBy({ provider: q.ai_explanation_provider || 'unknown', model: q.ai_explanation_model || 'unknown' });
-        setShowExplanation(true);
-        setIsGeneratingAiExplanation(false);
-        return;
-      }
-
       console.log(`[Cache] No cached explanation found, calling AI API for provider: ${aiProvider}`);
 
       const lo = allLOs.find(l => l.id === q.lo_id);
@@ -2660,30 +2648,19 @@ V nastavení lze změnit defaultni model.`);
         console.warn('[Explanation] Guest mode — explanation uložen pouze do localStorage (přihlas se pro cloud sync)');
       }
 
-      // Always save to localStorage — klíč bez model názvu pro kompatibilitu
+      // Uložit do localStorage jako fallback (offline / rychlý přístup)
       try {
         const localStorageKey = `ai_explanation_${q.id}`;
-        const explanationData = {
+        localStorage.setItem(localStorageKey, JSON.stringify({
           questionId: q.id,
           explanation: result.explanation,
           detailedExplanation: null,
           provider: aiProvider,
           model: aiModel,
           createdAt: new Date().toISOString()
-        };
-        localStorage.setItem(localStorageKey, JSON.stringify(explanationData));
-
-        // Update local state to reflect saved data
-        setQuestions(prev => prev.map(question =>
-          question.id === q.id ? {
-            ...question,
-            ai_explanation: result.explanation,
-            ai_explanation_provider: aiProvider,
-            ai_explanation_model: aiModel
-          } : question
-        ));
+        }));
       } catch (error) {
-        // Failed to save AI explanation to localStorage
+        // Silent fail localStorage
       }
     } catch (error: any) {
       const msg = getAIErrorMessage(error); if (msg) alert(msg);
@@ -2748,26 +2725,34 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
       );
 
       setAiExplanation(explanation.explanation);
+      setAiExplanationGeneratedBy({ provider: aiProvider, model: aiModel });
       setAiDetectedObjective(explanation.objective || null);
-
-      // Clear detailed explanation when regenerating
       setDetailedExplanation(null);
 
-      // Save to cache
-      const cacheKey = String(q.id);
-      dynamoDBService.saveExplanationWithObjective(
-        cacheKey,
-        explanation.explanation,
-        null,
-        explanation.objective || null,
-        aiProvider as 'gemini' | 'claude',
-        aiModel
-      ).catch((err) => { console.error('[Explanation] ❌ DynamoDB regen-save FAILED:', err); });
+      // Uložit do DynamoDB (authenticated only)
+      if (!isGuestMode && user?.id && isCredentialsReady) {
+        const cacheKey = String(q.id);
+        dynamoDBService.saveExplanationWithObjective(
+          cacheKey,
+          explanation.explanation,
+          null,
+          explanation.objective || null,
+          aiProvider as 'gemini' | 'claude',
+          aiModel
+        ).catch((err) => { console.error('[Explanation] ❌ DynamoDB regen-save FAILED:', err); });
 
-      // Also save the LO directly to the question if it's an AI-generated question
-      if (q.source === 'ai' && explanation.objective) {
-        dynamoDBService.updateQuestionLO(q.questionId || q.id, explanation.objective).catch(() => { });
+        if (q.source === 'ai' && explanation.objective) {
+          dynamoDBService.updateQuestionLO(q.questionId || q.id, explanation.objective).catch(() => { });
+        }
       }
+
+      // Uložit do localStorage jako fallback
+      try {
+        localStorage.setItem(`ai_explanation_${q.id}`, JSON.stringify({
+          questionId: q.id, explanation: explanation.explanation,
+          provider: aiProvider, model: aiModel, createdAt: new Date().toISOString()
+        }));
+      } catch (_) { }
 
     } catch (error: any) {
       if (error?.message === 'Operation cancelled') {

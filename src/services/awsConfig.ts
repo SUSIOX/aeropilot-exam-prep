@@ -59,7 +59,8 @@ export const TABLE_NAMES = {
   QUESTIONS: 'questions',                       // aeropilot-questions
   USERS: 'users',                               // aeropilot-users
   USER_PROGRESS: 'user-progress-v2',            // single-table design for user progress
-  EXAM_RESULTS: 'exam-results'                  // aeropilot-exam-results
+  EXAM_RESULTS: 'exam-results',                 // aeropilot-exam-results
+  AI_EXPLANATIONS: 'ai-explanations'            // aeropilot-ai-explanations (hash: questionId, sort: model)
 } as const;
 
 // Get full table name with prefix

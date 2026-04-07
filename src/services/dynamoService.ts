@@ -124,33 +124,60 @@ export class DynamoDBService {
     return dynamoError;
   }
 
-  // AI Explanations Cache Operations
-  
+  // AI Explanations — tabulka aeropilot-ai-explanations (hash: questionId, sort: model)
+
   async getCachedExplanation(questionId: string, model: string): Promise<DynamoDBResponse<ExplanationItem>> {
     try {
       await this.ensureInitialized();
 
+      // 1. Zkus načíst vysvětlení pro konkrétní model
       const command = new DocGetCommand({
-        TableName: getTableName('QUESTIONS'),
-        Key: { questionId },
-        ProjectionExpression: 'ai_explanation, ai_detailed_explanation, ai_explanation_provider, ai_explanation_model, ai_explanation_updated_at'
+        TableName: getTableName('AI_EXPLANATIONS'),
+        Key: { questionId, model }
       });
 
       const result = await this.docClient.send(command);
       const item = result.Item;
 
-      if (item && item.ai_explanation) { // vrátit vysvětlení bez ohledu na model
+      if (item && item.explanation) {
         return {
           success: true,
           data: {
             questionId,
-            model: item.ai_explanation_model,
-            explanation: item.ai_explanation,
-            detailedExplanation: item.ai_detailed_explanation,
-            provider: item.ai_explanation_provider as any,
-            usageCount: 1, // Simplified
-            createdAt: item.ai_explanation_updated_at,
-            lastUsed: item.ai_explanation_updated_at
+            model: item.model,
+            explanation: item.explanation,
+            detailedExplanation: item.detailedExplanation || null,
+            provider: item.provider as any,
+            usageCount: 1,
+            createdAt: item.createdAt,
+            lastUsed: item.createdAt
+          }
+        };
+      }
+
+      // 2. Fallback: vrátit libovolné vysvětlení pro tuto otázku (Query bez model filtru)
+      const queryCommand = new DocQueryCommand({
+        TableName: getTableName('AI_EXPLANATIONS'),
+        KeyConditionExpression: 'questionId = :qid',
+        ExpressionAttributeValues: { ':qid': questionId },
+        Limit: 1
+      });
+
+      const queryResult = await this.docClient.send(queryCommand);
+      const anyItem = queryResult.Items?.[0];
+
+      if (anyItem && anyItem.explanation) {
+        return {
+          success: true,
+          data: {
+            questionId,
+            model: anyItem.model,
+            explanation: anyItem.explanation,
+            detailedExplanation: anyItem.detailedExplanation || null,
+            provider: anyItem.provider as any,
+            usageCount: 1,
+            createdAt: anyItem.createdAt,
+            lastUsed: anyItem.createdAt
           }
         };
       }
@@ -169,30 +196,31 @@ export class DynamoDBService {
     questionId: string,
     explanation: string,
     detailedExplanation: string | null,
-    provider: 'gemini' | 'claude',
+    provider: 'gemini' | 'claude' | string,
     model: string
   ): Promise<DynamoDBResponse> {
     try {
       await this.ensureInitialized();
       const now = new Date().toISOString();
 
-      const command = new DocUpdateCommand({
-        TableName: getTableName('QUESTIONS'),
-        Key: { questionId },
-        UpdateExpression: 'SET ai_explanation = :exp, ai_detailed_explanation = :dexp, ai_explanation_provider = :prov, ai_explanation_model = :mod, ai_explanation_updated_at = :now, updatedAt = :now',
-        ExpressionAttributeValues: {
-          ':exp': explanation,
-          ':dexp': detailedExplanation,
-          ':prov': provider,
-          ':mod': model,
-          ':now': now
+      const command = new DocPutCommand({
+        TableName: getTableName('AI_EXPLANATIONS'),
+        Item: {
+          questionId,
+          model,
+          explanation,
+          detailedExplanation: detailedExplanation || null,
+          provider,
+          createdAt: now
         }
       });
 
       await this.docClient.send(command);
+      console.log(`[DynamoDB] ✅ Vysvětlení uloženo: ${questionId} / ${model}`);
       return { success: true };
 
     } catch (error) {
+      console.error(`[DynamoDB] ❌ saveExplanation FAILED:`, error);
       return {
         success: false,
         error: this.handleError(error, 'saveExplanation').message
@@ -1718,7 +1746,7 @@ export class DynamoDBService {
     }
   }
 
-  // Cache refresh - force regeneration of explanation
+  // Cache refresh - smaže vysvětlení pro daný model z aeropilot-ai-explanations
   async refreshExplanation(
     questionId: string,
     model: string
@@ -1726,14 +1754,13 @@ export class DynamoDBService {
     try {
       await this.ensureInitialized();
 
-      const command = new DocUpdateCommand({
-        TableName: getTableName('QUESTIONS'),
-        Key: { questionId },
-        UpdateExpression: 'REMOVE ai_explanation, ai_detailed_explanation, ai_explanation_provider, ai_explanation_model, ai_explanation_updated_at'
+      const command = new DocDeleteCommand({
+        TableName: getTableName('AI_EXPLANATIONS'),
+        Key: { questionId, model }
       });
 
       await this.docClient.send(command);
-
+      console.log(`[DynamoDB] ✅ Vysvětlení smazáno: ${questionId} / ${model}`);
       return { success: true };
 
     } catch (error) {

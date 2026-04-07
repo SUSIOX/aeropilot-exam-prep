@@ -166,13 +166,22 @@
       "12 měsíců",
       "60 měsíců",
       "48 měsíců",
-      "24 měsíců Jak lze prodloužit platnost třídní kvalifikace SEP land (jednomotorový pístový pozemní letoun), když jste 14 nesplnil požadovanou dobu letu?",
+      "24 měsíců"
+    ],
+    "correct": 0,
+    "image": null,
+    "explanation": ""
+  },
+  {
+    "id": 14,
+    "question": "Jak lze prodloužit platnost třídní kvalifikace SEP land (jednomotorový pístový pozemní letoun), když jste nesplnil požadovanou dobu letu?",
+    "answers": [
       "přezkoušení odborné způsobilosti s examinátorem",
       "požadovanou dobu letu je třeba splnit pod dohledem letového instruktora",
       "ATO může prodloužit kvalifikaci po výcvikovém letu s letovým instruktorem",
       "podle nalétaných hodin je třeba provést několik výcvikových letů pod dohledem ATO"
     ],
-    "correct": 5,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },

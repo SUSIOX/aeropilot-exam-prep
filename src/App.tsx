@@ -2571,7 +2571,7 @@ V nastavení lze změnit defaultni model.`);
               null, // No objective in localStorage data
               aiProvider as 'gemini' | 'claude',
               aiModel
-            ).catch(() => { });
+            ).catch((err) => { console.error('[Explanation] ❌ DynamoDB backfill FAILED:', err); });
             return;
           }
         } catch (error) {
@@ -2644,7 +2644,7 @@ V nastavení lze změnit defaultni model.`);
           dynamoDBService.updateQuestionLO(q.questionId || q.id, result.objective).catch(() => { });
         }
       } catch (error) {
-        // Silent fail - localStorage fallback below
+        console.error('[Explanation] ❌ DynamoDB save FAILED:', error);
       }
 
       // Always save to localStorage as fallback
@@ -2749,7 +2749,7 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
         explanation.objective || null,
         aiProvider as 'gemini' | 'claude',
         aiModel
-      ).catch(() => { });
+      ).catch((err) => { console.error('[Explanation] ❌ DynamoDB regen-save FAILED:', err); });
 
       // Also save the LO directly to the question if it's an AI-generated question
       if (q.source === 'ai' && explanation.objective) {

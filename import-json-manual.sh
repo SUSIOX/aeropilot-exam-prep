@@ -24,7 +24,8 @@ import_subject() {
     
     for i in $(seq 0 $((count - 1))); do
         local item=$(jq -r ".[$i]" "$json_file")
-        local question_id="user_${subject_id}_$(printf "%03d" $((i + 1)))"
+        local original_id=$(echo "$item" | jq -r '.id')
+        local question_id="subject${subject_id}_q${original_id}"
         local question=$(echo "$item" | jq -r '.question')
         local answers=$(echo "$item" | jq -r '.answers | tojson')
         local correct=$(echo "$item" | jq -r '.correct')
@@ -34,6 +35,7 @@ import_subject() {
             --table-name $TABLE_NAME \
             --item "{
                 \"questionId\": {\"S\": \"$question_id\"},
+                \"originalId\": {\"N\": \"$original_id\"},
                 \"question\": {\"S\": $question},
                 \"answers\": {\"L\": $answers},
                 \"correct\": {\"N\": \"$correct\"},

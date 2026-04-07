@@ -42,11 +42,16 @@ async function fixRemaining() {
           let idStr = item.originalId?.N;
           
           if (!idStr) {
-               // Fallback: extract from questionId (e.g. user_9_074)
+               // Fallback: extract from questionId
+               // New format: subjectN_qID (e.g. subject9_q74)
+               // Legacy format: user_N_SEQ (e.g. user_9_074)
                const qid = item.questionId?.S || '';
-               const parts = qid.split('_');
-               if (parts.length === 3) {
-                   idStr = parseInt(parts[2], 10).toString();
+               const newMatch = qid.match(/^subject\d+_q(\d+)$/);
+               const legacyMatch = qid.match(/^user_\d+_(\d+)$/);
+               if (newMatch) {
+                   idStr = parseInt(newMatch[1], 10).toString();
+               } else if (legacyMatch) {
+                   idStr = parseInt(legacyMatch[1], 10).toString();
                }
           }
 

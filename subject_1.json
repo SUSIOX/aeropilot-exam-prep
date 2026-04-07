@@ -146,16 +146,12 @@
     "id": 12,
     "question": "Jaké jsou mimo jiné požadavky na získání kvalifikace pro lety VFR v noci?",
     "answers": [
-      "nejméně 10 hodin letu v noci, 3 z nich s instruktorem a nejméně 1 navigační let a 5 sólo vzletů a přistání s",
-      "úplným zastavením",
-      "nejméně 5 hodin letu v noci, 3 z nich s instruktorem a nejméně 1 navigační let a 5 sólo vzletů a přistání s",
-      "úplným zastavením",
-      "nejméně 5 hodin letu v noci, 4 z nich s instruktorem a 1 hodina navigačního letu a 5 sólo vzletů a přistání s",
-      "úplným zastavením",
-      "nejméně 5 hodin letu v noci, 3 z nich s instruktorem a nejméně 1 hodina navigačního letu a 10 sólo vzletů",
-      "a přistání s úplným zastavením"
+      "nejméně 10 hodin letu v noci, 3 z nich s instruktorem a nejméně 1 navigační let a 5 sólo vzletů a přistání s úplným zastavením",
+      "nejméně 5 hodin letu v noci, 3 z nich s instruktorem a nejméně 1 navigační let a 5 sólo vzletů a přistání s úplným zastavením",
+      "nejméně 5 hodin letu v noci, 4 z nich s instruktorem a 1 hodina navigačního letu a 5 sólo vzletů a přistání s úplným zastavením",
+      "nejméně 5 hodin letu v noci, 3 z nich s instruktorem a nejméně 1 hodina navigačního letu a 10 sólo vzletů a přistání s úplným zastavením"
     ],
-    "correct": -1,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -374,7 +370,7 @@
       "špatné meteorologické podmínky v blízkosti letiště",
       "vzlet nebo přistání na letišti",
       "odhoz vlečených předmětů na letišti",
-      "přiblížení bez přistání na letišti Jednomotorový pístový a turbovrtulový letoun letí proti sobě ve stejné výšce. Který z nich má změnit"
+      "přiblížení bez přistání na letišti"
     ],
     "correct": 0,
     "image": null,
@@ -382,14 +378,14 @@
   },
   {
     "id": 30,
-    "question": "kurz, aby se vyhnul srážce?",
+    "question": "Jednomotorový pístový a turbovrtulový letoun letí proti sobě ve stejné výšce. Který z nich má změnit kurz, aby se vyhnul srážce?",
     "answers": [
       "turbovrtulový letoun má dát přednost jednomotorovému pístovému letounu",
       "obě letadla mají uhnout doprava",
       "jednomotorový pístový letoun má dát přednost turbovrtulovému letounu",
       "obě letadla mají uhnout doleva"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -1107,16 +1103,12 @@
     "id": 85,
     "question": "Co je PAPI (světelná sestupová soustava pro vizuální přiblížení)?",
     "answers": [
-      "Přístrojové zařízení poskytující informace, které pilotovi pomáhají dosáhnout a udržet správné přiblížení k",
-      "letišti",
-      "vizuální zařízení poskytující informace, které pilotovi pomáhají dosáhnout a udržet správnou odletovou",
-      "trať při odletu z letiště",
-      "vizuální zařízení poskytující informace, které pomáhají řídícímu letového provozu na věži dosáhnout a",
-      "udržet správné přiblížení na letiště",
-      "vizuální zařízení poskytující informace, které pomáhají pilotovi dosáhnout a udržet správnou sestupovou",
-      "rovinu při přiblížení k letišti"
+      "Přístrojové zařízení poskytující informace pro správné přiblížení k letišti",
+      "Vizuální zařízení pro správnou odletovou trať při odletu",
+      "Vizuální zařízení pro řídícího letového provozu na věži",
+      "Vizuální zařízení pro správnou sestupovou rovinu při přiblížení"
     ],
-    "correct": -1,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },

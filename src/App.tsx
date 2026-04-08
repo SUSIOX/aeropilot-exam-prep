@@ -5443,7 +5443,7 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                           })}
                         </div>
 
-                        {(answered || drillSettings.showExplanationOnDemand || selectedSubject.id === -2 || drillSettings.showCorrectAnswerMode) && (
+                        {(answered || drillSettings.showExplanationOnDemand || selectedSubject.id === -2 || (drillSettings.showCorrectAnswerMode && showExplanation)) && (
                           <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}

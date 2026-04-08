@@ -22,7 +22,11 @@ interface ModelButtonProps {
 }
 
 export function ProviderIcon({ provider, size = 11 }: { provider: AIProvider; size?: number }) {
-  const { Icon, color } = MODELS[provider]
+  const model = MODELS[provider]
+  if (!model) {
+    return <span className="text-xs opacity-50">AI</span>
+  }
+  const { Icon, color } = model
   return <Icon size={size} color={color} />
 }
 

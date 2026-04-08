@@ -1866,8 +1866,14 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
       setSelectedSubject({ id: 0, name: 'Mix', question_count: 0, success_rate: 0 });
 
       // Load from all subjects via DynamoDB
+      // For SPL, only load subjects 1,2,3,4,5,9 (exclude 6,7,8)
+      const splSubjects = [1, 2, 3, 4, 5, 9];
+      const subjectsToLoad = selectedLicense === 'SPL'
+        ? subjects.filter(s => splSubjects.includes(s.id))
+        : subjects;
+
       let allQuestions: Question[] = [];
-      for (const subject of subjects) {
+      for (const subject of subjectsToLoad) {
         const qs = await loadStaticQuestions(subject.id);
         allQuestions.push(...qs);
       }
@@ -1883,18 +1889,28 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
         return;
       }
 
+      // Debug: zobrazit source filtry
+      console.log('🔍 MIX: Source filtry:', drillSettings.sourceFilters);
+      console.log('🔍 MIX: Celkem otázek:', allQuestions.length);
+      console.log('🔍 MIX: Prvních 5 otázek - source:', allQuestions.slice(0, 5).map(q => ({ id: q.id, source: q.source, is_ai: q.is_ai })));
+
       // Apply source filters
       const sourceFiltered = allQuestions.filter(q => {
-        const isAi = Number(q.is_ai) === 1 || q.source === 'ai';
+        const isAi = Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa';
         if (isAi) return drillSettings.sourceFilters.includes('ai');
         return drillSettings.sourceFilters.includes('user');
       });
 
       // Apply license filter - show only questions applicable to selected license
       const filtered = sourceFiltered.filter(q => {
+        if (selectedLicense === 'BOTH') return true;
         const appliesTo = q.metadata?.applies_to || ['PPL', 'SPL'];
         return appliesTo.includes(selectedLicense);
       });
+
+      console.log('🔍 MIX: Po source filtru:', sourceFiltered.length, 'otázek');
+      console.log('🔍 MIX: Po licenčním filtru:', filtered.length, 'otázek');
+      console.log('🔍 MIX: Licence:', selectedLicense);
 
       if (filtered.length === 0) {
         alert(`Všech ${allQuestions.length} otázek bylo odfiltrováno. Zkontrolujte nastavení zdrojů.`);
@@ -1924,18 +1940,25 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
   };
 
   const loadAllQuestionsAcrossSubjects = async (): Promise<Question[]> => {
+    // For SPL, only load subjects 1,2,3,4,5,9 (exclude 6,7,8)
+    const splSubjects = [1, 2, 3, 4, 5, 9];
+    const subjectsToLoad = selectedLicense === 'SPL'
+      ? subjects.filter(s => splSubjects.includes(s.id))
+      : subjects;
+
     let all: Question[] = [];
-    for (const subject of subjects) {
+    for (const subject of subjectsToLoad) {
       const qs = await loadStaticQuestions(subject.id);
       all.push(...qs);
     }
-    
+
     // Filter by selected license
     const filtered = all.filter(q => {
+      if (selectedLicense === 'BOTH') return true;
       const appliesTo = q.metadata?.applies_to || ['PPL', 'SPL'];
       return appliesTo.includes(selectedLicense);
     });
-    
+
     return filtered;
   };
 

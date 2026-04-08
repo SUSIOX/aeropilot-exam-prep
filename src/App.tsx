@@ -44,6 +44,7 @@ import {
 } from 'lucide-react';
 import { Subject, Question, Stats, ViewMode, DrillSettings } from './types';
 import { Spinner } from './components/Spinner';
+import { LicenseProgress } from './components/LicenseProgress';
 import { LearningEngine } from './lib/LearningEngine';
 import { sortQuestions, updateShuffleHistory, SortingConfig } from './services/sortingService';
 import {
@@ -2410,26 +2411,16 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
   const nextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       const nextIdx = currentQuestionIndex + 1;
-      setCurrentQuestionIndex(nextIdx);
-
-      // Check if already answered in exam mode
-      if (view === 'exam') {
-        const nextQ = questions[nextIdx];
-        if (nextQ && examAnswers[nextQ.id]) {
-          setAnswered(examAnswers[nextQ.id]);
-        } else {
-          setAnswered(null);
-        }
-      } else {
-        setAnswered(null);
-      }
-
+      
+      // Reset explanation states FIRST before changing question
       setShowExplanation(false);
       setAiExplanation(null);
       setAiExplanationGeneratedBy(null);
       setAiDetectedObjective(null);
       setDetailedExplanation(null);
       language.resetTranslation(); // Reset translation when changing question
+      
+      setCurrentQuestionIndex(nextIdx);
     } else if (view === 'exam') {
       finishExam();
     } else {
@@ -5401,12 +5392,7 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                 }
                                 onClick={() => {
                                   if (drillSettings.showCorrectAnswerMode && isCorrect) {
-                                    if (!showExplanation) {
-                                      setShowExplanation(true);
-                                      handleFetchAiExplanation();
-                                    } else {
-                                      nextQuestion();
-                                    }
+                                    nextQuestion();
                                   } else if (answered && isCorrect) {
                                     // Běžný drill mód - druhé kliknutí na správnou odpověď posune dál
                                     nextQuestion();

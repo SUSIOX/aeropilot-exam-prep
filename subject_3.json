@@ -307,7 +307,7 @@
       "výšku nad tlakovou hladinou nadmořské výšky letiště",
       "výšku nad střední hladinou moře (MSL)"
     ],
-    "correct": 2,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -580,7 +580,7 @@
       "rozdíl se zvětšuje, relativní vlhkost se zvětšuje",
       "rozdíl zůstává stejný, relativní vlhkost se zvětšuje"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -593,7 +593,7 @@
       "rozdíl mezi rosným bodem a kondenzačním bodem",
       "maximální množství vodní páry, kterou může vzduch obsahovat"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -1056,7 +1056,7 @@
       "stáčení po směru hodinových ručiček při přechodu teplé fronty, stáčení proti směru hodinových",
       "ručiček při přechodu studené fronty"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -1186,7 +1186,7 @@
       "proměnlivé počasí s přecházejícími frontami",
       "húlavy a bouřky"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -1329,7 +1329,7 @@
       "absolutně stabilní atmosféra, vysoká teplota a nízká relativní vlhkost",
       "podmíněně nestabilní atmosféra, vysoká teplota a vysoká relativní vlhkost"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -1368,7 +1368,7 @@
       "přehřátí povrchu a mechanické poškození zasažených částí draku",
       "rychlá ztráta přetlaku a dým v kabině"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -1550,7 +1550,7 @@
       "informace o síle větru, případně o síle nárazů větru",
       "provozní informace, např. vzletová a přistávací dráha v provozu a převodní hladina"
     ],
-    "correct": 1,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },

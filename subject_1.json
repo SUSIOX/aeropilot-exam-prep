@@ -177,7 +177,7 @@
       "ATO může prodloužit kvalifikaci po výcvikovém letu s letovým instruktorem",
       "podle nalétaných hodin je třeba provést několik výcvikových letů pod dohledem ATO"
     ],
-    "correct": 1,
+    "correct": 0,
     "image": null,
     "explanation": ""
   },
@@ -517,7 +517,7 @@
       "nadmořská výška základny nejnižší vrstvy oblačnosti pokrývající více než jednu polovinu oblohy pod 10000",
       "ft"
     ],
-    "correct": 2,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -530,7 +530,7 @@
       "připravte se na bezpečnostní přistání, vstoupil jste do zakázaného prostoru",
       "jste vzdálen od všech omezených nebo vyhrazených prostorů, můžete pokračovat stávajícím kurzem"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -725,7 +725,7 @@
       "pozor, turbulence v úplavu",
       "dávejte pozor na vítr v úplavu"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -767,7 +767,7 @@
       "omezení přístupu na letištích, kontroly cestujících, požadavky na piloty, vzory průkazů a doby jejich",
       "platnosti"
     ],
-    "correct": 2,
+    "correct": 0,
     "image": "AIP.jpg",
     "explanation": ""
   },
@@ -795,7 +795,7 @@
       "omezení přístupu na letiště, kontroly cestujících, požadavky na piloty, vzory průkazů a doby jejich",
       "platnosti"
     ],
-    "correct": 3,
+    "correct": 2,
     "image": "AIP.jpg",
     "explanation": ""
   },
@@ -847,7 +847,7 @@
       "obdélníková plocha na pozemním letišti upravená pro přistání a vzlety letadel",
       "obdélníková plocha na pozemním letišti upravená na přistání a vzlety vrtulníků"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -913,7 +913,7 @@
       "může být obklopen bílým kruhem",
       "může být umístěn na velké černé ploše"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -926,7 +926,7 @@
       "letiště není bezpečné, nepřistávejte",
       "přistání povoleno"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -952,7 +952,7 @@
       "letiště není bezpečné, nepřistávejte",
       "přistání povoleno"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -965,7 +965,7 @@
       "opusťte pojížděcí / vzletovou dráhu",
       "pojíždění schváleno"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -1043,7 +1043,7 @@
       "přistaňte na tomto letišti a pokračujte na odbavovací plochu",
       "zastavte"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -1173,7 +1173,7 @@
       "od této křižovatky je použitelná délka dráhy v daném směru 2500 m",
       "celková použitelná délka dráhy je v daném směru 2500 m"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": "ALW-020.jpg",
     "explanation": ""
   },
@@ -1199,7 +1199,7 @@
       "pohyb po zemi omezen na zpevněné povrchy",
       "po vzletu a před přistáním je třeba provádět všechny zatáčky doprava"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": "ALW-012.jpg",
     "explanation": ""
   },

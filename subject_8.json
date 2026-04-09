@@ -177,7 +177,7 @@
       "intenzivní korozí nebo vysokým opotřebením",
       "Střetem vrtule se zemí"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -424,7 +424,7 @@
       "ploška trimu se pohne dolů, výškovka se pohne dolů",
       "ploška trimu se pohne dolů, výškovka se pohne nahoru"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -454,7 +454,7 @@
       "pro změnu polohy těžiště",
       "pro uzamčení prvků řízení"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -493,7 +493,7 @@
       "ventil v systému řízení dodávky paliva pro automatické nastavování bohatosti směsi",
       "tryska ve Venturiho trubici karburátoru pro rozstřikování paliva"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -857,7 +857,7 @@
       "1) snížit plnící tlak 2) zvýšit otáčky",
       "1)snížit otáčky 2) zvýšit plnící tlak"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -975,7 +975,7 @@
       "výška nad referenční takovou hladinou 1013.25 hPa",
       "magnetický směrník ke stanici"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -1183,7 +1183,7 @@
       "byl zapnut jistič",
       "je závada na potrubí plnícího vzduchu"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },

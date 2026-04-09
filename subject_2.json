@@ -73,7 +73,7 @@
       "78 %",
       "1 %"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -151,7 +151,7 @@
       "zrak",
       "čich"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -372,7 +372,7 @@
       "zatáčení do opačného směru",
       "zahájení stoupání"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -632,7 +632,7 @@
       "provedení skluzu na krátkém finále",
       "tendence přijímat vyšší riziko ve skupině"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -658,7 +658,7 @@
       "rychlá odevzdanost se ve složitých a kritických situacích",
       "důkladné vyhodnocení rizik v předem neznámých situacích"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -671,7 +671,7 @@
       "pochybnosti, když se něco zdá nejasné nebo dvojsmyslné",
       "sklon vidět to, co lze předpokládat"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -684,7 +684,7 @@
       "extrovertní – stabilní",
       "extrovertní – nestabilní"
     ],
-    "correct": 1,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -723,7 +723,7 @@
       "bod C",
       "bod D"
     ],
-    "correct": 2,
+    "correct": 3,
     "image": "HPL-002.jpg",
     "explanation": ""
   },
@@ -736,7 +736,7 @@
       "2, 4",
       "1, 2, 3, 4"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },

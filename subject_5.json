@@ -86,7 +86,7 @@
       "dynamický tlak = celkový tlak + statický tak",
       "celkový tlak = dynamický tlak + statický tlak"
     ],
-    "correct": 1,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -112,7 +112,7 @@
       "bod vztlaku",
       "bod přechodu"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -138,7 +138,7 @@
       "hloubku profilu",
       "tloušťku profilu"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": "PFA-010.jpg",
     "explanation": ""
   },
@@ -177,7 +177,7 @@
       "úhel zúžení",
       "štíhlost křídla"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -255,7 +255,7 @@
       "nad profilem je podtlak pod profilem je přetlak",
       "tlak nad profilem se nemění, pod profilem je přetlak"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -311,7 +311,7 @@
       "stagnační bod zůstane na stejném místě",
       "stagnační bod se posune nahoru"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -324,7 +324,7 @@
       "úhel inklinace",
       "úhel náběhu"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": "PFA-003.jpg",
     "explanation": ""
   },
@@ -415,7 +415,7 @@
       "malá štíhlost křídla",
       "malý součinitel vztlaku"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -480,7 +480,7 @@
       "interferenční",
       "indukovaný"
     ],
-    "correct": 2,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -573,7 +573,7 @@
       "vztlak je stejný a odpor se zvětšuje",
       "vztlak se zvětšuje a odpor se zmenšuje"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -599,7 +599,7 @@
       "vztlak se zmenšuje a odpor zmenšuje",
       "vztlak se zmenšuje a odpor zvětšuje"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -729,7 +729,7 @@
       "klapka ve tvaru profilu je vychýlena dolů a zvětšuje plochu křídla",
       "klapka ze spodní zadní části křídla je vychýlena směrem dolů"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -742,7 +742,7 @@
       "je větší akcelerace letadla",
       "se zkrátí rozjezd"
     ],
-    "correct": 1,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -781,7 +781,7 @@
       "turbulentní na předních částech profilu, laminární na zadních částech",
       "laminární na předních částech profilu, turbulentní na zadních částech"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -807,7 +807,7 @@
       "diferenciální výchylka křidélek",
       "vzepětí křídla"
     ],
-    "correct": 1,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -834,7 +834,7 @@
       "příčné",
       "vrtulové"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -899,7 +899,7 @@
       "je větší při přední poloze těžiště",
       "závisí na hmotnosti letadla"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -925,7 +925,7 @@
       "stabilizuje letoun kolem příčné osy",
       "zahajuje pohyb kolem vertikální osy"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -951,7 +951,7 @@
       "podélné osy",
       "výškovkové osy"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -990,7 +990,7 @@
       "klopení letadla doleva",
       "klopení letadla doprava"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -1003,7 +1003,7 @@
       "sníží se odpor křidélka vychýleného dolů a bočení vlivem klonění je menší",
       "při výchylkách křidélek zůstává celkový vztlak konstantní"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -1042,7 +1042,7 @@
       "na vektor tahu pohonné jednotky",
       "na nabíhající proud vzduchu"
     ],
-    "correct": 2,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -1094,7 +1094,7 @@
       "výchylkou trimu výškovky dolů",
       "výchylkou trimu výškovky nahoru"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -1198,7 +1198,7 @@
       "let na zádech",
       "pád"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": "PFA-008.jpg",
     "explanation": ""
   },

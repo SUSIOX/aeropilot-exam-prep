@@ -1,0 +1,334 @@
+{
+  "timestamp": "20260409_024445",
+  "total": 12,
+  "fixes": [
+    {
+      "subject": 4,
+      "qnum": 74,
+      "questionId": "subject4_q74",
+      "old_question": "Jaký je správný postup při ztrátě spojení ve vzdušném prostoru třídy D?",
+      "new_question": "Jaký je správný postup při ztrátě spojení ve vzdušném prostoru třídy D? ",
+      "old_answers": [
+        "pokračovat podle posledního povolení a podle pravidel VFR nebo opustit prostor nejkratší cestou",
+        "pokračovat nad 5000 ft a podle pravidel VFR nebo opustit prostor nejkratší cestou",
+        "pokračovat nad 5000 ft a podle pravidel VFR nebo opustit prostor po standardních tratích",
+        "pokračovat podle posledního povolení a podle pravidel VFR nebo opustit prostor po standardních tratích"
+      ],
+      "new_answers": [
+        "je třeba pokračovat v letu podle posledního povolení a podle pravidel VFR nebo tento prostor co nejkratší cestou opustit",
+        "je třeba pokračovat v letu nad 5000 ft a podle pravidel VFR nebo tento prostor co nejkratší cestou opustit",
+        "je třeba pokračovat v letu nad 5000 ft a podle pravidel VFR nebo tento prostor opustit po standardních tratích",
+        "je třeba pokračovat v letu podle posledního povolení a podle pravidel VFR nebo tento prostor opustit po standardních tratích"
+      ],
+      "old_correct": 0,
+      "new_correct": 0,
+      "darks": [
+        943,
+        761,
+        761,
+        761
+      ]
+    },
+    {
+      "subject": 4,
+      "qnum": 78,
+      "questionId": "subject4_q78",
+      "old_question": "Tísňové zprávy obsahují:",
+      "new_question": "Tísňové zprávy obsahují: ",
+      "old_answers": [
+        "informace o náhradních dílech potřebných pro pokračování v letu",
+        "informace o letadle a cestujících čelících vážné bezprostřední hrozbě vyžadující okamžitou pomoc",
+        "informace o bezpečnosti letadla, plavidla, vozidla nebo osoby v dohledu",
+        "informace o personálu na odbavovací ploše znamenající bezprostřední nebezpečí pro přistávající letadla"
+      ],
+      "new_answers": [
+        "informace týkající se naléhavé potřeby náhradních dílů potřebných pro pokračování v letu, které musí být objednány předem",
+        "informace týkající se letadla a jeho cestujících, které čelí vážné a bezprostřední hrozbě a vyžaduje okamžitou pomoc",
+        "informace týkající se bezpečnosti letadla, plavidla, vozidla nebo osoby v dohledu",
+        "informace týkající se personálu na odbavovací ploše znamenajícího bezprostřední nebezpečí pro přistávající letadla"
+      ],
+      "old_correct": 1,
+      "new_correct": 1,
+      "darks": [
+        761,
+        943,
+        761,
+        761
+      ]
+    },
+    {
+      "subject": 7,
+      "qnum": 8,
+      "questionId": "subject7_q8",
+      "old_question": "Základní prázdná hmotnost letadla zahrnuje: hmotnost letadla plus standardní pol",
+      "new_question": "Základní prázdná hmotnost letadla zahrnuje: ",
+      "old_answers": [
+        "olej v motoru a pomocných agregátech, hasicí přístroje, pyrotechnika, nouzové kyslíkové vybavení, doplňkové elektronické vybavení celkovou hmotnost letadla připraveného pro určitý druh provozu kromě nevyužitelného zbytku",
+        "paliva a provozního zatížení. Tato hmotnost zahrnuje takové položky jako posádku a její zavazadla",
+        "celkovou hmotnost letadla připraveného pro určitý druh provozu včetně požadovaného paliva a",
+        "posádky, ale bez provozního zatížení",
+        "celkovou hmotnost letadla připraveného pro určitý druh provozu včetně posádky, navigačních",
+        "přístrojů a krytu motorů"
+      ],
+      "new_answers": [
+        "hmotnost letadla plus standardní položky jako nevyčerpatelný zbytek paliva a dalších kapalin, olej v motoru a pomocných agregátech, hasicí přístroje, pyrotechnika, nouzové kyslíkové vybavení, doplňkové elektronické vybavení",
+        "celkovou hmotnost letadla připraveného pro určitý druh provozu kromě nevyužitelného zbytku paliva a provozního zatížení. Tato hmotnost zahrnuje takové položky jako posádku a její zavazadla",
+        "celkovou hmotnost letadla připraveného pro určitý druh provozu včetně požadovaného paliva a posádky, ale bez provozního zatížení",
+        "celkovou hmotnost letadla připraveného pro určitý druh provozu včetně posádky, navigačních přístrojů a krytu motorů"
+      ],
+      "old_correct": 0,
+      "new_correct": 0,
+      "darks": [
+        943,
+        761,
+        761,
+        761
+      ]
+    },
+    {
+      "subject": 7,
+      "qnum": 40,
+      "questionId": "subject7_q40",
+      "old_question": "Co zkracuje délku přistání?",
+      "new_question": "Co zkracuje délku přistání? ",
+      "old_answers": [
+        "silný čelní vítr",
+        "velká hustotní výška",
+        "velká tlaková výška",
+        "intenzivní déšť"
+      ],
+      "new_answers": [
+        "silný čelní vítr",
+        "velká hustotní výška",
+        "velká tlaková výška",
+        "intenzivní déšť"
+      ],
+      "old_correct": 0,
+      "new_correct": 0,
+      "darks": [
+        943,
+        761,
+        761,
+        761
+      ]
+    },
+    {
+      "subject": 7,
+      "qnum": 60,
+      "questionId": "subject7_q60",
+      "old_question": "Jaký je dolet za následujících podmínek? Teplota vnějšího vzduchu: 6 °C tlaková ",
+      "new_question": "Jaký je dolet za následujících podmínek? Teplota vnějšího vzduchu: 6 °C tlaková ",
+      "old_answers": [
+        "503 NM",
+        "457 NM",
+        "482 NM",
+        "444 NM"
+      ],
+      "new_answers": [
+        "503 NM",
+        "457 NM",
+        "482 NM",
+        "444 NM"
+      ],
+      "old_correct": 2,
+      "new_correct": 2,
+      "darks": [
+        761,
+        761,
+        943,
+        761
+      ]
+    },
+    {
+      "subject": 7,
+      "qnum": 65,
+      "questionId": "subject7_q65",
+      "old_question": "Jaká je maximální stoupavost letadla v tlakové výšce 6500 ft při teplotě vnějšíh",
+      "new_question": "Jaká je maximální stoupavost letadla v tlakové výšce 6500 ft při teplotě vnějšíh",
+      "old_answers": [
+        "Chybí příloha pro výpočet",
+        "350 ft/min",
+        "500 ft/min",
+        "150 ft/min"
+      ],
+      "new_answers": [
+        "520 ft / min",
+        "480 ft / min",
+        "400 ft / min",
+        "800 ft / min"
+      ],
+      "old_correct": 1,
+      "new_correct": 1,
+      "darks": [
+        761,
+        943,
+        761,
+        761
+      ]
+    },
+    {
+      "subject": 7,
+      "qnum": 66,
+      "questionId": "subject7_q66",
+      "old_question": "Jaká je pravá vzdušná rychlost (TAS) (kt) a spotřeba paliva (l/h) při traťovém l",
+      "new_question": "Jaká je pravá vzdušná rychlost (TAS) (kt) a spotřeba paliva (l/h) při traťovém l",
+      "old_answers": [
+        "95 kt, 18.5 l/h",
+        "100 kt, 20 l/h",
+        "120 kt, 25 l/h",
+        "80 kt, 15 l/h"
+      ],
+      "new_answers": [
+        "95 kt. 19.6 l/h",
+        "95,75 kt. 19.8 l/h",
+        "96 kt. 19.1 l/h",
+        "110 kt. 25.1 l/h"
+      ],
+      "old_correct": 0,
+      "new_correct": 0,
+      "darks": [
+        943,
+        761,
+        761,
+        761
+      ]
+    },
+    {
+      "subject": 7,
+      "qnum": 60,
+      "questionId": "subject7_q60",
+      "old_question": "% ve FL 60 za následujících podmínek? Teplota: ISA - 20 °C QNH: 980 hPa. Viz obr",
+      "new_question": "Jaký je dolet za následujících podmínek? Teplota vnějšího vzduchu: 6 °C tlaková ",
+      "old_answers": [
+        "95 kt. 19.6 l/h",
+        "95,75 kt. 19.8 l/h",
+        "96 kt. 19.1 l/h",
+        "110 kt. 25.1 l/h"
+      ],
+      "new_answers": [
+        "503 NM",
+        "457 NM",
+        "482 NM",
+        "444 NM"
+      ],
+      "old_correct": 2,
+      "new_correct": 2,
+      "darks": [
+        761,
+        761,
+        943,
+        761
+      ]
+    },
+    {
+      "subject": 7,
+      "qnum": 97,
+      "questionId": "subject7_q97",
+      "old_question": "Pro let je dáno: Traťové palivo = 70 US galonů, palivo pro mimořádné okolnosti =",
+      "new_question": "Pro let je dáno: Traťové palivo = 70 US galonů, palivo pro mimořádné okolnosti =",
+      "old_answers": [
+        "60 US galonů",
+        "50 US galonů",
+        "40 US galonů",
+        "Chybějící zbytek zadání"
+      ],
+      "new_answers": [
+        "zbývající palivo nestačí pro přistání na cílovém letišti se zbývajícím palivem pro let na náhradní letiště a s konečnou zálohou paliva",
+        "po přistání zbyde 15.0 US galonů paliva plus palivo pro let na náhradní letiště a konečná záloha paliva",
+        "po přistání zbyde 5.0 US galonů plus palivo pro let na náhradní letiště a konečná záloha paliva",
+        "po přistání zbyde celkem 40.0 US galonů paliva"
+      ],
+      "old_correct": 0,
+      "new_correct": 0,
+      "darks": [
+        943,
+        761,
+        761,
+        761
+      ]
+    },
+    {
+      "subject": 7,
+      "qnum": 40,
+      "questionId": "subject7_q40",
+      "old_question": "US galonů. Předpokládejte, že se spotřeba paliva nezmění. Který výrok je pravdiv",
+      "new_question": "Co zkracuje délku přistání? ",
+      "old_answers": [
+        "zbývající palivo nestačí pro přistání na cílovém letišti se zbývajícím palivem pro let na náhradní",
+        "letiště a s konečnou zálohou paliva",
+        "po přistání zbyde 15.0 US galonů paliva plus palivo pro let na náhradní letiště a konečná záloha",
+        "paliva",
+        "po přistání zbyde 5.0 US galonů plus palivo pro let na náhradní letiště a konečná záloha paliva",
+        "po přistání zbyde celkem 40.0 US galonů paliva"
+      ],
+      "new_answers": [
+        "silný čelní vítr",
+        "velká hustotní výška",
+        "velká tlaková výška",
+        "intenzivní déšť"
+      ],
+      "old_correct": 0,
+      "new_correct": 0,
+      "darks": [
+        943,
+        761,
+        761,
+        761
+      ]
+    },
+    {
+      "subject": 9,
+      "qnum": 74,
+      "questionId": "subject9_q74",
+      "old_question": "Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt.",
+      "new_question": "Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt.",
+      "old_answers": [
+        "125 kt",
+        "75 kt",
+        "100 kt",
+        "Chybí zbytek zadání"
+      ],
+      "new_answers": [
+        "120 kt",
+        "125 kt",
+        "117 kt",
+        "131 kt"
+      ],
+      "old_correct": 1,
+      "new_correct": 1,
+      "darks": [
+        761,
+        943,
+        761,
+        761
+      ]
+    },
+    {
+      "subject": 9,
+      "qnum": 75,
+      "questionId": "subject9_q75",
+      "old_question": "Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt.",
+      "new_question": "Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt.",
+      "old_answers": [
+        "125 kt",
+        "75 kt",
+        "100 kt",
+        "Chybí zbytek zadání"
+      ],
+      "new_answers": [
+        "62 min",
+        "48 min",
+        "37 min",
+        "84 min"
+      ],
+      "old_correct": 1,
+      "new_correct": 1,
+      "darks": [
+        761,
+        943,
+        761,
+        761
+      ]
+    }
+  ]
+}

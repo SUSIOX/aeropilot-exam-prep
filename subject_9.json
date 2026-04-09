@@ -294,7 +294,7 @@
       "zeměpisná trať: 113°. Magnetický kurz: 127°. Kompasový kurz: 129°.",
       "zeměpisná trať: 113°. Magnetický kurz: 139°. Kompasový kurz: 129°."
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -320,7 +320,7 @@
       "inklinace",
       "deklinace"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -333,7 +333,7 @@
       "snos větru",
       "deklinace"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -372,7 +372,7 @@
       "zeměpisný kurz: 194°. deklinace: 004° W",
       "zeměpisný kurz 172°. deklinace: 004° W"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -385,7 +385,7 @@
       "zeměpisný kurz: 194°. deviace: -002°.",
       "zeměpisný kurz: 172°. deviace: +002°."
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -411,7 +411,7 @@
       "na magnetických pólech",
       "na zeměpisných pólech"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -541,7 +541,7 @@
       "kompasu s přímým čtením",
       "rychloměru"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -879,7 +879,7 @@
       "265°",
       "275°"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -950,14 +950,14 @@
   },
   {
     "id": 74,
-    "question": "Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt. vzdálenost: (Příklad pokračuje - jaká je Ground Speed?)",
+    "question": "Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt. vzdálenost: 100 NM. Traťová rychlost (GS) je: ",
     "answers": [
+      "120 kt",
       "125 kt",
-      "75 kt",
-      "100 kt",
-      "Chybí zbytek zadání"
+      "117 kt",
+      "131 kt"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -976,14 +976,14 @@
   },
   {
     "id": 75,
-    "question": "Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt. vzdálenost: (Příklad pokračuje - jaká je Ground Speed?)",
+    "question": "Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt. vzdálenost: 100 NM. Doba letu je: ",
     "answers": [
-      "125 kt",
-      "75 kt",
-      "100 kt",
-      "Chybí zbytek zadání"
+      "62 min",
+      "48 min",
+      "37 min",
+      "84 min"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -1022,7 +1022,7 @@
       "3° doprava",
       "6° doleva"
     ],
-    "correct": 1,
+    "correct": 2,
     "image": "WCA.jpg",
     "explanation": ""
   },
@@ -1048,7 +1048,7 @@
       "18° doprava",
       "12° doprava"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -1100,7 +1100,7 @@
       "8 min",
       "15 min"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": "TAS.jpg",
     "explanation": ""
   },
@@ -1152,7 +1152,7 @@
       "povrchová vlna",
       "povrchová a prostorová vlna"
     ],
-    "correct": 2,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -1191,7 +1191,7 @@
       "magnetický směrník",
       "zeměpisnou trať"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": "VDF.jpg",
     "explanation": ""
   },
@@ -1217,7 +1217,7 @@
       "168°",
       "148°"
     ],
-    "correct": 2,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -1269,7 +1269,7 @@
       "247°",
       "257°"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -1282,7 +1282,7 @@
       "327°",
       "317°"
     ],
-    "correct": 1,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -1308,7 +1308,7 @@
       "238°",
       "258°"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -1321,7 +1321,7 @@
       "309°",
       "299°"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -1334,7 +1334,7 @@
       "jihovýchodně",
       "jihozápadně"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -1347,7 +1347,7 @@
       "magnetický směrník od letadla ke stanici",
       "magnetický směrník od stanice k letadlu"
     ],
-    "correct": 2,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -1373,7 +1373,7 @@
       "jihovýchodně",
       "jihozápadně"
     ],
-    "correct": 1,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -1412,7 +1412,7 @@
       "odpovídač sekundárního radaru (SSR)",
       "indikátor horizontální situace (HSI)"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": "NDB.jpg",
     "explanation": ""
   },
@@ -1451,7 +1451,7 @@
       "080°",
       "260°"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": "NAV-019.jpg",
     "explanation": ""
   },
@@ -1477,7 +1477,7 @@
       "v noci",
       "před půlnocí"
     ],
-    "correct": 1,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -1503,7 +1503,7 @@
       "pozdě odpoledne",
       "v noci"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -1568,7 +1568,7 @@
       "QTE",
       "QUJ"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -1633,7 +1633,7 @@
       "Dopplerova efektu",
       "měření času"
     ],
-    "correct": 2,
+    "correct": 3,
     "image": "DME.jpg",
     "explanation": ""
   },
@@ -1685,7 +1685,7 @@
       "pravou vzdušnou rychlost (TAS) a kurz",
       "rychlost a pravou vzdušnou rychlost (TAS)"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -1725,7 +1725,7 @@
       "7600",
       "7700"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -1738,7 +1738,7 @@
       "7600",
       "7700"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -1751,7 +1751,7 @@
       "tlakovou výšku",
       "rádiovou výšku"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },

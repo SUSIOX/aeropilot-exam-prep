@@ -34,7 +34,7 @@
       "je možné kompenzovat zásahy pilota do řízení",
       "není povoleno a je zvlášť nebezpečné"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -86,20 +86,18 @@
       "1, 2, 3",
       "2, 3, 4"
     ],
-    "correct": 1,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
   {
     "id": 8,
-    "question": "Základní prázdná hmotnost letadla zahrnuje: hmotnost letadla plus standardní položky jako nevyčerpatelný zbytek paliva a dalších kapalin,",
+    "question": "Základní prázdná hmotnost letadla zahrnuje: ",
     "answers": [
-      "olej v motoru a pomocných agregátech, hasicí přístroje, pyrotechnika, nouzové kyslíkové vybavení, doplňkové elektronické vybavení celkovou hmotnost letadla připraveného pro určitý druh provozu kromě nevyužitelného zbytku",
-      "paliva a provozního zatížení. Tato hmotnost zahrnuje takové položky jako posádku a její zavazadla",
-      "celkovou hmotnost letadla připraveného pro určitý druh provozu včetně požadovaného paliva a",
-      "posádky, ale bez provozního zatížení",
-      "celkovou hmotnost letadla připraveného pro určitý druh provozu včetně posádky, navigačních",
-      "přístrojů a krytu motorů"
+      "hmotnost letadla plus standardní položky jako nevyčerpatelný zbytek paliva a dalších kapalin, olej v motoru a pomocných agregátech, hasicí přístroje, pyrotechnika, nouzové kyslíkové vybavení, doplňkové elektronické vybavení",
+      "celkovou hmotnost letadla připraveného pro určitý druh provozu kromě nevyužitelného zbytku paliva a provozního zatížení. Tato hmotnost zahrnuje takové položky jako posádku a její zavazadla",
+      "celkovou hmotnost letadla připraveného pro určitý druh provozu včetně požadovaného paliva a posádky, ale bez provozního zatížení",
+      "celkovou hmotnost letadla připraveného pro určitý druh provozu včetně posádky, navigačních přístrojů a krytu motorů"
     ],
     "correct": 0,
     "image": null,
@@ -154,7 +152,7 @@
       "plynulé změny podélného sklonu, které mohou být vyrovnány pilotovými zásahy do řízení",
       "neřiditelné změny podélného sklonu, poškození konstrukce, riziko zranění"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -310,7 +308,7 @@
       "odnést baterie",
       "odstranit obslužné vybavení"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -323,7 +321,7 @@
       "omezení",
       "hmotnost a vyvážení"
     ],
-    "correct": 1,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -336,7 +334,7 @@
       "142 in",
       "147.5 in"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": "PFP-052E.jpg",
     "explanation": ""
   },
@@ -388,7 +386,7 @@
       "25.2 cm",
       "25.4 cm"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -498,7 +496,7 @@
   },
   {
     "id": 40,
-    "question": "Co zkracuje délku přistání?",
+    "question": "Co zkracuje délku přistání? ",
     "answers": [
       "silný čelní vítr",
       "velká hustotní výška",
@@ -521,7 +519,7 @@
       "let do známých podmínek námrazy je zakázán a vstoupí-li do takových podmínek letadlo",
       "neúmyslně, lze v nich pokračovat, dokud existují podmínky pro let za vidu"
     ],
-    "correct": 4,
+    "correct": 0,
     "image": null,
     "explanation": ""
   },
@@ -575,7 +573,7 @@
       "nejlepší rychlost stoupání",
       "nejlepší vzdálenost stoupání"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -679,7 +677,7 @@
       "450 m",
       "380 m"
     ],
-    "correct": 2,
+    "correct": 3,
     "image": "PFP-009.jpg",
     "explanation": ""
   },
@@ -763,7 +761,7 @@
   },
   {
     "id": 60,
-    "question": "Jaký je dolet za následujících podmínek? Teplota vnějšího vzduchu: 6 °C tlaková výška: 6000 ft výkon: 65 %. Viz obr. (PFP-013)",
+    "question": "Jaký je dolet za následujících podmínek? Teplota vnějšího vzduchu: 6 °C tlaková výška: 6000 ft výkon: 65 %. Viz obr. (PFP-013) ",
     "answers": [
       "503 NM",
       "457 NM",
@@ -796,7 +794,7 @@
       "100 kt",
       "92 kt"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": "TAS.jpg",
     "explanation": ""
   },
@@ -828,14 +826,14 @@
   },
   {
     "id": 65,
-    "question": "Jaká je maximální stoupavost letadla v tlakové výšce 6500 ft při teplotě vnějšího vzduchu? (Zadání je neúplné)",
+    "question": "Jaká je maximální stoupavost letadla v tlakové výšce 6500 ft při teplotě vnějšího vzduchu 0 °C? Viz obr. (PFP-011) ",
     "answers": [
-      "Chybí příloha pro výpočet",
-      "350 ft/min",
-      "500 ft/min",
-      "150 ft/min"
+      "520 ft / min",
+      "480 ft / min",
+      "400 ft / min",
+      "800 ft / min"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -854,20 +852,7 @@
   },
   {
     "id": 66,
-    "question": "Jaká je pravá vzdušná rychlost (TAS) (kt) a spotřeba paliva (l/h) při traťovém letu s 65 % výkonem? (Použijte tabulku výkonu)",
-    "answers": [
-      "95 kt, 18.5 l/h",
-      "100 kt, 20 l/h", 
-      "120 kt, 25 l/h",
-      "80 kt, 15 l/h"
-    ],
-    "correct": 1,
-    "image": "TAS.jpg",
-    "explanation": "Při 65 % výkonu je typická TAS přibližně 100 uzlů se spotřebou paliva kolem 20 l/h pro lehká letadla této třídy."
-  },
-  {
-    "id": 60,
-    "question": "% ve FL 60 za následujících podmínek? Teplota: ISA - 20 °C QNH: 980 hPa. Viz obr. (PFP- 012)",
+    "question": "Jaká je pravá vzdušná rychlost (TAS) (kt) a spotřeba paliva (l/h) při traťovém letu s výkonem 60 % ve FL 60 za následujících podmínek? Teplota: ISA - 20 °C QNH: 980 hPa. Viz obr. (PFP- 012) ",
     "answers": [
       "95 kt. 19.6 l/h",
       "95,75 kt. 19.8 l/h",
@@ -875,6 +860,19 @@
       "110 kt. 25.1 l/h"
     ],
     "correct": 0,
+    "image": "TAS.jpg",
+    "explanation": "Při 65 % výkonu je typická TAS přibližně 100 uzlů se spotřebou paliva kolem 20 l/h pro lehká letadla této třídy."
+  },
+  {
+    "id": 60,
+    "question": "Jaký je dolet za následujících podmínek? Teplota vnějšího vzduchu: 6 °C tlaková výška: 6000 ft výkon: 65 %. Viz obr. (PFP-013) ",
+    "answers": [
+      "503 NM",
+      "457 NM",
+      "482 NM",
+      "444 NM"
+    ],
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -887,7 +885,7 @@
       "105 kt. 21.5 l/h",
       "110 kt. 23.9 l/h"
     ],
-    "correct": 2,
+    "correct": 3,
     "image": "TAS.jpg",
     "explanation": ""
   },
@@ -925,7 +923,7 @@
       "3 GAL",
       "6 GAL"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": "PFP-023.jpg",
     "explanation": ""
   },
@@ -967,7 +965,7 @@
       "největší nadmořská výška terénu pokrývající oblast 1 stupně zeměpisné šířky a délky plus",
       "bezpečnostní rezerva zaokrouhlená na nejbližších nižších 100 ft"
     ],
-    "correct": 4,
+    "correct": 0,
     "image": null,
     "explanation": ""
   },
@@ -981,7 +979,7 @@
       "pomáhají pokračovat v letu, klesne-li dohlednost pod minima pro let podle pravidel letu za",
       "viditelnosti"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -1020,7 +1018,7 @@
       "1,500 ft MSL",
       "1,500 ft GND"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": "PFP-056.jpg",
     "explanation": ""
   },
@@ -1124,7 +1122,7 @@
       "100 kt",
       "1000 kt"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": "PFP-051.jpg",
     "explanation": ""
   },
@@ -1137,7 +1135,7 @@
       "podat letový plán",
       "podávat pravidelně hlášení o poloze"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -1273,12 +1271,12 @@
   },
   {
     "id": 97,
-    "question": "Pro let je dáno: Traťové palivo = 70 US galonů, palivo pro mimořádné okolnosti = 5 % traťového paliva, palivo pro let na náhradní letiště a konečná záloha paliva = 20 US galonů, využitelné palivo při vzletu = 95 US galonů. Po uletění poloviny vzdálenosti bylo spotřebováno 35 US galónů. Jaké je zbývající využitelné palivo?",
+    "question": "Pro let je dáno: Traťové palivo = 70 US galonů, palivo pro mimořádné okolnosti = 5 % traťového paliva, palivo pro let na náhradní letiště a konečná záloha paliva = 20 US galonů, využitelné palivo při vzletu = 95 US galonů. Po uletění poloviny vzdálenosti bylo spotřebováno 40 US galonů. Předpokládejte, že se spotřeba paliva nezmění. Který výrok je pravdivý? ",
     "answers": [
-      "60 US galonů",
-      "50 US galonů",
-      "40 US galonů",
-      "Chybějící zbytek zadání"
+      "zbývající palivo nestačí pro přistání na cílovém letišti se zbývajícím palivem pro let na náhradní letiště a s konečnou zálohou paliva",
+      "po přistání zbyde 15.0 US galonů paliva plus palivo pro let na náhradní letiště a konečná záloha paliva",
+      "po přistání zbyde 5.0 US galonů plus palivo pro let na náhradní letiště a konečná záloha paliva",
+      "po přistání zbyde celkem 40.0 US galonů paliva"
     ],
     "correct": 0,
     "image": null,
@@ -1286,16 +1284,14 @@
   },
   {
     "id": 40,
-    "question": "US galonů. Předpokládejte, že se spotřeba paliva nezmění. Který výrok je pravdivý?",
+    "question": "Co zkracuje délku přistání? ",
     "answers": [
-      "zbývající palivo nestačí pro přistání na cílovém letišti se zbývajícím palivem pro let na náhradní",
-      "letiště a s konečnou zálohou paliva",
-      "po přistání zbyde 15.0 US galonů paliva plus palivo pro let na náhradní letiště a konečná záloha",
-      "paliva",
-      "po přistání zbyde 5.0 US galonů plus palivo pro let na náhradní letiště a konečná záloha paliva",
-      "po přistání zbyde celkem 40.0 US galonů paliva"
+      "silný čelní vítr",
+      "velká hustotní výška",
+      "velká tlaková výška",
+      "intenzivní déšť"
     ],
-    "correct": 4,
+    "correct": 0,
     "image": null,
     "explanation": ""
   },
@@ -1308,7 +1304,7 @@
       "po přistání zbyde 30.0 US galonů plus palivo pro let na náhradní letiště a konečná záloha paliva",
       "po přistání zbyde celkem 10.0 US galonů paliva"
     ],
-    "correct": 1,
+    "correct": 0,
     "image": null,
     "explanation": ""
   },
@@ -1347,7 +1343,7 @@
       "C",
       "D"
     ],
-    "correct": 1,
+    "correct": 2,
     "image": "PFP-063.jpg",
     "explanation": ""
   }

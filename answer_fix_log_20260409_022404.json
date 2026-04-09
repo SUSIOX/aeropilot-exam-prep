@@ -1,0 +1,1383 @@
+{
+  "timestamp": "20260409_022404",
+  "total_fixes": 153,
+  "fixes": [
+    {
+      "subject": 1,
+      "question": 14,
+      "questionId": "subject1_q14",
+      "old_correct": 1,
+      "new_correct": 0,
+      "old_answer": "požadovanou dobu letu je třeba splnit pod dohledem letového ",
+      "new_answer": "přezkoušení odborné způsobilosti s examinátorem"
+    },
+    {
+      "subject": 1,
+      "question": 40,
+      "questionId": "subject1_q40",
+      "old_correct": 2,
+      "new_correct": 1,
+      "old_answer": "výška nad zemí základny nejnižší vrstvy oblačnosti pokrývají",
+      "new_answer": "ft"
+    },
+    {
+      "subject": 1,
+      "question": 41,
+      "questionId": "subject1_q41",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "vstupujete do omezeného prostoru, okamžitě opusťte tento vzd",
+      "new_answer": "následujte mě"
+    },
+    {
+      "subject": 1,
+      "question": 56,
+      "questionId": "subject1_q56",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "pozor, výstupní plyny za proudovým motorem",
+      "new_answer": "pozor, turbulence v úplavu"
+    },
+    {
+      "subject": 1,
+      "question": 59,
+      "questionId": "subject1_q59",
+      "old_correct": 2,
+      "new_correct": 0,
+      "old_answer": "letecké výstrahy, vzdušné prostory a tratě, omezené a nebezp",
+      "new_answer": "mapové značky, seznam radionavigačních zařízení, časy východ"
+    },
+    {
+      "subject": 1,
+      "question": 61,
+      "questionId": "subject1_q61",
+      "old_correct": 3,
+      "new_correct": 2,
+      "old_answer": "obsah, seznam letišť s příslušnými mapami, přibližovací mapy",
+      "new_answer": "letecké výstrahy, prostory a tratě služeb letového provozu, "
+    },
+    {
+      "subject": 1,
+      "question": 65,
+      "questionId": "subject1_q65",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "kruhová oblast letiště upravená na přistání a vzlety letadel",
+      "new_answer": "obdélníková plocha na pozemním letišti upravená pro přistání"
+    },
+    {
+      "subject": 1,
+      "question": 70,
+      "questionId": "subject1_q70",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "může být vyroben ze zeleného materiálu",
+      "new_answer": "může být obklopen bílým kruhem"
+    },
+    {
+      "subject": 1,
+      "question": 71,
+      "questionId": "subject1_q71",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "vraťte se na přistání, je-li následován signálem stálým zele",
+      "new_answer": "letiště není bezpečné, nepřistávejte"
+    },
+    {
+      "subject": 1,
+      "question": 73,
+      "questionId": "subject1_q73",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "vraťte se na přistání, je-li následován signálem stálým zele",
+      "new_answer": "přistání povoleno"
+    },
+    {
+      "subject": 1,
+      "question": 74,
+      "questionId": "subject1_q74",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "vzlet povolen",
+      "new_answer": "vraťte se zpět na odbavovací plochu"
+    },
+    {
+      "subject": 1,
+      "question": 80,
+      "questionId": "subject1_q80",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "opusťte pojížděcí / vzletovou / přistávací dráhu",
+      "new_answer": "zastavte"
+    },
+    {
+      "subject": 1,
+      "question": 90,
+      "questionId": "subject1_q90",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "2500 m v daném směru do dosažení odletového bodu vzletové a ",
+      "new_answer": "od této křižovatky je použitelná délka dráhy v daném směru 2"
+    },
+    {
+      "subject": 1,
+      "question": 92,
+      "questionId": "subject1_q92",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "pozor, manévrovací plocha je špatná",
+      "new_answer": "po vzletu a před přistáním je třeba provádět všechny zatáčky"
+    },
+    {
+      "subject": 2,
+      "question": 6,
+      "questionId": "subject2_q6",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "0.1 %",
+      "new_answer": "1 %"
+    },
+    {
+      "subject": 2,
+      "question": 12,
+      "questionId": "subject2_q12",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "sluch",
+      "new_answer": "zrak"
+    },
+    {
+      "subject": 2,
+      "question": 29,
+      "questionId": "subject2_q29",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "ustáleného zatáčení stále ve stejném směru",
+      "new_answer": "zatáčení do opačného směru"
+    },
+    {
+      "subject": 2,
+      "question": 49,
+      "questionId": "subject2_q49",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "náhlá změna směru přistání, má-li dráha sklon do kopce",
+      "new_answer": "tendence přijímat vyšší riziko ve skupině"
+    },
+    {
+      "subject": 2,
+      "question": 51,
+      "questionId": "subject2_q51",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "pečlivá předletová prohlídka",
+      "new_answer": "riskantní letové manévry pro upoutání diváků na zemi"
+    },
+    {
+      "subject": 2,
+      "question": 52,
+      "questionId": "subject2_q52",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "dvojitá kontrola příslušné činnosti",
+      "new_answer": "sklon vidět to, co lze předpokládat"
+    },
+    {
+      "subject": 2,
+      "question": 53,
+      "questionId": "subject2_q53",
+      "old_correct": 1,
+      "new_correct": 2,
+      "old_answer": "introvertní – nestabilní",
+      "new_answer": "extrovertní – stabilní"
+    },
+    {
+      "subject": 2,
+      "question": 56,
+      "questionId": "subject2_q56",
+      "old_correct": 2,
+      "new_correct": 3,
+      "old_answer": "bod C",
+      "new_answer": "bod D"
+    },
+    {
+      "subject": 2,
+      "question": 57,
+      "questionId": "subject2_q57",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "1",
+      "new_answer": "1, 2, 3, 4"
+    },
+    {
+      "subject": 3,
+      "question": 24,
+      "questionId": "subject3_q24",
+      "old_correct": 2,
+      "new_correct": 3,
+      "old_answer": "výšku nad tlakovou hladinou nadmořské výšky letiště",
+      "new_answer": "výšku nad střední hladinou moře (MSL)"
+    },
+    {
+      "subject": 3,
+      "question": 45,
+      "questionId": "subject3_q45",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "rozdíl zůstává stejný, relativní vlhkost se snižuje",
+      "new_answer": "rozdíl se zvětšuje, relativní vlhkost se zmenšuje"
+    },
+    {
+      "subject": 3,
+      "question": 46,
+      "questionId": "subject3_q46",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "vztah mezi skutečnou a maximální možnou vlhkostí vzduchu",
+      "new_answer": "rozdíl mezi skutečnou teplotou a rosným bodem"
+    },
+    {
+      "subject": 3,
+      "question": 81,
+      "questionId": "subject3_q81",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "stáčení proti směru hodinových ručiček při přechodu teplé fr",
+      "new_answer": "hodinových ručiček při přechodu studené fronty"
+    },
+    {
+      "subject": 3,
+      "question": 91,
+      "questionId": "subject3_q91",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "klidné počasí, rozpouštění oblačnosti, málo Cu ve velkých vý",
+      "new_answer": "bezvětří a velké oblasti s vysokou mlhou"
+    },
+    {
+      "subject": 3,
+      "question": 102,
+      "questionId": "subject3_q102",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "podmíněně nestabilní atmosféra, nízká teplota a nízká relati",
+      "new_answer": "podmíněně nestabilní atmosféra, vysoká teplota a vysoká rela"
+    },
+    {
+      "subject": 3,
+      "question": 105,
+      "questionId": "subject3_q105",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "porucha rádiové komunikace, elektrostatické šumy",
+      "new_answer": "přehřátí povrchu a mechanické poškození zasažených částí dra"
+    },
+    {
+      "subject": 3,
+      "question": 119,
+      "questionId": "subject3_q119",
+      "old_correct": 1,
+      "new_correct": 3,
+      "old_answer": "informace o současném počasí, např. typy srážek",
+      "new_answer": "provozní informace, např. vzletová a přistávací dráha v prov"
+    },
+    {
+      "subject": 4,
+      "question": 9,
+      "questionId": "subject4_q9",
+      "old_correct": 1,
+      "new_correct": 3,
+      "old_answer": "od východu do západu slunce",
+      "new_answer": "nestanovený otevírací čas"
+    },
+    {
+      "subject": 4,
+      "question": 20,
+      "questionId": "subject4_q20",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "zpráva o rádiovém zaměřování",
+      "new_answer": "zpráva pro zajištění bezpečnosti letu"
+    },
+    {
+      "subject": 4,
+      "question": 23,
+      "questionId": "subject4_q23",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "týkající se letadla a jeho cestujících, kteří čelí vážné a b",
+      "new_answer": "týkající se provozu nebo údržby zařízení důležitých pro bezp"
+    },
+    {
+      "subject": 4,
+      "question": 25,
+      "questionId": "subject4_q25",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "Home Bravo Yuliett Kilo Mike",
+      "new_answer": "Hotel Bravo Yankee Kilo Mike"
+    },
+    {
+      "subject": 4,
+      "question": 35,
+      "questionId": "subject4_q35",
+      "old_correct": 2,
+      "new_correct": 3,
+      "old_answer": "v tomto vysílání byla učiněna chyba, správně znění je",
+      "new_answer": "povolení pro požadovaný úkon je uděleno"
+    },
+    {
+      "subject": 4,
+      "question": 36,
+      "questionId": "subject4_q36",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "jaké je spojení",
+      "new_answer": "jak slyšíte"
+    },
+    {
+      "subject": 4,
+      "question": 37,
+      "questionId": "subject4_q37",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "chci",
+      "new_answer": "žádám"
+    },
+    {
+      "subject": 4,
+      "question": 39,
+      "questionId": "subject4_q39",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "konec",
+      "new_answer": "negativ"
+    },
+    {
+      "subject": 4,
+      "question": 41,
+      "questionId": "subject4_q41",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "bez přistání",
+      "new_answer": "provádím průlet"
+    },
+    {
+      "subject": 4,
+      "question": 44,
+      "questionId": "subject4_q44",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "info",
+      "new_answer": "informace"
+    },
+    {
+      "subject": 4,
+      "question": 47,
+      "questionId": "subject4_q47",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "pouze poslední dvě písmena anebo číslice",
+      "new_answer": "všechna písmena anebo číslice"
+    },
+    {
+      "subject": 4,
+      "question": 48,
+      "questionId": "subject4_q48",
+      "old_correct": 2,
+      "new_correct": 3,
+      "old_answer": "OK-ABC volá Tuřany věž",
+      "new_answer": "Tuřany věž OK-ABC"
+    },
+    {
+      "subject": 4,
+      "question": 53,
+      "questionId": "subject4_q53",
+      "old_correct": 1,
+      "new_correct": 3,
+      "old_answer": "vysílání je chvílemi srozumitelné",
+      "new_answer": "vysílání je dokonale srozumitelné"
+    },
+    {
+      "subject": 4,
+      "question": 57,
+      "questionId": "subject4_q57",
+      "old_correct": 2,
+      "new_correct": 3,
+      "old_answer": "pozitiv",
+      "new_answer": "provedu"
+    },
+    {
+      "subject": 4,
+      "question": 65,
+      "questionId": "subject4_q65",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "do 5 km",
+      "new_answer": "větší než 5 km"
+    },
+    {
+      "subject": 4,
+      "question": 66,
+      "questionId": "subject4_q66",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "NOTAMy",
+      "new_answer": "meteorologické informace"
+    },
+    {
+      "subject": 4,
+      "question": 77,
+      "questionId": "subject4_q77",
+      "old_correct": 3,
+      "new_correct": 2,
+      "old_answer": "zprávy týkající se bezpečnosti letadla, plavidla, vozidla ne",
+      "new_answer": "pomoc"
+    },
+    {
+      "subject": 4,
+      "question": 79,
+      "questionId": "subject4_q79",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "nouzová frekvence",
+      "new_answer": "stávající frekvence"
+    },
+    {
+      "subject": 4,
+      "question": 86,
+      "questionId": "subject4_q86",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "300 000 m/s",
+      "new_answer": "300 000 km/s"
+    },
+    {
+      "subject": 4,
+      "question": 87,
+      "questionId": "subject4_q87",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "10 minut",
+      "new_answer": "30 minut"
+    },
+    {
+      "subject": 5,
+      "question": 7,
+      "questionId": "subject5_q7",
+      "old_correct": 1,
+      "new_correct": 3,
+      "old_answer": "statický tlak = celkový tlak + dynamický tlak",
+      "new_answer": "celkový tlak = dynamický tlak + statický tlak"
+    },
+    {
+      "subject": 5,
+      "question": 9,
+      "questionId": "subject5_q9",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "těžiště",
+      "new_answer": "aerodynamický střed"
+    },
+    {
+      "subject": 5,
+      "question": 11,
+      "questionId": "subject5_q11",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "úhel náběhu",
+      "new_answer": "hloubku profilu"
+    },
+    {
+      "subject": 5,
+      "question": 14,
+      "questionId": "subject5_q14",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "úhel šípu",
+      "new_answer": "štíhlost křídla"
+    },
+    {
+      "subject": 5,
+      "question": 20,
+      "questionId": "subject5_q20",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "tlak pod profilem se nemění, nad profilem je podtlak",
+      "new_answer": "nad profilem je podtlak pod profilem je přetlak"
+    },
+    {
+      "subject": 5,
+      "question": 25,
+      "questionId": "subject5_q25",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "aerodynamický střed se posune dozadu",
+      "new_answer": "stagnační bod se posune nahoru"
+    },
+    {
+      "subject": 5,
+      "question": 26,
+      "questionId": "subject5_q26",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "úhel zkroucení",
+      "new_answer": "úhel náběhu"
+    },
+    {
+      "subject": 5,
+      "question": 33,
+      "questionId": "subject5_q33",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "velká štíhlost křídla",
+      "new_answer": "malá štíhlost křídla"
+    },
+    {
+      "subject": 5,
+      "question": 38,
+      "questionId": "subject5_q38",
+      "old_correct": 2,
+      "new_correct": 3,
+      "old_answer": "interferenční",
+      "new_answer": "indukovaný"
+    },
+    {
+      "subject": 5,
+      "question": 45,
+      "questionId": "subject5_q45",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "vztlak i odpor se zvětšují",
+      "new_answer": "vztlak je stejný a odpor se zvětšuje"
+    },
+    {
+      "subject": 5,
+      "question": 47,
+      "questionId": "subject5_q47",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "vztlak se zvětšuje a odpor zmenšuje",
+      "new_answer": "vztlak se zmenšuje a odpor zvětšuje"
+    },
+    {
+      "subject": 5,
+      "question": 57,
+      "questionId": "subject5_q57",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "zadní část křídla je vychýlena směrem dolů",
+      "new_answer": "klapka ve tvaru profilu je vychýlena dolů a zvětšuje plochu "
+    },
+    {
+      "subject": 5,
+      "question": 58,
+      "questionId": "subject5_q58",
+      "old_correct": 1,
+      "new_correct": 3,
+      "old_answer": "se zmenší odpor",
+      "new_answer": "se zkrátí rozjezd"
+    },
+    {
+      "subject": 5,
+      "question": 61,
+      "questionId": "subject5_q61",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "laminární po celé horní straně bez odtrženého proudu",
+      "new_answer": "laminární na předních částech profilu, turbulentní na zadníc"
+    },
+    {
+      "subject": 5,
+      "question": 63,
+      "questionId": "subject5_q63",
+      "old_correct": 1,
+      "new_correct": 3,
+      "old_answer": "výškovka",
+      "new_answer": "vzepětí křídla"
+    },
+    {
+      "subject": 5,
+      "question": 65,
+      "questionId": "subject5_q65",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "vertikální",
+      "new_answer": "příčné"
+    },
+    {
+      "subject": 5,
+      "question": 70,
+      "questionId": "subject5_q70",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "je menší při zadní poloze těžiště",
+      "new_answer": "nezávisí na hmotnosti letadla"
+    },
+    {
+      "subject": 5,
+      "question": 72,
+      "questionId": "subject5_q72",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "stabilizuje letoun kolem podélné osy",
+      "new_answer": "stabilizuje letoun kolem příčné osy"
+    },
+    {
+      "subject": 5,
+      "question": 74,
+      "questionId": "subject5_q74",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "svislé osy",
+      "new_answer": "příčné osy"
+    },
+    {
+      "subject": 5,
+      "question": 77,
+      "questionId": "subject5_q77",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "bočení letadla doprava",
+      "new_answer": "bočení letadla doleva"
+    },
+    {
+      "subject": 5,
+      "question": 78,
+      "questionId": "subject5_q78",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "bočení proti příčnému sklonu je větší",
+      "new_answer": "sníží se odpor křidélka vychýleného dolů a bočení vlivem klo"
+    },
+    {
+      "subject": 5,
+      "question": 81,
+      "questionId": "subject5_q81",
+      "old_correct": 2,
+      "new_correct": 3,
+      "old_answer": "na vektor tahu pohonné jednotky",
+      "new_answer": "na nabíhající proud vzduchu"
+    },
+    {
+      "subject": 5,
+      "question": 85,
+      "questionId": "subject5_q85",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "posunem těžiště dozadu",
+      "new_answer": "výchylkou trimu výškovky nahoru"
+    },
+    {
+      "subject": 5,
+      "question": 93,
+      "questionId": "subject5_q93",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "minimální rychlost",
+      "new_answer": "let na zádech"
+    },
+    {
+      "subject": 6,
+      "question": 5,
+      "questionId": "subject6_q5",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "při klesání",
+      "new_answer": "při stoupání"
+    },
+    {
+      "subject": 6,
+      "question": 9,
+      "questionId": "subject6_q9",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "jiskření",
+      "new_answer": "požár karburátoru"
+    },
+    {
+      "subject": 6,
+      "question": 16,
+      "questionId": "subject6_q16",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "vypnout hlavní vypínač",
+      "new_answer": "vypnout topení"
+    },
+    {
+      "subject": 6,
+      "question": 17,
+      "questionId": "subject6_q17",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "pomalý nárůst rychlosti větru ve výškách nad 13000 ft",
+      "new_answer": "změna vertikální nebo horizontální složky a směru větru"
+    },
+    {
+      "subject": 6,
+      "question": 21,
+      "questionId": "subject6_q21",
+      "old_correct": 1,
+      "new_correct": 3,
+      "old_answer": "trajektorie se zvýší, IAS klesne",
+      "new_answer": "trajektorie se zvýší, IAS vzroste"
+    },
+    {
+      "subject": 6,
+      "question": 31,
+      "questionId": "subject6_q31",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "začne zrychlovat",
+      "new_answer": "nadzdvihne příďové kolo"
+    },
+    {
+      "subject": 6,
+      "question": 42,
+      "questionId": "subject6_q42",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "strmé přiblížení pro zachování nízké hladiny hluku",
+      "new_answer": "prohlídka terénu pro stanovení trajektorie přiblížení a přis"
+    },
+    {
+      "subject": 6,
+      "question": 43,
+      "questionId": "subject6_q43",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "zorané pole",
+      "new_answer": "sklizené obilné pole"
+    },
+    {
+      "subject": 6,
+      "question": 46,
+      "questionId": "subject6_q46",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "provedeno jako reakce na okolnosti nutící letadlo přistát",
+      "new_answer": "provedeno jako pokus zachovat bezpečnost letu"
+    },
+    {
+      "subject": 6,
+      "question": 50,
+      "questionId": "subject6_q50",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "zleva nebo zprava",
+      "new_answer": "zepředu nebo zezadu"
+    },
+    {
+      "subject": 6,
+      "question": 52,
+      "questionId": "subject6_q52",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "před opuštěním letadla",
+      "new_answer": "po opuštění letadla"
+    },
+    {
+      "subject": 6,
+      "question": 53,
+      "questionId": "subject6_q53",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "zkrácení délky vzletu a prodloužení délky přistání",
+      "new_answer": "prodloužení délky vzletu a prodloužení délky přistání"
+    },
+    {
+      "subject": 6,
+      "question": 55,
+      "questionId": "subject6_q55",
+      "old_correct": 1,
+      "new_correct": 3,
+      "old_answer": "50 %",
+      "new_answer": "0,25"
+    },
+    {
+      "subject": 6,
+      "question": 58,
+      "questionId": "subject6_q58",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "posun označení prokluzu pneumatiky",
+      "new_answer": "delší brzdná vzdálenost kvůli akvaplaninku"
+    },
+    {
+      "subject": 7,
+      "question": 3,
+      "questionId": "subject7_q3",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "je možné výjimečně, aby se zabránilo zpožděním",
+      "new_answer": "není povoleno a je zvlášť nebezpečné"
+    },
+    {
+      "subject": 7,
+      "question": 7,
+      "questionId": "subject7_q7",
+      "old_correct": 1,
+      "new_correct": 2,
+      "old_answer": "2, 4",
+      "new_answer": "1, 2, 3"
+    },
+    {
+      "subject": 7,
+      "question": 12,
+      "questionId": "subject7_q12",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "poškození konstrukce, stabilní úhel náběhu, stabilní rychlos",
+      "new_answer": "neřiditelné změny podélného sklonu, poškození konstrukce, ri"
+    },
+    {
+      "subject": 7,
+      "question": 24,
+      "questionId": "subject7_q24",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "vypustit všechny náplně olejů z motoru",
+      "new_answer": "vypustit všechno vyčerpatelné palivo"
+    },
+    {
+      "subject": 7,
+      "question": 25,
+      "questionId": "subject7_q25",
+      "old_correct": 1,
+      "new_correct": 3,
+      "old_answer": "normální postupy",
+      "new_answer": "hmotnost a vyvážení"
+    },
+    {
+      "subject": 7,
+      "question": 26,
+      "questionId": "subject7_q26",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "137.5 in",
+      "new_answer": "142 in"
+    },
+    {
+      "subject": 7,
+      "question": 30,
+      "questionId": "subject7_q30",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "24.6 cm",
+      "new_answer": "24.8 cm"
+    },
+    {
+      "subject": 7,
+      "question": 40,
+      "questionId": "subject7_q40",
+      "old_correct": 4,
+      "new_correct": 0,
+      "old_answer": "po přistání zbyde 5.0 US galonů plus palivo pro let na náhra",
+      "new_answer": "zbývající palivo nestačí pro přistání na cílovém letišti se "
+    },
+    {
+      "subject": 7,
+      "question": 41,
+      "questionId": "subject7_q41",
+      "old_correct": 4,
+      "new_correct": 0,
+      "old_answer": "let do oblastí srážek je zakázán",
+      "new_answer": "let do známých podmínek námrazy je zakázán a vstoupí-li do t"
+    },
+    {
+      "subject": 7,
+      "question": 45,
+      "questionId": "subject7_q45",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "rychlost pro největší úhel stoupání",
+      "new_answer": "rychlost pro největší vertikální rychlost stoupání"
+    },
+    {
+      "subject": 7,
+      "question": 53,
+      "questionId": "subject7_q53",
+      "old_correct": 2,
+      "new_correct": 3,
+      "old_answer": "450 m",
+      "new_answer": "380 m"
+    },
+    {
+      "subject": 7,
+      "question": 60,
+      "questionId": "subject7_q60",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "95 kt. 19.6 l/h",
+      "new_answer": "96 kt. 19.1 l/h"
+    },
+    {
+      "subject": 7,
+      "question": 62,
+      "questionId": "subject7_q62",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "88 kt",
+      "new_answer": "92 kt"
+    },
+    {
+      "subject": 7,
+      "question": 65,
+      "questionId": "subject7_q65",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "Chybí příloha pro výpočet",
+      "new_answer": "350 ft/min"
+    },
+    {
+      "subject": 7,
+      "question": 66,
+      "questionId": "subject7_q66",
+      "old_correct": 1,
+      "new_correct": 0,
+      "old_answer": "100 kt, 20 l/h",
+      "new_answer": "95 kt, 18.5 l/h"
+    },
+    {
+      "subject": 7,
+      "question": 67,
+      "questionId": "subject7_q67",
+      "old_correct": 2,
+      "new_correct": 3,
+      "old_answer": "105 kt. 21.5 l/h",
+      "new_answer": "110 kt. 23.9 l/h"
+    },
+    {
+      "subject": 7,
+      "question": 70,
+      "questionId": "subject7_q70",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "2 GAL",
+      "new_answer": "1 GAL"
+    },
+    {
+      "subject": 7,
+      "question": 73,
+      "questionId": "subject7_q73",
+      "old_correct": 4,
+      "new_correct": 0,
+      "old_answer": "největší nadmořská výška terénu v oblasti pokrývající 30 min",
+      "new_answer": "nejvyšší nadmořská výška terénu v oblasti pokrývající 30 min"
+    },
+    {
+      "subject": 7,
+      "question": 74,
+      "questionId": "subject7_q74",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "pro vizualizaci omezení doletu od letiště odletu",
+      "new_answer": "slouží jako snadno rozpoznatelná pomůcka při možné ztrátě or"
+    },
+    {
+      "subject": 7,
+      "question": 77,
+      "questionId": "subject7_q77",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "FL 150",
+      "new_answer": "1,500 ft MSL"
+    },
+    {
+      "subject": 7,
+      "question": 85,
+      "questionId": "subject7_q85",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "100 m/h",
+      "new_answer": "100 kt"
+    },
+    {
+      "subject": 7,
+      "question": 86,
+      "questionId": "subject7_q86",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "schválit výjimku",
+      "new_answer": "podat letový plán"
+    },
+    {
+      "subject": 7,
+      "question": 98,
+      "questionId": "subject7_q98",
+      "old_correct": 1,
+      "new_correct": 0,
+      "old_answer": "zbývající palivo nestačí pro přistání na cílovém letišti se ",
+      "new_answer": "po přistání bude zbytek paliva 10.0 US galonů plus palivo pr"
+    },
+    {
+      "subject": 7,
+      "question": 101,
+      "questionId": "subject7_q101",
+      "old_correct": 1,
+      "new_correct": 2,
+      "old_answer": "B",
+      "new_answer": "C"
+    },
+    {
+      "subject": 8,
+      "question": 14,
+      "questionId": "subject8_q14",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "poruchami materiálu nebo starou barvou",
+      "new_answer": "tvrdým přistáním nebo nadměrným zatížením"
+    },
+    {
+      "subject": 8,
+      "question": 33,
+      "questionId": "subject8_q33",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "ploška trimu se pohne nahoru, výškovka se pohne dolů",
+      "new_answer": "ploška trimu se pohne dolů, výškovka se pohne nahoru"
+    },
+    {
+      "subject": 8,
+      "question": 36,
+      "questionId": "subject8_q36",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "pro potlačení neřízených bočních kmitů",
+      "new_answer": "pro odstranění trvalých sil v řízení"
+    },
+    {
+      "subject": 8,
+      "question": 39,
+      "questionId": "subject8_q39",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "mechanický přepínač v pilotní kabině, kterým se zapíná turbo",
+      "new_answer": "pomocné čerpadlo v palivovém systému, které usnadňuje spoušt"
+    },
+    {
+      "subject": 8,
+      "question": 67,
+      "questionId": "subject8_q67",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "1) snížit otáčky 2) snížit plnící tlak",
+      "new_answer": "1) snížit plnící tlak 2) snížit otáčky"
+    },
+    {
+      "subject": 8,
+      "question": 76,
+      "questionId": "subject8_q76",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "barometrický tlak měřený od hladiny moře s využitím mezináro",
+      "new_answer": "barometrický tlak měřený od referenčního bodu, typicky od pr"
+    },
+    {
+      "subject": 8,
+      "question": 92,
+      "questionId": "subject8_q92",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "kabel uzemnění je stále připojen",
+      "new_answer": "letadlo je pokryto samolepícími fóliemi"
+    },
+    {
+      "subject": 9,
+      "question": 23,
+      "questionId": "subject9_q23",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "zeměpisná trať: 137°. Magnetický kurz: 139°. Kompasový kurz:",
+      "new_answer": "zeměpisná trať: 137°. Magnetický kurz: 127°. Kompasový kurz:"
+    },
+    {
+      "subject": 9,
+      "question": 25,
+      "questionId": "subject9_q25",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "deviace",
+      "new_answer": "snos větru"
+    },
+    {
+      "subject": 9,
+      "question": 26,
+      "questionId": "subject9_q26",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "deviace",
+      "new_answer": "deklinace"
+    },
+    {
+      "subject": 9,
+      "question": 29,
+      "questionId": "subject9_q29",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "zeměpisný kurz: 194°. deklinace: 004° E",
+      "new_answer": "zeměpisný kurz: 194°. deklinace: 004° W"
+    },
+    {
+      "subject": 9,
+      "question": 30,
+      "questionId": "subject9_q30",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "zeměpisný kurz: 194°. deviace: +002°.",
+      "new_answer": "zeměpisný kurz: 194°. deviace: -002°."
+    },
+    {
+      "subject": 9,
+      "question": 32,
+      "questionId": "subject9_q32",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "na zeměpisném rovníku",
+      "new_answer": "na magnetickém rovníku"
+    },
+    {
+      "subject": 9,
+      "question": 42,
+      "questionId": "subject9_q42",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "umělého horizontu",
+      "new_answer": "kompasu s přímým čtením"
+    },
+    {
+      "subject": 9,
+      "question": 68,
+      "questionId": "subject9_q68",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "245°",
+      "new_answer": "250°"
+    },
+    {
+      "subject": 9,
+      "question": 74,
+      "questionId": "subject9_q74",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "125 kt",
+      "new_answer": "75 kt"
+    },
+    {
+      "subject": 9,
+      "question": 75,
+      "questionId": "subject9_q75",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "125 kt",
+      "new_answer": "75 kt"
+    },
+    {
+      "subject": 9,
+      "question": 77,
+      "questionId": "subject9_q77",
+      "old_correct": 1,
+      "new_correct": 2,
+      "old_answer": "3° doleva",
+      "new_answer": "3° doprava"
+    },
+    {
+      "subject": 9,
+      "question": 79,
+      "questionId": "subject9_q79",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "6° doprava",
+      "new_answer": "12° doprava"
+    },
+    {
+      "subject": 9,
+      "question": 83,
+      "questionId": "subject9_q83",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "6 min",
+      "new_answer": "8 min"
+    },
+    {
+      "subject": 9,
+      "question": 87,
+      "questionId": "subject9_q87",
+      "old_correct": 2,
+      "new_correct": 3,
+      "old_answer": "povrchová vlna",
+      "new_answer": "povrchová a prostorová vlna"
+    },
+    {
+      "subject": 9,
+      "question": 90,
+      "questionId": "subject9_q90",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "šikmou vzdálenost",
+      "new_answer": "magnetický směrník"
+    },
+    {
+      "subject": 9,
+      "question": 92,
+      "questionId": "subject9_q92",
+      "old_correct": 2,
+      "new_correct": 3,
+      "old_answer": "168°",
+      "new_answer": "148°"
+    },
+    {
+      "subject": 9,
+      "question": 96,
+      "questionId": "subject9_q96",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "072°",
+      "new_answer": "247°"
+    },
+    {
+      "subject": 9,
+      "question": 97,
+      "questionId": "subject9_q97",
+      "old_correct": 1,
+      "new_correct": 2,
+      "old_answer": "332°",
+      "new_answer": "327°"
+    },
+    {
+      "subject": 9,
+      "question": 99,
+      "questionId": "subject9_q99",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "068°",
+      "new_answer": "258°"
+    },
+    {
+      "subject": 9,
+      "question": 100,
+      "questionId": "subject9_q100",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "129°",
+      "new_answer": "309°"
+    },
+    {
+      "subject": 9,
+      "question": 101,
+      "questionId": "subject9_q101",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "severozápadně",
+      "new_answer": "jihozápadně"
+    },
+    {
+      "subject": 9,
+      "question": 102,
+      "questionId": "subject9_q102",
+      "old_correct": 2,
+      "new_correct": 3,
+      "old_answer": "magnetický směrník od letadla ke stanici",
+      "new_answer": "magnetický směrník od stanice k letadlu"
+    },
+    {
+      "subject": 9,
+      "question": 104,
+      "questionId": "subject9_q104",
+      "old_correct": 1,
+      "new_correct": 2,
+      "old_answer": "severovýchodně",
+      "new_answer": "jihovýchodně"
+    },
+    {
+      "subject": 9,
+      "question": 107,
+      "questionId": "subject9_q107",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "indikátor odchylky od tratě (CDI)",
+      "new_answer": "radiokompas (ADF)"
+    },
+    {
+      "subject": 9,
+      "question": 110,
+      "questionId": "subject9_q110",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "200°",
+      "new_answer": "260°"
+    },
+    {
+      "subject": 9,
+      "question": 112,
+      "questionId": "subject9_q112",
+      "old_correct": 1,
+      "new_correct": 2,
+      "old_answer": "v poledne",
+      "new_answer": "v noci"
+    },
+    {
+      "subject": 9,
+      "question": 114,
+      "questionId": "subject9_q114",
+      "old_correct": 0,
+      "new_correct": 3,
+      "old_answer": "ve dne",
+      "new_answer": "v noci"
+    },
+    {
+      "subject": 9,
+      "question": 119,
+      "questionId": "subject9_q119",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "QDM",
+      "new_answer": "QDR"
+    },
+    {
+      "subject": 9,
+      "question": 124,
+      "questionId": "subject9_q124",
+      "old_correct": 2,
+      "new_correct": 3,
+      "old_answer": "Dopplerova efektu",
+      "new_answer": "měření času"
+    },
+    {
+      "subject": 9,
+      "question": 128,
+      "questionId": "subject9_q128",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "pravou vzdušnou rychlost letadla (TAS) a vzdálenost",
+      "new_answer": "vzdálenost a směr"
+    },
+    {
+      "subject": 9,
+      "question": 131,
+      "questionId": "subject9_q131",
+      "old_correct": 0,
+      "new_correct": 1,
+      "old_answer": "7000",
+      "new_answer": "7500"
+    },
+    {
+      "subject": 9,
+      "question": 132,
+      "questionId": "subject9_q132",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "7000",
+      "new_answer": "7600"
+    },
+    {
+      "subject": 9,
+      "question": 133,
+      "questionId": "subject9_q133",
+      "old_correct": 0,
+      "new_correct": 2,
+      "old_answer": "nadmořskou výšku",
+      "new_answer": "tlakovou výšku"
+    }
+  ]
+}

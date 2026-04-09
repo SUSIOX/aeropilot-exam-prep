@@ -113,7 +113,7 @@
       "služba 24 hodin denně",
       "nestanovený otevírací čas"
     ],
-    "correct": 1,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -256,7 +256,7 @@
       "meteorologická zpráva",
       "zpráva pro zajištění bezpečnosti letu"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -295,7 +295,7 @@
       "vyslané provozovatelem letadla nebo letadlem mající bezprostřední význam pro letadlo za letu",
       "týkající se provozu nebo údržby zařízení důležitých pro bezpečnost nebo pravidelnost provozu letadel"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -321,7 +321,7 @@
       "Hotel Bravo Yankee Kilo Mike",
       "Hotel Bravo Yuliett Kilo Mikro"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -451,7 +451,7 @@
       "v tomto vysílání byla učiněna chyba, správně znění je",
       "povolení pro požadovaný úkon je uděleno"
     ],
-    "correct": 2,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -464,7 +464,7 @@
       "slyšíte mě dokonale srozumitelně",
       "žádám slyšitelnost"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -477,7 +477,7 @@
       "žádám",
       "chtěl bych"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -503,7 +503,7 @@
       "ne",
       "negativ"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -529,7 +529,7 @@
       "tahám",
       "provádím průlet"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -568,7 +568,7 @@
       "letová informace",
       "informace"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -607,7 +607,7 @@
       "všechna písmena anebo číslice",
       "pouze první tři písmena anebo číslice"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -620,7 +620,7 @@
       "OK-ABC volá Tuřany věž",
       "Tuřany věž OK-ABC"
     ],
-    "correct": 2,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -685,7 +685,7 @@
       "vysílání je srozumitelné, ale s obtížemi",
       "vysílání je dokonale srozumitelné"
     ],
-    "correct": 1,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -738,7 +738,7 @@
       "pozitiv",
       "provedu"
     ],
-    "correct": 2,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -842,7 +842,7 @@
       "do 10 km",
       "větší než 10 km"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -855,7 +855,7 @@
       "navigační informace",
       "meteorologické informace"
     ],
-    "correct": 0,
+    "correct": 3,
     "image": null,
     "explanation": ""
   },
@@ -952,12 +952,12 @@
   },
   {
     "id": 74,
-    "question": "Jaký je správný postup při ztrátě spojení ve vzdušném prostoru třídy D?",
+    "question": "Jaký je správný postup při ztrátě spojení ve vzdušném prostoru třídy D? ",
     "answers": [
-      "pokračovat podle posledního povolení a podle pravidel VFR nebo opustit prostor nejkratší cestou",
-      "pokračovat nad 5000 ft a podle pravidel VFR nebo opustit prostor nejkratší cestou",
-      "pokračovat nad 5000 ft a podle pravidel VFR nebo opustit prostor po standardních tratích",
-      "pokračovat podle posledního povolení a podle pravidel VFR nebo opustit prostor po standardních tratích"
+      "je třeba pokračovat v letu podle posledního povolení a podle pravidel VFR nebo tento prostor co nejkratší cestou opustit",
+      "je třeba pokračovat v letu nad 5000 ft a podle pravidel VFR nebo tento prostor co nejkratší cestou opustit",
+      "je třeba pokračovat v letu nad 5000 ft a podle pravidel VFR nebo tento prostor opustit po standardních tratích",
+      "je třeba pokračovat v letu podle posledního povolení a podle pravidel VFR nebo tento prostor opustit po standardních tratích"
     ],
     "correct": 0,
     "image": null,
@@ -1000,18 +1000,18 @@
       "zprávy týkající se personálu na odbavovací ploše znamenajícího bezprostřední nebezpečí pro přistávající",
       "letadla"
     ],
-    "correct": 3,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
   {
     "id": 78,
-    "question": "Tísňové zprávy obsahují:",
+    "question": "Tísňové zprávy obsahují: ",
     "answers": [
-      "informace o náhradních dílech potřebných pro pokračování v letu",
-      "informace o letadle a cestujících čelících vážné bezprostřední hrozbě vyžadující okamžitou pomoc",
-      "informace o bezpečnosti letadla, plavidla, vozidla nebo osoby v dohledu",
-      "informace o personálu na odbavovací ploše znamenající bezprostřední nebezpečí pro přistávající letadla"
+      "informace týkající se naléhavé potřeby náhradních dílů potřebných pro pokračování v letu, které musí být objednány předem",
+      "informace týkající se letadla a jeho cestujících, které čelí vážné a bezprostřední hrozbě a vyžaduje okamžitou pomoc",
+      "informace týkající se bezpečnosti letadla, plavidla, vozidla nebo osoby v dohledu",
+      "informace týkající se personálu na odbavovací ploše znamenajícího bezprostřední nebezpečí pro přistávající letadla"
     ],
     "correct": 1,
     "image": null,
@@ -1026,7 +1026,7 @@
       "frekvence letové informační služby",
       "frekvence radaru"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   },
@@ -1117,7 +1117,7 @@
       "300 000 km/s",
       "123 000 km/s"
     ],
-    "correct": 0,
+    "correct": 2,
     "image": null,
     "explanation": ""
   },
@@ -1130,7 +1130,7 @@
       "45 minut",
       "60 minut"
     ],
-    "correct": 0,
+    "correct": 1,
     "image": null,
     "explanation": ""
   }

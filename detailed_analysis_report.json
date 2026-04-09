@@ -1,0 +1,559 @@
+{
+  "timestamp": "2026-04-07T20:52:38.883Z",
+  "summary": {
+    "totalQuestions": 2365,
+    "totalExplanations": 115,
+    "questionsWithoutExplanations": 2280,
+    "orphanExplanations": 16
+  },
+  "questionIds": {
+    "total": 2365,
+    "formats": {
+      "legacy_numeric": 0,
+      "unified_subject": 886,
+      "ai_hash": 0,
+      "user_hash": 0,
+      "test": 0,
+      "other": 1479
+    },
+    "examples": {
+      "other": "ai_020.09.06.01_xmed1",
+      "unified_subject": "subject4_q37"
+    },
+    "missingFields": [],
+    "duplicates": []
+  },
+  "explanationIds": {
+    "total": 115,
+    "formats": {
+      "legacy_numeric": 0,
+      "unified_subject": 101,
+      "ai_hash": 10,
+      "user_hash": 0,
+      "test": 1,
+      "other": 3
+    },
+    "examples": {
+      "unified_subject": "subject4_q37",
+      "ai_hash": "subject5_ai_1773367914760_jlzne8",
+      "other": "4_subject4_user_1773364226805_cszqtx",
+      "test": "test-connection"
+    },
+    "missingFields": [],
+    "duplicates": [
+      {
+        "questionId": "subject4_q37",
+        "count": 2,
+        "items": [
+          {
+            "model": "claude-sonnet-4-6",
+            "questionId": "subject4_q37",
+            "createdAt": "2026-03-12T18:01:45.926Z",
+            "provider": "claude",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T18:01:45.926Z",
+            "explanation": "II, Chapter 1 (Definitions): Letecká pevná služba (Aeronautical Fixed Service – AFS) je telekomunikační služba poskytovaná na spojích mezi stanovenými pevnými body, primárně určená k zajištění bezpečnosti letectví a pravidelnosti, efektivity a hospodárnosti letového provozu. Tato definice je převzata do české legislativy prostřednictvím předpisu L10, kde je AFS výslovně definována jako telekomunikační služba mezi stanovenými (fixními) pevnými body, čímž se odlišuje od pohyblivých leteckých služeb (AMS), které zahrnují komunikaci s letadly. Klíčovým znakem AFS je tedy statický charakter obou komunikujících stran – pevné pozemní stanice se známými, předem určenými geografickými polohami."
+          },
+          {
+            "model": "gemini-3.1-flash-lite-preview",
+            "questionId": "subject4_q37",
+            "createdAt": "2026-03-12T14:46:19.365Z",
+            "provider": "gemini",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T14:46:19.365Z",
+            "explanation": "Letecká pevná služba (AFS) je telekomunikační služba mezi stanovenými pevnými body, určená pro výměnu leteckých zpráv nezbytných pro bezpečnost, pravidelnost a efektivitu leteckého provozu. V souladu s ICAO Annex 10 je AFS definována jako systém pro přenos leteckých informací mezi určenými stanicemi prostřednictvím pevných okruhů (např. AFTN, AMHS). Služba striktně odděluje komunikaci typu „bod-bod“ od mobilních leteckých služeb."
+          }
+        ]
+      },
+      {
+        "questionId": "subject6_q23",
+        "count": 2,
+        "items": [
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "questionId": "subject6_q23",
+            "createdAt": "2026-03-12T17:21:29.142Z",
+            "provider": "claude",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T17:21:29.142Z",
+            "explanation": "GEN.MPA.180: According to EASA regulations, refueling of aircraft with passengers on board is prohibited unless adequate supervision and unobstructed emergency evacuation routes are ensured to protect occupants in case of fuel-related hazard or emergency situation. This requirement mandates that both supervisory oversight and clearly marked, accessible escape routes must be in place before any fueling operation commences."
+          },
+          {
+            "model": "claude-sonnet-4-6",
+            "questionId": "subject6_q23",
+            "createdAt": "2026-03-12T18:05:04.312Z",
+            "provider": "claude",
+            "usageCount": 2,
+            "lastUsed": "2026-03-12T18:06:48.298Z",
+            "explanation": "Toto opatření vychází z požárního rizika spojeného s manipulací s palivem v blízkosti osob, přičemž únikové cesty a přítomnost odpovědné osoby jsou základními podmínkami, za nichž lze tankování za přítomnosti cestujících výjimečně provádět."
+          }
+        ]
+      },
+      {
+        "questionId": "subject3_q2",
+        "count": 2,
+        "items": [
+          {
+            "model": "gemini-2.5-flash",
+            "questionId": "subject3_q2",
+            "createdAt": "2026-03-12T15:03:06.291Z",
+            "provider": "gemini",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T15:03:06.291Z",
+            "explanation": "Je to druhý nejhojnější plyn v atmosféře, po dusíku (N2), který tvoří přibližně 78 %."
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "questionId": "subject3_q2",
+            "createdAt": "2026-03-10T00:57:01.895Z",
+            "provider": "gemini",
+            "usageCount": 1,
+            "lastUsed": "2026-03-10T00:57:01.895Z",
+            "explanation": "[050 01 01 01]: Chemické složení suchého vzduchu v homosféře je tvořeno přibližně 78 % dusíku, 21 % kyslíku a 1 % ostatních plynů. Hodnota 21 % odpovídá objemové koncentraci kyslíku (O2), která zůstává konstantní do výšky přibližně 80 km. Tento poměr je standardizovanou konstantou pro výpočty parciálního tlaku v letectví."
+          }
+        ]
+      },
+      {
+        "questionId": "subject2_q25",
+        "count": 3,
+        "items": [
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "questionId": "subject2_q25",
+            "createdAt": "2026-03-12T19:48:58.091Z",
+            "provider": "claude",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T19:48:58.091Z",
+            "explanation": "Polykání, zívání a Valsalvův manévr (natlačení vzduchu proti uzavřené glottis) aktivují eustachovu trubici a umožňují vyrovnání tlaku mezi středním uchem a okolím. Tyto postupy jsou nejúčinnější metodou prevence barotraumatu během klesání."
+          },
+          {
+            "model": "claude-sonnet-4-6",
+            "questionId": "subject2_q25",
+            "createdAt": "2026-03-12T15:22:15.017Z",
+            "provider": "claude",
+            "usageCount": 2,
+            "lastUsed": "2026-03-12T18:03:00.043Z",
+            "explanation": "Při klesání dochází ke zvyšování okolního tlaku, přičemž tlak ve středním uchu musí být vyrovnán s okolím prostřednictvím Eustachovy trubice. Nejúčinnější metodou je **polykání, zívání nebo Valsalvův manévr** (výdech proti uzavřeným nosním dírkám a ústům), čímž se mechanicky otevře Eustachova trubice a umožní vyrovnání tlaku. Při klesání je vyrovnávání tlaku obtížnější než při stoupání, protože slizniční ventil Eustachovy trubice se snáze otevírá při přetlaku ve středním uchu (stoupání) než při podtlaku (klesání). Pravidelné aktivní manévry jsou proto nutné průběžně během celého klesání, nikoliv až při pocitu bolesti."
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "questionId": "subject2_q25",
+            "createdAt": "2026-03-10T00:40:09.713Z",
+            "provider": "gemini",
+            "usageCount": 2,
+            "lastUsed": "2026-03-10T00:46:39.440Z",
+            "explanation": "040.01.02.01.04: Při klesání narůstá okolní barometrický tlak, což způsobuje relativní podtlak ve středním uchu a bolestivé prohnutí bubínku dovnitř. K vyrovnání je nezbytné aktivní otevření Eustachovy trubice pomocí polykání, zívání nebo Valsalvova manévru, aby vzduch pronikl z nosohltanu do středoušní dutiny. Pasivní vyrovnání tlaku je při klesání, na rozdíl od stoupání, anatomicky ztíženo chlopňovitým mechanismem ústí trubice. Včasná aplikace těchto metod předchází barotraumatu středního ucha."
+          }
+        ]
+      },
+      {
+        "questionId": "subject6_q4",
+        "count": 2,
+        "items": [
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "questionId": "subject6_q4",
+            "createdAt": "2026-03-12T17:31:13.287Z",
+            "provider": "claude",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T17:31:13.287Z",
+            "explanation": "04.03.01: Dle ICAO Annex 10 a ÚCL předpisů: Nouzová frekvence 121.500 MHz je mezinárodně standardizovaná frekvencí pro havarijní radiové volání v letectví a je povinně osazena ve všech civilních letadlech. Tato frekvence zajišťuje možnost komunikace s Air Traffic Services a záchranným službám bez ohledu na aktuálně používaný komunikační kanál."
+          },
+          {
+            "model": "claude-sonnet-4-6",
+            "questionId": "subject6_q4",
+            "createdAt": "2026-03-12T18:07:27.986Z",
+            "provider": "claude",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T18:07:27.986Z",
+            "explanation": "Tato frekvence je nepřetržitě monitorována letadly, záchranářskými službami i pozemními stanicemi v souladu s požadavky ICAO a je povinnou naslouchací frekvencí pro většinu letových provozů."
+          }
+        ]
+      },
+      {
+        "questionId": "subject5_q16",
+        "count": 2,
+        "items": [
+          {
+            "model": "claude-sonnet-4-6",
+            "questionId": "subject5_q16",
+            "createdAt": "2026-03-12T17:59:26.422Z",
+            "provider": "claude",
+            "usageCount": 3,
+            "lastUsed": "2026-03-12T18:18:41.433Z",
+            "explanation": "Tato závislost je dána vztahem C_L = C_L_α · α + C_L_0, kde C_L_α je sklon vztlakové čáry (typicky přibližně 2π rad⁻¹ pro tenký profil dle teorie tenkého profilu). Při překročení kritického úhlu náběhu dochází k odtržení proudění a C_L prudce klesá – tento bod je na vztlakové čáře jasně identifikovatelný jako maximum křivky."
+          },
+          {
+            "model": "gemini-3-flash-preview",
+            "questionId": "subject5_q16",
+            "createdAt": "2026-03-10T00:45:44.500Z",
+            "provider": "gemini",
+            "usageCount": 1,
+            "lastUsed": "2026-03-10T00:45:44.500Z",
+            "explanation": "[081.01.05.02]: Vztlaková čára graficky definuje funkční závislost součinitele vztlaku ($C_L$) na úhlu náběhu ($\\alpha$). V lineární oblasti křivky vykazuje $C_L$ přímo úměrný nárůst až do dosažení kritického úhlu náběhu ($\\alpha_{crit}$), kde dochází k maximální hodnotě $C_{Lmax}$. Sklon této čáry ($C_{L\\alpha}$) určuje aerodynamickou citlivost profilu nebo nosné plochy na změnu úhlu náběhu."
+          }
+        ]
+      },
+      {
+        "questionId": "subject5_q9",
+        "count": 2,
+        "items": [
+          {
+            "model": "claude-opus-4-6",
+            "questionId": "subject5_q9",
+            "createdAt": "2026-03-12T17:11:45.669Z",
+            "provider": "claude",
+            "usageCount": 2,
+            "lastUsed": "2026-03-12T17:11:53.725Z",
+            "explanation": "Neurčeno: Křidélka (ailerons) jsou primární řídící plochy umístěné na odtokové hraně křídel, které vytvářejí diferenciální vztlak mezi levým a pravým křídlem, čímž způsobují rotaci letadla kolem jeho podélné osy (klonění/roll). Toto je v souladu s CS-23/CS-25, kde křidélka jsou definována jako primární ovládací prvky pro příčné řízení (lateral control) letadla."
+          },
+          {
+            "model": "claude-sonnet-4-6",
+            "questionId": "subject5_q9",
+            "createdAt": "2026-03-12T18:18:17.760Z",
+            "provider": "claude",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T18:18:17.760Z",
+            "explanation": "Tento rozdíl vztlakových sil generuje moment kolem podélné osy (longitudinal axis), čímž způsobuje klonění (roll) letadla. Pohyb křidélek je vzájemně inverzní – jedno se vychyluje nahoru, druhé dolů – čímž se záměrně narušuje symetrie vztlaku mezi oběma polorovinami křídla."
+          }
+        ]
+      },
+      {
+        "questionId": "subject6_q1",
+        "count": 2,
+        "items": [
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "questionId": "subject6_q1",
+            "createdAt": "2026-03-12T17:22:11.064Z",
+            "provider": "claude",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T17:22:11.064Z",
+            "explanation": "GEN.MPA.100: Podle EASA regulací (CS-23, CS-25 a CAT požadavků) musí pilot před každým letem provést kontrolu meteorologických podmínek (dle NOTAM a počasí na trase a cílový letiště), NOTAMů (aktivní omezení v prostoru), paliva (dostatečné množství včetně rezervy) a hmotnosti/vyvážení letounu (v souladu s LCG a MTOW limity), které jsou základními prvky předletové přípravy zajišťujícími letovou způsobilost a bezpečnost."
+          },
+          {
+            "model": "claude-sonnet-4-6",
+            "questionId": "subject6_q1",
+            "createdAt": "2026-03-12T01:59:34.371Z",
+            "provider": "claude",
+            "usageCount": 2,
+            "lastUsed": "2026-03-12T01:59:45.423Z",
+            "explanation": "**Zdůvodnění odpovědi A:**"
+          }
+        ]
+      },
+      {
+        "questionId": "subject6_q20",
+        "count": 2,
+        "items": [
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "questionId": "subject6_q20",
+            "createdAt": "2026-03-12T17:34:19.954Z",
+            "provider": "claude",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T17:34:19.954Z",
+            "explanation": "1411 a ICAO Annex 2: Kyslíkové masky pro členy posádky jsou povinné při letu nad 10 000 ft po dobu delší než 30 minut, protože v této výšce a při této expozici dochází k hypoxii ohrožující jejich pracovní schopnosti a bezpečnost letu. Toto je minimální požadavek zajišťující zdravotní bezpečnost posádky během letu v nadmořské výšce s nedostatečným parciálním tlakem kyslíku."
+          },
+          {
+            "model": "claude-sonnet-4-6",
+            "questionId": "subject6_q20",
+            "createdAt": "2026-03-12T18:03:30.612Z",
+            "provider": "claude",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T18:03:30.612Z",
+            "explanation": "IDE.A.235) / Nařízení Komise (EU) č. 965/2012, Annex IV (CAT.IDE.A.235): Letouny provozované v nebeskách výškách nad 10 000 ft musí mít pro každého člena posádky k dispozici kyslíkové vybavení, přičemž kyslík musí být používán při letech nad 10 000 ft trvajících déle než 30 minut, protože při parciálním tlaku kyslíku na této výšce dochází k postupné hypoxii ohrožující výkonnost posádky. Tato hranice 10 000 ft / 30 minut představuje regulatorní kompromis zohledňující fyziologický práh, při němž saturace hemoglobinu kyslíkem začíná klinicky významně klesat při delší expozici nízkému parciálnímu tlaku O₂ (přibližně 69 hPa pO₂ oproti 101 hPa na hladině moře)."
+          }
+        ]
+      },
+      {
+        "questionId": "subject6_q21",
+        "count": 2,
+        "items": [
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "questionId": "subject6_q21",
+            "createdAt": "2026-03-12T17:08:08.350Z",
+            "provider": "claude",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T17:08:08.350Z",
+            "explanation": "I appreciate your request, but I cannot provide the explanation because the correct answer \"A\" is not displayed in your question.\n\nTo assist you properly, please provide:\n- Answer option A (the full text)\n- The complete question in English or specify the original language context\n- Relevant EASA Learning Objective (LO) reference if available\n\nOnce you provide answer option A, I will explain why it is technically correct according to EASA regulations (CS-23, CS-25, or other applicable standards)."
+          },
+          {
+            "model": "claude-sonnet-4-6",
+            "questionId": "subject6_q21",
+            "createdAt": "2026-03-12T16:02:38.247Z",
+            "provider": "claude",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T16:02:38.247Z",
+            "explanation": "**User Import (N/A):** Při zjištění námrazy (icing) za letu musí pilot okamžitě aktivovat protinámrazové systémy (anti-ice/de-ice), opustit podmínky námrazy změnou hladiny nebo kurzu a informovat ATC. Akumulace ledu na vztlakových plochách mění profil křídla, zvyšuje hmotnost, zvyšuje odpor a snižuje vztlak, čímž kriticky degraduje výkonnost letounu. Setrvání v podmínkách námrazy bez aktivních ochranných systémů nebo bez úniku z těchto podmínek představuje bezprostřední bezpečnostní riziko. Odpověď A je správná, protože zahrnuje aktivní řízení situace – aktivaci ochranných systémů a opuštění oblasti námrazy."
+          }
+        ]
+      },
+      {
+        "questionId": "subject6_q3",
+        "count": 2,
+        "items": [
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "questionId": "subject6_q3",
+            "createdAt": "2026-03-12T16:45:02.001Z",
+            "provider": "claude",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T16:45:02.001Z",
+            "explanation": "Technické zdůvodnění:"
+          },
+          {
+            "model": "claude-sonnet-4-6",
+            "questionId": "subject6_q3",
+            "createdAt": "2026-03-11T22:45:00.993Z",
+            "provider": "claude",
+            "usageCount": 1,
+            "lastUsed": "2026-03-11T22:45:00.993Z",
+            "explanation": "Při požáru motoru během spouštění na zemi pilot okamžitě zastaví přívod paliva (uzavře palivový kohout/mixture na idle cut-off), pokračuje v motání startérem bez zapalování, aby profoukl/vypláchoval sání a odvětrání hořlavé směsi z motoru a sacího potrubí. Pokud požár přetrvává, pilot opustí letadlo a aktivuje hasicí prostředky. Odpověď A je správná, protože prioritou je odstranění zdroje paliva a mechanické vyplavení hořlavé směsi ze sacího traktu pomocí startéru."
+          }
+        ]
+      },
+      {
+        "questionId": "subject6_q9",
+        "count": 3,
+        "items": [
+          {
+            "model": "claude-haiku-4-5-20251001",
+            "questionId": "subject6_q9",
+            "createdAt": "2026-03-12T17:01:45.782Z",
+            "provider": "claude",
+            "usageCount": 4,
+            "lastUsed": "2026-03-12T17:11:08.803Z",
+            "explanation": "# Technické vysvětlení - Nouzové přistání do terénu\n\nPravděpodobně se jedná o objective CAT.GEN.MPA.175 - Emergency Procedures and Management nebo OPS.GEN.195 - Emergency Landing Procedures\n\nPoznámka: Otázka není v plném znění - chybí možnosti odpovědi (A, B, C, D). Bez zobrazení variant nemůžu definitivně zdůvodnit, proč je právě odpověď \"A\" správná.\n\nNicméně podle EASA ORO.GEN.200 a postupů uvedených v AMC1 CAT.GEN.MPA.175 je při nouzovém přistání do terénu nejdůležitější zvážit bezpečnost všech osob na palubě a na zemi - což znamená zvolit terén s nejmenšími riziky střetu s pevnými překážkami a zajistit kontrolu letadla až do úplného zastavení. Odpověď \"A\" tedy pravděpodobně reflektuje primární cíl: zachování života na palubě výběrem nejvhodnějšího místa přistání nebo udržení kontroly letadla v poslední fázi přiblížení, což jsou klíčové technické priority podle EASA regulací.\n\nProsím poskytnete úplné znění variant (A, B, C, D) pro přesné technické zdůvodnění."
+          },
+          {
+            "model": "claude-sonnet-4-6",
+            "questionId": "subject6_q9",
+            "createdAt": "2026-03-12T17:09:57.612Z",
+            "provider": "claude",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T17:09:57.612Z",
+            "explanation": "Neurčeno: Při nouzovém přistání do terénu je zachování řiditelnosti letadla až do dotyku se zemí naprosto kritické, protože pilot musí mít schopnost korigovat směr, rychlost a konfiguraci letadla v průběhu celého přiblížení, aby minimalizoval kinetickou energii při dopadu na vybraný terén. Ztráta řiditelnosti před dotykem (např. přetažení, vývrtka nebo nekontrolovaný klesavý let) vede k nekontrolovanému dopadu s dramaticky vyšší energií nárazu, což je dle principů pasivní bezpečnosti zakotvených v CS-23.562 a CS-25.561 hlavní příčinou fatálních následků při nouzových přistáních."
+          },
+          {
+            "model": "gemini-2.5-flash",
+            "questionId": "subject6_q9",
+            "createdAt": "2026-03-12T17:10:47.095Z",
+            "provider": "gemini",
+            "usageCount": 1,
+            "lastUsed": "2026-03-12T17:10:47.095Z",
+            "explanation": "Neurčeno: Maintaining aircraft controllability until ground contact is paramount during an emergency landing in terrain, as it enables the pilot to manage the aircraft's energy and attitude to minimize impact forces and maximize survivability, consistent with the safety objectives outlined in EASA airworthiness standards such as CS-23 and CS-25."
+          }
+        ]
+      }
+    ]
+  },
+  "answers": {
+    "total": 2365,
+    "answerFormats": {
+      "array": 2365,
+      "string": 0,
+      "missing": 0
+    },
+    "correctIndexTypes": {
+      "number": 2365,
+      "string": 0,
+      "missing": 0
+    },
+    "issues": []
+  },
+  "explanations": {
+    "total": 115,
+    "explanationFields": {
+      "explanation": 115,
+      "ai_explanation": 0,
+      "missing": 0
+    },
+    "providerInfo": {
+      "hasProvider": 115,
+      "hasModel": 115,
+      "missing": 0
+    },
+    "modelDistribution": [
+      {
+        "model": "claude-opus-4-5",
+        "count": 44
+      },
+      {
+        "model": "claude-sonnet-4-6",
+        "count": 29
+      },
+      {
+        "model": "claude-haiku-4-5-20251001",
+        "count": 15
+      },
+      {
+        "model": "gemini-3-flash-preview",
+        "count": 13
+      },
+      {
+        "model": "gemini-flash-latest",
+        "count": 8
+      },
+      {
+        "model": "gemini-3.1-flash-lite-preview",
+        "count": 2
+      },
+      {
+        "model": "gemini-2.5-flash",
+        "count": 2
+      },
+      {
+        "model": "claude-opus-4-6",
+        "count": 1
+      },
+      {
+        "model": "test-model",
+        "count": 1
+      }
+    ],
+    "providerDistribution": [
+      {
+        "provider": "claude",
+        "count": 89
+      },
+      {
+        "provider": "gemini",
+        "count": 26
+      }
+    ]
+  },
+  "crossReference": {
+    "withoutExplanation": [
+      "ai_020.09.06.01_xmed1",
+      "ai_040.01.01.44_53t32",
+      "ai_050.01.16.02_g4nyx",
+      "ai_060.01.01.03_4yo4j",
+      "ai_080.04.01.01_mlj30",
+      "subject8_q53",
+      "ai_050.01.20.01_quoxc",
+      "ai_040.01.01.26_qpqhr",
+      "ai_050.01.15.02_2a60c",
+      "ai_060.01.11.04_h71xf",
+      "subject3_q86",
+      "ai_030.04.01.02_rfxcl",
+      "ai_080.04.02.01_vplpr",
+      "subject5_q89",
+      "ai_010.04.03.01_g9pka",
+      "subject3_q127",
+      "ai_020.05.08.01_e7f26",
+      "subject1_q85",
+      "subject4_q69",
+      "ai_050.01.08.02_eyun0",
+      "ai_020.05.02.02_a1edu",
+      "ai_090.09.01.01_js0fl",
+      "ai_050.01.09.01_rxgkn",
+      "ai_020.01.07.03_o39y8",
+      "subject5_q35",
+      "subject3_q75",
+      "ai_030.01.07.01_2veq9",
+      "subject4_q12",
+      "ai_010.06.02.01_5bgsf",
+      "subject9_q84",
+      "ai_050.01.01.01_wyv9j",
+      "ai_030.01.04.02_0bxkg",
+      "subject8_q112",
+      "ai_060.01.11.01_5iii2",
+      "ai_020.01.07.01_4o5hj",
+      "ai_020.05.02.04_cnvky",
+      "ai_020.05.06.01_4g43a",
+      "subject6_q50",
+      "ai_080.03.02.02_nyhah",
+      "ai_010.02.01.03_o16lx",
+      "ai_060.01.10.02_wkgfi",
+      "ai_060.01.06.04_yue99",
+      "ai_020.05.05.03_l6isa",
+      "subject7_q72",
+      "ai_030.01.05.01_ay3b4",
+      "subject9_q78",
+      "ai_080.01.02.02_v3ca1",
+      "ai_050.01.11.02_agqit",
+      "subject6_q55",
+      "ai_030.01.06.02_b4x7i",
+      "ai_090.03.01.01_x4hzk",
+      "subject7_q63",
+      "subject5_q64",
+      "ai_070.03.03.01_9d8mt",
+      "subject9_q90",
+      "ai_050.01.09.03_2wjau",
+      "ai_030.04.02.01_248xw",
+      "subject8_q10",
+      "ai_070.10.03.01_2gbad",
+      "ai_030.09.02.02_mhtks",
+      "subject6_q45",
+      "ai_030.03.01.01_1rf97",
+      "ai_070.05.03.01_elyjy",
+      "ai_060.01.06.04_ja9m2",
+      "subject7_q88",
+      "ai_020.01.04.04_bj0tx",
+      "subject3_q81",
+      "ai_080.03.01.01_wf5vv",
+      "subject8_q27",
+      "subject2_q54",
+      "subject8_q105",
+      "ai_040.01.01.38_sg7v2",
+      "ai_090.02.02.02_9c1ju",
+      "ai_040.01.01.17_o0qtk",
+      "ai_050.01.04.03_ag4f1",
+      "ai_040.01.01.17_j8r32",
+      "ai_060.01.11.02_wha92",
+      "ai_020.09.08.01_ealfm",
+      "ai_030.04.02.01_hnm82",
+      "subject9_q85",
+      "ai_050.01.04.02_921tl",
+      "ai_080.05.01.03_qj76i",
+      "ai_060.01.05.02_2o0wm",
+      "ai_070.01.01.03_5nsww",
+      "ai_020.01.01.05_0krn0",
+      "ai_050.01.34.01_8o5nj",
+      "subject7_q91",
+      "ai_020.05.01.01_sycq5",
+      "subject7_q99",
+      "ai_020.05.07.01_ntcsh",
+      "ai_020.01.05.04_wojyz",
+      "ai_040.01.01.34_26wbu",
+      "ai_030.05.01.01_hbxma",
+      "subject5_q61",
+      "ai_070.02.04.01_auplx",
+      "ai_090.09.01.02_4blbs",
+      "ai_020.01.03.04_dbjq4",
+      "ai_020.09.04.02_70vfr",
+      "ai_020.05.06.03_vbe2t",
+      "subject9_q3"
+    ],
+    "orphanExplanations": [
+      "subject5_ai_1773367914760_jlzne8",
+      "subject5_ai_1773367891660_14b1kn",
+      "subject4_q122",
+      "subject9_ai_1773368200642_wpgm93",
+      "subject8_ai_1773172603716_bd9t63",
+      "4_subject4_user_1773364226805_cszqtx",
+      "subject8_ai_1773105700979_5nxgni",
+      "subject1_ai_1773281366128_yn7de4",
+      "subject9_ai_1773368152185_eky2hw",
+      "4_subject4_user_1773364226804_h232i0",
+      "subject4_q106",
+      "test-connection",
+      "subject5_ai_1773367925680_li5u3o",
+      "subject8_ai_1773172673377_6q2zwt",
+      "subject4_ai_1773106663930_1hwtuf",
+      "4_subject4_user_1773364226802_5h61a8"
+    ]
+  },
+  "codebase": {
+    "idReferences": {
+      "questionId": 48,
+      "id": 275,
+      "lo_id": 33,
+      "loId": 48,
+      "compositeId": 23,
+      "localStorageKeys": 4
+    }
+  }
+}

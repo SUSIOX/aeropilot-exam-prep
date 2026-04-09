@@ -1,0 +1,457 @@
+{
+  "batchNumber": 2,
+  "subjectId": 8,
+  "subjectName": "Aircraft General",
+  "preparedAt": "2026-04-07T23:41:27.869Z",
+  "questionCount": 32,
+  "questions": [
+    {
+      "questionId": "subject8_q41",
+      "question": "Elektrickou energii do sítě letounu dodává: 1. baterie 2. generátor 3. relé 4. jistič",
+      "text": "Elektrickou energii do sítě letounu dodává: 1. baterie 2. generátor 3. relé 4. jistič",
+      "answers": [
+        "1 a 4",
+        "1 a 2",
+        "2 a 3",
+        "3 a 4"
+      ],
+      "correctOption": "B",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Elektrickou energii do sítě letounu dodává: 1. baterie 2. generátor 3. relé 4. jistič\nOznačení správné odpovědi: B\nText správné odpovědi: 1 a 2\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"B\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"B\")."
+    },
+    {
+      "questionId": "subject8_q29",
+      "question": "Co se stane za letu, je-li řídící páka posunuta směrem dopředu bez dalších korekcí?",
+      "text": "Co se stane za letu, je-li řídící páka posunuta směrem dopředu bez dalších korekcí?",
+      "answers": [
+        "rychlost vzroste, úhel klesání vzroste",
+        "rychlost klesne, úhel klesání vzroste",
+        "rychlost vzroste, úhel klesání se zmenší",
+        "rychlost klesne, úhel klesání se zmenší"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Co se stane za letu, je-li řídící páka posunuta směrem dopředu bez dalších korekcí?\nOznačení správné odpovědi: A\nText správné odpovědi: rychlost vzroste, úhel klesání vzroste\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q65",
+      "question": "Úhel zobrazený šipkou č. 1 znázorňuje: Viz obr. (AGK-011) D: směr nabíhajícího proudu vzduchu C: tětiva R: směr otáčení",
+      "text": "Úhel zobrazený šipkou č. 1 znázorňuje: Viz obr. (AGK-011) D: směr nabíhajícího proudu vzduchu C: tětiva R: směr otáčení",
+      "answers": [
+        "úhel náběhu",
+        "úhel nastavení vrtule",
+        "geometrické zkroucení listu",
+        "aerodynamické zkroucení listu"
+      ],
+      "correctOption": "B",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Úhel zobrazený šipkou č. 1 znázorňuje: Viz obr. (AGK-011) D: směr nabíhajícího proudu vzduchu C: tětiva R: směr otáčení\nOznačení správné odpovědi: B\nText správné odpovědi: úhel nastavení vrtule\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"B\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"B\")."
+    },
+    {
+      "questionId": "subject8_q4",
+      "question": "Jaká konfigurace křídla je zobrazena v příloze? Viz obr. (AGK-002)",
+      "text": "Jaká konfigurace křídla je zobrazena v příloze? Viz obr. (AGK-002)",
+      "answers": [
+        "dolnoplošník",
+        "středoplošník",
+        "hornoplošník",
+        "vzpěrový hornoplošník"
+      ],
+      "correctOption": "D",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Jaká konfigurace křídla je zobrazena v příloze? Viz obr. (AGK-002)\nOznačení správné odpovědi: D\nText správné odpovědi: vzpěrový hornoplošník\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"D\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"D\")."
+    },
+    {
+      "questionId": "subject8_q124",
+      "question": "Co ukazuje relativní sklonoměr?",
+      "text": "Co ukazuje relativní sklonoměr?",
+      "answers": [
+        "relativní vertikálu",
+        "vertikálu vzhledem k zemskému horizontu",
+        "náklon letadla",
+        "úhlovou rychlost zatáčení"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Co ukazuje relativní sklonoměr?\nOznačení správné odpovědi: A\nText správné odpovědi: relativní vertikálu\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q94",
+      "question": "Jaké hodnoty jsou obvykle na přístrojích vyznačeny červenou barvou?",
+      "text": "Jaké hodnoty jsou obvykle na přístrojích vyznačeny červenou barvou?",
+      "answers": [
+        "provozní omezení",
+        "provozní oblasti",
+        "oblasti varování",
+        "doporučené oblasti"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Jaké hodnoty jsou obvykle na přístrojích vyznačeny červenou barvou?\nOznačení správné odpovědi: A\nText správné odpovědi: provozní omezení\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q22",
+      "question": "Co se kontroluje značkou v příloze? Viz obr. (AGK-006)",
+      "text": "Co se kontroluje značkou v příloze? Viz obr. (AGK-006)",
+      "answers": [
+        "správná poloha pneumatiky vzhledem k ráfku",
+        "sjetí pneumatiky",
+        "pracovní tlak v duši kola",
+        "správná poloha vnějších izolačních vrstev"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Co se kontroluje značkou v příloze? Viz obr. (AGK-006)\nOznačení správné odpovědi: A\nText správné odpovědi: správná poloha pneumatiky vzhledem k ráfku\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q56",
+      "question": "Jaký vliv má zapnutí ohřevu karburátoru na chod motoru s pevnou vrtulí?",
+      "text": "Jaký vliv má zapnutí ohřevu karburátoru na chod motoru s pevnou vrtulí?",
+      "answers": [
+        "nárůst otáček",
+        "pokles otáček",
+        "zvýšení úhlu náběhu",
+        "snížení úhlu náběhu"
+      ],
+      "correctOption": "B",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Jaký vliv má zapnutí ohřevu karburátoru na chod motoru s pevnou vrtulí?\nOznačení správné odpovědi: B\nText správné odpovědi: pokles otáček\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"B\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"B\")."
+    },
+    {
+      "questionId": "subject8_q69",
+      "question": "Výkon motoru s karburátorem s rostoucí nadmořskou výškou:",
+      "text": "Výkon motoru s karburátorem s rostoucí nadmořskou výškou:",
+      "answers": [
+        "se zvětšuje",
+        "klesá",
+        "zůstává stejný",
+        "nejprve klesá a od 5000 ft se zvětšuje"
+      ],
+      "correctOption": "B",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Výkon motoru s karburátorem s rostoucí nadmořskou výškou:\nOznačení správné odpovědi: B\nText správné odpovědi: klesá\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"B\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"B\")."
+    },
+    {
+      "questionId": "subject8_q116",
+      "question": "Co znamená zkratka HSI?",
+      "text": "Co znamená zkratka HSI?",
+      "answers": [
+        "indikátor horizontální situace",
+        "indikátor horizontálního skluzu",
+        "systém hibernační indikace",
+        "nebezpečná prudká inklinace"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Co znamená zkratka HSI?\nOznačení správné odpovědi: A\nText správné odpovědi: indikátor horizontální situace\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q117",
+      "question": "Indikátor horizontální situace (HSI) kombinuje informace z:",
+      "text": "Indikátor horizontální situace (HSI) kombinuje informace z:",
+      "answers": [
+        "směrového gyrokompasu a radionavigačního přijímače VHF",
+        "indikátoru polohy a povelového ukazatele",
+        "směrového gyrokompasu a skluzoměru",
+        "směrového gyrokompasu a povelového ukazatele"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Indikátor horizontální situace (HSI) kombinuje informace z:\nOznačení správné odpovědi: A\nText správné odpovědi: směrového gyrokompasu a radionavigačního přijímače VHF\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q50",
+      "question": "Jaká část pracovního cyklu čtyřdobého zážehového motoru je znázorněna v příloze? Viz obr. (AGK-008)",
+      "text": "Jaká část pracovního cyklu čtyřdobého zážehového motoru je znázorněna v příloze? Viz obr. (AGK-008)",
+      "answers": [
+        "sání",
+        "stlačení",
+        "výbuch",
+        "výfuk"
+      ],
+      "correctOption": "B",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Jaká část pracovního cyklu čtyřdobého zážehového motoru je znázorněna v příloze? Viz obr. (AGK-008)\nOznačení správné odpovědi: B\nText správné odpovědi: stlačení\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"B\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"B\")."
+    },
+    {
+      "questionId": "subject8_q46",
+      "question": "Elektricky poháněné palubní přístroje, které používají stejnosměrný proud, jsou označeny:",
+      "text": "Elektricky poháněné palubní přístroje, které používají stejnosměrný proud, jsou označeny:",
+      "answers": [
+        "DC",
+        "EL",
+        "CO",
+        "AL"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Elektricky poháněné palubní přístroje, které používají stejnosměrný proud, jsou označeny:\nOznačení správné odpovědi: A\nText správné odpovědi: DC\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q16",
+      "question": "Číslo 1 na podvozku označuje: Viz obr. (AGK-005)",
+      "text": "Číslo 1 na podvozku označuje: Viz obr. (AGK-005)",
+      "answers": [
+        "vzpěru",
+        "vidlici",
+        "nůžky",
+        "vnitřní tlumič"
+      ],
+      "correctOption": "B",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Číslo 1 na podvozku označuje: Viz obr. (AGK-005)\nOznačení správné odpovědi: B\nText správné odpovědi: vidlici\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"B\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"B\")."
+    },
+    {
+      "questionId": "subject8_q77",
+      "question": "QNE je:",
+      "text": "QNE je:",
+      "answers": [
+        "barometrický tlak měřený od hladiny moře s využitím mezinárodní standardní atmosféry",
+        "barometrický tlak měřený od referenčního bodu, typicky od prahu dráhy",
+        "výška nad referenční tlakovou hladinou 1013.25 hPa",
+        "magnetický směrník ke stanici"
+      ],
+      "correctOption": "C",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: QNE je:\nOznačení správné odpovědi: C\nText správné odpovědi: výška nad referenční tlakovou hladinou 1013.25 hPa\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"C\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"C\")."
+    },
+    {
+      "questionId": "subject8_q57",
+      "question": "Co je hlavním úkolem karburátoru?",
+      "text": "Co je hlavním úkolem karburátoru?",
+      "answers": [
+        "vytvářet palivovou směs vzduch / palivo",
+        "zajisti dodatečné palivo pro chlazení motoru",
+        "čerpat palivo z nádrží do válců",
+        "pomocí přípustě paliva řídit rychlost letadla"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Co je hlavním úkolem karburátoru?\nOznačení správné odpovědi: A\nText správné odpovědi: vytvářet palivovou směs vzduch / palivo\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q86",
+      "question": "Měření výšky je založeno na změně:",
+      "text": "Měření výšky je založeno na změně:",
+      "answers": [
+        "celkového tlaku",
+        "statického tlaku",
+        "dynamického tlaku",
+        "diferenciálního tlaku"
+      ],
+      "correctOption": "B",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Měření výšky je založeno na změně:\nOznačení správné odpovědi: B\nText správné odpovědi: statického tlaku\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"B\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"B\")."
+    },
+    {
+      "questionId": "subject8_q103",
+      "question": "Letadlo na severní polokouli zatáčí nejkratší cestou z kurzu 360°na kurz 270°. Na přibližně jakém kurzu je třeba zatáčku zastavit?",
+      "text": "Letadlo na severní polokouli zatáčí nejkratší cestou z kurzu 360°na kurz 270°. Na přibližně jakém kurzu je třeba zatáčku zastavit?",
+      "answers": [
+        "270°",
+        "240°",
+        "360°",
+        "300°"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Letadlo na severní polokouli zatáčí nejkratší cestou z kurzu 360°na kurz 270°. Na přibližně jakém kurzu je třeba zatáčku zastavit?\nOznačení správné odpovědi: A\nText správné odpovědi: 270°\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q93",
+      "question": "Co z následujícího popisuje princip práce rychloměru?",
+      "text": "Co z následujícího popisuje princip práce rychloměru?",
+      "answers": [
+        "je měřen celkový tlak a porovnáván se statickým tlakem",
+        "je měřen statický tlak a porovnáván s vakuem",
+        "Pitotovou trubicí je měřen dynamický tlak a rychloměrem převáděn na indikaci rychlosti",
+        "statickými snímači je měřen celkový tlak a výškoměrem převáděn na indikaci rychlosti"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Co z následujícího popisuje princip práce rychloměru?\nOznačení správné odpovědi: A\nText správné odpovědi: je měřen celkový tlak a porovnáván se statickým tlakem\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q1",
+      "question": "Maximální tloušťka křídla je definována jako vzdálenost mezi spodním a horním povrchem křídla:",
+      "text": "Maximální tloušťka křídla je definována jako vzdálenost mezi spodním a horním povrchem křídla:",
+      "answers": [
+        "v nejtlustší části křídla",
+        "v nejštíhlejší části křídla",
+        "na nejvzdálenější části křídla",
+        "na nejvnitřnější části křídla"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Maximální tloušťka křídla je definována jako vzdálenost mezi spodním a horním povrchem křídla:\nOznačení správné odpovědi: A\nText správné odpovědi: v nejtlustší části křídla\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q28",
+      "question": "Co způsobí přitažení sloupku řízení nebo řídící páky směrem k sobě?",
+      "text": "Co způsobí přitažení sloupku řízení nebo řídící páky směrem k sobě?",
+      "answers": [
+        "na ocasních plochách působí zvětšená síla směrem dolů a způsobí pohyb přídě směrem nahoru",
+        "na ocasních plochách působí zvětšená síla dolů a způsobí pokles přídě",
+        "na ocasních plochách působí zvětšená síla směrem nahoru a způsobí pohyb přídě směrem nahoru",
+        "na ocasních plochách působí zvětšená síla směrem nahoru a způsobí pokles přídě"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Co způsobí přitažení sloupku řízení nebo řídící páky směrem k sobě?\nOznačení správné odpovědi: A\nText správné odpovědi: na ocasních plochách působí zvětšená síla směrem dolů a způsobí pohyb přídě směrem nahoru\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q52",
+      "question": "Ve které situaci dochází k největšímu vstřebávání vlhkosti do paliva?",
+      "text": "Ve které situaci dochází k největšímu vstřebávání vlhkosti do paliva?",
+      "answers": [
+        "téměř plné nádrže",
+        "téměř prázdné nádrže",
+        "při stání na vlhké travnaté ploše",
+        "při stání na studených plochách"
+      ],
+      "correctOption": "B",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Ve které situaci dochází k největšímu vstřebávání vlhkosti do paliva?\nOznačení správné odpovědi: B\nText správné odpovědi: téměř prázdné nádrže\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"B\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"B\")."
+    },
+    {
+      "questionId": "subject8_q20",
+      "question": "Kde je instalován brzdový systém brzdící letadlo na zemi?",
+      "text": "Kde je instalován brzdový systém brzdící letadlo na zemi?",
+      "answers": [
+        "pouze na příďovém podvozku",
+        "pouze na hlavním podvozku",
+        "na ocasním kole",
+        "na příďovém i hlavním podvozku"
+      ],
+      "correctOption": "B",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Kde je instalován brzdový systém brzdící letadlo na zemi?\nOznačení správné odpovědi: B\nText správné odpovědi: pouze na hlavním podvozku\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"B\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"B\")."
+    },
+    {
+      "questionId": "subject8_q121",
+      "question": "Variometr připojený na příliš velkou vyrovnávací nádobu ukazuje:",
+      "text": "Variometr připojený na příliš velkou vyrovnávací nádobu ukazuje:",
+      "answers": [
+        "větší hodnoty než skutečné",
+        "neukazuje nic",
+        "je mechanicky přetížen",
+        "menší hodnoty než skutečné"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Variometr připojený na příliš velkou vyrovnávací nádobu ukazuje:\nOznačení správné odpovědi: A\nText správné odpovědi: větší hodnoty než skutečné\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q76",
+      "question": "QFE je:",
+      "text": "QFE je:",
+      "answers": [
+        "barometrický tlak měřený od hladiny moře s využitím mezinárodní standardní atmosféry",
+        "barometrický tlak měřený od referenčního bodu, typicky od prahu dráhy",
+        "výška nad referenční takovou hladinou 1013.25 hPa",
+        "magnetický směrník ke stanici"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: QFE je:\nOznačení správné odpovědi: A\nText správné odpovědi: barometrický tlak měřený od hladiny moře s využitím mezinárodní standardní atmosféry\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q111",
+      "question": "Zatáčkoměr se skluzoměrem poskytují informaci o:",
+      "text": "Zatáčkoměr se skluzoměrem poskytují informaci o:",
+      "answers": [
+        "úhlové rychlosti zatáčení a skluzu nebo výkluzu",
+        "úhlové rychlosti zatáčení a náklonu",
+        "koordinaci zatáčky a úhlu skluzu",
+        "úhlu podélného sklonu a náklonu"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Zatáčkoměr se skluzoměrem poskytují informaci o:\nOznačení správné odpovědi: A\nText správné odpovědi: úhlové rychlosti zatáčení a skluzu nebo výkluzu\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q13",
+      "question": "Co je třeba učinit, byla-li překročena povolená provozní omezení?",
+      "text": "Co je třeba učinit, byla-li překročena povolená provozní omezení?",
+      "answers": [
+        "před dalším letem musí být letadlo prohlédnuto kvalifikovaným technikem",
+        "letadlo musí být prohlédnuto velitelem letadla a není-li zjištěna závada, není třeba žádný zvláštní zápis do technického deníku",
+        "letadlo musí být prohlédnuto alespoň dvěma piloty s typovou kvalifikací, jeden z nich musí být velitel letadla",
+        "letadlo musí být dvakrát prohlédnuto dvěma techniky"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Co je třeba učinit, byla-li překročena povolená provozní omezení?\nOznačení správné odpovědi: A\nText správné odpovědi: před dalším letem musí být letadlo prohlédnuto kvalifikovaným technikem\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q49",
+      "question": "Jaká část pracovního cyklu čtyřdobého zážehového motoru je znázorněna v příloze? Viz obr. (AGK-007)",
+      "text": "Jaká část pracovního cyklu čtyřdobého zážehového motoru je znázorněna v příloze? Viz obr. (AGK-007)",
+      "answers": [
+        "sání",
+        "stlačení",
+        "výbuch",
+        "výfuk"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Jaká část pracovního cyklu čtyřdobého zážehového motoru je znázorněna v příloze? Viz obr. (AGK-007)\nOznačení správné odpovědi: A\nText správné odpovědi: sání\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q114",
+      "question": "Jakou barvou je na rychloměru vyznačena oblast zvýšené pozornosti?",
+      "text": "Jakou barvou je na rychloměru vyznačena oblast zvýšené pozornosti?",
+      "answers": [
+        "žlutou",
+        "červenou",
+        "bílou",
+        "zelenou"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Jakou barvou je na rychloměru vyznačena oblast zvýšené pozornosti?\nOznačení správné odpovědi: A\nText správné odpovědi: žlutou\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q84",
+      "question": "správně nastaveným QNH, je indikovaná výška:",
+      "text": "správně nastaveným QNH, je indikovaná výška:",
+      "answers": [
+        "větší než skutečná",
+        "menší než skutečná",
+        "stejná jako skutečná",
+        "stejná jako standardní atmosféra"
+      ],
+      "correctOption": "C",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: správně nastaveným QNH, je indikovaná výška:\nOznačení správné odpovědi: C\nText správné odpovědi: stejná jako skutečná\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"C\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"C\")."
+    },
+    {
+      "questionId": "subject8_q107",
+      "question": "Co je příčinou decelerační a akcelerační chyby kompasu s přímým čtením?",
+      "text": "Co je příčinou decelerační a akcelerační chyby kompasu s přímým čtením?",
+      "answers": [
+        "inklinace siločar zemského magnetického pole",
+        "deviace v pilotní kabině",
+        "změny teploty",
+        "deklinace"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Co je příčinou decelerační a akcelerační chyby kompasu s přímým čtením?\nOznačení správné odpovědi: A\nText správné odpovědi: inklinace siločar zemského magnetického pole\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    },
+    {
+      "questionId": "subject8_q66",
+      "question": "Jak má být provedeno zvýšení výkonu motoru s vrtulí konstantních otáček, není-li v letové příručce popsán žádný jiný postup?",
+      "text": "Jak má být provedeno zvýšení výkonu motoru s vrtulí konstantních otáček, není-li v letové příručce popsán žádný jiný postup?",
+      "answers": [
+        "1) zvýšit otáčky 2) zvýšit plnící tlak",
+        "1) zvýšit plnící tlak 2) zvýšit otáčky",
+        "1) snížit plnící tlak 2) zvýšit otáčky",
+        "1) snížit otáčky 2) zvýšit plnící tlak"
+      ],
+      "correctOption": "A",
+      "subjectId": 8,
+      "agentPrompt": "Jsi letecký instruktor specializovaný na technické vysvětlení leteckých konceptů.\n\nOtázka: Jak má být provedeno zvýšení výkonu motoru s vrtulí konstantních otáček, není-li v letové příručce popsán žádný jiný postup?\nOznačení správné odpovědi: A\nText správné odpovědi: 1) zvýšit otáčky 2) zvýšit plnící tlak\nLO: Neurčeno\n\nDŮLEŽITÉ INSTRUKCE:\n1. Technicky a odborně vysvětli letecký koncept v pozadí správné odpovědi.\n2. PRIORITNÍ VYHLEDÁVÁNÍ: Nejprve hledej v EASA dokumentaci (CS-23, CS-25, CS-VLA, AMC, GM, CAT.POL.MPA, CAT.GEN.MPA, NPA, UCL, atd.)\n3. SEKUNDÁRNÍ VYHLEDÁVÁNÍ: Pouze pokud EASA dokumenty neobsahují relevantní informace, hledej v ICAO, FAA nebo jiných leteckých autoritách\n4. NEZMIŇUJ alternativní akce nebo intuitivní reakce.\n5. ZAMĚŘ SE POUZE na technické odůvodnění.\n6. Odkazuj na konkrétní EASA předpisy, procedury nebo technické principy s přesnými referencemi (např. \"Podle EASA CS-23.1309...\")\n7. Pokud je správná odpověď kontra-intuitivní, vysvětli technický důvod pomocí EASA předpisů.\n8. KRITICKÉ: NEOPAKUJ a NEPOTVRZUJ, že odpověď \"A\" je správná. Uživatel to už vidí před sebou. Nezačínej větami typu \"Odpověď B je správná protože...\" ani \"Proč je odpověď B správná?\". Začni ROVNOU technickým vysvětlením problému.\n\nPravidla:\n1. Jazyk: Česky\n2. Styl: Srozumitelný a odborný, ale bez jakýchkoliv oslovení (žádné \"Ahoj\", \"Čau\", \"Pilote\", atd.)\n3. POUŽÍVEJ MARKDOWN PRO PŘEHLEDNOST: **tučně**, *kurzíva*, nadpisy, odrážky\n4. Cokoliv týkající se fyzikálních vzorců a matematiky zapisuj výhradně ve standardním LaTeX formátu s použitím $ pro inline (např. $v^2$) a $$ pro samostatný řádek.\n5. Struktura:\n   - **Krátký úvod** (o jaký koncept se jedná)\n   - **Technické odůvodnění** (vysvětlení principu, neopakuj odpověď ani její označení)\n   - **Praktické použití** v letadle\n   - **Paměťový tip**\n5. Použij krátké věty a odstavce\n6. Použij analogie a praktické příklady ze skutečného života pilota\n7. Délka: 200-300 slov\n\nVysvětli to tak, aby to pochopil i začátečník v pilotním výcviku.\nZAČNI PŘÍMO VYSVĚTLENÍM BEZ JAKÉHOKOLIV POZDRAVENÍ NEBO OSLOVENÍ.\nPOUŽÍVEJ MARKDOWN PRO LEPŠÍ FORMÁTOVÁNÍ.\nNEOPAKUJ OZNAČENÍ SPRÁVNÉ ODPOVĚDI (\"A\")."
+    }
+  ]
+}

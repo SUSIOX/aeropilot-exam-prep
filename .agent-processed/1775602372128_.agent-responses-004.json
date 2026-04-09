@@ -1,0 +1,129 @@
+{
+  "batchNumber": 4,
+  "subjectId": 9,
+  "subjectName": "Navigation",
+  "generatedAt": "2026-04-07T22:52:50.871Z",
+  "generatedBy": "AI Agent",
+  "responses": [
+    {
+      "questionId": "subject9_q131",
+      "explanation": "Technické vysvětlení pro subject9_q131:\n\nOtázka: Kód odpovídače sekundárního radaru pro únos je:\n\nSprávná odpověď: A - 7000\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q41",
+      "explanation": "Technické vysvětlení pro subject9_q41:\n\nOtázka: Co může být důvodem pro změnu magnetického směru vzletové a přistávací dráhy na letišti (např. z RWY 06 na RWY 07)?\n\nSprávná odpověď: A - změnila se deklinace na místě dráhy\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q50",
+      "explanation": "Technické vysvětlení pro subject9_q50:\n\nOtázka: Jaká je vzdálenost od VOR Brünkendorf (BKD) (53°02′N, 011°33′E) do Pritzwalk (EDBU) (53°11'N, 12°11'E)? Viz příloha (NAV-031)\n\nSprávná odpověď: A - 24 NM\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q126",
+      "explanation": "Technické vysvětlení pro subject9_q126:\n\nOtázka: Rozdíl mezi indikovanou šikmou vzdáleností z DME a horizontální vzdáleností od stanice DME se zvětšuje při:\n\nSprávná odpověď: A - příletu k DME\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q25",
+      "explanation": "Technické vysvětlení pro subject9_q25:\n\nOtázka: Úhel mezi zeměpisnou tratí a zeměpisným kurzem se nazývá:\n\nSprávná odpověď: A - deviace\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q123",
+      "explanation": "Technické vysvětlení pro subject9_q123:\n\nOtázka: Na dosah stanice VOR má vliv:\n\nSprávná odpověď: B - nadmořská výška vysílače a přijímače\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q104",
+      "explanation": "Technické vysvětlení pro subject9_q104:\n\nOtázka: Pilot obdržel od zaměřovače VDF QDR 135°. Kde se nachází letadlo vzhledem k zaměřovači?\n\nSprávná odpověď: B - severovýchodně\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q22",
+      "explanation": "Technické vysvětlení pro subject9_q22:\n\nOtázka: Pojem \"občanský soumrak\" je definován jako:\n\nSprávná odpověď: A - doba po západu slunce, během které je střed slunečního disku 6° nebo méně pod zeměpisným horizontem\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q60",
+      "explanation": "Technické vysvětlení pro subject9_q60:\n\nOtázka: Letadlo letí pravou vzdušnou rychlostí (TAS) 120 kt se zadní složkou větru 35 kt. Za jak dlouho uletí vzdálenost 185 NM?\n\nSprávná odpověď: A - 1 h 12 min\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q97",
+      "explanation": "Technické vysvětlení pro subject9_q97:\n\nOtázka: Je dáno: QDR: 152° deklinace: 5° W deviace: 5° E. QUJ je:\n\nSprávná odpověď: B - 332°\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q86",
+      "explanation": "Technické vysvětlení pro subject9_q86:\n\nOtázka: Přibližná rychlost šíření elektromagnetických vln je:\n\nSprávná odpověď: B - 300000 km/s\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q24",
+      "explanation": "Technické vysvětlení pro subject9_q24:\n\nOtázka: Je dáno: Zeměpisná trať: 179°, oprava snosu větru: -12°, deklinace: 004° E, deviace: +002°. Stanovte magnetický kurz a magnetickou trať.\n\nSprávná odpověď: A - magnetický kurz: 163°. Magnetická trať: 175°.\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q36",
+      "explanation": "Technické vysvětlení pro subject9_q36:\n\nOtázka: Pojem \"agóna\" je definován jako spojnice dvou bodů na mapě nebo na Zemi, které:\n\nSprávná odpověď: A - mají deklinaci 0°\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q70",
+      "explanation": "Technické vysvětlení pro subject9_q70:\n\nOtázka: Je dáno: Traťová rychlost (GS): 160 kt. Zeměpisná trať (TC): 177°. vítr (W/WS): 140°/20 kt. Zeměpisný kurz (TH) je:\n\nSprávná odpověď: A - 173°\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q102",
+      "explanation": "Technické vysvětlení pro subject9_q102:\n\nOtázka: Kód QDR znamená:\n\nSprávná odpověď: C - magnetický směrník od letadla ke stanici\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q63",
+      "explanation": "Technické vysvětlení pro subject9_q63:\n\nOtázka: Jaká je zeměpisná trať (TC) z Uelzen (EDVU) (52°59′N, 10°28′E) do Neustadt (EDAN) (53°22'N, 011°37'E)? Viz příloha (NAV-031)\n\nSprávná odpověď: A - 061°\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q47",
+      "explanation": "Technické vysvětlení pro subject9_q47:\n\nOtázka: Jaký je radiál od VOR Brünkendorf (BKD) (53°02′N, 011°33′E) směrem do Pritzwalk (EDBU) (53°11'N, 12°11'E)? Viz příloha (NAV-031)\n\nSprávná odpověď: A - 068°\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q20",
+      "explanation": "Technické vysvětlení pro subject9_q20:\n\nOtázka: Pro středoevropský čas (CET) platí: CET = UTC+1. Jaký UTC odpovídá 1700 CET?\n\nSprávná odpověď: C - 1600 UTC\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q7",
+      "explanation": "Technické vysvětlení pro subject9_q7:\n\nOtázka: Jaký je rozdíl zeměpisné šířky mezi body A (12°53'30''N) a B (07°34'30''S)?\n\nSprávná odpověď: D - 20°28'00''\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q88",
+      "explanation": "Technické vysvětlení pro subject9_q88:\n\nOtázka: Rádiové vlny v pásmu VKV (např. VOR) se šíří jako:\n\nSprávná odpověď: B - prostorová vlna (kvazi-optická)\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q8",
+      "explanation": "Technické vysvětlení pro subject9_q8:\n\nOtázka: Kde se nacházejí polární kruhy?\n\nSprávná odpověď: D - 23.5° severně a jižně od pólů\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q132",
+      "explanation": "Technické vysvětlení pro subject9_q132:\n\nOtázka: Kód odpovídače sekundárního radaru pro ztrátu spojení je:\n\nSprávná odpověď: A - 7000\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q30",
+      "explanation": "Technické vysvětlení pro subject9_q30:\n\nOtázka: Je dáno: Zeměpisná trať: 183°, oprava snosu větru: +011°, magnetický kurz: 198°, kompasový kurz: 200°. Stanovte zeměpisný kurz a deviaci.\n\nSprávná odpověď: A - zeměpisný kurz: 194°. deviace: +002°.\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q10",
+      "explanation": "Technické vysvětlení pro subject9_q10:\n\nOtázka: Jaká vzdálenost odpovídá rozdílu jednoho stupně zeměpisné šířky podél kteréhokoliv poledníku?\n\nSprávná odpověď: A - 60 NM\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q64",
+      "explanation": "Technické vysvětlení pro subject9_q64:\n\nOtázka: Letadlo letí ve FL 75, kde je teplota vnějšího vzduchu (OAT) -9°C. Výškoměr nastavený na QNH indikuje výšku letu 6500 ft. Jaká je skutečná výška letu?\n\nSprávná odpověď: A - 6250 ft\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q93",
+      "explanation": "Technické vysvětlení pro subject9_q93:\n\nOtázka: Je dáno: QTE: 229° deklinace: 10° W. QDM je:\n\nSprávná odpověď: C - 059°\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q95",
+      "explanation": "Technické vysvětlení pro subject9_q95:\n\nOtázka: Je dáno: QDM: 248° deklinace: 10° W. QTE je:\n\nSprávná odpověď: A - 058°\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q118",
+      "explanation": "Technické vysvětlení pro subject9_q118:\n\nOtázka: Radiály VOR jsou definovány na principu:\n\nSprávná odpověď: A - porovnání fáze 2 signálů\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q34",
+      "explanation": "Technické vysvětlení pro subject9_q34:\n\nOtázka: Který směr odpovídá kompasovému severu (CN)?\n\nSprávná odpověď: A - severu, který ukazuje kompas s přímým čtením vlivem magnetického pole Země a letadla\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q23",
+      "explanation": "Technické vysvětlení pro subject9_q23:\n\nOtázka: Je dáno: Oprava snosu větru: -012°, zeměpisný kurz: 125°, magnetická trať: 139°, deviace: 002°E. Stanovte zeměpisnou trať a magnetický a kompasový kurz.\n\nSprávná odpověď: A - zeměpisná trať: 137°. Magnetický kurz: 139°. Kompasový kurz: 125°.\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    }
+  ]
+}

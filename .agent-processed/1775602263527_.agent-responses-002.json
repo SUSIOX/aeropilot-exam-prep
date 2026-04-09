@@ -1,0 +1,129 @@
+{
+  "batchNumber": 2,
+  "subjectId": 9,
+  "subjectName": "Navigation",
+  "generatedAt": "2026-04-07T22:51:02.284Z",
+  "generatedBy": "AI Agent",
+  "responses": [
+    {
+      "questionId": "subject9_q53",
+      "explanation": "Technické vysvětlení pro subject9_q53:\n\nOtázka: Letadlo letí v 8000 ft AMSL indikovanou rychlostí (IAS) 150 kt. Pravá vzdušná rychlost (TAS) je:\n\nSprávná odpověď: A - 174 kt\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q80",
+      "explanation": "Technické vysvětlení pro subject9_q80:\n\nOtázka: Co znamená pravidlo 1:60?\n\nSprávná odpověď: A - odchylka od tratě 1 NM při snosu 1° po uletění 60 NM\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q66",
+      "explanation": "Technické vysvětlení pro subject9_q66:\n\nOtázka: Letadlo letí v tlakové výšce 7000 ft při teplotě vnějšího vzduchu (OAT) +11°C. Výškoměr nastavený na QNH indikuje 6500 ft. Skutečná nadmořská výška je:\n\nSprávná odpověď: C - 6750 ft\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q129",
+      "explanation": "Technické vysvětlení pro subject9_q129:\n\nOtázka: Palubní vybavení pro sekundární přehledový radar (SSR) se nazývá:\n\nSprávná odpověď: B - odpovídač\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q44",
+      "explanation": "Technické vysvětlení pro subject9_q44:\n\nOtázka: Jak jsou zobrazeny loxodromy a ortodromy na mapě s přímým Mercatorovým zobrazením?\n\nSprávná odpověď: A - loxodromy – přímky, ortodromy – křivky\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q87",
+      "explanation": "Technické vysvětlení pro subject9_q87:\n\nOtázka: Dlouhé (LF) a střední (MF) radiové vlny (např. NDB) se šíří jako:\n\nSprávná odpověď: C - povrchová vlna\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q32",
+      "explanation": "Technické vysvětlení pro subject9_q32:\n\nOtázka: Kde má inklinace nejmenší hodnotu?\n\nSprávná odpověď: A - na zeměpisném rovníku\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q18",
+      "explanation": "Technické vysvětlení pro subject9_q18:\n\nOtázka: Pro Středoevropský letní čas (CEST) platí UTC+2. Jaký čas UTC odpovídá 1600 CEST?\n\nSprávná odpověď: D - 1400 UTC\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q38",
+      "explanation": "Technické vysvětlení pro subject9_q38:\n\nOtázka: 1000 ft rovná se:\n\nSprávná odpověď: A - 300 m\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q71",
+      "explanation": "Technické vysvětlení pro subject9_q71:\n\nOtázka: Letadlo letí po zeměpisné trati (TC) 220° konstantní pravou vzdušnou rychlostí 220 kt. Vítr je 270°/50 kt. Traťová rychlost je:\n\nSprávná odpověď: A - 185 kt\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q51",
+      "explanation": "Technické vysvětlení pro subject9_q51:\n\nOtázka: Vzdálenost 7.5 cm na letecké mapě představuje skutečnou vzdálenost 60.745 NM. Jaké je měřítko mapy?\n\nSprávná odpověď: A - 1 : 1500000\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q37",
+      "explanation": "Technické vysvětlení pro subject9_q37:\n\nOtázka: Jaké oficiální základní jednotky a jejich zkratky se používají v letecké navigaci pro měření vodorovných vzdáleností?\n\nSprávná odpověď: A - námořní míle (NM), kilometry (km)\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q62",
+      "explanation": "Technické vysvětlení pro subject9_q62:\n\nOtázka: Ja dáno: Kalibrovaná rychlost (CAS): 155 kt. Letová hladina (FL) 80. teplota vnějšího vzduchu (OAT): +15° C. Pravá vzdušná rychlost (TAS) je:\n\nSprávná odpověď: D - 180 kts\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q6",
+      "explanation": "Technické vysvětlení pro subject9_q6:\n\nOtázka: Obvod Země na rovníku je přibližně: (viz obrázek NAV-002)\n\nSprávná odpověď: C - 21600 NM.\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q59",
+      "explanation": "Technické vysvětlení pro subject9_q59:\n\nOtázka: Jaká je doba letu traťovou rychlostí 134 kt na vzdálenost 236 NM?\n\nSprávná odpověď: C - 1:46 h\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q73",
+      "explanation": "Technické vysvětlení pro subject9_q73:\n\nOtázka: Letadlo letí po zeměpisné trati (TC) 040° konstantní pravou vzdušnou rychlostí (TAS) 180 kt. Vítr je 350°/30 kt. Oprava snosu větru (WCA) je:\n\nSprávná odpověď: A - - 7°\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q12",
+      "explanation": "Technické vysvětlení pro subject9_q12:\n\nOtázka: Jaká je vzdálenost podél rovníku mezi poledníky 150°E a 151°E ?\n\nSprávná odpověď: C - 60 NM\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q100",
+      "explanation": "Technické vysvětlení pro subject9_q100:\n\nOtázka: Letadlo urazilo vzdálenost 250 NM za 2 hodiny. Traťová rychlost (GS) je:\n\nSprávná odpověď: B - 125 kt\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q121",
+      "explanation": "Technické vysvětlení pro subject9_q121:\n\nOtázka: Kde se nachází letadlo vzhledem ke stanici VOR? Viz příloha (NAV-022)\n\nSprávná odpověď: A - severovýchodně\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q1",
+      "explanation": "Technické vysvětlení pro subject9_q1:\n\nOtázka: Osa rotace Země prochází:\n\nSprávná odpověď: A - zeměpisným severním pólem a zeměpisným jižním pólem\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q106",
+      "explanation": "Technické vysvětlení pro subject9_q106:\n\nOtázka: Dosah VDF závisí na:\n\nSprávná odpověď: A - nadmořské výšce letadla\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q103",
+      "explanation": "Technické vysvětlení pro subject9_q103:\n\nOtázka: Kód QTE znamená:\n\nSprávná odpověď: B - zeměpisný směrník od stanice k letadlu\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q109",
+      "explanation": "Technické vysvětlení pro subject9_q109:\n\nOtázka: Pilot chce přiletět k NDB na QDM 090°. Letadlo letí přibližně 5 minut magnetickým kurzem (MH) 095° a indikace relativního směrníku je 355°. Po 6 minutách je indikace relativního směrníku 358°. Který výrok je pravdivý?\n\nSprávná odpověď: A - zvětšila se boční složka větru, je třeba zvětšit hodnotu magnetického kurzu\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q127",
+      "explanation": "Technické vysvětlení pro subject9_q127:\n\nOtázka: S využitím pozemního primárního radaru lze stanovit směr od antény k letadlu:\n\nSprávná odpověď: A - orientací antény\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q26",
+      "explanation": "Technické vysvětlení pro subject9_q26:\n\nOtázka: Úhel mezi magnetickou a zeměpisnou tratí se nazývá:\n\nSprávná odpověď: A - deviace\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q96",
+      "explanation": "Technické vysvětlení pro subject9_q96:\n\nOtázka: Je dáno: QDR: 067° deklinace: 5° E. QDM je:\n\nSprávná odpověď: A - 072°\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q68",
+      "explanation": "Technické vysvětlení pro subject9_q68:\n\nOtázka: Je dáno: Zeměpisná trať: 255°. Pravá vzdušná rychlost: 100 kt. vítr: 200°/10 kt. Jaký je zeměpisný kurz?\n\nSprávná odpověď: A - 245°\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q58",
+      "explanation": "Technické vysvětlení pro subject9_q58:\n\nOtázka: Letadlo uletí 110 NM za 01:25 hod. Traťová rychlost (GS) je:\n\nSprávná odpověď: A - 78 kt\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q134",
+      "explanation": "Technické vysvětlení pro subject9_q134:\n\nOtázka: Příjem signálu od kolika satelitů je nezbytný pro přesné a ověřené stanovení polohy ve třírozměrném prostoru?\n\nSprávná odpověď: C - 4\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q65",
+      "explanation": "Technické vysvětlení pro subject9_q65:\n\nOtázka: Jaká je vzdálenost z Neustadt (EDAN) (53°22'N, 011°37'E) do Uelzen (EDVU) (52°59′N, 10°28′E)? Viz příloha (NAV-031)\n\nSprávná odpověď: A - 46 NM\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    }
+  ]
+}

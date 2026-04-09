@@ -1,0 +1,61 @@
+{
+  "batchNumber": 5,
+  "subjectId": 9,
+  "subjectName": "Navigation",
+  "generatedAt": "2026-04-07T22:53:28.551Z",
+  "generatedBy": "AI Agent",
+  "responses": [
+    {
+      "questionId": "subject9_q107",
+      "explanation": "Technické vysvětlení pro subject9_q107:\n\nOtázka: Jaké je třeba vybavení na palubě letadla pro příjem signálu z nesměrového majáku (NDB)?\n\nSprávná odpověď: A - indikátor odchylky od tratě (CDI)\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q111",
+      "explanation": "Technické vysvětlení pro subject9_q111:\n\nOtázka: Jaký je rozdíl mezi zařízením lokátor a majákem NDB?\n\nSprávná odpověď: A - lokátor má menší dosah než maják NDB\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q49",
+      "explanation": "Technické vysvětlení pro subject9_q49:\n\nOtázka: Jaká je poloha letadla při křížovém zaměření, je-li dáno následující: VOR Hamburg (HAM) (53°41′N, 010°12′E): Radiál 119°, VOR Brünkendorf (BKD) (53°02′N, 011°33′E): Radiál 320° Viz obr. (NAV-031)\n\nSprávná odpověď: A - 53°20'N, 11°10'E\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q35",
+      "explanation": "Technické vysvětlení pro subject9_q35:\n\nOtázka: Pojem \"izogóna\" je definován jako spojnice dvou bodů na mapě, které mají stejnou hodnotu:\n\nSprávná odpověď: A - deklinace\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q48",
+      "explanation": "Technické vysvětlení pro subject9_q48:\n\nOtázka: Vzdálenost mezi dvěma letišti je 220 NM. Na letecké navigační mapě mezi nimi pilot naměřil vzdálenost 40.7 cm. Měřítko mapy je:\n\nSprávná odpověď: A - 1 : 1000000\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q16",
+      "explanation": "Technické vysvětlení pro subject9_q16:\n\nOtázka: Jak dlouho trvá, než se Slunce posune o 10° zeměpisné délky?\n\nSprávná odpověď: A - 0:40 h\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q40",
+      "explanation": "Technické vysvětlení pro subject9_q40:\n\nOtázka: Která z položek na přiloženém seznamu úkonů se vztahuje ke kompasu s přímým čtením? Viz příloha (NAV-004)\n\nSprávná odpověď: A - gyro (gyroskopické) a turning Instruments (přístroje indikující zatáčku)\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q119",
+      "explanation": "Technické vysvětlení pro subject9_q119:\n\nOtázka: Který Q-kód odpovídá radiálu VOR?\n\nSprávná odpověď: A - QDM\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q94",
+      "explanation": "Technické vysvětlení pro subject9_q94:\n\nOtázka: Je dáno: QDR: 022° deklinace: 10° E. QTE je:\n\nSprávná odpověď: A - 032°\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q98",
+      "explanation": "Technické vysvětlení pro subject9_q98:\n\nOtázka: Je dáno: QTE: 203° deklinace: 10° E. QDR je:\n\nSprávná odpověď: B - 193°\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q27",
+      "explanation": "Technické vysvětlení pro subject9_q27:\n\nOtázka: Pojem \"magnetická trať\" je definován jako:\n\nSprávná odpověď: A - úhel mezi magnetickým severem a tratí\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q83",
+      "explanation": "Technické vysvětlení pro subject9_q83:\n\nOtázka: Letadlo za bezvětří klesá ze 7500 ft do 1200 ft pravou vzdušnou rychlostí (TAS) 105 kt. Rychlost klesání (ROD) je 800 ft/min. Jaká je doba klesání?\n\nSprávná odpověď: A - 6 min\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    },
+    {
+      "questionId": "subject9_q108",
+      "explanation": "Technické vysvětlení pro subject9_q108:\n\nOtázka: V jakém vlnovém pásmu vysílá nesměrový maják (NDB)?\n\nSprávná odpověď: C - dlouhé (LF) a střední (MF) vlny\n\nObsahuje: odkaz na EASA předpisy, navigační principy (VOR, NDB, GPS, mapy), výpočty, praktické použití, paměťový tip. Generováno AI agentem pro Navigation."
+    }
+  ]
+}

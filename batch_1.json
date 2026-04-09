@@ -1,0 +1,178 @@
+[
+  {
+    "questionId": "subject1_q1",
+    "explanation": "Dle ICAO Annex 6 Part II a Part-NCO.GEN.135 musí být při mezinárodním letu na palubě: osvědčení o zápisu do leteckého rejstříku (a), osvědčení letové způsobilosti (b), ARC/osvědčení kontroly způsobilosti (c), palubní deník (e) a doklady každého člena posádky (f). EASA Form 1 je průvodní doklad způsobilosti leteckých dílů, nikoli palubní dokument. Technický deník (techlog) je povinný jen pro složitá motorová letadla, nikoliv pro obecnou leteckou dopravu (GA)."
+  },
+  {
+    "questionId": "subject1_q2",
+    "explanation": "Dle SERA (nařízení EU 923/2012) se vzdušný prostor dělí podle přístupu: zakázaný prostor (P – Prohibited) je neprostupný pro civilní lety, omezený prostor (R – Restricted) lze proletět s určitými omezeními (zvláštní povolení, omezený čas, výška), nebezpečný prostor (D – Danger) je pouze doporučením k obezřetnosti. Bezletová zóna je specificky vymezená oblast bez průletu."
+  },
+  {
+    "questionId": "subject1_q3",
+    "explanation": "AIP (Aeronautical Information Publication) je závazný letecký informační dokument publikovaný státem, který podrobně popisuje charakter, rozsah, časy aktivace a podmínky pro vstup do omezeného prostoru. Mapa ICAO 1:500 000 zobrazuje hranice prostoru graficky, ale nezachycuje aktuální podmínky ani omezení. NOTAM slouží k dočasným změnám, AIC k poradenským informacím."
+  },
+  {
+    "questionId": "subject1_q4",
+    "explanation": "Nařízení EASA (jako Part-SFCL, Part-MED, Part-FCL) jsou vydávána formou nařízení Evropského parlamentu a Rady EU, která jsou přímo aplikovatelná a právně závazná ve všech členských státech EU bez nutnosti jejich ratifikace nebo transpozice do vnitrostátního práva. Tím se zásadně liší od Annexů ICAO, které jsou doporučeními a musí být implementovány každým státem zvlášť."
+  },
+  {
+    "questionId": "subject1_q5",
+    "explanation": "Osvědčení letové způsobilosti (Certificate of Airworthiness, CoA) vydané dle Annex 8 ICAO a Part-21 EASA má neomezenou dobu platnosti, pokud je letadlo udržováno ve způsobilém stavu. Pravidelné obnovování se týká ARC (Airworthiness Review Certificate/Osvědčení kontroly letové způsobilosti), které se vydává na 12 měsíců. Zánik CoA nastává při závažné opravě, přestavbě nebo trvale nevyhovujícím technickém stavu."
+  },
+  {
+    "questionId": "subject1_q6",
+    "explanation": "ARC (Airworthiness Review Certificate) je osvědčení vystavované po pravidelné přezkušovací kontrole letové způsobilosti letadla dle Part-M EASA. Vydává se na 12 měsíců a ověřuje, že letadlo splňuje požadavky na způsobilost v daném okamžiku. Bez platného ARC nesmí letadlo létat."
+  },
+  {
+    "questionId": "subject1_q7",
+    "explanation": "Dle ICAO Annex 8 (Airworthiness of Aircraft) vydává osvědčení letové způsobilosti stát, ve kterém je letadlo zapsáno do leteckého rejstříku (stát registrace). Tento princip vychází z Chicagské úmluvy (Annex 7) – stát registrace nese odpovědnost za způsobilost letadla. Nezávisí na místě výroby ani na sídle vlastníka."
+  },
+  {
+    "questionId": "subject1_q8",
+    "explanation": "Průkaz pilota vydaný v souladu se standardy ICAO Annex 1 je platný ve všech smluvních státech ICAO na základě principu vzájemného uznávání zakotveného v Chicagské úmluvě. Smluvní stát může vydání průkazu odmítnout nebo ho podřídit doplňkovým podmínkám, ale základní práva vyplývající z průkazu musí uznávat."
+  },
+  {
+    "questionId": "subject1_q9",
+    "explanation": "ICAO Annex 1 se týká způsobilosti letových posádek (Personnel Licensing) – stanovuje mezinárodní standardy pro vydávání průkazů pilotů, letových navigátorů, dispečerů a zdravotní způsobilost. Annex 2 = pravidla létání, Annex 6 = provoz letadel, Annex 11 = letové provozní služby (ATS)."
+  },
+  {
+    "questionId": "subject1_q10",
+    "explanation": "Průkaz soukromého pilota (PPL) má neomezenou platnost jako dokument dle Part-FCL.030. Vyprší mu však práva, pokud pilot nesplní požadavky na nedávnou zkušenost (recent experience) nebo nemá platnou lékařskou způsobilost. Samotný průkaz se neobnovuje, obnovují se jen kvalifikace (ratings) a zdravotní osvědčení."
+  },
+  {
+    "questionId": "subject1_q11",
+    "explanation": "Dle Part-FCL.100.A a ICAO Annex 1 je minimální věk pro vydání průkazu PPL(A) 17 let. Pro první samostatný let (sólo) stačí 16 let. Věková hranice 17 let platí pro okamžik vydání průkazu, nikoli pro zahájení výcviku."
+  },
+  {
+    "questionId": "subject1_q12",
+    "explanation": "Dle Part-FCL.810(a) zahrnuje výcvik pro noční VFR kvalifikaci (Night Rating) nejméně 5 hodin nočního letového času, z toho 3 hodiny duálně s instruktorem (včetně 1 hodiny navigačního letu) a 5 sólo vzletů a přistání s úplným zastavením. Výcvik probíhá v ATO nebo DTO a je podmínkou pro lety VFR v noci."
+  },
+  {
+    "questionId": "subject1_q14",
+    "explanation": "Dle Part-FCL.740(b) – pokud pilot nesplní minimální požadavek na dobu letu (1 hodina jako PIC za 2 roky nebo přezkušovací let) pro prodloužení třídní kvalifikace SEP land, musí absolvovat přezkoušení odborné způsobilosti (Proficiency Check) s examinátorem FE(A). Pouhý výcvikový let s instruktorem v tomto případě nestačí."
+  },
+  {
+    "questionId": "subject1_q15",
+    "explanation": "Dle Part-FCL.100.A PPL(A) opravňuje k letům jako velitel letadla (PIC) při neobchodních letech bez úplaty. Výjimku tvoří letový instruktor (FI) – ten může přijímat úplatu za výuku i s PPL, pokud splňuje požadavky Part-FCL.900. Komerční přeprava cestujících ani výdělečné lety nejsou s PPL povoleny."
+  },
+  {
+    "questionId": "subject1_q16",
+    "explanation": "Dle Part-FCL.110.A(a)(1) musí žák-pilot dosáhnout věku nejméně 16 let před provedením prvního samostatného letu (sólo). Pro vydání průkazu PPL je pak minimální věk 17 let dle Part-FCL.100.A(b)."
+  },
+  {
+    "questionId": "subject1_q17",
+    "explanation": "SERA = Standardised European Rules of the Air (Standardizovaná evropská pravidla létání) – nařízení Komise EU č. 923/2012 v platném znění. Toto nařízení sjednotilo pravidla létání napříč státy EU a nahradilo dosavadní vnitrostátní úpravy. Je přímo závazné ve všech členských státech EU bez nutnosti transpozice."
+  },
+  {
+    "questionId": "subject1_q18",
+    "explanation": "TRA (Temporary Reserved Area) je dočasně vyhrazený vzdušný prostor rezervovaný pro specifické, zejména vojenské nebo státní operace na omezenou dobu. Civilní provoz v něm není možný bez povolení příslušné autority. Aktivace a deaktivace jsou oznamovány prostřednictvím NOTAM a AIP SUP."
+  },
+  {
+    "questionId": "subject1_q19",
+    "explanation": "V oblasti RMZ (Radio Mandatory Zone) je povinné mít zapnuté radiotelekomunikační zařízení a pokud možno navázat obousměrné rádiové spojení s příslušnou leteckou stanicí (AFIS, INFO, ATC) ještě před vstupem. Na rozdíl od řízeného vzdušného prostoru není nutné získat povolení ke vstupu – stačí navázat kontakt a poskytnout identifikaci."
+  },
+  {
+    "questionId": "subject1_q20",
+    "explanation": "Zvláštní let VFR (Special VFR, SVFR) je povolen řídicím ve specifických podmínkách pod VMC minimami uvnitř CTR. Dle SERA.5005(d) musí pilot vidět zemi nebo vodní hladinu, zůstat mimo oblačnost a letět dohledností alespoň 1 500 m (pro vrtulníky 800 m). Vizuální kontakt se zemí je základní podmínkou SVFR."
+  },
+  {
+    "questionId": "subject1_q21",
+    "explanation": "V TMZ (Transponder Mandatory Zone) je dle SERA povinné mít zapnutý odpovídač sekundárního radaru (SSR transponder) v módu A+C nebo S. Nevyžaduje se povolení ani rádiový kontakt – postačí mít transponder v provozuschopném stavu a správně nastavený. Povinnost platí pro všechna letadla schopná technicky nést transponder."
+  },
+  {
+    "questionId": "subject1_q22",
+    "explanation": "TMZ = Transponder Mandatory Zone – oblast s povinným odpovídačem sekundárního radaru. Je definována v AIP a graficky znázorněna na mapách vzdušného prostoru. Slouží k zajištění sledovatelnosti letového provozu radarem v oblastech s vyšší hustotou letů nebo v blízkosti vojenských provozů."
+  },
+  {
+    "questionId": "subject1_q23",
+    "explanation": "IFR = Instrument Flight Rules – pravidla pro let podle přístrojů (soustava předpisů a postupů pro navigaci bez vizuálního kontaktu se zemí). IMC (Instrument Meteorological Conditions) jsou podmínky, za nichž se IFR létá. VFR = Visual Flight Rules, VMC = Visual Meteorological Conditions. Rozlišení pojmů Rules (pravidla) vs. Conditions (podmínky) je v letectví zásadní."
+  },
+  {
+    "questionId": "subject1_q24",
+    "explanation": "VFR (Visual Flight Rules) označuje, že let je prováděn PODLE pravidel letu za viditelnosti – tedy podle souboru pravidel definovaných SERA. VMC (Visual Meteorological Conditions) jsou meteorologické podmínky (viditelnost, vzdálenost od oblačnosti), za nichž je VFR možné. Lze létat VFR v VMC i IMC (SVFR), ale nelze zaměňovat pravidla a podmínky."
+  },
+  {
+    "questionId": "subject1_q25",
+    "explanation": "VMC (Visual Meteorological Conditions) jsou meteorologické podmínky pro let za viditelnosti, definované minimálními hodnotami dohlednosti, vzdálenosti od oblačnosti a výšky základny oblačnosti dle třídy vzdušného prostoru a výšky letu (dle SERA Tabulka S5). Pokud jsou splněny VMC minima, lze létat VFR. Pod VMC minimem je nutný IFR nebo SVFR."
+  },
+  {
+    "questionId": "subject1_q26",
+    "explanation": "Dle SERA.3210(a) se při čelním nebo téměř čelním setkání dvou letadel obě odchýlí doprava. Pravidlo platí pro všechna motorová letadla bez ohledu na typ, výkon nebo hmotnost. Pravidlo je symetrické – obě letadla uhnou doprava souběžně, čímž se vytvoří bezpečný boční odstup."
+  },
+  {
+    "questionId": "subject1_q28",
+    "explanation": "Dle SERA.3210(b) má při křižování tratí přednost letadlo přilétající zprava – to znamená, že letadlo letící zprava doleva má přednost a druhé se musí vyhnout. Toto pravidlo platí v nekontrolovaném prostoru nebo v prostoru D bez explicitního pokynu ATC. Komerční povaha letu ani typ letadla na prioritu nemají vliv."
+  },
+  {
+    "questionId": "subject1_q29",
+    "explanation": "Dle SERA.5005(f) je let pod stanovenou minimální výškou povolen pouze při vzletu, přistání, přiblížení bez přistání (go-around/přelet) nebo odhazování vlečených předmětů na letišti. Špatné meteorologické podmínky nejsou výjimkou – naopak, za zhoršených podmínek musí pilot dodržet minimální výšky nebo přerušit let."
+  },
+  {
+    "questionId": "subject1_q30",
+    "explanation": "Dle SERA.3210(a) obě letadla letící naproti sobě (bez ohledu na typ pohonu – pístový nebo turbovrtulový) odchýlí doprava. Priorita v letectví (kluzák > bezmotorový > motorový) se uplatňuje při dohánění nebo křižování, nikoli při čelním setkání. Pro čelní setkání platí vždy pravidlo uhnutí doprava pro obě letadla."
+  },
+  {
+    "questionId": "subject1_q31",
+    "explanation": "Dle SERA Tabulka S5 jsou ve třídách vzdušného prostoru C, D a E minima vzdálenosti od oblačnosti pro VFR: horizontálně 1 500 m a vertikálně 1 000 ft (300 m). Tato minima platí nad 900 m (3 000 ft) AMSL nebo nad 300 m (1 000 ft) nad terénem. Pod touto výškou stačí zůstat mimo oblačnost s dostatečnou dohledností."
+  },
+  {
+    "questionId": "subject1_q32",
+    "explanation": "Vzdušný prostor třídy B je plně řízený. Dle SERA Tabulka S5 je minimální letová dohlednost pro VFR v třídě B 5 000 m (5 km) v každém FL a výšce. Ve třídách A–E nad FL 100 platí 8 km, pod FL 100 platí 5 km pro C–E. Třída B se v ČR nevyskytuje, ale principy jsou pro zkoušku platné."
+  },
+  {
+    "questionId": "subject1_q33",
+    "explanation": "Ve vzdušném prostoru třídy C pod FL 100 je minimální letová dohlednost pro VFR 5 000 m dle SERA Tabulka S5. V 5 000 ft MSL jsme stále pod FL 100 (přibližně FL 050), takže platí limit 5 km. Nad FL 100 by bylo minimum 8 km."
+  },
+  {
+    "questionId": "subject1_q34",
+    "explanation": "FL 75 odpovídá přibližně 7 500 ft, tedy pod FL 100. Ve vzdušném prostoru třídy E pod FL 100 je minimální dohlednost pro VFR 5 000 m dle SERA Tabulka S5. Vzdálenost od oblačnosti je v E horizontálně 1 500 m a vertikálně 1 000 ft."
+  },
+  {
+    "questionId": "subject1_q35",
+    "explanation": "FL 110 je nad FL 100, proto platí zvýšené minimum. Ve vzdušném prostoru třídy C ve FL 110 a výše je minimální letová dohlednost pro VFR 8 000 m (8 km) dle SERA Tabulka S5. Vzdálenosti od oblačnosti jsou 1 500 m horizontálně a 1 000 ft vertikálně."
+  },
+  {
+    "questionId": "subject1_q36",
+    "explanation": "FL 125 je nad FL 100, proto platí minimální dohlednost 8 000 m (8 km) pro lety VFR ve třídě C dle SERA Tabulka S5. Toto minimum platí ve všech třídách vzdušného prostoru A–G nad FL 100. Vzdálenosti od oblačnosti zůstávají 1 500 m horizontálně, 1 000 ft vertikálně."
+  },
+  {
+    "questionId": "subject1_q37",
+    "explanation": "Ve třídě vzdušného prostoru B musí pilot VFR letět mimo oblačnost (clear of clouds) a udržovat dohlednost 5 000 m. Minimální vzdálenosti od oblačnosti jsou 1 500 m horizontálně a 300 m (1 000 ft) vertikálně, stejně jako ve třídách C–E. Třída A je jen IFR, takže VFR se týká tříd B až G."
+  },
+  {
+    "questionId": "subject1_q38",
+    "explanation": "Ve vzdušném prostoru třídy C pod FL 100 je minimální letová dohlednost pro VFR 5 km dle SERA Tabulka S5. Nad FL 100 by platilo 8 km. V třídách F a G pod 900 m AGL platí zkrácené minimum 1 500 m nebo speciální podmínky pro helikoptéry."
+  },
+  {
+    "questionId": "subject1_q39",
+    "explanation": "Ve vzdušném prostoru třídy C ve FL 100 a výše platí minimální letová dohlednost pro VFR 8 km dle SERA Tabulka S5. Tato hranice FL 100 je klíčová – pod ní 5 km, na FL 100 a výše 8 km. Platí pro všechny třídy řízeného prostoru A–E."
+  },
+  {
+    "questionId": "subject1_q40",
+    "explanation": "Výška základny nejnižší vrstvy oblačnosti (ceiling) se pro meteorologické účely definuje jako výška AGL (nad zemí) základny nejnižší oblačné vrstvy pokrývající více než polovinu oblohy (BKN 5–7 oktas nebo OVC 8 oktas) pod 10 000 ft. Používá se pro stanovení meteo podmínek VFR/IFR. Klíčem jsou dvě podmínky: AGL (ne MSL) a pokrytí > 1/2 oblohy."
+  },
+  {
+    "questionId": "subject1_q41",
+    "explanation": "Dle ICAO Doc 2, SERA příloha 1: Mávání křídly zakročujícího letadla na straně (obvykle vlevo) a mírná zatáčka v daném směru znamená signál NÁSLEDUJTE MNE. Zakročované letadlo má ihned přestat se svou činností, zahájit sledování zakročujícího a připravit se na přistání na určeném letišti."
+  },
+  {
+    "questionId": "subject1_q42",
+    "explanation": "Náhlá změna kurzu zakročujícího letadla o 90° nebo více, přitažení letadla a opuštění oblasti bez překřižování dráhy zakročovaného letadla je signál PROPOUŠTÍM VÁS – MŮŽETE POKRAČOVAT. Znamená, že zakročované letadlo smí pokračovat ve stávajícím kurzu a zakročení je ukončeno."
+  },
+  {
+    "questionId": "subject1_q43",
+    "explanation": "Výškoměr se přestavuje z QNH (místní tlak hladiny moře) na standard (1013.25 hPa) při stoupání přes převodní výšku (Transition Altitude, TA). TA je národně stanovená výška – v ČR je to 5000 ft MSL. Při přeletu přes TA do přechodové vrstvy (Transition Layer) přechází výškoměr na standardní nastavení a začne zobrazovat FL."
+  },
+  {
+    "questionId": "subject1_q44",
+    "explanation": "Letová hladina (FL) je definována jako výška vztažená k standardnímu tlaku 1013.25 hPa. Při letu ve FL 80 pilot používá standardní nastavení výškoměru 1013.25 hPa (QNE). QNH nebo QFE jsou místní nastavení použitelná pouze pod převodní výškou, kde se létá na výškách (altitudes), nikoli letových hladinách."
+  },
+  {
+    "questionId": "subject1_q46",
+    "explanation": "Odpovídač SSR (sekundárního radaru) pracuje ve třech módech: Mód A (identifikační kód 4096 kombinací), Mód C (barometrická výška, vyžaduje nadmořský výškoměr), Mód S (selektivní dotazování, přenáší i ADS-B data a informace o letadle). Módy B, R, V neexistují jako standardní SSR módy."
+  },
+  {
+    "questionId": "subject1_q47",
+    "explanation": "Mód C nebo S odpovídače SSR (sekundárního radaru) umožňuje automatické vysílání barometrické výšky (pressure altitude) po dotazu pozemní stanice. Mód A vysílá pouze identifikační kód. Mód S navíc umožňuje selektivní dotazování a přenos dalších letových dat. Pro odesílání tlakové výšky je nutný mód C nebo S."
+  }
+]

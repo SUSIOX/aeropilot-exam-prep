@@ -1,0 +1,10 @@
+{
+  "batchesPrepared": 3,
+  "totalQuestions": 94,
+  "preparedAt": "2026-04-07T23:41:27.871Z",
+  "options": {
+    "subject": 8,
+    "batchSize": 32,
+    "maxTotal": 94
+  }
+}

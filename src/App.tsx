@@ -107,6 +107,9 @@ import { initializeSecureCredentials, initializeAuthenticatedCredentials, initia
 import { cognitoAuthService, UserRole } from './services/cognitoAuthService';
 import { AccessDenied } from './components/AccessDenied';
 import { ModelButton, ProviderIcon } from './components/ModelButton';
+import { sessionService } from './services/sessionService';
+import { SessionRestoreModal } from './components/SessionRestoreModal';
+import { DrillSession } from './types/session';
 
 
 const SUBJECT_DEFS = [
@@ -352,6 +355,13 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     // console.log(`📍 SORTING DEBUG: drillSettings.sorting changed to: ${drillSettings.sorting}`);
   }, [drillSettings.sorting]);
 
+  // Session Persistence State
+  const [pendingSession, setPendingSession] = useState<DrillSession | null>(null);
+  const [showSessionRestoreModal, setShowSessionRestoreModal] = useState(false);
+  const [isRestoringSession, setIsRestoringSession] = useState(false);
+  const sessionSaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isRestoringSessionRef = useRef(false);
+
   // LOs loaded from DB (falls back to mockLOs)
   const [allLOs, setAllLOs] = useState<EasaLO[]>(mockLOs);
   const [losLoading, setLosLoading] = useState(false);
@@ -578,11 +588,16 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     }
     return cognitoAuthService.getTokens()?.access_token;
   };
+  // For authenticated users: always start with 'deepseek' default, DB will overwrite via syncUserData.
+  // For guests: use localStorage value.
+  const isAuthenticatedInit = cognitoAuthService.isAuthenticated();
   const [aiProvider, setAiProvider] = useState<AIProvider>(() => {
+    if (isAuthenticatedInit) return 'deepseek'; // DB is source of truth, will be set by syncUserData
     const saved = localStorage.getItem('aiProvider');
-    return (saved === 'gemini' ? 'gemini' : saved === 'claude' ? 'claude' : 'deepseek');
+    return (saved === 'gemini' ? 'gemini' : saved === 'claude' ? 'claude' : 'deepseek') as AIProvider;
   });
   const [aiModel, setAiModel] = useState(() => {
+    if (isAuthenticatedInit) return 'deepseek-chat'; // DB is source of truth, will be set by syncUserData
     const saved = localStorage.getItem('aiModel');
     // Migrate old/invalid model names to current supported models
     const modelMap: Record<string, string> = {
@@ -782,6 +797,104 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
   const isGuestMode = userMode === 'guest';
   const isLoggedIn = userMode === 'logged-in' && user;
 
+  // Session Restore Handlers
+  const handleContinueSession = async () => {
+    if (!pendingSession) return;
+    
+    setIsRestoringSession(true);
+    isRestoringSessionRef.current = true;
+    setShowSessionRestoreModal(false);
+
+    try {
+      // Load questions based on session type
+      let loadedQuestions: Question[] = [];
+      
+      if (pendingSession.type === 'drill' && pendingSession.subjectId) {
+        loadedQuestions = await loadStaticQuestions(pendingSession.subjectId);
+      } else if (pendingSession.type === 'mix') {
+        // Load all questions for mix mode
+        const splSubjects = [1, 2, 3, 4, 5, 9];
+        const subjectsToLoad = pendingSession.license === 'SPL'
+          ? subjects.filter(s => splSubjects.includes(s.id))
+          : subjects;
+        
+        for (const subject of subjectsToLoad) {
+          const qs = await loadStaticQuestions(subject.id);
+          loadedQuestions.push(...qs);
+        }
+      }
+
+      // Reorder questions to match stored order
+      console.log('🔄 Session restore: storedIds sample:', pendingSession.questionIds.slice(0, 3));
+      console.log('🔄 Session restore: loadedQuestions sample ids:', loadedQuestions.slice(0, 3).map(q => q.id));
+      const orderedQuestions = pendingSession.questionIds.map(storedId => {
+        // Support both legacy Q#XXXXX format and new compositeId format
+        const legacyMatch = storedId.match(/^Q#(\d+)$/);
+        if (legacyMatch) {
+          const numId = parseInt(legacyMatch[1], 10);
+          return loadedQuestions.find(q => String(q.id) === String(numId) || String(q.questionId) === String(numId));
+        }
+        // Also try stripping Q# prefix for composite IDs stored with prefix
+        const strippedId = storedId.startsWith('Q#') ? storedId.slice(2) : storedId;
+        return loadedQuestions.find(q => String(q.id) === storedId || String(q.questionId) === storedId
+          || String(q.id) === strippedId || String(q.questionId) === strippedId);
+      }).filter((q): q is Question => q !== undefined);
+      console.log('🔄 Session restore: matched', orderedQuestions.length, '/', pendingSession.questionIds.length, 'questions');
+      // Fallback: if no questions matched, use all loaded questions from session start
+      const finalQuestions = orderedQuestions.length > 0 ? orderedQuestions : loadedQuestions;
+
+      // Apply stored drill settings
+      setDrillSettings(pendingSession.drillSettings);
+
+      // Set up the session state
+      setOriginalQuestions(finalQuestions);
+      setQuestions(finalQuestions);
+      setCurrentQuestionIndex(pendingSession.currentIndex);
+      setSelectedSubject(pendingSession.type === 'drill' && pendingSession.subjectId
+        ? subjects.find(s => s.id === pendingSession.subjectId) || { id: pendingSession.subjectId, name: 'Předmět', question_count: orderedQuestions.length, success_rate: 0 }
+        : { id: 0, name: 'Mix', question_count: orderedQuestions.length, success_rate: 0 }
+      );
+
+      // Set current session ID
+      sessionService.setCurrentSessionId(pendingSession.sessionId);
+
+      // Clear pending session
+      setPendingSession(null);
+      
+      // Show toast notification
+      console.log('✅ Session restored from', pendingSession.lastActivity);
+
+      // Navigate to drill view
+      setView('drill');
+    } catch (err) {
+      console.error('Failed to restore session:', err);
+      alert('Nepodařilo se obnovit relaci. Začínáme znovu.');
+      setPendingSession(null);
+    } finally {
+      setIsRestoringSession(false);
+      // Clear ref after a tick so the filter useEffect sees it and skips re-filtering
+      setTimeout(() => { isRestoringSessionRef.current = false; }, 100);
+    }
+  };
+
+  const handleRestartSession = async () => {
+    if (!pendingSession) return;
+    
+    // Delete the session
+    if (!isGuestMode && user?.id) {
+      await sessionService.deleteSession(String(user.id), pendingSession.sessionId);
+    }
+    
+    setPendingSession(null);
+    setShowSessionRestoreModal(false);
+    sessionService.setCurrentSessionId(null);
+  };
+
+  const handleDismissSessionModal = () => {
+    setShowSessionRestoreModal(false);
+    // Don't clear pendingSession - user can re-open modal later
+  };
+
   useEffect(() => {
     // Initialize credentials based on authentication status
     const initializeCredentials = async () => {
@@ -808,6 +921,10 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
           if (!isCredentialsReady) setIsCredentialsReady(true);
         } else {
           dynamoDBService.reinitialize();
+          // Eagerly fetch credentials if identityId not cached yet
+          if (!cognitoAuthService.getIdentityId()) {
+            await cognitoAuthService.getAWSCredentials();
+          }
           const identityId = cognitoAuthService.getIdentityId();
           if (identityId) {
             setUser((prev: { id: string, username: string } | null) => prev ? { ...prev, id: identityId } : null);
@@ -851,6 +968,16 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     getAllLOs().then(los => {
       if (los && los.length > 0) setAllLOs(los);
     }).finally(() => setLosLoading(false));
+
+    // Check for active session to restore (only for logged-in users)
+    if (!isGuestMode && user?.id) {
+      sessionService.checkForActiveSession(String(user.id)).then(session => {
+        if (session && !sessionService.isExpired(session)) {
+          setPendingSession(session);
+          setShowSessionRestoreModal(true);
+        }
+      });
+    }
   }, [isCredentialsReady]);
 
   // Load selected subject from localStorage for guest mode
@@ -956,8 +1083,13 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
 
   // Credentials are now initialized in the main startup useEffect above
 
+  // Settings Ready Flag ensures we only write to DynamoDB after reading
+  const [settingsLoadedUserId, setSettingsLoadedUserId] = useState<string | null>(null);
+
   useEffect(() => {
-    // Reset model when provider changes
+    // Reset model when provider changes — but only after DB settings are loaded
+    // (for authenticated users) to avoid overwriting DB values during init
+    if (!isGuestMode && !settingsLoadedUserId) return;
     if (aiProvider === 'gemini' && !aiModel.startsWith('gemini')) {
       setAiModel('gemini-flash-latest');
     } else if (aiProvider === 'claude' && !aiModel.startsWith('claude')) {
@@ -965,34 +1097,9 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     } else if (aiProvider === 'deepseek' && !aiModel.startsWith('deepseek')) {
       setAiModel('deepseek-chat');
     }
-  }, [aiProvider, aiModel]);
+  }, [aiProvider, aiModel, isGuestMode, settingsLoadedUserId]);
 
-  // Sync provider with saved model on startup
-  useEffect(() => {
-    const savedModel = localStorage.getItem('aiModel');
-    if (savedModel) {
-      // Validate that saved model is still supported
-      const supportedModels = [
-        'gemini-flash-latest', 'gemini-2.5-flash', 'gemini-3.1-flash-lite-preview', 'gemini-2.5-pro', 'gemini-3.1-pro-preview',
-        'claude-sonnet-4-6', 'claude-haiku-4-5-20251001', 'claude-opus-4-6',
-        'deepseek-chat', 'deepseek-reasoner'
-      ];
-
-      if (!supportedModels.includes(savedModel)) {
-        localStorage.setItem('aiModel', 'gemini-flash-latest');
-        setAiModel('gemini-flash-latest');
-        return;
-      }
-
-      if (savedModel.startsWith('claude') && aiProvider !== 'claude') {
-        setAiProvider('claude');
-      } else if (savedModel.startsWith('gemini') && aiProvider !== 'gemini') {
-        setAiProvider('gemini');
-      } else if (savedModel.startsWith('deepseek') && aiProvider !== 'deepseek') {
-        setAiProvider('deepseek');
-      }
-    }
-  }, []); // Run only on mount
+  // Model validation and migration is handled in useState init (line ~600).
 
   // Online/offline detection
   useEffect(() => {
@@ -1102,8 +1209,6 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     }
   };
 
-  // Settings Ready Flag ensures we only write to DynamoDB after reading
-  const [settingsLoadedUserId, setSettingsLoadedUserId] = useState<string | null>(null);
 
   // Immediately save all settings to DB (used when user explicitly changes settings)
   const saveSettingsImmediate = useCallback((updates: Partial<{ aiProvider: AIProvider; aiModel: string; drillSettings: DrillSettings }>) => {
@@ -1116,12 +1221,18 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
         aiModel: updates.aiModel ?? aiModel,
         ...(updates.drillSettings ?? drillSettings)
       };
-      console.log('📝 Immediate save settings:', Object.keys(updates));
       dynamoDBService.saveApiKeys(String(user.id), settingsToSave).catch(() => { /* silent fail */ });
     }
   }, [isGuestMode, user?.id, userApiKey, claudeApiKey, deepseekApiKey, aiProvider, aiModel, drillSettings]);
 
+  // Persist settings to localStorage and DynamoDB
+  // For authenticated users, only write AFTER DB settings have been loaded (settingsLoadedUserId)
+  // to prevent stale localStorage values from overwriting the DB source of truth.
   useEffect(() => {
+    const isSettingsReady = isGuestMode || settingsLoadedUserId === String(user?.id || '');
+    if (!isSettingsReady) return;
+
+    // Persist to localStorage
     localStorage.setItem('drillSettings', JSON.stringify(drillSettings));
     if (aiProvider) localStorage.setItem('aiProvider', aiProvider);
     if (aiModel) localStorage.setItem('aiModel', aiModel);
@@ -1129,32 +1240,8 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     if (claudeApiKey) localStorage.setItem('claudeApiKey', claudeApiKey);
     if (deepseekApiKey) localStorage.setItem('deepseekApiKey', deepseekApiKey);
 
-    // Sync API keys and settings to DynamoDB for authenticated users (not guests)
-    // IMPORTANT: Wait for settings to load from DynamoDB to avoid overwriting remote DB with local defaults
-    if (!isGuestMode && user?.id && settingsLoadedUserId === String(user.id)) {
-      console.log('📝 Saving settings to DynamoDB:', { aiProvider, aiModel, shuffleAnswers: drillSettings.shuffleAnswers });
-      dynamoDBService.saveApiKeys(String(user.id), {
-        userApiKey,
-        claudeApiKey,
-        deepseekApiKey,
-        aiProvider,
-        aiModel,
-        ...drillSettings
-      }).then(res => {
-        if (!res.success) console.error('❌ Failed to save DynamoDB settings:', res.error);
-        else console.log('✅ DynamoDB settings saved successfully');
-      }).catch(err => {
-        console.error('❌ Silent fail writing DynamoDB:', err);
-      });
-    }
-  }, [drillSettings, user?.id, userApiKey, claudeApiKey, deepseekApiKey, aiProvider, aiModel, settingsLoadedUserId]);
-
-  // Immediate save for drillSettings changes (separate from API keys to avoid race conditions)
-  useEffect(() => {
-    // Only save if we've already loaded settings from DB (to avoid overwriting with defaults)
-    // and if user is logged in (not guest)
-    if (!isGuestMode && user?.id && settingsLoadedUserId === String(user.id)) {
-      console.log('📝 Saving drillSettings immediately:', { sorting: drillSettings.sorting, shuffleAnswers: drillSettings.shuffleAnswers });
+    // Sync to DynamoDB for authenticated users
+    if (!isGuestMode && user?.id) {
       dynamoDBService.saveApiKeys(String(user.id), {
         userApiKey,
         claudeApiKey,
@@ -1164,51 +1251,11 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
         ...drillSettings
       }).catch(() => { /* silent fail */ });
     }
-  }, [drillSettings, isGuestMode, user?.id, settingsLoadedUserId, userApiKey, claudeApiKey, deepseekApiKey, aiProvider, aiModel]);
+  }, [drillSettings, user?.id, userApiKey, claudeApiKey, deepseekApiKey, aiProvider, aiModel, isGuestMode, settingsLoadedUserId]);
 
 
-  // Load user settings from DynamoDB on login
-  useEffect(() => {
-    if (!isGuestMode && user?.id && isCredentialsReady) {
-      // Try to load settings from DynamoDB
-      dynamoDBService.getUserSettings(String(user.id))
-        .then(result => {
-          if (result.success && result.settings) {
-            // Merge with localStorage settings (DynamoDB takes precedence)
-            // But preserve weightedLearning defaults if not present in DB
-            setDrillSettings(prev => ({
-              ...prev,
-              ...result.settings,
-              weightedLearning: {
-                ...prev.weightedLearning,
-                ...result.settings.weightedLearning
-              }
-            }));
-
-            // Restore API keys from DB (always)
-            if (result.settings.userApiKey) setUserApiKey(result.settings.userApiKey);
-            if (result.settings.claudeApiKey) setClaudeApiKey(result.settings.claudeApiKey);
-            if (result.settings.deepseekApiKey) setDeepseekApiKey(result.settings.deepseekApiKey);
-
-            // Restore AI provider and model from DB only if not already set in localStorage
-            // This respects user's explicit preference on this device
-            const localAiProvider = localStorage.getItem('aiProvider');
-            const localAiModel = localStorage.getItem('aiModel');
-            if (result.settings.aiProvider && !localAiProvider) {
-              setAiProvider(result.settings.aiProvider);
-            }
-            if (result.settings.aiModel && !localAiModel) {
-              setAiModel(result.settings.aiModel);
-            }
-          }
-          setSettingsLoadedUserId(String(user.id));
-        })
-        .catch(() => {
-          // Silent fail - use localStorage settings
-          setSettingsLoadedUserId(String(user.id));
-        });
-    }
-  }, [user?.id, isCredentialsReady]);
+  // Settings loading is handled in syncUserData() which already reads the full user profile
+  // and hydrates aiProvider, aiModel, API keys, and drillSettings from DB.
 
   // Fetch cloud data on login
   useEffect(() => {
@@ -1247,6 +1294,7 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
   useEffect(() => {
     // Only re-filter during standard subject drill (id > 0)
     // Modes like 'Review Errors' (id: -1) and 'Flagged' (id: -2) manage their own filtering
+    if (isRestoringSessionRef.current) return; // Skip re-filter during session restore
     if (view === 'drill' && originalQuestions.length > 0 && selectedSubject && selectedSubject.id > 0) {
       // Re-apply filters to ORIGINAL questions, not already filtered ones
       const answers = JSON.parse(localStorage.getItem(userKey('answers')) || '{}');
@@ -1626,11 +1674,13 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
                             if (profile.settings.userApiKey) setUserApiKey(profile.settings.userApiKey);
                             if (profile.settings.claudeApiKey) setClaudeApiKey(profile.settings.claudeApiKey);
                             if (profile.settings.deepseekApiKey) setDeepseekApiKey(profile.settings.deepseekApiKey);
+                            console.log('🔑 syncUserData settings from DB:', { aiProvider: profile.settings.aiProvider, aiModel: profile.settings.aiModel });
                             if (profile.settings.aiProvider) setAiProvider(profile.settings.aiProvider);
                             if (profile.settings.aiModel) setAiModel(profile.settings.aiModel);
                           }
-                          setSettingsLoadedUserId(uid);
                         }
+                        // Always mark settings as loaded (even if no profile) so save effect can run
+                        setSettingsLoadedUserId(uid);
 
                         // Compute Statistics — always, regardless of whether USERS profile exists
                         const practicedCount = Object.keys(allAnswers).length;
@@ -1822,6 +1872,20 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
       if (drillSettings.sorting === 'weighted_learning') {
         updateShuffleHistoryLocal(processedQuestions);
       }
+
+      // Start session for persistence (only for logged-in users)
+      if (!isGuestMode && user?.id) {
+        const questionIds = processedQuestions.map(q => String(q.id));
+        sessionService.startSession(
+          String(user.id),
+          'drill',
+          subject.id,
+          selectedLicense,
+          questionIds,
+          drillSettings
+        );
+      }
+
       language.resetTranslation(); // Reset translation when starting new drill
       setView('drill');
     } catch (err) {
@@ -1974,6 +2038,20 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
       if (drillSettings.sorting === 'weighted_learning') {
         updateShuffleHistoryLocal(sortedQuestions);
       }
+
+      // Start session for persistence (only for logged-in users)
+      if (!isGuestMode && user?.id) {
+        const questionIds = sortedQuestions.map(q => String(q.id));
+        sessionService.startSession(
+          String(user.id),
+          'mix',
+          null, // No specific subject for mix
+          selectedLicense,
+          questionIds,
+          drillSettings
+        );
+      }
+
       language.resetTranslation(); // Reset translation when starting MIX
       setView('drill');
     } catch (err) {
@@ -2486,9 +2564,34 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
       language.resetTranslation(); // Reset translation when changing question
       
       setCurrentQuestionIndex(nextIdx);
+
+      // Auto-save session progress (debounced)
+      if (!isGuestMode && user?.id && view === 'drill') {
+        const sessionId = sessionService.getCurrentSessionId();
+        if (sessionId) {
+          // Clear existing timeout
+          if (sessionSaveTimeoutRef.current) {
+            clearTimeout(sessionSaveTimeoutRef.current);
+          }
+          // Debounce save for 2 seconds
+          sessionSaveTimeoutRef.current = setTimeout(() => {
+            sessionService.updateProgress(String(user.id), sessionId, {
+              currentIndex: nextIdx,
+              answers: {} // Answers are tracked separately
+            });
+          }, 2000);
+        }
+      }
     } else if (view === 'exam') {
       finishExam();
     } else {
+      // Session completed - clear it
+      if (!isGuestMode && user?.id && view === 'drill') {
+        const sessionId = sessionService.getCurrentSessionId();
+        if (sessionId) {
+          sessionService.completeSession(String(user.id), sessionId);
+        }
+      }
       setView('dashboard');
     }
   };
@@ -3207,13 +3310,13 @@ const handleGenerateLOs = async () => {
     // Auto-expand parents based on LO ID structure (e.g. 010.02.01)
     const parts = loId.split('.');
     if (parts.length >= 1) {
-      setSyllabusExpandedSubjects(prev => Array.from(new Set([...prev, parts[0]])));
+      setSyllabusExpandedSubjects(prev => new Set([...prev, parts[0]]));
     }
     if (parts.length >= 2) {
-      setSyllabusExpandedTopics(prev => Array.from(new Set([...prev, parts.slice(0, 2).join('.')])));
+      setSyllabusExpandedTopics(prev => new Set([...prev, parts.slice(0, 2).join('.')]));
     }
     if (parts.length >= 3) {
-      setSyllabusExpandedSubtopics(prev => Array.from(new Set([...prev, parts.slice(0, 3).join('.')])));
+      setSyllabusExpandedSubtopics(prev => new Set([...prev, parts.slice(0, 3).join('.')]));
     }
   };
 
@@ -4863,7 +4966,8 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                   active={aiProvider === p}
                                   onClick={() => {
                                     setAiProvider(p);
-                                    const defaultModel = p === 'gemini' ? 'gemini-2.0-flash-exp' : p === 'claude' ? 'claude-3-5-sonnet-20241022' : 'deepseek-chat';
+                                    const defaultModel = p === 'gemini' ? 'gemini-flash-latest' : p === 'claude' ? 'claude-sonnet-4-6' : 'deepseek-chat';
+                                    setAiModel(defaultModel);
                                     saveSettingsImmediate({ aiProvider: p, aiModel: defaultModel });
                                   }}
                                 />
@@ -7601,6 +7705,10 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                 }
                 dynamoDBService.reinitialize();
 
+                // Eagerly fetch AWS credentials to populate identityId
+                // (initializeAuthenticatedCredentials only sets up a lazy provider)
+                await cognitoAuthService.getAWSCredentials();
+
                 // Use Identity Pool identity ID as userId (enables IAM fine-grained access)
                 const identityId = cognitoAuthService.getIdentityId() || userData.id;
                 console.log('🆔 identityId:', identityId);
@@ -7971,6 +8079,16 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
               </motion.div>
             )}
           </AnimatePresence>
+
+          {/* Session Restore Modal */}
+          {showSessionRestoreModal && pendingSession && (
+            <SessionRestoreModal
+              session={pendingSession}
+              onContinue={handleContinueSession}
+              onRestart={handleRestartSession}
+              onDismiss={handleDismissSessionModal}
+            />
+          )}
         </>
       )}
     </div>

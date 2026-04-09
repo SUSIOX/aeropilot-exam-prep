@@ -1,6 +1,6 @@
 // AWS DynamoDB Service - LAZY INITIALIZATION VERSION
 import { DynamoDBClient, GetItemCommand, PutItemCommand, UpdateItemCommand, DeleteItemCommand, BatchWriteItemCommand } from '@aws-sdk/client-dynamodb';
-import { DynamoDBDocumentClient, GetCommand as DocGetCommand, PutCommand as DocPutCommand, UpdateCommand as DocUpdateCommand, DeleteCommand as DocDeleteCommand, QueryCommand as DocQueryCommand, ScanCommand as DocScanCommand, BatchWriteCommand as DocBatchWriteCommand, TransactWriteCommand as DocTransactWriteCommand } from '@aws-sdk/lib-dynamodb';
+import { DynamoDBDocumentClient, GetCommand as DocGetCommand, PutCommand as DocPutCommand, UpdateCommand as DocUpdateCommand, DeleteCommand as DocDeleteCommand, QueryCommand as DocQueryCommand, ScanCommand as DocScanCommand, BatchGetCommand as DocBatchGetCommand, BatchWriteCommand as DocBatchWriteCommand, TransactWriteCommand as DocTransactWriteCommand } from '@aws-sdk/lib-dynamodb';
 import { awsConfig, getTableName, TABLE_NAMES, getSecureDynamoClient, getSecureDocClient, isSecureCredentialsAvailable } from './awsConfig';
 import { 
   DynamoDBResponse, 
@@ -1889,10 +1889,149 @@ export class DynamoDBService {
         error: this.handleError(error, 'getExamResults').message
       };
     }
+    }
+
+  // Session Persistence Operations
+
+  async saveDrillSession(userId: string, session: any): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+      const now = new Date().toISOString();
+      const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(); // 7 days
+
+      const command = new DocPutCommand({
+        TableName: getTableName('USER_PROGRESS'),
+        Item: {
+          PK: `USER#${userId}`,
+          SK: `SESSION#${session.sessionId}`,
+          ...session,
+          expiresAt,
+          lastActivity: now,
+          GSI1PK: `SESSION#${session.type}`,
+          GSI1SK: now
+        }
+      });
+
+      await this.docClient!.send(command);
+      return { success: true };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'saveDrillSession').message
+      };
+    }
   }
 
+  async updateSessionProgress(
+    userId: string, 
+    sessionId: string, 
+    updates: { currentIndex?: number; answers?: Record<string, string>; isCompleted?: boolean }
+  ): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+      const now = new Date().toISOString();
 
+      let updateExpr = 'SET lastActivity = :now, expiresAt = :expiresAt';
+      const exprAttrValues: any = { ':now': now, ':expiresAt': new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() };
+      const exprAttrNames: any = {};
 
+      if (updates.currentIndex !== undefined) {
+        updateExpr += ', currentIndex = :idx';
+        exprAttrValues[':idx'] = updates.currentIndex;
+      }
+
+      if (updates.answers !== undefined) {
+        updateExpr += ', answers = :answers';
+        exprAttrValues[':answers'] = updates.answers;
+      }
+
+      if (updates.isCompleted !== undefined) {
+        updateExpr += ', isCompleted = :completed, completedAt = :completedAt';
+        exprAttrValues[':completed'] = updates.isCompleted;
+        exprAttrValues[':completedAt'] = now;
+      }
+
+      const command = new DocUpdateCommand({
+        TableName: getTableName('USER_PROGRESS'),
+        Key: { PK: `USER#${userId}`, SK: `SESSION#${sessionId}` },
+        UpdateExpression: updateExpr,
+        ExpressionAttributeValues: exprAttrValues,
+        ...(Object.keys(exprAttrNames).length > 0 && { ExpressionAttributeNames: exprAttrNames })
+      });
+
+      await this.docClient!.send(command);
+      return { success: true };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'updateSessionProgress').message
+      };
+    }
+  }
+
+  async getActiveSession(userId: string): Promise<DynamoDBResponse & { data?: any }> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocQueryCommand({
+        TableName: getTableName('USER_PROGRESS'),
+        KeyConditionExpression: 'PK = :pk AND begins_with(SK, :skPrefix)',
+        ExpressionAttributeValues: {
+          ':pk': `USER#${userId}`,
+          ':skPrefix': 'SESSION#'
+        },
+        ScanIndexForward: false // Most recent first
+      });
+
+      const result = await this.docClient!.send(command);
+      const items = result.Items || [];
+
+      // Find first non-expired, non-completed session
+      const now = new Date().toISOString();
+      const activeSession = items.find((item: any) => {
+        return !item.isCompleted && item.expiresAt > now;
+      });
+
+      return {
+        success: true,
+        data: activeSession || null
+      };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'getActiveSession').message
+      };
+    }
+  }
+
+  async deleteSession(userId: string, sessionId: string): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocDeleteCommand({
+        TableName: getTableName('USER_PROGRESS'),
+        Key: { PK: `USER#${userId}`, SK: `SESSION#${sessionId}` }
+      });
+
+      await this.docClient!.send(command);
+      return { success: true };
+
+    } catch (error) {
+      return {
+        success: false,
+        error: this.handleError(error, 'deleteSession').message
+      };
+    }
+  }
+
+  async getQuestionsByIds(questionIds: string[]): Promise<DynamoDBResponse & { data?: any[] }> {
+    // Note: Questions are loaded via loadStaticQuestions() and reordered based on stored IDs
+    // This method is a placeholder for future optimization
+    return { success: true, data: [] };
+  }
 
 }
 

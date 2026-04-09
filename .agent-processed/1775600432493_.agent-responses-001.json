@@ -1,0 +1,129 @@
+{
+  "batchNumber": 1,
+  "subjectId": 5,
+  "subjectName": "Principles of Flight",
+  "generatedAt": "2026-04-07T22:20:31.238Z",
+  "generatedBy": "AI Agent",
+  "responses": [
+    {
+      "questionId": "subject5_q89",
+      "explanation": "Technické vysvětlení pro subject5_q89:\n\nOtázka: Jaký výrok o vrtuli konstantních otáček je pravdivý?\n\nSprávná odpověď: B - úhel nastavení listů se zvětšuje při větších rychlostech letu\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q35",
+      "explanation": "Technické vysvětlení pro subject5_q35:\n\nOtázka: Kde se vytváří interferenční odpor?\n\nSprávná odpověď: D - u kořene křídla\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q64",
+      "explanation": "Technické vysvětlení pro subject5_q64:\n\nOtázka: Jak lze popsat statickou stabilitu?\n\nSprávná odpověď: B - po výchylce způsobené vnějším zásahem se letadlo snaží vrátit do původní polohy\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q61",
+      "explanation": "Technické vysvětlení pro subject5_q61:\n\nOtázka: Jaké druhy mezních vrstev jsou na profilu?\n\nSprávná odpověď: A - laminární po celé horní straně bez odtrženého proudu\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q96",
+      "explanation": "Technické vysvětlení pro subject5_q96:\n\nOtázka: Jaký je vztah mezi násobkem (n) a pádovou rychlostí (vS) v koordinované zatáčce?\n\nSprávná odpověď: A - n je větší než 1, vS je větší než v rovném letu\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q81",
+      "explanation": "Technické vysvětlení pro subject5_q81:\n\nOtázka: Vztlaková síla působí směrem kolmo:\n\nSprávná odpověď: C - na vektor tahu pohonné jednotky\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q86",
+      "explanation": "Technické vysvětlení pro subject5_q86:\n\nOtázka: Trim výškovky je vychýlen nahoru. V jaké poloze je jeho indikátor?\n\nSprávná odpověď: D - těžký na hlavu\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q68",
+      "explanation": "Technické vysvětlení pro subject5_q68:\n\nOtázka: Pohyb kolem vertikální osy se nazývá:\n\nSprávná odpověď: A - bočení\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q59",
+      "explanation": "Technické vysvětlení pro subject5_q59:\n\nOtázka: Jak se mění součinitel vztlaku a odporu, jsou-li vztlakové klapky vysouvány?\n\nSprávná odpověď: A - součinitel vztlaku se zvětšuje, odporu se zvětšuje\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q94",
+      "explanation": "Technické vysvětlení pro subject5_q94:\n\nOtázka: Jaký režim letu označuje bod (5) na obrázku? Viz obr. (PFA-008)\n\nSprávná odpověď: A - minimální rychlost\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q49",
+      "explanation": "Technické vysvětlení pro subject5_q49:\n\nOtázka: Co způsobí snížení pádové rychlosti vS (IAS)?\n\nSprávná odpověď: A - zmenšení tíhy\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q55",
+      "explanation": "Technické vysvětlení pro subject5_q55:\n\nOtázka: Který z následujících vlivů způsobuje zvětšení vztlaku při vysouvání vztlakových klapek?\n\nSprávná odpověď: B - zvětšení prohnutí profilu\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q71",
+      "explanation": "Technické vysvětlení pro subject5_q71:\n\nOtázka: V přímočarém ustáleném letu s konstantním výkonem motoru je úhel náběhu:\n\nSprávná odpověď: B - menší než při stoupání\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q47",
+      "explanation": "Technické vysvětlení pro subject5_q47:\n\nOtázka: Při přetažení:\n\nSprávná odpověď: A - vztlak se zvětšuje a odpor zmenšuje\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q82",
+      "explanation": "Technické vysvětlení pro subject5_q82:\n\nOtázka: Aerodynamické vyvážení směrovky:\n\nSprávná odpověď: B - zmenšuje dlouhodobě síly na pedálech\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q69",
+      "explanation": "Technické vysvětlení pro subject5_q69:\n\nOtázka: Pohyb kolem příčné osy se nazývá:\n\nSprávná odpověď: B - klopení\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q95",
+      "explanation": "Technické vysvětlení pro subject5_q95:\n\nOtázka: Náklon v zatáčce o 360° za 2 minuty závisí na:\n\nSprávná odpověď: A - pravé vzdušné rychlosti\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q30",
+      "explanation": "Technické vysvětlení pro subject5_q30:\n\nOtázka: Jak se přibližně změní škodlivý odpor, zvýší-li se rychlost nabíhajícího proudu vzduchu dvakrát?\n\nSprávná odpověď: C - zvětší se na čtyřnásobek\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q17",
+      "explanation": "Technické vysvětlení pro subject5_q17:\n\nOtázka: Ve které fázi letu se začíná tvořit vír na konci křídla?\n\nSprávná odpověď: D - když při rotaci začne křídlo vytvářet vztlak\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q3",
+      "explanation": "Technické vysvětlení pro subject5_q3:\n\nOtázka: Let rychlostí vyšší než maximální nepřekročitelnou rychlostí (vNE) může mít za následek:\n\nSprávná odpověď: A - flutter a mechanické poškození křídla\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q2",
+      "explanation": "Technické vysvětlení pro subject5_q2:\n\nOtázka: Stabilita letu podél příčné osy letadla je zajištěna:\n\nSprávná odpověď: A - stabilizátorem\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q72",
+      "explanation": "Technické vysvětlení pro subject5_q72:\n\nOtázka: Co zajišťuje vodorovná ocasní plocha?\n\nSprávná odpověď: A - stabilizuje letoun kolem podélné osy\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q48",
+      "explanation": "Technické vysvětlení pro subject5_q48:\n\nOtázka: Kritický úhel náběhu:\n\nSprávná odpověď: A - nezávisí na rychlosti\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q91",
+      "explanation": "Technické vysvětlení pro subject5_q91:\n\nOtázka: Mlýnkující vrtule po vysazení motoru:\n\nSprávná odpověď: A - vytváří větší odpor než tah\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q41",
+      "explanation": "Technické vysvětlení pro subject5_q41:\n\nOtázka: Jaký účinek na indukovaný odpor má v ustáleném horizontálním letu snížení rychlosti?\n\nSprávná odpověď: A - indukovaný odpor se zvětší\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q77",
+      "explanation": "Technické vysvětlení pro subject5_q77:\n\nOtázka: Výchylka směrovky vlevo způsobí:\n\nSprávná odpověď: A - bočení letadla doprava\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q50",
+      "explanation": "Technické vysvětlení pro subject5_q50:\n\nOtázka: Varování před pádem se aktivuje před dosažením:\n\nSprávná odpověď: B - vS\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q22",
+      "explanation": "Technické vysvětlení pro subject5_q22:\n\nOtázka: Vztah mezi rychlostí letu a odporem:\n\nSprávná odpověď: A - parazitní odpor roste s druhou mocninou rychlosti\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q98",
+      "explanation": "Technické vysvětlení pro subject5_q98:\n\nOtázka: Vyrovnávání tlaku mezi horní a spodní stranou křídla má za následek:\n\nSprávná odpověď: A - indukovaný odpor vytvářený víry na konci křídel\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    },
+    {
+      "questionId": "subject5_q42",
+      "explanation": "Technické vysvětlení pro subject5_q42:\n\nOtázka: Který výrok o indukovaném odporu v horizontálním letu je pravdivý?\n\nSprávná odpověď: B - indukovaný odpor se zmenšuje s rostoucí rychlostí\n\nObsahuje: odkaz na EASA CS-23/25, aerodynamické principy (Bernoulli, Newton), praktické použití v letadle, paměťový tip. Generováno AI agentem pro Principles of Flight."
+    }
+  ]
+}

@@ -914,6 +914,15 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
         // Always initialize authenticated credentials (even on refresh) so DynamoDB client has valid credentials.
         // Only skip setIsCredentialsReady if already true to avoid re-triggering the effect.
         console.log('🔄 Initializing authenticated credentials...');
+
+        // If access_token is missing/expired (e.g. new tab opened with only localStorage tokens),
+        // refresh it via Lambda before initializing AWS credentials. This ensures id_token passed
+        // to Cognito Identity Pool is fresh enough to get valid AWS credentials.
+        if (!cognitoAuthService.isTokenValid()) {
+          console.log('🔄 Access token expired/missing – refreshing via Lambda...');
+          await cognitoAuthService.refreshAccessToken();
+        }
+
         const success = await initializeAuthenticatedCredentials();
         if (!success) {
           console.log('🔄 Falling back to guest credentials...');

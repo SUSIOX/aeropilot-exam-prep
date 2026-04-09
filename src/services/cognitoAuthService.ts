@@ -60,28 +60,34 @@ export class CognitoAuthService {
     sessionStorage.setItem('id_token', tokenData.id_token);
     sessionStorage.setItem('refresh_token', tokenData.refresh_token);
     sessionStorage.setItem('token_expires_at', String(tokenData.expires_at));
+    // Persist refresh_token + id_token to localStorage so session survives tab close / new link open.
+    // access_token intentionally NOT persisted (short-lived, more sensitive).
+    localStorage.setItem('aeropilot_refresh_token', tokenData.refresh_token);
+    localStorage.setItem('aeropilot_id_token', tokenData.id_token);
   }
 
-  // Get stored tokens
+  // Get stored tokens – falls back to localStorage for refresh_token + id_token so that
+  // a new tab / page reload can still attempt a silent refresh via Lambda.
   getTokens(): TokenData | null {
-    const accessToken = sessionStorage.getItem('access_token');
-    const idToken = sessionStorage.getItem('id_token');
-    const refreshToken = sessionStorage.getItem('refresh_token');
+    const accessToken = sessionStorage.getItem('access_token') || '';
+    const idToken = sessionStorage.getItem('id_token') || localStorage.getItem('aeropilot_id_token') || '';
+    const refreshToken = sessionStorage.getItem('refresh_token') || localStorage.getItem('aeropilot_refresh_token') || '';
     const expiresAt = sessionStorage.getItem('token_expires_at');
 
-    if (!accessToken || !idToken || !expiresAt) {
+    // We need at least an id_token + refresh_token to be useful
+    if (!idToken || !refreshToken) {
       return null;
     }
 
     return {
       access_token: accessToken,
       id_token: idToken,
-      refresh_token: refreshToken || '',
-      expires_at: parseInt(expiresAt)
+      refresh_token: refreshToken,
+      expires_at: expiresAt ? parseInt(expiresAt) : 0
     };
   }
 
-  // Clear all tokens
+  // Clear all tokens (sessionStorage + localStorage)
   clearTokens(): void {
     sessionStorage.removeItem('access_token');
     sessionStorage.removeItem('id_token');
@@ -90,7 +96,17 @@ export class CognitoAuthService {
     sessionStorage.removeItem('user_data');
     sessionStorage.removeItem('aws_credentials');
     sessionStorage.removeItem('identity_id');
+    localStorage.removeItem('aeropilot_refresh_token');
+    localStorage.removeItem('aeropilot_id_token');
     this.identityId = null;
+  }
+
+  // Returns true if we have stored credentials (even if access_token is expired/missing).
+  // Used to detect "restore session" scenario after tab close / new link open.
+  hasStoredCredentials(): boolean {
+    const refreshToken = sessionStorage.getItem('refresh_token') || localStorage.getItem('aeropilot_refresh_token');
+    const idToken = sessionStorage.getItem('id_token') || localStorage.getItem('aeropilot_id_token');
+    return !!(refreshToken && idToken);
   }
 
   // Get Identity Pool identity ID (used as userId in DynamoDB)
@@ -98,12 +114,12 @@ export class CognitoAuthService {
     return this.identityId || sessionStorage.getItem('identity_id');
   }
 
-  // Check if tokens are valid
+  // Check if the access_token is present and not expired
   isTokenValid(): boolean {
-    const tokens = this.getTokens();
-    if (!tokens) return false;
-
-    return Date.now() < tokens.expires_at;
+    const accessToken = sessionStorage.getItem('access_token');
+    const expiresAt = sessionStorage.getItem('token_expires_at');
+    if (!accessToken || !expiresAt) return false;
+    return Date.now() < parseInt(expiresAt);
   }
 
   // Parse JWT token to get user data
@@ -124,10 +140,13 @@ export class CognitoAuthService {
     }
   }
 
-  // Get current user data from ID token
+  // Get current user data from id_token (works even if access_token is expired,
+  // as long as we have a stored id_token – refresh happens in initializeCredentials)
   getCurrentUser(): UserData | null {
+    if (!this.hasStoredCredentials()) return null;
+
     const tokens = this.getTokens();
-    if (!tokens || !this.isTokenValid()) return null;
+    if (!tokens) return null;
 
     const payload = this.parseJWT(tokens.id_token);
     if (!payload) return null;
@@ -164,7 +183,17 @@ export class CognitoAuthService {
       });
 
       if (!response.ok) {
-        throw new Error('Token refresh failed');
+        // Only clear persisted tokens for definitive Cognito errors (expired/revoked token).
+        // For network/server errors, keep localStorage so next visit can retry.
+        if (response.status === 400) {
+          let errorBody: any = {};
+          try { errorBody = await response.json(); } catch (_) {}
+          if (errorBody.error === 'invalid_grant') {
+            console.warn('Refresh token invalid/expired – clearing stored credentials');
+            this.clearTokens();
+          }
+        }
+        return false;
       }
 
       const tokenData = await response.json();
@@ -179,7 +208,8 @@ export class CognitoAuthService {
 
       return true;
     } catch (error) {
-      this.clearTokens();
+      // Network/unexpected error – do NOT clear localStorage so next visit can retry
+      console.warn('Token refresh failed (network/unexpected error):', error);
       return false;
     }
   }
@@ -237,9 +267,11 @@ export class CognitoAuthService {
     window.location.href = this.getLogoutUrl();
   }
 
-  // Check if user is authenticated
+  // Check if user is authenticated.
+  // Returns true if we have stored credentials (access_token may be expired – will be
+  // refreshed on demand by initializeCredentials / getValidAccessToken).
   isAuthenticated(): boolean {
-    return this.isTokenValid() && !!this.getCurrentUser();
+    return this.hasStoredCredentials() && !!this.getCurrentUser();
   }
 
   // Get user role from Cognito groups in JWT

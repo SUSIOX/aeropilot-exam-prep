@@ -131,6 +131,9 @@ export const CognitoAuth: React.FC<CognitoAuthProps> = ({ isOpen, onClose, onAut
       sessionStorage.setItem('id_token', tokenData.id_token);
       sessionStorage.setItem('refresh_token', tokenData.refresh_token);
       sessionStorage.setItem('token_expires_at', String(Date.now() + tokenData.expires_in * 1000));
+      // Persist to localStorage so session survives tab close / new link open
+      localStorage.setItem('aeropilot_refresh_token', tokenData.refresh_token);
+      localStorage.setItem('aeropilot_id_token', tokenData.id_token);
       
       // Store user data
       const userData = {

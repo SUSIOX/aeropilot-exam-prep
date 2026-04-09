@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   LayoutDashboard,
@@ -1105,6 +1105,22 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
   // Settings Ready Flag ensures we only write to DynamoDB after reading
   const [settingsLoadedUserId, setSettingsLoadedUserId] = useState<string | null>(null);
 
+  // Immediately save all settings to DB (used when user explicitly changes settings)
+  const saveSettingsImmediate = useCallback((updates: Partial<{ aiProvider: AIProvider; aiModel: string; drillSettings: DrillSettings }>) => {
+    if (!isGuestMode && user?.id) {
+      const settingsToSave = {
+        userApiKey,
+        claudeApiKey,
+        deepseekApiKey,
+        aiProvider: updates.aiProvider ?? aiProvider,
+        aiModel: updates.aiModel ?? aiModel,
+        ...(updates.drillSettings ?? drillSettings)
+      };
+      console.log('📝 Immediate save settings:', Object.keys(updates));
+      dynamoDBService.saveApiKeys(String(user.id), settingsToSave).catch(() => { /* silent fail */ });
+    }
+  }, [isGuestMode, user?.id, userApiKey, claudeApiKey, deepseekApiKey, aiProvider, aiModel, drillSettings]);
+
   useEffect(() => {
     localStorage.setItem('drillSettings', JSON.stringify(drillSettings));
     if (aiProvider) localStorage.setItem('aiProvider', aiProvider);
@@ -1133,6 +1149,23 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     }
   }, [drillSettings, user?.id, userApiKey, claudeApiKey, deepseekApiKey, aiProvider, aiModel, settingsLoadedUserId]);
 
+  // Immediate save for drillSettings changes (separate from API keys to avoid race conditions)
+  useEffect(() => {
+    // Only save if we've already loaded settings from DB (to avoid overwriting with defaults)
+    // and if user is logged in (not guest)
+    if (!isGuestMode && user?.id && settingsLoadedUserId === String(user.id)) {
+      console.log('📝 Saving drillSettings immediately:', { sorting: drillSettings.sorting, shuffleAnswers: drillSettings.shuffleAnswers });
+      dynamoDBService.saveApiKeys(String(user.id), {
+        userApiKey,
+        claudeApiKey,
+        deepseekApiKey,
+        aiProvider,
+        aiModel,
+        ...drillSettings
+      }).catch(() => { /* silent fail */ });
+    }
+  }, [drillSettings, isGuestMode, user?.id, settingsLoadedUserId, userApiKey, claudeApiKey, deepseekApiKey, aiProvider, aiModel]);
+
 
   // Load user settings from DynamoDB on login
   useEffect(() => {
@@ -1152,12 +1185,21 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
               }
             }));
 
-            // Restore API keys and AI settings from DB
+            // Restore API keys from DB (always)
             if (result.settings.userApiKey) setUserApiKey(result.settings.userApiKey);
             if (result.settings.claudeApiKey) setClaudeApiKey(result.settings.claudeApiKey);
             if (result.settings.deepseekApiKey) setDeepseekApiKey(result.settings.deepseekApiKey);
-            if (result.settings.aiProvider) setAiProvider(result.settings.aiProvider);
-            if (result.settings.aiModel) setAiModel(result.settings.aiModel);
+
+            // Restore AI provider and model from DB only if not already set in localStorage
+            // This respects user's explicit preference on this device
+            const localAiProvider = localStorage.getItem('aiProvider');
+            const localAiModel = localStorage.getItem('aiModel');
+            if (result.settings.aiProvider && !localAiProvider) {
+              setAiProvider(result.settings.aiProvider);
+            }
+            if (result.settings.aiModel && !localAiModel) {
+              setAiModel(result.settings.aiModel);
+            }
           }
           setSettingsLoadedUserId(String(user.id));
         })
@@ -4815,7 +4857,17 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                           <label className="col-header">AI Provider</label>
                           <div className="flex gap-2 flex-wrap">
                             {(['gemini', 'claude', 'deepseek'] as const).map(p => (
-                              <ModelButton key={p} provider={p} active={aiProvider === p} onClick={() => setAiProvider(p)} />
+                              <React.Fragment key={p}>
+                                <ModelButton
+                                  provider={p}
+                                  active={aiProvider === p}
+                                  onClick={() => {
+                                    setAiProvider(p);
+                                    const defaultModel = p === 'gemini' ? 'gemini-2.0-flash-exp' : p === 'claude' ? 'claude-3-5-sonnet-20241022' : 'deepseek-chat';
+                                    saveSettingsImmediate({ aiProvider: p, aiModel: defaultModel });
+                                  }}
+                                />
+                              </React.Fragment>
                             ))}
                           </div>
                         </div>
@@ -5499,12 +5551,13 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                     value={aiModel}
                                     onChange={(e) => {
                                       const selectedModel = e.target.value;
-                                      if (selectedModel.startsWith('claude') && aiProvider !== 'claude') setAiProvider('claude');
-                                      else if (selectedModel.startsWith('gemini') && aiProvider !== 'gemini') setAiProvider('gemini');
-                                      else if (selectedModel.startsWith('deepseek') && aiProvider !== 'deepseek') setAiProvider('deepseek');
+                                      const newProvider = selectedModel.startsWith('claude') ? 'claude' : selectedModel.startsWith('deepseek') ? 'deepseek' : 'gemini';
+                                      if (newProvider !== aiProvider) setAiProvider(newProvider);
                                       setAiModel(selectedModel);
                                       localStorage.setItem('aiModel', selectedModel);
-                                      localStorage.setItem('aiProvider', selectedModel.startsWith('claude') ? 'claude' : selectedModel.startsWith('deepseek') ? 'deepseek' : 'gemini');
+                                      localStorage.setItem('aiProvider', newProvider);
+                                      // Save to DB immediately
+                                      saveSettingsImmediate({ aiProvider: newProvider, aiModel: selectedModel });
                                       setAiExplanation(null);
                                       setDetailedExplanation(null);
                                       handleFetchAiExplanation();

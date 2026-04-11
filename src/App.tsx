@@ -2570,8 +2570,9 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
       setAiExplanationGeneratedBy(null);
       setAiDetectedObjective(null);
       setDetailedExplanation(null);
+      setAnswered(null); // Reset answered state to prevent showing correct answer from previous question
       language.resetTranslation(); // Reset translation when changing question
-      
+
       setCurrentQuestionIndex(nextIdx);
 
       // Auto-save session progress (debounced)

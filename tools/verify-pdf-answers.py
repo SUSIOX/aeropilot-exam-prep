@@ -142,7 +142,7 @@ def check_subject(sid, fix=False):
         return []
 
     pdf_path = os.path.join(BASE, pdf_rel)
-    json_path = os.path.join(BASE, f"subject_{sid}.json")
+    json_path = os.path.join(BASE, f"backups/subject_{sid}.json")
 
     if not os.path.exists(pdf_path):
         print(f"  Subject {sid}: PDF nenalezeno ({pdf_rel})")

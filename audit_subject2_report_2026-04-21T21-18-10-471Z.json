@@ -1,0 +1,243 @@
+{
+  "timestamp": "2026-04-21T21:18:10.471Z",
+  "totalScanned": 369,
+  "problemsFound": 23,
+  "issueBreakdown": {
+    "short_question": 12,
+    "empty_answers": 8,
+    "no_ending_punct": 4
+  },
+  "problematicQuestions": [
+    {
+      "questionId": "ai_020.01.07.03_o39y8",
+      "question": "Jak vzniká karburátorová námraza?",
+      "issueCount": 1,
+      "issues": [
+        "short_question"
+      ],
+      "answerCount": 4,
+      "source": "ai"
+    },
+    {
+      "questionId": "subject2_q54",
+      "question": "Samolibost je rizikem kvůli:",
+      "issueCount": 1,
+      "issues": [
+        "short_question"
+      ],
+      "answerCount": 4,
+      "source": "user"
+    },
+    {
+      "questionId": "klub_q212",
+      "question": "Optický klam bývá většinou způsoben?",
+      "issueCount": 1,
+      "issues": [
+        "empty_answers"
+      ],
+      "answerCount": 4,
+      "source": "klub"
+    },
+    {
+      "questionId": "klub_q213",
+      "question": "Jaký je správný název systému, který, kromě jiného, řídí dýchání, trávení a tep srdce?",
+      "issueCount": 1,
+      "issues": [
+        "empty_answers"
+      ],
+      "answerCount": 4,
+      "source": "klub"
+    },
+    {
+      "questionId": "subject2_q55",
+      "question": "Ve kterém místě diagramu je zobrazena ideální hladina vyburcování? Viz obr. (HPL- 002) P = výkonnost",
+      "issueCount": 1,
+      "issues": [
+        "no_ending_punct"
+      ],
+      "answerCount": 4,
+      "source": "user"
+    },
+    {
+      "questionId": "subject2_q36",
+      "question": "Šedé vidění bývá způsobeno:",
+      "issueCount": 1,
+      "issues": [
+        "short_question"
+      ],
+      "answerCount": 4,
+      "source": "user"
+    },
+    {
+      "questionId": "subject2_q43",
+      "question": "Co je skrytá chyba?",
+      "issueCount": 1,
+      "issues": [
+        "short_question"
+      ],
+      "answerCount": 4,
+      "source": "user"
+    },
+    {
+      "questionId": "klub_q210",
+      "question": "Anemická hypoxie může být způsobena?",
+      "issueCount": 1,
+      "issues": [
+        "empty_answers"
+      ],
+      "answerCount": 4,
+      "source": "klub"
+    },
+    {
+      "questionId": "ai_020.05.04.01_5knl9",
+      "question": "Jak funguje magnetický kompas?",
+      "issueCount": 1,
+      "issues": [
+        "short_question"
+      ],
+      "answerCount": 4,
+      "source": "ai"
+    },
+    {
+      "questionId": "klub_q211",
+      "question": "Co z následujícího NENÍ rizikovým faktorem pro nástup výškové nemoci?",
+      "issueCount": 1,
+      "issues": [
+        "empty_answers"
+      ],
+      "answerCount": 4,
+      "source": "klub"
+    },
+    {
+      "questionId": "klub_q81",
+      "question": "Co znamená \"posun rizika\"?",
+      "issueCount": 1,
+      "issues": [
+        "short_question"
+      ],
+      "answerCount": 4,
+      "source": "klub"
+    },
+    {
+      "questionId": "klub_q217",
+      "question": "Co z následujícího NEZPŮSOBÍ ztrátu orientace? let pod vlivem alkoholu a.",
+      "issueCount": 1,
+      "issues": [
+        "empty_answers"
+      ],
+      "answerCount": 4,
+      "source": "klub"
+    },
+    {
+      "questionId": "klub_q70",
+      "question": "Co je skrytá chyba?",
+      "issueCount": 1,
+      "issues": [
+        "short_question"
+      ],
+      "answerCount": 4,
+      "source": "klub"
+    },
+    {
+      "questionId": "klub_q25",
+      "question": "Co znamená \"posun rizika\"?",
+      "issueCount": 1,
+      "issues": [
+        "short_question"
+      ],
+      "answerCount": 4,
+      "source": "klub"
+    },
+    {
+      "questionId": "klub_q216",
+      "question": "Srovnání náklonu po delší době zatáčení může vést k pocitu?",
+      "issueCount": 1,
+      "issues": [
+        "empty_answers"
+      ],
+      "answerCount": 4,
+      "source": "klub"
+    },
+    {
+      "questionId": "klub_q215",
+      "question": "Která z následujících vlastností je ovlivněna stresem? 1. pozornost 2. soustředěnost 3. odpovědnost ",
+      "issueCount": 2,
+      "issues": [
+        "no_ending_punct",
+        "empty_answers"
+      ],
+      "answerCount": 4,
+      "source": "klub"
+    },
+    {
+      "questionId": "subject2_q56",
+      "question": "Ve kterém místě diagramu se nachází přetížený pilot? Viz obr. (HPL-002) P = výkonnost A = vyburcován",
+      "issueCount": 1,
+      "issues": [
+        "no_ending_punct"
+      ],
+      "answerCount": 4,
+      "source": "user"
+    },
+    {
+      "questionId": "klub_q214",
+      "question": "Na přibližně jakou dobu může krátkodobá paměť uchovat informace?",
+      "issueCount": 1,
+      "issues": [
+        "empty_answers"
+      ],
+      "answerCount": 4,
+      "source": "klub"
+    },
+    {
+      "questionId": "ai_020.01.06.04_d22xy",
+      "question": "Jak funguje turbovrtulový motor?",
+      "issueCount": 1,
+      "issues": [
+        "short_question"
+      ],
+      "answerCount": 4,
+      "source": "ai"
+    },
+    {
+      "questionId": "klub_q14",
+      "question": "Co je skrytá chyba?",
+      "issueCount": 1,
+      "issues": [
+        "short_question"
+      ],
+      "answerCount": 4,
+      "source": "klub"
+    },
+    {
+      "questionId": "ai_020.05.04.01_ww4h9",
+      "question": "Jak funguje magnetický kompas?",
+      "issueCount": 1,
+      "issues": [
+        "short_question"
+      ],
+      "answerCount": 4,
+      "source": "ai"
+    },
+    {
+      "questionId": "subject2_q49",
+      "question": "Co znamená \"posun rizika\"?",
+      "issueCount": 1,
+      "issues": [
+        "short_question"
+      ],
+      "answerCount": 4,
+      "source": "user"
+    },
+    {
+      "questionId": "subject2_q57",
+      "question": "Která z následujících vlastností je ovlivněna stresem? 1. pozornost 2. soustředěnost 3. odpovědnost ",
+      "issueCount": 1,
+      "issues": [
+        "no_ending_punct"
+      ],
+      "answerCount": 4,
+      "source": "user"
+    }
+  ]
+}

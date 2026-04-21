@@ -1388,9 +1388,16 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
 
       // Update questions with filtered and mapped results
       setQuestions(mapped);
-      setCurrentQuestionIndex(0); // Reset to first question
-      setAnswered(null); // Clear answer
-      setShowExplanation(false); // Hide explanation
+      // Preserve position: find current question in new list, only reset if it was filtered out
+      const currentQ = questions[currentQuestionIndex];
+      const newIdx = currentQ ? mapped.findIndex(q => String(q.id) === String(currentQ.id)) : -1;
+      if (newIdx >= 0) {
+        setCurrentQuestionIndex(newIdx);
+      } else {
+        setCurrentQuestionIndex(0); // Current question filtered out, go to first
+        setAnswered(null); // Clear answer
+        setShowExplanation(false); // Hide explanation
+      }
 
       // Update shuffle history if using weighted learning
       if (drillSettings.sorting === 'weighted_learning') {
@@ -1671,6 +1678,11 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
                                   ...profile.settings.weightedLearning
                                 }
                               };
+                              // Don't overwrite if already in an active drill - avoid triggering
+                              // the re-filter useEffect which resets currentQuestionIndex to 0
+                              if (sessionService.getCurrentSessionId()) {
+                                return prev;
+                              }
                               localStorage.setItem('drillSettings', JSON.stringify(newSettings));
                               return newSettings;
                             });

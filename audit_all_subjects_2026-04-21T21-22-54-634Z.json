@@ -1,0 +1,5097 @@
+{
+  "timestamp": "2026-04-21T21:22:54.634Z",
+  "grandTotal": 2744,
+  "grandProblems": 508,
+  "subjects": [
+    {
+      "subjectId": 1,
+      "subjectName": "Air Law",
+      "totalQuestions": 257,
+      "problemsFound": 36,
+      "sources": {
+        "ai": 139,
+        "user": 97,
+        "klub": 21,
+        "other": 0
+      },
+      "issueBreakdown": {
+        "empty_answers": 21,
+        "short_question": 12,
+        "no_ending_punct": 8,
+        "correct_mismatch": 1
+      },
+      "problematicQuestions": [
+        {
+          "questionId": "klub_q192",
+          "question": "Průmět dráhy letadla na povrch země, jehož směr se v kterémkoli bodě obvykle vyjadřuje ve stupních m",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject1_q23",
+          "question": "Co znamená zkratka IFR?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q132",
+          "question": "Výška letiště nad mořem je :",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q178",
+          "question": "čtyři oranžové obdélníkové plochy obr. pr001 sestavené do tvaru kříže s prázdným  čtvercem uprostřed",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject1_q58",
+          "question": "Co znamená zkratka AIREP?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q127",
+          "question": "Letištní provozní zóna (ATZ) je vymezena vertikálně zemským povrchem a nadmořskou výškou :",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject1_q25",
+          "question": "Co znamená zkratka VMC?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q179",
+          "question": "Ověřovat, zda je osvědčení o letové způsobilosti platné je povinností",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject1_q90",
+          "question": "Co znamená znak v příloze? Viz obr. (ALW-020)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q193",
+          "question": "Pokud fyzická osoba vykonává činnost leteckého personálu bez platného průkazu způsobilosti může jí b",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject1_q17",
+          "question": "Co znamená zkratka SERA?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject1_q86",
+          "question": "Letištní maják (ABN) je:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q177",
+          "question": "Veškerý provoz na provozní ploše letiště a všechna letadla letící v blízkosti letiště nazýváme :",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject1_q89",
+          "question": "Co znamená znak v příloze? Viz obr. (ALW-019)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject1_q18",
+          "question": "Co znamená zkratka TRA?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q220",
+          "question": "Řešíte úlohu: Km = 312%, PVR = 100 km/h, V/v = 135?/5 m/sec",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q128",
+          "question": "Ve třídě E vzdušného prostoru nad 900 m AMSL nebo 300 m nad terénem je minimální vzdálenost od oblak",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject1_q1",
+          "question": "Který z následujících dokumentů musí být na palubě při mezinárodním letu? a) Osvědčení o zápisu do l",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject1_q92",
+          "question": "Co znamená zobrazená pozemní značka v signální ploše letiště? Viz obr. (ALW-012)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q131",
+          "question": "Tabulka východů a západů slunce je uvedena v AIP části",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "ai_010.05.01.02_xfhe7",
+          "question": "Co znamená zkratka NOTAM?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "subject1_q91",
+          "question": "Co znamená tento znak na letišti? Viz obr. (ALW-011)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q133",
+          "question": "Altitude je :",
+          "issues": [
+            "short_question",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q191",
+          "question": "Ukazatel směru větru na letišti musí být jasně viditelný a nezaměnitelný s pozadím z výšky nejméně :",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q190",
+          "question": "S výjimkou kdy je to nezbytné pro vzlet nebo přistání nebo pokud to povolí příslušný úřad, let VFR n",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject1_q93",
+          "question": "Co znamená zkratka DETRESFA?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q126",
+          "question": "Přibližují-\nli se dvě letadla čelně nebo přibližně čelně a existuje-li nebezpečí \nsrážky, každé leta",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q129",
+          "question": "Ve vzdušném prostoru G je požadavek na spojení :",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q134",
+          "question": "S\n výjimkou kdy je to nezbytné pro vzlet nebo přistání nebo pokud to \npovolí příslušný úřad, let VFR",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q180",
+          "question": "Smysl kroužení více kluzáků ve stoupavém proudu :",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q176",
+          "question": "Průmět\n dráhy letadla na povrch země, jehož směr se v kterémkoli bodě obvykle \nvyjadřuje ve stupních",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q125",
+          "question": "Vztažný bod letiště :",
+          "issues": [
+            "short_question",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "ai_010.05.01.02_oyjci",
+          "question": "Co znamená zkratka NOTAM?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "subject1_q6",
+          "question": "Co znamená zkratka ARC?",
+          "issues": [
+            "short_question",
+            "correct_mismatch"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q135",
+          "question": "Všeobecný\n výraz používaný k vyjádření vertikální polohy letadla znamenající buď  \nvýšku, nadmořskou",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q130",
+          "question": "Letištní provozní zóna (ATZ) je vymezena horizontální kružnicí(nebo její částí) o poloměru :",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        }
+      ]
+    },
+    {
+      "subjectId": 2,
+      "subjectName": "Human Performance",
+      "totalQuestions": 369,
+      "problemsFound": 23,
+      "sources": {
+        "ai": 257,
+        "user": 58,
+        "klub": 54,
+        "other": 0
+      },
+      "issueBreakdown": {
+        "short_question": 12,
+        "empty_answers": 8,
+        "no_ending_punct": 4
+      },
+      "problematicQuestions": [
+        {
+          "questionId": "ai_020.01.07.03_o39y8",
+          "question": "Jak vzniká karburátorová námraza?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "subject2_q54",
+          "question": "Samolibost je rizikem kvůli:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q212",
+          "question": "Optický klam bývá většinou způsoben?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q213",
+          "question": "Jaký je správný název systému, který, kromě jiného, řídí dýchání, trávení a tep srdce?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject2_q55",
+          "question": "Ve kterém místě diagramu je zobrazena ideální hladina vyburcování? Viz obr. (HPL- 002) P = výkonnost",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject2_q36",
+          "question": "Šedé vidění bývá způsobeno:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject2_q43",
+          "question": "Co je skrytá chyba?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q210",
+          "question": "Anemická hypoxie může být způsobena?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "ai_020.05.04.01_5knl9",
+          "question": "Jak funguje magnetický kompas?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "klub_q211",
+          "question": "Co z následujícího NENÍ rizikovým faktorem pro nástup výškové nemoci?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q81",
+          "question": "Co znamená \"posun rizika\"?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q217",
+          "question": "Co z následujícího NEZPŮSOBÍ ztrátu orientace? let pod vlivem alkoholu a.",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q70",
+          "question": "Co je skrytá chyba?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q25",
+          "question": "Co znamená \"posun rizika\"?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q216",
+          "question": "Srovnání náklonu po delší době zatáčení může vést k pocitu?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q215",
+          "question": "Která z následujících vlastností je ovlivněna stresem? 1. pozornost 2. soustředěnost 3. odpovědnost ",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject2_q56",
+          "question": "Ve kterém místě diagramu se nachází přetížený pilot? Viz obr. (HPL-002) P = výkonnost A = vyburcován",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q214",
+          "question": "Na přibližně jakou dobu může krátkodobá paměť uchovat informace?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "ai_020.01.06.04_d22xy",
+          "question": "Jak funguje turbovrtulový motor?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "klub_q14",
+          "question": "Co je skrytá chyba?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "ai_020.05.04.01_ww4h9",
+          "question": "Jak funguje magnetický kompas?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "subject2_q49",
+          "question": "Co znamená \"posun rizika\"?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject2_q57",
+          "question": "Která z následujících vlastností je ovlivněna stresem? 1. pozornost 2. soustředěnost 3. odpovědnost ",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        }
+      ]
+    },
+    {
+      "subjectId": 3,
+      "subjectName": "Meteorology",
+      "totalQuestions": 364,
+      "problemsFound": 40,
+      "sources": {
+        "ai": 204,
+        "user": 129,
+        "klub": 31,
+        "other": 0
+      },
+      "issueBreakdown": {
+        "no_ending_punct": 35,
+        "empty_answers": 31,
+        "short_question": 14
+      },
+      "problematicQuestions": [
+        {
+          "questionId": "klub_q39",
+          "question": "Který z uvedených dějů je nejvýznamnější pro tvoření srážek",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q42",
+          "question": "Proudění jakého směru převládá nad střední Evropou během celého roku",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q41",
+          "question": "Ve stratosféře převládá proudění vzduchu",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q97",
+          "question": "Ve stratosféře převládá proudění vzduchu",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q165",
+          "question": "Inverzí rozumíme",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q91",
+          "question": "Hmotnost zemské atmosféry s výškou",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q37",
+          "question": "Turbulentní proudění je charakteristické pro",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q40",
+          "question": "Dráhovou dohledností (RVR) nazýváme",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q233",
+          "question": "Změna teploty s výškou - vertikální teplotní gradient ve vrstvě isotermie má hodnotu",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q167",
+          "question": "Inverzní situace jsou charakteristické pro",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q100",
+          "question": "Jaká je průměrná výška standardní isobarické hladiny 850 HPa",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q33",
+          "question": "Zdrojem atmosférické vlhkosti je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q168",
+          "question": "Prostorové rozložení standardní isobarické hladiny získáme rozborem (analýzou) této hladiny pomocí č",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q36",
+          "question": "Jev nazývaný turbulence je definován jako",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q166",
+          "question": "Mezi vysoká oblaka patří",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q43",
+          "question": "Jaká změna teploty ve vertikálním směru je charakteristická pro advekční mlhy",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q38",
+          "question": "Zvrstvení vzduchu ve vrstvě inverze je",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q96",
+          "question": "Dráhovou dohledností (RVR) nazýváme",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q34",
+          "question": "Intenzitou námrazy rozumíme",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject3_q39",
+          "question": "Fén obvykle vzniká při:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject3_q71",
+          "question": "Symbol označený 2 na obrázku je: Viz obr (MET-005)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject3_q114",
+          "question": "Co ukazuje oblasti srážek?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q98",
+          "question": "Proudění jakého směru převládá nad střední Evropou během celého roku",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q234",
+          "question": "Oblačnost středních výšek tvoří",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q232",
+          "question": "V oblasti tlakové níže vane vítr při zemi",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject3_q4",
+          "question": "Jaké je složení vzduchu?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject3_q25",
+          "question": "Jaká je skutečná nadmořská výška zaokrouhlená na nejbližších 50 ft, je-li dáno: QNH: 983 hPa, FL 85,",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q95",
+          "question": "Který z uvedených dějů je nejvýznamnější pro tvoření srážek",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q94",
+          "question": "Zvrstvení vzduchu ve vrstvě inverze je",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q90",
+          "question": "Intenzitou námrazy rozumíme",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q92",
+          "question": "Jev nazývaný turbulence je definován jako",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject3_q27",
+          "question": "Jaká síla způsobuje vítr?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject3_q70",
+          "question": "Symbol označený 1 na obrázku je: Viz obr (MET-005)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q35",
+          "question": "Hmotnost zemské atmosféry s výškou",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q99",
+          "question": "Jaká změna teploty ve vertikálním směru je charakteristická pro advekční mlhy",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q44",
+          "question": "Jaká je průměrná výška standardní isobarické hladiny 850 HPa",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject3_q122",
+          "question": "Inverze je vrstva:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q89",
+          "question": "Zdrojem atmosférické vlhkosti je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q93",
+          "question": "Turbulentní proudění je charakteristické pro",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject3_q72",
+          "question": "Symbol označený 3 na obrázku je: Viz obr (MET-005)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        }
+      ]
+    },
+    {
+      "subjectId": 4,
+      "subjectName": "Communications",
+      "totalQuestions": 265,
+      "problemsFound": 14,
+      "sources": {
+        "ai": 180,
+        "user": 85,
+        "klub": 0,
+        "other": 0
+      },
+      "issueBreakdown": {
+        "short_question": 14
+      },
+      "problematicQuestions": [
+        {
+          "questionId": "subject4_q15",
+          "question": "Co znamená zkratka QTE?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject4_q7",
+          "question": "Co znamená zkratka FIR?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject4_q51",
+          "question": "Co znamená srozumitelnost 2?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject4_q8",
+          "question": "Co znamená zkratka H24?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject4_q31",
+          "question": "Časy se vysílají jako:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject4_q13",
+          "question": "Co znamená zkratka QDR?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject4_q53",
+          "question": "Co znamená srozumitelnost 5?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject4_q52",
+          "question": "Co znamená srozumitelnost 3?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject4_q9",
+          "question": "Co znamená zkratka HX?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject4_q50",
+          "question": "Co znamená srozumitelnost 1?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject4_q21",
+          "question": "Tísňové zprávy jsou zprávy:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject4_q14",
+          "question": "Co znamená zkratka QUJ?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject4_q6",
+          "question": "Co znamená zkratka FIS?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject4_q22",
+          "question": "Pilnostní zprávy jsou zprávy:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        }
+      ]
+    },
+    {
+      "subjectId": 5,
+      "subjectName": "Principles of Flight",
+      "totalQuestions": 328,
+      "problemsFound": 49,
+      "sources": {
+        "ai": 205,
+        "user": 100,
+        "klub": 23,
+        "other": 0
+      },
+      "issueBreakdown": {
+        "no_ending_punct": 31,
+        "empty_answers": 23,
+        "short_question": 17,
+        "correct_mismatch": 4
+      },
+      "problematicQuestions": [
+        {
+          "questionId": "klub_q149",
+          "question": "Při překročení kritického úhlu náběhu dochází k odtržení proudu nejdříve",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "ai_050.01.34.01_8o5nj",
+          "question": "Vyřazena",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "correct_mismatch"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "klub_q224",
+          "question": "Vzduch proudí ustáleně trubicí kruhového proměnného průřezu nakreslenou  na  obrázku. V části II je ",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject5_q16",
+          "question": "Jaký bod na profilu je značen číslem (4)? Viz obr. (PFA-009)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject5_q94",
+          "question": "Jaký režim letu označuje bod (5) na obrázku? Viz obr. (PFA-008)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject5_q8",
+          "question": "Vyřazena",
+          "issues": [
+            "short_question",
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "ai_050.01.31.01_8ufj6",
+          "question": "Vyřazena",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "correct_mismatch"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "klub_q200",
+          "question": "(Osa zemská je myšlená přímka středem země kolmá na rovník. Místa, kde protíná povrch země, se nazýv",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q148",
+          "question": "Jak souvisí hodnota náklonu v zatáčce (ustálená správná zatáčka. s velikostí násobku?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q156",
+          "question": "Když je těžiště kluzáku posunuto směrem dozadu za krajní zadní centráž, potom",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "ai_050.01.23.01_3gn6l",
+          "question": "Co je to mikroklima?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "subject5_q47",
+          "question": "Při přetažení:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject5_q82",
+          "question": "Aerodynamické vyvážení směrovky:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "ai_050.01.01.01_8nenv",
+          "question": "Vyřazena",
+          "issues": [
+            "short_question",
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "subject5_q48",
+          "question": "Kritický úhel náběhu:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "ai_050.01.28.01_8erhu",
+          "question": "Vyřazena",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "correct_mismatch"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "subject5_q77",
+          "question": "Výchylka směrovky vlevo způsobí:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "ai_050.01.17.02_8jv2j",
+          "question": "Vyřazena",
+          "issues": [
+            "short_question",
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "ai_050.01.04.01_8quf9",
+          "question": "Vyřazena",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "correct_mismatch"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "klub_q186",
+          "question": "Vzduch\n proudí ustáleně trubicí kruhového proměnného průřezu nakreslenou na \nobrázku. ZL001 V části ",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q152",
+          "question": "Velikost násobku při průletu poryvem se zvětšuje, když kluzák",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q199",
+          "question": "Do jaké výšky lze počítat s \"přízemní efektem\" v blízkosti země?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject5_q15",
+          "question": "Jaký bod na profilu je znázorněn číslem (3)? Viz obr. (PFA-009)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q222",
+          "question": "Při klouzavém letu je úhel náběhu",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q223",
+          "question": "Jestliže letadlo letí ve výšce, ve které je tlak vzduchu roven tlaku podle MSA pro  tuto výšku, ale ",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject5_q70",
+          "question": "Kritický úhel náběhu:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q150",
+          "question": "Součinitel vztlaku profilu je nejvíce ovlivněn",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q187",
+          "question": "Dynamický tlak je závislý na rychlosti letu. Zvětší-li se rychlost letu dvakrát, pak dynamický tlak ",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject5_q93",
+          "question": "Jaký režim letu označuje bod (1) na obrázku? Viz obr. (PFA-008)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q189",
+          "question": "Odtržení proudu na profilu má za následek",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q154",
+          "question": "Čím je způsobeno značné snížení indukovaného odporu za letu a jaké jsou jeho¨projevy?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject5_q11",
+          "question": "Číslo (2) na obrázku představuje: Viz obr. (PFA-010)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject5_q90",
+          "question": "Zkroucení vrtulových listů zajišťuje:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q155",
+          "question": "Jaké geometrické charakteristiky profilu jsou označeny na obrázku?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q159",
+          "question": "Podle Mezinárodní standardní atmosféry (MSA. hustota vzduchu s rostoucí výškou",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "ai_050.01.10.02_asvum",
+          "question": "Co popisuje tlakový gradient?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "klub_q158",
+          "question": "Zkratka “IAS” uváděná např. v letové příručce znamená",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q151",
+          "question": "Do jaké výšky lze počítat s “přízemní efektem” v blízkosti země?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q221",
+          "question": "Do jaké výšky lze počítat s \"přízemním efektem\" v blízkosti země?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject5_q18",
+          "question": "Jaký bod na profilu představuje číslo (1) na obrázku? Viz obr. (PFA-009)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject5_q26",
+          "question": "Co znázorňuje úhel na obrázku? Viz obr. (PFA-003) DoF: směr nabíhajícího proudu",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q195",
+          "question": "Je-li za letu centráž běžného sportovního letounu v povolených mezích, ale blízko maximální zadní ho",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject5_q46",
+          "question": "Při přetažení je důležité:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q157",
+          "question": "Záporný součinitel vztlaku (a tím i vztlak kluzáku) může být pouze jen",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject5_q31",
+          "question": "Součinitel odporu:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject5_q36",
+          "question": "Která křivka na obrázku představuje indukovaný odpor? Viz obr. (PFA-011)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject5_q12",
+          "question": "Číslo (3) na obrázku představuje: Viz obr. (PFA-010)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q153",
+          "question": "Na obrázku je nakreslena pitot-statická sonda. Jaký tlak je odebírán snímačem 1 a jaký snímačem 2? O",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q188",
+          "question": "Ve kterých letových režimech je velký součinitel indukovaného odporu?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        }
+      ]
+    },
+    {
+      "subjectId": 6,
+      "subjectName": "Operational Procedures",
+      "totalQuestions": 261,
+      "problemsFound": 32,
+      "sources": {
+        "ai": 178,
+        "user": 60,
+        "klub": 23,
+        "other": 0
+      },
+      "issueBreakdown": {
+        "short_question": 7,
+        "no_ending_punct": 10,
+        "empty_answers": 23
+      },
+      "problematicQuestions": [
+        {
+          "questionId": "klub_q119",
+          "question": "Pilot kluzáků /motorových kluzáků/",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject6_q28",
+          "question": "Co má pilot provést, když nastal střih větru? 1. snížit rychlost letu 2. zasunout podvozek a klapky ",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q114",
+          "question": "Odpovědnost za údržbu letadla má:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject6_q25",
+          "question": "Jaký jev lze očekávat v bodu 2 mikroburstu? Viz příloha (OPR-001)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q124",
+          "question": "Za záznamy o provedených letech a závadách zjištěných za letu letadla provozovaného při soukromých l",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q117",
+          "question": "Průkaz pilota kluzáků SPL Part-SFCL vydává ÚCL s platností :",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q203",
+          "question": "Kolem příčné osy se letoun řídí",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q115",
+          "question": "Je-li letadlo vybaveno odpovídačem :",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q116",
+          "question": "Let VFR nad oblačností může být proveden není-li celkové pokrytí oblačnosti pod letadlem",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q206",
+          "question": "V přibližně jaké výšce je atmosférický tlak poloviční než při střední hladině moře (1013 hPa)?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q209",
+          "question": "Kolik procent kyslíku je v atmosféře v 6000 ft?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q207",
+          "question": "Jaký je správný výraz pro nedobrovolnou reakci organizmu na podráždění receptoru?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q173",
+          "question": "eškerý provoz na provozní ploše letiště a všechna letadla letící v blízkosti letiště nazýváme :",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q204",
+          "question": "p = vlaječkou",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject6_q26",
+          "question": "Jaký jev lze očekávat v bodu 3 mikroburstu? Viz příloha (OPR-001)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q121",
+          "question": "Aby piloti měli přiměřené znalosti předpisů, zákonů a postupů vztahujících se k výkonu jejich funkcí",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q120",
+          "question": "Má-li být kvalifikace SPL nebo TMG využívána pro lety s dalšími osobami na palubě musí mít pilot",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject6_q46",
+          "question": "Bezpečnostní přistání je:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q175",
+          "question": "Jaké je správné umístění polohových světel na letounu?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject6_q3",
+          "question": "Který z následujících jevů má vliv na hluk vnímaný osobou na zemi? 1) nastavení výkonu motoru 2) otá",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q208",
+          "question": "Co může vést k chybám lidského faktoru?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "ai_060.01.15.02_05tci",
+          "question": "ICAO Annex 2 stanoví:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "klub_q202",
+          "question": "Provozně technické doklady letadel se vyplňují",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q122",
+          "question": "Údobí\n nouze zahrnuje situaci, kdy je nejistota o bezpečnosti letadla, dále \nsituaci, kdy je důvodná",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject6_q44",
+          "question": "Nouzové přistání je:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "ai_060.01.02.03_1w7rw",
+          "question": "Co je magnetická deviace?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "klub_q113",
+          "question": "Pokud pilot závažným způsobem poruší v ČR letecké předpisy:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q174",
+          "question": "Tísňová frekvence pro letadlové radiostanice VKV je:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q123",
+          "question": "Hladina dodržovaná letadlem během značné části letu se nazývá :",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q118",
+          "question": "Provozním předpisem platným v současné době v ČR pro soukromé lety letadel je:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q205",
+          "question": "Zrychlení během rovného horizontálního letu může vést k pocitu?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject6_q17",
+          "question": "Střih větru je:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        }
+      ]
+    },
+    {
+      "subjectId": 7,
+      "subjectName": "Flight Performance",
+      "totalQuestions": 241,
+      "problemsFound": 74,
+      "sources": {
+        "ai": 108,
+        "user": 100,
+        "klub": 33,
+        "other": 0
+      },
+      "issueBreakdown": {
+        "empty_answers": 33,
+        "no_ending_punct": 36,
+        "short_question": 17
+      },
+      "problematicQuestions": [
+        {
+          "questionId": "klub_q7",
+          "question": "Omezení polohy těžiště letadla důležitá pro letové výkony a vlastnosti letadla se týkají:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q72",
+          "question": "Jaká je uletěná vzdálenost pro nastoupání do letové hladiny (FL) 75 po odletu z letiště s tlakovou v",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q63",
+          "question": "Je dáno: Teplota vnějšího vzduchu: -2 °C tlaková výška: 8000 ft výkon: 75 %. Jaká je pravá vzdušná r",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q164",
+          "question": "Jaké jsou fáze vzletu?",
+          "issues": [
+            "short_question",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q0",
+          "question": "°C? Viz obr. (PFP-011)",
+          "issues": [
+            "short_question",
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q65",
+          "question": "Jaká je maximální stoupavost letadla v tlakové výšce 6500 ft při teplotě vnějšíh",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q12",
+          "question": "Zvýšení hmotnosti letadla má za následek:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q1",
+          "question": "Co je hustotní výška?",
+          "issues": [
+            "short_question",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q61",
+          "question": "Střední aerodynamická tětiva:",
+          "issues": [
+            "short_question",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q5",
+          "question": "Střední aerodynamická tětiva:",
+          "issues": [
+            "short_question",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q60",
+          "question": "Jaká je správná rychlost při nadzdvihnutí letadla při vzletu?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q59",
+          "question": "Je dáno: Teplota vnějšího vzduchu: -20°C tlaková výška 10.000 ft. Jaká je rychlost stoupání? Viz obr",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q81",
+          "question": "Podle letecké mapy má letiště Friesach/Hirt (LOKH) travnatou vzletovou a přistávací dráhu dlouhou 70",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q32",
+          "question": "Při předletové přípravě pilot vypočítal vzletovou hmotnost 750 kg a celkový moment 625 mmkg. Jaká je",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q26",
+          "question": "Poloha těžiště je: Viz obr. (PFP-052e)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q161",
+          "question": "Hmotnost letadla musí být vždy uvedena v:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q69",
+          "question": "Jakou rychlostí je třeba stoupat do letové hladiny (FL) 75 po odletu z letiště s tlakovou výškou 300",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q197",
+          "question": "Kluzák o hmotnosti 500 kg letí klouzavým letem ustálenou rychlostí 110 km/h na úhlunáběhu 7 stupňů. ",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q62",
+          "question": "Co by se stalo, kdyby pilot zapomněl na vzlet vztlakové klapky v poloze pro přistání?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q67",
+          "question": "Co je tlaková výška?",
+          "issues": [
+            "short_question",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "ai_070.05.04.01_gys6v",
+          "question": "Po přistání musí pilot:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "klub_q59",
+          "question": "V těžišti letadla působí:",
+          "issues": [
+            "short_question",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q62",
+          "question": "Je dáno: Teplota vnějšího vzduchu: 10 °C tlaková výška: 6000 ft výkon: 65 %. Jaká je pravá vzdušná r",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q67",
+          "question": "Jaká je pravá vzdušná rychlost (TAS) (kt) a spotřeba paliva při letu se 70 % výkonu v letové hladině",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q60",
+          "question": "Jaký je dolet za následujících podmínek? Teplota vnějšího vzduchu: 6 °C tlaková ",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q33",
+          "question": "Při předletové přípravě pilot vypočítal vzletovou hmotnost 725 kg a celkový moment 650 mmkg. Jaká je",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q36",
+          "question": "Jak konfigurace letadla ovlivní jeho výkonnost při vzletu, jsou-li ostatní parametry stejné? Viz obr",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q85",
+          "question": "Rychlost uvedená v letovém plánu je: Viz obr. (PFP-051)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q2",
+          "question": "Zvýšení hmotnosti  letadla má za následek:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q78",
+          "question": "Horní hranice LO R 4 je: Viz obr. (PFP-030)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q58",
+          "question": "Zvýšení hmotnosti  letadla má za následek:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q11",
+          "question": "Co je tlaková výška?",
+          "issues": [
+            "short_question",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q16",
+          "question": "Těžiště je definováno jako:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q42",
+          "question": "Rychlost vX znamená:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q56",
+          "question": "Jaká je délka vzletu při vzletové hmotnosti 705 kg, OAT 20 °C, QNH 1013 hPa a nadmořské výšce letišt",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q66",
+          "question": "Centráž letadla se obvykle udává:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q53",
+          "question": "Je dáno: Teplota vnějšího vzduchu: -20 °C tlaková výška: 5000 ft hmotnost letounu: 750 kg čelní slož",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q163",
+          "question": "Statický moment je součin:",
+          "issues": [
+            "short_question",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q68",
+          "question": "Jaká je spotřeba paliva a pravá vzdušná rychlost při letu se 60 % výkonu v letové hladině 85 a při t",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q160",
+          "question": "Kdyby za letu letounu byla poloha těžiště za zadní povolenou mezí, bylo by nebezpečí, že:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q49",
+          "question": "Jakou rychlost znamená konec zeleného oblouku (4) na rychloměru? Viz obr. (PFP-008)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q4",
+          "question": "Těžiště se musí nacházet:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q65",
+          "question": "Je-\nli za letu centráž běžného sportovního letounu v povolených mezích, ale \nblízko maximální zadní ",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q57",
+          "question": "Co je hustotní výška?",
+          "issues": [
+            "short_question",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q48",
+          "question": "Jakou rychlost znamená začátek zeleného oblouku (2) na rychloměru? Viz obr. (PFP-008)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q198",
+          "question": "Noc je v ČR definována takto:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q68",
+          "question": "Zvýšení hmotnosti letadla má za následek:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q55",
+          "question": "Jaká je délka vzletu při vzletové hmotnosti: 750 kg, podmínkách standardní atmosféry (ISA) nadmořské",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q196",
+          "question": "Omezení maximální hmotnosti letadla jsou uvedena:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q40",
+          "question": "Co zkracuje délku přistání? ",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q63",
+          "question": "Omezení polohy těžiště letadla důležitá pro letové výkony a vlastnosti letadla se týkají:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q82",
+          "question": "Do jaké výšky jsou zakázány přelety podle uvedené zprávy NOTAM? Viz obr. (PFP-024)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q50",
+          "question": "Jakou rychlost znamená červená značka na konci žlutého oblouku (5) na rychloměru? Viz obr. (PFP-008)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q97",
+          "question": "Pro let je dáno: Traťové palivo = 70 US galonů, palivo pro mimořádné okolnosti =",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q64",
+          "question": "Odpovědnost za to, že při zahájení letu nebude překročena maximální povolená hmotnost letadla, má:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q70",
+          "question": "Jaká je spotřeba paliva pro nastoupání z FL 65 do FL 95 za následujících podmínek? Hmotnost letadla:",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q225",
+          "question": "Proč se při stanovování výkonů letadel při vzletu zavádí pojem hustotní výška?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q10",
+          "question": "Centráž letadla se obvykle udává:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q162",
+          "question": "Použitelná délka vzletu se označuje zkratkou:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q9",
+          "question": "Je-\nli za letu centráž běžného sportovního letounu v povolených mezích, ale \nblízko maximální zadní ",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q61",
+          "question": "Jaký je dolet za následujících podmínek? Teplota vnějšího vzduchu: 22 °C tlaková výška: 2000 ft výko",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q84",
+          "question": "Podle plánu letu o jaký druh letu se jedná? Viz obr. (PFP-051a)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q4",
+          "question": "Jaká je správná rychlost při nadzdvihnutí letadla při vzletu?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q64",
+          "question": "Jakou maximální stoupavost může dosáhnout letadlo v 9000 ft tlakové výšky při teplotě vnějšího vzduc",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q17",
+          "question": "Za letu bez zrychlení:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q6",
+          "question": "Co by se stalo, kdyby pilot zapomněl na vzlet vztlakové klapky v poloze pro přistání?",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q3",
+          "question": "V těžišti letadla působí:",
+          "issues": [
+            "short_question",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject7_q71",
+          "question": "Jaká je uletěná vzdálenost pro nastoupání z FL 65 do FL 95 za následujících podmínek: Hmotnost letad",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q58",
+          "question": "Je dáno: Tlaková výška 2000 ft, teplota 31 °C, otáčky 2400, Jaká je spotřeba paliva (FF)? Viz obr. (",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q34",
+          "question": "Při předletové přípravě pilot vypočítal vzletovou hmotnost 775 kg a celkový moment 700 mmkg. Jaká je",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q7",
+          "question": "Důsledkem přední polohy těžiště je: 1. zvýšená stabilita 2. zvýšená spotřeba paliva 3. vyšší pádová ",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q77",
+          "question": "Horní hranice LO R 16 je: Viz obr. (PFP-056)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject7_q31",
+          "question": "Poloha těžiště (včetně paliva) je: Viz obr. (PFP-053e)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q8",
+          "question": "Odpovědnost za to, že při zahájení letu nebude překročena maximální povolená hmotnost letadla, má:",
+          "issues": [
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        }
+      ]
+    },
+    {
+      "subjectId": 8,
+      "subjectName": "Aircraft General Knowledge",
+      "totalQuestions": 266,
+      "problemsFound": 46,
+      "sources": {
+        "ai": 120,
+        "user": 127,
+        "klub": 19,
+        "other": 0
+      },
+      "issueBreakdown": {
+        "short_question": 27,
+        "no_ending_punct": 28,
+        "empty_answers": 19
+      },
+      "problematicQuestions": [
+        {
+          "questionId": "subject8_q63",
+          "question": "Zážehové letecké motory mají:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject8_q82",
+          "question": "Skutečná výška je:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject8_q122",
+          "question": "Variometr měří rozdíl mezi:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject8_q36",
+          "question": "Trim se používá:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject8_q74",
+          "question": "Pitot - statický systém:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject8_q39",
+          "question": "Nastřikovací čerpadlo je:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject8_q126",
+          "question": "Co je účelem vingletů?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q142",
+          "question": "Hlavní charakteristiky nosných ploch letadla jsou",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject8_q6",
+          "question": "Jaký tvar ocasních ploch je znázorněn v příloze? Viz obr. (AGK-003)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject8_q18",
+          "question": "Číslo 2 na podvozku označuje: Viz obr. (AGK-005)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject8_q123",
+          "question": "Pojem inklinace znamená:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q145",
+          "question": "Pojem „letadlo“ je definován následovně",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q139",
+          "question": "Konstrukční prvky nosné soustavy jsou",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q185",
+          "question": "Pro konstrukci jednotlivých částí letadel a jejich systémů se v obecném souhrnu používají tyto druhy",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q182",
+          "question": "Skořepinová konstrukce trupu je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "ai_080.06.02.02_w0klo",
+          "question": "Co je spirální nestabilita?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "subject8_q41",
+          "question": "Elektrickou energii do sítě letounu dodává: 1. baterie 2. generátor 3. relé 4. jistič",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "ai_080.06.01.02_yht2j",
+          "question": "K čemu slouží klapky?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "subject8_q65",
+          "question": "Úhel zobrazený šipkou č. 1 znázorňuje: Viz obr. (AGK-011) D: směr nabíhajícího proudu vzduchu C: tět",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject8_q4",
+          "question": "Jaká konfigurace křídla je zobrazena v příloze? Viz obr. (AGK-002)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject8_q124",
+          "question": "Co ukazuje relativní sklonoměr?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q141",
+          "question": "Kormidla příčného řízení slouží k zajištění změny úhlu příčného sklonu letadla kolem",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q147",
+          "question": "Nosná soustava letadla je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q143",
+          "question": "Podle umístění nosných ploch rozdělujeme letadla na",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject8_q22",
+          "question": "Co se kontroluje značkou v příloze? Viz obr. (AGK-006)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q136",
+          "question": "V letecké výrobě kluzáků a malých letadel se používají tyto druhy dřev(zušlechtěných)",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "ai_080.06.02.01_gtzbq",
+          "question": "Co je adverse yaw?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "subject8_q116",
+          "question": "Co znamená zkratka HSI?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q140",
+          "question": "Přetlaková část trupu je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject8_q50",
+          "question": "Jaká část pracovního cyklu čtyřdobého zážehového motoru je znázorněna v příloze? Viz obr. (AGK-008)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject8_q16",
+          "question": "Číslo 1 na podvozku označuje: Viz obr. (AGK-005)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject8_q77",
+          "question": "QNE je:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject8_q76",
+          "question": "QFE je:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject8_q49",
+          "question": "Jaká část pracovního cyklu čtyřdobého zážehového motoru je znázorněna v příloze? Viz obr. (AGK-007)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q144",
+          "question": "Samonosné křídlo je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q184",
+          "question": "Nejperspektivnějším typem materiálů pro letecké konstrukce na přelomu 20. a 21. století jsou materiá",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q181",
+          "question": "Hlavní podvozek letadla je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q183",
+          "question": "Násobek zatížení je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q201",
+          "question": "Podle principu letu se rozdělují letadla na",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q137",
+          "question": "Typ letadla je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q146",
+          "question": "Dvounosníková konstrukce křídla je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "ai_080.06.02.03_zobst",
+          "question": "Co je Dutch roll?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "subject8_q42",
+          "question": "Co je jednotka napětí?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q239",
+          "question": "Při předepsaném maximálním provozním zatížení (stanoveno v leteckých předpisech)",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject8_q81",
+          "question": "Letová hladina je:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q138",
+          "question": "„Sekundární“ konstrukce letadla zahrnuje",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        }
+      ]
+    },
+    {
+      "subjectId": 9,
+      "subjectName": "Navigation",
+      "totalQuestions": 393,
+      "problemsFound": 194,
+      "sources": {
+        "ai": 88,
+        "user": 135,
+        "klub": 170,
+        "other": 0
+      },
+      "issueBreakdown": {
+        "no_ending_punct": 178,
+        "few_answers": 133,
+        "short_question": 58,
+        "correct_mismatch": 1,
+        "empty_answers": 35
+      },
+      "problematicQuestions": [
+        {
+          "questionId": "medlanky_nav_129",
+          "question": "Řešíte úlohu: TR = 120 km/h, T = 220 km",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_62",
+          "question": "Kritický bod je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 2,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_109",
+          "question": "12 cm na mapě 1 : 250 000 odpovídá ve skutečnosti",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q84",
+          "question": "Jakou hodnotou je třeba doplnit plán letu (označená pole)? Viz obr. (NAV-014)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "medlanky_nav_46",
+          "question": "Trať letěná (Tl) je trať",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_110",
+          "question": "9cm na mapě 1 : 500 000 odpovídá ve skutečnosti",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_133",
+          "question": "Osa\n zemská je myšlená přímka středem země kolmá na rovník. Místa, kde \nprotíná povrch země, se nazý",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_26",
+          "question": "Zápis d = +2 znamená, že kompasový sever je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_99",
+          "question": "Letecká mapa ICAO 1 : 500 000 je věrohodná",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_31",
+          "question": "Průměrná deklinace je nyní v ČR",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q85",
+          "question": "Z jaké radionavigační pomůcky lze přijímat signál anténou v příloze? Viz příloha (NAV-017)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "medlanky_nav_14",
+          "question": "Pro označení směru používáme zásadně skupinu čísel",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_130",
+          "question": "Řešíte úlohu: TR = 180 km/h, T= 120 km",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_38",
+          "question": "Srovnávací orientace spočívá v",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 2,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_86",
+          "question": "Časový rozdíl mezi středovými poledníky časových pásem a okrajovými poledníky časových pásem je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_25",
+          "question": "Deviace je způsobena",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_76",
+          "question": "Občanské svítání a občanský soumrak začíná, když je slunce pod horizontem",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_102",
+          "question": "Pravé projekce map",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_107",
+          "question": "Terénní útvary jako jsou lesy, louky, jezera, hrady, silnice, železnice atd, nazýváme",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_6",
+          "question": "Nultý poledník je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_27",
+          "question": "Zápis d = -3 znamená, že kompasový sever je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_48",
+          "question": "Úhloměrem měříme trať",
+          "issues": [
+            "short_question",
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q122",
+          "question": "Letadlo je na radiálu: Viz příloha (NAV-024)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "medlanky_nav_98",
+          "question": "Vrstevnice (izohypsy) jsou uzavřené prostorové křivky spojující místa o stejné",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_35",
+          "question": "Pokud je Kz = 285o, D = 4oW, d = -8o, pak je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_116",
+          "question": "Kurs 175o je zhruba směrem na",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "ai_090.01.02.02_75sp8",
+          "question": "Je dáno: Zeměpisná trať: 270°. Pravá vzdušná rychlost: 100 kt. vítr: 090°/25 kt. vzdálenost: (Příkla",
+          "issues": [
+            "no_ending_punct",
+            "correct_mismatch"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "medlanky_nav_3",
+          "question": "Malá kružnice je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_94",
+          "question": "Čas 2 hodiny 2 minuty můžete vyjádřit zeměpisnou délkou",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_17",
+          "question": "Sever magnetický je směr, který",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_22",
+          "question": "Zápis D = -4 znamená",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_77",
+          "question": "Zeměkoule je rozdělena na",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q172",
+          "question": "Zápis d = -3 znamená, že kompasový sever je",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q104",
+          "question": "Malá kružnice je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_71",
+          "question": "Magnetický kompas ukazuje přesně kurs, pokud letíte",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_80",
+          "question": "Středovými poledníky časových pásem na východ a na západ od nultého poledníku jsou",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_41",
+          "question": "V civilním letectví pracujeme s následujícími rychlostmi",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_63",
+          "question": "Provádíte-li zatáčku na sever podle magnetického kompasu, zatáčku",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_30",
+          "question": "Magnetické poledníky jsou",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_43",
+          "question": "Traťová rychlost (TR) je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q53",
+          "question": "Deviace je způsobena",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_16",
+          "question": "Zeměkoule je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 2,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_131",
+          "question": "Řešíte úlohu: TR = 90 km/h, T= 210 km",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q80",
+          "question": "Co znamená pravidlo 1:60?",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "medlanky_nav_75",
+          "question": "Doba východu a západu slunce se mění",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q45",
+          "question": "Pokud je Kz = 225o, D = +3o, d = +3o, pak je",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_64",
+          "question": "Provádíte-li zatáčku na jih podle magnetického kompasu, zatáčku",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q38",
+          "question": "1000 ft rovná se:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "medlanky_nav_52",
+          "question": "Pro správné stanovení smyslu úhlu snosu platí, že",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_91",
+          "question": "Podle tabulky jste zjistil, že východ slunce na 15oE bude v 06o 24´. Chcete-li zahájit let s východe",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q52",
+          "question": "Zápis D = +2 znamená",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_66",
+          "question": "Provádíte-li zatáčku na východ podle magnetického kompasu, zatáčku",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q218",
+          "question": "Smysl kroužení více kluzáků ve stoupavém proudu",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_92",
+          "question": "Podle tabulky jste zjistil, že západ slunce na 15oE bude v 19o 35´. Letíte na letiště ležící na 07o ",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_78",
+          "question": "Středovým poledníkem nultého pásma je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q54",
+          "question": "Izogona je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q49",
+          "question": "Zeměpisné souřadnice nám udávají",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_24",
+          "question": "Agona je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q6",
+          "question": "Obvod Země na rovníku je přibližně: (viz obrázek NAV-002)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "medlanky_nav_19",
+          "question": "Deklinace je největší",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_101",
+          "question": "Skutečný, zcela holý, povrch země se soušemi, nerovnostmi a hladinami moří se nazývá",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_97",
+          "question": "Měřítko mapy se obvykle uvádí v číselné i grafické formě, někdy i slovně",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 2,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_49",
+          "question": "Pro směr a sílu větru používáme zkratku V/v",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 2,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_2",
+          "question": "Poloha zeměpisného a magnetické pólu je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_117",
+          "question": "Kurs 320o je zhruba směrem na",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_122",
+          "question": "Čas se udává",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q170",
+          "question": "Osa\n zemská je myšlená přímka středem země kolmá na rovník. Místa, kde \nprotíná povrch země, se nazý",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_113",
+          "question": "Směr západ odpovídá kursu",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q103",
+          "question": "045 stupňů je vedlejší světová strana",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q194",
+          "question": "Letecká mapa ICAO 1 : 500 000 se používá pro navigační lety, protože je věrohodná",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_18",
+          "question": "Deklinace je úhel mezi severem",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q235",
+          "question": "Řešíte úlohu: Km = 312°, PVR = 100 km/h, V/v = 135°/5 m/sec",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_47",
+          "question": "Úhel mezi severem zeměpisným a plánovanou tratí, měřený od severu zeměpisného je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q121",
+          "question": "Kde se nachází letadlo vzhledem ke stanici VOR? Viz příloha (NAV-022)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "medlanky_nav_108",
+          "question": "10 cm na mapě 1 : 200 000 odpovídá ve skutečnosti",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_118",
+          "question": "V ČR podle AIP GEN 1-2-1 se používají jednotky pro vzdálenosti",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_96",
+          "question": "V civilním letectví se používají mapy se zobrazením",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q56",
+          "question": "Deklinace je největší",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_79",
+          "question": "Okrajovými poledníky časových pásem jsou",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_1",
+          "question": "Osa zemská je myšlená přímka středem země kolmá na rovník. M9sta, kde protíná povrch země, se nazýva",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q1",
+          "question": "Osa rotace Země prochází:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject9_q106",
+          "question": "Dosah VDF závisí na:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "medlanky_nav_123",
+          "question": "Řešíte úlohu: Vp = 100 km/h, výška letu 1600 m, t = +15° C",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q103",
+          "question": "Kód QTE znamená:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q106",
+          "question": "225 stupňů je vedlejší světová strana",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_88",
+          "question": "Překonáme-li datumovou čáru směrem na západ",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 2,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q102",
+          "question": "Deklinace je úhel mezi severem",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "ai_090.07.01.02_7m63g",
+          "question": "VOLMET vysílání obsahuje:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "medlanky_nav_59",
+          "question": "Při provádění srovnávací orientace je vždy spolehlivější",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_33",
+          "question": "Pokud je Kz = 050o, D = 2oE, d = +5o, pak je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_11",
+          "question": "Pro přesnější označení směru užíváme",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q65",
+          "question": "Jaká je vzdálenost z Neustadt (EDAN) (53°22'N, 011°37'E) do Uelzen (EDVU) (52°59′N, 10°28′E)? Viz př",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "medlanky_nav_23",
+          "question": "Izogona je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q47",
+          "question": "045 stupňů je vedlejší světová strana",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q19",
+          "question": "UTC je:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "klub_q101",
+          "question": "Pokud je Kz = 225o, D = +3o, d = +3o, pak je",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_29",
+          "question": "Je-li sever magnetický západně od severu zeměpisného, deklinace je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_13",
+          "question": "Směr měříme",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_56",
+          "question": "Při provádění srovnávací orientace během letu orientujete mapu",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_132",
+          "question": "Dříve než v Praze vychází slunce",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_9",
+          "question": "225 stupňů je vedlejší světová strana",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q89",
+          "question": "Kvazi-optické vlny se šíří:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "medlanky_nav_106",
+          "question": "Vrstevnice jsou křivky spojující místa o stejné",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q110",
+          "question": "Pilot chce letět přímo k majáku. Je bezvětří. Měl by držet QDM: Viz. Obr. (NAV-019)",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "medlanky_nav_85",
+          "question": "Zkratka UTC používaná v civilním letectví pro čas je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_72",
+          "question": "Letíte po trati kursem magnetickým 075o, US = L 10o. Pokud se musíte vrátit, otočíte na",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_121",
+          "question": "Horizontální rychlost se udává",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_120",
+          "question": "Údaje pro nastavení výškoměru se udávají",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_61",
+          "question": "Hlavními navigačními přístroji jsou",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q39",
+          "question": "5500 m rovná se:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "medlanky_nav_50",
+          "question": "Úhel snosu je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_54",
+          "question": "Úhel snosu se značí",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 2,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_82",
+          "question": "Změn polohy slunce na obloze za jednu hodinu je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_135",
+          "question": "Vztažný bod letiště :",
+          "issues": [
+            "short_question",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_12",
+          "question": "Směr měříme ve stupních",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 2,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_69",
+          "question": "Letíte-li směrem na východ a stáhnete plyn, magnetický kompas",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_44",
+          "question": "Opravená vzdušná rychlost (OVR) je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_4",
+          "question": "Velká kružnice je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_104",
+          "question": "Které z uvedených měřítek je největší",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q105",
+          "question": "Zeměpisné souřadnice nám udávají",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_83",
+          "question": "Změna polohy slunce na obloze o 15 stupňů časově představuje",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q236",
+          "question": "Sever magnetický je směr, který",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_126",
+          "question": "Řešíte úlohu: Km = 015°, PVR = 110 km/h, V/v = 050°/25 km/h",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_84",
+          "question": "1 stupeň zeměpisné délky představuje časově",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_100",
+          "question": "Letecká mapa ICAO 1 : 500 000 se používá pro navigační lety, protože je věrohodná",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_51",
+          "question": "Úhel snosu se měří",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_65",
+          "question": "Provádíte-li zatáčku na západ podle magnetického kompasu, zatáčku",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_115",
+          "question": "Kurs 045o je směrem na",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q107",
+          "question": "Poloha zeměpisného a magnetické pólu je",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_68",
+          "question": "Letíte-li směrem na západ a přidáte plyn, magnetický kompas",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_67",
+          "question": "Letíte-li směrem na východ a přidáte plyn, magnetický kompas",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_73",
+          "question": "Letíte po trati kursem magnetickým 310o, US = P 5o. Pokud se musíte vrátit, otočíte na",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_87",
+          "question": "Je čas měřený na poledníku v Greenwich současně místním  i pásmovým časem?",
+          "issues": [
+            "few_answers"
+          ],
+          "answerCount": 2,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_105",
+          "question": "Mapa 1 : 500 000 patří mezi měřítka",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_95",
+          "question": "Zobrazit zemský povrch v rovině je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 2,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q50",
+          "question": "Jaká je vzdálenost od VOR Brünkendorf (BKD) (53°02′N, 011°33′E) do Pritzwalk (EDBU) (53°11'N, 12°11'",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "medlanky_nav_32",
+          "question": "Deviační tabulka slouží",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q110",
+          "question": "Izogona je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q48",
+          "question": "Malá kružnice je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_5",
+          "question": "Zeměpisný poledník je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_70",
+          "question": "Letíte-li směrem na západ a stáhnete plyn, magnetický kompas",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_125",
+          "question": "Řešíte úlohu: Vp = 180 km/h, výška letu 1800m,  t = 0°C",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_10",
+          "question": "045 stupňů je vedlejší světová strana",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_90",
+          "question": "Rozdíl mezi UTC a zimním časem v ČR je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q111",
+          "question": "Zeměpisný poledník je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_20",
+          "question": "Deklinace je způsobena",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_89",
+          "question": "Rozdíl mezi UTC a letním časem v ČR je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_15",
+          "question": "Zeměpisný sever a jih",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q50",
+          "question": "225 stupňů je vedlejší světová strana",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_37",
+          "question": "Pokud na mapě, kde souřadnicová síť je orientována k severu magnetickému zjistíte, že Kmag = 070o, D",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_58",
+          "question": "Ke ztrátě orientace za letu může dojít především",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_103",
+          "question": "Letecké navigaci vyhovují nejlépe mapy, které",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q169",
+          "question": "Dříve než v Praze vychází slunce",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_57",
+          "question": "Během letu orientujete mapu",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_53",
+          "question": "Velikost úhlu větru na trať může být",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_93",
+          "question": "Zeměpisnou délku 45o 30´můžete vyjádřit v časových jednotkách jako",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q55",
+          "question": "Zeměpisný poledník je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_34",
+          "question": "Pokud je Kz = 225o, D = +3o, d = +3o, pak je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q51",
+          "question": "Poloha zeměpisného a magnetické pólu je",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q102",
+          "question": "Kód QDR znamená:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject9_q63",
+          "question": "Jaká je zeměpisná trať (TC) z Uelzen (EDVU) (52°59′N, 10°28′E) do Neustadt (EDAN) (53°22'N, 011°37'E",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "subject9_q47",
+          "question": "Jaký je radiál od VOR Brünkendorf (BKD) (53°02′N, 011°33′E) směrem do Pritzwalk (EDBU) (53°11'N, 12°",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "medlanky_nav_42",
+          "question": "Pravá vzdušná rychlost (PVR) je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 2,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_8",
+          "question": "Dříve než v Praze vychází slunce",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q109",
+          "question": "Deviace je způsobena",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q112",
+          "question": "Deklinace je největší",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q238",
+          "question": "Řešíte úlohu: Vp = 100 km/h, výška letu 1600 m, t = +15° C",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q219",
+          "question": "Vztažný bod letiště :",
+          "issues": [
+            "short_question",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_114",
+          "question": "Směr sever odpovídá kursu",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_134",
+          "question": "Smysl kroužení více kluzáků ve stoupavém proudu",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 2,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_36",
+          "question": "Pokud je Kz = 015o, D = -5o, d = +2o, pak je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_111",
+          "question": "6 cm na mapě 1 : 100 000 odpovídá ve skutečnosti",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q46",
+          "question": "Deklinace je úhel mezi severem",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_112",
+          "question": "Směr východ odpovídá kursu",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q49",
+          "question": "Jaká je poloha letadla při křížovém zaměření, je-li dáno následující: VOR Hamburg (HAM) (53°41′N, 01",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "medlanky_nav_7",
+          "question": "Zeměpisné souřadnice nám udávají",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_81",
+          "question": "Časová změna jednoho časového pásma je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_39",
+          "question": "Která z dále uvedených podmínek je nejdůležitější pro srovnávací navigaci?",
+          "issues": [
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_21",
+          "question": "Zápis D = +2 znamená",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "subject9_q40",
+          "question": "Která z položek na přiloženém seznamu úkonů se vztahuje ke kompasu s přímým čtením? Viz příloha (NAV",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "user"
+        },
+        {
+          "questionId": "ai_090.07.02.02_m6ns6",
+          "question": "PIREP musí obsahovat:",
+          "issues": [
+            "short_question"
+          ],
+          "answerCount": 4,
+          "source": "ai"
+        },
+        {
+          "questionId": "medlanky_nav_74",
+          "question": "Mění se čas na nultém poledníku i při přechodu na letní čas v ČR?",
+          "issues": [
+            "few_answers"
+          ],
+          "answerCount": 2,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_128",
+          "question": "Řešíte úlohu: Km = 312°, PVR = 100 km/h, V/v = 135°/5 m/sec",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q171",
+          "question": "Pro přesnější označení směru užíváme",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q108",
+          "question": "Zápis D = +2 znamená",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_40",
+          "question": "Navigace výpočtem je",
+          "issues": [
+            "short_question",
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 2,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_55",
+          "question": "Z hlediska srovnávací orientace je barevně nejkontrastnější",
+          "issues": [
+            "no_ending_punct"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "klub_q237",
+          "question": "Osa zemská je myšlená přímka středem země kolmá na rovník. Místa, kde protíná povrch země, se nazýva",
+          "issues": [
+            "no_ending_punct",
+            "empty_answers"
+          ],
+          "answerCount": 4,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_124",
+          "question": "Řešíte úlohu: Vp = 120 km/h, výška letu 2000m, t = -10°C",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_119",
+          "question": "V ČR podle AIP GEN 1-2-1 se používají jednotky udávající směr a sílu větru pro vzlet a přistání",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_45",
+          "question": "Trať plánovaná (Tp) je trať po které",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_60",
+          "question": "Při srovnávání mapy s terénem je nejdůležitější",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_28",
+          "question": "Je-li sever magnetický východně od severu zeměpisného, deklinace je",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        },
+        {
+          "questionId": "medlanky_nav_127",
+          "question": "Řešíte úlohu: Km = 225°, PVR = 120 km/h, V/v = 090°/20 km/h",
+          "issues": [
+            "no_ending_punct",
+            "few_answers"
+          ],
+          "answerCount": 3,
+          "source": "klub"
+        }
+      ]
+    }
+  ],
+  "globalIssueBreakdown": {
+    "empty_answers": 193,
+    "short_question": 178,
+    "no_ending_punct": 330,
+    "correct_mismatch": 6,
+    "few_answers": 133
+  },
+  "sourceTotals": {
+    "ai": 1479,
+    "user": 891,
+    "klub": 374,
+    "other": 0
+  }
+}

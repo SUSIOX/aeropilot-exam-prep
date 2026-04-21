@@ -1,0 +1,3372 @@
+[
+  {
+    "category": "Navigace Medlanky",
+    "question": "Osa zemská je myšlená přímka středem země kolmá na rovník. M9sta, kde protíná povrch země, se nazývají póly (točny). Jsou to póly",
+    "options": [
+      {
+        "label": "a",
+        "text": "magnetické",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "zeměpisné",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "totožné",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "zeměpisné"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Poloha zeměpisného a magnetické pólu je",
+    "options": [
+      {
+        "label": "a",
+        "text": "totožná",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "není shodná",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "magnetický pól je vždy na východ od zeměpisného",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "není shodná"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Malá kružnice je",
+    "options": [
+      {
+        "label": "a",
+        "text": "kružnice, jejíž rovina neprochází středem zeměkoule",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "poledník, který prochází rovníkem na opačné straně",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "jakákoliv kružnice na povrchu země neprocházející průsečíkem nultého poledníku a rovníku",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "kružnice, jejíž rovina neprochází středem zeměkoule"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Velká kružnice je",
+    "options": [
+      {
+        "label": "a",
+        "text": "největší kružnice na zeměkouli",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "průsečík roviny, která prochází středem zeměkoule s povrchem zeměkoule",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "pouze rovník a nultý poledník",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "průsečík roviny, která prochází středem zeměkoule s povrchem zeměkoule"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Zeměpisný poledník je",
+    "options": [
+      {
+        "label": "a",
+        "text": "část kružnice, jejíž rovina je kolmá na zemskou osu",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "polovinou poledníkové kružnice",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "kružnice kolem zeměkoule",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "polovinou poledníkové kružnice"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Nultý poledník je",
+    "options": [
+      {
+        "label": "a",
+        "text": "poledník, na kterém se zeměpisná šířka i délka rovnají 0",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "poledník procházející hvězdárnou v Greenwich, ovšem pouze na malé kružnici",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "poledník, zvaný též základní, procházející hvězdárnou v Greenwich",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "poledník, zvaný též základní, procházející hvězdárnou v Greenwich"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Zeměpisné souřadnice nám udávají",
+    "options": [
+      {
+        "label": "a",
+        "text": "název určitého místa",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "zeměpisnou polohu určitého místa",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "polohu časového pásma",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "zeměpisnou polohu určitého místa"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Dříve než v Praze vychází slunce",
+    "options": [
+      {
+        "label": "a",
+        "text": "v Londýně",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "v Paříži",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "v Moskvě",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "v Moskvě"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "225 stupňů je vedlejší světová strana",
+    "options": [
+      {
+        "label": "a",
+        "text": "jihovýchod",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "severozápad",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "jihozápad",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "jihozápad"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "045 stupňů je vedlejší světová strana",
+    "options": [
+      {
+        "label": "a",
+        "text": "severovýchod",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "severozápad",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "jihozápad",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "severovýchod"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Pro přesnější označení směru užíváme",
+    "options": [
+      {
+        "label": "a",
+        "text": "radiány",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "směrníky",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "stupně",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "stupně"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Směr měříme ve stupních",
+    "options": [
+      {
+        "label": "a",
+        "text": "ve směru otáčení hodinových ručiček",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "proti směru otáčení hodinových ručiček",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "ve směru otáčení hodinových ručiček"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Směr měříme",
+    "options": [
+      {
+        "label": "a",
+        "text": "od nultého poledníku",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "od severu zeměpisného místního poledníku",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "od směrníku",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "od severu zeměpisného místního poledníku"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Pro označení směru používáme zásadně skupinu čísel",
+    "options": [
+      {
+        "label": "a",
+        "text": "třímístnou",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "dvoumístnou",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "podle potřeby",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "třímístnou"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Zeměpisný sever a jih",
+    "options": [
+      {
+        "label": "a",
+        "text": "mění se v závislosti na roční době",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "působí na něj magnetismus země",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "nemění polohu",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "nemění polohu"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Zeměkoule je",
+    "options": [
+      {
+        "label": "a",
+        "text": "ideální koule",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "rotační elipsoid na pólech zploštělý",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "rotační elipsoid na pólech zploštělý"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Sever magnetický je směr, který",
+    "options": [
+      {
+        "label": "a",
+        "text": "určuje magnetka kompasu na který nepůsobí žádné vedlejší rušivé vlivy",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "je určený myšlenou přímkou, která vede středem země a protíná její povrch v bodech, které nazýváme sever magnetický a jih magnetický",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "změříme na mapě",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "určuje magnetka kompasu na který nepůsobí žádné vedlejší rušivé vlivy"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Deklinace je úhel mezi severem",
+    "options": [
+      {
+        "label": "a",
+        "text": "zeměpisným a kompasovým",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "magnetickým a kompasovým",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "zeměpisným a magnetickým",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "zeměpisným a magnetickým"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Deklinace je největší",
+    "options": [
+      {
+        "label": "a",
+        "text": "v blízkosti pólů",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "na rovníku",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "na jižní polokouli",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "v blízkosti pólů"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Deklinace je způsobena",
+    "options": [
+      {
+        "label": "a",
+        "text": "vlivem střídání ročních období",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "rozdílnou polohou severu kompasového a zeměpisného",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "rozdílnou polohou severu zeměpisného a magnetického",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "rozdílnou polohou severu zeměpisného a magnetického"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Zápis D = +2 znamená",
+    "options": [
+      {
+        "label": "a",
+        "text": "západní, tj. kladnou deklinaci",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "východní, tj. zápornou deklinaci",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "východní, tj. kladnou deklinaci",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "východní, tj. kladnou deklinaci"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Zápis D = -4 znamená",
+    "options": [
+      {
+        "label": "a",
+        "text": "západní, tj. kladnou deklinaci",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "západní, tj. zápornou deklinaci",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "východní, tj. zápornou deklinaci",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "západní, tj. zápornou deklinaci"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Izogona je",
+    "options": [
+      {
+        "label": "a",
+        "text": "čára spojující magnetický a zeměpisný pól",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "přímka, na které leží stejné agony",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "čára spojující místa se stejnou deklinací",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "čára spojující místa se stejnou deklinací"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Agona je",
+    "options": [
+      {
+        "label": "a",
+        "text": "čára spojující místa s kladnou deklinací",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "čára spojující místa se zápornou deklinací",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "izogona, kde deklinace je nulová",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "izogona, kde deklinace je nulová"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Deviace je způsobena",
+    "options": [
+      {
+        "label": "a",
+        "text": "magnetickými předměty v blízkosti magnetky kompasu",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "magnetismem Země",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "průběhem denní doby",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "magnetickými předměty v blízkosti magnetky kompasu"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Zápis d = +2 znamená, že kompasový sever je",
+    "options": [
+      {
+        "label": "a",
+        "text": "západně od severu magnetického",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "východně od severu magnetického",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "západně od severu zeměpisného",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "východně od severu magnetického"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Zápis d = -3 znamená, že kompasový sever je",
+    "options": [
+      {
+        "label": "a",
+        "text": "západně od severu magnetického",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "východně od severu magnetického",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "západně od severu zeměpisného",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "západně od severu magnetického"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Je-li sever magnetický východně od severu zeměpisného, deklinace je",
+    "options": [
+      {
+        "label": "a",
+        "text": "východní a označuje se +",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "západní a označuje se -",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "východní a označuje se -",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "východní a označuje se +"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Je-li sever magnetický západně od severu zeměpisného, deklinace je",
+    "options": [
+      {
+        "label": "a",
+        "text": "východní a označuje se +",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "východní a označuje se -",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "západní a označuje se -",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "západní a označuje se -"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Magnetické poledníky jsou",
+    "options": [
+      {
+        "label": "a",
+        "text": "čáry na mapě spojující místa o stejné deviaci",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "směry poledníků k severu zeměpisnému",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "směry magnetických siločar do kterých se staví magnetka kompasu",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "směry magnetických siločar do kterých se staví magnetka kompasu"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Průměrná deklinace je nyní v ČR",
+    "options": [
+      {
+        "label": "a",
+        "text": "0,5 - 2 stupně",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "1 - 5 stupňů",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "3 - 7 stupňů",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "0,5 - 2 stupně"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Deviační tabulka slouží",
+    "options": [
+      {
+        "label": "a",
+        "text": "k určení magnetického severu",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "k určení rozdílu mezi deklinací a severem zeměpisným",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "k určení hodnoty deviace letadla v základních směrech",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "k určení hodnoty deviace letadla v základních směrech"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Pokud je Kz = 050o, D = 2oE, d = +5o, pak je",
+    "options": [
+      {
+        "label": "a",
+        "text": "Km = 052o, Kk = 057o",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "Km = 048o, Kk = 053o",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "Km = 048o, Kk = 043o",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "Km = 048o, Kk = 043o"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Pokud je Kz = 225o, D = +3o, d = +3o, pak je",
+    "options": [
+      {
+        "label": "a",
+        "text": "Km = 228o, Kk = 231o",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "Km = 222o, Kk = 219o",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "Km = 222o, Kk = 225o",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "Km = 222o, Kk = 219o"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Pokud je Kz = 285o, D = 4oW, d = -8o, pak je",
+    "options": [
+      {
+        "label": "a",
+        "text": "Km= 281o, Kk = 273o",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "Km = 289o, Kk = 297o",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "Km = 281o, Kk = 290o",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "Km = 289o, Kk = 297o"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Pokud je Kz = 015o, D = -5o, d = +2o, pak je",
+    "options": [
+      {
+        "label": "a",
+        "text": "Kmag = 010o, Kk = 012o",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "Kmag = 010o, Kk = 008o",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "Kmag = 020o, Kk = 018o",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "Kmag = 020o, Kk = 018o"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Pokud na mapě, kde souřadnicová síť je orientována k severu magnetickému zjistíte, že Kmag = 070o, D = 7oW, d = +6o, pak je",
+    "options": [
+      {
+        "label": "a",
+        "text": "Kz = 063o, Kk = 057o",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "Kz = 063o, Kk = 069o",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "Kz = 077o, Kk = 083o",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "Kz = 063o, Kk = 057o"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Pokud na mapě, kde souřadnicová síť je orientována k severu magnetickému zjistíte, že Kmag = 142o, D = 4oE, d = +4o, pak je",
+    "options": [
+      {
+        "label": "a",
+        "text": "Kz = 138o, Kk = 134o",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "Kz = 146o, Kk = 138o",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "Kz = 146o, Kk = 150o",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "Kz = 146o, Kk = 138o"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Pokud na mapě, kde souřadnicová síť je orientována k severu magnetickému zjistíte, že Kmag = 357o, D = 1oW, d = -5o, pak je",
+    "options": [
+      {
+        "label": "a",
+        "text": "Kz = 356o, Kk = 002o",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "Kz = 358o, Kk = 002o",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "Kz = 356o, Kk = 351o",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "Kz = 356o, Kk = 002o"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Srovnávací orientace spočívá v",
+    "options": [
+      {
+        "label": "a",
+        "text": "srovnávání terénu s mapou a opačně",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "srovnávání vypočtených časů se skutečností",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "srovnávání terénu s mapou a opačně"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Která z dále uvedených podmínek je nejdůležitější pro srovnávací navigaci?",
+    "options": [
+      {
+        "label": "a",
+        "text": "navigační příprava",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "dobrá mapa",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "viditelnost země",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "viditelnost země"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Navigace výpočtem je",
+    "options": [
+      {
+        "label": "a",
+        "text": "srovnávání vypočtených časů se skutečností",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "podkladem celé práce pro navigační vedení letadla",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "podkladem celé práce pro navigační vedení letadla"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "V civilním letectví pracujeme s následujícími rychlostmi",
+    "options": [
+      {
+        "label": "a",
+        "text": "IVR, OVR, PVR, TR",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "plánovaná, ověřená, PVR, TR",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "indikovaná, zeměpisná, PVR, TR",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "IVR, OVR, PVR, TR"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Pravá vzdušná rychlost (PVR) je",
+    "options": [
+      {
+        "label": "a",
+        "text": "IVR opravená o výšku (tedy hustotu vzduchu)",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "OVR opravená o teplotu a výšku (tedy hustotu vzduchu)",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "OVR opravená o teplotu a výšku (tedy hustotu vzduchu)"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Traťová rychlost (TR) je",
+    "options": [
+      {
+        "label": "a",
+        "text": "rychlost, kterou nám udává rychloměr",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "rychlost vůči vzduchové hmotě",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "rychlost, kterou letadlo letí vůči zemi",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "rychlost, kterou letadlo letí vůči zemi"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Opravená vzdušná rychlost (OVR) je",
+    "options": [
+      {
+        "label": "a",
+        "text": "rychlost opravená o teplotu",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "rychlost opravená o hustotu prostředí",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "IVR opravená o kalibrační chybu polohy rychloměru",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "IVR opravená o kalibrační chybu polohy rychloměru"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Trať plánovaná (Tp) je trať po které",
+    "options": [
+      {
+        "label": "a",
+        "text": "se chceme pohybovat",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "letadlo skutečně letí",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "se chceme pohybovat, opravená o úhel snosu",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "se chceme pohybovat"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Trať letěná (Tl) je trať",
+    "options": [
+      {
+        "label": "a",
+        "text": "po které letadlo skutečně letí",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "plánovaná trať mezi dvěma body",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "po které chceme letět",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "po které letadlo skutečně letí"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Úhel mezi severem zeměpisným a plánovanou tratí, měřený od severu zeměpisného je",
+    "options": [
+      {
+        "label": "a",
+        "text": "úhel větru na trať",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "úhel letadla",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "plánovaný traťový úhel zeměpisný",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "plánovaný traťový úhel zeměpisný"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Úhloměrem měříme trať",
+    "options": [
+      {
+        "label": "a",
+        "text": "ze směru vzletu",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "od severu zeměpisného",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "od severu magnetického",
+        "correct": false
+      },
+      {
+        "label": "d",
+        "text": "od severu kompasového",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "od severu zeměpisného"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Pro směr a sílu větru používáme zkratku V/v",
+    "options": [
+      {
+        "label": "a",
+        "text": "první písmeno značí sílu větru a druhé směr větru",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "první písmeno značí směr větru a druhé sílu větru",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "první písmeno značí směr větru a druhé sílu větru"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Úhel snosu je",
+    "options": [
+      {
+        "label": "a",
+        "text": "úhlový rozdíl mezi prodlouženou osou letadla a tratí letěnou",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "rozdíl ve stupních mezi Kz a směrem větru",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "úhlový rozdíl mezi severem zeměpisným a magnetickým",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "úhlový rozdíl mezi prodlouženou osou letadla a tratí letěnou"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Úhel snosu se měří",
+    "options": [
+      {
+        "label": "a",
+        "text": "od severu zeměpisného k trati",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "od Kz k trati letěné",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "mezi kursem magnetickým a kursem kompasovým",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "od Kz k trati letěné"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Pro správné stanovení smyslu úhlu snosu platí, že",
+    "options": [
+      {
+        "label": "a",
+        "text": "vítr snáší letadlo z Kk na trať letěnou",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "vítr snáší letadlo z Kz na trať",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "vítr snáší letadlo z trati plánované na Kz",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "vítr snáší letadlo z Kz na trať"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Velikost úhlu větru na trať může být",
+    "options": [
+      {
+        "label": "a",
+        "text": "0 - 360o",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "0 - 180o",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "0 - 045o",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "0 - 180o"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Úhel snosu se značí",
+    "options": [
+      {
+        "label": "a",
+        "text": "L + / P -",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "L - / P +",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "L - / P +"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Z hlediska srovnávací orientace je barevně nejkontrastnější",
+    "options": [
+      {
+        "label": "a",
+        "text": "jaro",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "léto",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "podzim",
+        "correct": false
+      },
+      {
+        "label": "d",
+        "text": "zima",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "léto"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Při provádění srovnávací orientace během letu orientujete mapu",
+    "options": [
+      {
+        "label": "a",
+        "text": "tak, aby se daly dobře číst nápisy na mapě",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "podle význačných orientačních bodů",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "tak, aby směr letu přenesený do mapy byl rovnoběžný s podélnou osou letadla",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "tak, aby směr letu přenesený do mapy byl rovnoběžný s podélnou osou letadla"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Během letu orientujete mapu",
+    "options": [
+      {
+        "label": "a",
+        "text": "podle význačných orientačních bodů",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "podle terénu",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "podle údajů kompasu",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "podle údajů kompasu"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Ke ztrátě orientace za letu může dojít především",
+    "options": [
+      {
+        "label": "a",
+        "text": "není-li mapa správně orientovaná podle světových stra",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "je-li kouřmo",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "nejsou-li stranou od letadla vidět dobře orientační body",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "není-li mapa správně orientovaná podle světových stra"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Při provádění srovnávací orientace je vždy spolehlivější",
+    "options": [
+      {
+        "label": "a",
+        "text": "pozorně prohlížet terén pod letadlem",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "soustředit pozornost na význačný orientační bod",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "vyhledat a určit několik orientačních bodů",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "vyhledat a určit několik orientačních bodů"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Při srovnávání mapy s terénem je nejdůležitější",
+    "options": [
+      {
+        "label": "a",
+        "text": "přesné hodinky",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "pozorně prohlížet terén pod letounem",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "zběhlost ve čtení map",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "zběhlost ve čtení map"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Hlavními navigačními přístroji jsou",
+    "options": [
+      {
+        "label": "a",
+        "text": "variometr, rychloměr, sklonoměr",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "rychloměr, kompas, hodiny",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "výškoměr, kompas, variometr",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "rychloměr, kompas, hodiny"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Kritický bod je",
+    "options": [
+      {
+        "label": "a",
+        "text": "místo na trati plánované, ze kterého je stejná časová vzdálenost do místa startu i do místa přistání",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "místo na trati kam až letadlo může doletět, aby se za současného stavu paliva mohlo vrátit na výchozí letiště",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "místo na trati plánované, ze kterého je stejná časová vzdálenost do místa startu i do místa přistání"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Provádíte-li zatáčku na sever podle magnetického kompasu, zatáčku",
+    "options": [
+      {
+        "label": "a",
+        "text": "přetočíte",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "nedotočíte",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "zastavíte přesně na zamýšleném kursu",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "nedotočíte"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Provádíte-li zatáčku na jih podle magnetického kompasu, zatáčku",
+    "options": [
+      {
+        "label": "a",
+        "text": "přetočíte",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "nedotočíte",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "zastavíte přesně na zamýšleném kursu",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "přetočíte"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Provádíte-li zatáčku na západ podle magnetického kompasu, zatáčku",
+    "options": [
+      {
+        "label": "a",
+        "text": "přetočíte",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "nedotočíte",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "zastavíte přesně na zamýšleném kursu",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "zastavíte přesně na zamýšleném kursu"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Provádíte-li zatáčku na východ podle magnetického kompasu, zatáčku",
+    "options": [
+      {
+        "label": "a",
+        "text": "přetočíte",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "nedotočíte",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "zastavíte přesně na zamýšleném kursu",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "zastavíte přesně na zamýšleném kursu"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Letíte-li směrem na východ a přidáte plyn, magnetický kompas",
+    "options": [
+      {
+        "label": "a",
+        "text": "bude ukazovat zatáčku na jih",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "bude ukazovat zatáčku na sever",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "bude ukazovat stále stejný kurs",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "bude ukazovat zatáčku na sever"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Letíte-li směrem na západ a přidáte plyn, magnetický kompas",
+    "options": [
+      {
+        "label": "a",
+        "text": "bude ukazovat zatáčku na jih",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "bude ukazovat zatáčku na sever",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "bude ukazovat stále stejný kurs",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "bude ukazovat zatáčku na sever"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Letíte-li směrem na východ a stáhnete plyn, magnetický kompas",
+    "options": [
+      {
+        "label": "a",
+        "text": "bude ukazovat zatáčku na jih",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "bude ukazovat zatáčku na sever",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "bude ukazovat stále stejný směr",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "bude ukazovat zatáčku na jih"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Letíte-li směrem na západ a stáhnete plyn, magnetický kompas",
+    "options": [
+      {
+        "label": "a",
+        "text": "bude ukazovat zatáčku na jih",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "bude ukazovat zatáčku na sever",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "bude ukazovat stále stejný směr",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "bude ukazovat zatáčku na jih"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Magnetický kompas ukazuje přesně kurs, pokud letíte",
+    "options": [
+      {
+        "label": "a",
+        "text": "na sever nebo na jih",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "na východ nebo na západ",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "bez změny výšky a změny rychlosti",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "bez změny výšky a změny rychlosti"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Letíte po trati kursem magnetickým 075o, US = L 10o. Pokud se musíte vrátit, otočíte na",
+    "options": [
+      {
+        "label": "a",
+        "text": "Km = 255o",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "Km = 235o",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "Km = 245o",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "Km = 235o"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Letíte po trati kursem magnetickým 310o, US = P 5o. Pokud se musíte vrátit, otočíte na",
+    "options": [
+      {
+        "label": "a",
+        "text": "Km = 140o",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "Km = 130o",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "Km = 120o",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "Km = 140o"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Mění se čas na nultém poledníku i při přechodu na letní čas v ČR?",
+    "options": [
+      {
+        "label": "a",
+        "text": "ano",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "ne",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "ne"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Doba východu a západu slunce se mění",
+    "options": [
+      {
+        "label": "a",
+        "text": "s roční dobou",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "působením magnetického pole zeměkoule",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "intensitou slunečního záření",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "s roční dobou"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Občanské svítání a občanský soumrak začíná, když je slunce pod horizontem",
+    "options": [
+      {
+        "label": "a",
+        "text": "6o",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "3o",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "8o",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "6o"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Zeměkoule je rozdělena na",
+    "options": [
+      {
+        "label": "a",
+        "text": "24 časových pásem",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "12 časových pásem na východ a 12 na západ",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "každý stupeň má své časové pásmo",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "12 časových pásem na východ a 12 na západ"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Středovým poledníkem nultého pásma je",
+    "options": [
+      {
+        "label": "a",
+        "text": "UTC",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "poledník, procházející hvězdárnou v Greenwich v Anglii",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "poledník, procházející městem Oxford v Anglii",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "poledník, procházející hvězdárnou v Greenwich v Anglii"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Okrajovými poledníky časových pásem jsou",
+    "options": [
+      {
+        "label": "a",
+        "text": "22o 30´ na každou stranu od středového poledníku pásma",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "15o na každou stranu od středového poledníku pásma",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "7o 30´ na každou stranu od středového poledníku pásma",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "7o 30´ na každou stranu od středového poledníku pásma"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Středovými poledníky časových pásem na východ a na západ od nultého poledníku jsou",
+    "options": [
+      {
+        "label": "a",
+        "text": "15o, 30o, 45o, 60o atd.",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "7o 30´, 15o, 22o 30´,  30o atd.",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "5o, 10o, 15o, 20o atd.",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "15o, 30o, 45o, 60o atd."
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Časová změna jednoho časového pásma je",
+    "options": [
+      {
+        "label": "a",
+        "text": "30 minut",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "1 hodina",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "2 hodiny",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "1 hodina"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Změn polohy slunce na obloze za jednu hodinu je",
+    "options": [
+      {
+        "label": "a",
+        "text": "5 stupňů zeměpisné délky",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "15 stupňů zeměpisné délky",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "20 stupňů zeměpisné délky",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "15 stupňů zeměpisné délky"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Změna polohy slunce na obloze o 15 stupňů časově představuje",
+    "options": [
+      {
+        "label": "a",
+        "text": "30 min",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "90 min",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "60 min",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "60 min"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "1 stupeň zeměpisné délky představuje časově",
+    "options": [
+      {
+        "label": "a",
+        "text": "1 min",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "4 min",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "6 min",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "4 min"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Zkratka UTC používaná v civilním letectví pro čas je",
+    "options": [
+      {
+        "label": "a",
+        "text": "čas odvozený od LMT",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "čas jarní rovnodennosti",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "atomový čas koordinovaný k času astronomickému",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "atomový čas koordinovaný k času astronomickému"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Časový rozdíl mezi středovými poledníky časových pásem a okrajovými poledníky časových pásem je",
+    "options": [
+      {
+        "label": "a",
+        "text": "60 min",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "90 min",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "30 min",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "30 min"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Je čas měřený na poledníku v Greenwich současně místním  i pásmovým časem?",
+    "options": [
+      {
+        "label": "a",
+        "text": "ne",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "ano",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "ano"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Překonáme-li datumovou čáru směrem na západ",
+    "options": [
+      {
+        "label": "a",
+        "text": "připočteme kalendářní den",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "odečteme kalendářní den",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "připočteme kalendářní den"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Rozdíl mezi UTC a letním časem v ČR je",
+    "options": [
+      {
+        "label": "a",
+        "text": "1 hodina",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "není žádný",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "2 hodiny",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "2 hodiny"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Rozdíl mezi UTC a zimním časem v ČR je",
+    "options": [
+      {
+        "label": "a",
+        "text": "2 hodiny",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "1 hodina",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "není žádný",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "1 hodina"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Podle tabulky jste zjistil, že východ slunce na 15oE bude v 06o 24´. Chcete-li zahájit let s východem slunce z letiště ležícím na 17o 30´E, můžete tento let zahájit nejdříve v",
+    "options": [
+      {
+        "label": "a",
+        "text": "06o 24´",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "06o 14´",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "06o 34´",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "06o 14´"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Podle tabulky jste zjistil, že východ slunce na 15oE bude v 05o 24´. Chcete-li zahájit let s východem slunce z letiště ležícím na 19o 30´E, můžete tento let zahájit nejdříve v ZT",
+    "options": [
+      {
+        "label": "a",
+        "text": "05o 06´",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "05o 14´",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "05o 34´",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "05o 06´"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Podle tabulky jste zjistil, že západ slunce na 15oE bude v 19o 35´. Letíte na letiště ležící na 07o 30´E. Musíte přistát v ZT do",
+    "options": [
+      {
+        "label": "a",
+        "text": "19o 35´",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "19o 05´",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "20o 05´",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "20o 05´"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Podle tabulky jste zjistil, že západ slunce na 15oE bude ve 20o 05´. Letíte na letiště ležící na 05oE. Musíte přistát v ZT do",
+    "options": [
+      {
+        "label": "a",
+        "text": "20o 45´",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "19o 25´",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "20o 05´",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "20o 45´"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Zeměpisnou délku 45o 30´můžete vyjádřit v časových jednotkách jako",
+    "options": [
+      {
+        "label": "a",
+        "text": "4 hodiny 10 minut",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "3 hodiny 2 minuty",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "2 hodiny 1 minuta",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "3 hodiny 2 minuty"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Čas 2 hodiny 2 minuty můžete vyjádřit zeměpisnou délkou",
+    "options": [
+      {
+        "label": "a",
+        "text": "30o 30´",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "15o 10´",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "45o 10´",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "30o 30´"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Zobrazit zemský povrch v rovině je",
+    "options": [
+      {
+        "label": "a",
+        "text": "možné bez zkreslení",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "není možné bez zkreslení",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "není možné bez zkreslení"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "V civilním letectví se používají mapy se zobrazením",
+    "options": [
+      {
+        "label": "a",
+        "text": "geodetickým",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "obecným",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "jednoduchým",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "jednoduchým"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Měřítko mapy se obvykle uvádí v číselné i grafické formě, někdy i slovně",
+    "options": [
+      {
+        "label": "a",
+        "text": "ano",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "ne",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "ano"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Vrstevnice (izohypsy) jsou uzavřené prostorové křivky spojující místa o stejné",
+    "options": [
+      {
+        "label": "a",
+        "text": "nadmořské výšce",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "záporné výšce, tzv. hloubnice",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "deklinaci",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "nadmořské výšce"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Letecká mapa ICAO 1 : 500 000 je věrohodná",
+    "options": [
+      {
+        "label": "a",
+        "text": "v tratích a plochách",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "v úhlech, tratích a plochách",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "v úhlech",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "v úhlech, tratích a plochách"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Letecká mapa ICAO 1 : 500 000 se používá pro navigační lety, protože je věrohodná",
+    "options": [
+      {
+        "label": "a",
+        "text": "v plochách",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "v tratích a úhlech",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "v plochách, tratích a úhlech",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "v plochách, tratích a úhlech"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Skutečný, zcela holý, povrch země se soušemi, nerovnostmi a hladinami moří se nazývá",
+    "options": [
+      {
+        "label": "a",
+        "text": "projekce mapy",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "topografická plocha",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "topografická situace",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "topografická plocha"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Pravé projekce map",
+    "options": [
+      {
+        "label": "a",
+        "text": "používají úhlů 90o",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "jsou matematické",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "jsou geometrické",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "jsou geometrické"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Letecké navigaci vyhovují nejlépe mapy, které",
+    "options": [
+      {
+        "label": "a",
+        "text": "jsou v měřítku 1 : 500 000",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "mají přesné úhly",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "věrně zobrazují topografickou situaci a úhly",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "věrně zobrazují topografickou situaci a úhly"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Které z uvedených měřítek je největší",
+    "options": [
+      {
+        "label": "a",
+        "text": "1 : 1 000 000",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "1 : 100 000",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "1 : 500 000",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "1 : 100 000"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Mapa 1 : 500 000 patří mezi měřítka",
+    "options": [
+      {
+        "label": "a",
+        "text": "malá",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "velká",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "střední",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "velká"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Vrstevnice jsou křivky spojující místa o stejné",
+    "options": [
+      {
+        "label": "a",
+        "text": "deviaci",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "deklinaci",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "nadmořské výšce",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "nadmořské výšce"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Terénní útvary jako jsou lesy, louky, jezera, hrady, silnice, železnice atd, nazýváme",
+    "options": [
+      {
+        "label": "a",
+        "text": "projekcí mapy",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "topografickou plochou",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "topografickou situací",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "topografickou situací"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "10 cm na mapě 1 : 200 000 odpovídá ve skutečnosti",
+    "options": [
+      {
+        "label": "a",
+        "text": "50 km",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "20 km",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "200 km",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "20 km"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "12 cm na mapě 1 : 250 000 odpovídá ve skutečnosti",
+    "options": [
+      {
+        "label": "a",
+        "text": "25 km",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "30 km",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "50 km",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "30 km"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "9cm na mapě 1 : 500 000 odpovídá ve skutečnosti",
+    "options": [
+      {
+        "label": "a",
+        "text": "45 km",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "50 km",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "60 km",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "45 km"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "6 cm na mapě 1 : 100 000 odpovídá ve skutečnosti",
+    "options": [
+      {
+        "label": "a",
+        "text": "30 km",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "60 km",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "90 km",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "60 km"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Směr východ odpovídá kursu",
+    "options": [
+      {
+        "label": "a",
+        "text": "270o",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "180o",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "090o",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "090o"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Směr západ odpovídá kursu",
+    "options": [
+      {
+        "label": "a",
+        "text": "270o",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "180o",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "090o",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "270o"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Směr sever odpovídá kursu",
+    "options": [
+      {
+        "label": "a",
+        "text": "180o",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "360o",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "090o",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "360o"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Kurs 045o je směrem na",
+    "options": [
+      {
+        "label": "a",
+        "text": "severozápad",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "jihovýchod",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "severovýchod",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "severovýchod"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Kurs 175o je zhruba směrem na",
+    "options": [
+      {
+        "label": "a",
+        "text": "sever",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "jihozápad",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "jih",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "jih"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Kurs 320o je zhruba směrem na",
+    "options": [
+      {
+        "label": "a",
+        "text": "sever",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "severovýchod",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "severozápad",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "severozápad"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "V ČR podle AIP GEN 1-2-1 se používají jednotky pro vzdálenosti",
+    "options": [
+      {
+        "label": "a",
+        "text": "metry",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "námořní míle/kilometry",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "pouze kilometry",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "námořní míle/kilometry"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "V ČR podle AIP GEN 1-2-1 se používají jednotky pro výšky",
+    "options": [
+      {
+        "label": "a",
+        "text": "metry",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "centimetry a metry",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "stopy a metry",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "stopy a metry"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "V ČR podle AIP GEN 1-2-1 se používají jednotky udávající směr a sílu větru pro vzlet a přistání",
+    "options": [
+      {
+        "label": "a",
+        "text": "magnetické stupně, m/sec a uzly",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "zeměpisné stupně a m/sec",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "zeměpisné stupně a km/hod",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "magnetické stupně, m/sec a uzly"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "V ČR podle AIP GEN 1-2-1 se používají jednotky udávající viditelnost",
+    "options": [
+      {
+        "label": "a",
+        "text": "km a metry",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "námořní míle a metry",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "námořní míle a km",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "km a metry"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Údaje pro nastavení výškoměru se udávají",
+    "options": [
+      {
+        "label": "a",
+        "text": "v milimetrech",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "v hektopascalech",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "ve stopách",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "v hektopascalech"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Horizontální rychlost se udává",
+    "options": [
+      {
+        "label": "a",
+        "text": "ve stopách",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "v uzlech",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "v km/hod, v m/sec a v uzlech",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "v km/hod, v m/sec a v uzlech"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Čas se udává",
+    "options": [
+      {
+        "label": "a",
+        "text": "ve stupních",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "v hodinách, minutách a sekundách s tím, že minuta začíná 1.sec a končí 60.sec",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "v hodinách, minutách a sekundách s tím, že minuta začíná ve 30.sec předchozí minuty a končí ve 30.sec následující minuty",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "v hodinách, minutách a sekundách s tím, že minuta začíná 1.sec a končí 60.sec"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Řešíte úlohu: Vp = 100 km/h, výška letu 1600 m, t = +15° C",
+    "options": [
+      {
+        "label": "a",
+        "text": "PVR = 110 km/h",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "PVR = 100 km/h",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "PVR = 90 km/h",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "PVR = 110 km/h"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Řešíte úlohu: Vp = 120 km/h, výška letu 2000m, t = -10°C",
+    "options": [
+      {
+        "label": "a",
+        "text": "PVR = 120 km/h",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "PVR = 130 km/h",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "PVR = 140 km/h",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "PVR = 130 km/h"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Řešíte úlohu: Vp = 180 km/h, výška letu 1800m,  t = 0°C",
+    "options": [
+      {
+        "label": "a",
+        "text": "PVR = 170 km/h",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "PVR = 180 km/h",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "PVR = 195 km/h",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "PVR = 195 km/h"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Řešíte úlohu: Km = 015°, PVR = 110 km/h, V/v = 050°/25 km/h",
+    "options": [
+      {
+        "label": "a",
+        "text": "TR = 92 km/h, US = 10°L",
+        "correct": true
+      },
+      {
+        "label": "b",
+        "text": "TR = 110 km/h, US = 5°L",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "TR = 85 km/h, US = 10°P",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "a"
+    ],
+    "correct_answer": "TR = 92 km/h, US = 10°L"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Řešíte úlohu: Km = 225°, PVR = 120 km/h, V/v = 090°/20 km/h",
+    "options": [
+      {
+        "label": "a",
+        "text": "TR = 125 km/h, US = 2°P",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "TR = 135 km/h, US = 7°P",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "TR = 110 km/h, US = 7°L",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "TR = 135 km/h, US = 7°P"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Řešíte úlohu: Km = 312°, PVR = 100 km/h, V/v = 135°/5 m/sec",
+    "options": [
+      {
+        "label": "a",
+        "text": "TR = 100 km/h, US = 2°L",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "TR = 118 km/h, US = 1°P",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "TR = 130 km/h, US = 3°L",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "TR = 118 km/h, US = 1°P"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Řešíte úlohu: TR = 120 km/h, T = 220 km",
+    "options": [
+      {
+        "label": "a",
+        "text": "doba letu 1°30´",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "doba letu 1°50´",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "doba letu 2°00´",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "doba letu 1°50´"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Řešíte úlohu: TR = 180 km/h, T= 120 km",
+    "options": [
+      {
+        "label": "a",
+        "text": "doba letu 30´",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "doba letu 40´",
+        "correct": true
+      },
+      {
+        "label": "c",
+        "text": "doba letu 50´",
+        "correct": false
+      }
+    ],
+    "correct_labels": [
+      "b"
+    ],
+    "correct_answer": "doba letu 40´"
+  },
+  {
+    "category": "Navigace Medlanky",
+    "question": "Řešíte úlohu: TR = 90 km/h, T= 210 km",
+    "options": [
+      {
+        "label": "a",
+        "text": "doba letu 1°30´",
+        "correct": false
+      },
+      {
+        "label": "b",
+        "text": "doba letu 2°10´",
+        "correct": false
+      },
+      {
+        "label": "c",
+        "text": "doba letu 2°20´",
+        "correct": true
+      }
+    ],
+    "correct_labels": [
+      "c"
+    ],
+    "correct_answer": "doba letu 2°20´"
+  }
+]

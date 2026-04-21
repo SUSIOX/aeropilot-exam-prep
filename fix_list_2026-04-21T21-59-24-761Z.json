@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-04-21T21:59:24.761Z",
+  "summary": {
+    "totalToFix": 0,
+    "bySeverity": {
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    }
+  },
+  "questionsToFix": [],
+  "skippedMathQuestions": []
+}

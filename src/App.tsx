@@ -71,6 +71,11 @@ import { DynamoDBStatus } from './components/DynamoDBStatus';
 import { AdminDashboard } from './components/AdminDashboard';
 import { AircademySyllabus } from './components/AircademySyllabus';
 
+// Helper to determine available answer options for a question (some have only A/B/C)
+const getAvailableOptions = (question: Question): ('A' | 'B' | 'C' | 'D')[] => {
+  return question.option_d ? ['A', 'B', 'C', 'D'] : ['A', 'B', 'C'];
+};
+
 // Shuffle utility interfaces and functions
 interface ShuffledQuestion {
   originalQuestion: Question;
@@ -92,7 +97,8 @@ const shuffleAnswers = (question: Question): ShuffledQuestion => {
 
 const checkAnswer = (shuffledQuestion: ShuffledQuestion, userAnswerIndex: number): boolean => {
   const originalIndex = shuffledQuestion.shuffleMap[userAnswerIndex];
-  const originalCorrectIndex = ['A', 'B', 'C', 'D'].indexOf(shuffledQuestion.originalQuestion.correct_option);
+  const labels = getAvailableOptions(shuffledQuestion.originalQuestion);
+  const originalCorrectIndex = labels.indexOf(shuffledQuestion.originalQuestion.correct_option as any);
   return originalIndex === originalCorrectIndex;
 };
 import { CognitoAuth } from './components/CognitoAuth';
@@ -401,36 +407,28 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
   const [newDocumentLink, setNewDocumentLink] = useState<string>('');
   const [loControlsExpanded, setLoControlsExpanded] = useState<boolean>(true);
   const [isLOSectionOpen, setIsLOSectionOpen] = useState<boolean>(false);
-  const [selectedLicense, setSelectedLicense] = useState<'PPL' | 'SPL' | 'BOTH'>(() => {
-    return (localStorage.getItem('selectedLicense') as 'PPL' | 'SPL' | 'BOTH') || 'BOTH';
+  const [selectedLicense, setSelectedLicense] = useState<'PPL' | 'SPL' | 'BOTH' | 'KL'>(() => {
+    return (localStorage.getItem('selectedLicense') as 'PPL' | 'SPL' | 'BOTH' | 'KL') || 'BOTH';
   });
   const [selectedLicenseSubtype, setSelectedLicenseSubtype] = useState<string>(() => {
     const stored = localStorage.getItem('selectedLicenseSubtype');
-    if (stored && ['ALL', 'PPL(A)', 'LAPL(A)', 'PPL(H)', 'LAPL(H)', 'SPL', 'LAPL(S)', 'BPL', 'LAPL(B)'].includes(stored)) return stored;
+    const subcat = localStorage.getItem('selectedSubcategory');
+    // Check for Medlánky first
+    if (subcat === 'Medlánky' || stored === 'MEDLANKY') return 'MEDLANKY';
+    if (stored && ['ALL', 'PPL(A)', 'LAPL(A)', 'PPL(H)', 'LAPL(H)', 'SPL', 'LAPL(S)', 'BPL', 'LAPL(B)', 'KL', 'MEDLANKY'].includes(stored)) return stored;
     // Fallback: if we only had 'PPL' or 'SPL' or nothing
     const broad = localStorage.getItem('selectedLicense');
     return broad === 'SPL' ? 'SPL' : 'PPL(A)';
   });
+  const [selectedSubcategory, setSelectedSubcategory] = useState<string>(() => {
+    return localStorage.getItem('selectedSubcategory') || 'ALL';
+  });
 
-  // Recalculate subject counts when license changes
+  // Force re-render of subject list when license changes (counts are computed in display logic)
+  const [, forceSubjectRerender] = useState(0);
   useEffect(() => {
-    setSubjects(prev => {
-      return SUBJECT_DEFS.map(s => {
-        const existing = prev.find(p => p.id === s.id);
-        const totalCount = selectedLicense === 'SPL' && [6, 7, 8].includes(s.id) ? 0 : (existing?.question_count || 0);
-        const userCount = selectedLicense === 'SPL' && [6, 7, 8].includes(s.id) ? 0 : (existing?.user_count || 0);
-        const aiCount = selectedLicense === 'SPL' && [6, 7, 8].includes(s.id) ? 0 : (existing?.ai_count || 0);
-        
-        return {
-          ...s,
-          question_count: totalCount,
-          user_count: userCount,
-          ai_count: aiCount,
-          success_rate: existing?.success_rate ?? 0.75
-        };
-      });
-    });
-  }, [selectedLicense]);
+    forceSubjectRerender(v => v + 1);
+  }, [selectedLicense, selectedLicenseSubtype]);
 
   // Syllabus Browser state
   const [syllabusOpen, setSyllabusOpen] = useState(false);
@@ -820,7 +818,16 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
         
         for (const subject of subjectsToLoad) {
           const qs = await loadStaticQuestions(subject.id);
-          loadedQuestions.push(...qs);
+          // Filter questions by license for KL
+          if (pendingSession.license === 'KL') {
+            const filtered = qs.filter(q => {
+              const appliesTo = q.metadata?.applies_to || ['PPL', 'SPL'];
+              return appliesTo.includes('KL');
+            });
+            loadedQuestions.push(...filtered);
+          } else {
+            loadedQuestions.push(...qs);
+          }
         }
       }
 
@@ -1327,8 +1334,15 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
           else if (selectedLicenseSubtype === 'LAPL(S)') isMatch = appliesTo.includes('SPL') || appliesTo.includes('LAPL');
           else if (selectedLicenseSubtype === 'BPL') isMatch = appliesTo.includes('BPL');
           else if (selectedLicenseSubtype === 'LAPL(B)') isMatch = appliesTo.includes('BPL') || appliesTo.includes('LAPL');
+          else if (selectedLicenseSubtype === 'KL') isMatch = appliesTo.includes('KL');
+          else if (selectedLicenseSubtype === 'MEDLANKY') isMatch = appliesTo.includes('KL');
           
           if (!isMatch) return false;
+        }
+
+        // Filter by subcategory - for Medlánky
+        if (selectedSubcategory === 'Medlánky' || selectedLicenseSubtype === 'MEDLANKY') {
+          if (q.subcategory !== 'Medlánky') return false;
         }
 
         if (selectedSubject.id === -1) {
@@ -1383,7 +1397,7 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
         updateShuffleHistoryLocal(mapped);
       }
     }
-  }, [drillSettings.sourceFilters, drillSettings.excludeAnswered, view, originalQuestions.length, selectedSubject, selectedLicense, selectedLicenseSubtype]);
+  }, [drillSettings.sourceFilters, drillSettings.excludeAnswered, view, originalQuestions.length, selectedSubject, selectedLicense, selectedLicenseSubtype, selectedSubcategory]);
 
   // Force re-render of progress bars when filters change
   useEffect(() => {
@@ -1408,12 +1422,14 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     try {
       const result = await dynamoDBService.getAllQuestionCounts();
       if (result.success && result.data) {
-        const { total, user, ai } = result.data!;
+        const { total, user, ai, kl, medlanky } = result.data!;
         const withCounts: Subject[] = subjectDefs.map(s => ({
           ...s,
           question_count: total[s.id] || 0,
           user_count: user[s.id] || 0,
           ai_count: ai[s.id] || 0,
+          kl_count: kl[s.id] || 0,
+          medlanky_count: medlanky[s.id] || 0,
           success_rate: 0
         }));
         setSubjects(withCounts);
@@ -1456,7 +1472,7 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
             option_b_cz: q.answers_cz?.[1] || undefined,
             option_c: q.answers[2],
             option_c_cz: q.answers_cz?.[2] || undefined,
-            option_d: q.answers[3],
+            option_d: q.answers[3] || '',
             option_d_cz: q.answers_cz?.[3] || undefined,
             correct_option: q.correctOption || ['A', 'B', 'C', 'D'][q.correct] || 'A',
             explanation: q.explanation || '',
@@ -1475,53 +1491,15 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
             approved: q.approved || false,
             approvedBy: q.approvedBy || undefined,
             approvedAt: q.approvedAt || undefined,
-            metadata: q.metadata || { applies_to: ['PPL', 'SPL'] }
+            metadata: q.metadata || { applies_to: ['PPL', 'SPL'] },
+            subcategory: q.subcategory || undefined
           };
         });
         return questions;
       }
     } catch (err) {
-      // DynamoDB loading failed, fallback to JSON
-    }
-
-    // Fallback: load from JSON file
-    try {
-      const response = await fetch(`/subject_${subjectId}.json`);
-      if (!response.ok) throw new Error('Failed to load questions');
-      const jsonQuestions = await response.json();
-      const questions: Question[] = jsonQuestions.map((q: any) => ({
-        id: typeof q.id === 'number' ? `subject${subjectId}_q${q.id}` : String(q.id),
-        questionId: typeof q.id === 'number' ? `subject${subjectId}_q${q.id}` : String(q.id),
-        subject_id: subjectId,
-        text: q.question,
-        text_cz: q.question_cz || undefined,
-        option_a: q.answers[0],
-        option_a_cz: q.answers_cz?.[0] || undefined,
-        option_b: q.answers[1],
-        option_b_cz: q.answers_cz?.[1] || undefined,
-        option_c: q.answers[2],
-        option_c_cz: q.answers_cz?.[2] || undefined,
-        option_d: q.answers[3],
-        option_d_cz: q.answers_cz?.[3] || undefined,
-        correct_option: ['A', 'B', 'C', 'D'][q.correct],
-        explanation: q.explanation || undefined,
-        explanation_cz: q.explanation_cz || undefined,
-        lo_id: q.lo_id || undefined,
-        is_ai: 0,
-        source: 'user',
-        difficulty: q.difficulty || 1,
-        image: q.image || null,
-        correct_count: null,
-        incorrect_count: null,
-        is_flagged: false,
-        last_practiced: null,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-        approved: false,
-        metadata: { applies_to: ['PPL', 'SPL'] }
-      }));
-      return questions;
-    } catch (error) {
+      console.error(`Failed to load questions for subject ${subjectId}:`, err);
+      // No fallback - return empty array if DynamoDB fails
       return [];
     }
   };
@@ -1557,9 +1535,11 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
         let total: Record<number, number> = {};
         let userQuestions: Record<number, number> = {};
         let ai: Record<number, number> = {};
+        let klCounts: Record<number, number> = {};
+        let medlankyCounts: Record<number, number> = {};
 
         if (countsResult.success && countsResult.data) {
-          ({ total, user: userQuestions, ai } = countsResult.data);
+          ({ total, user: userQuestions, ai, kl: klCounts, medlanky: medlankyCounts } = countsResult.data);
           const totalQ = Object.values(total).reduce((a, b) => a + b, 0);
           const userQ = Object.values(userQuestions).reduce((a, b) => a + b, 0);
           const aiQ = Object.values(ai).reduce((a, b) => a + b, 0);
@@ -1597,6 +1577,8 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
               question_count: total[s.id] ?? existing?.question_count ?? 0,
               user_count: userQuestions[s.id] ?? existing?.user_count ?? 0,
               ai_count: ai[s.id] ?? existing?.ai_count ?? 0,
+              kl_count: klCounts[s.id] ?? existing?.kl_count ?? 0,
+              medlanky_count: medlankyCounts[s.id] ?? existing?.medlanky_count ?? 0,
               success_rate: existing?.success_rate ?? 0
                             };
                           });
@@ -1613,9 +1595,11 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
                         let total: Record<number, number> = {};
                         let userQuestions: Record<number, number> = {};
                         let ai: Record<number, number> = {};
+                        let klCounts: Record<number, number> = {};
+                        let medlankyCounts: Record<number, number> = {};
                 
                         if (countsResult.success && countsResult.data) {
-                          ({ total, user: userQuestions, ai } = countsResult.data);
+                          ({ total, user: userQuestions, ai, kl: klCounts, medlanky: medlankyCounts } = countsResult.data);
                         }
                 
                         // 2. Fetch User Profile (Settings)
@@ -1738,6 +1722,8 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
                               question_count: total[s.id] ?? existing?.question_count ?? 0,
                               user_count: userQuestions[s.id] ?? existing?.user_count ?? 0,
                               ai_count: ai[s.id] ?? existing?.ai_count ?? 0,
+                              kl_count: klCounts[s.id] ?? existing?.kl_count ?? 0,
+                              medlanky_count: medlankyCounts[s.id] ?? existing?.medlanky_count ?? 0,
                               success_rate: existing?.success_rate ?? 0
                             };
           });
@@ -1784,6 +1770,10 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
 
   const getFilteredQuestionCount = (subject: Subject, sourceFilters: ('user' | 'ai')[]) => {
     if (subject.id <= 0) return subject.question_count || 0;
+
+    // For KL/MEDLANKY, return stored counts directly
+    if (selectedLicenseSubtype === 'MEDLANKY') return subject.medlanky_count || 0;
+    if (selectedLicenseSubtype === 'KL') return subject.kl_count || 0;
 
     let count = 0;
     if (sourceFilters.includes('user')) count += subject.user_count || 0;
@@ -1856,6 +1846,17 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
         const isAi = Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa';
         const sourceMatch = isAi ? drillSettings.sourceFilters.includes('ai') : drillSettings.sourceFilters.includes('user');
         if (!sourceMatch) return false;
+
+        // Filter by license - for KL, show only club questions
+        if (selectedLicense === 'KL') {
+          const appliesTo = q.metadata?.applies_to || ['PPL', 'SPL'];
+          if (!appliesTo.includes('KL')) return false;
+        }
+
+        // Filter by subcategory - for Medlánky
+        if (selectedSubcategory === 'Medlánky') {
+          if (q.subcategory !== 'Medlánky') return false;
+        }
 
         if (drillSettings.excludeAnswered) {
           const answer = answers[String(q.questionId || q.id)];
@@ -2017,11 +2018,20 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
       });
 
       // Apply license filter - show only questions applicable to selected license
-      const filtered = sourceFiltered.filter(q => {
+      let filtered = sourceFiltered.filter(q => {
         if (selectedLicense === 'BOTH') return true;
         const appliesTo = q.metadata?.applies_to || ['PPL', 'SPL'];
+        // For KL, show only club questions (with KL in applies_to)
+        if (selectedLicense === 'KL') {
+          return appliesTo.includes('KL');
+        }
         return appliesTo.includes(selectedLicense);
       });
+
+      // Apply subcategory filter
+      if (selectedSubcategory === 'Medlánky') {
+        filtered = filtered.filter(q => q.subcategory === 'Medlánky');
+      }
 
       console.log('🔍 MIX: Po source filtru:', sourceFiltered.length, 'otázek');
       console.log('🔍 MIX: Po licenčním filtru:', filtered.length, 'otázek');
@@ -2082,11 +2092,16 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     }
 
     // Filter by selected license
-    const filtered = all.filter(q => {
+    let filtered = all.filter(q => {
       if (selectedLicense === 'BOTH') return true;
       const appliesTo = q.metadata?.applies_to || ['PPL', 'SPL'];
       return appliesTo.includes(selectedLicense);
     });
+
+    // Filter by subcategory
+    if (selectedSubcategory === 'Medlánky') {
+      filtered = filtered.filter(q => q.subcategory === 'Medlánky');
+    }
 
     return filtered;
   };
@@ -2447,7 +2462,8 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
 
       // Use shuffle logic if shuffle is active
       if (drillSettings.shuffleAnswers && shuffledQuestion) {
-        const userAnswerIndex = ['A', 'B', 'C', 'D'].indexOf(option);
+        const labels = getAvailableOptions(currentQuestion);
+        const userAnswerIndex = labels.indexOf(option as any);
         isCorrect = checkAnswer(shuffledQuestion, userAnswerIndex);
       } else {
         isCorrect = option === currentQuestion.correct_option;
@@ -2762,7 +2778,7 @@ V nastavení lze změnit defaultni model.`);
       const lo = allLOs.find(l => l.id === q.lo_id);
 
       const displayCorrectOption = (drillSettings.shuffleAnswers && shuffledQuestion && view === 'drill')
-        ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
+        ? getAvailableOptions(shuffledQuestion.originalQuestion)[shuffledQuestion.displayCorrect]
         : undefined;
 
       const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined), aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken(), userApiKey, claudeApiKey, (chunk) => setAiExplanation(prev => prev + chunk));
@@ -2875,7 +2891,7 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
       const controller = AICancellationManager.createController('regenerate');
 
       const displayCorrectOption = (drillSettings.shuffleAnswers && shuffledQuestion && view === 'drill')
-        ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
+        ? getAvailableOptions(shuffledQuestion.originalQuestion)[shuffledQuestion.displayCorrect]
         : undefined;
 
       const explanation = await getDetailedExplanation(
@@ -2998,7 +3014,7 @@ V nastavení lze změnit defaultni model.`);
 
       console.log('[Detailed] No cached explanation, calling AI...');
       const displayCorrectOption = (drillSettings.shuffleAnswers && shuffledQuestion && view === 'drill')
-        ? ['A', 'B', 'C', 'D'][shuffledQuestion.displayCorrect]
+        ? getAvailableOptions(shuffledQuestion.originalQuestion)[shuffledQuestion.displayCorrect]
         : undefined;
 
       console.log('[Detailed] Calling getDetailedHumanExplanation...');
@@ -4320,13 +4336,20 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                         {(() => {
                           let totalCount = 0;
                           
-                          // Both guest and user should see the total DB size
-                          totalCount = stats ? (stats.totalQuestions || 0) : 0;
-                          
-                          // Filter by license
-                          if (selectedLicense === 'SPL') {
-                            // Estimate SPL count by excluding subjects 6,7,8 (roughly 1/3 of questions)
-                            totalCount = Math.round(totalCount * 0.67);
+                          // For KL/MEDLANKY, sum from subjects
+                          if (selectedLicenseSubtype === 'KL') {
+                            totalCount = subjects.reduce((sum, s) => sum + (s.kl_count || 0), 0);
+                          } else if (selectedLicenseSubtype === 'MEDLANKY') {
+                            totalCount = subjects.reduce((sum, s) => sum + (s.medlanky_count || 0), 0);
+                          } else {
+                            // Both guest and user should see the total DB size
+                            totalCount = stats ? (stats.totalQuestions || 0) : 0;
+                            
+                            // Filter by license
+                            if (selectedLicense === 'SPL') {
+                              // Estimate SPL count by excluding subjects 6,7,8 (roughly 1/3 of questions)
+                              totalCount = Math.round(totalCount * 0.67);
+                            }
                           }
                           
                           return totalCount > 0 ? totalCount.toLocaleString('cs-CZ').replace(/\s/g, '') : '0';
@@ -4334,6 +4357,9 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                         {(() => {
                           let userCount = 0;
                           let aiCount = 0;
+                          
+                          // For KL/MEDLANKY, no user/ai split
+                          if (selectedLicenseSubtype === 'KL' || selectedLicenseSubtype === 'MEDLANKY') return null;
                           
                           if (stats) {
                             // Filter by license
@@ -4451,6 +4477,16 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                if (v === 'ALL') {
                                  setSelectedLicense('BOTH');
                                  localStorage.setItem('selectedLicense', 'BOTH');
+                               } else if (v === 'KL') {
+                                 setSelectedLicense('KL');
+                                 setSelectedSubcategory('ALL');
+                                 localStorage.setItem('selectedLicense', 'KL');
+                                 localStorage.setItem('selectedSubcategory', 'ALL');
+                               } else if (v === 'MEDLANKY') {
+                                 setSelectedLicense('KL');
+                                 setSelectedSubcategory('Medlánky');
+                                 localStorage.setItem('selectedLicense', 'KL');
+                                 localStorage.setItem('selectedSubcategory', 'Medlánky');
                                } else {
                                  const broad = ['SPL', 'LAPL(S)', 'BPL', 'LAPL(B)'].includes(v) ? 'SPL' : 'PPL';
                                  setSelectedLicense(broad);
@@ -4475,6 +4511,10 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                              <optgroup label="Balóny (B)" className="bg-white dark:bg-gray-900 text-black dark:text-white">
                                <option value="BPL">BPL</option>
                                <option value="LAPL(B)">LAPL(B)</option>
+                             </optgroup>
+                             <optgroup label="Klubové" className="bg-white dark:bg-gray-900 text-black dark:text-white">
+                               <option value="KL">SAK</option>
+                               <option value="MEDLANKY">Medlánky</option>
                              </optgroup>
                            </select>
                            <div className="pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 text-gray-500">
@@ -4514,7 +4554,7 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                           // SPL only includes subjects 1,2,3,4,5,9
                           return [1, 2, 3, 4, 5, 9].includes(s.id);
                         }
-                        // PPL includes all subjects
+                        // PPL and KL include all subjects 1-9
                         return true;
                       }).map((s) => (
                         <div
@@ -4526,42 +4566,39 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                             <BookOpen size={16} className="opacity-40 group-hover:opacity-100" />
                           </div>
 
-                          <div className="flex items-center min-w-0 flex-1">
-                            <span className="font-medium text-sm group-hover:text-gray-900 dark:group-hover:text-gray-100">{s.description}</span>
+                          <div className="flex items-center min-w-0 flex-[3] sm:flex-1">
+                            <span className="font-medium text-sm group-hover:text-gray-900 dark:group-hover:text-gray-100 truncate">{s.description}</span>
                             <span className="hidden sm:inline text-xs opacity-50 ml-2 truncate group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">{s.name}</span>
                           </div>
 
-                          <div className="flex justify-end items-center gap-4 sm:gap-8">
-                            <div className="w-24 sm:w-32 font-mono text-xs flex justify-center">
-                              {(s.ai_count || 0) > 0 ? (
-                                <span className="opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">
-                                  {(() => {
-                                    const userCount = selectedLicense === 'SPL' && [6, 7, 8].includes(s.id) ? 0 : (s.user_count || 0);
-                                    const aiCount = selectedLicense === 'SPL' && [6, 7, 8].includes(s.id) ? 0 : (s.ai_count || 0);
-                                    return `${userCount}/${aiCount}`;
-                                  })()}
-                                </span>
-                              ) : (
-                                <span className="opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">
-                                  {(() => {
-                                    const totalCount = selectedLicense === 'SPL' && [6, 7, 8].includes(s.id) ? 0 : (s.question_count || 0);
-                                    return totalCount;
-                                  })()}
-                                </span>
-                              )}
+                          <div className="flex justify-end items-center gap-1 sm:gap-8 flex-shrink-0">
+                            <div className="w-12 sm:w-32 font-mono text-[10px] sm:text-xs flex justify-center">
+                              {(() => {
+                                // For KL/MEDLANKY, show single count (no user/ai split)
+                                if (selectedLicenseSubtype === 'MEDLANKY') return <span className="opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">{s.medlanky_count || 0}</span>;
+                                if (selectedLicenseSubtype === 'KL') return <span className="opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">{s.kl_count || 0}</span>;
+                                
+                                if ((s.ai_count || 0) > 0) {
+                                  const userCount = selectedLicense === 'SPL' && [6, 7, 8].includes(s.id) ? 0 : (s.user_count || 0);
+                                  const aiCount = selectedLicense === 'SPL' && [6, 7, 8].includes(s.id) ? 0 : (s.ai_count || 0);
+                                  return <span className="opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">{`${userCount}/${aiCount}`}</span>;
+                                }
+                                const totalCount = selectedLicense === 'SPL' && [6, 7, 8].includes(s.id) ? 0 : (s.question_count || 0);
+                                return <span className="opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">{totalCount}</span>;
+                              })()}
                             </div>
-                            <div className="w-16 sm:w-20 font-mono text-xs flex justify-end opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">
+                            <div className="w-12 sm:w-20 font-mono text-[10px] sm:text-xs flex justify-end opacity-60 group-hover:opacity-100 group-hover:text-gray-700 dark:group-hover:text-gray-300">
                               {(() => {
                                 const subStat = stats?.subjectStats?.[s.id];
                                 const answered = subStat?.totalAnswered ?? 0;
-                                const total = s.question_count || 0;
+                                const total = getFilteredQuestionCount(s, drillSettings.sourceFilters);
                                 if (answered > 0 && total > 0) {
                                   return `${answered}/${total}`;
                                 }
                                 return '-';
                               })()}
                             </div>
-                            <div className="w-16 sm:w-20 font-mono text-sm flex justify-end group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                            <div className="w-10 sm:w-20 font-mono text-[10px] sm:text-sm flex justify-end group-hover:text-gray-900 dark:group-hover:text-gray-100">
                               {(() => {
                                 const subStat = stats?.subjectStats?.[s.id];
                                 if (subStat && subStat.totalAnswered > 0) {
@@ -5186,7 +5223,7 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                   // SPL only includes subjects 1,2,3,4,5,9
                                   return [1, 2, 3, 4, 5, 9].includes(s.id);
                                 }
-                                // PPL includes all subjects
+                                // PPL and KL include all subjects 1-9
                                 return true;
                               }).map(s => (
                                 <option key={s.id} value={s.id}>{s.name}</option>
@@ -5540,7 +5577,7 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                         </h3>
 
                         <div className="grid gap-3">
-                          {['A', 'B', 'C', 'D'].map((opt, index) => {
+                          {getAvailableOptions(questions[currentQuestionIndex]).map((opt, index) => {
                             // Use shuffle logic if shuffle is active
                             let isCorrect: boolean;
                             let answerText: string;
@@ -5598,14 +5635,14 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                   {drillSettings.shuffleAnswers && shuffledQuestion ? (
                                     <TranslatedOption
                                       question={questions[currentQuestionIndex]}
-                                      option={(['A', 'B', 'C', 'D'][shuffledQuestion.shuffleMap[index]] as 'A' | 'B' | 'C' | 'D')}
+                                      option={(getAvailableOptions(questions[currentQuestionIndex])[shuffledQuestion.shuffleMap[index]] as 'A' | 'B' | 'C' | 'D')}
                                       language={language}
                                       className="flex-1"
                                     />
                                   ) : (
                                     <TranslatedOption
                                       question={questions[currentQuestionIndex]}
-                                      option={opt as 'A' | 'B' | 'C' | 'D'}
+                                      option={opt}
                                       language={language}
                                       className="flex-1"
                                     />
@@ -6112,7 +6149,7 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                             as="h3"
                           />
                           <div className="grid gap-3">
-                            {['A', 'B', 'C', 'D'].map((opt, index) => {
+                            {getAvailableOptions(questions[currentQuestionIndex]).map((opt, index) => {
                               const isSelected = answered === opt;
 
                               // Use shuffle logic if shuffle is active (but in exam mode, we don't shuffle for now)
@@ -6138,14 +6175,14 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                     {drillSettings.shuffleAnswers && shuffledQuestion && view === 'drill' ? (
                                       <TranslatedOption
                                         question={questions[currentQuestionIndex]}
-                                        option={(['A', 'B', 'C', 'D'][shuffledQuestion.shuffleMap[index]] as 'A' | 'B' | 'C' | 'D')}
+                                        option={(getAvailableOptions(questions[currentQuestionIndex])[shuffledQuestion.shuffleMap[index]] as 'A' | 'B' | 'C' | 'D')}
                                         language={language}
                                         className="flex-1"
                                       />
                                     ) : (
                                       <TranslatedOption
                                         question={questions[currentQuestionIndex]}
-                                        option={opt as 'A' | 'B' | 'C' | 'D'}
+                                        option={opt}
                                         language={language}
                                         className="flex-1"
                                       />
@@ -6898,7 +6935,7 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                       <div key={j} className="p-4 border border-[var(--line)] rounded-2xl space-y-3 bg-white/5">
                                         <p className="text-sm font-bold">{q.text}</p>
                                         <div className="grid grid-cols-2 gap-2">
-                                          {['A', 'B', 'C', 'D'].map(opt => {
+                                          {getAvailableOptions(q as Question).map(opt => {
                                             const key = `option_${opt.toLowerCase()}` as keyof typeof q;
                                             const isCorrect = q.correct_option === opt;
                                             return (

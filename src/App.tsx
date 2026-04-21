@@ -1422,7 +1422,7 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     try {
       const result = await dynamoDBService.getAllQuestionCounts();
       if (result.success && result.data) {
-        const { total, user, ai, kl, medlanky } = result.data!;
+        const { total = {}, user = {}, ai = {}, kl = {}, medlanky = {} } = result.data!;
         const withCounts: Subject[] = subjectDefs.map(s => ({
           ...s,
           question_count: total[s.id] || 0,
@@ -1540,6 +1540,11 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
 
         if (countsResult.success && countsResult.data) {
           ({ total, user: userQuestions, ai, kl: klCounts, medlanky: medlankyCounts } = countsResult.data);
+          total = total || {};
+          userQuestions = userQuestions || {};
+          ai = ai || {};
+          klCounts = klCounts || {};
+          medlankyCounts = medlankyCounts || {};
           const totalQ = Object.values(total).reduce((a, b) => a + b, 0);
           const userQ = Object.values(userQuestions).reduce((a, b) => a + b, 0);
           const aiQ = Object.values(ai).reduce((a, b) => a + b, 0);
@@ -1600,6 +1605,11 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
                 
                         if (countsResult.success && countsResult.data) {
                           ({ total, user: userQuestions, ai, kl: klCounts, medlanky: medlankyCounts } = countsResult.data);
+                          total = total || {};
+                          userQuestions = userQuestions || {};
+                          ai = ai || {};
+                          klCounts = klCounts || {};
+                          medlankyCounts = medlankyCounts || {};
                         }
                 
                         // 2. Fetch User Profile (Settings)

@@ -48,3 +48,6 @@ caa_ppl_lapl_pdfs/
 backups/aeropilot-users.json
 backups/aeropilot-users-backup.json
 backups/aeropilot-users.json
+
+# Archive - legacy question sources (now in DynamoDB)
+backups/subject_*.json

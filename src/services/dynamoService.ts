@@ -970,6 +970,8 @@ export class DynamoDBService {
     total: Record<number, number>;
     user: Record<number, number>;
     ai: Record<number, number>;
+    kl: Record<number, number>;
+    medlanky: Record<number, number>;
   }>> {
     try {
       await this.ensureInitialized();
@@ -977,6 +979,8 @@ export class DynamoDBService {
       const total: Record<number, number> = {};
       const user: Record<number, number> = {};
       const ai: Record<number, number> = {};
+      const kl: Record<number, number> = {};
+      const medlanky: Record<number, number> = {};
       let lastEvaluatedKey: Record<string, any> | undefined = undefined;
       let totalItems = 0;
 
@@ -985,7 +989,7 @@ export class DynamoDBService {
           TableName: getTableName('QUESTIONS'),
           ExclusiveStartKey: lastEvaluatedKey,
           // Only select the fields we need to save bandwidth
-          ProjectionExpression: 'subjectId, #src, is_ai',
+          ProjectionExpression: 'subjectId, #src, is_ai, license, subcategory',
           ExpressionAttributeNames: { '#src': 'source' }
         });
 
@@ -999,6 +1003,8 @@ export class DynamoDBService {
             if (isNaN(sid)) continue;
 
             const isAi = item.source === 'ai' || Number(item.is_ai) === 1;
+            const isKl = item.license === 'KL' || item.source === 'klub';
+            const isMedlanky = item.subcategory === 'Medlánky';
             
             total[sid] = (total[sid] || 0) + 1;
             if (isAi) {
@@ -1006,12 +1012,18 @@ export class DynamoDBService {
             } else {
               user[sid] = (user[sid] || 0) + 1;
             }
+            if (isKl) {
+              kl[sid] = (kl[sid] || 0) + 1;
+            }
+            if (isMedlanky) {
+              medlanky[sid] = (medlanky[sid] || 0) + 1;
+            }
           }
         }
       } while (lastEvaluatedKey);
 
-      console.log(`📡 getAllQuestionCounts: Success, counted ${totalItems} questions across ${Object.keys(total).length} subjects`);
-      return { success: true, data: { total, user, ai } };
+      console.log(`📡 getAllQuestionCounts: Success, counted ${totalItems} questions across ${Object.keys(total).length} subjects (KL: ${Object.values(kl).reduce((a,b)=>a+b,0)}, Medlánky: ${Object.values(medlanky).reduce((a,b)=>a+b,0)})`);
+      return { success: true, data: { total, user, ai, kl, medlanky } };
 
     } catch (error) {
       return {

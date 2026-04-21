@@ -5,6 +5,8 @@ export interface Subject {
   question_count: number;
   user_count?: number;
   ai_count?: number;
+  kl_count?: number;
+  medlanky_count?: number;
   success_rate: number;
 }
 
@@ -47,6 +49,7 @@ export interface Question {
   approved?: boolean;
   approvedBy?: string;
   approvedAt?: string;
+  subcategory?: string;
 }
 
 export interface Stats {

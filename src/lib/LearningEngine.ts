@@ -148,11 +148,16 @@ export class LearningEngine {
    * Returns shuffled answers array and the new index of the correct answer.
    */
   static shuffleAnswers(question: Question): { shuffledAnswers: string[]; correctIndex: number; shuffleMap: number[] } {
-    const answers = [question.option_a, question.option_b, question.option_c, question.option_d];
-    const originalCorrectIndex = ['A', 'B', 'C', 'D'].indexOf(question.correct_option);
+    const hasD = !!question.option_d;
+    const answers = hasD
+      ? [question.option_a, question.option_b, question.option_c, question.option_d]
+      : [question.option_a, question.option_b, question.option_c];
+    const labels = hasD ? ['A', 'B', 'C', 'D'] : ['A', 'B', 'C'];
+    const originalCorrectIndex = labels.indexOf(question.correct_option);
     
     // Generate shuffle map: [2, 0, 3, 1] means display A shows original answer[2], etc.
-    const shuffleMap = shuffle([0, 1, 2, 3]);
+    const indices = hasD ? [0, 1, 2, 3] : [0, 1, 2];
+    const shuffleMap = shuffle(indices);
     
     // Create shuffled answers using shuffle map
     const shuffledAnswers = shuffleMap.map(index => answers[index]);

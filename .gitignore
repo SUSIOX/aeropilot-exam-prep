@@ -41,6 +41,9 @@ IAM_SETUP_README.md
 .gemini/
 WINDSURF.md
 windsurf.json
+.windsurf/
+*.windsurf
+.windsurf-*
 
 # CAA PDF downloads
 caa_ppl_lapl_pdfs/

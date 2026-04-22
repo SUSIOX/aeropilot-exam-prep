@@ -5656,7 +5656,7 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                   {opt}
                                 </span>
                                 <div className="flex-1">
-                                  {drillSettings.shuffleAnswers && shuffledQuestion ? (
+                                  {drillSettings.shuffleAnswers && shuffledQuestion && shuffledQuestion.shuffleMap.length === getAvailableOptions(questions[currentQuestionIndex]).length ? (
                                     <TranslatedOption
                                       question={questions[currentQuestionIndex]}
                                       option={(getAvailableOptions(questions[currentQuestionIndex])[shuffledQuestion.shuffleMap[index]] as 'A' | 'B' | 'C' | 'D')}
@@ -6196,7 +6196,7 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                     {opt}
                                   </span>
                                   <div className="flex-1">
-                                    {drillSettings.shuffleAnswers && shuffledQuestion && view === 'drill' ? (
+                                    {drillSettings.shuffleAnswers && shuffledQuestion && view === 'drill' && shuffledQuestion.shuffleMap.length === getAvailableOptions(questions[currentQuestionIndex]).length ? (
                                       <TranslatedOption
                                         question={questions[currentQuestionIndex]}
                                         option={(getAvailableOptions(questions[currentQuestionIndex])[shuffledQuestion.shuffleMap[index]] as 'A' | 'B' | 'C' | 'D')}

@@ -50,6 +50,12 @@ export function TranslatedOption({
   className = ''
 }: TranslatedOptionProps) {
   
+  // Defensive: handle undefined or invalid option
+  if (!option || !['A', 'B', 'C', 'D'].includes(option)) {
+    console.error('TranslatedOption: invalid option prop', { option, questionId: question.id });
+    return <span className={className}>⚠️ Chyba: neplatná odpověď</span>;
+  }
+  
   const { optionKey, optionCzKey } = getOptionKeys(option);
   
   let displayText: string;

@@ -1298,6 +1298,30 @@ export class DynamoDBService {
     }
   }
 
+  // Update just the image field on a question (useful for fixing case sensitivity issues)
+  async updateQuestionImage(questionId: string, image: string | null): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      const command = new DocUpdateCommand({
+        TableName: getTableName('QUESTIONS'),
+        Key: { questionId },
+        UpdateExpression: 'SET #img = :image, updatedAt = :now',
+        ExpressionAttributeNames: { '#img': 'image' },
+        ExpressionAttributeValues: {
+          ':image': image,
+          ':now': new Date().toISOString()
+        }
+      });
+
+      await this.docClient.send(command);
+
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: this.handleError(error, 'updateQuestionImage').message };
+    }
+  }
+
   // Get a question together with its linked EasaObjective (single read + join)
   async getQuestionWithLO(questionId: string): Promise<DynamoDBResponse<{ question: any; objective: EasaObjective | null }>> {
     try {

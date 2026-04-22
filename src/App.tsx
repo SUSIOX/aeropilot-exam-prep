@@ -67,6 +67,7 @@ import {
 } from './services/aiService';
 import type { AIProvider } from './services/aiService';
 import { checkSubjectDuplicates, checkAllDuplicates, findDuplicatesInQuestions } from './utils/duplicateChecker';
+import Fuse from 'fuse.js';
 import { DynamoDBStatus } from './components/DynamoDBStatus';
 import { AdminDashboard } from './components/AdminDashboard';
 import { AircademySyllabus } from './components/AircademySyllabus';
@@ -409,6 +410,11 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
   const [newDocumentLink, setNewDocumentLink] = useState<string>('');
   const [loControlsExpanded, setLoControlsExpanded] = useState<boolean>(true);
   const [isLOSectionOpen, setIsLOSectionOpen] = useState<boolean>(false);
+
+  // Text Search State
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
   const [selectedLicense, setSelectedLicense] = useState<'PPL' | 'SPL' | 'BOTH' | 'KL'>(() => {
     return (localStorage.getItem('selectedLicense') as 'PPL' | 'SPL' | 'BOTH' | 'KL') || 'BOTH';
   });
@@ -1388,11 +1394,12 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
         return;
       }
 
-      // Update questions with filtered and mapped results
-      setQuestions(mapped);
+      // Update questions with filtered, mapped, and sorted results
+      const sorted = applySorting(mapped, drillSettings.sorting);
+      setQuestions(sorted);
       // Preserve position: find current question in new list, only reset if it was filtered out
       const currentQ = questions[currentQuestionIndex];
-      const newIdx = currentQ ? mapped.findIndex(q => String(q.id) === String(currentQ.id)) : -1;
+      const newIdx = currentQ ? sorted.findIndex(q => String(q.id) === String(currentQ.id)) : -1;
       if (newIdx >= 0) {
         setCurrentQuestionIndex(newIdx);
       } else {
@@ -1406,7 +1413,7 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
         updateShuffleHistoryLocal(mapped);
       }
     }
-  }, [drillSettings.sourceFilters, drillSettings.excludeAnswered, view, originalQuestions.length, selectedSubject, selectedLicense, selectedLicenseSubtype, selectedSubcategory]);
+  }, [drillSettings.sourceFilters, drillSettings.excludeAnswered, drillSettings.sorting, view, originalQuestions.length, selectedSubject, selectedLicense, selectedLicenseSubtype, selectedSubcategory]);
 
   // Force re-render of progress bars when filters change
   useEffect(() => {
@@ -2230,6 +2237,90 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
       setView('drill');
     } catch (error) {
       alert('Nepodařilo se načíst označené otázky.');
+    }
+  };
+
+  const startTextSearchDrill = async (query: string) => {
+    if (!query || query.length < 2) {
+      alert('Zadejte alespoň 2 znaky pro vyhledávání.');
+      return;
+    }
+
+    try {
+      setIsSearching(true);
+      const allQuestions = await loadAllQuestionsAcrossSubjects();
+
+      // Check if query looks like an ID (contains underscore, starts with subject/ai, or starts with "ID:")
+      const cleanQuery = query.trim();
+      const hasIdPrefix = cleanQuery.toLowerCase().startsWith('id:');
+      const queryWithoutPrefix = hasIdPrefix ? cleanQuery.slice(3).trim() : cleanQuery;
+      const isIdQuery = queryWithoutPrefix.includes('_') || 
+                        queryWithoutPrefix.toLowerCase().startsWith('subject') || 
+                        queryWithoutPrefix.toLowerCase().startsWith('ai_');
+
+      let matchedQuestions: Question[];
+
+      if (isIdQuery) {
+        // Exact ID match (case insensitive) - find exactly one question
+        const searchTerm = queryWithoutPrefix.toLowerCase();
+        matchedQuestions = allQuestions.filter(q => {
+          const id = String(q.id).toLowerCase();
+          const questionId = q.questionId ? String(q.questionId).toLowerCase() : '';
+          return id === searchTerm || questionId === searchTerm;
+        });
+      } else {
+        // Use Fuse.js for fuzzy text search
+        const fuseOptions = {
+          keys: ['text', 'text_cz', 'id', 'questionId'],
+          threshold: 0.4,
+          ignoreLocation: true,
+          minMatchCharLength: 2
+        };
+
+        const fuse = new Fuse(allQuestions, fuseOptions);
+        const results = fuse.search(query);
+        matchedQuestions = results.map(r => r.item);
+      }
+
+      if (matchedQuestions.length === 0) {
+        alert(`Pro hledaný výraz "${query}" nebyly nalezeny žádné otázky.`);
+        setIsSearching(false);
+        return;
+      }
+
+      // Apply source filters
+      const filtered = matchedQuestions.filter(q => {
+        const isAi = Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa';
+        const sourceMatch = isAi ? drillSettings.sourceFilters.includes('ai') : drillSettings.sourceFilters.includes('user');
+        return sourceMatch;
+      });
+
+      if (filtered.length === 0) {
+        alert(`Nalezeno ${matchedQuestions.length} otázek, ale žádná neodpovídá aktuálním filtrům zdroje.`);
+        setIsSearching(false);
+        return;
+      }
+
+      setOriginalQuestions(allQuestions);
+      let sortedQuestions = applySorting(filtered, drillSettings.sorting);
+      setSelectedSubject({ id: -3, name: `Vyhledávání: "${query}"`, question_count: sortedQuestions.length, success_rate: 0 });
+      setQuestions(sortedQuestions);
+      setCurrentQuestionIndex(0);
+      setAnswered(null);
+      setShowExplanation(false);
+      setIsSearchOpen(false);
+
+      if (drillSettings.sorting === 'weighted_learning') {
+        updateShuffleHistoryLocal(sortedQuestions);
+      }
+
+      language.resetTranslation();
+      setIsSearching(false);
+      setView('drill');
+    } catch (error) {
+      console.error('Search error:', error);
+      alert('Nepodařilo se provést vyhledávání.');
+      setIsSearching(false);
     }
   };
 
@@ -4000,6 +4091,7 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
 
           {/* Header - Hide when landing page is shown */}
           {!showLandingPage && (
+            <>
             <header className="border-b border-[var(--line)] px-4 py-3 flex justify-between items-center sticky top-0 bg-[var(--bg)] z-50 min-h-[60px]">
               {/* Left section - Logo and title (always visible) */}
               <div className="flex items-center gap-3 cursor-pointer group" onClick={() => setView('dashboard')}>
@@ -4044,6 +4136,16 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                     <span className="hidden sm:inline">AI Generátor</span>
                   </button>
                 )}
+
+                {/* Text Search Button */}
+                <button
+                  onClick={() => setIsSearchOpen(!isSearchOpen)}
+                  className={`text-xs uppercase tracking-widest font-semibold flex items-center gap-2 whitespace-nowrap transition-opacity ${isSearchOpen ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
+                  title="Hledat otázky"
+                >
+                  <Search size={14} className="flex-shrink-0" />
+                  <span className="hidden sm:inline">Hledat</span>
+                </button>
               </nav>
 
               {/* Right section - Desktop vs Mobile layout */}
@@ -4159,6 +4261,69 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                 </div>
               </div>
             </header>
+
+            {/* Search Panel - Expandable under header */}
+            <AnimatePresence>
+              {isSearchOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.2, ease: 'easeInOut' }}
+                  className="border-b border-[var(--line)] bg-[var(--bg)] overflow-hidden z-40 sticky top-[60px]"
+                >
+                  <div className="px-4 py-4 max-w-4xl mx-auto">
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <div className="flex-1 relative">
+                        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-40" />
+                        <input
+                          type="text"
+                          placeholder='Hledat otázky (text: tětiva, METAR / ID: subject3_q74)'
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          onKeyDown={(e) => e.key === 'Enter' && startTextSearchDrill(searchQuery)}
+                          className="w-full pl-10 pr-4 py-2.5 bg-[var(--line)]/30 border border-[var(--line)] rounded-xl text-sm focus:outline-none focus:border-indigo-600 transition-all"
+                          autoFocus
+                        />
+                      </div>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => startTextSearchDrill(searchQuery)}
+                          disabled={isSearching || searchQuery.length < 2}
+                          className="px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+                        >
+                          {isSearching ? (
+                            <>
+                              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                              Hledám...
+                            </>
+                          ) : (
+                            <>
+                              <Search size={16} />
+                              Vyhledat
+                            </>
+                          )}
+                        </button>
+                        <button
+                          onClick={() => {
+                            setIsSearchOpen(false);
+                            setSearchQuery('');
+                          }}
+                          className="px-3 py-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+                          title="Zavřít"
+                        >
+                          <X size={18} />
+                        </button>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2">
+                      Hledat lze podle textu otázky (fuzzy) nebo ID (přesně). Formáty ID: subject1_q126, ID: subject1_q126, ai_xxx
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            </>
           )}
 
           {/* Mobile Menu - Full screen overlay */}
@@ -4820,22 +4985,9 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                 localStorage.setItem('drillSettings', JSON.stringify(newSettings));
                                 return newSettings;
                               });
-
-                              // Immediately re-sort current questions and go to first
-                              if (questions.length > 0) {
-                                // console.log(`🔄 DEBUG: Sorting changed to: ${newSorting}`);
-                                // console.log(`🔄 DEBUG: Before re-sort - First question ID: ${questions[0]?.id}`);
-                                const sortedQuestions = applySorting(questions, newSorting);
-                                // console.log(`🔄 DEBUG: After re-sort - First question ID: ${sortedQuestions[0]?.id}`);
-
-                                // Update all state in single batch
-                                debugSetQuestions(sortedQuestions);
-                                setAnswered(null);
-                                setShowExplanation(false);
-
-                                // Set index last to ensure questions are updated first
-                                setCurrentQuestionIndex(0);
-                              }
+                              setAnswered(null);
+                              setShowExplanation(false);
+                              setCurrentQuestionIndex(0);
                             }}
                             className="w-full p-3 bg-transparent border border-[var(--line)] rounded-xl focus:outline-none focus:border-[var(--ink)]"
                           >

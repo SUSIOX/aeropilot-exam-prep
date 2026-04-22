@@ -1205,28 +1205,30 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
       return;
     }
 
-    // For DeepSeek with own key, check balance
+    // For DeepSeek with own key, verify key first, then show balance as info
     if (aiProvider === 'deepseek' && deepseekApiKey) {
       setIsVerifyingKey(true);
       setKeyStatus('idle');
       try {
-        // First check balance
-        const balanceResult = await checkDeepSeekBalance(deepseekApiKey);
+        // First verify the key is valid via /models endpoint
+        const verifyResult = await verifyApiKey(deepseekApiKey, 'deepseek');
 
-        if (balanceResult.success) {
-          // Then verify the key works
-          const verifyResult = await verifyApiKey(deepseekApiKey, 'deepseek');
-
-          if (verifyResult.success) {
-            setKeyStatus('valid');
-            alert(`✅ DeepSeek API klíč je platný.\n💰 Zůstatek: ${balanceResult.balance}\nKlíč byl uložen.`);
-          } else {
-            setKeyStatus('invalid');
-            alert(`❌ API klíč není platný: ${verifyResult.error}`);
+        if (verifyResult.success) {
+          setKeyStatus('valid');
+          // Then try to get balance as bonus info (non-blocking)
+          try {
+            const balanceResult = await checkDeepSeekBalance(deepseekApiKey);
+            if (balanceResult.success) {
+              alert(`✅ DeepSeek API klíč je platný.\n💰 Zůstatek: ${balanceResult.balance}\nKlíč byl uložen.`);
+            } else {
+              alert(`✅ DeepSeek API klíč je platný.\n⚠️ Zůstatek: ${balanceResult.error}\nKlíč byl uložen.`);
+            }
+          } catch {
+            alert('✅ DeepSeek API klíč je platný.\nKlíč byl uložen.');
           }
         } else {
           setKeyStatus('invalid');
-          alert(`❌ Chyba při kontrole zůstatku: ${balanceResult.error}`);
+          alert(`❌ API klíč není platný: ${verifyResult.error}`);
         }
       } catch (error: any) {
         setKeyStatus('invalid');

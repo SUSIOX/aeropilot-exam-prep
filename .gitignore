@@ -28,6 +28,7 @@ dist/
 AWS/
 lambda/
 scripts/
+upload_images_to_s3.sh
 admin-permissions-policy.json
 create-lambda-iam.sh
 create-cognito-roles.sh

@@ -10,10 +10,10 @@ Moderní aplikace pro přípravu na pilotní zkoušky s AI vysvětleními.
 
 ## Funkce
 
-### AI Vysvětlení (Gemini + Claude)
+### AI Vysvětlení (Gemini + Claude + DeepSeek)
 - **Technické analýzy** - strohý, přesný popis
 - **Lidská vysvětlení** - srozumitelné pro studenty
-- **Všechny modely** - včetně nejnovější Claude 4.6
+- **Všechny modely** - včetně nejnovější Claude 4.6 a DeepSeek V3
 - **Ukládání odpovědí** - pro rychlé načítání
 
 ### Learning Objectives
@@ -28,56 +28,37 @@ Moderní aplikace pro přípravu na pilotní zkoušky s AI vysvětleními.
 - **Responzivní** - mobilní, tablet, desktop
 - **Offline připraven** - localStorage cache
 
-## Lokální vývoj
+## Zdroje Otázek
 
-**Prerequisites:** Node.js 20+
+### AWS DynamoDB Database
+- Všechny otázky uloženy v AWS DynamoDB
+- Rychlý přístup a synchronizace
+- Automatické zálohování a replikace
 
-```bash
-# Instalace
-npm install
+### UCL (Ústav pro letecké vzdělávání)
+- Oficiální testovací databáze UCL
+- Reálné zkouškové otázky z CAA
+- Aktualizované podle aktuálních předpisů
 
-# Spuštění vývoje
-npm run dev
+### EASA Learning Objectives
+- Oficiální EASA syllabus Part-FCL
+- Kompletní seznam Learning Objectives
+- Všechny PPL(A) předměty a témata
 
-# Build pro produkci
-npm run build
-```
+### Aerokluby
+- Zkušenosti pilotů z aeroklubů
+- Praktické tipy a triky
+- Regionální specifika a postupy
 
-## AI API Klíče
-
-Pro plnou funkčnost potřebujete API klíče:
-
-### Google Gemini (zdarma)
-1. Jděte na [ai.google.dev](https://ai.google.dev)
-2. Vytvořte API klíč
-3. Zadejte do aplikace
-
-### Anthropic Claude (placený)
-1. Jděte na [console.anthropic.com](https://console.anthropic.com)
-2. Vytvořte API klíč
-3. Zadejte do aplikace
-
-## Nasazení
-
-### GitHub Pages (doporučeno)
-1. Fork tohoto repository
-2. Povolte GitHub Pages v Settings
-3. Automatické nasazení při každém push
-
-### Vlastní server
-```bash
-# Build
-npm run build
-
-# Nasazení
-npm install -g serve
-serve -s dist -l 3000
-```
+### Doporučená literatura
+- PPL(A) učebnice dle EASA
+- Letecké předpisy a regulace
+- Meteorologické a navigační příručky
 
 ## Architektura
 
 - **Frontend:** React 19 + Vite + TailwindCSS
-- **AI:** Gemini SDK + Anthropic SDK
+- **AI:** Gemini SDK + Anthropic SDK + DeepSeek SDK
 - **Storage:** localStorage (statická verze)
 - **Deployment:** GitHub Pages
 
@@ -94,6 +75,26 @@ serve -s dist -l 3000
 - Claude Sonnet 4 (stabilní)
 - Claude Opus 4 (výkonný)
 - Claude Haiku 4.5 (rychlý)
+
+### DeepSeek
+- DeepSeek V3 (nejnovější, nejlepší poměr cena/výkon) 🆕
+- DeepSeek Coder V2 (specializovaný na kód)
+- DeepSeek Chat (rychlý a efektivní)
+
+## AI API Klíče
+
+Pro plnou funkčnost potřebujete API klíče:
+
+### Google Gemini (zdarma)
+[ai.google.dev](https://ai.google.dev)
+
+### Anthropic Claude (placený)
+[console.anthropic.com](https://console.anthropic.com)
+
+### DeepSeek (placený, nejlepší poměr cena/výkon)
+[platform.deepseek.com](https://platform.deepseek.com)
+
+
 
 ## Přispění
 

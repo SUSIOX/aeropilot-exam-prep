@@ -1275,6 +1275,40 @@ export class DynamoDBService {
     }
   }
 
+  async updateQuestionCZ(questionId: string, data: {
+    question_cz: string;
+    answers_cz: string[];
+    explanation_cz: string;
+    correct: number;
+    correctOption: string;
+    editedBy: string;
+    editedAt: string;
+  }): Promise<DynamoDBResponse> {
+    try {
+      await this.ensureInitialized();
+
+      await this.docClient.send(new DocUpdateCommand({
+        TableName: getTableName('QUESTIONS'),
+        Key: { questionId },
+        UpdateExpression: 'SET question_cz = :question_cz, answers_cz = :answers_cz, explanation_cz = :explanation_cz, correct = :correct, correctOption = :correctOption, editedBy = :editedBy, editedAt = :editedAt, updatedAt = :now',
+        ExpressionAttributeValues: {
+          ':question_cz': data.question_cz,
+          ':answers_cz': data.answers_cz,
+          ':explanation_cz': data.explanation_cz,
+          ':correct': data.correct,
+          ':correctOption': data.correctOption,
+          ':editedBy': data.editedBy,
+          ':editedAt': data.editedAt,
+          ':now': new Date().toISOString(),
+        },
+      }));
+
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: this.handleError(error, 'updateQuestionCZ').message };
+    }
+  }
+
   // Set or update the loId on an existing question (links question → EasaObjective)
   async updateQuestionLO(questionId: string, loId: string): Promise<DynamoDBResponse> {
     try {

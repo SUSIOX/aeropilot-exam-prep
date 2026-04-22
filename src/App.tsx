@@ -40,7 +40,8 @@ import {
   Brain,
   Heart,
   Copy,
-  Check
+  Check,
+  Pencil
 } from 'lucide-react';
 import { Subject, Question, Stats, ViewMode, DrillSettings } from './types';
 import { Spinner } from './components/Spinner';
@@ -279,6 +280,33 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
   const [answered, setAnswered] = useState<string | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
   const [showQuestionId, setShowQuestionId] = useState(false);
+  const [auditMenuOpen, setAuditMenuOpen] = useState(false);
+  const [editingQuestion, setEditingQuestion] = useState<null | {
+    questionId: string;
+    text_cz: string;
+    options_cz: [string, string, string, string];
+    correct_option: string;
+    explanation_cz: string;
+  }>(null);
+  const [editSaving, setEditSaving] = useState(false);
+  const auditMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setAuditMenuOpen(false);
+    setEditingQuestion(null);
+  }, [currentQuestionIndex]);
+
+  useEffect(() => {
+    if (!auditMenuOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (auditMenuRef.current && !auditMenuRef.current.contains(e.target as Node)) {
+        setAuditMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [auditMenuOpen]);
+
   const [showRawProgressStats, setShowRawProgressStats] = useState(false);
   const [isProgressExpanded, setIsProgressExpanded] = useState(false);
   const [aiExplanation, setAiExplanation] = useState<string | null>(null);
@@ -1507,6 +1535,8 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
             approved: q.approved || false,
             approvedBy: q.approvedBy || undefined,
             approvedAt: q.approvedAt || undefined,
+            editedBy: q.editedBy || undefined,
+            editedAt: q.editedAt || undefined,
             metadata: q.metadata || { applies_to: ['PPL', 'SPL'] },
             subcategory: q.subcategory || undefined
           };
@@ -2794,6 +2824,61 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
       }
     } catch (e: any) {
       alert('Chyba při mazání otázky: ' + e.message);
+    }
+  };
+
+  const handleQuestionEdit = () => {
+    const q = questions[currentQuestionIndex];
+    if (!q) return;
+    setAuditMenuOpen(false);
+    setEditingQuestion({
+      questionId: q.questionId || String(q.id),
+      text_cz: q.text_cz || '',
+      options_cz: [q.option_a_cz || '', q.option_b_cz || '', q.option_c_cz || '', q.option_d_cz || ''],
+      correct_option: q.correct_option || 'A',
+      explanation_cz: q.explanation_cz || '',
+    });
+  };
+
+  const handleQuestionSave = async () => {
+    if (!editingQuestion || !user) return;
+    setEditSaving(true);
+    try {
+      const correctIdx = ['A', 'B', 'C', 'D'].indexOf(editingQuestion.correct_option);
+      const now = new Date().toISOString();
+      const response = await dynamoDBService.updateQuestionCZ(editingQuestion.questionId, {
+        question_cz: editingQuestion.text_cz,
+        answers_cz: editingQuestion.options_cz,
+        explanation_cz: editingQuestion.explanation_cz,
+        correct: correctIdx >= 0 ? correctIdx : 0,
+        correctOption: editingQuestion.correct_option,
+        editedBy: user.username,
+        editedAt: now,
+      });
+      if (response.success) {
+        setQuestions(prev => prev.map(q =>
+          (q.questionId || String(q.id)) === editingQuestion.questionId ? {
+            ...q,
+            text_cz: editingQuestion.text_cz,
+            option_a_cz: editingQuestion.options_cz[0],
+            option_b_cz: editingQuestion.options_cz[1],
+            option_c_cz: editingQuestion.options_cz[2],
+            option_d_cz: editingQuestion.options_cz[3],
+            correct_option: editingQuestion.correct_option,
+            explanation_cz: editingQuestion.explanation_cz,
+            editedBy: user.username,
+            editedAt: now,
+          } : q
+        ));
+        if (!language.showTranslation) language.toggleTranslation();
+        setEditingQuestion(null);
+      } else {
+        alert('Nepodařilo se uložit otázku: ' + response.error);
+      }
+    } catch (e: any) {
+      alert('Chyba při ukládání otázky: ' + e.message);
+    } finally {
+      setEditSaving(false);
     }
   };
 
@@ -5648,24 +5733,47 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                         </div>
                         <div className="flex items-center gap-2 shrink-0">
                           {(userRole === 'admin' || userRole === 'auditor') && (
-                            <>
+                            <div ref={auditMenuRef} className="hidden md:flex items-center relative">
                               <button
                                 onClick={handleQuestionApprove}
-                                className={`hidden md:flex flex-row gap-2 items-center px-3 py-1.5 rounded-lg border text-[10px] font-bold transition-all border-[var(--line)] ${questions[currentQuestionIndex].approved ? 'bg-green-500 text-white border-green-500' : 'opacity-60 hover:opacity-100 text-green-500'}`}
-                                title={questions[currentQuestionIndex].approved ? "Zrušit schválení" : "Schválit otázku (Approved!)"}
+                                className={`flex flex-row gap-2 items-center pl-3 pr-2 py-1.5 rounded-l-lg border-y border-l text-[10px] font-bold transition-all border-[var(--line)] ${questions[currentQuestionIndex].approved ? 'bg-green-500 text-white border-green-500' : 'opacity-60 hover:opacity-100 text-green-500'}`}
+                                title={questions[currentQuestionIndex].approved ? "Zrušit schválení" : "Schválit otázku"}
                               >
                                 <ShieldCheck size={12} />
                                 {questions[currentQuestionIndex].approved ? 'Approved!' : 'Approve'}
                               </button>
                               <button
-                                onClick={handleQuestionDelete}
-                                className="hidden md:flex flex-row gap-2 items-center px-3 py-1.5 rounded-lg border text-[10px] font-bold transition-all border-[var(--line)] text-rose-500 opacity-60 hover:opacity-100 hover:bg-rose-500 hover:text-white"
-                                title="Smazat otázku"
+                                onClick={() => setAuditMenuOpen(v => !v)}
+                                className={`flex items-center px-1.5 py-1.5 rounded-r-lg border text-[10px] font-bold transition-all border-[var(--line)] ${questions[currentQuestionIndex].approved ? 'bg-green-500 text-white border-green-500' : 'opacity-60 hover:opacity-100 text-green-500'}`}
+                                title="Další akce"
                               >
-                                <Trash2 size={12} />
-                                Delete
+                                <ChevronDown size={12} className={`transition-transform ${auditMenuOpen ? 'rotate-180' : ''}`} />
                               </button>
-                            </>
+                              {auditMenuOpen && auditMenuRef.current && (() => {
+                                const rect = auditMenuRef.current.getBoundingClientRect();
+                                return (
+                                  <div
+                                    style={{ position: 'fixed', top: rect.bottom + 4, right: window.innerWidth - rect.right, zIndex: 9999 }}
+                                    className="bg-[var(--bg)] border border-[var(--line)] rounded-xl shadow-xl overflow-hidden min-w-[130px]"
+                                  >
+                                    <button
+                                      onClick={handleQuestionEdit}
+                                      className="flex items-center gap-2 w-full px-3 py-2.5 text-[11px] font-bold hover:bg-[var(--line)] transition-colors text-left"
+                                    >
+                                      <Pencil size={12} />
+                                      Edit CZ
+                                    </button>
+                                    <button
+                                      onClick={() => { setAuditMenuOpen(false); handleQuestionDelete(); }}
+                                      className="flex items-center gap-2 w-full px-3 py-2.5 text-[11px] font-bold hover:bg-rose-500 hover:text-white transition-colors text-rose-500 text-left"
+                                    >
+                                      <Trash2 size={12} />
+                                      Delete
+                                    </button>
+                                  </div>
+                                );
+                              })()}
+                            </div>
                           )}
                           <div className="hidden md:block">
                             <LanguageButton
@@ -5682,6 +5790,97 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                           </button>
                         </div>
                       </div>
+
+                      {editingQuestion && (userRole === 'admin' || userRole === 'auditor') && (
+                        <div className="border border-amber-500/30 rounded-2xl bg-amber-500/5 p-4 space-y-4">
+                          <div className="flex items-center justify-between">
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-amber-500 flex items-center gap-1.5">
+                              <Pencil size={11} /> Editace CZ překladu
+                            </span>
+                            <button onClick={() => setEditingQuestion(null)} className="p-1 hover:bg-[var(--line)] rounded-full transition-colors opacity-60 hover:opacity-100">
+                              <X size={14} />
+                            </button>
+                          </div>
+
+                          <div className="space-y-2">
+                            <div className="text-[9px] font-bold uppercase tracking-widest opacity-40">Otázka</div>
+                            <div className="grid grid-cols-2 gap-2">
+                              <div className="text-[11px] opacity-50 bg-[var(--line)]/30 rounded-lg p-2 leading-relaxed">{questions[currentQuestionIndex].text}</div>
+                              <textarea
+                                value={editingQuestion.text_cz}
+                                onChange={e => setEditingQuestion(prev => prev ? { ...prev, text_cz: e.target.value } : prev)}
+                                rows={3}
+                                className="text-[11px] bg-[var(--bg)] border border-[var(--line)] rounded-lg p-2 resize-none focus:outline-none focus:border-amber-500/50 leading-relaxed"
+                                placeholder="CZ překlad otázky..."
+                              />
+                            </div>
+                          </div>
+
+                          <div className="space-y-1.5">
+                            <div className="text-[9px] font-bold uppercase tracking-widest opacity-40">Odpovědi</div>
+                            {(['A', 'B', 'C', 'D'] as const).map((label, idx) => (
+                              <div key={label} className={`grid grid-cols-[18px_1fr_1fr] gap-2 items-center rounded-lg p-1.5 ${editingQuestion.correct_option === label ? 'bg-green-500/10' : ''}`}>
+                                <input
+                                  type="radio"
+                                  name="correct_option_edit"
+                                  checked={editingQuestion.correct_option === label}
+                                  onChange={() => setEditingQuestion(prev => prev ? { ...prev, correct_option: label } : prev)}
+                                  className="accent-green-500 w-3.5 h-3.5 cursor-pointer"
+                                  title={`Označit ${label} jako správnou odpověď`}
+                                />
+                                <div className="text-[11px] opacity-50 bg-[var(--line)]/30 rounded-lg p-1.5 flex gap-1.5 items-start">
+                                  <span className="font-bold opacity-60 shrink-0">{label}.</span>
+                                  <span>{[questions[currentQuestionIndex].option_a, questions[currentQuestionIndex].option_b, questions[currentQuestionIndex].option_c, questions[currentQuestionIndex].option_d][idx]}</span>
+                                </div>
+                                <input
+                                  type="text"
+                                  value={editingQuestion.options_cz[idx]}
+                                  onChange={e => {
+                                    const newOpts = [...editingQuestion.options_cz] as [string, string, string, string];
+                                    newOpts[idx] = e.target.value;
+                                    setEditingQuestion(prev => prev ? { ...prev, options_cz: newOpts } : prev);
+                                  }}
+                                  className="text-[11px] bg-[var(--bg)] border border-[var(--line)] rounded-lg px-2 py-1.5 focus:outline-none focus:border-amber-500/50"
+                                  placeholder={`CZ odpověď ${label}...`}
+                                />
+                              </div>
+                            ))}
+                          </div>
+
+                          {questions[currentQuestionIndex].explanation && (
+                            <div className="space-y-2">
+                              <div className="text-[9px] font-bold uppercase tracking-widest opacity-40">Vysvětlení</div>
+                              <div className="grid grid-cols-2 gap-2">
+                                <div className="text-[11px] opacity-50 bg-[var(--line)]/30 rounded-lg p-2 leading-relaxed">{questions[currentQuestionIndex].explanation}</div>
+                                <textarea
+                                  value={editingQuestion.explanation_cz}
+                                  onChange={e => setEditingQuestion(prev => prev ? { ...prev, explanation_cz: e.target.value } : prev)}
+                                  rows={3}
+                                  className="text-[11px] bg-[var(--bg)] border border-[var(--line)] rounded-lg p-2 resize-none focus:outline-none focus:border-amber-500/50 leading-relaxed"
+                                  placeholder="CZ překlad vysvětlení..."
+                                />
+                              </div>
+                            </div>
+                          )}
+
+                          <div className="flex items-center gap-2 pt-1">
+                            <button
+                              onClick={handleQuestionSave}
+                              disabled={editSaving}
+                              className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg text-[10px] font-bold uppercase tracking-widest hover:bg-green-600 transition-colors disabled:opacity-50"
+                            >
+                              {editSaving ? <RefreshCw size={11} className="animate-spin" /> : <Check size={11} />}
+                              {editSaving ? 'Ukládám...' : 'Uložit'}
+                            </button>
+                            <button
+                              onClick={() => setEditingQuestion(null)}
+                              className="px-4 py-2 border border-[var(--line)] rounded-lg text-[10px] font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-colors"
+                            >
+                              Zrušit
+                            </button>
+                          </div>
+                        </div>
+                      )}
 
                       <div className="p-4 md:p-8 border border-[var(--line)] rounded-3xl space-y-6 md:space-y-8 bg-[var(--bg)]/50">
                         {questions[currentQuestionIndex].image && (
@@ -5726,9 +5925,9 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                               );
                             })()}
                             {showQuestionId && (
-                              <div className="text-[10px] opacity-60">
+                              <div className="text-[10px] opacity-60 space-y-0.5">
                                 <span
-                                  className="font-mono cursor-pointer hover:opacity-80 underline underline-offset-2"
+                                  className="font-mono cursor-pointer hover:opacity-80 underline underline-offset-2 block"
                                   onClick={() => {
                                     const q = questions[currentQuestionIndex];
                                     if (q.lo_id) {
@@ -5741,6 +5940,15 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                 >
                                   ID: {questions[currentQuestionIndex].questionId || questions[currentQuestionIndex].id}
                                 </span>
+                                {questions[currentQuestionIndex].editedBy && (
+                                  <span className="flex items-center gap-1 text-amber-500 font-mono">
+                                    <Pencil size={9} />
+                                    {questions[currentQuestionIndex].editedBy!.slice(0, 8)} · {(() => {
+                                      const d = new Date(questions[currentQuestionIndex].editedAt!);
+                                      return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+                                    })()}
+                                  </span>
+                                )}
                               </div>
                             )}
                           </div>

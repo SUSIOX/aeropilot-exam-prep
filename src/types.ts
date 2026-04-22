@@ -49,6 +49,8 @@ export interface Question {
   approved?: boolean;
   approvedBy?: string;
   approvedAt?: string;
+  editedBy?: string;
+  editedAt?: string;
   subcategory?: string;
 }
 

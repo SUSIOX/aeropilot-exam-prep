@@ -4278,7 +4278,7 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                         <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-40" />
                         <input
                           type="text"
-                          placeholder='Hledat otázky (text: tětiva, METAR / ID: subject3_q74)'
+                          placeholder='Hledat otázky nebo ID...'
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
                           onKeyDown={(e) => e.key === 'Enter' && startTextSearchDrill(searchQuery)}
@@ -4317,7 +4317,7 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                       </div>
                     </div>
                     <p className="text-xs text-gray-500 mt-2">
-                      Hledat lze podle textu otázky (fuzzy) nebo ID (přesně). Formáty ID: subject1_q126, ID: subject1_q126, ai_xxx
+                      Text: fuzzy hledání | ID: přesná shoda (např. subject1_q123)
                     </p>
                   </div>
                 </motion.div>

@@ -71,9 +71,11 @@ import { DynamoDBStatus } from './components/DynamoDBStatus';
 import { AdminDashboard } from './components/AdminDashboard';
 import { AircademySyllabus } from './components/AircademySyllabus';
 
-// Helper to determine available answer options for a question (some have only A/B/C)
+// Helper to determine available answer options for a question (some have only A/B or A/B/C)
 const getAvailableOptions = (question: Question): ('A' | 'B' | 'C' | 'D')[] => {
-  return question.option_d ? ['A', 'B', 'C', 'D'] : ['A', 'B', 'C'];
+  if (question.option_d) return ['A', 'B', 'C', 'D'];
+  if (question.option_c) return ['A', 'B', 'C'];
+  return ['A', 'B'];
 };
 
 // Shuffle utility interfaces and functions

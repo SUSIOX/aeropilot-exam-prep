@@ -2827,6 +2827,8 @@ V nastavení lze změnit defaultni model.`);
     }
 
     setIsGeneratingAiExplanation(true);
+    setAiExplanation(null);
+    setDetailedExplanation(null);
     try {
       // Guest mode = žádný přístup k AI
       if (isGuestMode) {
@@ -2974,6 +2976,7 @@ V nastavení lze změnit defaultni model.`);
     if (!q) return;
 
     setIsRegeneratingExplanation(true);
+    setAiExplanation(null);
     try {
       // Guest mode = žádný přístup k AI
       if (isGuestMode) {

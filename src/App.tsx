@@ -750,6 +750,9 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     if (msg.includes('cancelled') || msg.includes('cancel')) {
       return '';
     }
+    if (msg.includes('proxy error') || msg.includes('failed to fetch') || msg.includes('networkerror') || msg.includes('405')) {
+      return 'Proxy připojení selhalo. Zkouší se záložní AI provider.';
+    }
     return 'Nepodařilo se vygenerovat vysvětlení. Zkuste to znovu.';
   };
 

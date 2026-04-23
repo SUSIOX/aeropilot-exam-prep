@@ -693,7 +693,7 @@ export class DynamoDBService {
 
       for (const model of modelsToTry) {
         try {
-          const testResponse = await fetch(`${proxyUrl}`, {
+          const testResponse = await fetch(`${proxyUrl}?stream=1`, {
             method: 'POST',
             headers: { 
               'Content-Type': 'application/json', 

@@ -464,7 +464,7 @@ export async function callWithFallback<T>(
 ): Promise<T> {
   const isFatal = (err: any) => {
     const msg = (err?.message || '').toLowerCase();
-    // Only fallback on key/quota/balance errors, not on cancellation or parse errors
+    // Fallback on key/quota/balance/proxy/network errors
     return (
       msg.includes('api_key_invalid') ||
       msg.includes('api key not valid') ||
@@ -474,10 +474,18 @@ export async function callWithFallback<T>(
       msg.includes('credit balance is too low') ||
       msg.includes('quota') ||
       msg.includes('resource_exhausted') ||
+      msg.includes('proxy error') ||
+      msg.includes('failed to fetch') ||
+      msg.includes('networkerror') ||
+      msg.includes('network request failed') ||
       msg.includes('429') ||
       msg.includes('401') ||
       msg.includes('402') ||
-      msg.includes('403')
+      msg.includes('403') ||
+      msg.includes('405') ||
+      msg.includes('500') ||
+      msg.includes('502') ||
+      msg.includes('503')
     );
   };
 

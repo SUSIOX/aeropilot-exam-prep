@@ -2896,6 +2896,14 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     }
   };
 
+  // Convert app compositeId (e.g. 'subject9_q42') to DynamoDB explanation cache key (e.g. '9_42')
+  const toExplanationCacheKey = (id: string | number): string => {
+    const s = String(id);
+    const m = s.match(/^subject(\d+)_q(.+)$/);
+    if (m) return `${m[1]}_${m[2]}`;
+    return s;
+  };
+
   const handleFetchAiExplanation = async () => {
     const q = questions[currentQuestionIndex];
     if (!q) return;
@@ -2940,7 +2948,7 @@ V nastavení lze změnit defaultni model.`);
 
       // Check DynamoDB cache first
       try {
-        const cacheKey = String(q.id);
+        const cacheKey = toExplanationCacheKey(q.id);
         console.log(`[Cache] Checking DynamoDB for key: ${cacheKey}, model: ${aiModel}, provider: ${aiProvider}`);
         const cached = await dynamoDBService.getCachedExplanation(cacheKey, aiModel);
         console.log(`[Cache] DynamoDB result:`, cached);
@@ -2978,7 +2986,7 @@ V nastavení lze změnit defaultni model.`);
             setIsGeneratingAiExplanation(false);
             // Backfill to DynamoDB (only authenticated users)
             if (!isGuestMode && user?.id && isCredentialsReady) {
-              const cacheKey = String(q.id);
+              const cacheKey = toExplanationCacheKey(q.id);
               dynamoDBService.saveExplanationWithObjective(
                 cacheKey,
                 parsed.explanation,
@@ -3043,7 +3051,7 @@ V nastavení lze změnit defaultni model.`);
       // Save AI explanation to DynamoDB (only for authenticated users — guests nemají UpdateItem IAM)
       if (!isGuestMode && user?.id && isCredentialsReady) {
         try {
-          const cacheKey = String(q.id);
+          const cacheKey = toExplanationCacheKey(q.id);
           await dynamoDBService.saveExplanationWithObjective(
             cacheKey,
             result.explanation,
@@ -3157,7 +3165,7 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
 
       // Uložit do DynamoDB (authenticated only)
       if (!isGuestMode && user?.id && isCredentialsReady) {
-        const cacheKey = String(q.id);
+        const cacheKey = toExplanationCacheKey(q.id);
         dynamoDBService.saveExplanationWithObjective(
           cacheKey,
           explanation.explanation,

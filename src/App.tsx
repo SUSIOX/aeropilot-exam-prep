@@ -297,6 +297,8 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
   }>(null);
   const [editSaving, setEditSaving] = useState(false);
   const auditMenuRef = useRef<HTMLDivElement>(null);
+  const auditMenuMobileRef = useRef<HTMLDivElement>(null);
+  const editPanelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setAuditMenuOpen(false);
@@ -304,9 +306,22 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
   }, [currentQuestionIndex]);
 
   useEffect(() => {
+    if (editingQuestion && editPanelRef.current) {
+      setTimeout(() => {
+        const el = editPanelRef.current;
+        if (!el) return;
+        const top = el.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }, 80);
+    }
+  }, [editingQuestion]);
+
+  useEffect(() => {
     if (!auditMenuOpen) return;
     const handleClickOutside = (e: MouseEvent) => {
-      if (auditMenuRef.current && !auditMenuRef.current.contains(e.target as Node)) {
+      const inDesktop = auditMenuRef.current?.contains(e.target as Node);
+      const inMobile = auditMenuMobileRef.current?.contains(e.target as Node);
+      if (!inDesktop && !inMobile) {
         setAuditMenuOpen(false);
       }
     };
@@ -2856,10 +2871,15 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     setEditingQuestion({
       questionId: compositeId,
       dbQuestionId: dbKey,
-      text_cz: q.text_cz || '',
-      options_cz: [q.option_a_cz || '', q.option_b_cz || '', q.option_c_cz || '', q.option_d_cz || ''],
+      text_cz: q.text_cz || q.text || '',
+      options_cz: [
+        q.option_a_cz || q.option_a || '',
+        q.option_b_cz || q.option_b || '',
+        q.option_c_cz || q.option_c || '',
+        q.option_d_cz || q.option_d || '',
+      ],
       correct_option: q.correct_option || 'A',
-      explanation_cz: q.explanation_cz || '',
+      explanation_cz: q.explanation_cz || q.explanation || '',
     });
   };
 
@@ -5714,6 +5734,52 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                     </div>
                   ) : (
                     <>
+                      {/* Mobile audit row - only for admin/auditor, above toolbar */}
+                      {(userRole === 'admin' || userRole === 'auditor') && (
+                        <div className="flex md:hidden w-full justify-end">
+                        <div ref={auditMenuMobileRef} className="flex items-center relative">
+                          <button
+                            onClick={handleQuestionApprove}
+                            className={`flex flex-row gap-2 items-center pl-3 pr-2 py-1.5 rounded-l-lg border-y border-l text-[10px] font-bold transition-all border-[var(--line)] ${questions[currentQuestionIndex].approved ? 'bg-green-500 text-white border-green-500' : 'opacity-60 hover:opacity-100 text-green-500'}`}
+                            title={questions[currentQuestionIndex].approved ? 'Zrušit schválení' : 'Schválit otázku'}
+                          >
+                            <ShieldCheck size={12} />
+                            {questions[currentQuestionIndex].approved ? 'Approved!' : 'Approve'}
+                          </button>
+                          <button
+                            onClick={() => setAuditMenuOpen(v => !v)}
+                            className={`flex items-center self-stretch px-2 rounded-r-lg border text-[10px] font-bold transition-all border-[var(--line)] ${questions[currentQuestionIndex].approved ? 'bg-green-500 text-white border-green-500' : 'opacity-60 hover:opacity-100 text-green-500'}`}
+                            title="Další akce"
+                          >
+                            <ChevronDown size={14} className={`transition-transform ${auditMenuOpen ? 'rotate-180' : ''}`} />
+                          </button>
+                          {auditMenuOpen && auditMenuMobileRef.current && (() => {
+                            const r = auditMenuMobileRef.current!.getBoundingClientRect();
+                            return (
+                              <div
+                                style={{ position: 'fixed', top: r.bottom + 4, right: window.innerWidth - r.right, zIndex: 99999 }}
+                                className="bg-[var(--bg)] border border-[var(--line)] rounded-xl shadow-xl overflow-hidden min-w-[130px]"
+                              >
+                                <button
+                                  onClick={handleQuestionEdit}
+                                  className="flex items-center gap-2 w-full px-3 py-2.5 text-[11px] font-bold hover:bg-[var(--line)] transition-colors text-left"
+                                >
+                                  <Pencil size={12} />
+                                  Edit CZ
+                                </button>
+                                <button
+                                  onClick={() => { setAuditMenuOpen(false); handleQuestionDelete(); }}
+                                  className="flex items-center gap-2 w-full px-3 py-2.5 text-[11px] font-bold hover:bg-rose-500 hover:text-white transition-colors text-rose-500 text-left"
+                                >
+                                  <Trash2 size={12} />
+                                  Delete
+                                </button>
+                              </div>
+                            );
+                          })()}
+                        </div>
+                        </div>
+                      )}
                       <div className="flex flex-row justify-between items-center gap-2 w-full overflow-hidden">
                         <button onClick={() => setView('dashboard')} className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest opacity-50 hover:opacity-100 shrink-0">
                           <ArrowLeft size={12} /> Zpět
@@ -5811,16 +5877,16 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                               </button>
                               <button
                                 onClick={() => setAuditMenuOpen(v => !v)}
-                                className={`flex items-center px-1.5 py-1.5 rounded-r-lg border text-[10px] font-bold transition-all border-[var(--line)] ${questions[currentQuestionIndex].approved ? 'bg-green-500 text-white border-green-500' : 'opacity-60 hover:opacity-100 text-green-500'}`}
+                                className={`flex items-center self-stretch px-2 rounded-r-lg border text-[10px] font-bold transition-all border-[var(--line)] ${questions[currentQuestionIndex].approved ? 'bg-green-500 text-white border-green-500' : 'opacity-60 hover:opacity-100 text-green-500'}`}
                                 title="Další akce"
                               >
-                                <ChevronDown size={12} className={`transition-transform ${auditMenuOpen ? 'rotate-180' : ''}`} />
+                                <ChevronDown size={14} className={`transition-transform ${auditMenuOpen ? 'rotate-180' : ''}`} />
                               </button>
                               {auditMenuOpen && auditMenuRef.current && (() => {
-                                const rect = auditMenuRef.current.getBoundingClientRect();
+                                const r = auditMenuRef.current!.getBoundingClientRect();
                                 return (
                                   <div
-                                    style={{ position: 'fixed', top: rect.bottom + 4, right: window.innerWidth - rect.right, zIndex: 9999 }}
+                                    style={{ position: 'fixed', top: r.bottom + 4, right: window.innerWidth - r.right, zIndex: 99999 }}
                                     className="bg-[var(--bg)] border border-[var(--line)] rounded-xl shadow-xl overflow-hidden min-w-[130px]"
                                   >
                                     <button
@@ -5859,7 +5925,7 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                       </div>
 
                       {editingQuestion && (userRole === 'admin' || userRole === 'auditor') && (
-                        <div className="border border-amber-500/30 rounded-2xl bg-amber-500/5 p-4 space-y-4">
+                        <div ref={editPanelRef} className="border border-amber-500/30 rounded-2xl bg-amber-500/5 p-4 space-y-3">
                           <div className="flex items-center justify-between">
                             <span className="text-[10px] font-bold uppercase tracking-widest text-amber-500 flex items-center gap-1.5">
                               <Pencil size={11} /> Editace CZ překladu
@@ -5869,36 +5935,30 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                             </button>
                           </div>
 
-                          <div className="space-y-2">
+                          <div className="space-y-1">
                             <div className="text-[9px] font-bold uppercase tracking-widest opacity-40">Otázka</div>
-                            <div className="grid grid-cols-2 gap-2">
-                              <div className="text-[11px] opacity-50 bg-[var(--line)]/30 rounded-lg p-2 leading-relaxed">{questions[currentQuestionIndex].text}</div>
-                              <textarea
-                                value={editingQuestion.text_cz}
-                                onChange={e => setEditingQuestion(prev => prev ? { ...prev, text_cz: e.target.value } : prev)}
-                                rows={3}
-                                className="text-[11px] bg-[var(--bg)] border border-[var(--line)] rounded-lg p-2 resize-none focus:outline-none focus:border-amber-500/50 leading-relaxed"
-                                placeholder="CZ překlad otázky..."
-                              />
-                            </div>
+                            <textarea
+                              value={editingQuestion.text_cz}
+                              onChange={e => setEditingQuestion(prev => prev ? { ...prev, text_cz: e.target.value } : prev)}
+                              rows={3}
+                              className="w-full text-sm bg-[var(--bg)] border border-[var(--line)] rounded-xl p-3 resize-none focus:outline-none focus:border-amber-500/50 leading-relaxed"
+                              placeholder="CZ text otázky..."
+                            />
                           </div>
 
                           <div className="space-y-1.5">
                             <div className="text-[9px] font-bold uppercase tracking-widest opacity-40">Odpovědi</div>
                             {(['A', 'B', 'C', 'D'] as const).map((label, idx) => (
-                              <div key={label} className={`grid grid-cols-[18px_1fr_1fr] gap-2 items-center rounded-lg p-1.5 ${editingQuestion.correct_option === label ? 'bg-green-500/10' : ''}`}>
+                              <div key={label} className={`flex items-center gap-2 rounded-xl px-3 py-2 border ${editingQuestion.correct_option === label ? 'border-green-500/40 bg-green-500/5' : 'border-[var(--line)]'}`}>
                                 <input
                                   type="radio"
                                   name="correct_option_edit"
                                   checked={editingQuestion.correct_option === label}
                                   onChange={() => setEditingQuestion(prev => prev ? { ...prev, correct_option: label } : prev)}
-                                  className="accent-green-500 w-3.5 h-3.5 cursor-pointer"
+                                  className="accent-green-500 w-4 h-4 cursor-pointer shrink-0"
                                   title={`Označit ${label} jako správnou odpověď`}
                                 />
-                                <div className="text-[11px] opacity-50 bg-[var(--line)]/30 rounded-lg p-1.5 flex gap-1.5 items-start">
-                                  <span className="font-bold opacity-60 shrink-0">{label}.</span>
-                                  <span>{[questions[currentQuestionIndex].option_a, questions[currentQuestionIndex].option_b, questions[currentQuestionIndex].option_c, questions[currentQuestionIndex].option_d][idx]}</span>
-                                </div>
+                                <span className="text-[11px] font-bold opacity-40 shrink-0 w-4">{label}.</span>
                                 <input
                                   type="text"
                                   value={editingQuestion.options_cz[idx]}
@@ -5907,26 +5967,23 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                     newOpts[idx] = e.target.value;
                                     setEditingQuestion(prev => prev ? { ...prev, options_cz: newOpts } : prev);
                                   }}
-                                  className="text-[11px] bg-[var(--bg)] border border-[var(--line)] rounded-lg px-2 py-1.5 focus:outline-none focus:border-amber-500/50"
-                                  placeholder={`CZ odpověď ${label}...`}
+                                  className="flex-1 text-sm bg-transparent focus:outline-none"
+                                  placeholder={`Odpověď ${label}...`}
                                 />
                               </div>
                             ))}
                           </div>
 
                           {questions[currentQuestionIndex].explanation && (
-                            <div className="space-y-2">
+                            <div className="space-y-1">
                               <div className="text-[9px] font-bold uppercase tracking-widest opacity-40">Vysvětlení</div>
-                              <div className="grid grid-cols-2 gap-2">
-                                <div className="text-[11px] opacity-50 bg-[var(--line)]/30 rounded-lg p-2 leading-relaxed">{questions[currentQuestionIndex].explanation}</div>
-                                <textarea
-                                  value={editingQuestion.explanation_cz}
-                                  onChange={e => setEditingQuestion(prev => prev ? { ...prev, explanation_cz: e.target.value } : prev)}
-                                  rows={3}
-                                  className="text-[11px] bg-[var(--bg)] border border-[var(--line)] rounded-lg p-2 resize-none focus:outline-none focus:border-amber-500/50 leading-relaxed"
-                                  placeholder="CZ překlad vysvětlení..."
-                                />
-                              </div>
+                              <textarea
+                                value={editingQuestion.explanation_cz}
+                                onChange={e => setEditingQuestion(prev => prev ? { ...prev, explanation_cz: e.target.value } : prev)}
+                                rows={3}
+                                className="w-full text-sm bg-[var(--bg)] border border-[var(--line)] rounded-xl p-3 resize-none focus:outline-none focus:border-amber-500/50 leading-relaxed"
+                                placeholder="CZ vysvětlení..."
+                              />
                             </div>
                           )}
 
@@ -8185,8 +8242,8 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
             );
           })()}
 
-          {/* DynamoDB Status Component */}
-          <DynamoDBStatus />
+          {/* DynamoDB Status Component - only visible in settings */}
+          {view === 'settings' && <DynamoDBStatus />}
 
           {/* Admin Dashboard Component - admin only */}
           <AdminDashboard userRole={userRole} />

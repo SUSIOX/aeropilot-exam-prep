@@ -6,7 +6,11 @@ import { Question } from '../../types';
 function isCzechText(text: string): boolean {
   if (!text) return false;
   const czechChars = /[ěščřžýáíéúůňóťďĚŠČŘŽÝÁÍÉÚŮŇÓŤĎ]/;
-  return czechChars.test(text);
+  if (czechChars.test(text)) return true;
+  // Fallback: detect common Czech words for texts without diacritics
+  const lower = text.toLowerCase();
+  const czechWords = /\b(je|jsou|byl|bylo|byly|bude|nebo|ale|pro|pri|bez|nad|pod|jak|kde|kdo|co|se|na|ve|do|ze|po|za|od|ke|tato|tento|tyto|toto|jako|take|muze|mohou|pokud|kdyz|jestlize|otazka|odpoved|letadlo|pilot|let|vzduch|rychlost|vyska|tlak|teplota|vzdalenost)\b/;
+  return czechWords.test(lower);
 }
 
 /**
@@ -47,18 +51,17 @@ export function hasTranslation(question: Question | undefined): boolean {
 
 /**
  * Check if question is English (no Czech translation available)
- * Uses language detection on text content, not just checking text_cz field
+ * Only EASA-sourced questions are potentially English.
  */
 export function isEnglishQuestion(question: Question | undefined): boolean {
   if (!question) return false;
-  
-  // Check if text itself is Czech (for questions that are originally Czech)
-  if (isCzechText(question.text)) {
-    return false;
-  }
-  
-  // If text_cz exists, it's an English question with translation
-  // If text_cz doesn't exist and text is not Czech, it's an English question without translation
+
+  // Only EASA questions can be English
+  if (question.source !== 'easa') return false;
+
+  // Check if the text itself is already Czech (some EASA questions are CZ)
+  if (isCzechText(question.text)) return false;
+
   return true;
 }
 

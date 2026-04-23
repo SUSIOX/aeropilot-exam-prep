@@ -289,6 +289,7 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
   const [auditMenuOpen, setAuditMenuOpen] = useState(false);
   const [editingQuestion, setEditingQuestion] = useState<null | {
     questionId: string;
+    dbQuestionId: string;
     text_cz: string;
     options_cz: [string, string, string, string];
     correct_option: string;
@@ -1519,6 +1520,7 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
           return {
             id: compositeId,
             questionId: compositeId,
+            _dbQuestionId: String(rawId),
             subject_id: subjectId,
             text: q.question,
             text_cz: q.question_cz || undefined,
@@ -2845,8 +2847,11 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     const q = questions[currentQuestionIndex];
     if (!q) return;
     setAuditMenuOpen(false);
+    const compositeId = q.questionId || String(q.id);
+    const dbKey = (q as any)._dbQuestionId || compositeId;
     setEditingQuestion({
-      questionId: q.questionId || String(q.id),
+      questionId: compositeId,
+      dbQuestionId: dbKey,
       text_cz: q.text_cz || '',
       options_cz: [q.option_a_cz || '', q.option_b_cz || '', q.option_c_cz || '', q.option_d_cz || ''],
       correct_option: q.correct_option || 'A',
@@ -2860,7 +2865,8 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     try {
       const correctIdx = ['A', 'B', 'C', 'D'].indexOf(editingQuestion.correct_option);
       const now = new Date().toISOString();
-      const response = await dynamoDBService.updateQuestionCZ(editingQuestion.questionId, {
+      console.log('[handleQuestionSave] questionId:', editingQuestion.questionId, 'dbQuestionId:', editingQuestion.dbQuestionId, 'correctOption:', editingQuestion.correct_option, 'editedBy:', user.username);
+      const response = await dynamoDBService.updateQuestionCZ(editingQuestion.dbQuestionId, {
         question_cz: editingQuestion.text_cz,
         answers_cz: editingQuestion.options_cz,
         explanation_cz: editingQuestion.explanation_cz,

@@ -1287,10 +1287,13 @@ export class DynamoDBService {
     try {
       await this.ensureInitialized();
 
-      await this.docClient.send(new DocUpdateCommand({
+      console.log('[updateQuestionCZ] Updating questionId:', questionId, 'table:', getTableName('QUESTIONS'));
+
+      const result = await this.docClient.send(new DocUpdateCommand({
         TableName: getTableName('QUESTIONS'),
         Key: { questionId },
         UpdateExpression: 'SET question_cz = :question_cz, answers_cz = :answers_cz, explanation_cz = :explanation_cz, correct = :correct, correctOption = :correctOption, editedBy = :editedBy, editedAt = :editedAt, updatedAt = :now',
+        ConditionExpression: 'attribute_exists(questionId)',
         ExpressionAttributeValues: {
           ':question_cz': data.question_cz,
           ':answers_cz': data.answers_cz,
@@ -1301,10 +1304,16 @@ export class DynamoDBService {
           ':editedAt': data.editedAt,
           ':now': new Date().toISOString(),
         },
+        ReturnValues: 'ALL_NEW',
       }));
 
+      console.log('[updateQuestionCZ] ✅ Updated OK, new correctOption:', (result.Attributes as any)?.correctOption);
       return { success: true };
-    } catch (error) {
+    } catch (error: any) {
+      if (error.name === 'ConditionalCheckFailedException') {
+        console.error('[updateQuestionCZ] ❌ Item not found in DB with questionId:', questionId);
+        return { success: false, error: `Otázka s klíčem "${questionId}" nebyla nalezena v databázi. Zkuste stránku obnovit.` };
+      }
       return { success: false, error: this.handleError(error, 'updateQuestionCZ').message };
     }
   }

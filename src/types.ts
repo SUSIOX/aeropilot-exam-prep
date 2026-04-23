@@ -13,6 +13,13 @@ export interface Subject {
 export interface Question {
   id: number | string;
   questionId?: string;
+  // Mapování externích ID (UCL, KL, Medlánky, EASA LO)
+  external_ids?: {
+    ucl?: string;
+    kl?: string;
+    medlanky?: string;
+    easa_lo?: string;
+  };
   subject_id: number;
   text: string;
   text_cz?: string;

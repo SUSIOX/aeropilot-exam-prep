@@ -2317,8 +2317,9 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
       const cleanQuery = query.trim();
       const hasIdPrefix = cleanQuery.toLowerCase().startsWith('id:');
       const queryWithoutPrefix = hasIdPrefix ? cleanQuery.slice(3).trim() : cleanQuery;
-      const isIdQuery = queryWithoutPrefix.includes('_') || 
-                        queryWithoutPrefix.toLowerCase().startsWith('subject') || 
+      const isIdQuery = queryWithoutPrefix.includes('_') ||
+                        /^\d+$/.test(queryWithoutPrefix) ||  // čistě číselné ID (např. "73")
+                        queryWithoutPrefix.toLowerCase().startsWith('subject') ||
                         queryWithoutPrefix.toLowerCase().startsWith('ai_');
 
       let matchedQuestions: Question[];
@@ -2326,15 +2327,31 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
       if (isIdQuery) {
         // Exact ID match (case insensitive) - find exactly one question
         const searchTerm = queryWithoutPrefix.toLowerCase();
+        // Pure numeric search - check external_ids.ucl/kl/medlanky
+        const isNumericSearch = /^\d+$/.test(searchTerm);
         matchedQuestions = allQuestions.filter(q => {
           const id = String(q.id).toLowerCase();
           const questionId = q.questionId ? String(q.questionId).toLowerCase() : '';
-          return id === searchTerm || questionId === searchTerm;
+          // Standard ID match
+          if (id === searchTerm || questionId === searchTerm) return true;
+          // External IDs match (pro číselná hledání jako "73")
+          if (q.external_ids) {
+            const ext = q.external_ids;
+            if (isNumericSearch) {
+              // Pro číselné hledání porovnej s jakýmkoli externím ID
+              if (ext.ucl === searchTerm || ext.kl === searchTerm || ext.medlanky === searchTerm) return true;
+            } else {
+              // Pro textové hledání (např. "ucl_5_073")
+              const extValues = Object.values(ext).filter(Boolean).map(v => String(v).toLowerCase());
+              if (extValues.includes(searchTerm)) return true;
+            }
+          }
+          return false;
         });
       } else {
         // Use Fuse.js for fuzzy text search
         const fuseOptions = {
-          keys: ['text', 'text_cz', 'id', 'questionId'],
+          keys: ['text', 'text_cz', 'id', 'questionId', 'external_ids.ucl', 'external_ids.kl', 'external_ids.medlanky'],
           threshold: 0.4,
           ignoreLocation: true,
           minMatchCharLength: 2

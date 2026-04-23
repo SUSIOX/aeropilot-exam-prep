@@ -4544,6 +4544,17 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                       <span className="font-semibold">Osnovy</span>
                     </button>
 
+                    <button
+                      onClick={() => {
+                        setIsSearchOpen(!isSearchOpen);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${isSearchOpen ? 'bg-[var(--ink)] text-[var(--ink-text)]' : 'hover:bg-[var(--ink)] hover:text-[var(--ink-text)]'}`}
+                    >
+                      <Search size={18} />
+                      <span className="font-semibold">Hledat</span>
+                    </button>
+
                     {userApiKey && (
                       <button
                         onClick={() => {

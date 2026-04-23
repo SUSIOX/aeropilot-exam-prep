@@ -1519,9 +1519,11 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
         const questions: Question[] = result.data.map((q: any) => {
           const rawId = q.originalId || q.questionId;
           const isNumericId = !isNaN(Number(rawId)) && !String(rawId).startsWith('ai_');
-          // DŮLEŽITÉ: compositeId = DynamoDB questionId klíč (subjectN_qID pro PDF otázky, ai_hash pro AI)
-          const compositeId = isNumericId ? `subject${subjectId}_q${rawId}` : String(rawId);
-          // _dbQuestionId = skutečný primární klíč v DynamoDB (nikdy numeric originalId)
+          // Pro Medlánky/KL otázky (non-numeric ID jako 'medlanky_nav_6') použít reálné DB ID
+          // Pro staré PDF otázky použít subjectN_qN formát
+          const isCustomId = q.questionId && !q.questionId.match(/^subject\d+_q\d+$/) && !q.questionId.startsWith('ai_');
+          const compositeId = isCustomId ? String(q.questionId) : (isNumericId ? `subject${subjectId}_q${rawId}` : String(rawId));
+          // _dbQuestionId = skutečný primární klíč v DynamoDB (vždy questionId z DB)
           const dbQuestionId = String(q.questionId);
           const answer = answers[compositeId];
 
@@ -2387,17 +2389,8 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
 
   const startExam = async () => {
     try {
-      const allQuestions: Question[] = [];
-
-      // For static deployment, get questions from localStorage
-      const savedQuestions = localStorage.getItem('questions');
-      if (savedQuestions) {
-        const data = JSON.parse(savedQuestions);
-        allQuestions.push(...data);
-      } else {
-        // Fallback to current questions state
-        allQuestions.push(...questions);
-      }
+      // Load all questions from DynamoDB (fresh data, not cached)
+      const allQuestions: Question[] = await loadAllQuestionsAcrossSubjects();
 
       const filteredQuestions = allQuestions.filter(q => {
         const isAi = Number(q.is_ai) === 1 || q.source === 'ai' || q.source === 'easa';
@@ -2914,6 +2907,23 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
             editedAt: now,
           } : q
         ));
+        // Aktualizovat localStorage cache pro Drill
+        const cached = JSON.parse(localStorage.getItem('questions') || '[]');
+        const updatedCached = cached.map((q: any) =>
+          q.id === editingQuestion.questionId ? {
+            ...q,
+            text_cz: editingQuestion.text_cz,
+            option_a_cz: editingQuestion.options_cz[0],
+            option_b_cz: editingQuestion.options_cz[1],
+            option_c_cz: editingQuestion.options_cz[2],
+            option_d_cz: editingQuestion.options_cz[3],
+            correct_option: editingQuestion.correct_option,
+            explanation_cz: editingQuestion.explanation_cz,
+            editedBy: user.username,
+            editedAt: now,
+          } : q
+        );
+        localStorage.setItem('questions', JSON.stringify(updatedCached));
         if (!language.showTranslation) language.toggleTranslation();
         setEditingQuestion(null);
       } else {

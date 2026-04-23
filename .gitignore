@@ -55,6 +55,7 @@ backups/aeropilot-users.json
 
 # Archive - legacy question sources (now in DynamoDB)
 backups/subject_*.json
+backups/dynamodb-*/
 
 # Work directory - import scripts and temporary data files
 work/

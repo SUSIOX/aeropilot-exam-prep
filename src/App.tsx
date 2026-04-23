@@ -244,6 +244,12 @@ export default function App() {
   const [originalQuestions, setOriginalQuestions] = useState<Question[]>([]); // Store unfiltered questions
   const [isEcqbPatternsOpen, setIsEcqbPatternsOpen] = useState(false); // ECQB patterns collapsible
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const currentQuestionIndexRef = useRef(0);
+  const questionsRef = useRef<Question[]>([]);
+
+  // Keep refs in sync with state for stale-closure-safe async guards
+  useEffect(() => { currentQuestionIndexRef.current = currentQuestionIndex; }, [currentQuestionIndex]);
+  useEffect(() => { questionsRef.current = questions; }, [questions]);
 
   // Track when questions or currentQuestionIndex change
   useEffect(() => {
@@ -2936,7 +2942,7 @@ V nastavení lze změnit defaultni model.`);
         console.log(`[Cache] DynamoDB result:`, cached);
         if (cached.success && cached.data?.explanation) {
           console.log(`[Cache] Found in DynamoDB, using cached explanation`);
-          if (questions[currentQuestionIndex]?.id !== capturedQuestionId) return;
+          if (questionsRef.current[currentQuestionIndexRef.current]?.id !== capturedQuestionId) return;
           setAiExplanation(cached.data.explanation);
           setDetailedExplanation(cached.data.detailedExplanation || null);
           setAiExplanationGeneratedBy({ provider: cached.data.provider || 'unknown', model: cached.data.model || 'unknown' });
@@ -2958,7 +2964,7 @@ V nastavení lze změnit defaultni model.`);
           console.log(`[Cache] localStorage data:`, parsed);
           if (parsed.explanation) {
             console.log(`[Cache] Found in localStorage, using cached explanation`);
-            if (questions[currentQuestionIndex]?.id !== capturedQuestionId) return;
+            if (questionsRef.current[currentQuestionIndexRef.current]?.id !== capturedQuestionId) return;
             setAiExplanation(parsed.explanation);
             setDetailedExplanation(parsed.detailedExplanation || null);
             setAiExplanationGeneratedBy({ provider: parsed.provider || aiProvider, model: parsed.model || aiModel });
@@ -2992,14 +2998,14 @@ V nastavení lze změnit defaultni model.`);
         : undefined;
 
       const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined), aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken(), userApiKey, claudeApiKey, (chunk) => {
-        if (questions[currentQuestionIndex]?.id === capturedQuestionId) {
+        if (questionsRef.current[currentQuestionIndexRef.current]?.id === capturedQuestionId) {
           setAiExplanation(prev => (prev || '') + chunk);
         }
       });
 
 
       // Guard: discard result if user navigated to a different question
-      if (questions[currentQuestionIndex]?.id !== capturedQuestionId) return;
+      if (questionsRef.current[currentQuestionIndexRef.current]?.id !== capturedQuestionId) return;
 
       // Save objective if detected
       if (result.objective) {
@@ -3074,6 +3080,7 @@ V nastavení lze změnit defaultni model.`);
   const handleRegenerateExplanation = async () => {
     const q = questions[currentQuestionIndex];
     if (!q) return;
+    const capturedQuestionId = q.id;
 
     setIsRegeneratingExplanation(true);
     setAiExplanation(null);
@@ -3124,9 +3131,14 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
         await getProxyIdToken(),
         userApiKey,
         claudeApiKey,
-        (chunk) => setAiExplanation(prev => prev + chunk)
+        (chunk) => {
+          if (questionsRef.current[currentQuestionIndexRef.current]?.id === capturedQuestionId) {
+            setAiExplanation(prev => (prev || '') + chunk);
+          }
+        }
       );
 
+      if (questionsRef.current[currentQuestionIndexRef.current]?.id !== capturedQuestionId) return;
       setAiExplanation(explanation.explanation);
       setAiExplanationGeneratedBy({ provider: aiProvider, model: aiModel });
       setAiDetectedObjective(explanation.objective || null);

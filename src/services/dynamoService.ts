@@ -1289,6 +1289,17 @@ export class DynamoDBService {
 
       console.log('[updateQuestionCZ] Updating questionId:', questionId, 'table:', getTableName('QUESTIONS'));
 
+      // Pre-check: verify item exists before attempting update
+      const existing = await this.docClient.send(new DocGetCommand({
+        TableName: getTableName('QUESTIONS'),
+        Key: { questionId },
+      }));
+      if (!existing.Item) {
+        console.error('[updateQuestionCZ] ❌ GetItem returned no item for questionId:', questionId);
+        return { success: false, error: `Otázka s klíčem "${questionId}" nebyla nalezena v databázi. Zkuste stránku obnovit (F5).` };
+      }
+      console.log('[updateQuestionCZ] ✅ Item exists, proceeding with update. Current correctOption:', existing.Item.correctOption);
+
       const result = await this.docClient.send(new DocUpdateCommand({
         TableName: getTableName('QUESTIONS'),
         Key: { questionId },

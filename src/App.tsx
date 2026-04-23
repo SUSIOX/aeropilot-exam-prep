@@ -1506,6 +1506,8 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
           const isNumericId = !isNaN(Number(rawId)) && !String(rawId).startsWith('ai_');
           // DŮLEŽITÉ: compositeId = DynamoDB questionId klíč (subjectN_qID pro PDF otázky, ai_hash pro AI)
           const compositeId = isNumericId ? `subject${subjectId}_q${rawId}` : String(rawId);
+          // _dbQuestionId = skutečný primární klíč v DynamoDB (nikdy numeric originalId)
+          const dbQuestionId = String(q.questionId);
           const answer = answers[compositeId];
 
           // Helper function to extract value from DynamoDB attribute format
@@ -1520,7 +1522,7 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
           return {
             id: compositeId,
             questionId: compositeId,
-            _dbQuestionId: String(rawId),
+            _dbQuestionId: dbQuestionId,
             subject_id: subjectId,
             text: q.question,
             text_cz: q.question_cz || undefined,
@@ -2789,7 +2791,8 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     const isApproved = !q.approved;
 
     try {
-      const response = await dynamoDBService.approveQuestion(String(q.id), isApproved, user.username);
+      const dbKey = (q as any)._dbQuestionId || String(q.id);
+      const response = await dynamoDBService.approveQuestion(dbKey, isApproved, user.username);
       if (response.success) {
         setQuestions(prev => prev.map(question =>
           question.id === q.id ? {
@@ -2814,7 +2817,8 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
     if (!confirm('Opravdu chcete tuto otázku trvale smazat?')) return;
 
     try {
-      const response = await dynamoDBService.deleteQuestion(String(q.id));
+      const dbKey = (q as any)._dbQuestionId || String(q.id);
+      const response = await dynamoDBService.deleteQuestion(dbKey);
       if (response.success) {
         // Remove from current list
         setQuestions(prev => prev.filter(question => question.id !== q.id));
@@ -3069,7 +3073,7 @@ V nastavení lze změnit defaultni model.`);
 
           // Also save the LO directly to the question if it's an AI-generated question
           if (q.source === 'ai' && result.objective) {
-            dynamoDBService.updateQuestionLO(q.questionId || q.id, result.objective).catch(() => { });
+            dynamoDBService.updateQuestionLO((q as any)._dbQuestionId || q.questionId || q.id, result.objective).catch(() => { });
           }
         } catch (error) {
           console.error('[Explanation] ❌ DynamoDB save FAILED:', error);
@@ -3182,7 +3186,7 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
         ).catch((err) => { console.error('[Explanation] ❌ DynamoDB regen-save FAILED:', err); });
 
         if (q.source === 'ai' && explanation.objective) {
-          dynamoDBService.updateQuestionLO(q.questionId || q.id, explanation.objective).catch(() => { });
+          dynamoDBService.updateQuestionLO((q as any)._dbQuestionId || q.questionId || q.id, explanation.objective).catch(() => { });
         }
       }
 

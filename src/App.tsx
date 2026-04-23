@@ -2887,6 +2887,7 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
   const handleFetchAiExplanation = async () => {
     const q = questions[currentQuestionIndex];
     if (!q) return;
+    const capturedQuestionId = q.id;
 
     const currentApiKey = aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined);
     if (!currentApiKey && !(aiProvider === 'deepseek' && getProxyParams().idToken)) {
@@ -2932,6 +2933,7 @@ V nastavení lze změnit defaultni model.`);
         console.log(`[Cache] DynamoDB result:`, cached);
         if (cached.success && cached.data?.explanation) {
           console.log(`[Cache] Found in DynamoDB, using cached explanation`);
+          if (questions[currentQuestionIndex]?.id !== capturedQuestionId) return;
           setAiExplanation(cached.data.explanation);
           setDetailedExplanation(cached.data.detailedExplanation || null);
           setAiExplanationGeneratedBy({ provider: cached.data.provider || 'unknown', model: cached.data.model || 'unknown' });
@@ -2953,6 +2955,7 @@ V nastavení lze změnit defaultni model.`);
           console.log(`[Cache] localStorage data:`, parsed);
           if (parsed.explanation) {
             console.log(`[Cache] Found in localStorage, using cached explanation`);
+            if (questions[currentQuestionIndex]?.id !== capturedQuestionId) return;
             setAiExplanation(parsed.explanation);
             setDetailedExplanation(parsed.detailedExplanation || null);
             setAiExplanationGeneratedBy({ provider: parsed.provider || aiProvider, model: parsed.model || aiModel });
@@ -2985,8 +2988,15 @@ V nastavení lze změnit defaultni model.`);
         ? getAvailableOptions(shuffledQuestion.originalQuestion)[shuffledQuestion.displayCorrect]
         : undefined;
 
-      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined), aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken(), userApiKey, claudeApiKey, (chunk) => setAiExplanation(prev => prev + chunk));
+      const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined), aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken(), userApiKey, claudeApiKey, (chunk) => {
+        if (questions[currentQuestionIndex]?.id === capturedQuestionId) {
+          setAiExplanation(prev => (prev || '') + chunk);
+        }
+      });
 
+
+      // Guard: discard result if user navigated to a different question
+      if (questions[currentQuestionIndex]?.id !== capturedQuestionId) return;
 
       // Save objective if detected
       if (result.objective) {

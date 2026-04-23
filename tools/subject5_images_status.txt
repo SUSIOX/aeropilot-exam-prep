@@ -1,0 +1,102 @@
+Nacteno: 98 otazek
+
+questionId           image                                         question[:60]
+----------------------------------------------------------------------------------------------------------------------------------
+subject5_q1          BEZ OBRAZKU                                   Zařízení na náběžné hraně křídla, např. sloty, v porovnání s
+subject5_q2          BEZ OBRAZKU                                   Stabilita letu podél příčné osy letadla je zajištěna:
+subject5_q3          BEZ OBRAZKU                                   Let rychlostí vyšší než maximální nepřekročitelnou rychlostí
+subject5_q4          BEZ OBRAZKU                                   Co způsobí námraza na vrtuli?
+subject5_q5          BEZ OBRAZKU                                   Jaká další síla ve směru odporu mající za následek zvýšení p
+subject5_q6          BEZ OBRAZKU                                   Statický tlak v plynech působí:
+subject5_q7          BEZ OBRAZKU                                   Bernoulliho rovnice pro nestlačitelné kapaliny bez tření pra
+subject5_q9          BEZ OBRAZKU                                   Lze předpokládat, že všechny aerodynamické síly působí na tě
+subject5_q10         aerodnamika_trubice_prurezy.png               Aerodynamický střed je teoretický bod profilu, ve kterém:
+subject5_q11         PFA-010.jpg                                   Číslo (2) na obrázku představuje: Viz obr. (PFA-010).
+subject5_q12         PFA-010.jpg                                   Číslo (3) na obrázku představuje: Viz obr. (PFA-010).
+subject5_q13         BEZ OBRAZKU                                   Úhel náběhu je úhel mezi:
+subject5_q14         BEZ OBRAZKU                                   Poměr rozpětí ku střední tětivě se nazývá:
+subject5_q15         PFA-009.jpg                                   Jaký bod na profilu je znázorněn číslem (3)? Viz obr. (PFA-0
+subject5_q16         PFA-009.jpg                                   Jaký bod na profilu je značen číslem (4)? Viz obr. (PFA-009)
+subject5_q17         BEZ OBRAZKU                                   Ve které fázi letu se začíná tvořit vír na konci křídla?
+subject5_q18         PFA-009.jpg                                   Jaký bod na profilu představuje číslo (1) na obrázku? Viz ob
+subject5_q19         BEZ OBRAZKU                                   Co se děje v okolí stagnačního bodu?
+subject5_q20         BEZ OBRAZKU                                   Jaké je rozložení tlaku na profilu křídla vytvářejícího vztl
+subject5_q21         BEZ OBRAZKU                                   Působiště vztlaku profilu s kladným prohnutím střední čáry:
+subject5_q22         BEZ OBRAZKU                                   Vztah mezi rychlostí letu a odporem:
+subject5_q23         BEZ OBRAZKU                                   Který výrok o vztlaku a úhlu náběhu je pravdivý?
+subject5_q24         BEZ OBRAZKU                                   Který výrok o proudění kolem profilu při zvětšení úhlu náběh
+subject5_q25         BEZ OBRAZKU                                   Který výrok o proudění kolem profilu při zmenšení úhlu náběh
+subject5_q26         PFA-003.jpg                                   Co znázorňuje úhel na obrázku? Viz obr. (PFA-003) DoF: směr 
+subject5_q27         BEZ OBRAZKU                                   Aby se zlepšily vlastnosti letadla při přetažení, je křídlo 
+subject5_q28         BEZ OBRAZKU                                   Co popisuje výhodu zkroucení křídla?
+subject5_q29         BEZ OBRAZKU                                   Který výrok o úhlu náběhu je pravdivý?
+subject5_q30         BEZ OBRAZKU                                   Jak se přibližně změní škodlivý odpor, zvýší-li se rychlost 
+subject5_q31         BEZ OBRAZKU                                   Součinitel odporu:
+subject5_q32         BEZ OBRAZKU                                   K vyrovnávání tlaků mezi horní a spodní části křídla dochází
+subject5_q33         BEZ OBRAZKU                                   Při které z následujících situací dochází k působení velkého
+subject5_q34         BEZ OBRAZKU                                   Které části letadla výrazně ovlivňují tvorbu indukovaného od
+subject5_q35         BEZ OBRAZKU                                   Kde se vytváří interferenční odpor?
+subject5_q36         PFA-011.jpg                                   Která křivka na obrázku představuje indukovaný odpor? Viz ob
+subject5_q37         BEZ OBRAZKU                                   Tlakový odpor, interferenční odpor a třecí odpor náleží ke s
+subject5_q38         BEZ OBRAZKU                                   Který z uvedených druhů odporů NENÍ škodlivým odporem?
+subject5_q39         BEZ OBRAZKU                                   Jak se mění indukovaný a škodlivý odpor s narůstající rychlo
+subject5_q40         BEZ OBRAZKU                                   Který z uvedených tvarů křídla má nejmenší indukovaný odpor?
+subject5_q41         BEZ OBRAZKU                                   Jaký účinek na indukovaný odpor má v ustáleném horizontálním
+subject5_q42         BEZ OBRAZKU                                   Který výrok o indukovaném odporu v horizontálním letu je pra
+subject5_q43         BEZ OBRAZKU                                   Za které z uvedených situací je celkový odpor minimální?
+subject5_q44         BEZ OBRAZKU                                   Z jakých druhů odporů se skládá celkový odpor?
+subject5_q45         BEZ OBRAZKU                                   Jak se mění vztlak a odpor při konstantním násobku 1, blíží-
+subject5_q46         BEZ OBRAZKU                                   Při přetažení je důležité:
+subject5_q47         BEZ OBRAZKU                                   Při přetažení:
+subject5_q48         BEZ OBRAZKU                                   Kritický úhel náběhu:
+subject5_q49         IAS.jpg                                       Co způsobí snížení pádové rychlosti vS (IAS)?
+subject5_q50         BEZ OBRAZKU                                   Varování před pádem se aktivuje před dosažením:
+subject5_q51         BEZ OBRAZKU                                   U letounů je obvykle varování před pádem aktivováno změnou:
+subject5_q52         BEZ OBRAZKU                                   Jak má pilot reagovat, spustí-li varování před pádem?
+subject5_q53         BEZ OBRAZKU                                   Který výrok o vývrtce je pravdivý?
+subject5_q54         BEZ OBRAZKU                                   Jak se mění součinitel vztlaku při vysouvání vztlakových kla
+subject5_q55         BEZ OBRAZKU                                   Který z následujících vlivů způsobuje zvětšení vztlaku při v
+subject5_q56         BEZ OBRAZKU                                   Co se může změnit vysunutím vztlakových klapek do polohy na 
+subject5_q57         BEZ OBRAZKU                                   Jaký je princip Fowlerovy klapky?
+subject5_q58         BEZ OBRAZKU                                   Při vzletu s klapkami vysunutými do vzletové polohy:
+subject5_q59         BEZ OBRAZKU                                   Jak se mění součinitel vztlaku a odporu, jsou-li vztlakové k
+subject5_q60         BEZ OBRAZKU                                   Laminární mezní vrstva se na profilu nachází mezi:
+subject5_q61         BEZ OBRAZKU                                   Jaké druhy mezních vrstev jsou na profilu?
+subject5_q62         BEZ OBRAZKU                                   Jak se liší laminární mezní vrstva od turbulentní?
+subject5_q63         BEZ OBRAZKU                                   Co zajišťuje příčnou stabilitu letadla?
+subject5_q64         BEZ OBRAZKU                                   Jak lze popsat statickou stabilitu?
+subject5_q65         BEZ OBRAZKU                                   Vůči které ose se udává podélná stabilita?
+subject5_q66         BEZ OBRAZKU                                   Poloha těžiště silně ovlivňuje stabilitu kolem které osy?
+subject5_q67         BEZ OBRAZKU                                   Co zajišťuje směrovou stabilitu letounu?
+subject5_q68         BEZ OBRAZKU                                   Pohyb kolem vertikální osy se nazývá:
+subject5_q69         BEZ OBRAZKU                                   Pohyb kolem příčné osy se nazývá:
+subject5_q71         BEZ OBRAZKU                                   V přímočarém ustáleném letu s konstantním výkonem motoru je 
+subject5_q72         BEZ OBRAZKU                                   Co zajišťuje vodorovná ocasní plocha?
+subject5_q73         BEZ OBRAZKU                                   Pohyb výškovky při rotaci při vzletu:
+subject5_q74         BEZ OBRAZKU                                   Výškovka způsobuje pohyb letounu kolem:
+subject5_q75         BEZ OBRAZKU                                   Co platí o těžišti letadla?
+subject5_q76         BEZ OBRAZKU                                   Výchylka směrovky způsobuje pohyb letounu kolem:
+subject5_q77         BEZ OBRAZKU                                   Výchylka směrovky vlevo způsobí:
+subject5_q78         BEZ OBRAZKU                                   Jaká je výhoda diferenciálních výchylek křidélek?
+subject5_q79         BEZ OBRAZKU                                   Čím se vyrovnává bočení proti klonění vyvolaném výchylkou kř
+subject5_q80         BEZ OBRAZKU                                   Diferenciální výchylka křidélek se používá proto, aby:
+subject5_q81         BEZ OBRAZKU                                   Vztlaková síla působí směrem kolmo:
+subject5_q82         BEZ OBRAZKU                                   Aerodynamické vyvážení směrovky:
+subject5_q83         BEZ OBRAZKU                                   Čím se dlouhodobě zmenšují síly v řízení?
+subject5_q84         BEZ OBRAZKU                                   Jaký účel má hmotové vyvážení kormidel?
+subject5_q85         BEZ OBRAZKU                                   Za letu s konstantním nastavením výkonu motoru má letadlo sn
+subject5_q86         BEZ OBRAZKU                                   Trim výškovky je vychýlen nahoru. V jaké poloze je jeho indi
+subject5_q87         BEZ OBRAZKU                                   Který poměr popisuje plošné zatížení křídla?
+subject5_q88         BEZ OBRAZKU                                   Který faktor zvýší za letu násobek zatížení?
+subject5_q89         BEZ OBRAZKU                                   Jaký výrok o vrtuli konstantních otáček je pravdivý?
+subject5_q90         BEZ OBRAZKU                                   Zkroucení vrtulových listů zajišťuje:
+subject5_q91         BEZ OBRAZKU                                   Mlýnkující vrtule po vysazení motoru:
+subject5_q92         BEZ OBRAZKU                                   Při klesání konstantní rychlostí na volnoběhu pohne pilot pá
+subject5_q93         PFA-008.jpg                                   Jaký režim letu označuje bod (1) na obrázku? Viz obr. (PFA-0
+subject5_q94         PFA-008.jpg                                   Jaký režim letu označuje bod (5) na obrázku? Viz obr. (PFA-0
+subject5_q95         BEZ OBRAZKU                                   Náklon v zatáčce o 360° za 2 minuty závisí na:
+subject5_q96         BEZ OBRAZKU                                   Jaký je vztah mezi násobkem (n) a pádovou rychlostí (vS) v k
+subject5_q97         BEZ OBRAZKU                                   Jak se změní rovnováha sil v zatáčce?
+subject5_q98         BEZ OBRAZKU                                   Vyrovnávání tlaku mezi horní a spodní stranou křídla má za n
+subject5_q99         BEZ OBRAZKU                                   Jaký účinek má přízemní efekt?
+subject5_q100        BEZ OBRAZKU                                   Jaký je rozdíl mezi vývrtkou a spirálou?

@@ -316,6 +316,7 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
   const [showRawProgressStats, setShowRawProgressStats] = useState(false);
   const [isProgressExpanded, setIsProgressExpanded] = useState(false);
   const [aiExplanation, setAiExplanation] = useState<string | null>(null);
+  const [aiExplanationQuestionId, setAiExplanationQuestionId] = useState<string | number | null>(null);
   const [aiExplanationGeneratedBy, setAiExplanationGeneratedBy] = useState<{ provider: string; model: string } | null>(null);
   const [aiDetectedObjective, setAiDetectedObjective] = useState<string | null>(null);
   const [detailedExplanation, setDetailedExplanation] = useState<string | null>(null);
@@ -2739,6 +2740,7 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
       // Reset explanation states FIRST before changing question
       setShowExplanation(false);
       setAiExplanation(null);
+      setAiExplanationQuestionId(null);
       setAiExplanationGeneratedBy(null);
       setAiDetectedObjective(null);
       setDetailedExplanation(null);
@@ -2829,6 +2831,7 @@ const [isStatsLoading, setIsStatsLoading] = useState(false);
         setAnswered(null);
         setShowExplanation(false);
         setAiExplanation(null);
+        setAiExplanationQuestionId(null);
         setDetailedExplanation(null);
       } else {
         alert('Nepodařilo se smazat otázku: ' + response.error);
@@ -2925,6 +2928,7 @@ V nastavení lze změnit defaultni model.`);
 
     setIsGeneratingAiExplanation(true);
     setAiExplanation(null);
+    setAiExplanationQuestionId(null);
     setDetailedExplanation(null);
     try {
       // Guest mode = žádný přístup k AI
@@ -2944,6 +2948,7 @@ V nastavení lze změnit defaultni model.`);
           console.log(`[Cache] Found in DynamoDB, using cached explanation`);
           if (questionsRef.current[currentQuestionIndexRef.current]?.id !== capturedQuestionId) return;
           setAiExplanation(cached.data.explanation);
+          setAiExplanationQuestionId(capturedQuestionId);
           setDetailedExplanation(cached.data.detailedExplanation || null);
           setAiExplanationGeneratedBy({ provider: cached.data.provider || 'unknown', model: cached.data.model || 'unknown' });
           setShowExplanation(true);
@@ -2966,6 +2971,7 @@ V nastavení lze změnit defaultni model.`);
             console.log(`[Cache] Found in localStorage, using cached explanation`);
             if (questionsRef.current[currentQuestionIndexRef.current]?.id !== capturedQuestionId) return;
             setAiExplanation(parsed.explanation);
+            setAiExplanationQuestionId(capturedQuestionId);
             setDetailedExplanation(parsed.detailedExplanation || null);
             setAiExplanationGeneratedBy({ provider: parsed.provider || aiProvider, model: parsed.model || aiModel });
             setShowExplanation(true);
@@ -2999,6 +3005,7 @@ V nastavení lze změnit defaultni model.`);
 
       const result = await getDetailedExplanation(q, lo, aiProvider === 'gemini' ? userApiKey : aiProvider === 'claude' ? claudeApiKey : (deepseekApiKey || undefined), aiModel, aiProvider, undefined, displayCorrectOption, AI_PROXY_URL, await getProxyIdToken(), userApiKey, claudeApiKey, (chunk) => {
         if (questionsRef.current[currentQuestionIndexRef.current]?.id === capturedQuestionId) {
+          setAiExplanationQuestionId(capturedQuestionId);
           setAiExplanation(prev => (prev || '') + chunk);
         }
       });
@@ -3006,6 +3013,7 @@ V nastavení lze změnit defaultni model.`);
 
       // Guard: discard result if user navigated to a different question
       if (questionsRef.current[currentQuestionIndexRef.current]?.id !== capturedQuestionId) return;
+      setAiExplanationQuestionId(capturedQuestionId);
 
       // Save objective if detected
       if (result.objective) {
@@ -3084,6 +3092,7 @@ V nastavení lze změnit defaultni model.`);
 
     setIsRegeneratingExplanation(true);
     setAiExplanation(null);
+    setAiExplanationQuestionId(null);
     try {
       // Guest mode = žádný přístup k AI
       if (isGuestMode) {
@@ -3133,6 +3142,7 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
         claudeApiKey,
         (chunk) => {
           if (questionsRef.current[currentQuestionIndexRef.current]?.id === capturedQuestionId) {
+            setAiExplanationQuestionId(capturedQuestionId);
             setAiExplanation(prev => (prev || '') + chunk);
           }
         }
@@ -3140,6 +3150,7 @@ Klíč bude uložen pouze ve vašem prohlížeči.`);
 
       if (questionsRef.current[currentQuestionIndexRef.current]?.id !== capturedQuestionId) return;
       setAiExplanation(explanation.explanation);
+      setAiExplanationQuestionId(capturedQuestionId);
       setAiExplanationGeneratedBy({ provider: aiProvider, model: aiModel });
       setAiDetectedObjective(explanation.objective || null);
       setDetailedExplanation(null);
@@ -6124,6 +6135,7 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                       // Save to DB immediately
                                       saveSettingsImmediate({ aiProvider: newProvider, aiModel: selectedModel });
                                       setAiExplanation(null);
+                                      setAiExplanationQuestionId(null);
                                       setDetailedExplanation(null);
                                       handleFetchAiExplanation();
                                     }}
@@ -6259,7 +6271,7 @@ const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
                                 )}
 
                                 {/* AI Detailed Note — zobrazuje se i během streamingu */}
-                                {aiExplanation && (
+                                {aiExplanation && aiExplanationQuestionId === questions[currentQuestionIndex]?.id && (
                                   <div className="space-y-4">
                                     <div className="p-6 bg-slate-900 text-slate-300 border border-slate-800 rounded-xl space-y-4 relative overflow-hidden font-mono">
                                       <div className="absolute top-0 right-0 p-4 opacity-5">
